@@ -1,0 +1,33 @@
+.main{width: 100%;float: left;}
+.navbar{width: 100% ;float: left ;}
+.navbar .logo{float: left; width:15%;}
+.navbar .logo .navbar-brand{width: 50%;}
+.navbar .logo .navbar-brand img{width: 100%; border: none;background: none;}
+.nav .container-fluid{width: 100% !important;}
+h6 , p{text-align: center;}
+a{text-decoration: none;}
+a:hover{color: #C89979 !important;}
+i{font-size: 22px;color: #C89979;}
+.container-fluid{font-size: 22px;float: left;}
+.d-flex button{color: #BE9329;border: 1px solid #BE9329;}
+.d-flex button:hover{background-color: #E2BA48 !important;border: 1px solid #BE9329;}
+footer{clear: both;}
+
+
+.header {width: 100%;float: left; background: url(../IMG/header.png);}
+.header nav{margin-left: 42%;margin-bottom: 3%;}
+
+.boxtrai{float: left;margin: 2% 4% 2% 12%;}
+
+.boxphai{float: left;margin: 2% 0 2% 0;width: 30%;}
+
+.boxphai input {width: 45%;float: left;margin-bottom: 2%;}
+
+
+.boxphainho{float: left;width: 100%;}
+.boxphainho i{float: left;font-size: 25px;color: black;}
+.boxphainho p{font-size: 18px;text-align: left; margin-left: 10% !important;}
+.boxphainho h4{text-align: center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin-bottom: 5%;}
+
+form{clear: both;}
+.bg {background: #000 !important;}
