@@ -13,9 +13,12 @@
 }
 
 .nav-top{
-    flex-grow: 1 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-grow: 1 !important; */
     background-color: #2A3F54;
-    height: 80px;
+    /* height: 80px; */
 }
 
 .nav-top img{
@@ -182,4 +185,23 @@ a:hover{
     margin: 30px;
     padding: 30px;
     border-top: 2px solid gainsboro;
+}
+
+.menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+    .menu{
+        display: block;
+        color:#fff;
+    }
+    .navbar{
+        display: none;
+        flex-direction: column;
+    }   
+    
+    .navbar.tokenMenu{
+        display: block; 
+    }    
 }
