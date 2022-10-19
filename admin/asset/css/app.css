@@ -203,5 +203,10 @@ a:hover{
     
     .navbar.tokenMenu{
         display: block; 
-    }    
+    }   
+
+}
+
+.form-add{
+    margin: 10px;
 }
