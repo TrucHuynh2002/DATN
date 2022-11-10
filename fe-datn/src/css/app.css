@@ -1,0 +1,276 @@
+ul#menu li {
+    list-style-type: none;
+    float: left;
+    margin-right: 15px;
+}
+
+ul#menu li a {
+    text-decoration:none;
+    padding: 5px;
+}
+
+ul#menu li ul#sub {
+    display: none;
+}
+
+ul#menu li:hover ul#sub {
+    display: block;
+}
+
+ul#menu li {
+    position: relative;
+} 
+ul#menu li ul#sub {
+    display: none;
+    position: absolute;
+    width: 160px;
+}
+
+ul#menu, ul#menu ul#sub {
+    padding:0;
+    margin: 0;
+}
+
+.sub-menu{
+    text-transform: none !important;
+}
+
+/* menu account */
+
+ul#menu-account li {
+    list-style-type: none;
+    float: left;
+    margin-right: 50px;
+}
+
+ul#menu-account li a {
+    text-decoration:none;
+    padding: 5px;
+}
+
+ul#menu-account li ul#sub {
+    display: none;
+    
+}
+
+ul#menu-account li:hover ul#sub {
+    display: block;
+}
+
+ul#menu-account li {
+    position: relative;
+} 
+ul#menu-account li ul#sub {
+    display: none;
+    position: absolute;
+    width: 170px;
+}
+
+/* ul#menu-account, ul#menu-account ul#sub {
+    padding:0;
+    margin: 0;
+} */
+
+/* end menu account */
+
+#nav-setting{
+    list-style-type: none;
+    line-height: 2;
+}
+
+.nav-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2A3F54;
+}
+
+.nav-top img{
+    width: 150px;
+    height: 100px;
+    padding: 0 0 5px 30px;
+}
+
+.nav-top-logout{
+    float: right;
+    margin: 30px;
+}
+
+.logout{
+    color: #fff !important;
+    text-transform: none !important;
+}
+
+a{
+    display: inline-block !important;
+    color: #0d3380 !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+}
+.drop-nav{
+    display: block !important;
+    padding: 5px;
+    text-transform: none !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+    font-weight: 700 !important;
+    color: #5AB9A8 !important;
+}
+
+.content{
+    padding: 70px 20px 20px 20px;
+    max-height: 100%;
+    background-color:whitesmoke;
+    box-shadow: 0 2px 5px gainsboro;
+}
+
+.col{
+    margin: 20px;
+    height: 100px;
+}
+
+.postcard{   
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #2A3F54;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.postcard-content{
+    margin-left: 36px;
+}
+
+.chart{  
+    height: 20px;
+    line-height: 40px;
+}
+
+.postcard-i{
+    padding: 12px;
+    font-size: 50px;
+}
+
+.post{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color:#5AB9A8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.category{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color:#2A3F54;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.interior{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: blue;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.comment{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: chocolate;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.user{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: cornflowerblue;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.content .add-post{
+    max-height: 100%;
+    padding: 20px;
+    border-style: inset;
+    border-radius: 10px;
+    background-color:white;
+}
+
+.footer{
+    max-width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #0d3380;
+    margin: 30px;
+    padding: 30px;
+    border-top: 2px solid gainsboro;
+}
+
+.menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px){
+    .menu{
+        display: block;
+        color:#fff;
+    }
+    .navbar{
+        display: none;
+        flex-direction: column;
+    }   
+    
+    .navbar.tokenMenu{
+        display: block; 
+    }   
+
+}
+
+.form-add{
+    margin: 10px;
+    color: #fff !important;
+    text-transform: none !important;
+}
+
+.btn-edit{
+    margin: 10px;
+}
+
+.nav-config{
+    color: #5AB9A8 !important;
+    text-transform: none !important;
+}
+
+.nav-config:hover{
+    color:#0d3380 !important;
+    text-transform: none !important;
+}
+
+i{
+    font-size: 16px;
+}
+
