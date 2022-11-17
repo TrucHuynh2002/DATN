@@ -1,10 +1,18 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FurnitureController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\imgPostController;
+use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -53,9 +61,42 @@ Route::post('furniture/create', [FurnitureController::class, 'created_at']);
 Route::put('furniture/update/{id}', [FurnitureController::class, 'update']);
 Route::post('furniture/delete/{id}', [FurnitureController::class, 'delete']);
 
+// Favorite
+Route::get('favorite/show', [FavoriteController::class, 'show']);
+Route::get('favorite/show/{id}', [FavoriteController::class, 'show_id']);
+Route::post('favorite/create', [FavoriteController::class, 'created_at']);
+
 // RoomType
 Route::get('roomType/show', [roomTypeController::class, 'show']);
 Route::get('roomType/id/{id}', [roomTypeController::class, 'show_id']);
 Route::post('roomType/create', [roomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [roomTypeController::class, 'update']);
 Route::post('roomType/delete/{id}', [roomTypeController::class, 'delete']);
+
+// Comment
+Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
+Route::get('comment/show/{id}', [CommentController::class, 'Comment_SelectOne']);
+Route::post('comment/create', [CommentController::class, 'CommentAdd']);
+Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
+Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
+
+// // User
+// Route::get('user/show', [roomTypeController::class, 'show']);
+// Route::get('user/id/{id}', [roomTypeController::class, 'show_id']);
+// Route::post('user/create', [roomTypeController::class, 'created_at']);
+// Route::put('user/update/{id}', [roomTypeController::class, 'update']);
+// Route::post('user/delete/{id}', [roomTypeController::class, 'delete']);
+
+// Contact
+Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
+Route::get('contact/show/{id}', [ContactController::class, 'Contact_SelectOne']);
+Route::post('contact/create', [ContactController::class, 'ContactAdd']);
+Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
+Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
+
+// Rating
+Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
+Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
+Route::post('rating/create', [RatingController::class, 'RatingAdd']);
+Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
+// Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
