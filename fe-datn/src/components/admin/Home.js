@@ -67,7 +67,7 @@ function Home() {
               <canvas id="myChart1" style="width:100%;max-width:300px"></canvas>
             </div>   */}
 
-          </div>
+        </div>
     </>
   )
 }

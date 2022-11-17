@@ -8,7 +8,7 @@ function ListPost() {
     <div className="content">
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách bài viết</h1>
-            <Link to="/add_post" className="btn btn-primary form-add">Thêm bài viết</Link>
+            <Link to="add_post" className="btn btn-primary form-add">Thêm bài viết</Link>
             <Table bordered>
             <thead>
             <tr>
@@ -26,7 +26,7 @@ function ListPost() {
                 <td>3</td>
                 <td></td>
                 <td>
-                    <Link to="/edit_post">
+                    <Link to="edit_post">
                         <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
                     </Link>
                     <Link to="#">
