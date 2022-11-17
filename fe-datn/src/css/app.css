@@ -1,3 +1,4 @@
+
 ul#menu li {
     list-style-type: none;
     float: left;
@@ -6,11 +7,21 @@ ul#menu li {
 
 ul#menu li a {
     text-decoration:none;
-    padding: 5px;
+    padding: 8px;
+    font-size: 22px;
+    margin-left: 10px;
 }
 
 ul#menu li ul#sub {
     display: none;
+    position: absolute;
+    width: 225px;
+    z-index: 100;
+    background-color: white;
+    border-radius: 0 20px 0 0 ;
+    height:200%;
+    word-wrap: break-word;
+
 }
 
 ul#menu li:hover ul#sub {
@@ -20,19 +31,20 @@ ul#menu li:hover ul#sub {
 ul#menu li {
     position: relative;
 } 
-ul#menu li ul#sub {
-    display: none;
-    position: absolute;
-    width: 160px;
-}
 
+ul#menu{
+    display: flex;
+    justify-content: space-evenly;
+}
 ul#menu, ul#menu ul#sub {
     padding:0;
     margin: 0;
 }
 
 .sub-menu{
-    text-transform: none !important;
+    text-transform: none ;
+    padding: 4px;
+    font-size: 10px;
 }
 
 /* menu account */
@@ -41,6 +53,7 @@ ul#menu-account li {
     list-style-type: none;
     float: left;
     margin-right: 50px;
+    position: relative;
 }
 
 ul#menu-account li a {
@@ -57,13 +70,10 @@ ul#menu-account li:hover ul#sub {
     display: block;
 }
 
-ul#menu-account li {
-    position: relative;
-} 
 ul#menu-account li ul#sub {
     display: none;
     position: absolute;
-    width: 170px;
+    /* width: 170px; */
 }
 
 /* ul#menu-account, ul#menu-account ul#sub {
@@ -97,27 +107,27 @@ ul#menu-account li ul#sub {
 }
 
 .logout{
-    color: #fff !important;
-    text-transform: none !important;
+    color: #fff ;
+    text-transform: none ;
 }
 
 a{
-    display: inline-block !important;
-    color: #0d3380 !important;
-    font-weight: 700 !important;
-    text-decoration: none !important;
-    text-transform: uppercase !important;
+    display: inline-block ;
+    color: #0d3380 ;
+    font-weight: 700 ;
+    text-decoration: none ;
+    text-transform: uppercase ;
 }
 .drop-nav{
-    display: block !important;
+    display: block ;
     padding: 5px;
-    text-transform: none !important;
+    text-transform: none ;
 }
 
 a:hover{
-    text-decoration: none !important;
-    font-weight: 700 !important;
-    color: #5AB9A8 !important;
+    text-decoration: none ;
+    font-weight: 700 ;
+    color: #5AB9A8 ;
 }
 
 .content{
@@ -127,7 +137,7 @@ a:hover{
     box-shadow: 0 2px 5px gainsboro;
 }
 
-.col{
+.col-admin{
     margin: 20px;
     height: 100px;
 }
@@ -252,8 +262,8 @@ a:hover{
 
 .form-add{
     margin: 10px;
-    color: #fff !important;
-    text-transform: none !important;
+    color: #fff ;
+    text-transform: none ;
 }
 
 .btn-edit{
@@ -261,16 +271,17 @@ a:hover{
 }
 
 .nav-config{
-    color: #5AB9A8 !important;
-    text-transform: none !important;
+    color: #5AB9A8 ;
+    text-transform: none ;
 }
 
 .nav-config:hover{
-    color:#0d3380 !important;
-    text-transform: none !important;
+    color:#0d3380 ;
+    text-transform: none ;
 }
 
-i{
-    font-size: 16px;
+i.bx{
+    font-size: 100%;
+    margin-left: 5px;
 }
 

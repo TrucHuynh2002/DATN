@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './css/app.css';
+ import './css/app.css';
 import './css/style.css';
 import './css/responsive.css';
 
 // admin home
-import App from './App';
+import App from './components/admin/App';
 import Home from './components/admin/Home';
 // admin category
 import AddCategory from './components/admin/category/AddCategory';
