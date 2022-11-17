@@ -12,7 +12,8 @@ class ContactController extends Controller
         $Contact_SelectAll = ContactModel::all();
         return response()
                 ->json([
-                    'data' => $Contact_SelectAll
+                    'data' => $Contact_SelectAll,
+                    'status'=> true
                 ]);
     }
 
@@ -21,19 +22,59 @@ class ContactController extends Controller
         $Contact_SelectOne = ContactModel::find($id_contact);
         return response()
                 ->json([
-                    'data' => $Contact_SelectOne
+                    'data' => $Contact_SelectOne,
+                    'status'=> true
                 ]);
     }
-
+    public function ContactAdd(Request $request){
+        $t = new ContactModel();
+        $t->full_name = $request->full_name;
+        $t->subject = $request->subject;
+        $t->email = $request->email;
+        $t->phone = $request->phone;
+        $t->content = $request->content;
+        $t->status = $request->status;
+        $t->save();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
+    }
+    public function ContactEdit(Request $request, $id_contact){
+        $t = ContactModel::find($id_contact);
+        $t->full_name = $request->full_name;
+        $t->subject = $request->subject;
+        $t->email = $request->email;
+        $t->phone = $request->phone;
+        $t->content = $request->content;
+        $t->status = $request->status;
+        $t->save();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
+    }
+    public function ContactDelete(Request $request,$id_contact){
+        $t= ContactModel::find($id_contact);
+        $t->delete();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
+    }
     public function ContactApprove(Request $request,$id_contact){
         //phê duyệt hỗ trợ
         $t= ContactModel::find($id_contact);
         $t->status = $request->status;
         $t->save();
-        // return response()
-        //         ->json([
-        //             'data' => $Contact_SelectAll
-        //         ]);
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
 
     public function Contact_SelectNotApprove(){
@@ -41,7 +82,8 @@ class ContactController extends Controller
         $Contact_SelectNotApprove = ContactModel::where('status','=','0');
         return response()
                 ->json([
-                    'data' => $Contact_SelectNotApprove
+                    'data' => $Contact_SelectNotApprove,
+                    'status'=> true
                 ]);
     }
     
@@ -50,7 +92,8 @@ class ContactController extends Controller
         $Contact_SelectApprove = ContactModel::where('status','=','1');
         return response()
                 ->json([
-                    'data' => $Contact_SelectApprove
+                    'data' => $Contact_SelectApprove,
+                    'status'=> true
                 ]);
     }
 }

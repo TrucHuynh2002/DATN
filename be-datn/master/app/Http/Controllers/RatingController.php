@@ -9,46 +9,64 @@ use Illuminate\Support\Facades\DB;
 
 class RatingController extends Controller
 {
+    public function Rating_Selectall(Request $request){
+        $t = RatingModel::all();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
+    }
     public function RatingAdd(Request $request){
         $t = new RatingModel();
-        // $t->ten_congty = $request->ten_congty;
-        // $t->dia_chi = $request->dia_chi;
-        // $t->ma_sothue = $request->ma_sothue;
-        // $t->sdt = $request->sdt;
-        // $t->nguoi_daidien = $request->nguoi_daidien;
+        $t->rate = $request->rate;
+        $t->id_post = $request->id_post;
+        $t->id_comment = $request->id_comment;
         $t->save();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
-    public function RatingEdit(Request $request, $id_rating){
-        $t = RatingModel::find($id_rating);
-        // $t->ten_congty = $request->ten_congty;
-        // $t->dia_chi = $request->dia_chi;
-        // $t->ma_sothue = $request->ma_sothue;
-        // $t->sdt = $request->sdt;
-        // $t->nguoi_daidien = $request->nguoi_daidien;
+    public function RatingEdit(Request $request, $id_post_rate){
+        $t = RatingModel::find($id_post_rate);
+        $t->rate = $request->rate;
+        $t->id_post = $request->id_post;
+        $t->id_comment = $request->id_comment;
         $t->save();
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
-    public function RatingDelete(Request $request,$id_rating){
-        $t= RatingModel::find($id_rating);
+    public function RatingDelete(Request $request,$id_post_rate){
+        $t= RatingModel::find($id_post_rate);
         $t->delete();
-        // return response()
-        //         ->json([
-        //             'data' => $Contact_SelectAll
-        //         ]);
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
     public function Rating_SelectUser(Request $request,$id_rating){
-        $t = DB::table('rating')->join('users','rating.id_user','=','users.id')
-                                ->where('rating.id_user','=','users.id')->get();
-        // return response()
-        //         ->json([
-        //             'data' => $Contact_SelectAll
-        //         ]);
+        // $t = DB::table('post_rate')->join('users','rating.id_user','=','users.id')
+        //                         ->where('rating.id_user','=','users.id')->get();
+                                $t = RatingModel::find($id_rating);
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
     public function Rating_SelectOne(Request $request,$id_rating){
         $t = DB::table('rating')->join('users','rating.id_user','=',Auth::user()->id)
                                 ->where('rating.id_user','=',Auth::user()->id)->get();
-        // return response()
-        //         ->json([
-        //             'data' => $Contact_SelectAll
-        //         ]);
+        return response()
+                ->json([
+                    'data' => $t,
+                    'status'=> true
+                ]);
     }
 }

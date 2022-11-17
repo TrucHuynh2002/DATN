@@ -15,8 +15,6 @@ class CommentModel extends Model
     'content',
     'date',
     'status',
-    'id_user',
-    'updated_at',
-    'created_at'
+    'id_user'
     ];
 }
