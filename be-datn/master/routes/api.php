@@ -3,10 +3,15 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FurnitureController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\imgPostController;
+use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RatingController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\FavoriteController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
