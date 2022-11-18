@@ -6,6 +6,7 @@ use App\Models\RatingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class RatingController extends Controller
 {
@@ -18,6 +19,22 @@ class RatingController extends Controller
                 ]);
     }
     public function RatingAdd(Request $request){
+        $validation = Validator::make($request->all(),[ 
+            'rate' => 'required|string|max:255|unique:category'
+
+        ],[
+            'name_category.required' => 'Không được bỏ trống',
+            'name_category.string' => 'Không đúng định dạng',
+            'name_category.unique' => 'Đã tồn tại',
+            'name_category.max' => 'Độ dài không cho phép'
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $t = new RatingModel();
         $t->rate = $request->rate;
         $t->id_post = $request->id_post;

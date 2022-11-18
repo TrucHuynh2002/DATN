@@ -1,11 +1,37 @@
 <?php
+<<<<<<< HEAD
 
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
+=======
+=======
+use Illuminate\Support\Facades\Route;
+>>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
+>>>>>>> 7af4fabe1b87bd270a725c7364fd4cba2e7cc55c
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FurnitureController;
+<<<<<<< HEAD
+use App\Http\Controllers\imgPostController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RoomTypeController;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
+
+=======
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\imgPostController;
 use App\Http\Controllers\RoomTypeController;
@@ -13,6 +39,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
+>>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -67,7 +94,7 @@ Route::get('favorite/show/{id}', [FavoriteController::class, 'show_id']);
 Route::post('favorite/create', [FavoriteController::class, 'created_at']);
 
 // RoomType
-Route::get('roomType/show', [roomTypeController::class, 'show']);
+Route::get('roomType/show', [RoomTypeController::class, 'show']);
 Route::get('roomType/id/{id}', [roomTypeController::class, 'show_id']);
 Route::post('roomType/create', [roomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [roomTypeController::class, 'update']);
@@ -80,12 +107,15 @@ Route::post('comment/create', [CommentController::class, 'CommentAdd']);
 Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
-// // User
-// Route::get('user/show', [roomTypeController::class, 'show']);
-// Route::get('user/id/{id}', [roomTypeController::class, 'show_id']);
-// Route::post('user/create', [roomTypeController::class, 'created_at']);
-// Route::put('user/update/{id}', [roomTypeController::class, 'update']);
-// Route::post('user/delete/{id}', [roomTypeController::class, 'delete']);
+// User
+Route::get('user/show', [UserController::class, 'User_SelectAll']);
+Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+Route::post('user/create', [UserController::class, 'UserAdd']);
+Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+
+Route::post('user/login', [UserController::class, 'UserLogin']);
+Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
 // Contact
 Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
@@ -100,3 +130,4 @@ Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
+
