@@ -13,7 +13,7 @@ function Home() {
                 <p className="chart">20%</p>
               </div>
             </div>
-            <div className="col post">
+            <div className="col col-admin post">
               <i className="bx bx-edit-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Bài viết</span>
@@ -21,7 +21,7 @@ function Home() {
                 <p className="chart">20%</p>
               </div>
             </div>
-            <div className="col category">
+            <div className="col col-admin category">
               <i className="bx bx-category-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Danh mục</span>
@@ -32,7 +32,7 @@ function Home() {
           </div>
 
           <div className="row content-row">
-            <div className="col interior">
+            <div className="col col-admin interior">
               <i className="bx bx-arch postcard-i"></i>
               <div className="postcard-content">
                 <span> Nội thất</span>
@@ -40,7 +40,7 @@ function Home() {
                 <p className="chart">20%</p>
               </div>
             </div>
-            <div className="col comment">
+            <div className="col col-admin comment">
               <i className="bx bx-message-dots postcard-i"></i>
               <div className="postcard-content">
                 <span> Bình luận</span>
@@ -48,7 +48,7 @@ function Home() {
                 <p className="chart">20%</p>
               </div>
             </div>
-            <div className="col user">
+            <div className="col col-admin user">
               <i className="bx bx-user postcard-i"></i>
               <div className="postcard-content">
                 <span> Người dùng</span>

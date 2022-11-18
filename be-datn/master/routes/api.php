@@ -4,7 +4,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FurnitureController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\imgPostController;

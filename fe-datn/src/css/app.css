@@ -132,6 +132,11 @@ a:hover{
     height: 100px;
 }
 
+.col-admin{
+    margin: 20px;
+    height: 100px;
+}
+
 .postcard{   
     color: white;
     font-weight: 700;

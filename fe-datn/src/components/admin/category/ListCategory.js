@@ -1,26 +1,27 @@
-import React from 'react'
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-
-// lấy danh mục từ api
-// var ListCoursesBlock = document.querySelector('.list-cate');
-//  var CourseApi = 'http://127.0.0.1:8000/api/category/show'; 
-//  function  start(){
-//  getCourses(function(Courses){
-//   console.log(Courses);
-//  });
-//  };
-//  start();
-//  function getCourses(callback){
-//   fetch(CourseApi)
-//   .then(function(response){
-//     return response.json();
-//   })
-//   .then(callback);
-//  }
+import axios from 'axios'
 
 function ListCategory() {
+
+  const [listCategory, setListCategory] = useState([]);
+  useEffect(() => {
+    getData();
+  },[])
+
+  
+  const getData = () => {
+    axios
+    .get('http://127.0.0.1:8000/api/category/show')
+      .then((res) => {
+        // setListCategory(res.data);
+        setListCategory(res.data.data)
+      })
+  }
+
+
   return (
     <div className="content">
             <div className="add-post">
@@ -30,25 +31,27 @@ function ListCategory() {
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>1</th>
-                    <th>2</th>
+                    <th>Tên danh mục</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody class="list-cate">
-                    <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>
-                        <Link to="edit_category">
-                        <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
-                        </Link>
-                        <Link to="#">
-                        <Button variant="outline-danger" name='' className="bx bxs-trash"></Button>
-                        </Link>
-                    </td>
-                    </tr>
+                  {listCategory.map((cate,index) => {
+
+                    return <tr key={cate.id_category}>
+                        <td>{index+1}</td>
+                        <td>{cate.name_category}</td>
+                        <td>
+                            <Link to="edit_category">
+                            <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
+                            </Link>
+                            <Link to="#">
+                            <Button variant="outline-danger" name='' className="bx bxs-trash"></Button>
+                            </Link>
+                        </td>
+                  </tr>   
+                      
+                  })}                
                 </tbody>
               </Table>
             </div>
