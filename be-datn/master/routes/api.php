@@ -1,10 +1,15 @@
 <?php
+<<<<<<< HEAD
 
+=======
+use Illuminate\Support\Facades\Route;
+>>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FurnitureController;
+<<<<<<< HEAD
 use App\Http\Controllers\imgPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
@@ -22,6 +27,15 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+=======
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\imgPostController;
+use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\NotifyController;
+use App\Http\Controllers\FavoriteController;
+>>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -69,6 +83,11 @@ Route::get('furniture/show/{id}', [FurnitureController::class, 'show_id']);
 Route::post('furniture/create', [FurnitureController::class, 'created_at']);
 Route::put('furniture/update/{id}', [FurnitureController::class, 'update']);
 Route::post('furniture/delete/{id}', [FurnitureController::class, 'delete']);
+
+// Favorite
+Route::get('favorite/show', [FavoriteController::class, 'show']);
+Route::get('favorite/show/{id}', [FavoriteController::class, 'show_id']);
+Route::post('favorite/create', [FavoriteController::class, 'created_at']);
 
 // RoomType
 Route::get('roomType/show', [RoomTypeController::class, 'show']);

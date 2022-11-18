@@ -1,7 +1,16 @@
-import React from 'react'
-import { Button, Form, Row, Col } from 'react-bootstrap';
 
+import { Button, Form, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react'
 function AddFurniture() {
+    const [name, setName] = useState('')
+    const [icon, setIcon] = useState('')
+    const handleSubmit = () => {
+        console.log({
+            name,
+            icon
+        })
+    }
+
   return (
     <div className="content">
         <div className="add-post">
@@ -10,17 +19,30 @@ function AddFurniture() {
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Tên nội thất</Form.Label>
-                        <Form.Control type="text" name="name" className=''/>
+                        <Form.Control 
+                        type="text" 
+                        name="name" 
+                        className=''
+                        value={name}
+                         onChange = {e => setName(e.target.value)}
+                        />
                     </Form.Group>
                 </Col>
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="icon">
                         <Form.Label>Icons</Form.Label>
-                        <Form.Control type="text" name="icon" className=''/>
+                        <Form.Control
+                        type="text" 
+                        name="icon" 
+                        className=''
+                        value={icon}
+                         onChange = {e => setIcon(e.target.value)}
+                        />
                     </Form.Group>
                 </Col>
                 <div className="d-grid gap-2">
-                    <Button variant="primary" size="sm" name='' type="submit">
+                    <Button
+                     onClick={handleSubmit}>
                         Thêm nội thất
                     </Button>
                 </div>
