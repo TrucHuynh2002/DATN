@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
@@ -26,11 +27,11 @@ use App\Http\Controllers\FavoriteController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
 Route::get('config', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
 Route::put('config/update', [ConfigController::class, 'update_Config'])->name('getConfig');
 // category
+Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
 Route::get('category/show/{id}', [CategoryController::class, 'show_id']);
 Route::post('category/create', [CategoryController::class, 'created_at']);

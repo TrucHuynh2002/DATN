@@ -10,10 +10,12 @@ class CategoryController extends Controller
     public function show()
     {
         $data = Category::all();
-        return response()
-            ->json([
-                'data' => $data
-            ]);
+        // return response()
+        //     ->json([
+        //         'data' => $data
+        //     ]);
+        return $data;
+        echo "chào ";
     }
     public function show_id(Request $request, $id)
     {
