@@ -2,12 +2,10 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+
 import axios from 'axios'
-=======
 
 
->>>>>>> 7af4fabe1b87bd270a725c7364fd4cba2e7cc55c
 
 function ListCategory() {
 
