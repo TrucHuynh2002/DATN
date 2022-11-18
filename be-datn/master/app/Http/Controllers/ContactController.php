@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
@@ -27,6 +28,33 @@ class ContactController extends Controller
                 ]);
     }
     public function ContactAdd(Request $request){
+        $validation = Validator::make($request->all(),[ 
+            'full_name' => 'required|string|max:255',
+            'subject' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required||min:10|max:12',
+            'content' => 'required|max:255',
+        ],[
+            'full_name.required' => 'Không được bỏ trống',
+            'full_name.string' => 'Không đúng định dạng',
+            'full_name.max' => 'Độ dài không cho phép',
+            'subject.required' => 'Không được bỏ trống',
+            'email.required' => 'Không được bỏ trống',
+            'email.email' => 'Không đúng định dạng',
+            'phone.required' => 'Không được bỏ trống',
+            'phone.min' => 'Phải từ 10 số',
+            'phone.max' => 'Không đúng',
+            'phone.unique' => 'Đã tồn tại',
+            'content.required' => 'Không được bỏ trống',
+            'content.max' => 'Không đúng định dạng',
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $t = new ContactModel();
         $t->full_name = $request->full_name;
         $t->subject = $request->subject;
@@ -42,6 +70,33 @@ class ContactController extends Controller
                 ]);
     }
     public function ContactEdit(Request $request, $id_contact){
+        $validation = Validator::make($request->all(),[ 
+            'full_name' => 'required|string|max:255',
+            'subject' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required||min:10|max:12',
+            'content' => 'required|max:255',
+        ],[
+            'full_name.required' => 'Không được bỏ trống',
+            'full_name.string' => 'Không đúng định dạng',
+            'full_name.max' => 'Độ dài không cho phép',
+            'subject.required' => 'Không được bỏ trống',
+            'email.required' => 'Không được bỏ trống',
+            'email.email' => 'Không đúng định dạng',
+            'phone.required' => 'Không được bỏ trống',
+            'phone.min' => 'Phải từ 10 số',
+            'phone.max' => 'Không đúng',
+            'phone.unique' => 'Đã tồn tại',
+            'content.required' => 'Không được bỏ trống',
+            'content.max' => 'Không đúng định dạng',
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $t = ContactModel::find($id_contact);
         $t->full_name = $request->full_name;
         $t->subject = $request->subject;
@@ -50,6 +105,7 @@ class ContactController extends Controller
         $t->content = $request->content;
         $t->status = $request->status;
         $t->save();
+       
         return response()
                 ->json([
                     'data' => $t,

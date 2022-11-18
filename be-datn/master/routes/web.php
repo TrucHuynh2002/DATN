@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('email.Sendmailquenmatkhau');
-});
+// Route::get('/', function () {
+//     return view('email.Sendmailquenmatkhau');
+// });
 
 Auth::routes();
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category as Category;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -25,6 +26,21 @@ class CategoryController extends Controller
     }
     public function created_at(Request $request)
     {
+        $validation = Validator::make($request->all(),[ 
+            'name_category' => 'required|string|max:255|unique:category'
+        ],[
+            'name_category.required' => 'Không được bỏ trống',
+            'name_category.string' => 'Không đúng định dạng',
+            'name_category.unique' => 'Đã tồn tại',
+            'name_category.max' => 'Độ dài không cho phép'
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $category = new Category();
         $category->name_category = $request->name_category;
         $category->save();
@@ -36,6 +52,22 @@ class CategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $validation = Validator::make($request->all(),[ 
+        
+            'name_category' => 'required|string|max:255|unique:category'
+        ],[
+            'name_category.required' => 'Không được bỏ trống',
+            'name_category.string' => 'Không đúng định dạng',
+            'name_category.unique' => 'Đã tồn tại',
+            'name_category.max' => 'Độ dài không cho phép'
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $category = Category::find($id)->first();
         $category->name_category = $request->name_category;
         $category->save();
