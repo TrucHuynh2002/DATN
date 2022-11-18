@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 
 
 // lấy danh mục từ api
-var ListCoursesBlock = document.querySelector('.list-cate');
- var CourseApi = 'http://127.0.0.1:8000/api/category/show'; 
- function  start(){
- getCourses(function(Courses){
-  console.log(Courses);
- });
- };
- start();
- function getCourses(callback){
-  fetch(CourseApi)
-  .then(function(response){
-    return response.json();
-  })
-  .then(callback);
- }
+// var ListCoursesBlock = document.querySelector('.list-cate');
+//  var CourseApi = 'http://127.0.0.1:8000/api/category/show'; 
+//  function  start(){
+//  getCourses(function(Courses){
+//   console.log(Courses);
+//  });
+//  };
+//  start();
+//  function getCourses(callback){
+//   fetch(CourseApi)
+//   .then(function(response){
+//     return response.json();
+//   })
+//   .then(callback);
+//  }
 
 function ListCategory() {
   return (

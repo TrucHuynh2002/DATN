@@ -11,16 +11,22 @@ function ListContact() {
         <thead>
           <tr>
             <th>#</th>
-            <th>1</th>
-            <th>2</th>
-            <th></th>
+            <th>Tên người dùng</th>
+            <th>Tiêu đề</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Nội dung</th>
+            <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1</td>
-            <td>2</td>
-            <td>3</td>
+            <td>Nhóm 1</td>
+            <td>DATN</td>
+            <td>nhom1@fpt.edu.vn</td>
+            <td>0907673005</td>
+            <td>Liên hệ hỗ trợ</td>
             <td>
               <Link to="#">
                 <Button variant="outline-success" name='' className="btn-edit">Đã liên hệ</Button>

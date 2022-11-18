@@ -11,7 +11,7 @@ function ListPostCard() {
         <thead>
           <tr>
             <th>#</th>
-            <th>Tên bài đăng</th>
+            <th>Bài đăng</th>
             <th>Duyệt bài đăng</th>
             <th></th>
           </tr>

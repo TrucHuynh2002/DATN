@@ -1,9 +1,5 @@
 import React from 'react'
 
-// link css
-// import '../../css/bootstrap.min.css';
-// import '../../css/style.css';
-// import '../../css/responsive.css';
 // link img
 import Slide1 from '../../images/sl01.png';
 import Slide2 from '../../images/sl02.png';

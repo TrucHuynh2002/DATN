@@ -17,7 +17,7 @@ function HeaderNavLink() {
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="room">
+                <Link className="nav-link" to="roomdetail">
                 Phòng
                 </Link>
             </li>

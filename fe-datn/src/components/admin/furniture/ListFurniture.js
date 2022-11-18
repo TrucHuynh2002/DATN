@@ -12,8 +12,8 @@ function ListFurniture() {
         <thead>
           <tr>
             <th>#</th>
-            <th>1</th>
-            <th>2</th>
+            <th>Tên nội thất</th>
+            <th>Icons</th>
             <th></th>
           </tr>
         </thead>

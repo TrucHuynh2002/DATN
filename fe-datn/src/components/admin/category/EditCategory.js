@@ -7,9 +7,9 @@ function EditCategory() {
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật danh mục</h1>
             <Form>
-                <Form.Group className="mb-3" controlId="name_roomType">
+                <Form.Group className="mb-3" controlId="name_category">
                     <Form.Label>Tên danh mục</Form.Label>
-                    <Form.Control type="text" name="name_roomType" className=''/>
+                    <Form.Control type="text" name="name_category" className=''/>
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" size="sm" name='' type="submit">
