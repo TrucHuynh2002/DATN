@@ -30,7 +30,7 @@ function Room() {
                             </figure>
                         </div>
                         <div className="bed_room">
-                            <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                            <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                             <h4>Giá: 12783612783612</h4>
                             <p>
                             If you are going to use a passage of Lorem Ipsum, you need to be
@@ -47,7 +47,7 @@ function Room() {
                         </figure>
                     </div>
                     <div className="bed_room">
-                        <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                        <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                         <h4>Giá: 12783612783612</h4>
                         <p>
                         If you are going to use a passage of Lorem Ipsum, you need to be
@@ -64,7 +64,7 @@ function Room() {
                         </figure>
                     </div>
                     <div className="bed_room">
-                        <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                        <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                         <h4>Giá: 12783612783612</h4>
                         <p>
                         If you are going to use a passage of Lorem Ipsum, you need to be
@@ -81,7 +81,7 @@ function Room() {
                         </figure>
                     </div>
                     <div className="bed_room">
-                        <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                        <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                         <h4>Giá: 12783612783612</h4>
                         <p>
                         If you are going to use a passage of Lorem Ipsum, you need to be
@@ -98,7 +98,7 @@ function Room() {
                         </figure>
                     </div>
                     <div className="bed_room">
-                        <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                        <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                         <h4>Giá: 12783612783612</h4>
                         <p>
                         If you are going to use a passage of Lorem Ipsum, you need to be
@@ -115,7 +115,7 @@ function Room() {
                         </figure>
                     </div>
                     <div className="bed_room">
-                        <h3><Link to="roomdetail">Tên phòng</Link></h3>
+                        <h3><Link to="../roomdetail">Tên phòng</Link></h3>
                         <h4>Giá: 12783612783612</h4>
                         <p>
                         If you are going to use a passage of Lorem Ipsum, you need to be

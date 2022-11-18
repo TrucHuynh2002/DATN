@@ -35,13 +35,13 @@ function ListAccount() {
                 </tr>  
                 <tr>
                     <td>
-                        <Link to="/update_acc">
+                        <Link to="update_acc">
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
-                        <Link to="/confirm_acc">
+                        <Link to="confirm_acc">
                             <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
                         </Link>
-                        <Link to="/">
+                        <Link to="">
                             <Button variant="outline-danger" name='' className="btn-edit">Đăng xuất</Button>
                         </Link>
                     </td>

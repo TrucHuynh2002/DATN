@@ -28,10 +28,10 @@ function list() {
             <td>Tiện nghi</td>
             <td>10</td>
             <td>
-              <Link to="/postcard-detail">
+              <Link to="../postcard-detail">
                 <Button variant="outline-success" name="" className="btn-edit">Chi tiết</Button>
               </Link>
-              <Link to="/postcard-edit">
+              <Link to="../postcard-edit">
                 <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
               </Link>
               <Link to="#">

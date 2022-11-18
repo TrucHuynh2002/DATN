@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
-// import './css/style.css';
+import './css/style.css';
 import './css/responsive.css';
 
 // admin home
@@ -44,7 +44,7 @@ import About from './components/user/About';
 import Blog from './components/user/Blog';
 import Contact from './components/user/Contact';
 import Gallery from './components/user/Gallery';
-// import Room from './components/user/Room';
+import Room from './components/user/Room';
 import LayoutUser from './components/user/LayoutUser';
 
 // admin postcard
@@ -61,18 +61,16 @@ import UpdateAccount from './components/account/account_information/UpdateAccoun
 import ConfirmAccount from './components/account/account_information/ConfirmAccount';
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
-<<<<<<< HEAD
 import RoomDetail from './components/user/RoomDetail';
-=======
-// import RoomDetail from './components/user/Detail';
->>>>>>> c4a42ad18a840fd4930acdb34813ce4653c9504e
+import Login from './components/user/Login';
+import Signin from './components/user/Signin';
+import ForgotPassword from './components/user/ForgotPassword';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-    {/* <Route path="add_post" element={<AddPost />} /> */}
 
       {/* chuyển hướng user */}
       <Route path="/" element={<LayoutUser />}>
@@ -81,12 +79,13 @@ root.render(
         <Route path="blog" element={<Blog />} />
         <Route path="contact" element={<Contact />} />
         <Route path="gallery" element={<Gallery />} />
-        {/* <Route path="room" element={<Room />} /> */}
-<<<<<<< HEAD
+        <Route path="room" element={<Room />} />
         <Route path="roomdetail" element={<RoomDetail />} />
-=======
-        {/* <Route path="roomdetail" element={<RoomDetail />} /> */}
->>>>>>> c4a42ad18a840fd4930acdb34813ce4653c9504e
+
+        <Route path="login" element={<Login />} />
+        <Route path="signin" element={<Signin />} />
+        <Route path="forgotpw" element={<ForgotPassword />} />
+
 
       </Route>
 

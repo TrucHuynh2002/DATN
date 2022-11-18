@@ -1,48 +1,74 @@
 import React, { useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 function AddPost() {
 
-    const [name, setName] = useState('')
-    const [shortdescription, setShortdescription] = useState('')
-    const [description, setDescription] = useState('')
-    const [keywords, setKeywords] = useState('')
-    const [area, setArea] = useState('')
-    const [roomprice, setRoomprice] = useState('')
-    const [waterprice, setWaterprice] = useState('')
-    const [electricityprice, setElectricityprice] = useState('')
-    const [address, setAddress] = useState('')
-    const [amount, setAmount] = useState('')
-    const [date, setDate] = useState('')
-    const [title, setTitle] = useState('')
-    const [titledescription, setTitledescription] = useState('')
-    const [furniture, setFurniture] = useState('')
-    const [confirm, setConfirm] = useState('')
-    const [statuss, setStatuss] = useState('')
-    const [iduser, setIduser] = useState('')
-    const [idroom, setIdroom] = useState('')
-    const handleSubmit = () => {
-        console.log({
-            name,
-            shortdescription,
-            description,
-            keywords,
-            area,
-            roomprice,
-            waterprice,
-            electricityprice,
-            address,
-            amount,
-            date,
-            title,
-            titledescription,
-            furniture,
-            confirm,
-            statuss,
-            iduser,
-            idroom
+    const [name, setName] = useState([]);
+    const [shortdescription, setShortdescription] = useState([]);
+    const [description, setDescription] = useState([]);
+    const [keywords, setKeywords] = useState([]);
+    const [area, setArea] = useState([]);
+    const [roomprice, setRoomprice] = useState([]);
+    const [waterprice, setWaterprice] = useState([]);
+    const [electricityprice, setElectricityprice] = useState([]);
+    const [address, setAddress] = useState([]);
+    const [amount, setAmount] = useState([]);
+    const [date, setDate] = useState([]);
+    const [title, setTitle] = useState([]);
+    const [titledescription, setTitledescription] = useState([]);
+    const [furniture, setFurniture] = useState([]);
+    // const [confirm, setConfirm] = useState([]);
+    // const [statuss, setStatuss] = useState([]);
+    // const [iduser, setIduser] = useState([]);
+    // const [idroom, setIdroom] = useState([]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log({
+        //     name,
+        //     shortdescription,
+        //     description,
+        //     keywords,
+        //     area,
+        //     roomprice,
+        //     waterprice,
+        //     electricityprice,
+        //     address,
+        //     amount,
+        //     date,
+        //     title,
+        //     titledescription,
+        //     furniture,
+        //     confirm,
+        //     statuss,
+        //     iduser,
+        //     idroom
+        // })
 
-        })
+        axios.post('http://127.0.0.1:8000/api/furniture/create', {
+                name: name,
+                shortdescription: shortdescription,
+                description:description,
+                keywords:keywords,
+                area:area,
+                roomprice:roomprice,
+                waterprice:waterprice,
+                electricityprice:electricityprice,
+                address:address,
+                amount:amount,
+                date:date,
+                title:title,
+                titledescription:titledescription,
+                furniture:furniture
+            })
+            .then((res) => {
+                console.log(res.data);
+                this.props.history.push('/');
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
     }
 
 

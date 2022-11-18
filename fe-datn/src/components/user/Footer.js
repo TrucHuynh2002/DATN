@@ -1,8 +1,5 @@
 import React from 'react'
-// link css
-// import '../../css/bootstrap.min.css';
-// import '../../css/style.css';
-// import '../../css/responsive.css';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -23,7 +20,7 @@ function Footer() {
                 <li>
                   {" "}
                   <i className="fa fa-envelope" aria-hidden="true" />
-                  <a href="#"> email</a>
+                  <Link to="#"> email</Link>
                 </li>
               </ul>
             </div>
@@ -31,22 +28,22 @@ function Footer() {
               <h3>Menu</h3>
               <ul className="link_menu">
                 <li className="active">
-                  <a href="#">Home</a>
+                  <Link to="../">Home</Link>
                 </li>
                 <li>
-                  <a href="about.html"> about</a>
+                  <Link to="../about">About</Link>
                 </li>
                 <li>
-                  <a href="room.html">Our Room</a>
+                  <Link to="../room">Our Room</Link>
                 </li>
                 <li>
-                  <a href="gallery.html">Gallery</a>
+                  <Link to="../gallery">Gallery</Link>
                 </li>
                 <li>
-                  <a href="blog.html">Blog</a>
+                  <Link to="../blog">Blog</Link>
                 </li>
                 <li>
-                  <a href="contact.html">Contact Us</a>
+                  <Link to="../contact">Contact Us</Link>
                 </li>
               </ul>
             </div>
@@ -63,24 +60,24 @@ function Footer() {
               </form>
               <ul className="social_icon">
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fa fa-facebook" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fa fa-twitter" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fa fa-linkedin" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">
+                  <Link to="#">
                     <i className="fa fa-youtube-play" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

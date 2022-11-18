@@ -1,19 +1,10 @@
 <?php
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Route;
-=======
-=======
-use Illuminate\Support\Facades\Route;
->>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
->>>>>>> 7af4fabe1b87bd270a725c7364fd4cba2e7cc55c
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FurnitureController;
-<<<<<<< HEAD
 use App\Http\Controllers\imgPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RatingController;
@@ -29,17 +20,10 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
-=======
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\imgPostController;
-use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\SearchController;
-use App\Http\Controllers\RatingController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
->>>>>>> c4adf1eeb02d00fe7ee14fe63a35cdd53d14c04a
 /*
 |--------------------------------------------------------------------------
 | API Routes

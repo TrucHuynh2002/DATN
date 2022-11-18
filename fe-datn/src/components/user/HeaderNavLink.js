@@ -17,7 +17,7 @@ function HeaderNavLink() {
                 </Link>
             </li>
             <li className="nav-item">
-                <Link className="nav-link" to="roomdetail">
+                <Link className="nav-link" to="room">
                 Phòng
                 </Link>
             </li>
@@ -37,15 +37,15 @@ function HeaderNavLink() {
                 </Link>
             </li>
             <li class="nav-item">
-                 <div class="btn-group">
-                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black ; font-weight: 600; background-color: #ffc70d; border-radius: 5px;">
+                <div class="btn-group">
+                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>
                            TÀI KHOẢN
                    </button>
                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Đăng nhập</a>
-                        <a class="dropdown-item" href="#">Đăng ký</a>
+                        <Link class="dropdown-item" to="login">Đăng nhập</Link>
+                        <Link class="dropdown-item" to="signin">Đăng ký</Link>
                     </div>
-                   </div>
+                </div>
               </li>
 
             </ul>
