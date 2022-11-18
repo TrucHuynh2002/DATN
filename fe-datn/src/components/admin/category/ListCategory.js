@@ -9,9 +9,7 @@ function ListCategory() {
   const [listCategory, setListCategory] = useState([]);
   useEffect(() => {
     getData();
-  },[])
-
-  
+  },[]) 
   const getData = () => {
     axios
     .get('http://127.0.0.1:8000/api/category/show')
@@ -20,7 +18,6 @@ function ListCategory() {
         setListCategory(res.data.data)
       })
   }
-
 
   return (
     <div className="content">
@@ -52,6 +49,22 @@ function ListCategory() {
                   </tr>   
                       
                   })}                
+                <tbody className="list-cate">
+                  
+                {listCategory.map(cate => {
+                    return        <tr>
+                            <td>{cate.id_category}</td>
+                            <td>{cate.name_category}</td>
+                            <td>
+                                <Link to="edit_category">
+                                <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
+                                </Link>
+                                <Link to="#">
+                                <Button variant="outline-danger" name='' className="bx bxs-trash"></Button>
+                                </Link>
+                            </td>
+                          </tr>       
+                })}
                 </tbody>
               </Table>
             </div>

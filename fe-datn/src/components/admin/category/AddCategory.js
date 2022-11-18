@@ -26,6 +26,8 @@ function AddCategory() {
            
         // });
         axios.post('http://127.0.0.1:8000/api/category/create', {
+        // axios.post('http://127.0.0.1:8000/api/category/create?_method=put', {
+
                 name_category: addCategory,        
             })
             .then((res) => {

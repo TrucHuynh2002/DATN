@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 // link css
 // import '../../css/bootstrap.min.css';
 // import '../../css/style.css';
 // import '../../css/responsive.css';
 
 function Contact() {
+  const [namecontact, setNamecontact] = useState('')
+    const [emailcontact, setEmailcontact] = useState('')
+    const [phone, setPhone] = useState('')
+    const [message, setMessage] = useState('')
+    const handleSubmit = () => {
+        console.log({
+            namecontact,
+            emailcontact,
+            phone,
+            message
+        })
+    }
+
   return (
+
+    
+
     <>
     <div className="back_re">
         <div className="container">
@@ -31,6 +48,8 @@ function Contact() {
                       placeholder="Name"
                       type="type"
                       name="Name"
+                      value={namecontact}
+                        onChange = {e => setNamecontact(e.target.value)}
                     />
                   </div>
                   <div className="col-md-12">
@@ -39,6 +58,8 @@ function Contact() {
                       placeholder="Email"
                       type="type"
                       name="Email"
+                      value={emailcontact}
+                        onChange = {e => setEmailcontact(e.target.value)}
                     />
                   </div>
                   <div className="col-md-12">
@@ -47,6 +68,8 @@ function Contact() {
                       placeholder="Phone Number"
                       type="type"
                       name="Phone Number"
+                      value={phone}
+                        onChange = {e => setPhone(e.target.value)}
                     />
                   </div>
                   <div className="col-md-12">
@@ -56,11 +79,18 @@ function Contact() {
                       type="type"
                       message="Name"
                       defaultValue={"Message"}
+                      value={message}
+                        onChange = {e => setMessage(e.target.value)}
                     />
                   </div>
-                  <div className="col-md-12">
-                    <button className="send_btn">Send</button>
-                  </div>
+                 
+                  <div className="d-grid gap-2">
+                    <Button type='submit'
+                     onClick={handleSubmit}>
+                        Gửi
+                    </Button>
+                </div>
+               
                 </div>
               </form>
             </div>

@@ -61,7 +61,11 @@ import UpdateAccount from './components/account/account_information/UpdateAccoun
 import ConfirmAccount from './components/account/account_information/ConfirmAccount';
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
+<<<<<<< HEAD
 import RoomDetail from './components/user/RoomDetail';
+=======
+// import RoomDetail from './components/user/Detail';
+>>>>>>> c4a42ad18a840fd4930acdb34813ce4653c9504e
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -78,7 +82,11 @@ root.render(
         <Route path="contact" element={<Contact />} />
         <Route path="gallery" element={<Gallery />} />
         {/* <Route path="room" element={<Room />} /> */}
+<<<<<<< HEAD
         <Route path="roomdetail" element={<RoomDetail />} />
+=======
+        {/* <Route path="roomdetail" element={<RoomDetail />} /> */}
+>>>>>>> c4a42ad18a840fd4930acdb34813ce4653c9504e
 
       </Route>
 

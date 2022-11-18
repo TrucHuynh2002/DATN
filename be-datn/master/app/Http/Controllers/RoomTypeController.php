@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\RoomType as RoomType;
+use Illuminate\Support\Facades\Validator;
 
 class RoomTypeController extends Controller
 {
@@ -25,6 +26,21 @@ class RoomTypeController extends Controller
     }
     public function created_at(Request $request)
     {
+        $validation = Validator::make($request->all(),[ 
+            'name_room_type' => 'required|string|max:255'
+
+        ],[
+            'name_category.required' => 'Không được bỏ trống',
+            'name_category.string' => 'Không đúng định dạng',
+            'name_category.max' => 'Độ dài không cho phép'
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $RoomType = new RoomType();
         $RoomType->name_room_type = $request->name_room_type;
         $RoomType->save();
@@ -36,6 +52,21 @@ class RoomTypeController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $validation = Validator::make($request->all(),[ 
+            'name_room_type' => 'required|string|max:255'
+
+        ],[
+            'name_category.required' => 'Không được bỏ trống',
+            'name_category.string' => 'Không đúng định dạng',
+            'name_category.max' => 'Độ dài không cho phép'
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $RoomType = RoomType::find($id)->first();
         $RoomType->name_room_type = $request->name_room_type;
         $RoomType->save();

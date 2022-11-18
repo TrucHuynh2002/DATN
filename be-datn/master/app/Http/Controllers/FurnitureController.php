@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Furniture as Furniture;
+use Illuminate\Support\Facades\Validator;
 
 class FurnitureController extends Controller
 {
@@ -25,6 +26,20 @@ class FurnitureController extends Controller
     }
     public function created_at(Request $request)
     {
+        $validation = Validator::make($request->all(),[ 
+            'name' => 'required',
+            'icon' => 'required'
+        ],[
+            'name.required' => 'Không được bỏ trống',
+            'icon.required' => 'Không đúng định dạng',
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $furniture = new Furniture();
         $furniture->name = $request->name_furniture;
         $furniture->icon = $request->icon_furniture;
@@ -37,6 +52,20 @@ class FurnitureController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $validation = Validator::make($request->all(),[ 
+            'name' => 'required',
+            'icon' => 'required'
+        ],[
+            'name.required' => 'Không được bỏ trống',
+            'icon.required' => 'Không đúng định dạng',
+        ]);
+        if($validation->fails()){
+            return response()
+            ->json([
+                'messages' =>  $validation->messages(),
+                'status'=> false
+            ]);
+        }
         $furniture = Furniture::find($id)->first();
         $furniture->name = $request->name_furniture;
         $furniture->icon = $request->icon_furniture;
