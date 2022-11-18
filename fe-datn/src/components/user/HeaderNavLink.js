@@ -36,6 +36,18 @@ function HeaderNavLink() {
                 Liên hệ
                 </Link>
             </li>
+            <li class="nav-item">
+                 <div class="btn-group">
+                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black ; font-weight: 600; background-color: #ffc70d; border-radius: 5px;">
+                           TÀI KHOẢN
+                   </button>
+                   <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Đăng nhập</a>
+                        <a class="dropdown-item" href="#">Đăng ký</a>
+                    </div>
+                   </div>
+              </li>
+
             </ul>
         </div>
     </>
