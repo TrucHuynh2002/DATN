@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPassAlert;
+// use App\Mail\Resetpassword;
 use App\Models\password_resets;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\ResetPassword as NotificationsResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
@@ -55,7 +57,8 @@ class PasswordResetLinkController extends Controller
         //                     ->withErrors(['email' => __($status)]);
         $checkEmail = User::where('email', '=', $request->email)->first();
         if($checkEmail){
-            $token = Str::random(60);
+            $token = Str::random(10);
+            // dd($token);
             $check_token = password_resets::where('email', '=', $request->email);
             if($check_token){
                 $check_token->delete();

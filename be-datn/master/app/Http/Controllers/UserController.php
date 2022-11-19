@@ -146,7 +146,7 @@ class UserController extends Controller
                     'data' => "Kiểm tra mail để đổi mật khẩu",
                     'status'=> true
                 ]);
-            Mail::to($request->email)->send(new Resetpassword($Check_User));
+            // Mail::to($request->email)->send(new Resetpassword($Check_User));
         }else{
             return response()
                 ->json([
