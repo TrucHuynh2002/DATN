@@ -1,23 +1,35 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 
 function ListCategory() {
 
   const [listCategory, setListCategory] = useState([]);
+  const id_category = useParams();
+
   useEffect(() => {
     getData();
-  },[]) 
-  const getData = () => {
-    axios
-    .get('http://127.0.0.1:8000/api/category/show')
-      .then((res) => {
-        // setListCategory(res.data);
-        setListCategory(res.data.data)
-      })
-  }
+  },[]);
+
+  // danh sach category
+  const getData = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/category/show');
+      setListCategory(res.data);
+      // console.log(res);
+      // .then((res) => {
+      //   setListCategory(res.data.data)
+      // })
+  };
+
+
+
+  // xoa category
+  const deleteCategory = async (id_category) => {
+    await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_category}`);
+    getData();
+  };
 
   return (
     <div className="content">
@@ -34,18 +46,19 @@ function ListCategory() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listCategory.map(cate => {
+                {listCategory.map((cate, index) => {
                     return (     
-                    <tr>
-                        <td>{cate.id_category}</td>
+                    <tr key={index}>
+                        <td>{index+1}</td>
                         <td>{cate.name_category}</td>
                         <td>
-                            <Link to="../edit_category">
-                            <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
+                            <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
+                              {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
-                            <Link to="#">
-                            <Button variant="outline-danger" name='' className="bx bxs-trash"></Button>
-                            </Link>
+                            {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
+                              deleteCategory(cate.id_category)}> */}
+                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCategory(cate.id_category)}></Button>
+                            {/* </Link> */}
                         </td>
                       </tr>  
                     );     

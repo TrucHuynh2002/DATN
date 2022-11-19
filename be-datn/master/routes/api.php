@@ -47,7 +47,7 @@ Route::get('category/show', [CategoryController::class, 'show']);
 Route::get('category/show/{id}', [CategoryController::class, 'show_id']);
 Route::post('category/create', [CategoryController::class, 'created_at']);
 Route::put('category/update/{id}', [CategoryController::class, 'update']);
-Route::post('category/delete/{id}', [CategoryController::class, 'delete']);
+Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 
 // post
 Route::get('post/show', [PostController::class, 'show']);

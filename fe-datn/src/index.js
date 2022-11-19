@@ -86,7 +86,6 @@ root.render(
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
 
-
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -106,7 +105,7 @@ root.render(
         <Route path="list_comment" element={<ListComment />} />
 
         <Route path="add_category" element={<AddCategory />} />
-        <Route path="edit_category" element={<EditCategory />} />
+        <Route path="edit_category/:id_category" element={<EditCategory />} />
         <Route path="list_category" element={<ListCategory />} />
         
         <Route path="list_user" element={<ListUser />} />

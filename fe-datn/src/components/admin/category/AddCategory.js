@@ -4,13 +4,17 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function AddCategory() {
-    const [addCategory, setAddCategory] = useState([]);
 
-    const handleChange = (e) =>{
+    // xử lý lỗi
+    const [name_category, setNameCategory] = useState('');
+
+    const [addCategory, setAddCategory] = useState();
+
+    const handleChange = (e) => {
         setAddCategory(e.target.value)
     }
     
-    const handleSumbit = (e) => {
+    const handleSumbit = async (e) => {
         e.preventDefault();
         // fetch("http://127.0.0.1:8000/api/category/create", {
         //     method: "POST",
@@ -29,13 +33,14 @@ function AddCategory() {
                 name_category: addCategory,        
             })
             .then((res) => {
-                console.log(res.data);
-                this.props.history.push('/');
+                console.log(res.data.messages.name_category[0]);
+                this.props.history.push('');
             })
             .catch((err) => {
                 console.log(err);
             })
-    }
+        };
+
   return (
     <div className="content">
         <div className="add-post">

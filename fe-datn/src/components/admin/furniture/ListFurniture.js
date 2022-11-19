@@ -7,17 +7,21 @@ import axios from 'axios'
 function ListFurniture() {
 
   const [listFurniture, setListFurniture] = useState([]);
+
   useEffect(() => {
     getData();
-  },[]) 
-  const getData = () => {
-    axios
-    .get('http://127.0.0.1:8000/api/furniture/show')
-      .then((res) => {
+  },[]);
+
+  const getData = async () => {
+    const res = await axios.get('http://127.0.0.1:8000/api/furniture/show')
         // setListFurniture(res.data);
-        setListFurniture(res.data.data)
-      })
-  }
+        setListFurniture(res.data)
+  };
+
+  // const deleteFurniture = async (id_furniture) => {
+  //   await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_furniture}`);
+  //   getData();
+  // };
 
   return (
     <div className="content">
@@ -35,9 +39,9 @@ function ListFurniture() {
         </thead>
         <tbody>
 
-          {listFurniture.map(furnture => {
+          {listFurniture.map((furnture, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{furnture.id_furnture}</td>
                 <td>{furnture.name}</td>
                 <td>{furnture.icon}</td>

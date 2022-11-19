@@ -70,7 +70,7 @@ class CategoryController extends Controller
                 'status'=> false
             ]);
         }
-        $category = Category::find($id)->first();
+        $category = Category::find($id);
         $category->name_category = $request->name_category;
         $category->save();
         return response()
