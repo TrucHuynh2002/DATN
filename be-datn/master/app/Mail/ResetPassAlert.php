@@ -7,11 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Resetpassword extends Mailable
+class ResetPassAlert extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user;
-    // private $token;
+    private $user ;
     /**
      * Create a new message instance.
      *
@@ -20,7 +19,6 @@ class Resetpassword extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
-        // $this->token = $token;
     }
 
     /**
@@ -30,8 +28,6 @@ class Resetpassword extends Mailable
      */
     public function build()
     {
-        return $this->subject('Quên Mật Khẩu')->view('email.sendmailquenmatkhau')->with(['user' => $this->user, 'token' => $this->token]);
+        return $this->subject('Quên mật khẩu')->view('email.Sendmailforgotpassword')->with(['user'=>$this->user]);
     }
-
-    
 }

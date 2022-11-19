@@ -1,73 +1,45 @@
-@extends('layouts.app')
+@extends('layout.layout_acount')
+@section('title', 'Đăng nhập')
+@section('main_acount')
+<div class="boydy">
+    <div class="logo-header" data-background-color="blue">				
+				<a href="/" class="logo">
+					<img style="width: 100%; height:200px; margin-top: -100px;" src="/img/logo.PNG" alt="logo" class="logo">
+				</a>
+			</div>
+<form style="padding: 30px;" method="POST" action="{{ route('login') }}">
+    @csrf
+    <h2>Đăng Nhập</h2>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <!-- Validation Errors -->
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="form-group">
+        <label for="email">Email*</label>
+        <input class="form-control" placeholder="Email" id="email" type="email" name="email" :value="old('email')" required autofocus>
     </div>
-</div>
+
+    <div class="form-group">
+        <label for="pwd">Mật khẩu*</label>
+        <input class="form-control" placeholder="Mật khẩu" id="pwd" type="password" name="password"
+        required autocomplete="current-password">
+    </div>
+
+    <div class="block mt-4">
+        <label for="remember_me" class="inline-flex items-center">
+            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+            <span class="ml-2 text-sm text-gray-600">{{ __('Nhớ mật khẩu') }}</span>
+        </label>
+    </div>
+    <button  style="width: 100%;" type="submit" value="submit" class="btn btn-primary">{{ __('Đăng nhập') }}</button>								
+   <center> <div  class="form-group">
+        @if (Route::has('password.request'))
+            <a class="nderline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                {{ __('Quên mật khẩu?') }}
+            </a>
+        @endif
+    </div></center>
+</form></div>
 @endsection

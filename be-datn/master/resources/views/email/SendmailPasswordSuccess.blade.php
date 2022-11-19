@@ -26,13 +26,13 @@
 <body>
     <div class="table">
     <div class="header">
-    <h1>Nhà Tui</h1>
+    <h1>ĐỔI MẬT KHẨU THÀNH CÔNG</h1>
     <img src="{{asset('')}}" width="100px" height="100px">
     </div>
     <div class="body">
-        <h2>Chào mừng bạn đến với Nhà Tui</h2>
+        {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
         <b>Hello, tên </b>
-        <p>Chúc mừng bạn đăng ký tài khoản thành công Nhà Tui.</p>
+        <p>Chúc mừng bạn đã đổi mật khẩu thành công</p>
         <p>Nhấp <a href="/">vào đây</a> để đăng nhập vào tài khoản.</p>
         
     </div>
