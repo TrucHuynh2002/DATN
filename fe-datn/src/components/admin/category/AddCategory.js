@@ -14,7 +14,7 @@ function AddCategory() {
         err_list: {},
     });
 
-    const {name_category} = addCategory;
+    const { name_category } = addCategory;
 
     const handleChange = (e) => {
         setAddCategory({ ...addCategory, [e.target.name]: e.target.value});

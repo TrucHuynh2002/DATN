@@ -40,7 +40,7 @@ function ListFurniture() {
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='list'>
             {listFurniture.map((furn, index) => {
               return(
               <tr key={index}>

@@ -1,23 +1,29 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 
 function ListPost() {
 
-    const [listPost, setListPost] = useState([]);
+  const id_post = useParams();
+  const [listPost, setListPost] = useState([]);
+
   useEffect(() => {
     getData();
-  },[]) 
-  const getData = () => {
-    axios
-    .get('http://127.0.0.1:8000/api/post/show')
-      .then((res) => {
-        // setListPost(res.data);
-        setListPost(res.data.data)
-      })
-  }
+  },[]);
+
+  // danh sach post
+  const getData = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+   setListPost(res.data);
+  };
+
+  // xoa post
+  const deletePost = async (id_category) => {
+    await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_category}`);
+    getData();
+  };
 
   return (
     <div className="content">

@@ -4,21 +4,47 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
-    <h1>eerer</h1>
 
-    // const navigate = useNavigate();
-    // const [addPost, setAddPost] = useState({
+    const navigate = useNavigate();
+    const [addPost, setAddPost] = useState({
+        post_name: "",
+        description_sort: "",
+        description: "",
+        meta_keyword: "",
+        area: "",
+        room_price: "",
+        water_pirce: "",
+        electricity_price: "",
+        address: "",
+        quantity: "",
+        created_at: "",
+        id_furniture: "",
+        meta_title: "",
+        meta_description: "",
+        verification: "",
+        status: "",
+        id_user: "",
+        id_roomType: "",
+    });
 
+<<<<<<< HEAD
     // });
     // const handleChange = (e) => {
     //     setAddPost({ ...addPost, [e.target.name]: e.target.value});
     // };
+=======
+    const { post_name, description_sort, description, meta_keyword, area, room_price, water_pirce, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
 
-    // const handleSumbit = async (e) => {
-    //     e.preventDefault();
-    //     await axios.post('http://127.0.0.1:8000/api/post/create', addPost)
-    //     navigate("../list_post");
-    // };
+    const handleChange = (e) => {
+        setAddPost({ ...addPost, [e.target.name]: e.target.value});
+    };
+>>>>>>> fc2a6408dce0aac0b4a85430ad0d800cdb568b79
+
+    const handleSumbit = async (e) => {
+        e.preventDefault();
+        await axios.post('http://127.0.0.1:8000/api/post/create', addPost)
+        // navigate("../list_post");
+    };
 
   return (
     <div className="content">
@@ -164,7 +190,11 @@ function AddPost() {
                     </Form.Group>
                 </Col>
                 <div className="d-grid gap-2">
+<<<<<<< HEAD
                     <Button>
+=======
+                    <Button variant="primary" size="sm" name='' type="submit">
+>>>>>>> fc2a6408dce0aac0b4a85430ad0d800cdb568b79
                         Thêm bài viết
                     </Button>
                 </div>

@@ -14,6 +14,10 @@ function EditFurniture() {
         icon: "",
     });
 
+    // const [alert, setAlert] = useState({
+    //     err_list: {},
+    // });
+
     const { name, icon } = editFurniture;
 
     const handleChange = (e) => {
@@ -23,8 +27,20 @@ function EditFurniture() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        await axios.post(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
-        navigate("../list_furniture");
+        const res = await axios.put(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
+        // if(res.data.status === true){
+        //     setAlert({
+        //         err_list: res.data
+        //     });
+        //     console.log(alert.err_list)
+        // }
+        // else{           
+        //     setAlert({
+        //         err_list: res.data
+        //     });
+        //     console.log(alert.err_list.messages.name[0])
+        // }
+        // navigate("../list_furniture");
     };
 
     useEffect(() => {
