@@ -18,29 +18,6 @@ use Illuminate\Validation\Rules;
 
 class NewPasswordController extends Controller
 {
-    /**
-     * Display the password reset view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
-     */
-    // public function create(Request $request,$token)
-    // {    $check_token = password_resets::where('token','=',$token)->first();
-    //     if($check_token){
-    //     return view('auth.reset-password', ['token' => $token, 'email' => $request->email]);
-    //     }else{
-    //         return redirect(route('login'));
-    //     }
-    // }
-
-    /**
-     * Handle an incoming new password request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
         // $request->validate([

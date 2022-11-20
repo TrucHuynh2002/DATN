@@ -8,6 +8,9 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\Resetpassword;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -112,24 +115,39 @@ class UserController extends Controller
     }
     public function UserLogin(Request $request)
     {
-        $User_SelectOne = User::where('email','=',$request->email)->where('password','=',$request->password)->first();
-        if($User_SelectOne){
-            return response()
-                ->json([
-                    'data' => $User_SelectOne,
-                    'status'=> true
-                ]);
-        }else{
+        // $User_SelectOne = User::where('email','=',$request->email)->where('password','=',Hash::make($request->password))->first();
+        // dd(Hash::make($request->password));
+        $credentials = request(['email', 'password']);
+        // $check_role = User::where('role','=','')->first();
+        // $tokenResult = $User_SelectOne->createToken('authToken')->plainTextToken;
+        if(!Auth::attempt($credentials)){
             return response()
                 ->json([
                     'data' => "Tài khoản hoặc mật khẩu không chính xác",
                     'status'=> false
                 ]);
         }
-        // $request->authenticate();
+        $user_admin = User::where('email', $request->email)->where('role','=','1')->first();
+        if($user_admin){
+            $tokenResult = $user_admin->createToken('authToken')->plainTextToken;
+            return response()->json([
+                'access_token' => $tokenResult,
+                'token_type' => 'Bearer',
+                'status' => true,
+            
+            ]);
+            
+        }else{
+            return response()->json([
+                'access_token' => "khách hàng",
+                // 'token_type' => 'Bearer',
+                'status' => true,
+            
+            ]);
+        }
+        event(new Registered($user_admin));
 
-        // $request->session()->regenerate();
-
+        Auth::login($user_admin);
         // return redirect()->intended(RouteServiceProvider::HOME);
     }
     public function UserForgotPassword(Request $request)
