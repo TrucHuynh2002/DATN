@@ -14,7 +14,7 @@ import AddCategory from './components/admin/category/AddCategory';
 import EditCategory from './components/admin/category/EditCategory';
 import ListCategory from './components/admin/category/ListCategory';
 // admin postcard
-import ListPostCard from './components/admin/postcard/ListPostCard';
+// import ListPostCard from './components/admin/postcard/ListPostCard';
 // admin post
 import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
@@ -96,7 +96,7 @@ root.render(
       {/* chuyển hướng admin tổng */}
       <Route path="/admin" element={<App />}>
         <Route index element={<Home/>} />
-        <Route path="list_postcard" element={<ListPostCard />} />
+        {/* <Route path="list_postcard" element={<ListPostCard />} /> */}
 
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
