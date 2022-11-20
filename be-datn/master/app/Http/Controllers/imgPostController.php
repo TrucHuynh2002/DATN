@@ -39,7 +39,7 @@ class imgPostController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $imgPost = imgPost::find($id)->first();
+        $imgPost = imgPost::find($id);
         $imgPost->img_post_name = $request->img_post_name;
         $imgPost->type_img = $request->type_img;
         $imgPost->link_img_user = $request->link_img_user;

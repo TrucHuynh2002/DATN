@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function AddFurniture() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [addFurniture, setAddFurniture] = useState({
         name: "",
         icon: "",

@@ -35,27 +35,7 @@ function AddCategory() {
             });
             console.log(alert.err_list.messages.name_category[0])
         }
-        // navigate("../list_category");
-
-        // .then((res) => {
-                
-        //             console.log(res.data);
-        //             navigate("../list_category");
-        //         })
-        // console.log();
-        // navigate("../list_category");
-        // axios.post('http://127.0.0.1:8000/api/category/create', {
-        //         name_category: addCategory,        
-        //     })
-        //     .then((res) => {
-                
-        //         console.log(res.data);
-        //         navigate("../list_category");
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })   
-
+        // navigate("../list_category");  
         };
 
   return (
@@ -67,6 +47,7 @@ function AddCategory() {
                       <Form.Label>Tên danh mục</Form.Label>
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>
                       {alert.err_list.status === false && <span>{alert.err_list.messages.name_category[0]}</span>}
+                      {alert.err_list.status === true && <span>Thêm thành công</span>}
                   </Form.Group>
                   <div className="d-grid gap-2">
                       <Button variant="primary" size="sm" name='' type="submit">

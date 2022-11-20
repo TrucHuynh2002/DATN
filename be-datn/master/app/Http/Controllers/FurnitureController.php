@@ -41,8 +41,8 @@ class FurnitureController extends Controller
             ]);
         }
         $furniture = new Furniture();
-        $furniture->name = $request->name_furniture;
-        $furniture->icon = $request->icon_furniture;
+        $furniture->name = $request->name;
+        $furniture->icon = $request->icon;
         $furniture->save();
         return response()
             ->json([
@@ -67,8 +67,8 @@ class FurnitureController extends Controller
             ]);
         }
         $furniture = Furniture::find($id);
-        $furniture->name = $request->name_furniture;
-        $furniture->icon = $request->icon_furniture;
+        $furniture->name = $request->name;
+        $furniture->icon = $request->icon;
         $furniture->save();
         return response()
             ->json([

@@ -16,7 +16,8 @@ function ListCategory() {
   // danh sach category
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/category/show');
-      setListCategory(res.data);
+   setListCategory(res.data.data);
+   console.log(res);
   };
 
 
@@ -24,7 +25,7 @@ function ListCategory() {
   // xoa category
   const deleteCategory = async (id_category) => {
     await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_category}`);
-    getData();
+    // getData();
   };
 
   return (

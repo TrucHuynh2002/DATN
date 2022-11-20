@@ -16,7 +16,7 @@ function ListPost() {
   // danh sach post
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   setListPost(res.data);
+   setListPost(res.data.data);
   };
 
   // xoa post
