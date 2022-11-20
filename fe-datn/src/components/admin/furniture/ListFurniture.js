@@ -1,27 +1,29 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 
 function ListFurniture() {
 
   const [listFurniture, setListFurniture] = useState([]);
+  const id_furniture = useParams();
 
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
 
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/furniture/show')
-        // setListFurniture(res.data);
-        setListFurniture(res.data)
+    const res = await axios.get("http://127.0.0.1:8000/api/furniture/show");
+      // console.log(res.data);
+      setListFurniture(res.data);
   };
 
-  // const deleteFurniture = async (id_furniture) => {
-  //   await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_furniture}`);
-  //   getData();
-  // };
+  // xoa
+  const deleteFurniture = async (id_furniture) => {
+    await axios.delete(`http://127.0.0.1:8000/api/furniture/delete/${id_furniture}`);
+    getData();
+  };
 
   return (
     <div className="content">
@@ -38,24 +40,22 @@ function ListFurniture() {
           </tr>
         </thead>
         <tbody>
-
-          {listFurniture.map((furnture, index) => {
-            return (
+            {listFurniture.map((furn, index) => (
               <tr key={index}>
-                <td>{furnture.id_furnture}</td>
-                <td>{furnture.name}</td>
-                <td>{furnture.icon}</td>
+                <td>{index+1}</td>
+                <td>{furn.name}</td>
+                <td>{furn.icon}</td>
                 <td>
-                    <Link to="../edit_furniture">
-                      <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button>
+                    <Link to={`../edit_furniture/${furn.id_furniture}`} className="bx bxs-edit btn-edit btn btn-primary">
+                      {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                     </Link>
-                    <Link to="#">
-                      <Button variant="outline-danger" name='' className="bx bxs-trash"></Button>
-                    </Link>
+                    {/* <Link to="#"> */}
+                      <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteFurniture(furn.id_furniture)}></Button>
+                    {/* </Link> */}
                 </td>
               </tr>
-            );
-          })}
+            ))
+          }
         </tbody>
     </Table>
     </div>             

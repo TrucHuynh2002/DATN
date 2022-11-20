@@ -98,7 +98,7 @@ root.render(
         <Route path="edit_post" element={<EditPost />} />
 
         <Route path="add_furniture" element={<AddFurniture />} />
-        <Route path="edit_furniture" element={<EditFurniture />} />
+        <Route path="edit_furniture/:id_furnture" element={<EditFurniture />} />
         <Route path="list_furniture" element={<ListFurniture />} />
 
         <Route path="list_contact" element={<ListContact />} />

@@ -66,7 +66,7 @@ class FurnitureController extends Controller
                 'status'=> false
             ]);
         }
-        $furniture = Furniture::find($id)->first();
+        $furniture = Furniture::find($id);
         $furniture->name = $request->name_furniture;
         $furniture->icon = $request->icon_furniture;
         $furniture->save();

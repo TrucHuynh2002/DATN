@@ -1,59 +1,33 @@
 import React, { useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddFurniture() {
-    const [name, setName] = useState([]);
-    const [icon, setIcon] = useState([]);
 
-    // const handleChange = (e) =>{
-    //     setName(e.target.value);
-    // }
+    const navigate = useNavigate();
+    const [addFurniture, setAddFurniture] = useState({
+        name: "",
+        icon: "",
+    });
 
-    // const handleChange = (e) =>{
-    //     setName(e.target.value);
-    // }
+    const { name, icon } = addFurniture;
 
-    const handleSumbit = (e) => {
+    const handleChange = (e) => {
+        setAddFurniture({ ...addFurniture, [e.target.name]: e.target.value});
+    };
+
+    const handleSumbit = async (e) => {
         e.preventDefault();
-        // fetch("http://127.0.0.1:8000/api/category/create", {
-        //     method: "POST",
-        //     dataType: "JSON",
-        //     headers: {
-        //         "Content-Type": "application/json; charset=utf-8",
-        //     },
-        //     body: JSON.stringify(addCategory)
-        //   })
-        //   .then((response) => {
-        //     console.log(response);
-        //     return response.json();
-           
-        // });
-        axios.post('http://127.0.0.1:8000/api/furniture/create', {
-                name: name,
-                icon: icon    
-            })
-            .then((res) => {
-                console.log(res.data);
-                this.props.history.push('/');
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
-
-    // const handleSubmit = () => {
-    //     console.log({
-    //         name,
-    //         icon
-    //     })
-    // }
+        await axios.post('http://127.0.0.1:8000/api/furniture/create', addFurniture)
+        navigate("../list_furniture");
+    };
 
   return (
     <div className="content">
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm nội thất</h1>
-            <Form onSubmit={handleSumbit}>
+            <Form onSubmit={(e) => handleSumbit(e)}>
             <Row>
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="name">
@@ -61,22 +35,20 @@ function AddFurniture() {
                         <Form.Control 
                         type="text" 
                         name="name" 
-                        className=''
                         value={name}
-                         onChange = {e => setName(e.target.value)}
-                        />
+                        className=''
+                        onChange={(e) => handleChange(e)}/>
                     </Form.Group>
                 </Col>
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="icon">
                         <Form.Label>Icons</Form.Label>
                         <Form.Control
-                        type="text" 
+                        type="file"
                         name="icon" 
-                        className=''
                         value={icon}
-                         onChange = {e => setIcon(e.target.value)}
-                        />
+                        className=''
+                        onChange={(e) => handleChange(e)}/>
                     </Form.Group>
                 </Col>
                 
