@@ -93,11 +93,7 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
-Route::get('user/show', [UserController::class, 'User_SelectAll']);
-Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
-Route::post('user/create', [UserController::class, 'UserAdd']);
-Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
-Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
@@ -127,6 +123,16 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
+
+    
+});
+Route::middleware(['auth:sanctum'])->group(function () {
+    //User
+    Route::get('user/show', [UserController::class, 'User_SelectAll']);
+    Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+    Route::post('user/create', [UserController::class, 'UserAdd']);
+    Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 });
 
 Route::middleware('auth')->group(function () {
