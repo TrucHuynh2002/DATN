@@ -15,7 +15,7 @@ function ListCategory() {
   // danh sach category
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/category/show');
-      setListCategory(res.data);
+      setListCategory(res.data.data);
   };
 
   // xoa category

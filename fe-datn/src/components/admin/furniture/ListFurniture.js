@@ -17,7 +17,7 @@ function ListFurniture() {
   const getData = async () => {
     const res = await axios.get('http://127.0.0.1:8000/api/furniture/show');
       // console.log(res.data);
-      setListFurniture(res.data);
+      setListFurniture(res.data.data);
   };
 
   // xoa

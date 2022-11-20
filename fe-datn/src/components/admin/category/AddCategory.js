@@ -26,10 +26,11 @@ function AddCategory() {
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
+               
             });
             console.log(alert.err_list)
         }
-        else{           
+        {           
             setAlert({
                 err_list: res.data
             });
@@ -66,7 +67,10 @@ function AddCategory() {
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
+                      
+                      {/* Thông báo  */}
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
+                      {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
                   </Form.Group>
                   <div className="d-grid gap-2">
                       <Button variant="primary" size="sm" name='' type="submit">

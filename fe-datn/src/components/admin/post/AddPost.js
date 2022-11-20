@@ -27,18 +27,18 @@ function AddPost() {
         id_roomType: "",
     });
 
-<<<<<<< HEAD
+
     // });
     // const handleChange = (e) => {
     //     setAddPost({ ...addPost, [e.target.name]: e.target.value});
     // };
-=======
+
     const { post_name, description_sort, description, meta_keyword, area, room_price, water_pirce, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
 
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
     };
->>>>>>> fc2a6408dce0aac0b4a85430ad0d800cdb568b79
+
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -190,11 +190,7 @@ function AddPost() {
                     </Form.Group>
                 </Col>
                 <div className="d-grid gap-2">
-<<<<<<< HEAD
-                    <Button>
-=======
                     <Button variant="primary" size="sm" name='' type="submit">
->>>>>>> fc2a6408dce0aac0b4a85430ad0d800cdb568b79
                         Thêm bài viết
                     </Button>
                 </div>
