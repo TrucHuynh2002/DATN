@@ -6,15 +6,16 @@ import axios from 'axios'
 
 function ListFurniture() {
 
-  const [listFurniture, setListFurniture] = useState([]);
   const id_furniture = useParams();
+  const [listFurniture, setListFurniture] = useState([]);
 
   useEffect(() => {
     getData();
-  }, []);
+  },[]);
 
+  // danh sach furniture
   const getData = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/api/furniture/show");
+    const res = await axios.get('http://127.0.0.1:8000/api/furniture/show');
       // console.log(res.data);
       setListFurniture(res.data);
   };
@@ -40,7 +41,8 @@ function ListFurniture() {
           </tr>
         </thead>
         <tbody>
-            {listFurniture.map((furn, index) => (
+            {listFurniture.map((furn, index) => {
+              return(
               <tr key={index}>
                 <td>{index+1}</td>
                 <td>{furn.name}</td>
@@ -54,8 +56,8 @@ function ListFurniture() {
                     {/* </Link> */}
                 </td>
               </tr>
-            ))
-          }
+              );
+            })}
         </tbody>
     </Table>
     </div>             

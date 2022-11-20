@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function show()
     {
         $data = Category::all();
-        // return response()
-        //     ->json([
-        //         'data' => $data
-        //     ]);
-        return $data;
-        echo "chào ";
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+        // return $data;
+        // echo "chào ";
     }
     public function show_id(Request $request, $id)
     {
@@ -29,12 +29,11 @@ class CategoryController extends Controller
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(),[ 
-            'name_category' => 'required|string|max:255|unique:category'
+            'name_category' => 'required|string|unique:category'
         ],[
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.unique' => 'Đã tồn tại',
-            'name_category.max' => 'Độ dài không cho phép'
         ]);
         if($validation->fails()){
             return response()
@@ -54,14 +53,12 @@ class CategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[ 
-        
-            'name_category' => 'required|string|max:255|unique:category'
+        $validation = Validator::make($request->all(),[        
+            'name_category' => 'required|string|unique:category'
         ],[
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.unique' => 'Đã tồn tại',
-            'name_category.max' => 'Độ dài không cho phép'
         ]);
         if($validation->fails()){
             return response()

@@ -3,15 +3,19 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
 function EditCategory() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {id_category} = useParams();
     const [editCategory, setEditCategory] = useState({
         name_category: "",
+    });
+
+    const [alert, setAlert] = useState({
+        err_list: {},
     });
 
     const { name_category } = editCategory;
@@ -23,8 +27,20 @@ function EditCategory() {
    
     const handleSumbit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://127.0.0.1:8000/api/category/update/${id_category}`, editCategory);
-        navigate("../list_category");
+        const res = await axios.put(`http://127.0.0.1:8000/api/category/update/${id_category}`, editCategory);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list.messages.name_category[0])
+        }
+        // navigate("../list_category");
     };
 
     useEffect(() => {
@@ -46,6 +62,7 @@ function EditCategory() {
                     <Form.Label>Tên danh mục</Form.Label>
                     <Form.Control type="text" name="name_category" onChange={(e) => handleChange(e)}
                     value={name_category} className=''/>
+                    {alert.err_list.status === false && <span>{alert.err_list.messages.name_category[0]}</span>}
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" size="sm" name='' type="submit">

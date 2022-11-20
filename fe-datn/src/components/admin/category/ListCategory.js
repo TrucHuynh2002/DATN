@@ -6,8 +6,8 @@ import axios from 'axios'
 
 function ListCategory() {
 
-  const [listCategory, setListCategory] = useState([]);
   const id_category = useParams();
+  const [listCategory, setListCategory] = useState([]);
 
   useEffect(() => {
     getData();
@@ -17,10 +17,6 @@ function ListCategory() {
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/category/show');
       setListCategory(res.data);
-      // console.log(res);
-      // .then((res) => {
-      //   setListCategory(res.data.data)
-      // })
   };
 
 

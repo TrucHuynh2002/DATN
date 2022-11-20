@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function AddCategory() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [addCategory, setAddCategory] = useState({
         name_category:"",
+    });
+
+    const [alert, setAlert] = useState({
+        err_list: {},
     });
 
     const {name_category} = addCategory;
@@ -18,13 +22,26 @@ function AddCategory() {
     
     const handleSumbit = async (e) => {
         e.preventDefault();
-        await axios.post("http://127.0.0.1:8000/api/category/create", addCategory)
+        const res = await axios.post("http://127.0.0.1:8000/api/category/create", addCategory);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list.messages.name_category[0])
+        }
+        // navigate("../list_category");
 
-        .then((res) => {
+        // .then((res) => {
                 
-                    console.log(res.data);
-                    // navigate("../list_category");
-                })
+        //             console.log(res.data);
+        //             navigate("../list_category");
+        //         })
         // console.log();
         // navigate("../list_category");
         // axios.post('http://127.0.0.1:8000/api/category/create', {
@@ -49,12 +66,12 @@ function AddCategory() {
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>
+                      {alert.err_list.status === false && <span>{alert.err_list.messages.name_category[0]}</span>}
                   </Form.Group>
                   <div className="d-grid gap-2">
                       <Button variant="primary" size="sm" name='' type="submit">
                           Thêm danh mục
-                      </Button>
-                      {}
+                      </Button>                     
                   </div>
               </Form>     
         </div>
