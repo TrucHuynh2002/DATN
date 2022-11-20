@@ -33,7 +33,7 @@ function AddBlog() {
         //     });
         //     console.log(alert.err_list)
         // }
-        // {           
+        // else{           
         //     setAlert({
         //         err_list: res.data
         //     });
