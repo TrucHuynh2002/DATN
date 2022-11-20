@@ -290,3 +290,8 @@ i.bx{
     margin-left: 5px;
 }
 
+.error{
+    color:red;
+    font-size:20px;
+    
+}
