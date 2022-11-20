@@ -22,7 +22,7 @@ function NavAdmin() {
               </NavLink>
             <ul id="sub">          
               <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
-              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
+              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>          
             </ul>
           </li>
           <li><NavLink to="list_furniture"><i class='bx bx-buildings'></i> Nội thất
@@ -33,11 +33,12 @@ function NavAdmin() {
               <li><NavLink to="add_furniture" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_postcard"><i class='bx bx-notepad'></i> Bài đăng
+          <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
                 <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_postcard" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
           
@@ -65,7 +66,6 @@ function NavAdmin() {
           </li>
           <li><NavLink to=""><i class='bx bx-log-out-circle'></i> Quay lại</NavLink></li>
         </ul>
-
     </>
   )
 }

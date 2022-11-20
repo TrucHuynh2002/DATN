@@ -38,7 +38,6 @@ function EditFurniture() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name[0])
         }
         // navigate("../list_furniture");
     };
@@ -49,7 +48,7 @@ function EditFurniture() {
 
     const loadFurn = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/furniture/show/${id_furniture}`);
-        setEditFurniture(result.data);
+        setEditFurniture(result.data.data);
     };
 
   return (
@@ -63,6 +62,7 @@ function EditFurniture() {
                     <Form.Label>Tên nội thất</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={name} name="name" className=''/>
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name[0]}</span>}
                 </Form.Group>
             </Col>
             <Col sm={6}>
@@ -70,9 +70,11 @@ function EditFurniture() {
                     <Form.Label>Icons</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={icon} name="icon" className=''/>
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.icon[0]}</span>}
                 </Form.Group>
             </Col>
             <div className="d-grid gap-2">
+            {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
                 <Button variant="primary" size="sm" name='' type="submit">
                     Cập nhật nội thất
                 </Button>

@@ -21,7 +21,8 @@ class FurnitureController extends Controller
         $data = Furniture::find($id);
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true,
             ]);
     }
     public function created_at(Request $request)
