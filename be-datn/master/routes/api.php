@@ -130,7 +130,6 @@ Route::middleware('guest')->group(function () {
         ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-<<<<<<< HEAD
                 ->name('password.update');
 
     
@@ -141,10 +140,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
     Route::post('user/create', [UserController::class, 'UserAdd']);
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
-    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
-=======
+    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete'])
         ->name('password.update');
->>>>>>> 1e07c664e0dab8c84fdf1ae5d9adb9e0d72c92fd
+
 });
 
 Route::middleware('auth')->group(function () {
