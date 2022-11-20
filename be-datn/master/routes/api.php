@@ -22,7 +22,6 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\UserController;
-
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
@@ -102,8 +101,6 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
-
-
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
@@ -130,7 +127,12 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
+
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
+
+
+    Route::post('reset-password', [NewPasswordController::class, 'store'])
+        ->name('password.update');
 
 });
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -139,8 +141,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
     Route::post('user/create', [UserController::class, 'UserAdd']);
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+
     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 // ->name('password.update');
+
+    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete'])
+        ->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
