@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
-    protected $table = 'category';
-    protected $primaryKey = 'id_category';
+    protected $table = 'blog';
+    protected $primaryKey = 'id_blog';
     public $timestamps = false;
     protected $fillable = [
         'name_blog',

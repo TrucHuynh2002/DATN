@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FurnitureController;
 use App\Http\Controllers\imgPostController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoomTypeController;
 use Illuminate\Http\Request;
@@ -129,11 +130,8 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-<<<<<<< HEAD
-                ->name('password.update');
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
-    
 });
 Route::middleware(['auth:sanctum'])->group(function () {
     //User
@@ -142,9 +140,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user/create', [UserController::class, 'UserAdd']);
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
-=======
-        ->name('password.update');
->>>>>>> 1e07c664e0dab8c84fdf1ae5d9adb9e0d72c92fd
+// ->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {

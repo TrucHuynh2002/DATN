@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
-function AddBlog() {
-
+function EditBlog() {
+    
     // const navigate = useNavigate();
     const {id_blog} = useParams();
-    const [addBlog, setAddBlog] = useState({
+    const [editBlog, setEditBlog] = useState({
         name_blog:"",
         meta_keywords:"",
         description_sort:"",
@@ -19,15 +19,15 @@ function AddBlog() {
         err_list: {},
     });
 
-    const { name_blog,meta_keywords,description_sort,description} = addBlog;
+    const { name_blog,meta_keywords,description_sort,description} = editBlog;
   
     const handleChange = (e) => {
-        setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
+        setEditBlog({ ...editBlog, [e.target.name]: e.target.value});
     };
     
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const res = await axios.post("http://127.0.0.1:8000/api/blog/create", addBlog);
+        const res = await axios.put(`http://127.0.0.1:8000/api/blog/update/${id_blog}`, editBlog);
         console.log(res);
         if(res.data.status === true){
             setAlert({
@@ -42,6 +42,15 @@ function AddBlog() {
             // console.log(alert.err_list.messages.name_blog[0])
         }
         };
+
+        useEffect(() => {
+            loadCate();
+        }, []);
+
+        const loadCate = async () => {
+            const result = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
+            setEditBlog(result.data.data);
+        }; 
 
   return (
     <div className="content">
@@ -83,8 +92,8 @@ function AddBlog() {
                   </div>
                 </Form>     
             </div>
-    </div>
+        </div>
   )
 }
 
-export default AddBlog
+export default EditBlog

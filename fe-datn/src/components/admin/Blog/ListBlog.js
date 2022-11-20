@@ -41,21 +41,21 @@ function ListBlog() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listBlog.map(cate => {
+                {listBlog.map(blog => {
                     return (     
                     <tr>
-                        <td>{cate.id_blog}</td>
-                        <td>{cate.name_Blog}</td>
-                        <td>{cate.meta_keywords}</td>
-                        <td>{cate.description_sort}</td>
-                        <td>{cate.description	}</td>
+                        <td>{blog.id_blog}</td>
+                        <td>{blog.name_blog}</td>
+                        <td>{blog.meta_keywords}</td>
+                        <td>{blog.description_sort}</td>
+                        <td>{blog.description	}</td>
                         <td>
-                            <Link to={`../edit_blog/${cate.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
+                            <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
                               {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
                             {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
                               deleteBlog(cate.id_Blog)}> */}
-                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(cate.id_blog)}></Button>
+                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(blog.id_blog)}></Button>
                             {/* </Link> */}
                         </td>
                       </tr>  
