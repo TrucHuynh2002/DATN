@@ -101,8 +101,6 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
-
-
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
@@ -130,9 +128,7 @@ Route::middleware('guest')->group(function () {
         ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
-
-    
+        ->name('password.update');
 });
 Route::middleware(['auth:sanctum'])->group(function () {
     //User
@@ -142,7 +138,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete'])
         ->name('password.update');
-
 });
 
 Route::middleware('auth')->group(function () {
