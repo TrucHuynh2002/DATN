@@ -19,6 +19,11 @@ import ListPostCard from './components/admin/postcard/ListPostCard';
 import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
+
+// admin Blog 
+import AddBlog from './components/admin/Blog/AddBlog';
+import EditBlog from './components/admin/Blog/EditBlog';
+import ListBlog from './components/admin/Blog/ListBlog';
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
 import EditFurniture from './components/admin/furniture/EditFurniture';
@@ -96,6 +101,10 @@ root.render(
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
         <Route path="edit_post" element={<EditPost />} />
+
+        <Route path="list_blog" element={<ListBlog />} />
+        <Route path="add_blog" element={<AddBlog />} />
+        <Route path="edit_blog" element={<EditBlog />} />
 
         <Route path="add_furniture" element={<AddFurniture />} />
         <Route path="edit_furniture/:id_furnture" element={<EditFurniture />} />

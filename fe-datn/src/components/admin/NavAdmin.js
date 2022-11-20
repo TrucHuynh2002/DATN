@@ -16,12 +16,12 @@ function NavAdmin() {
               <li><NavLink to="add_category" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_post"><i class='bx bx-book-content'></i> Bài viết
+          <li><NavLink to="list_blog"><i class='bx bx-book-content'></i> Bài viết
               <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
-              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
+              <li><NavLink to="list_blog" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="add_blog" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
           <li><NavLink to="list_furniture"><i class='bx bx-buildings'></i> Nội thất
@@ -32,11 +32,12 @@ function NavAdmin() {
               <li><NavLink to="add_furniture" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_postcard"><i class='bx bx-notepad'></i> Bài đăng
+          <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
                 <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_postcard" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
           

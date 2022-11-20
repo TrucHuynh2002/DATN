@@ -26,7 +26,7 @@ class PostController extends Controller
     }
     public function created_at(Request $request)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'post_name' => 'required|tring',
             'quantity' => 'required',
             'area' => 'required',
@@ -43,7 +43,7 @@ class PostController extends Controller
             'id_user' => 'required',
             'id_furniture' => 'required',
             'id_roomType' => 'required'
-        ],[
+        ], [
             'post_name.required' => 'Không được bỏ trống',
             'quantity.required' => 'Không được bỏ trống',
             'area.required' => 'Không được bỏ trống',
@@ -61,12 +61,12 @@ class PostController extends Controller
             'id_furniture.required' => 'Không được bỏ trống',
             'id_roomType.required' => 'Không được bỏ trống',
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $Post = new Post();
         // thêm post
@@ -97,7 +97,7 @@ class PostController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'post_name' => 'required|tring',
             'quantity' => 'required',
             'area' => 'required',
@@ -114,7 +114,7 @@ class PostController extends Controller
             'id_user' => 'required',
             'id_furniture' => 'required',
             'id_roomType' => 'required'
-        ],[
+        ], [
             'post_name.required' => 'Không được bỏ trống',
             'quantity.required' => 'Không được bỏ trống',
             'area.required' => 'Không được bỏ trống',
@@ -132,12 +132,12 @@ class PostController extends Controller
             'id_furniture.required' => 'Không được bỏ trống',
             'id_roomType.required' => 'Không được bỏ trống',
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $Post = Post::find($id)->first();
         // cập nhật theo id_post
