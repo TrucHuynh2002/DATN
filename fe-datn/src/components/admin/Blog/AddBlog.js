@@ -26,19 +26,19 @@ function AddBlog() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", addBlog);
-        console.log(res);
-        // if(res.data.status === true){
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list)
-        // }
-        // else{           
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list.messages.name_blog[0])
-        // }
+       
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list.messages.name_blog[0])
+        }
         };
 
   return (
