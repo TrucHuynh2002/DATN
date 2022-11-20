@@ -4,23 +4,23 @@ import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 
-function ListCategory() {
+function ListBlog() {
 
-  const id_category = useParams();
-  const [listCategory, setListCategory] = useState([]);
+  const id_blog = useParams();
+  const [listBlog, setListBlog] = useState([]);
   useEffect(() => {
     getData();
   },[]);
 
-  // danh sach category
+  // danh sach Blog
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/category/show');
-      setListCategory(res.data.data);
+   const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
+      setListBlog(res.data.data);
   };
 
-  // xoa category
-  const deleteCategory = async (id_category) => {
-    await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_category}`);
+  // xoa Blog
+  const deleteBlog = async (id_blog) => {
+    await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
     getData();
   };
 
@@ -28,29 +28,34 @@ function ListCategory() {
     <div className="content">
             <div className="add-post">
               <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách Blog</h1>
-              <Link to="../add_category" className="btn btn-primary form-add">Thêm Blog</Link>
+              <Link to="../add_Blog" className="btn btn-primary form-add">Thêm Blog</Link>
               <Table bordered>
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Tên BLog</th>
-                    <th></th>
+                    <th>Từ Khóa</th>
+                    <th>Mô tả ngắn</th>
+                    <th>Mô tả</th>
                 </tr>
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listCategory.map(cate => {
+                {listBlog.map(cate => {
                     return (     
                     <tr>
-                        <td>{cate.id_category}</td>
-                        <td>{cate.name_category}</td>
+                        <td>{cate.id_blog}</td>
+                        <td>{cate.name_Blog}</td>
+                        <td>{cate.meta_keywords}</td>
+                        <td>{cate.description_sort}</td>
+                        <td>{cate.description	}</td>
                         <td>
-                            <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
+                            <Link to={`../edit_blog/${cate.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
                               {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
                             {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
-                              deleteCategory(cate.id_category)}> */}
-                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCategory(cate.id_category)}></Button>
+                              deleteBlog(cate.id_Blog)}> */}
+                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(cate.id_blog)}></Button>
                             {/* </Link> */}
                         </td>
                       </tr>  
@@ -63,4 +68,4 @@ function ListCategory() {
   )
 }
 
-export default ListCategory
+export default ListBlog
