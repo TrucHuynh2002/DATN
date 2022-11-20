@@ -21,7 +21,8 @@ class FurnitureController extends Controller
         $data = Furniture::find($id);
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true,
             ]);
     }
     public function created_at(Request $request)
@@ -31,7 +32,7 @@ class FurnitureController extends Controller
             'icon' => 'required'
         ],[
             'name.required' => 'Không được bỏ trống',
-            'icon.required' => 'Không đúng định dạng',
+            'icon.required' => 'Không được bỏ trống',
         ]);
         if($validation->fails()){
             return response()
@@ -41,8 +42,8 @@ class FurnitureController extends Controller
             ]);
         }
         $furniture = new Furniture();
-        $furniture->name = $request->name_furniture;
-        $furniture->icon = $request->icon_furniture;
+        $furniture->name = $request->name;
+        $furniture->icon = $request->icon;
         $furniture->save();
         return response()
             ->json([
@@ -57,7 +58,7 @@ class FurnitureController extends Controller
             'icon' => 'required'
         ],[
             'name.required' => 'Không được bỏ trống',
-            'icon.required' => 'Không đúng định dạng',
+            'icon.required' => 'Không được bỏ trống',
         ]);
         if($validation->fails()){
             return response()
@@ -67,8 +68,8 @@ class FurnitureController extends Controller
             ]);
         }
         $furniture = Furniture::find($id);
-        $furniture->name = $request->name_furniture;
-        $furniture->icon = $request->icon_furniture;
+        $furniture->name = $request->name;
+        $furniture->icon = $request->icon;
         $furniture->save();
         return response()
             ->json([

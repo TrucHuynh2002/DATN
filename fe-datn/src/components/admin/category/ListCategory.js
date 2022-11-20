@@ -7,8 +7,8 @@ import axios from 'axios'
 function ListCategory() {
 
   const id_category = useParams();
-  const [listCategory, setListCategory] = useState([]);
 
+  const [listCategory, setListCategory] = useState([]);
   useEffect(() => {
     getData();
   },[]);
@@ -16,10 +16,10 @@ function ListCategory() {
   // danh sach category
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/category/show');
-      setListCategory(res.data);
+   setListCategory(res.data.data);
+   console.log(res);
+      setListCategory(res.data.data);
   };
-
-
 
   // xoa category
   const deleteCategory = async (id_category) => {
@@ -42,10 +42,10 @@ function ListCategory() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listCategory.map((cate, index) => {
+                {listCategory.map(cate => {
                     return (     
-                    <tr key={index}>
-                        <td>{index+1}</td>
+                    <tr>
+                        <td>{cate.id_category}</td>
                         <td>{cate.name_category}</td>
                         <td>
                             <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">

@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
@@ -50,6 +51,13 @@ Route::post('category/create', [CategoryController::class, 'created_at']);
 Route::put('category/update/{id}', [CategoryController::class, 'update']);
 Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 
+// Blog
+Route::get('blog/show', [BlogController::class, 'show']);
+Route::get('blog/show/{id}', [BlogController::class, 'show_id']);
+Route::post('blog/create', [BlogController::class, 'created_at']);
+Route::put('blog/update/{id}', [BlogController::class, 'update']);
+Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
+
 // post
 Route::get('post/show', [PostController::class, 'show']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
@@ -69,7 +77,7 @@ Route::delete('imgPost/delete/{id}', [imgPostController::class, 'delete']);
 // Furniture
 Route::get('furniture/show', [FurnitureController::class, 'show']);
 Route::get('furniture/show/{id}', [FurnitureController::class, 'show_id']);
-Route::post('furniture/create',[FurnitureController::class, 'created_at']);
+Route::post('furniture/create', [FurnitureController::class, 'created_at']);
 Route::put('furniture/update/{id}', [FurnitureController::class, 'update']);
 Route::delete('furniture/delete/{id}', [FurnitureController::class, 'delete']);
 
@@ -113,15 +121,16 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
 
 Route::middleware('guest')->group(function () {
-    
+
     Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-                ->name('password.email');
+        ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
+<<<<<<< HEAD
                 ->name('password.update');
 
     
@@ -133,25 +142,28 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user/create', [UserController::class, 'UserAdd']);
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+=======
+        ->name('password.update');
+>>>>>>> 1e07c664e0dab8c84fdf1ae5d9adb9e0d72c92fd
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->name('verification.notice');
+        ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['signed', 'throttle:6,1'])
-                ->name('verification.verify');
+        ->middleware(['signed', 'throttle:6,1'])
+        ->name('verification.verify');
 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware('throttle:6,1')
-                ->name('verification.send');
+        ->middleware('throttle:6,1')
+        ->name('verification.send');
 
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->name('password.confirm');
+        ->name('password.confirm');
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
-            });
+        ->name('logout');
+});
