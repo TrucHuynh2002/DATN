@@ -3,20 +3,20 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function EditFurniture() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {id_furniture} = useParams();
     const [editFurniture, setEditFurniture] = useState({
         name: "",
         icon: "",
     });
 
-    // const [alert, setAlert] = useState({
-    //     err_list: {},
-    // });
+    const [alert, setAlert] = useState({
+        err_list: {},
+    });
 
     const { name, icon } = editFurniture;
 
@@ -28,18 +28,18 @@ function EditFurniture() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.put(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
-        // if(res.data.status === true){
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list)
-        // }
-        // else{           
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list.messages.name[0])
-        // }
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+            // console.log(alert.err_list.messages.name[0])
+        }
         // navigate("../list_furniture");
     };
 
@@ -49,7 +49,7 @@ function EditFurniture() {
 
     const loadFurn = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/furniture/show/${id_furniture}`);
-        setEditFurniture(result.data.data);
+        setEditFurniture(result.data);
     };
 
   return (

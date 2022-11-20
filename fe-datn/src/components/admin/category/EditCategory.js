@@ -38,7 +38,6 @@ function EditCategory() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list.messages.name_category[0])
         }
         // navigate("../list_category");
     };
@@ -62,7 +61,10 @@ function EditCategory() {
                     <Form.Label>Tên danh mục</Form.Label>
                     <Form.Control type="text" name="name_category" onChange={(e) => handleChange(e)}
                     value={name_category} className=''/>
-                    {alert.err_list.status === false && <span>{alert.err_list.messages.name_category[0]}</span>}
+
+                        {/* Thông báo  */}
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
+                      {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" size="sm" name='' type="submit">

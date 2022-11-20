@@ -11,9 +11,9 @@ function AddFurniture() {
         icon: "",
     });
 
-    // const [alert, setAlert] = useState({
-    //     err_list: {},
-    // });
+    const [alert, setAlert] = useState({
+        err_list: {},
+    });
 
     const { name, icon } = addFurniture;
 
@@ -25,18 +25,18 @@ function AddFurniture() {
         e.preventDefault();
         const res = await axios.post('http://127.0.0.1:8000/api/furniture/create', addFurniture);
         console.log(res);
-        // if(res.data.status === true){
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list)
-        // }
-        // else{           
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list.messages.name[0])
-        // }
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+            // console.log(alert.err_list.messages.name[0])
+        }
         // navigate("../list_furniture");
     };
 
@@ -55,7 +55,7 @@ function AddFurniture() {
                         value={name}
                         className=''
                         onChange={(e) => handleChange(e)}/>
-                        {/* {alert.err_list.status === false && <span>{alert.err_list.messages.name[0]}</span>} */}
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name[0]}</span>}
                     </Form.Group>
                 </Col>
                 <Col sm={6}>
@@ -67,13 +67,15 @@ function AddFurniture() {
                         value={icon}
                         className=''
                         onChange={(e) => handleChange(e)}/>
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.icon[0]}</span>}
                     </Form.Group>
                 </Col>
                 
                 <div className="d-grid gap-2">
+                    {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
                     <Button variant="primary" size="sm" name='' type="submit">
-                          Thêm nội thất
-                      </Button>
+                        Thêm nội thất
+                    </Button>
                 </div>
             </Row>
             </Form>

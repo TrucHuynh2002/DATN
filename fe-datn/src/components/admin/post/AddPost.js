@@ -27,11 +27,18 @@ function AddPost() {
         id_roomType: "",
     });
 
+
+    // });
+    // const handleChange = (e) => {
+    //     setAddPost({ ...addPost, [e.target.name]: e.target.value});
+    // };
+
     const { post_name, description_sort, description, meta_keyword, area, room_price, water_pirce, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
 
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
     };
+
 
     const handleSumbit = async (e) => {
         e.preventDefault();

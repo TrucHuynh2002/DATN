@@ -31,7 +31,7 @@ class FurnitureController extends Controller
             'icon' => 'required'
         ],[
             'name.required' => 'Không được bỏ trống',
-            'icon.required' => 'Không đúng định dạng',
+            'icon.required' => 'Không được bỏ trống',
         ]);
         if($validation->fails()){
             return response()
@@ -57,7 +57,7 @@ class FurnitureController extends Controller
             'icon' => 'required'
         ],[
             'name.required' => 'Không được bỏ trống',
-            'icon.required' => 'Không đúng định dạng',
+            'icon.required' => 'Không được bỏ trống',
         ]);
         if($validation->fails()){
             return response()
