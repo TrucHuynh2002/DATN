@@ -38,7 +38,6 @@ function EditCategory() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list.messages.name_category[0])
         }
         // navigate("../list_category");
     };

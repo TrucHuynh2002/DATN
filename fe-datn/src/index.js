@@ -13,17 +13,17 @@ import Home from './components/admin/Home';
 import AddCategory from './components/admin/category/AddCategory';
 import EditCategory from './components/admin/category/EditCategory';
 import ListCategory from './components/admin/category/ListCategory';
-// admin postcard
-// import ListPostCard from './components/admin/postcard/ListPostCard';
+
 // admin post
 import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
 
 // admin Blog 
-import AddBlog from './components/admin/Blog/AddBlog';
-import EditBlog from './components/admin/Blog/EditBlog';
-import ListBlog from './components/admin/Blog/ListBlog';
+// import AddBlog from './components/admin/Blog/AddBlog';
+// import EditBlog from './components/admin/Blog/EditBlog';
+// import ListBlog from './components/admin/Blog/ListBlog';
+
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
 import EditFurniture from './components/admin/furniture/EditFurniture';
@@ -36,12 +36,8 @@ import ListComment from './components/admin/comment/ListComment';
 import ListUser from './components/admin/user/ListUser';
 // admin setting
 import Setting from './components/admin/setting/Setting';
-import AboutConfig from './components/admin/setting/AboutConfig';
 import BannerConfig from './components/admin/setting/BannerConfig';
-import ContactConfig from './components/admin/setting/ContactConfig';
 import FooterConfig from './components/admin/setting/FooterConfig';
-import HomeConfig from './components/admin/setting/HomeConfig';
-import ProductConfig from './components/admin/setting/ProductConfig';
 
 // link menu user
 import HomeUser from './components/user/HomeUser';
@@ -52,10 +48,6 @@ import Gallery from './components/user/Gallery';
 import Room from './components/user/Room';
 import LayoutUser from './components/user/LayoutUser';
 
-// admin postcard
-import PostCardList from './components/account/postcard/List';
-import Detail from './components/account/postcard/Detail';
-import PostCardEdit from './components/account/postcard/Edit';
 // admin post
 import Add from './components/account/post/Add';
 import Edit from './components/account/post/Edit';
@@ -96,18 +88,17 @@ root.render(
       {/* chuyển hướng admin tổng */}
       <Route path="/admin" element={<App />}>
         <Route index element={<Home/>} />
-        {/* <Route path="list_postcard" element={<ListPostCard />} /> */}
 
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
         <Route path="edit_post" element={<EditPost />} />
 
-        <Route path="list_blog" element={<ListBlog />} />
+        {/* <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
-        <Route path="edit_blog" element={<EditBlog />} />
+        <Route path="edit_blog" element={<EditBlog />} /> */}
 
         <Route path="add_furniture" element={<AddFurniture />} />
-        <Route path="edit_furniture/:id_furnture" element={<EditFurniture />} />
+        <Route path="edit_furniture/:id_furniture" element={<EditFurniture />} />
         <Route path="list_furniture" element={<ListFurniture />} />
 
         <Route path="list_contact" element={<ListContact />} />
@@ -125,10 +116,6 @@ root.render(
           <Route index element={<Setting />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
-          <Route path="homeConfig" element={<HomeConfig />} />        
-          <Route path="aboutConfig" element={<AboutConfig />} />        
-          <Route path="contactConfig" element={<ContactConfig />} />        
-          <Route path="productConfig" element={<ProductConfig />} /> 
         </Route>
       </Route>
 
@@ -137,10 +124,6 @@ root.render(
         <Route index element={<ListAccount />} />
         <Route path="update_acc" element={<UpdateAccount />} />
         <Route path="confirm_acc" element={<ConfirmAccount />} />
-        {/* post card */}
-        <Route path="postcard" element={<PostCardList />} />
-        <Route path="postcard-detail" element={<Detail />} />
-        <Route path="postcard-edit" element={<PostCardEdit />} />
         {/* post */}
         <Route path="add" element={<Add />} />
         <Route path="edit" element={<Edit />} />

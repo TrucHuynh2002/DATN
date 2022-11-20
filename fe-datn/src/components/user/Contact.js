@@ -1,28 +1,53 @@
 import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
-// link css
-// import '../../css/bootstrap.min.css';
-// import '../../css/style.css';
-// import '../../css/responsive.css';
+import axios from 'axios';
 
 function Contact() {
-  const [namecontact, setNamecontact] = useState('')
-    const [emailcontact, setEmailcontact] = useState('')
-    const [phone, setPhone] = useState('')
-    const [message, setMessage] = useState('')
-    const handleSubmit = () => {
-        console.log({
-            namecontact,
-            emailcontact,
-            phone,
-            message
-        })
+
+  const [contact, setContact] = useState({
+    full_name: "",
+    subject: "",
+    email: "",
+    phone: "",
+    content: "",
+    status: "",
+  });
+
+  // xu ly loi
+  const [alert, setAlert] = useState({
+    err_list: {},
+  });
+
+  const { full_name, subject, email, phone, content, status } = contact;
+
+  const handleChange = (e) => {
+    setContact({ ...contact, [e.target.name]: e.target.value});
+  };
+
+  const handleSumbit = async (e) => {
+    e.preventDefault();
+    const res = await axios.post('http://127.0.0.1:8000/api/contact/create', contact);
+    console.log(res);
+    if(res.data.status === true){
+        setAlert({
+            err_list: res.data
+        });
+        console.log(alert.err_list)
     }
+    else{           
+        setAlert({
+            err_list: res.data
+        });
+        // console.log(alert.err_list.messages.name[0])
+    }
+    // navigate("../list_furniture");
+  };
+
+
+
+
 
   return (
-
-    
-
     <>
     <div className="back_re">
         <div className="container">
@@ -40,54 +65,63 @@ function Contact() {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <form id="request" className="main_form">
+              <form id="request" className="main_form" onSubmit={(e) => handleSumbit(e)}>
                 <div className="row">
                   <div className="col-md-12 ">
                     <input
                       className="contactus"
-                      placeholder="Name"
-                      type="type"
-                      name="Name"
-                      value={namecontact}
-                        onChange = {e => setNamecontact(e.target.value)}
-                    />
+                      placeholder="Họ tên"
+                      type="text"
+                      name="full_name"
+                      value={full_name}
+                      onChange={(e) => handleChange(e)}/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
                   </div>
                   <div className="col-md-12">
                     <input
                       className="contactus"
                       placeholder="Email"
-                      type="type"
-                      name="Email"
-                      value={emailcontact}
-                        onChange = {e => setEmailcontact(e.target.value)}
-                    />
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => handleChange(e)}/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.email[0]}</span>}
                   </div>
                   <div className="col-md-12">
                     <input
                       className="contactus"
-                      placeholder="Phone Number"
-                      type="type"
-                      name="Phone Number"
+                      placeholder="Số điện thoại"
+                      type="text"
+                      name="phone"
                       value={phone}
-                        onChange = {e => setPhone(e.target.value)}
-                    />
+                      onChange={(e) => handleChange(e)}/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.phone[0]}</span>}
+                  </div>
+                  <div className="col-md-12">
+                    <input
+                      className="contactus"
+                      placeholder="Tiêu đề"
+                      type="text"
+                      name="subject"
+                      value={subject}
+                      onChange={(e) => handleChange(e)}/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.subject[0]}</span>}
                   </div>
                   <div className="col-md-12">
                     <textarea
                       className="textarea"
-                      placeholder="Message"
-                      type="type"
-                      message="Name"
+                      placeholder="Nội dung"
+                      type="text"
+                      name='content'
+                      // message="Name"
                       defaultValue={"Message"}
-                      value={message}
-                        onChange = {e => setMessage(e.target.value)}
-                    />
+                      value={content}
+                      onChange={(e) => handleChange(e)}/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.content[0]}</span>}
                   </div>
                  
                   <div className="d-grid gap-2">
-                    <Button type='submit'
-                     onClick={handleSubmit}>
-                        Gửi
+                    <Button type='submit'>Gửi
                     </Button>
                 </div>
                

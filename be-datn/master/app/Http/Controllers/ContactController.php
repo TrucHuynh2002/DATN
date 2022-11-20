@@ -124,13 +124,14 @@ class ContactController extends Controller
     public function ContactApprove(Request $request,$id_contact){
         //phê duyệt hỗ trợ
         $t= ContactModel::find($id_contact);
+
         $t->status = $request->status;
         $t->save();
-        return response()
-                ->json([
-                    'data' => $t,
-                    'status'=> true
-                ]);
+        // return response()
+        //         ->json([
+        //             'data' => $t,
+        //             'status'=> true
+        //         ]);
     }
 
     public function Contact_SelectNotApprove(){

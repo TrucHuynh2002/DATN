@@ -3,20 +3,20 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function EditFurniture() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {id_furniture} = useParams();
     const [editFurniture, setEditFurniture] = useState({
         name: "",
         icon: "",
     });
 
-    // const [alert, setAlert] = useState({
-    //     err_list: {},
-    // });
+    const [alert, setAlert] = useState({
+        err_list: {},
+    });
 
     const { name, icon } = editFurniture;
 
@@ -28,18 +28,17 @@ function EditFurniture() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.put(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
-        // if(res.data.status === true){
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list)
-        // }
-        // else{           
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     console.log(alert.err_list.messages.name[0])
-        // }
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            console.log(alert.err_list)
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+        }
         // navigate("../list_furniture");
     };
 
@@ -63,6 +62,7 @@ function EditFurniture() {
                     <Form.Label>Tên nội thất</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={name} name="name" className=''/>
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name[0]}</span>}
                 </Form.Group>
             </Col>
             <Col sm={6}>
@@ -70,9 +70,11 @@ function EditFurniture() {
                     <Form.Label>Icons</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={icon} name="icon" className=''/>
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.icon[0]}</span>}
                 </Form.Group>
             </Col>
             <div className="d-grid gap-2">
+            {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
                 <Button variant="primary" size="sm" name='' type="submit">
                     Cập nhật nội thất
                 </Button>

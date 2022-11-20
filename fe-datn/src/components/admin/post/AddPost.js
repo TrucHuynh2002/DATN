@@ -42,7 +42,7 @@ function AddPost() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        await axios.post('http://127.0.0.1:8000/api/post/create', addPost)
+        await axios.post('http://127.0.0.1:8000/api/post/create', addPost);
         // navigate("../list_post");
     };
 

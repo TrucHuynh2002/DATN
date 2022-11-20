@@ -30,33 +30,13 @@ function AddCategory() {
             });
             console.log(alert.err_list)
         }
-        {           
+        else{           
             setAlert({
                 err_list: res.data
             });
             console.log(alert.err_list.messages.name_category[0])
         }
-        // navigate("../list_category");
-
-        // .then((res) => {
-                
-        //             console.log(res.data);
-        //             navigate("../list_category");
-        //         })
-        // console.log();
-        // navigate("../list_category");
-        // axios.post('http://127.0.0.1:8000/api/category/create', {
-        //         name_category: addCategory,        
-        //     })
-        //     .then((res) => {
-                
-        //         console.log(res.data);
-        //         navigate("../list_category");
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     })   
-
+        // navigate("../list_category");  
         };
 
   return (
@@ -66,7 +46,11 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
+
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
+
+
+                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                  
 
                       {/* Thông báo  */}
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
