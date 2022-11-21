@@ -47,7 +47,7 @@ Route::put('config/update', [ConfigController::class, 'update_Config'])->name('g
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
 Route::get('category/show/{id}', [CategoryController::class, 'show_id']);
-
+Route::post('category/create', [CategoryController::class, 'created_at']);
 Route::put('category/update/{id}', [CategoryController::class, 'update']);
 Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 
@@ -119,23 +119,20 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
 
 Route::middleware('guest')->group(function () {
-
     Route::post('register', [RegisteredUserController::class, 'store']);
-
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
+    
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
+        ->name('password.update');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.update');
-
 });
 Route::middleware(['auth:sanctum'])->group(function () {
     //User
@@ -144,8 +141,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('user/create', [UserController::class, 'UserAdd']);
     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
-
-    Route::post('category/create', [CategoryController::class, 'created_at']);
 });
 
 Route::middleware('auth')->group(function () {
