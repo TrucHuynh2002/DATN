@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ResetPassAlert extends Mailable
+class ReplyContactUser extends Mailable
 {
     use Queueable, SerializesModels;
     private $user ;
@@ -28,6 +28,6 @@ class ResetPassAlert extends Mailable
      */
     public function build()
     {
-        return $this->subject('Đổi mật khẩu thành công')->view('email.Sendmaildoimatkhauthanhcong')->with(['user'=>$this->user]);
+        return $this->subject('Phản hồi hỗ trợ từ Nhà Tui')->view('email.SendmailReplyContact')->with(['user'=>$this->user]);
     }
 }
