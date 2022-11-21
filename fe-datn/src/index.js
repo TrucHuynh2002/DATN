@@ -30,6 +30,7 @@ import EditFurniture from './components/admin/furniture/EditFurniture';
 import ListFurniture from './components/admin/furniture/ListFurniture';
 // admin contact
 import ListContact from './components/admin/contact/ListContact';
+import EditContact from './components/admin/contact/EditContact';
 // admin comment
 import ListComment from './components/admin/comment/ListComment';
 // admin user
@@ -102,6 +103,9 @@ root.render(
         <Route path="list_furniture" element={<ListFurniture />} />
 
         <Route path="list_contact" element={<ListContact />} />
+        <Route path="edit_contact/:id_contact" element={<EditContact />} />
+
+
         <Route path="list_comment" element={<ListComment />} />
 
         <Route path="add_category" element={<AddCategory />} />

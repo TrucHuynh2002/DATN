@@ -109,7 +109,7 @@ Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
 Route::get('contact/show/{id}', [ContactController::class, 'Contact_SelectOne']);
 Route::post('contact/create', [ContactController::class, 'ContactAdd']);
 Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
-Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
+// Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
