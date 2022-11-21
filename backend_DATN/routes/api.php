@@ -121,7 +121,7 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store']);
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-    
+
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
@@ -134,14 +134,14 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.update');
 });
-Route::middleware(['auth:sanctum'])->group(function () {
-    //User
-    Route::get('user/show', [UserController::class, 'User_SelectAll']);
-    Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
-    Route::post('user/create', [UserController::class, 'UserAdd']);
-    Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
-    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
-});
+// Route::middleware(['auth:sanctum'])->group(function () {
+//     //User
+//     Route::get('user/show', [UserController::class, 'User_SelectAll']);
+//     Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+//     Route::post('user/create', [UserController::class, 'UserAdd']);
+//     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+//     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
