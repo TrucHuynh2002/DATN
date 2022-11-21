@@ -64,7 +64,7 @@ function EditCategory() {
 
                         {/* Thông báo  */}
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
-                      {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
+                      {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" size="sm" name='' type="submit">

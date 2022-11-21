@@ -51,6 +51,7 @@
         <h2>ĐỔI MẬT KHẨU</h2>
         <p>Hello, bạn</p>
         <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn.</p>
+        <p>{{$token}}</p>
         {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}

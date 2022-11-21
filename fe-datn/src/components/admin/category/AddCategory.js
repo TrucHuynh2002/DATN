@@ -46,11 +46,15 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
+<<<<<<< HEAD
 
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
 
 
                       {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                   */}
+=======
+                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                  
+>>>>>>> afd56904d85f9f121d1b29cd2c8d291ab40bf4b4
 
                       {/* Thông báo  */}
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}

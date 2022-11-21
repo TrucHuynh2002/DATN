@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ResetPassAlert;
-// use App\Mail\Resetpassword;
+// use App\Mail\ResetPasswordSuccess;
 use App\Models\password_resets;
 use App\Models\User;
 use Carbon\Carbon;
@@ -68,7 +68,7 @@ class PasswordResetLinkController extends Controller
                 'token' => $token,
                 // 'created_at' => Carbon::now()
             ]);
-            Mail::to($request->email)->send(new ResetPassAlert($checkEmail));
+            Mail::to($request->email)->send(new ResetPassAlert($checkEmail,$token));
             return back()->with(['message' => 'Vui lòng kiểm tra email để đổi mật khẩu']);
         }else{
             return back()->with(['error' => 'Email không tồn tại']);

@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 class ResetPasswordSuccess extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user ;
+    private $user;
+    // private $token;
     /**
      * Create a new message instance.
      *
@@ -19,6 +20,7 @@ class ResetPasswordSuccess extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
+        // $this->token = $token;
     }
 
     /**
@@ -28,6 +30,8 @@ class ResetPasswordSuccess extends Mailable
      */
     public function build()
     {
-        return $this->subject('Đổi mật khẩu thành công')->view('email.SendmailPasswordSuccess')->with(['user'=>$this->user]);
+        return $this->subject('Đổi mật khẩu thành công')->view('email.SendmailPasswordSuccess')->with(['user' => $this->user]);
     }
+
+    
 }
