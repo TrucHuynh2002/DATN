@@ -46,10 +46,6 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
-
-                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
-
-
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                  
 
                       {/* Thông báo  */}
