@@ -101,6 +101,12 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
+Route::get('user/show', [UserController::class, 'User_SelectAll']);
+Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+Route::post('user/create', [UserController::class, 'UserAdd']);
+Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
@@ -109,7 +115,7 @@ Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
 Route::get('contact/show/{id}', [ContactController::class, 'Contact_SelectOne']);
 Route::post('contact/create', [ContactController::class, 'ContactAdd']);
 Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
-Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
+// Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
@@ -133,15 +139,12 @@ Route::middleware('guest')->group(function () {
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.update');
+
 });
-// Route::middleware(['auth:sanctum'])->group(function () {
-//     //User
-//     Route::get('user/show', [UserController::class, 'User_SelectAll']);
-//     Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
-//     Route::post('user/create', [UserController::class, 'UserAdd']);
-//     Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
-//     Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
-// });
+
+    
+
+    
 
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
