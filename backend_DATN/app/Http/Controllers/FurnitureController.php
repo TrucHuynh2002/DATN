@@ -28,11 +28,13 @@ class FurnitureController extends Controller
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(),[ 
-            'name' => 'required',
-            'icon' => 'required'
+            'name' => 'required|unique:furniture',
+            'icon' => 'required|unique:furniture'
         ],[
             'name.required' => 'Không được bỏ trống',
             'icon.required' => 'Không được bỏ trống',
+            'name.unique' => 'Đã tồn tại',
+            'icon.unique' => 'Đã tồn tại',
         ]);
         if($validation->fails()){
             return response()
@@ -54,11 +56,13 @@ class FurnitureController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(),[ 
-            'name' => 'required',
-            'icon' => 'required'
+            'name' => 'required|unique:furniture',
+            'icon' => 'required|unique:furniture'
         ],[
             'name.required' => 'Không được bỏ trống',
             'icon.required' => 'Không được bỏ trống',
+            'name.unique' => 'Đã tồn tại',
+            'icon.unique' => 'Đã tồn tại',
         ]);
         if($validation->fails()){
             return response()

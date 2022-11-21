@@ -40,10 +40,10 @@ function ListCategory() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listCategory.map(cate => {
+                {listCategory.map((cate, index) => {
                     return (     
-                    <tr>
-                        <td>{cate.id_category}</td>
+                    <tr key={index}>
+                        <td>{index+1}</td>
                         <td>{cate.name_category}</td>
                         <td>
                             <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
