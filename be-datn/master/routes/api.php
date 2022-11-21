@@ -47,7 +47,7 @@ Route::put('config/update', [ConfigController::class, 'update_Config'])->name('g
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
 Route::get('category/show/{id}', [CategoryController::class, 'show_id']);
-
+Route::post('category/create', [CategoryController::class, 'created_at']);
 Route::put('category/update/{id}', [CategoryController::class, 'update']);
 Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 
@@ -101,6 +101,12 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
+Route::get('user/show', [UserController::class, 'User_SelectAll']);
+Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+Route::post('user/create', [UserController::class, 'UserAdd']);
+Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
@@ -137,34 +143,29 @@ Route::middleware('guest')->group(function () {
         ->name('password.update');
 
 });
-Route::middleware(['auth:sanctum'])->group(function () {
-    //User
-    Route::get('user/show', [UserController::class, 'User_SelectAll']);
-    Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
-    Route::post('user/create', [UserController::class, 'UserAdd']);
-    Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
-    Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+// Route::middleware(['auth:sanctum'])->group(function () {
+    
 
-    Route::post('category/create', [CategoryController::class, 'created_at']);
-});
+    
+// });
 
-Route::middleware('auth')->group(function () {
-    Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
-        ->name('verification.notice');
+// Route::middleware('auth')->group(function () {
+//     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
+//         ->name('verification.notice');
 
-    Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-        ->middleware(['signed', 'throttle:6,1'])
-        ->name('verification.verify');
+//     Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+//         ->middleware(['signed', 'throttle:6,1'])
+//         ->name('verification.verify');
 
-    Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-        ->middleware('throttle:6,1')
-        ->name('verification.send');
+//     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+//         ->middleware('throttle:6,1')
+//         ->name('verification.send');
 
-    Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-        ->name('password.confirm');
+//     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
+//         ->name('password.confirm');
 
-    Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+//     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
-    Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
-});
+//     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
+//         ->name('logout');
+// });

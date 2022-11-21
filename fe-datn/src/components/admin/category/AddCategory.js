@@ -50,7 +50,7 @@ function AddCategory() {
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
 
 
-                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                  
+                      {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                   */}
 
                       {/* Thông báo  */}
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
