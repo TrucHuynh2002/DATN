@@ -94,7 +94,7 @@ class ContactController extends Controller
         // $t->email = $request->email;
         // $t->phone = $request->phone;
         // $t->content = $request->content;
-        $t->status = 1;
+        $t->status = $request->status;
         $t->reply = $request->reply;
         $t->save();
         Mail::to($t->email)->send(new ReplyContactUser($t));
