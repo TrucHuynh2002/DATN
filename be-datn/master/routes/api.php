@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FurnitureController;
 use App\Http\Controllers\imgPostController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoomTypeController;
 use Illuminate\Http\Request;
@@ -21,7 +22,6 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\UserController;
-
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
@@ -101,8 +101,6 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // User
-
-
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
 
@@ -132,7 +130,12 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
 
-    
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
+
+
+    Route::post('reset-password', [NewPasswordController::class, 'store'])
+        ->name('password.update');
+
 });
 Route::middleware(['auth:sanctum'])->group(function () {
     //User

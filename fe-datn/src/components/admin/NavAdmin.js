@@ -17,7 +17,7 @@ function NavAdmin() {
               <li><NavLink to="add_category" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_post"><i class='bx bx-book-content'></i> BlogBlog
+          <li><NavLink to="list_blog"><i class='bx bx-book-content'></i> Blog
               <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">          
