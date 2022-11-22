@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+// import  {CKEditor} from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditContact() {
   // const navigate = useNavigate();
@@ -24,10 +26,10 @@ function EditContact() {
   const { full_name,subject,email,phone,content,status,reply } = editContact;
 
   const handleChange = (e) => {
-      setEditContact({ ...editContact, [e.target.name]: e.target.value });
+      setEditContact({ ...editContact, [e.target.name]: e.target.value })
       // setEditContact(e.target.value);
   };
- 
+
   const handleSumbit = async (e) => {
       e.preventDefault();
       const res = await axios.put(`http://127.0.0.1:8000/api/contact/update/${id_contact}`, editContact);
@@ -77,6 +79,7 @@ return (
                       {/* Thông báo  */}
                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
               </Form.Group>
+
               <Form.Group className="mb-3" controlId="phone">
                   <Form.Label>Phone</Form.Label>
                   <Form.Control type="text" name="phone" onChange={(e) => handleChange(e)}
@@ -85,6 +88,7 @@ return (
                       {/* Thông báo  */}
                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
               </Form.Group>
+
               <Form.Group className="mb-3" controlId="content">
                   <Form.Label>Content</Form.Label>
                   <Form.Control type="text" name="content" onChange={(e) => handleChange(e)}
@@ -95,31 +99,42 @@ return (
               </Form.Group>
               <Form.Group className="mb-3" controlId="subject">
                   <Form.Label>Tiêu đề</Form.Label>
-                  <Form.Control type="text" name="subject" onChange={(e) => handleChange(e)}
+                  <Form.Control type="text"  name="subject" onChange={(e) => handleChange(e)}
                   value={subject} disable className=''/>
 
                       {/* Thông báo  */}
                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
                    
               </Form.Group>
-              <Form.Group className="mb-3" controlId="reply">
+             
+               <Form.Group className="mb-3" controlId="reply">
                   <Form.Label>Phản hồi</Form.Label>
+                  {/* <CKEditor
+                    editor={ ClassicEditor }
+                   data={reply}
+                   onChange={ ( event, editor ) => {
+                    const data = editor.getData();
+                    this.setEditContact({reply, data});
+                } }
+                /> */}
                   <Form.Control type="text" name="reply" onChange={(e) => handleChange(e)}
                   value={reply}  className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
-              </Form.Group>
+                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}  
+               </Form.Group> 
+            
               <div className="d-grid gap-2">
               {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
                   <Button variant="primary" size="sm" name='' type="submit">
-                      Cập nhật danh mục
+                      Gửi
                   </Button>
               </div>
           </Form>
       </div>
   </div>
 )
+
 }
 
 export default EditContact

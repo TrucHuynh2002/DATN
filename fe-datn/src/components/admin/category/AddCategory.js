@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+// import  {CKEditor} from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import { useNavigate } from 'react-router-dom';
 
 function AddCategory() {
@@ -26,7 +28,6 @@ function AddCategory() {
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
-               
             });
             console.log(alert.err_list)
         }
@@ -46,7 +47,19 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
-
+                      {/* <CKEditor
+                      name="name_category"
+                    editor={ ClassicEditor }
+                   data={name_category}
+                   onChange={(e, editor ) => {
+                    const data = editor.getData();
+                    console.log( { e, editor, data } );
+                    // this.handleChange({ name_category: data });
+                    // AddCategory({name_category:data});
+                //    [e.target.name_category]=data
+                    console.log(data)
+                } }
+                /> */}
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
 
 
