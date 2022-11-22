@@ -12,9 +12,8 @@ class Blog extends Model
     public $timestamps = false;
     protected $fillable = [
         'name_blog',
-        'meta_keywords	',
+        'meta_keywords',
         'description_sort',
         'description'
-
     ];
 }

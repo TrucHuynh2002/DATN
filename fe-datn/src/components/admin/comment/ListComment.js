@@ -1,8 +1,30 @@
-import React from 'react'
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 function ListComment() {
+
+  const id_comment = useParams();
+  const [listCmt, setListCmt] = useState([]);
+  useEffect(() => {
+    getData();
+  },[]);
+
+  // danh sách comment
+  const getData = async () => {
+    const res = await axios.get('http://127.0.0.1:8000/api/comment/show');
+       setListCmt(res.data.data);
+   };
+
+    // xoa comment
+    const deleteCmt = async (id_comment) => {
+    await axios.delete(`http://127.0.0.1:8000/api/comment/delete/${id_comment}`);
+    getData();
+  };
+
+
   return (
     <div className="content">
     <div className="add-post">
@@ -17,18 +39,24 @@ function ListComment() {
             <th>Trạng thái</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Trúc Huỳnh</td>
-            <td>Hello</td>
-            <td>20-11-2022</td>
-            <td>
-              <Link to="#">
-                <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
-              </Link>
-            </td>
-          </tr>
+        <tbody className='list_cmt'>
+          {listCmt.map((cmt, index) => {
+            return (
+              <tr key={index}>
+                <td>{index+1}</td>
+                <td>{cmt.id_user}</td>
+                <td>{cmt.content}</td>
+                <td>{cmt.date}</td>
+                <td>{cmt.status}</td>
+                <td>
+                  <Link to="#">
+                    <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
+                  </Link>
+                  {/* <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCmt(cmt.id_comment)}></Button> */}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
     </div>             

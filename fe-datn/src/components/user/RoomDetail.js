@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function RoomDetail() {
   return (
@@ -68,7 +69,7 @@ function RoomDetail() {
                             defaultChecked=""
                             />
                             <label htmlFor="star5" title="text">
-                            5 stars
+                                5 stars
                             </label>
                             <input
                             type="radio"
@@ -78,7 +79,7 @@ function RoomDetail() {
                             defaultChecked=""
                             />
                             <label htmlFor="star4" title="text">
-                            4 stars
+                                4 stars
                             </label>
                             <input
                             type="radio"
@@ -88,18 +89,18 @@ function RoomDetail() {
                             defaultChecked=""
                             />
                             <label htmlFor="star3" title="text">
-                            3 stars
+                                3 stars
                             </label>
                             <input type="radio" id="star2" name="rate" defaultValue={2} />
                             <label htmlFor="star2" title="text">
-                            2 stars
+                                2 stars
                             </label>
                             <input type="radio" id="star1" name="rate" defaultValue={1} />
                             <label htmlFor="star1" title="text">
-                            1 star
+                                1 star
                             </label>
                         </div>
-                        <span>3 Reviews</span>
+                        <span>3 đánh giá</span>
                         </div>
                         <div className="product-price-discount">1.000.000 vnd</div>
                     </div>
@@ -110,12 +111,12 @@ function RoomDetail() {
                         aliquip ex ea commodo consequat.
                     </p>
                     <div className="product-count">
-                        <a href="tel:0368503413" className="round-black-btn">
-                        Liên hệ ngay
-                        </a>
-                        <a href="#" className="round-black-btn">
-                        Thêm vào lưu trữ
-                        </a>
+                        <Link to="" className="round-black-btn">
+                            Liên hệ ngay
+                        </Link>
+                        <Link to="" className="round-black-btn">
+                            Thêm vào lưu trữ
+                        </Link>
                     </div>
                     </div>
                 </div>
@@ -132,7 +133,7 @@ function RoomDetail() {
                         aria-controls="description"
                         aria-selected="true"
                     >
-                        Description
+                        Mô tả
                     </a>
                     </li>
                     <li className="nav-item">
@@ -145,7 +146,7 @@ function RoomDetail() {
                         aria-controls="review"
                         aria-selected="false"
                     >
-                        Reviews (0)
+                        Đánh giá (0)
                     </a>
                     </li>
                 </ul>
@@ -172,11 +173,11 @@ function RoomDetail() {
                     role="tabpanel"
                     aria-labelledby="review-tab"
                     >
-                    <div className="review-heading">REVIEWS</div>
-                    <p className="mb-20">There are no reviews yet.</p>
+                    <div className="review-heading">ĐÁNH GIÁ</div>
+                    <p className="mb-20">Hiện tại không có lượt đánh giá nào.</p>
                     <form className="review-form">
                         <div className="form-group">
-                        <label>Your rating</label>
+                        <label>Đánh giá của bạn</label>
                         <div className="reviews-counter">
                             <div className="rate">
                             <input type="radio" id="star5" name="rate" defaultValue={5} />
@@ -203,7 +204,7 @@ function RoomDetail() {
                         </div>
                         </div>
                         <div className="form-group">
-                        <label>Your message</label>
+                        <label>Bình luận</label>
                         <textarea className="form-control" rows={10} defaultValue={""} />
                         </div>
                         <div className="row">
@@ -213,7 +214,7 @@ function RoomDetail() {
                                 type="text"
                                 name=""
                                 className="form-control"
-                                placeholder="Name*"
+                                placeholder="Tên người dùng"
                             />
                             </div>
                         </div>
@@ -223,12 +224,12 @@ function RoomDetail() {
                                 type="text"
                                 name=""
                                 className="form-control"
-                                placeholder="Email Id*"
+                                placeholder="Email"
                             />
                             </div>
                         </div>
                         </div>
-                        <button className="round-black-btn">Submit Review</button>
+                        <button className="round-black-btn">Gửi đánh giá</button>
                     </form>
                     </div>
                 </div>

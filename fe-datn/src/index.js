@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
 import './css/style.css';
 import './css/responsive.css';
+import './css/blog.css';
 
 // admin home
 import App from './components/admin/App';
@@ -44,10 +45,15 @@ import FooterConfig from './components/admin/setting/FooterConfig';
 import HomeUser from './components/user/HomeUser';
 import About from './components/user/About';
 import Blog from './components/user/Blog';
+import BlogDetail from './components/user/BlogDetail';
 import Contact from './components/user/Contact';
 import Gallery from './components/user/Gallery';
 import Room from './components/user/Room';
+import RoomDetail from './components/user/RoomDetail';
 import LayoutUser from './components/user/LayoutUser';
+import Login from './components/user/Login';
+import Signin from './components/user/Signin';
+import ForgotPassword from './components/user/ForgotPassword';
 
 // admin post
 import Add from './components/account/post/Add';
@@ -59,10 +65,7 @@ import UpdateAccount from './components/account/account_information/UpdateAccoun
 import ConfirmAccount from './components/account/account_information/ConfirmAccount';
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
-import RoomDetail from './components/user/RoomDetail';
-import Login from './components/user/Login';
-import Signin from './components/user/Signin';
-import ForgotPassword from './components/user/ForgotPassword';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -75,6 +78,7 @@ root.render(
         <Route index element={<HomeUser />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blogdetail" element={<BlogDetail />} />
         <Route path="contact" element={<Contact />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
@@ -89,29 +93,28 @@ root.render(
       {/* chuyển hướng admin tổng */}
       <Route path="/admin" element={<App />}>
         <Route index element={<Home/>} />
-
+        {/* post */}
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
         <Route path="edit_post" element={<EditPost />} />
-
+        {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
         <Route path="edit_blog/:id_blog" element={<EditBlog />} />
-
+        {/* furniture */}
         <Route path="add_furniture" element={<AddFurniture />} />
         <Route path="edit_furniture/:id_furniture" element={<EditFurniture />} />
         <Route path="list_furniture" element={<ListFurniture />} />
-
+        {/* contact */}
         <Route path="list_contact" element={<ListContact />} />
         <Route path="edit_contact/:id_contact" element={<EditContact />} />
-
-
+        {/* comment */}
         <Route path="list_comment" element={<ListComment />} />
-
+        {/* category */}
         <Route path="add_category" element={<AddCategory />} />
         <Route path="edit_category/:id_category" element={<EditCategory />} />
         <Route path="list_category" element={<ListCategory />} />
-        
+        {/* user list */}
         <Route path="list_user" element={<ListUser />} />
         {/* <Route path="setting" element={<Setting />} />   */}
 

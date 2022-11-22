@@ -60,22 +60,22 @@ return (
           <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Phản hồi nội dung</h1>
           <Form onSubmit={(e) => handleSumbit(e)}>
               <Form.Group className="mb-3" controlId="full_name">
-                  <Form.Label>Tên Khách Hàng</Form.Label>
+                  <Form.Label>Tên khách hàng</Form.Label>
                   <Form.Control type="text" name="full_name" onChange={(e) => handleChange(e)}
                   value={full_name} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
                    
               </Form.Group>
              
               <Form.Group className="mb-3" controlId="email">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="text" name="email" onChange={(e) => handleChange(e)}
+                  <Form.Control type="email" name="email" onChange={(e) => handleChange(e)}
                   value={email} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.email[0]}</span>}
               </Form.Group>
               <Form.Group className="mb-3" controlId="phone">
                   <Form.Label>Phone</Form.Label>
@@ -83,7 +83,7 @@ return (
                   value={phone} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.phone[0]}</span>}
               </Form.Group>
               <Form.Group className="mb-3" controlId="content">
                   <Form.Label>Content</Form.Label>
@@ -91,7 +91,7 @@ return (
                   value={content} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.content[0]}</span>}
               </Form.Group>
               <Form.Group className="mb-3" controlId="subject">
                   <Form.Label>Tiêu đề</Form.Label>
@@ -99,7 +99,7 @@ return (
                   value={subject} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.subject[0]}</span>}
                    
               </Form.Group>
               <Form.Group className="mb-3" controlId="reply">
@@ -108,7 +108,7 @@ return (
                   value={reply}  className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}
+                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.reply[0]}</span>}
               </Form.Group>
               <div className="d-grid gap-2">
               {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}

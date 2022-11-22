@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 function AddBlog() {
 
     // const navigate = useNavigate();
-    const {id_blog} = useParams();
     const [addBlog, setAddBlog] = useState({
         name_blog:"",
         meta_keywords:"",
@@ -19,7 +17,7 @@ function AddBlog() {
         err_list: {},
     });
 
-    const { name_blog,meta_keywords,description_sort,description} = addBlog;
+    const { name_blog ,meta_keywords,description_sort, description } = addBlog;
   
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
@@ -29,7 +27,6 @@ function AddBlog() {
         e.preventDefault();
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", addBlog);
         console.log(res);
-
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -51,7 +48,7 @@ function AddBlog() {
                 <Form onSubmit={(e) => handleSumbit(e)}>
                     <Form.Group className="mb-3" controlId="name_blog">
                         <Form.Label>Tên blog</Form.Label>
-                        <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"  />
+                        <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_blog[0]}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">

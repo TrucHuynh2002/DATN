@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 // link img
 import Slide1 from '../../images/sl01.png';
@@ -184,7 +185,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                  <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -200,7 +201,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -216,7 +217,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -232,7 +233,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -248,7 +249,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -264,7 +265,7 @@ function Home() {
                   </figure>
                 </div>
                 <div className="bed_room">
-                  <h3>Phòng trọ cần thơ</h3>
+                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there{" "}
@@ -366,12 +367,12 @@ function Home() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết</span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are{" "}
+                    text. All the Lorem Ipsum generatorsIf you are
                   </p>
                 </div>
               </div>
@@ -384,12 +385,12 @@ function Home() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết </span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are{" "}
+                    text. All the Lorem Ipsum generatorsIf you are
                   </p>
                 </div>
               </div>
@@ -402,12 +403,12 @@ function Home() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết</span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
                     sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are{" "}
+                    text. All the Lorem Ipsum generatorsIf you are
                   </p>
                 </div>
               </div>
@@ -417,7 +418,7 @@ function Home() {
       </div>
       {/* end blog */}
       {/*  contact */}
-      <div className="contact">
+      {/* <div className="contact">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -485,7 +486,7 @@ function Home() {
             </div> 
           </div>
         </div>
-      </div>
+      </div> */}
       {/* end contact */}
     </>
   )

@@ -33,7 +33,7 @@ function ListBlog() {
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Tên BLog</th>
+                    <th>Tên bLog</th>
                     <th>Từ khóa</th>
                     <th>Mô tả ngắn</th>
                     <th>Mô tả</th>

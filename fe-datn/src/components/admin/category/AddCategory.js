@@ -6,6 +6,16 @@ import axios from 'axios';
 function AddCategory() {
 
     // const navigate = useNavigate();
+    
+    // if (localStorage.getItem('user')){
+    //     const user = localStorage.getItem('user');
+    //     if(user['role'] != 1 or user['role'] != 2 ){
+    //         // Da no ra
+    //     }
+        
+    // }else{
+    //     // da no ra
+    // }
     const [addCategory, setAddCategory] = useState({
         name_category:"",
     });
@@ -46,19 +56,8 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
-<<<<<<< HEAD
-
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
-
-
-                      {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                   */}
-=======
-                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                  
->>>>>>> afd56904d85f9f121d1b29cd2c8d291ab40bf4b4
-
-                      {/* Thông báo  */}
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
-                    
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}                   
                   </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
