@@ -142,10 +142,6 @@ Route::middleware('guest')->group(function () {
 
 });
 
-    
-
-    
-
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
         ->name('verification.notice');

@@ -72,7 +72,7 @@ class UserController extends Controller
         $t = new User();
         $t->full_name = $request->full_name;
         $t->email = $request->email;
-        $t->password = $request->password;
+        $t->password = Hash::make($request->password);
         $t->phone = $request->phone;
         $t->address = $request->address;
         $t->role = $request->role;
@@ -123,7 +123,7 @@ class UserController extends Controller
         if(!Auth::attempt($credentials)){
             return response()
                 ->json([
-                    'data' => "Tài khoản hoặc mật khẩu không chính xác",
+                    'messages' => "Tài khoản hoặc mật khẩu không chính xác",
                     'status'=> false
                 ]);
         }
@@ -133,21 +133,23 @@ class UserController extends Controller
             return response()->json([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
+                'data' => $user_admin,
                 'status' => true,
             
             ]);
+            event(new Registered($user_admin));
+
+            Auth::login($user_admin);
             
         }else{
+            $user_cus = User::where('email', $request->email)->first();
             return response()->json([
                 'access_token' => "khách hàng",
-                // 'token_type' => 'Bearer',
+                'data' => $user_cus,
                 'status' => true,
-            
             ]);
         }
-        event(new Registered($user_admin));
-
-        Auth::login($user_admin);
+     
         // return redirect()->intended(RouteServiceProvider::HOME);
     }
     public function UserForgotPassword(Request $request)
@@ -161,14 +163,14 @@ class UserController extends Controller
         // return redirect()->intended(RouteServiceProvider::HOME);
             return response()
                 ->json([
-                    'data' => "Kiểm tra mail để đổi mật khẩu",
+                    'messages' => "Kiểm tra mail để đổi mật khẩu",
                     'status'=> true
                 ]);
             // Mail::to($request->email)->send(new Resetpassword($Check_User));
         }else{
             return response()
                 ->json([
-                    'data' => "Mail không chính xác",
+                    'messages' => "Mail không chính xác",
                     'status'=> false
                 ]);
         }

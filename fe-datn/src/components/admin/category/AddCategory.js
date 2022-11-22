@@ -8,6 +8,16 @@ import axios from 'axios';
 function AddCategory() {
 
     // const navigate = useNavigate();
+    
+    // if (localStorage.getItem('user')){
+    //     const user = localStorage.getItem('user');
+    //     if(user['role'] != 1 or user['role'] != 2 ){
+    //         // Da no ra
+    //     }
+        
+    // }else{
+    //     // da no ra
+    // }
     const [addCategory, setAddCategory] = useState({
         name_category:"",
     });
@@ -61,13 +71,7 @@ function AddCategory() {
                 } }
                 /> */}
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
-
-
-                      {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category}name="name_category" className=''/>                   */}
-
-                      {/* Thông báo  */}
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
-                    
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}                   
                   </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}

@@ -19,7 +19,7 @@
 @import url(normalize.css);
 @import url(icomoon.css);
 @import url(font-awesome.min.css);
-@import url(meanmenu.css);
+/* @import url(meanmenu.css); */
 @import url(owl.carousel.min.css);
 /* @import url(swiper.min.css); */
 @import url(slick.css);
@@ -296,6 +296,7 @@ button {
     height: 86px;
     padding: 15px 0px 15px 0px;
     background: #fff;
+    border-bottom: 1px solid #eaeaea;
 }
 
 
@@ -389,8 +390,20 @@ button {
     color: black;
     font-size: 18px;
     margin-top: 8px;
-    padding-left: 45px;
+    padding-left: 15px;
     padding-right: 20px;
+}
+
+.book_now2 .online_book4 {
+    width: 100%;
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    background-color: transparent;
+    color: black;
+    padding: 0 10px;
+    padding-right: 61px;
+    margin-bottom: 25px;
+    position: relative;
 }
 
 .book_now2 .online_book3 {
@@ -466,20 +479,21 @@ button {
 .book_btn {
     background-color: #0d3380;
     max-width: 189px;
-    width: 100%;
+    width: 120px;
     margin: 0 auto;
-    padding: 10px 0;
-    border-radius: 50px;
-    color: #ffc72b;
-    font-size: 20px;
-    transition: ease-in 0.5s;
+    padding: 7px 0;
+    border: 1px solid#0d3380;
+    border-radius: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
     display: block;
 }
 
 .book_btn:hover {
-    background-color: #ffc72b;
-    color: #0d3380;
-    transition: ease-in 0.5s;
+    background-color: #072359;
+    color: white;
+    transition: ease-in 0.2s;
 }
 
 .carousel-control-next,
@@ -539,7 +553,7 @@ button {
 
 .read_more {
     font-size: 17px;
-    background-color: #121212;
+    background-color: #0d3380;
     color: #fff;
     padding: 8px 0px;
     width: 100%;
@@ -548,11 +562,10 @@ button {
     display: inline-block;
     transition: ease-in all 0.5s;
     font-weight: 500;
-    border-radius: 30px;
 }
 
 .read_more:hover {
-    background: #fe0000;
+    background: #072359;
     color: #fff;
     transition: ease-in all 0.5s;
 }
@@ -778,20 +791,34 @@ button {
     font-size: 14px;
     line-height: 20px;
 }
-
-
+.gap-2{
+    display:"flex";
+    align-items:"baseline";
+}
+.gap-2>.button{
+    padding: 7px;
+    margin-top: 11px;
+    background: #00afff;
+}
+.gap-2>.button>a{
+    color:white;
+}
+.custom-checkbox{
+    width: 10%;
+    height: 20px;
+}
 /** end blog section **/
 
 
 /** contact section **/
 
-.contact {
+.contact,.signin,.login {
     background: #fff;
     margin-top: 90px;
 }
 
-.main_form .contactus {
-    border: #fff solid 1px;
+.main_form .contactus ,.text{
+    border: #cecece solid 1px;
     padding: 0 15px;
     margin-bottom: 25px;
     width: 100%;
@@ -800,11 +827,10 @@ button {
     color: #000000;
     font-size: 18px;
     font-weight: normal;
-    box-shadow: 2px 0px 6px rgba(255, 9, 9, 0.20);
 }
 
 .main_form .textarea {
-    border: #fff solid 1px;
+    border: #cecece solid 1px;
     margin-bottom: 25px;
     width: 100%;
     background: #fff;
@@ -812,14 +838,13 @@ button {
     font-size: 18px;
     font-weight: normal;
     padding: 12px 15px 0 15px;
-    box-shadow: 2px 0px 6px rgba(255, 9, 9, 0.20);
     height: 150px;
 }
 
 .main_form .send_btn {
-    font-size: 22px;
+    font-size: 18px;
     transition: ease-in all 0.5s;
-    background-color: #000000;
+    background-color: #0d3380;
     text-transform: uppercase;
     color: #fff;
     padding: 10px 0px;
@@ -828,11 +853,10 @@ button {
     display: block;
     margin-top: 10px !important;
     font-weight: 500;
-    border-radius: 50px;
 }
 
 .main_form .send_btn:hover {
-    background-color: #ff0909;
+    background-color: #072359;
     transition: ease-in all 0.5s;
     color: #fff;
 }
@@ -870,7 +894,19 @@ button {
     text-align: left;
     color: #fff;
     margin-bottom: 15px;
-    border-bottom: #ff0909 solid 3px;
+    /* border-bottom: #ff0909 solid 3px; */
+    padding-bottom: 3px;
+    display: table;
+}
+
+.footer h4 {
+    font-weight: 600;
+    font-size: 17px;
+    text-align: center;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 15px;
+    /* border-bottom: #ff0909 solid 3px; */
     padding-bottom: 3px;
     display: table;
 }
@@ -948,7 +984,7 @@ ul.link_menu li a:hover {
     font-size: 17px;
     transition: ease-in all 0.5s;
     background-color: #fff;
-    color: #ff0909;
+    color: #0d3380;
     padding: 8px 0px;
     max-width: 147px;
     width: 100%;
@@ -958,9 +994,9 @@ ul.link_menu li a:hover {
 }
 
 .sub_btn:hover {
-    background-color: #ff0909;
+    background-color: #ffc72b;
     transition: ease-in all 0.5s;
-    color: #fff;
+    color: #0d3380;
 }
 
 ul.social_icon {
@@ -991,14 +1027,12 @@ ul.social_icon li a:hover {
 .copyright {
     margin-top: 60px;
     padding-bottom: 20px;
-    background-color: #fff;
-    border: #ff0909 solid 3px;
-    border-right: inherit;
-    border-left: inherit;
+    background-color: 0f1521;
+    border-top: #eaeaea solid 0.5px;
 }
 
 .copyright p {
-    color: #000;
+    color: white;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
@@ -1008,7 +1042,7 @@ ul.social_icon li a:hover {
 }
 
 .copyright a {
-    color: #000;
+    color: white;
 }
 
 .copyright a:hover {

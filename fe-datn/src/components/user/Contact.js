@@ -121,10 +121,9 @@ function Contact() {
                   </div>
                  
                   <div className="d-grid gap-2">
-                  {alert.err_list.status === true && <span className="noti">Liên hệ thành công</span>}
-                    <Button type='submit'>Gửi
-                    </Button>
-                </div>              
+                    <Button type='submit'>Gửi</Button>
+                    {alert.err_list.status === true && <span className="noti">Liên hệ thành công</span>}
+                  </div>              
                 </div>
               </form>
             </div>

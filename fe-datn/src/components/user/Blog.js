@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 // link css
 // import '../../css/bootstrap.min.css';
 // import '../../css/style.css';
@@ -33,7 +34,7 @@ function Blog() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết</span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
@@ -51,7 +52,7 @@ function Blog() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết </span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be
@@ -69,7 +70,7 @@ function Blog() {
                   </figure>
                 </div>
                 <div className="blog_room">
-                  <h3>Tiêu đề bài viết</h3>
+                <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
                   <span>Tên người viết</span>
                   <p>
                     If you are going to use a passage of Lorem Ipsum, you need to be

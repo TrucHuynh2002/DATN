@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
+    
     public function show()
     {
         $data = Post::all();
@@ -89,6 +90,16 @@ class PostController extends Controller
         $Post->id_furniture = $request->id_furniture; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
+        
+        foreach ($request->file as $img) {
+            $imgPost = new imgPost();
+            $imgPost->img_post_name = $request->img_post_name;
+            $imgPost->type_img = $request->type_img;
+            $imgPost->link_img_user = $request->link_img_user;
+            $imgPost->id_post = $request->id_post; // khóa ngoại
+            $imgPost->save();
+            # code...
+        }
         return response()
             ->json([
                 'data' =>  $Post,

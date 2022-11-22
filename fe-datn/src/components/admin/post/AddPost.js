@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
-
+    
     const navigate = useNavigate();
     const [addPost, setAddPost] = useState({
         post_name: "",

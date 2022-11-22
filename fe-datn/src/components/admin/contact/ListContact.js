@@ -55,11 +55,11 @@ function ListContact() {
                 <td>{contact.phone}</td>
                 <td>{contact.content}</td>
                 <td>
-                  {contact.status == 1 && <Button variant="outline-success" style={{backgroundColor:'red',color:'white'}} disable name='' className="btn-edit">Đã liên hệ</Button> }
-                  {contact.status == 0 && <Button variant="outline-success" name='' className="btn-edit">Chua liên hệ</Button> }
+                  {contact.status === 1 && <Button variant="outline-danger" disable name='' className="">Đã liên hệ</Button> }
+                  {contact.status === 0 && <Button variant="outline-success" name='' className="">Chưa liên hệ</Button> }
                 </td>
-                {contact.status == 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-                {contact.status == 1 &&  <i className="bx bxs-edit btn-edit btn btn-primary"></i> }
+                {contact.status === 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
+                {contact.status === 1 &&  <i className="bx bxs-edit btn-edit btn btn-primary"></i> }
                
                 {/* <Button variant="outline-danger" name='' className="bx bx-edit" onClick={() => updatecontact(contact.id_contact)}></Button> */}
               
