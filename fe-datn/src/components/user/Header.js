@@ -18,15 +18,11 @@ function Header() {
         <div className="container">
           <div className="row header-nav">
             <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-              <div className="full">
-                <div className="center-desk">
                   <div className="logo">
                     <Link to="/">
-                      <img className="logo" style={{width:"60%"}} src={logo} alt="#" />
+                      <img className="logo img-fluid" src={logo} alt="#" />
                     </Link>
                   </div>
-                </div>
-              </div>
             </div>
             <div className="col-xl-9 col-lg-9 col-md-9 col-sm-9">
               <nav className="navigation navbar navbar-expand-md navbar-dark ">

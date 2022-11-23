@@ -70,7 +70,7 @@ function Home() {
         <div className="booking_ocline">
           <div className="container">
             <div className="row">
-              <div className="col-md-5">
+              <div className="col-md-12">
                 <div className="book_room">
                   <h1>Nhatui.com</h1>
                   <form className="book_now">
@@ -104,8 +104,7 @@ function Home() {
                   <form className="book_now2">
                     <div className="row">
                       <div className="col-md-12">
-                        <span>Tìm kiếm:</span>
-                        <input className="online_book2" placeholder="" type="text" name="" />
+                        <input className="online_book2" type="text" name="" placeholder="Vui lòng nhập tên phòng cần tìm" />
                       </div>
                       {/* <div className="col-md-6">
                         <span className="loc">Lọc:</span>
