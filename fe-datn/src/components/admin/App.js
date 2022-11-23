@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import NavAdmin from './NavAdmin';
 import HeaderAdmin from './HeaderAdmin';
+import FooterAdmin from './FooterAdmin';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <NavAdmin />
           {/* content */}
           <Outlet />
+          <FooterAdmin />
         </Row>
       </Container>
 

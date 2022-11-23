@@ -81,7 +81,7 @@ function Login() {
                                         <Link to="../forgotpw">Quên mật khẩu?</Link>
                                    </button>
                                    <button className="button">
-                                        <Link  to="../login">Bạn đã có tài khoản ? Đăng nhập ngay</Link>
+                                        <Link  to="../signin">Bạn chưa có tài khoản ? Đăng ký ngay</Link>
                                    </button>
                                     
                                 </div>    

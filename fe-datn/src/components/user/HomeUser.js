@@ -99,27 +99,54 @@ function Home() {
                     </div>
                   </form>
                 </div>
+
+                {/* search */}
                 <div className="book_room2">
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-6">
-                        <span>Tìm kiếm:</span>
+                      <div className="col-md-12">
                         <input
                           className="online_book2"
-                          placeholder=""
+                          placeholder="Tìm kiếm"
                           type="text"
                           name=""
                         />
                       </div>
-                      <div className="col-md-6">
-                        <span className="loc">Lọc:</span>
-                        <input
-                          className="online_book3"
-                          placeholder=""
-                          type="text"
-                          name=""
-                        />
+                      <div className="col-md-3 col-search">
+                        <select className="form-select online_book3">
+                          <option>Lọc</option>
+                          <option></option>
+                          <option></option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 col-search">
+                        <select className="form-select online_book3">
+                          <option>Loại phòng</option>
+                          <option>Phòng trọ</option>
+                          <option>Căn hộ mini</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 col-search">
+                        <select className="form-select online_book3">
+                          <option>Tỉnh</option>
+                          <option>Hồ Chí Minh</option>
+                          <option>Cần Thơ</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 col-search">
+                        <select className="form-select online_book3">
+                          <option>Giá</option>
+                          <option>Dưới 1 triệu</option>
+                          <option>Từ 1 - 2 triệu</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 col-search">
+                        <select className="form-select online_book3">
+                          <option>Diện tích</option>
+                          <option>Dưới 20m<sup>2</sup></option>
+                          <option>Dưới 20m<sup>2</sup></option>
+                        </select>
                       </div>
                       <div className="col-md-12">
                         <button className="book_btn">Xem kết quả</button>
@@ -127,6 +154,8 @@ function Home() {
                     </div>
                   </form>
                 </div>
+                {/* end search */}
+
               </div>
             </div>
           </div>

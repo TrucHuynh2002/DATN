@@ -385,6 +385,10 @@ button {
     padding-right: 20px;
 }
 
+.col-search{
+    width: 20% !important;
+}
+
 .book_now2 .loc {
     /* display: block; */
     color: black;
@@ -419,7 +423,7 @@ button {
 }
 
 .book_now2 .online_book2 {
-    width: 80%;
+    width: 96%;
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
     background-color: transparent;
@@ -428,6 +432,7 @@ button {
     padding-right: 61px;
     margin-bottom: 25px;
     position: relative;
+    border-radius: 7px;
 }
 
 .book_room {
@@ -480,7 +485,7 @@ button {
     background-color: #0d3380;
     max-width: 189px;
     width: 120px;
-    margin: 0 auto;
+    margin: 0px auto;
     padding: 7px 0;
     border: 1px solid#0d3380;
     border-radius: 0px;
