@@ -263,8 +263,8 @@ button {
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link {
-    padding: 7px 0px 27px 0px;
-    margin: 0 22px;
+    /* padding: 7px 0px 27px 0px; */
+    /* margin: 0 22px; */
     color: #010101;
     font-size: 16px;
     line-height: 20px;
@@ -287,13 +287,14 @@ button {
     border-bottom: #0d3380 solid 3px;
 }
 
-.navbar-expand-md .navbar-nav {
+/* .navbar-expand-md .navbar-nav {
     padding-right: 10px;
+} */
+.navbar-collapse{
+    justify-content: space-evenly;
 }
-
 .header {
     width: 100%;
-    height: 86px;
     padding: 15px 0px 15px 0px;
     background: #fff;
     border-bottom: 1px solid #eaeaea;
@@ -359,11 +360,14 @@ button {
 }
 
 .book_room2 {
+   
     background-color: white;
-    padding: 30px 35px;
+    padding: 15px;
     border-left: none solid 5px;
-    width: 250%;
-    margin-bottom: -350px;
+    width: 100%;
+    position: absolute;
+    top: 130%;
+    /* margin-bottom: -350px; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -436,10 +440,8 @@ button {
 }
 
 .book_room {
-    /* background-color: #000000c7; */
-    padding: 30px 35px;
+    padding: 20px;
     border-left: none solid 5px;
-    width: 250%;
     padding-top: -200px;
 }
 
@@ -808,9 +810,44 @@ button {
 .gap-2>.button>a{
     color:white;
 }
+.product-slider{
+    background-color: rgba(220, 215, 212, 0.71);
+    
+}
+.item>.img-fluid{
+    padding:20px;
+
+}
+.product-count-help{
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    font-size: 19px;
+    padding: 10px 0;
+    color: #929292ad;
+}
+.header-nav{
+    align-items: center;
+}
+.product-count-help>div>i{
+    margin-right:5px;
+}
+.item-img{
+    padding: 0 10px 20px 10px;
+   /* algin-item:center; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: center;
+
+}
 .custom-checkbox{
     width: 10%;
     height: 20px;
+}
+.row{
+    align-items: center;
 }
 /** end blog section **/
 
@@ -887,8 +924,6 @@ button {
 
 .footer {
     background: #0f1521;
-    margin-top: 90px;
-    padding-top: 60px;
     text-align: center;
 }
 

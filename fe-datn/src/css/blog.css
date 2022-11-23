@@ -865,7 +865,22 @@
 .megamenu-panel-row [class*=col-]:first-child {
     margin-left: 0
 }
+.col-md-3>i{
+    margin: 10px 8px 10px 0;
+}
+.name_blog>h1{
+    font-size: 3.0em;
+    font-weight: bold;
+}
 
+.description>p ,.description_sort>p{
+    padding:10px 0px;
+    font-size: 1.2em;
+}
+.name_blog{
+    padding:12px 0px 8px 0;
+   
+}
 .navigation-portrait .megamenu-panel-row [class*=col-] {
     float: none;
     display: block;

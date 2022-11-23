@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 function HeaderNavLink() {
   return (
     <>
-        <div className="collapse navbar-collapse" id="navbarsExample04">
-            <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
+        <div className=" " >
+            <ul className=" collapse navbar-nav navbar-collapse " id="navbarsExample04">
+            <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
                 </Link>
@@ -38,9 +38,7 @@ function HeaderNavLink() {
             </li>
             <li class="nav-item">
                 <div class="btn-group">
-                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>
-                           TÀI KHOẢN
-                   </button>
+                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
                    <div class="dropdown-menu">
                         <Link class="dropdown-item" to="login">Đăng nhập</Link>
                         <Link class="dropdown-item" to="signin">Đăng ký</Link>
