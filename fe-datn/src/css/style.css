@@ -360,10 +360,14 @@ button {
 
 .book_room2 {
     background-color: white;
-    padding: 30px 35px;
+    padding: 15px;
     border-left: none solid 5px;
-    width: 250%;
-    margin-bottom: -350px;
+    /* width: 250%; */
+    width: 200%;
+    left: 25%;
+    position: absolute;
+    top: 124%;
+    /* margin-bottom: -350px; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -803,9 +807,44 @@ button {
 .gap-2>.button>a{
     color:white;
 }
+.product-slider{
+    background-color: rgba(220, 215, 212, 0.71);
+    
+}
+.item>.img-fluid{
+    padding:20px;
+
+}
+.product-count-help{
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    font-size: 19px;
+    padding: 10px 0;
+    color: #929292ad;
+}
+.header-nav{
+    align-items: center;
+}
+.product-count-help>div>i{
+    margin-right:5px;
+}
+.item-img{
+    padding: 0 10px 20px 10px;
+   /* algin-item:center; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: center;
+
+}
 .custom-checkbox{
     width: 10%;
     height: 20px;
+}
+.row{
+    align-items: center;
 }
 /** end blog section **/
 

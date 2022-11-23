@@ -103,24 +103,19 @@ function Home() {
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-6">
+                      <div className="col-md-12">
                         <span>Tìm kiếm:</span>
-                        <input
-                          className="online_book2"
-                          placeholder=""
-                          type="text"
-                          name=""
-                        />
+                        <input className="online_book2" placeholder="" type="text" name="" />
                       </div>
-                      <div className="col-md-6">
+                      {/* <div className="col-md-6">
                         <span className="loc">Lọc:</span>
                         <input
                           className="online_book3"
                           placeholder=""
                           type="text"
                           name=""
-                        />
-                      </div>
+                        /> */}
+                      {/* </div> */}
                       <div className="col-md-12">
                         <button className="book_btn">Xem kết quả</button>
                       </div>
