@@ -102,9 +102,7 @@ class PostController extends Controller
             }
         }
         $get_image = $request->file('img');
-        
             if ($get_image) {
-               
                 foreach ($request->file as $img) {
                     $get_name_image = $get_image->getClientOriginalName();
                     $path = 'upload/';

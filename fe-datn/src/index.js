@@ -14,11 +14,15 @@ import Home from './components/admin/Home';
 import AddCategory from './components/admin/category/AddCategory';
 import EditCategory from './components/admin/category/EditCategory';
 import ListCategory from './components/admin/category/ListCategory';
+// admin roomtype
+import AddRoomType from './components/admin/roomtype/AddRoomType';
+import EditRoomType from './components/admin/roomtype/EditRoomType';
+import ListRoomType from './components/admin/roomtype/ListRoomType';
 
 // admin post
-// import AddPost from './components/admin/post/AddPost';
-// import EditPost from './components/admin/post/EditPost';
-// import ListPost from './components/admin/post/ListPost';
+import AddPost from './components/admin/post/AddPost';
+import EditPost from './components/admin/post/EditPost';
+import ListPost from './components/admin/post/ListPost';
 
 // admin Blog 
 import AddBlog from './components/admin/Blog/AddBlog';
@@ -97,9 +101,9 @@ root.render(
       <Route path="/admin" element={<App />}>
         <Route index element={<Home/>} />
         {/* post */}
-        {/* <Route path="list_post" element={<ListPost />} />
+        <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
-        <Route path="edit_post/:id_post" element={<EditPost />} /> */}
+        <Route path="edit_post/:id_post" element={<EditPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
@@ -117,6 +121,12 @@ root.render(
         <Route path="add_category" element={<AddCategory />} />
         <Route path="edit_category/:id_category" element={<EditCategory />} />
         <Route path="list_category" element={<ListCategory />} />
+
+        {/* roomtype */}
+        <Route path="add_roomtype" element={<AddRoomType />} />
+        <Route path="edit_roomtype/:id_room_type" element={<EditRoomType />} />
+        <Route path="list_roomtype" element={<ListRoomType />} />
+
         {/* user list */}
         <Route path="list_user" element={<ListUser />} />
         {/* <Route path="setting" element={<Setting />} />   */}

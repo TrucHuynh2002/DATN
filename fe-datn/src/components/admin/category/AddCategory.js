@@ -57,21 +57,9 @@ function AddCategory() {
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
                       <Form.Label>Tên danh mục</Form.Label>
-                      {/* <CKEditor
-                      name="name_category"
-                    editor={ ClassicEditor }
-                   data={name_category}
-                   onChange={(e, editor ) => {
-                    const data = editor.getData();
-                    console.log( { e, editor, data } );
-                    // this.handleChange({ name_category: data });
-                    // AddCategory({name_category:data});
-                //    [e.target.name_category]=data
-                    console.log(data)
-                } }
-                /> */}
-                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}                   
+                      <Form.Control
+                       type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}   
                   </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
