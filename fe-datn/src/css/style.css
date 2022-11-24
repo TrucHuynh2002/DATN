@@ -217,7 +217,11 @@ button {
     margin: 0;
     padding: 0;
 }
-
+.header-ul{
+    margin-right: 0 !important;
+    display: flex;
+    justify-content: space-around;
+}
 
 /**-- heading section --**/
 
@@ -290,11 +294,8 @@ button {
 /* .navbar-expand-md .navbar-nav {
     padding-right: 10px;
 } */
-.navbar-collapse{
-    justify-content: space-evenly;
-}
+
 .header {
-    width: 100%;
     padding: 15px 0px 15px 0px;
     background: #fff;
     border-bottom: 1px solid #eaeaea;
