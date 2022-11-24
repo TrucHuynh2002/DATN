@@ -45,7 +45,7 @@ function NavAdmin() {
                 <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li> 
               <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>

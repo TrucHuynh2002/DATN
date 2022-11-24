@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
 import './css/style.css';
@@ -72,16 +74,15 @@ import ConfirmAccount from './components/account/account_information/ConfirmAcco
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
 
-
+// const navigate = useNavigate();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-
       {/* chuyển hướng user */}
       <Route path="/" element={<LayoutUser />}>
-        <Route index element={<HomeUser />} />
+        <Route path="" element={<HomeUser />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blogdetail" element={<BlogDetail />} />
@@ -99,7 +100,7 @@ root.render(
 
       {/* chuyển hướng admin tổng */}
       <Route path="/admin" element={<App />}>
-        <Route index element={<Home/>} />
+        <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
@@ -133,7 +134,7 @@ root.render(
 
         {/* chuyển hướng các trang trong setting */}
         <Route path="setting" element={<LayoutConfig />}>
-          <Route index element={<Setting />} /> 
+          <Route path="" element={<Setting />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
@@ -141,7 +142,7 @@ root.render(
 
       {/* chuyển hướng admin user */}
       <Route path="/adminuser" element={<Layout />}>
-        <Route index element={<ListAccount />} />
+        <Route path="" element={<ListAccount />} />
         <Route path="update_acc" element={<UpdateAccount />} />
         <Route path="confirm_acc" element={<ConfirmAccount />} />
         {/* post */}
