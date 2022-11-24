@@ -67,7 +67,7 @@ class RoomTypeController extends Controller
                 'status'=> false
             ]);
         }
-        $RoomType = RoomType::find($id)->first();
+        $RoomType = RoomType::find($id);
         $RoomType->name_room_type = $request->name_room_type;
         $RoomType->save();
         return response()

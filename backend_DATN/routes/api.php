@@ -88,10 +88,10 @@ Route::post('favorite/create', [FavoriteController::class, 'created_at']);
 
 // RoomType
 Route::get('roomType/show', [RoomTypeController::class, 'show']);
-Route::get('roomType/id/{id}', [roomTypeController::class, 'show_id']);
-Route::post('roomType/create', [roomTypeController::class, 'created_at']);
-Route::put('roomType/update/{id}', [roomTypeController::class, 'update']);
-Route::delete('roomType/delete/{id}', [roomTypeController::class, 'delete']);
+Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
+Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
+Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
+Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
 import './css/style.css';
@@ -14,6 +16,10 @@ import Home from './components/admin/Home';
 import AddCategory from './components/admin/category/AddCategory';
 import EditCategory from './components/admin/category/EditCategory';
 import ListCategory from './components/admin/category/ListCategory';
+// admin roomtype
+import AddRoomType from './components/admin/roomtype/AddRoomType';
+import EditRoomType from './components/admin/roomtype/EditRoomType';
+import ListRoomType from './components/admin/roomtype/ListRoomType';
 
 // admin post
 import AddPost from './components/admin/post/AddPost';
@@ -54,6 +60,8 @@ import LayoutUser from './components/user/LayoutUser';
 import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
+// postuser
+import AddPostUser from './components/user/postuser/AddPost';
 
 // admin post
 import Add from './components/account/post/Add';
@@ -66,16 +74,15 @@ import ConfirmAccount from './components/account/account_information/ConfirmAcco
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
 
-
+// const navigate = useNavigate();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-
       {/* chuyển hướng user */}
       <Route path="/" element={<LayoutUser />}>
-        <Route index element={<HomeUser />} />
+        <Route path="" element={<HomeUser />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blogdetail" element={<BlogDetail />} />
@@ -83,6 +90,7 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail" element={<RoomDetail />} />
+        <Route path="addpost" element={<AddPostUser />} />
 
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
@@ -92,11 +100,11 @@ root.render(
 
       {/* chuyển hướng admin tổng */}
       <Route path="/admin" element={<App />}>
-        <Route index element={<Home/>} />
+        <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
-        <Route path="edit_post" element={<EditPost />} />
+        <Route path="edit_post/:id_post" element={<EditPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
@@ -114,13 +122,19 @@ root.render(
         <Route path="add_category" element={<AddCategory />} />
         <Route path="edit_category/:id_category" element={<EditCategory />} />
         <Route path="list_category" element={<ListCategory />} />
+
+        {/* roomtype */}
+        <Route path="add_roomtype" element={<AddRoomType />} />
+        <Route path="edit_roomtype/:id_room_type" element={<EditRoomType />} />
+        <Route path="list_roomtype" element={<ListRoomType />} />
+
         {/* user list */}
         <Route path="list_user" element={<ListUser />} />
         {/* <Route path="setting" element={<Setting />} />   */}
 
         {/* chuyển hướng các trang trong setting */}
         <Route path="setting" element={<LayoutConfig />}>
-          <Route index element={<Setting />} /> 
+          <Route path="" element={<Setting />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
@@ -128,7 +142,7 @@ root.render(
 
       {/* chuyển hướng admin user */}
       <Route path="/adminuser" element={<Layout />}>
-        <Route index element={<ListAccount />} />
+        <Route path="" element={<ListAccount />} />
         <Route path="update_acc" element={<UpdateAccount />} />
         <Route path="confirm_acc" element={<ConfirmAccount />} />
         {/* post */}
