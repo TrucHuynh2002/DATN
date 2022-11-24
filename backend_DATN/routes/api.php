@@ -105,6 +105,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
@@ -131,14 +132,8 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.update');
-
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.update');
 
 });
 
