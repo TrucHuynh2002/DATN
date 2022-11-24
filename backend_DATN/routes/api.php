@@ -88,10 +88,10 @@ Route::post('favorite/create', [FavoriteController::class, 'created_at']);
 
 // RoomType
 Route::get('roomType/show', [RoomTypeController::class, 'show']);
-Route::get('roomType/id/{id}', [roomTypeController::class, 'show_id']);
-Route::post('roomType/create', [roomTypeController::class, 'created_at']);
-Route::put('roomType/update/{id}', [roomTypeController::class, 'update']);
-Route::delete('roomType/delete/{id}', [roomTypeController::class, 'delete']);
+Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
+Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
+Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
+Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
@@ -105,6 +105,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
@@ -131,14 +132,8 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.update');
-
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.update');
 
 });
 

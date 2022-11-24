@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 function HeaderNavLink() {
   return (
     <>
-        <div className=" " >
-            <ul className=" collapse navbar-nav navbar-collapse " id="navbarsExample04">
+        {/* <div className="collapse navbar-collapse" > */}
+            <ul className="navbar-nav mr-auto header-ul" id="navbarsExample04">
             <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
@@ -31,9 +31,15 @@ function HeaderNavLink() {
                 Blog
                 </Link>
             </li>
+           
             <li className="nav-item">
                 <Link className="nav-link" to="contact">
                 Liên hệ
+                </Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link" to="addpost">
+                Đăng bài
                 </Link>
             </li>
             <li class="nav-item">
@@ -47,7 +53,7 @@ function HeaderNavLink() {
               </li>
 
             </ul>
-        </div>
+        {/* </div> */}
     </>
   )
 }

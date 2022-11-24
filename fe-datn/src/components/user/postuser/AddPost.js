@@ -21,8 +21,8 @@ function AddPost() {
         id_furniture: "",
         meta_title: "",
         meta_description: "",
-        verification: "",
-        status: "",
+        verification: 1,
+        status: 1,
         id_user: 2,
         id_roomType: "",
     });
@@ -136,22 +136,14 @@ function AddPost() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="created_at">
                         <Form.Label>Ngày đăng</Form.Label>
-                        <Form.Control type="date" name="created_at" className=""
-                        value={created_at}
-                        onChange = {(e) => handleChange(e)}/>
+                        <Form.Control type="date" name="created_at" className="" value={created_at} onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.created_at[0]}</span>}
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" id="formGridCheckbox">
                         <Form.Label htmlFor="id_furniture">Nội thất</Form.Label>
-                        <Form.Select id="id_furniture" 
-                        value={id_furniture}
-                        onChange = {(e) => handleChange(e)}>
-                            <option></option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_furniture[0]}</span>}
-                        </Form.Select>
+                       <div>
+                       <Form.Check  type="checkbox" label="nội thất" name="" />
+                       </div>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_title">
                         <Form.Label>Tiêu đề</Form.Label>
