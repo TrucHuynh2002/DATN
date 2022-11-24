@@ -16,9 +16,9 @@ import EditCategory from './components/admin/category/EditCategory';
 import ListCategory from './components/admin/category/ListCategory';
 
 // admin post
-import AddPost from './components/admin/post/AddPost';
-import EditPost from './components/admin/post/EditPost';
-import ListPost from './components/admin/post/ListPost';
+// import AddPost from './components/admin/post/AddPost';
+// import EditPost from './components/admin/post/EditPost';
+// import ListPost from './components/admin/post/ListPost';
 
 // admin Blog 
 import AddBlog from './components/admin/Blog/AddBlog';
@@ -54,6 +54,8 @@ import LayoutUser from './components/user/LayoutUser';
 import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
+// postuser
+import AddPostUser from './components/user/postuser/AddPost';
 
 // admin post
 import Add from './components/account/post/Add';
@@ -83,6 +85,7 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail" element={<RoomDetail />} />
+        <Route path="addpost" element={<AddPostUser />} />
 
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
@@ -94,9 +97,9 @@ root.render(
       <Route path="/admin" element={<App />}>
         <Route index element={<Home/>} />
         {/* post */}
-        <Route path="list_post" element={<ListPost />} />
+        {/* <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
-        <Route path="edit_post" element={<EditPost />} />
+        <Route path="edit_post/:id_post" element={<EditPost />} /> */}
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />

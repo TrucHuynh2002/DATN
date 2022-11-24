@@ -150,7 +150,7 @@ class PostController extends Controller
                     'status' => false
                 ]);
         }
-        $Post = Post::find($id)->first();
+        $Post = Post::find($id);
         // cập nhật theo id_post
         $Post->post_name = $request->post_name;
         $Post->quantity = $request->quantity;

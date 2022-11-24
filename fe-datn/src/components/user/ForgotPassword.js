@@ -1,8 +1,17 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap';
-// import '../../css/taikhoan.css';
+import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 
 function ForgotPassword() {
+
+    // const [forgotEmail, setForgotEmail] = useState("");
+
+    // xu ly loi
+    // const [alert, setAlert] = useState({
+    //     err_list: {},
+    // });
+
+
+
   return (
     <>
         <div className="back_re">
@@ -27,7 +36,6 @@ function ForgotPassword() {
                                 </div>
                                 <div className="d-grid gap-2">
                                     <Button type='submit'>Gửi</Button>
-                                    {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} */}
                                 </div>
                                
                             </div>

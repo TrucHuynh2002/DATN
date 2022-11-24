@@ -36,6 +36,11 @@ function HeaderNavLink() {
                 Liên hệ
                 </Link>
             </li>
+            <li className="nav-item">
+                <Link className="nav-link" to="addpost">
+                Đăng bài
+                </Link>
+            </li>
             <li class="nav-item">
                 <div class="btn-group">
                    <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
