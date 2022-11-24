@@ -113,6 +113,33 @@ class UserController extends Controller
                     'status'=> true
                 ]);
     }
+    public function PasswordEdit(Request $request, $id_user){
+        $t = User::find($id_user);
+        if($t){
+            if($t->password == $request->password){
+            $t->password = $request->password_new;
+                $t->save();
+                return response()
+                        ->json([
+                            'data' => $t,
+                            'status'=> true
+                        ]);
+                    }else{
+                        return response()
+                        ->json([
+                            'messess' => 'Mật khẩu hiện tại không đúng',
+                            'status'=> false
+                        ]);
+                    }
+        }else{
+            return response()
+                        ->json([
+                            'messess' => 'Không tìm thấy tài khoản của bạn',
+                            'status'=> false
+                        ]);
+        }
+        
+    }
     public function UserLogin(Request $request)
     {
         // $User_SelectOne = User::where('email','=',$request->email)->where('password','=',Hash::make($request->password))->first();
@@ -152,32 +179,32 @@ class UserController extends Controller
      
         // return redirect()->intended(RouteServiceProvider::HOME);
     }
-    public function UserForgotPassword(Request $request)
-    {
-        $Check_User = User::where('email','=',$request->email)->first();
-        if($Check_User){
-        // $request->authenticate();
+    // public function UserForgotPassword(Request $request)
+    // {
+    //     $Check_User = User::where('email','=',$request->email)->first();
+    //     if($Check_User){
+    //     // $request->authenticate();
 
-        // $request->session()->regenerate();
+    //     // $request->session()->regenerate();
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
-            return response()
-                ->json([
-                    'messages' => "Kiểm tra mail để đổi mật khẩu",
-                    'status'=> true
-                ]);
-            // Mail::to($request->email)->send(new Resetpassword($Check_User));
-        }else{
-            return response()
-                ->json([
-                    'messages' => "Mail không chính xác",
-                    'status'=> false
-                ]);
-        }
-        // $request->authenticate();
+    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    //         return response()
+    //             ->json([
+    //                 'messages' => "Kiểm tra mail để đổi mật khẩu",
+    //                 'status'=> true
+    //             ]);
+    //         // Mail::to($request->email)->send(new Resetpassword($Check_User));
+    //     }else{
+    //         return response()
+    //             ->json([
+    //                 'messages' => "Mail không chính xác",
+    //                 'status'=> false
+    //             ]);
+    //     }
+    //     // $request->authenticate();
 
-        // $request->session()->regenerate();
+    //     // $request->session()->regenerate();
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
-    }
+    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    // }
 }

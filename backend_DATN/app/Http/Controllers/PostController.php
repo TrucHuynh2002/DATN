@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\imgPost;
+use App\Models\furniture_post;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use Illuminate\Support\Facades\Validator;
@@ -83,23 +85,44 @@ class PostController extends Controller
         $Post->meta_keywords = $request->meta_keywords;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
-        $Post->verification = $request->verification;
-        $Post->status = 0;
+        $Post->verification = 0;
+        $Post->status = 1;
         $Post->delete = 0;
-        $Post->id_user = $request->id_user;; // khóa ngoại
-        $Post->id_furniture = $request->id_furniture; // khóa ngoại
+        $Post->id_user = 2; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
-        
-        foreach ($request->file as $img) {
-            $imgPost = new imgPost();
-            $imgPost->img_post_name = $request->img_post_name;
-            $imgPost->type_img = $request->type_img;
-            $imgPost->link_img_user = $request->link_img_user;
-            $imgPost->id_post = $request->id_post; // khóa ngoại
-            $imgPost->save();
-            # code...
+        $Get_Post = Post::orderby('id_post','DESC')->first();
+        // $Post->id_furniture = $request->id_furniture; // khóa ngoại
+        if($request->furniture){
+            foreach ($request->id_furniture as $furniture) {
+                $furniture_post = new furniture_post();
+                $furniture_post->id_post = $Get_Post->id_post;
+                $furniture_post->id_furniture = $Get_Post->id_furniture;
+                $furniture_post->save();
+            }
         }
+        $get_image = $request->file('img');
+        
+            if ($get_image) {
+               
+                foreach ($request->file as $img) {
+                    $get_name_image = $get_image->getClientOriginalName();
+                    $path = 'upload/';
+                    // $name_image  = current(explode('.',$get_name_image));
+                    $name_image = explode('.',$get_name_image);
+                    $new_image = $name_image[0].rand(0,99);
+                    $get_image->move($path,$new_image);
+                    // $imgPost->img = $new_image;
+                    $imgPost = new imgPost();
+                    $imgPost->img_post_name = $new_image;
+                    $imgPost->type_img = $name_image[1];
+                    $imgPost->link_img_user = $request->link_img_user;
+                    $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
+                    $imgPost->save();
+                }
+            }
+            # code...
+        
         return response()
             ->json([
                 'data' =>  $Post,
