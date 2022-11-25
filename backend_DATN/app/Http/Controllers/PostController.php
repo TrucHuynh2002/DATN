@@ -39,12 +39,12 @@ class PostController extends Controller
             'address' => 'required',
             'description' => 'required',
             'description_sort' => 'required',
-            // 'meta_keywords' => 'required',
-            // 'meta_title' => 'required',
-            // 'meta_description' => 'required',
-            // 'verification' => 'required',
-            // 'id_user' => 'required',
-            // 'id_furniture' => 'required',
+            'meta_keywords' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+            'verification' => 'required',
+            'id_user' => 'required',
+            'id_furniture' => 'required',
             'id_roomType' => 'required'
         ], [
             'post_name.required' => 'Không được bỏ trống',
@@ -56,13 +56,13 @@ class PostController extends Controller
             'address.required' => 'Không được bỏ trống',
             'description.required' => 'Không được bỏ trống',
             'description_sort.required' => 'Không được bỏ trống',
-            // 'meta_keywords.required' => 'Không được bỏ trống',
-            // 'meta_title.required' => 'Không được bỏ trống',
-            // 'meta_description.required' => 'Không được bỏ trống',
-            // 'verification.required' => 'Không được bỏ trống',
-            // 'id_user.required' => 'Không được bỏ trống',
-            // 'id_furniture.required' => 'Không được bỏ trống',
-            // 'id_roomType.required' => 'Không được bỏ trống',
+            'meta_keywords.required' => 'Không được bỏ trống',
+            'meta_title.required' => 'Không được bỏ trống',
+            'meta_description.required' => 'Không được bỏ trống',
+            'verification.required' => 'Không được bỏ trống',
+            'id_user.required' => 'Không được bỏ trống',
+            'id_furniture.required' => 'Không được bỏ trống',
+            'id_roomType.required' => 'Không được bỏ trống',
         ]);
         if ($validation->fails()) {
             return response()
@@ -93,32 +93,32 @@ class PostController extends Controller
         $Post->save();
         $Get_Post = Post::orderby('id_post','DESC')->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
-        // if($request->furniture){
-        //     foreach ($request->id_furniture as $furniture) {
-        //         $furniture_post = new furniture_post();
-        //         $furniture_post->id_post = $Get_Post->id_post;
-        //         $furniture_post->id_furniture = $Get_Post->id_furniture;
-        //         $furniture_post->save();
-        //     }
-        // }
-        // $get_image = $request->file('img');
-        //     if ($get_image) {
-        //         foreach ($request->file as $img) {
-        //             $get_name_image = $get_image->getClientOriginalName();
-        //             $path = 'upload/';
-        //             // $name_image  = current(explode('.',$get_name_image));
-        //             $name_image = explode('.',$get_name_image);
-        //             $new_image = $name_image[0].rand(0,99);
-        //             $get_image->move($path,$new_image);
-        //             // $imgPost->img = $new_image;
-        //             $imgPost = new imgPost();
-        //             $imgPost->img_post_name = $new_image;
-        //             $imgPost->type_img = $name_image[1];
-        //             $imgPost->link_img_user = $request->link_img_user;
-        //             $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-        //             $imgPost->save();
-        //         }
-        //     }
+        if($request->id_furniture){
+            foreach ($request->id_furniture as $furniture) {
+                $furniture_post = new furniture_post();
+                $furniture_post->id_post = $Get_Post->id_post;
+                $furniture_post->id_furniture = $furniture->id_furniture;
+                $furniture_post->save();
+            }
+        }
+        $get_image = $request->file('img');
+            if ($get_image) {
+                foreach ($request->file as $img) {
+                    $get_name_image = $get_image->getClientOriginalName();
+                    $path = 'upload/';
+                    // $name_image  = current(explode('.',$get_name_image));
+                    $name_image = explode('.',$get_name_image);
+                    $new_image = $name_image[0].rand(0,99);
+                    $get_image->move($path,$new_image);
+                    // $imgPost->img = $new_image;
+                    $imgPost = new imgPost();
+                    $imgPost->img_post_name = $new_image;
+                    $imgPost->type_img = $name_image[1];
+                    $imgPost->link_img_user = $request->link_img_user;
+                    $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
+                    $imgPost->save();
+                }
+            }
             # code...
         
         return response()
