@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
 import './css/style.css';
@@ -62,7 +61,6 @@ import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
 // postuser
 import AddPostUser from './components/user/postuser/AddPost';
-
 // admin post
 import Add from './components/account/post/Add';
 import Edit from './components/account/post/Edit';
@@ -91,11 +89,9 @@ root.render(
         <Route path="room" element={<Room />} />
         <Route path="roomdetail" element={<RoomDetail />} />
         <Route path="addpost" element={<AddPostUser />} />
-
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
-
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -143,8 +139,8 @@ root.render(
       {/* chuyển hướng admin user */}
       <Route path="/adminuser" element={<Layout />}>
         <Route path="" element={<ListAccount />} />
-        <Route path="update_acc" element={<UpdateAccount />} />
-        <Route path="confirm_acc" element={<ConfirmAccount />} />
+        <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
+        <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />
         {/* post */}
         <Route path="add" element={<Add />} />
         <Route path="edit" element={<Edit />} />

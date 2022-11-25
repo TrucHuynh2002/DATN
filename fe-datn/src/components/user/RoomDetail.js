@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Evaluate from './Evaluate';
 
 function RoomDetail() {
   return (
@@ -103,45 +104,7 @@ function RoomDetail() {
                             <div className="review-heading">
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
-                            <div>
-                                nơi showw đánh giá
-                            </div>
-                            <form className="review-form">
-                                <div className="reviews-counter">
-                                    {/* <h3>Đánh giá của bạn</h3> */}
-                                    <div className="rate">
-                                        <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
-                                        <label htmlFor="star5" title="text">Rất tốt </label>
-                                        <input type="radio" id="star4"name="rate"defaultValue={4}defaultChecked=""/>
-                                        <label htmlFor="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" defaultValue={3} defaultChecked=""/>
-                                        <label htmlFor="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" defaultValue={2} />
-                                        <label htmlFor="star2" title="text"> 2 stars </label>
-                                        <input type="radio" id="star1" name="rate" defaultValue={1} />
-                                        <label htmlFor="star1" title="text"> 1 star</label>           
-                                    </div>
-                                </div>
-                                <div className="container">
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="" className="form-control" placeholder="Tên người dùng"/>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <input type="text" name="" className="form-control" placeholder="Email"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group">
-                                        <h4>Viết bình luận của bạn</h4>
-                                        <textarea className="form-control" rows={10} defaultValue={""} />
-                                    </div>
-                                    <button type="submit" className="round-black-btn">Gửi bình luận</button>
-                                </div>
-                            </form>
+                            <Evaluate />
                         </div>
                     </div>
                 </div>
