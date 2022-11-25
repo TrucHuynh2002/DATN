@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
@@ -95,6 +96,35 @@ function AddPost() {
         // }
     };
 
+    // đổ list roomtype
+    const id_room_type = useParams();
+
+    const [listRoomType, setListRoomType] = useState([]);
+
+    useEffect(() => {
+        getDataRoomType();
+    },[]);
+
+    const getDataRoomType = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+        console.log(res);
+        setListRoomType(res.data.data);
+       };
+
+    // đổ list nội thất
+    const [listFurniture, setListFurniture] = useState([]);
+  
+    useEffect(() => {
+        getDataFurniture();
+    },[]);
+
+    const getDataFurniture = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/furniture/show');  
+          // console.log(res.data);
+          setListFurniture(res.data.data);
+      };
+
+
   return (
     <div className="content">
         <div className="add-post">
@@ -159,16 +189,9 @@ function AddPost() {
                         value={electricity_price}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
-                    </Form.Group>
+                    </Form.Group> 
                 </Col>
                 <Col sm={6}>
-                    <Form.Group className="mb-3" controlId="address">
-                        <Form.Label>Địa chỉ</Form.Label>
-                        <Form.Control type="text" name="address" className=""
-                        value={address}
-                        onChange = {(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="quantity">
                         <Form.Label>Số lượng</Form.Label>
                         <Form.Control type="number" name="quantity" className=""
@@ -191,12 +214,30 @@ function AddPost() {
                         </div>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="meta_title">
-                        <Form.Label>Tiêu đề</Form.Label>
-                        <Form.Control type="text" name="meta_title" className="" 
-                        value={meta_title}
+                    <Form.Group className="mb-3" controlId="img">
+                        <Form.Label>Hình ảnh</Form.Label>
+                        <Form.Control type="file" name="img[]" multiple
+                        onChange = {(e) => handleChange(e)} />
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label htmlFor="id_roomType">Loại phòng</Form.Label>
+                        <Form.Select id="id_roomType" value={id_roomType}
+                        onChange = {(e) => handleChange(e)}>
+                            {listRoomType.map((room, index) => {
+                                return (
+                                    <option>{room.name_room_type}</option>
+                                );
+                            })}                            
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="meta_keywords">
+                        <Form.Label>Từ khóa - Seo</Form.Label>
+                        <Form.Control type="text" name="meta_keyword" className='' 
+                        value={meta_keywords}
                         onChange = {(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keyword[0]}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa - Seo</Form.Label>

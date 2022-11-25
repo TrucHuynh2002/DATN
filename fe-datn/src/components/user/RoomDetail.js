@@ -104,7 +104,7 @@ function RoomDetail() {
                             <div className="review-heading">
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
-                            <Evaluate />
+                            <Evaluate />                    
                         </div>
                     </div>
                 </div>

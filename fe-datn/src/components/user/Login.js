@@ -14,14 +14,12 @@ function Login() {
     });
 
     useEffect(() => {
-        if (localStorage.getItem('user')){
-            navigate("/");
-        }
+        
     }, []);
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const item = {email,password };
+        const item = { email,password };
         // console.log(item);
         const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
         // console.log(res);
@@ -50,7 +48,7 @@ function Login() {
                     navigate("/admin/");
                 }
            }else{
-                alert("đăng nhập thất bại ");
+                alert("Đăng nhập thất bại ");
                 return;
            }
         }else{           

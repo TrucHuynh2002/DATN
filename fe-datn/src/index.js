@@ -59,6 +59,7 @@ import LayoutUser from './components/user/LayoutUser';
 import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
+import ResetPassword from './components/user/ResetPass';
 // postuser
 import AddPostUser from './components/user/postuser/AddPost';
 // admin post
@@ -92,6 +93,8 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
+        <Route path="resetpw" element={<ResetPassword />} />
+
       </Route>
 
       {/* chuyển hướng admin tổng */}

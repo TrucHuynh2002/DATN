@@ -130,33 +130,37 @@ function Evaluate() {
             </div>
           </div>
          <div className="col-4" >
-          <div className="form-group">
-                <label htmlFor="txtTitle">2. Tiêu Đề</label>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
-                  id="txtTitle"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="txtReview">
-                  3. Viết nhận xét của bạn vào bên dưới:
-                </label>
-                <textarea
-                  className="form-control"
-                  id="txtReview"
-                  rows={3}
-                  placeholder="Nhận xét của bạn về sản phẩm này"
-                  defaultValue={""}
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="txtTitle">2. Tiêu Đề</label>
+              <input
+                type="text"
+                className="form-control form-control-sm"
+                placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
+                id="txtTitle"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</label>
+              <textarea
+                className="form-control"
+                id="txtReview"
+                rows={3}
+                placeholder="Nhận xét của bạn về sản phẩm này"
+                defaultValue={""}
+              />
+            </div>
           </div>
           <button type="button" className="btn btn-warning position-absolute">
             Gửi nhận xét
           </button>
         </form>
-        </div>
+      </div>
+      <hr />
+      <div className='content_cmt'>                             
+        <img src='https://th.bing.com/th/id/R.91cb545176720cc851687a7263984600?rik=VoUCP9UwZMLyQA&riu=http%3a%2f%2ftaihinhanhdep.xyz%2fwp-content%2fuploads%2f2016%2f03%2ftranh-anh-dep-thien-nhien.jpg&ehk=Nf6eDEiydnUXwDE2PXteDfDhxmcUKmLrxSQv9VYEZqY%3d&risl=&pid=ImgRaw&r=0' alt="img_cmnt" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
+        <b className='cmt_name'>Nhóm 1</b>
+        <p className='cmt_name1'>Sản phẩm chất lượng tốt</p>                                                                  
+      </div>  
     </>
   )
 }
