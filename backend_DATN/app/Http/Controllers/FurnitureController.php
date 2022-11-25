@@ -13,7 +13,8 @@ class FurnitureController extends Controller
         $data = Furniture::all();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_id(Request $request, $id)

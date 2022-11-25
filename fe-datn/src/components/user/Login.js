@@ -24,7 +24,7 @@ function Login() {
         const item = {email,password };
         // console.log(item);
         const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
-        console.log(res);
+        // console.log(res);
         if(res.data.status === true){
             // console.log(res.data.data);
            var user = JSON.parse(localStorage.getItem('user'));
@@ -42,8 +42,8 @@ function Login() {
                     err_list: res.data
                 });
                 localStorage.setItem("user", JSON.stringify(user));
-                let item = user.find(item => item.id == res.data.data.id_user);
-                if (item.role ==0) {
+                let item = user.find(items => items.id == res.data.data.id_user);
+                if (item.role == 0) {
                     navigate("../");
                 } else {
                     navigate("../admin/");
