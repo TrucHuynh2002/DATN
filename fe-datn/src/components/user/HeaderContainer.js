@@ -5,10 +5,9 @@ function HeaderContainer() {
   return (
     <>
      <div className="row header-nav">
-     <Header_logo />
-        <Header_menu />
-          </div>
-       
+          <Header_logo />
+          <Header_menu />
+      </div>
     </>
   )
 }

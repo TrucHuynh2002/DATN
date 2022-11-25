@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
-    
+    // console.log(get_furniture.data)
     // const navigate = useNavigate();
     const [addPost, setAddPost] = useState({
         post_name: "",
@@ -27,9 +27,19 @@ function AddPost() {
         id_user: 2,
         id_roomType: "",
     });
+    const [furniture, setfuriture] = useState([]);
 
-    const { post_name, description_sort, description, meta_keyword, area, room_price, water_pirce, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
-
+    const { post_name, description_sort, description, meta_keywords, area, room_price, water_price, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
+        // Lấy nội thất
+        const get_furnitures = async () => {
+            var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+            console.log(get_data)
+            setfuriture(get_data.data.data)
+        };
+        useEffect(() => {
+            get_furnitures();
+          },[]);
+    
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
     };
@@ -134,10 +144,10 @@ function AddPost() {
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="water_pirce">
+                    <Form.Group className="mb-3" controlId="water_price">
                         <Form.Label>Giá nước</Form.Label>
-                        <Form.Control type="text" name="water_pirce" className="" 
-                        value={water_pirce}
+                        <Form.Control type="text" name="water_price" className="" 
+                        value={water_price}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
                     </Form.Group>
@@ -152,7 +162,7 @@ function AddPost() {
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="quantity">
                         <Form.Label>Số lượng</Form.Label>
-                        <Form.Control type="text" name="quantity" className=""
+                        <Form.Control type="number" name="quantity" className=""
                         value={quantity}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
@@ -202,7 +212,7 @@ function AddPost() {
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa - Seo</Form.Label>
                         <Form.Control type="text" name="meta_keyword" className='' 
-                        value={meta_keyword}
+                        value={meta_keywords}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keyword[0]}</span>}
                     </Form.Group>

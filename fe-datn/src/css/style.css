@@ -1444,3 +1444,15 @@ ul.social_icon li a:hover {
     text-transform: uppercase;
     cursor: pointer;
 }
+
+.content_cmt{
+    margin: 20px;
+}
+
+.cmt_name{
+    margin-left: 10px;
+}
+
+.cmt_name1{
+    margin-left: 40px;
+}

@@ -18,16 +18,18 @@ function AddCategory() {
     // }else{
     //     // da no ra
     // }
+    // this.setSate({
+    //     name_category:"",
+    // })
+    //  this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
     const [addCategory, setAddCategory] = useState({
+
         name_category:"",
     });
-
     const [alert, setAlert] = useState({
         err_list: {},
     });
-
     const { name_category } = addCategory;
-
     const handleChange = (e) => {
         setAddCategory({ ...addCategory, [e.target.name]: e.target.value});
     };
@@ -56,10 +58,24 @@ function AddCategory() {
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm danh mục </h1>
               <Form onSubmit={(e) => handleSumbit(e)}>
                   <Form.Group className="mb-3" controlId="name_category">
-                      <Form.Label>Tên danh mục</Form.Label>
-                      <Form.Control
-                       type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}   
+                    <Form.Label>Tên danh mục</Form.Label>
+                    {/* <CKEditor
+                        // name="name_category"
+                        editor={ ClassicEditor }
+                        content={this.state.name_category} 
+                        data={name_category}
+                        onChange={(e, editor ) => {
+                            const data = editor.getData();
+                            this.setState({
+                                name_category: data
+                              })
+                              console.log( { e, editor, data } );
+                           
+                            console.log(data)
+                        } }
+                    /> */}
+                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
+                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}                   
                   </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
