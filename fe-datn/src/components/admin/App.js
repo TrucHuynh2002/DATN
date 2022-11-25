@@ -11,7 +11,7 @@ function App() {
   const checkAdmin = async () => {
     const get_user = JSON.parse(localStorage.getItem('user'));
     const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
-    if(get_user){
+    if(!get_user){
       if(res.data.status == true){
         const user_data = res.data.data;
         console.log(user_data); 
