@@ -41,14 +41,14 @@ function NavAdmin() {
               <li><NavLink to="add_furniture" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
+          {/* <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
                 <i class='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
               <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
               <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
             </ul>
-          </li>
+          </li> */}
           
           <li><NavLink to="list_comment"><i class='bx bx-message-dots'></i> Bình luận
                 <i class='bx bx-chevron-down'></i>
