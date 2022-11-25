@@ -88,7 +88,10 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                     <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
                         <ul class="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link nav-item-link active" tabindex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO</a>
+                                <a class="nav-link nav-item-link active" tabindex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
+                            </li>
+                            <li class="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
+                                <p>|</p>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-item-link"  tabindex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
