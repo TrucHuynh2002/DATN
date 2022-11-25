@@ -14,9 +14,9 @@ function Login() {
     });
 
     useEffect(() => {
-        // if (localStorage.getItem('user-login')){
-
-        // }
+        if (localStorage.getItem('user')){
+            navigate("/");
+        }
     }, []);
 
     const handleSumbit = async (e) => {
@@ -45,9 +45,9 @@ function Login() {
                 localStorage.setItem("user", JSON.stringify(user));
                 let item = user.find(items => items.id == res.data.data.id_user);
                 if (item.role == 0) {
-                    navigate("../");
+                    navigate("/");
                 } else {
-                    navigate("../admin/");
+                    navigate("/admin/");
                 }
            }else{
                 alert("đăng nhập thất bại ");
