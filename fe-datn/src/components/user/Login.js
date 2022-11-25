@@ -42,9 +42,9 @@ function Login() {
                 localStorage.setItem("user", JSON.stringify(user));
                 let item = user.find(items => items.id == res.data.data.id_user);
                 if (item.role == 0) {
-                    navigate("../");
+                    navigate("/");
                 } else {
-                    navigate("../admin/");
+                    navigate("/admin/");
                 }
            }else{
                 alert("Đăng nhập thất bại ");
