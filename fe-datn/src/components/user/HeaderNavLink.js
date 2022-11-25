@@ -49,14 +49,28 @@ function HeaderNavLink() {
                     <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
                         <ul class="aw__t1bz0i0v" aria-label="notification" role="tablist">
                             <li class="aw__tfaflwg">
-                                <span class="aw__i1mg2bze" tabindex="-1" role="tab">HOẠT ĐỘNG</span>
+                                <span class="aw__i1mg2bze" tabindex="-1" role="tab">THÔNG BÁO</span>
                             </li>
                         </ul>
                         <div class="aw__t16jo35">
-                            <div>Vui lòng đăng nhập để xem danh sách hoạt động.
-                                <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="login">Đăng nhập</Link>
-                                <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="signin">Đăng ký</Link>
-                            </div>
+                            
+                            {!localStorage.getItem('user') ?
+                                <div class="">
+                                    <div>Vui lòng đăng nhập để xem danh sách hoạt động.</div>
+                                    <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
+                                    <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
+                                        <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="login">Đăng nhập</Link>
+                                        <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="signin">Đăng ký</Link>
+                                    </div> 
+                                </div>
+                                : 
+                                <div class="">
+                                    <div>Thông báo mới nhất gồm</div> 
+                                    <div>
+                                        <Link type="button" class="btn btn-warning " to="/adminuser" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>{user[0].fullname}</Link>
+                                    </div>
+                                </div> 
+                            }
                         </div>
                     </div>
                 </div>
