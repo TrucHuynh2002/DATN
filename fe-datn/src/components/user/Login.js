@@ -33,6 +33,7 @@ function Login() {
                 user.push({
                     id:res.data.data.id_user,
                     phone:res.data.data.phone,
+                    password:res.data.data.password,
                     fullname:res.data.data.full_name,
                     email:res.data.data.email,
                     address:res.data.data.address,

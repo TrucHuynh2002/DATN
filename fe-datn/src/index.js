@@ -139,8 +139,8 @@ root.render(
       {/* chuyển hướng admin user */}
       <Route path="/adminuser" element={<Layout />}>
         <Route path="" element={<ListAccount />} />
-        <Route path="update_acc" element={<UpdateAccount />} />
-        <Route path="confirm_acc" element={<ConfirmAccount />} />
+        <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
+        <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />
         {/* post */}
         <Route path="add" element={<Add />} />
         <Route path="edit" element={<Edit />} />

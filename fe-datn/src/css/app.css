@@ -29,8 +29,9 @@ ul#menu>li>ul#sub {
     width: 100%;
     margin: 0px;
     padding: 0px;
-    
     list-style-type: none;
+    left: -90%;
+    /* top: 125%; */
 }
 .aw__t16jo35{
     text-align: center;

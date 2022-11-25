@@ -1,8 +1,29 @@
 import React from 'react'
 import { Table, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 
 function ListAccount() {
+    var user = JSON.parse(localStorage.getItem("user"));
+    const id_user =user[0].id;
+
+  const [listAccount, setListAccount] = useState([]);
+ 
+  useEffect(() => {
+    getData();
+  },[]);
+
+  // danh sach Account
+  const getData = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
+   console.log(res);
+      setListAccount(res.data.data);
+  };
+
+
   return (
     <div className="content">
         <div className="add-post">
@@ -11,38 +32,35 @@ function ListAccount() {
             <tbody>
                 <tr>
                     <td>Tên đăng nhập</td>
-                    <td>Trúc Huỳnh</td>
+                    <td>{listAccount.full_name}</td>
                 </tr> 
                 <tr>
                     <td>Mật khẩu</td>
                     <td>
                         <Form.Group className="mb-3" controlId="">
-                            <Form.Control type="password" className="" name="" placeholder="********" disabled value="" />
+                            <Form.Control type="password" className="" name="" placeholder="********" disabled value={listAccount.password} />
                         </Form.Group>
                     </td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td>nguyentruchuynh2002@gmail.com</td>
+                    <td>{listAccount.email}</td>
                 </tr>  
                 <tr>
                     <td>Số điện thoại</td>
-                    <td>0907673005</td>
+                    <td>{listAccount.phone}</td>
                 </tr> 
                 <tr>
                     <td>Địa chỉ</td>
-                    <td>Trà Vinh</td>
+                    <td>{listAccount.address}</td>
                 </tr>  
                 <tr>
                     <td>
-                        <Link to="update_acc">
+                        <Link to={`update_acc/${listAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
-                        <Link to="confirm_acc">
+                        <Link to={`confirm_acc/${listAccount.id_user}`}>
                             <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
-                        </Link>
-                        <Link to="">
-                            <Button variant="outline-danger" name='' className="btn-edit">Đăng xuất</Button>
                         </Link>
                     </td>
                 </tr>

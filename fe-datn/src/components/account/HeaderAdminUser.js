@@ -1,18 +1,25 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom';
+import LogoAdminuser from '../../images/logo-ft.png';
 
 function HeaderAdminUser() {
+  var user = JSON.parse(localStorage.getItem("user"));
+  const handleSumbit = async (e) => {
+      localStorage.removeItem("user");
+  }
   return (
     <>
         <div className="nav-top">
         <div className="menu">
             <i className='bx bx-menu'></i>
         </div>
-        <Link href="123">
-            <img src="../img/logo_nhatro.png" alt="logo" />
-        </Link>
+        <a href="/">
+              <img src={LogoAdminuser} alt="logo" width="100%" />
+          </a>
         <div className="nav-top-logout">
-            <NavLink to="" className='logout'>Đăng xuất</NavLink>
+        <form  onSubmit={(e) => handleSumbit(e)}>
+            <Link type="submit">Đăng xuất</Link>
+        </form>
         </div>
       </div>    
     </>
