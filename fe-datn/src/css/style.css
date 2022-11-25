@@ -322,6 +322,19 @@ button {
 .btn-drow{
     
 }
+.notifyInteractive>.row{
+    padding-bottom: 10px;
+}
+.content_notifyInteractive_img>img{
+    border-radius:50%;
+}
+.notify_name{
+    font-weight: bold;
+}
+.nav-tabs>.nav-item>.nav-item-link{
+    padding: 10px 9px;
+    border: none;
+}
 .booking_ocline {
     position: absolute;
     width: 100%;

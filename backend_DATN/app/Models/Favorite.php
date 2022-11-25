@@ -12,6 +12,7 @@ class Favorite extends Model
     public $timestamps = false;
     protected $fillable = [
         'id_post',
-        'id_user'
+        'id_user',
+        'status'
     ];
 }

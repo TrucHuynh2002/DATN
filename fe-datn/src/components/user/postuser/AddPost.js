@@ -9,6 +9,7 @@ function AddPost() {
     // const navigate = useNavigate();
     const [addPost, setAddPost] = useState({
         post_name: "",
+        phone: "",
         description_sort: "",
         description: "",
         meta_keywords: "",
@@ -33,6 +34,7 @@ function AddPost() {
 
     const { 
         post_name,
+        phone,
         description_sort,
         description,
         meta_keywords,
@@ -144,9 +146,16 @@ function AddPost() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="img">
                         <Form.Label>Hình ảnh</Form.Label>
-                        <input type="file" name="img[]" multiple
-                        onChange = {(e) => handleChange(e)}></input>
+                        <Form.Control type="file" name="img[]" multiple
+                        onChange = {(e) => handleChange(e)} />
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="phone">
+                        <Form.Label>Số điện thoại liên hệ</Form.Label>
+                        <Form.Control type="text" name="phone" className=''
+                        value={phone}
+                        onChange = {(e) => handleChange(e)}/>
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Nội dung ngắn</Form.Label>
@@ -161,13 +170,6 @@ function AddPost() {
                         value={description}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="area">
-                        <Form.Label>Diện tích</Form.Label>
-                        <Form.Control type="text" name="area" className="" 
-                        value={area}
-                        onChange = {(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="room_price">
                         <Form.Label>Giá phòng</Form.Label>
@@ -192,6 +194,13 @@ function AddPost() {
                     </Form.Group> 
                 </Col>
                 <Col sm={6}>
+                    <Form.Group className="mb-3" controlId="area">
+                        <Form.Label>Diện tích</Form.Label>
+                        <Form.Control type="text" name="area" className="" 
+                        value={area}
+                        onChange = {(e) => handleChange(e)}/>
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="quantity">
                         <Form.Label>Số lượng</Form.Label>
                         <Form.Control type="number" name="quantity" className=""
@@ -214,12 +223,7 @@ function AddPost() {
                         </div>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="img">
-                        <Form.Label>Hình ảnh</Form.Label>
-                        <Form.Control type="file" name="img[]" multiple
-                        onChange = {(e) => handleChange(e)} />
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
-                    </Form.Group>
+                   
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="id_roomType">Loại phòng</Form.Label>
                         <Form.Select id="id_roomType" value={id_roomType}

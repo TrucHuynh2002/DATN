@@ -12,6 +12,7 @@ class Post extends Model
     public $timestamps = false;
     protected $fillable = [
         'post_name',
+        'phone',
         'description_sort',
         'description',
         'meta_keywords',
