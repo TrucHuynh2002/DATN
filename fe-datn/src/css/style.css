@@ -319,7 +319,9 @@ button {
 .banner .carousel-indicators .active {
     background-color: #fe0000;
 }
-
+.btn-drow{
+    
+}
 .booking_ocline {
     position: absolute;
     width: 100%;

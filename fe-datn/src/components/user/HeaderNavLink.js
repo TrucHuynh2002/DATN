@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 function HeaderNavLink() {
+    var user = JSON.parse(localStorage.getItem("user"));
+    const handleSumbit = async (e) => {
+        localStorage.removeItem("user");
+    }
   return (
     <>
         {/* <div className="collapse navbar-collapse" > */}
@@ -65,13 +69,27 @@ function HeaderNavLink() {
                 </div>
             </li>
             <li class="nav-item">
+                {!localStorage.getItem('user') ?
                 <div class="btn-group">
-                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
-                   <div class="dropdown-menu">
-                        <Link class="dropdown-item" to="login">Đăng nhập</Link>
-                        <Link class="dropdown-item" to="signin">Đăng ký</Link>
-                    </div>
+                    <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
+                    <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
+                        <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="login">Đăng nhập</Link>
+                        <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="signin">Đăng ký</Link>
+                    </div> 
                 </div>
+                : 
+               
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>{user[0].fullname}</button>
+                    <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
+                        <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="adminuser">Thông tin tài khoản</Link>
+    
+                        <form  onSubmit={(e) => handleSumbit(e)}>
+                            <button class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} type="submit">Đăng xuất</button>
+                        </form>
+                       
+                    </div>
+                </div> }
             </li>
         </ul>
         {/* </div> */}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Evaluate from './Evaluate';
 
 function RoomDetail() {
   return (
@@ -103,13 +104,9 @@ function RoomDetail() {
                             <div className="review-heading">
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
-                            <div className='content_cmt'>                             
-                                <img src='https://th.bing.com/th/id/R.91cb545176720cc851687a7263984600?rik=VoUCP9UwZMLyQA&riu=http%3a%2f%2ftaihinhanhdep.xyz%2fwp-content%2fuploads%2f2016%2f03%2ftranh-anh-dep-thien-nhien.jpg&ehk=Nf6eDEiydnUXwDE2PXteDfDhxmcUKmLrxSQv9VYEZqY%3d&risl=&pid=ImgRaw&r=0' alt="img_cmnt" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
-                                <b className='cmt_name'>Nhóm 1</b>
-                                <p className='cmt_name1'>Sản phẩm chất lượng tốt</p>                                                                  
-                            </div>                      
-                            <form className="review-form">
-                            {/* <div className="reviews-counter">
+                            <Evaluate />                    
+                            {/* <form className="review-form">
+                            <div className="reviews-counter">
                                     <h3>Đánh giá của bạn</h3>
                                     <div className="rate">
                                         <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
@@ -123,7 +120,7 @@ function RoomDetail() {
                                         <input type="radio" id="star1" name="rate" defaultValue={1} />
                                         <label htmlFor="star1" title="text"> 1 star</label>           
                                     </div>                                       
-                            </div>  */}
+                            </div> 
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-md-6">
@@ -143,7 +140,7 @@ function RoomDetail() {
                                     </div>
                                     <button type="submit" className="round-black-btn">Gửi bình luận</button>
                                 </div>
-                            </form>
+                            </form> */}
                         </div>
                     </div>
                 </div>
