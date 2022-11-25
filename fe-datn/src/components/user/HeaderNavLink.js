@@ -98,11 +98,7 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                             <div class="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
                                 {!localStorage.getItem('user') ?
                                     <div class="">
-                                        <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
-                                        <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
-                                            <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="login">Đăng nhập</Link>
-                                            <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="signin">Đăng ký</Link>
-                                        </div> 
+                                        <div>Vui lòng đăng nhập để xem thông báo.</div>
                                     </div>
                                     : 
                                     <div class="notifyInteractive">
@@ -128,11 +124,6 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                                 {!localStorage.getItem('user') ?
                                     <div class="">
                                         <div>Vui lòng đăng nhập để xem danh sách hoạt động.</div>
-                                        <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
-                                        <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
-                                            <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="login">Đăng nhập</Link>
-                                            <Link class="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="signin">Đăng ký</Link>
-                                        </div> 
                                     </div>
                                     : 
                                     <div class="">
