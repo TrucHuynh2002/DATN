@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+// import { Table, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 function HeaderNavLink() {
@@ -8,7 +9,7 @@ function HeaderNavLink() {
     const handleSumbit = async (e) => {
         localStorage.removeItem("user");
     }
-    const id_user =user[0].id;
+    // const {id_user} = useParams();
     // console.log(id_user);
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
@@ -20,6 +21,7 @@ function HeaderNavLink() {
 
   // danh sach notify
   const getDatafavorite = async () => {
+    const id_user = user[0].id;
    const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
         console.log(ress);
       setListnotifyfavorite(ress.data.data);
@@ -32,6 +34,7 @@ function HeaderNavLink() {
   };
   // danh sach notify interactive
   const getDataInteractive = async () => {
+    const id_user = user[0].id;
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
     console.log(res);
       setListnotifyInteractive(res.data.data);
