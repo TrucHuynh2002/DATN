@@ -54,11 +54,12 @@ function ConfirmAccount() {
 
             </Form.Group>
             <div className="d-grid gap-2">
+                {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
                 <Button variant="primary" size="sm" name='' type="submit">
                   Cập nhật
                 </Button>
             </div>
-            {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+            
         </Form>
     </div>
 </div>

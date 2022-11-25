@@ -10,11 +10,13 @@ function App() {
   const navigate = useNavigate();
   const checkAdmin = async () => {
     const get_user = JSON.parse(localStorage.getItem('user'));
-    const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
-    if(!get_user){
-      if(res.data.status == true){
+      console.log(get_user)
+
+    if(get_user){
+      const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
+      if(res.data.status === true){
         const user_data = res.data.data;
-        console.log(user_data); 
+        // console.log(user_data); 
         if(user_data.role == 0){
           navigate('/');
         }
@@ -26,23 +28,8 @@ function App() {
     }
    
   }
-    // console.log(get_user[0].id)
-    
-    // const id_user = get_user[0].id
-    // console.log(id_user)
-
-      // if(get_user){
-    //   if(get_user[0].role == 0 ){
-    //     navigate('/');
-    //   }
-    // }
-  
   useEffect(() => {
-
     checkAdmin();
-
-    
-   
   },[])
   return (
     <>

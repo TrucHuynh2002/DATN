@@ -19,21 +19,43 @@ function AddPost() {
         address: "",
         quantity: "",
         created_at: "",
-        id_furniture: "",
+        id_furniture: [],
         meta_title: "",
         meta_description: "",
         verification: 1,
         status: 1,
         id_user: 2,
         id_roomType: "",
+        img: ""
+
     });
     const [furniture, setfuriture] = useState([]);
 
-    const { post_name, description_sort, description, meta_keywords, area, room_price, water_price, electricity_price, address, quantity, created_at, id_furniture, meta_title, meta_description, verification, status, id_user, id_roomType } = addPost;
+    const { 
+        post_name,
+        description_sort,
+        description,
+        meta_keywords,
+        area,
+        room_price,
+        water_price,
+        electricity_price,
+        address,
+        quantity,
+        created_at,
+        id_furniture,
+        meta_title,
+        meta_description,
+        verification,
+        status,
+        id_user,
+        id_roomType,
+        img,
+        } = addPost;
         // Lấy nội thất
         const get_furnitures = async () => {
             var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
-            console.log(get_data)
+            // console.log(get_data)
             setfuriture(get_data.data.data)
         };
         useEffect(() => {
@@ -46,8 +68,16 @@ function AddPost() {
 
     // xu ly loi
     const [alert, setAlert] = useState({
-        err_list: {},
+        err_list: {
+            messages: "",
+            status: ""
+        },
     });
+
+    const handle_idFuniture = (e) => {  
+        setAddPost({ ...addPost, [e.target.name]: e.target.value});
+        console.log(id_furniture);
+    }
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -57,13 +87,13 @@ function AddPost() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
+            // console.log(alert.err_list)
         }
-        else{           
-            setAlert({
-                err_list: res.data
-            });
-        }
+        // else{           
+        //     setAlert({
+        //         err_list: res.data
+        //     });
+        // }
     };
 
     // đổ list roomtype
@@ -99,7 +129,7 @@ function AddPost() {
     <div className="content">
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm bài viết</h1>
-            <Form onSubmit={(e) => handleSumbit(e)} enctype="">
+            <Form onSubmit={(e) => handleSumbit(e)} enctype="multipart/form-data">
             <Row>
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="post_name">
@@ -107,7 +137,10 @@ function AddPost() {
                         <Form.Control type="text" name="post_name" className=''
                         value={post_name}
                         onChange = {(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
+                        {alert.err_list.status === false && 
+                        <span className="error">
+                        {alert.err_list.messages.post_name[0]}
+                        </span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_title">
                         <Form.Label>Tiêu đề</Form.Label>
