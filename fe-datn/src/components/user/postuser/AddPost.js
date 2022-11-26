@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-<<<<<<< HEAD
-import _default from 'react-bootstrap/esm/Accordion';
-=======
 import { useParams } from 'react-router-dom';
->>>>>>> 81f00b16f9c9a5620349e90dc59e78a86e474cd4
 // import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
@@ -268,17 +264,8 @@ function AddPost() {
                                         <div className="col-1" key={index}>
                                             <Form.Check  type="checkbox" name="furniture" value={data.id_furniture} onChange = {(e) => handleChange(e)} />
                                             <Form.Label>{data.name}</Form.Label>
-<<<<<<< HEAD
-                                            <Form.Check  type="checkbox"
-                                            name="id_furniture"
-                                            onChange={(e) => handle_idFuniture(e)}
-                                            value={data.id_furniture} />
-                                        
-                                    </div>
-=======
                                         </div>
                                     
->>>>>>> 81f00b16f9c9a5620349e90dc59e78a86e474cd4
                                 )
                             })}
                         </div>
@@ -318,33 +305,6 @@ function AddPost() {
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
                     </Form.Group>
-<<<<<<< HEAD
-                    <Form.Group className="mb-3" controlId="img">
-                        <Form.Label>Hình ảnh</Form.Label>
-                        <input type="file" name="img[]" multiple
-                        onChange = {(e) => handleChangeImages(e)}></input>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
-                    </Form.Group>
-                    <Form.Group>
-                       
-                            {Array.from(uploadImages).map((item,index) => {
-                                return  (
-                                    <span key={index}>
-                                    <img 
-                                    style={{padding:"10px"}}
-                                     width={120}
-                                     height={120}
-                                     alt="123"
-                                     src= {item ? URL.createObjectURL(item) : null}
-                                     />
-                                </span>
-                                )
-                            })}
-                           
-                        
-                    </Form.Group>
-=======
->>>>>>> 81f00b16f9c9a5620349e90dc59e78a86e474cd4
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="id_roomType"
                         value={id_roomType}

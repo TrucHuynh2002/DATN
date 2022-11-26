@@ -8,23 +8,25 @@ use Illuminate\Support\Facades\Validator;
 
 class ConfigController extends Controller
 {
-    public function get_Config(){
+    public function get_Config()
+    {
         $getConfig = ConfigModel::find(1);
         return response()->json(
             [
                 'status' => true,
                 'data' => $getConfig
             ]
-            );
+        );
     }
 
-    public function create_config(Request $request){
-        $validation = Validator::make($request->all(),[ 
+    public function create_config(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
             'sdt' => 'required||min:10|max:12|unique:config',
             'email' => 'required|email|unique:config',
             'title' => 'required|string|max:255',
             'address' => 'required',
-        ],[
+        ], [
             'sdt.required' => 'Không được bỏ trống',
             'sdt.min' => 'Không đủ 10 số',
             'sdt.max' => 'Không đúng',
@@ -37,12 +39,12 @@ class ConfigController extends Controller
             'title.max' => 'Độ dài không cho phép',
             'address.required' => 'Không được bỏ trống'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $config = new ConfigModel();
         $get_image = $request->file('logo');
@@ -53,9 +55,9 @@ class ConfigController extends Controller
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
             $path = 'upload/';
-            $name_image  = current(explode('.',$get_name_image));
-            $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
-            $get_image->move($path,$new_image);
+            $name_image  = current(explode('.', $get_name_image));
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
             $config->img = $new_image;
         }
         $config->save();
@@ -64,15 +66,16 @@ class ConfigController extends Controller
                 'status' => true,
                 'data' => $config
             ]
-            );
+        );
     }
-    public function update_config(Request $request){
-        $validation = Validator::make($request->all(),[ 
+    public function update_config(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
             'sdt' => 'required||min:10|max:12|unique:config',
             'email' => 'required|email|unique:config',
             'title' => 'required|string|max:255',
             'address' => 'required',
-        ],[
+        ], [
             'sdt.required' => 'Không được bỏ trống',
             'sdt.min' => 'Không đủ 10 số',
             'sdt.max' => 'Không đúng',
@@ -85,12 +88,12 @@ class ConfigController extends Controller
             'title.max' => 'Độ dài không cho phép',
             'address.required' => 'Không được bỏ trống'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $config = ConfigModel::find(1)->first();
         $get_image = $request->file('logo');
@@ -101,9 +104,9 @@ class ConfigController extends Controller
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
             $path = 'upload/';
-            $name_image  = current(explode('.',$get_name_image));
-            $new_image = $name_image.rand(0,99).'.'. $get_image->getClientOriginalExtension();
-            $get_image->move($path,$new_image);
+            $name_image  = current(explode('.', $get_name_image));
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
             $config->img = $new_image;
         }
         $config->save();
@@ -112,6 +115,6 @@ class ConfigController extends Controller
                 'status' => true,
                 'data' => $config
             ]
-            );
+        );
     }
 }

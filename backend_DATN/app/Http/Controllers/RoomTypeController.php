@@ -26,20 +26,20 @@ class RoomTypeController extends Controller
     }
     public function created_at(Request $request)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'name_room_type' => 'required|string|max:255'
 
-        ],[
+        ], [
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.max' => 'Độ dài không cho phép'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $RoomType = new RoomType();
         $RoomType->name_room_type = $request->name_room_type;
@@ -52,20 +52,20 @@ class RoomTypeController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'name_room_type' => 'required|string|max:255'
 
-        ],[
+        ], [
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.max' => 'Độ dài không cho phép'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $RoomType = RoomType::find($id);
         $RoomType->name_room_type = $request->name_room_type;

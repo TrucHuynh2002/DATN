@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class ReplyContactUser extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user ;
+    private $user;
     /**
      * Create a new message instance.
      *
@@ -28,6 +28,6 @@ class ReplyContactUser extends Mailable
      */
     public function build()
     {
-        return $this->subject('Phản hồi hỗ trợ từ Nhà Tui')->view('email.SendmailReplyContact')->with(['user'=>$this->user]);
+        return $this->subject('Phản hồi hỗ trợ từ Nhà Tui')->view('email.SendmailReplyContact')->with(['user' => $this->user]);
     }
 }

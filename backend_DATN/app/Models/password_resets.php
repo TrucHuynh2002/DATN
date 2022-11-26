@@ -12,5 +12,5 @@ class password_resets extends Model
         'email',
         'token'
     ];
-    CONST UPDATED_AT = NULL;
+    const UPDATED_AT = NULL;
 }

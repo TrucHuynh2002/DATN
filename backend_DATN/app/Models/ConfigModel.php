@@ -13,11 +13,10 @@ class ConfigModel extends Model
     public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
-    'logo',
-    'sdt',
-    'email',
-    'address',
-    'title'
+        'logo',
+        'sdt',
+        'email',
+        'address',
+        'title'
     ];
-
 }

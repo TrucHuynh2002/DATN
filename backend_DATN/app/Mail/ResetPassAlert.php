@@ -10,14 +10,14 @@ use Illuminate\Queue\SerializesModels;
 class ResetPassAlert extends Mailable
 {
     use Queueable, SerializesModels;
-    private $user ;
-    private $token ;
+    private $user;
+    private $token;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user,$token)
+    public function __construct($user, $token)
     {
         $this->user = $user;
         $this->token = $token;
@@ -30,6 +30,6 @@ class ResetPassAlert extends Mailable
      */
     public function build()
     {
-        return $this->subject('Quên mật khẩu')->view('email.Sendmailforgotpassword')->with([ 'user'=>$this->user,'token'=>$this->token]);
+        return $this->subject('Quên mật khẩu')->view('email.Sendmailforgotpassword')->with(['user' => $this->user, 'token' => $this->token]);
     }
 }

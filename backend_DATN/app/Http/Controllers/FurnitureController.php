@@ -28,19 +28,19 @@ class FurnitureController extends Controller
     }
     public function created_at(Request $request)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'name' => 'required',
             'icon' => 'required'
-        ],[
+        ], [
             'name.required' => 'Không được bỏ trống',
             'icon.required' => 'Không được bỏ trống'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $furniture = new Furniture();
         $furniture->name = $request->name;
@@ -54,19 +54,19 @@ class FurnitureController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'name' => 'required',
             'icon' => 'required'
-        ],[
+        ], [
             'name.required' => 'Không được bỏ trống',
             'icon.required' => 'Không được bỏ trống'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $furniture = Furniture::find($id);
         $furniture->name = $request->name;

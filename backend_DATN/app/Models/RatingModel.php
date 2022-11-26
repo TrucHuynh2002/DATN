@@ -13,8 +13,8 @@ class RatingModel extends Model
     public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
-    'rate',
-    'id_post',
-    'id_comment'
+        'rate',
+        'id_post',
+        'id_comment'
     ];
 }

@@ -104,29 +104,6 @@ class PostController extends Controller
             }
         }
         $get_image = $request->file('img');
-<<<<<<< HEAD
-            if ($get_image) {
-                foreach ($request->file as $img) {
-                    $get_name_image = $get_image->getClientOriginalName();
-                    $path = 'upload/';
-                    // $name_image  = current(explode('.',$get_name_image));
-                    $name_image = explode('.',$get_name_image);
-                    $new_image = $name_image[0].rand(0,99);
-                    $get_image->move($path,$new_image);
-                    // $imgPost->img = $new_image;
-                    $imgPost = new imgPost();
-                    $imgPost->img_post_name = $new_image;
-                    $imgPost->type_img = $name_image[1];
-                    $imgPost->link_img_user = $request->link_img_user;
-                    $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-                    $imgPost->save();
-                }
-                return response()
-                ->json([
-                    'data' =>  $get_image,
-                    'status' => false
-                ]);
-=======
         if ($get_image) {
             foreach ($request->file as $img) {
                 $get_name_image = $get_image->getClientOriginalName();
@@ -142,7 +119,6 @@ class PostController extends Controller
                 $imgPost->link_img_user = $request->link_img_user;
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
->>>>>>> 81f00b16f9c9a5620349e90dc59e78a86e474cd4
             }
         }
         # code...

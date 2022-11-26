@@ -51,7 +51,6 @@ function ConfirmAccount() {
                 <Form.Label>Nhập mật khẩu mới</Form.Label>
                 <Form.Control type="password" name="password_new" value={password_new} onChange={(e) => handleChange(e)} className=''/>
                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password_new[0]}</span>}
-
             </Form.Group>
             <div className="d-grid gap-2">
                 {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
@@ -59,7 +58,6 @@ function ConfirmAccount() {
                   Cập nhật
                 </Button>
             </div>
-            
         </Form>
     </div>
 </div>

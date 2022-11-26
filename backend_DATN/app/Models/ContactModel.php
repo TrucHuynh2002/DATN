@@ -12,13 +12,13 @@ class ContactModel extends Model
     public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
-    'full_name',
-    'subject',
-    'email',
-    'phone',
-    'content',
-    'status',
-    'updated_at',
-    'created_at'
+        'full_name',
+        'subject',
+        'email',
+        'phone',
+        'content',
+        'status',
+        'updated_at',
+        'created_at'
     ];
 }

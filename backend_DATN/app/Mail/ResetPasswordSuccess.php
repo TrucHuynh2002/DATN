@@ -32,6 +32,4 @@ class ResetPasswordSuccess extends Mailable
     {
         return $this->subject('Đổi mật khẩu thành công')->view('email.SendmailPasswordSuccess')->with(['user' => $this->user]);
     }
-
-    
 }

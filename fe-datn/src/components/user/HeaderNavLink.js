@@ -80,18 +80,6 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 </Link>
             </li>
             <li className="nav-item">
-<<<<<<< HEAD
-                <Link className="nav-link" to="addpost">
-                Đăng bài
-                </Link>
-            </li>
-            <li className="nav-item">
-                <div className="btn-group">
-                   <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
-                   <div className="dropdown-menu">
-                        <Link className="dropdown-item" to="login">Đăng nhập</Link>
-                        <Link className="dropdown-item" to="signin">Đăng ký</Link>
-=======
                 <div class="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} >
@@ -159,7 +147,6 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                             </div>
                         </div>
                        
->>>>>>> c8fd3e97d548d999413181fff3a9d973ab1493fc
                     </div>
                 </div>
             </li>

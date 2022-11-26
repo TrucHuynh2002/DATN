@@ -28,19 +28,19 @@ class CategoryController extends Controller
     }
     public function created_at(Request $request)
     {
-        $validation = Validator::make($request->all(),[ 
+        $validation = Validator::make($request->all(), [
             'name_category' => 'required|string|unique:category'
-        ],[
+        ], [
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.unique' => 'Đã tồn tại',
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $category = new Category();
         $category->name_category = $request->name_category;
@@ -53,19 +53,19 @@ class CategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(),[        
+        $validation = Validator::make($request->all(), [
             'name_category' => 'required|string|unique:category'
-        ],[
+        ], [
             'name_category.required' => 'Không được bỏ trống',
             'name_category.string' => 'Không đúng định dạng',
             'name_category.unique' => 'Đã tồn tại',
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $category = Category::find($id);
         $category->name_category = $request->name_category;
