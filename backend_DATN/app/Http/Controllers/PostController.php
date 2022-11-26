@@ -44,7 +44,7 @@ class PostController extends Controller
             'meta_description' => 'required',
             'verification' => 'required',
             'id_user' => 'required',
-            'id_furniture' => 'required',
+            // 'id_furniture' => 'required',
             'id_roomType' => 'required'
         ], [
             'post_name.required' => 'Không được bỏ trống',
@@ -61,7 +61,7 @@ class PostController extends Controller
             'meta_description.required' => 'Không được bỏ trống',
             'verification.required' => 'Không được bỏ trống',
             'id_user.required' => 'Không được bỏ trống',
-            'id_furniture.required' => 'Không được bỏ trống',
+            // 'id_furniture.required' => 'Không được bỏ trống',
             'id_roomType.required' => 'Không được bỏ trống',
         ]);
         if ($validation->fails()) {
@@ -89,7 +89,7 @@ class PostController extends Controller
         $Post->status = $request->status;
         $Post->delete = 0;
         $Post->id_user = 2; // khóa ngoại
-        $Post->id_room_type = 1; // khóa ngoại
+        $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
         $Get_Post = Post::orderby('id_post','DESC')->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
@@ -97,7 +97,7 @@ class PostController extends Controller
             foreach ($request->id_furniture as $furniture) {
                 $furniture_post = new furniture_post();
                 $furniture_post->id_post = $Get_Post->id_post;
-                $furniture_post->id_furniture = $furniture->id_furniture;
+                $furniture_post->id_furniture = $furniture;
                 $furniture_post->save();
             }
         }
@@ -118,13 +118,19 @@ class PostController extends Controller
                     $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                     $imgPost->save();
                 }
+                return response()
+                ->json([
+                    'data' =>  $get_image,
+                    'status' => false
+                ]);
             }
             # code...
         
         return response()
             ->json([
                 'data' =>  $Post,
-                'status' => true
+                'status' => true,
+                'img' => $request->file('img')
             ]);
     }
     public function update(Request $request, $id)

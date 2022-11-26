@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import _default from 'react-bootstrap/esm/Accordion';
 // import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
@@ -25,11 +26,20 @@ function AddPost() {
         status: 1,
         id_user: 2,
         id_roomType: "",
-        img: ""
+        img: []
 
     });
     const [furniture, setfuriture] = useState([]);
-
+    const [checkFur, setFur] = useState([]);
+       // xu ly loi
+       const [alert, setAlert] = useState({
+        err_list: {
+            messages: "",
+            status: ""
+        },
+    });
+    const [uploadImages, setUploadImages] = useState([]);
+    console.log(uploadImages);
     const { 
         post_name,
         description_sort,
@@ -52,31 +62,69 @@ function AddPost() {
         img,
         } = addPost;
         // Lấy nội thất
-        const get_furnitures = async () => {
+
+    const get_furnitures = async () => {
             var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
             // console.log(get_data)
             setfuriture(get_data.data.data)
         };
-        useEffect(() => {
+    useEffect(() => {
             get_furnitures();
           },[]);
-    
+    // useEffect(() => {
+    //     handle_idFuniture();
+    // },[])
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
+        // console.log(img);
     };
 
-    // xu ly loi
-    const [alert, setAlert] = useState({
-        err_list: {
-            messages: "",
-            status: ""
-        },
-    });
+ 
 
-    const handle_idFuniture = (e) => {  
-        setAddPost({ ...addPost, [e.target.name]: e.target.value});
-        console.log(id_furniture);
+    const handle_idFuniture =  (e) => { 
+
+        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
+        // console.log(e.target.name);
+        if(e.target.checked){
+          
+            setFur(pre => {
+               return  [...pre, e.target.value]
+            });
+
+            console.log(checkFur);
+            
+            setAddPost(pre => {
+                return {...addPost,...pre, id_furniture: checkFur}
+            })
+            // console.log(addPost);
+        }
+        else{
+            setFur(pre => {
+                return [...pre.filter(check => check !== e.target.value) ]
+            })
+            // setAddPost(pre => {
+            //     return {...pre, id_furniture: checkFur}
+            // })
+            
+            console.log(checkFur)
+        }
+        console.log(addPost);
     }
+
+    const handleChangeImages = (e) => {
+        setUploadImages([]);
+        let formData = new FormData();
+        if(e.target.files){
+        const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
+        setUploadImages(e.target.files)       
+        Array.from(e.target[0].file).map(file => {
+            // console.log(file)
+            setAddPost({...addPost, img:file})
+        })
+    }
+    }
+
+  
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -88,18 +136,19 @@ function AddPost() {
             });
             // console.log(alert.err_list)
         }
-        // else{           
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        // }
+        else{
+            console.log(res.data)           
+            setAlert({
+                err_list: res
+            });
+        }
     };
 
   return (
     <div className="content">
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm bài viết</h1>
-            <Form onSubmit={(e) => handleSumbit(e)} enctype="multipart/form-data">
+            <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
             <Row>
                 <Col sm={6}>
                     <Form.Group className="mb-3" controlId="post_name">
@@ -142,14 +191,14 @@ function AddPost() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="room_price">
                         <Form.Label>Giá phòng</Form.Label>
-                        <Form.Control type="text" name="room_price" className="" 
+                        <Form.Control type="number" name="room_price" className="" 
                         value={room_price}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="water_price">
                         <Form.Label>Giá nước</Form.Label>
-                        <Form.Control type="text" name="water_price" className="" 
+                        <Form.Control type="number" name="water_price" className="" 
                         value={water_price}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
@@ -187,7 +236,7 @@ function AddPost() {
                                             <Form.Label>{data.name}</Form.Label>
                                             <Form.Check  type="checkbox"
                                             name="id_furniture"
-                                            onClick={(e) => handle_idFuniture(e)}
+                                            onChange={(e) => handle_idFuniture(e)}
                                             value={data.id_furniture} />
                                         
                                     </div>
@@ -212,8 +261,26 @@ function AddPost() {
                     <Form.Group className="mb-3" controlId="img">
                         <Form.Label>Hình ảnh</Form.Label>
                         <input type="file" name="img[]" multiple
-                        onChange = {(e) => handleChange(e)}></input>
+                        onChange = {(e) => handleChangeImages(e)}></input>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
+                    </Form.Group>
+                    <Form.Group>
+                       
+                            {Array.from(uploadImages).map((item,index) => {
+                                return  (
+                                    <span key={index}>
+                                    <img 
+                                    style={{padding:"10px"}}
+                                     width={120}
+                                     height={120}
+                                     alt="123"
+                                     src= {item ? URL.createObjectURL(item) : null}
+                                     />
+                                </span>
+                                )
+                            })}
+                           
+                        
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="id_roomType"
