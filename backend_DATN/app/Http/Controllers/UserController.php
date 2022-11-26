@@ -187,17 +187,17 @@ class UserController extends Controller
     // {
     //     $Check_User = User::where('email','=',$request->email)->first();
     //     if($Check_User){
-    //     // $request->authenticate();
+    //     $request->authenticate();
 
-    //     // $request->session()->regenerate();
+    //     $request->session()->regenerate();
 
-    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    //     return redirect()->intended(RouteServiceProvider::HOME);
     //         return response()
     //             ->json([
     //                 'messages' => "Kiểm tra mail để đổi mật khẩu",
     //                 'status'=> true
     //             ]);
-    //         // Mail::to($request->email)->send(new Resetpassword($Check_User));
+    //         Mail::to($request->email)->send(new Resetpassword($Check_User));
     //     }else{
     //         return response()
     //             ->json([
@@ -205,10 +205,10 @@ class UserController extends Controller
     //                 'status'=> false
     //             ]);
     //     }
-    //     // $request->authenticate();
+    //     $request->authenticate();
 
-    //     // $request->session()->regenerate();
+    //     $request->session()->regenerate();
 
-    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    //     return redirect()->intended(RouteServiceProvider::HOME);
     // }
 }

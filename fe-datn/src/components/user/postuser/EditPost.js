@@ -3,8 +3,8 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 
 function EditPost() {
   return (
-    <div class="content">
-        <div class="add-post">
+    <div className="content">
+        <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật bài viết</h1>
             <Row>
                 <Col sm={6}>

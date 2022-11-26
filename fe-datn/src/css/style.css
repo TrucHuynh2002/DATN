@@ -295,6 +295,7 @@ button {
     padding-right: 10px;
 } */
 
+
 .header {
     padding: 15px 0px 15px 0px;
     background: #fff;
@@ -321,6 +322,19 @@ button {
 }
 .btn-drow{
     
+}
+.notifyInteractive>.row{
+    padding-bottom: 10px;
+}
+.content_notifyInteractive_img>img{
+    border-radius:50%;
+}
+.notify_name{
+    font-weight: bold;
+}
+.nav-tabs>.nav-item>.nav-item-link{
+    padding: 10px 9px;
+    border: none;
 }
 .booking_ocline {
     position: absolute;
@@ -1445,4 +1459,16 @@ ul.social_icon li a:hover {
 .review-form .round-black-btn {
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.content_cmt{
+    margin: 20px;
+}
+
+.cmt_name{
+    margin-left: 10px;
+}
+
+.cmt_name1{
+    margin-left: 40px;
 }

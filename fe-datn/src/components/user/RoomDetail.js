@@ -69,11 +69,11 @@ function RoomDetail() {
                         </div>
                         <div className="product-count-help" >
                             <div>
-                            <i class='bx bx-support'></i>
+                            <i className='bx bx-support'></i>
                                 <label>Cần sự trợ giúp</label>
                             </div>
                             <div>
-                            <i class='bx bx-error'></i>
+                            <i className='bx bx-error'></i>
                                 <label>Báo cáo tin này</label>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ function RoomDetail() {
                             <div className="review-heading">
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
-                            <Evaluate />
+                            <Evaluate />                    
                         </div>
                     </div>
                 </div>

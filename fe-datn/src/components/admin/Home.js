@@ -61,14 +61,6 @@ function Home() {
 
          
 
-          {/* <!-- BIỂU ĐỒ -->
-          <div class="row">
-            <!-- biểu đồ cột -->
-            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
-            <!-- biểu đồ tròn -->
-            <canvas id="myChart1" style="width:100%;max-width:300px"></canvas>
-          </div>   */}
 
     </>
   )

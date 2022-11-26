@@ -8,7 +8,6 @@ function EditRoomtype() {
 
   // const navigate = useNavigate();
   const {id_room_type} = useParams();
-  // console.log(id_room_type);
   const [editRoomType, setEditRoomType] = useState({
     name_room_type: "",
 });
@@ -27,7 +26,7 @@ function EditRoomtype() {
   const handleSumbit = async (e) => {
       e.preventDefault();
       const res = await axios.put(`http://127.0.0.1:8000/api/roomType/update/${id_room_type}`, editRoomType);
-      console.log(res);
+    //   console.log(res);
       if(res.data.status === true){
           setAlert({
               err_list: res.data
@@ -38,7 +37,6 @@ function EditRoomtype() {
           setAlert({
               err_list: res.data
           });
-          // console.log(alert.err_list.messages.name[0])
       }
       // navigate("../list_furniture");
   };

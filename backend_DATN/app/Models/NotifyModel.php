@@ -15,6 +15,8 @@ class NotifyModel extends Model
     protected $fillable = [
         'id_post',
         'id_user',
+        'interaction',
+        'id_user_tow',
         'status'
     ];
 }

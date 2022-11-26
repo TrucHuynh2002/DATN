@@ -118,6 +118,12 @@ Route::post('contact/create', [ContactController::class, 'ContactAdd']);
 Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
 // Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 
+// noify
+Route::get('notify/show/{id}', [NotifyController::class, 'getNotify_Favorite']);
+Route::get('notify_interactive/show/{id}', [NotifyController::class, 'getNotyfi_interactive']);
+
+
+
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
@@ -133,8 +139,6 @@ Route::middleware('guest')->group(function () {
         ->name('password.email');
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
-
-
 });
 
 Route::middleware('auth')->group(function () {
