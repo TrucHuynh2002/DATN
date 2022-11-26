@@ -8,10 +8,10 @@ function NavAdminUser() {
         
       <ul id="menu-account">
         <li><NavLink to="">
-          <i class='bx bx-home'></i> Thông tin tài khoản</NavLink>
+          <i className='bx bx-home'></i> Thông tin tài khoản</NavLink>
         </li>
-        <li><NavLink to="list"><i class='bx bx-book-content'></i> Bài viết
-            <i class='bx bx-chevron-down'></i>
+        <li><NavLink to="list"><i className='bx bx-book-content'></i> Bài viết
+            <i className='bx bx-chevron-down'></i>
             </NavLink>
           <ul id="sub">             
             <li><NavLink to="list" className='sub-menu'>Danh sách</NavLink></li>
@@ -19,9 +19,9 @@ function NavAdminUser() {
           </ul>
         </li>
         <li><NavLink to="postcard">
-          <i class='bx bx-notepad'></i> Bài đăng</NavLink>
+          <i className='bx bx-notepad'></i> Bài đăng</NavLink>
         </li>
-        <li><NavLink to=""><i class='bx bx-log-out-circle'></i> Quay lại</NavLink></li>
+        <li><NavLink to=""><i className='bx bx-log-out-circle'></i> Quay lại</NavLink></li>
       </ul>
     </>
   )

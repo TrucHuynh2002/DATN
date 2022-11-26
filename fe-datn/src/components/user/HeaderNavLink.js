@@ -42,12 +42,12 @@ function HeaderNavLink() {
                 Đăng bài
                 </Link>
             </li>
-            <li class="nav-item">
-                <div class="btn-group">
-                   <button type="button" class="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
-                   <div class="dropdown-menu">
-                        <Link class="dropdown-item" to="login">Đăng nhập</Link>
-                        <Link class="dropdown-item" to="signin">Đăng ký</Link>
+            <li className="nav-item">
+                <div className="btn-group">
+                   <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
+                   <div className="dropdown-menu">
+                        <Link className="dropdown-item" to="login">Đăng nhập</Link>
+                        <Link className="dropdown-item" to="signin">Đăng ký</Link>
                     </div>
                 </div>
               </li>

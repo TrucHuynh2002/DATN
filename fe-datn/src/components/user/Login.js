@@ -107,7 +107,7 @@ function Login() {
                         </form>
                     </div>
                     <div className="col-md-6">
-                        <img src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg" class="img-fluid"/>
+                        <img src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg" className="img-fluid"/>
                     </div>
                 </div>
             </div>

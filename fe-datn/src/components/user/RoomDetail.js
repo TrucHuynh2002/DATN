@@ -68,11 +68,11 @@ function RoomDetail() {
                         </div>
                         <div className="product-count-help" >
                             <div>
-                            <i class='bx bx-support'></i>
+                            <i className='bx bx-support'></i>
                                 <label>Cần sự trợ giúp</label>
                             </div>
                             <div>
-                            <i class='bx bx-error'></i>
+                            <i className='bx bx-error'></i>
                                 <label>Báo cáo tin này</label>
                             </div>
                         </div>
