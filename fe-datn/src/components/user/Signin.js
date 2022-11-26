@@ -14,8 +14,6 @@ function Signin() {
         phone: "",
         address: "",
         role: 0,
-     
-
     });
 
     const { full_name, password, email, phone, address, role } = addUser;

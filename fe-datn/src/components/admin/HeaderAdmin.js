@@ -10,7 +10,7 @@ function HeaderAdmin() {
           <div className="menu">
               <i className='bx bx-menu'></i>
           </div>
-          <a href="123">
+          <a href="/">
               <img src={LogoAdmin} alt="logo" width="100%" />
           </a>
           <div className="nav-top-logout">

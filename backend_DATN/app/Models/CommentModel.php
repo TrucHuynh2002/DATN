@@ -12,9 +12,10 @@ class CommentModel extends Model
     public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
-    'content',
-    'date',
-    'status',
-    'id_user'
+        'content',
+        'date',
+        'status',
+        'id_user',
+        'id_post'
     ];
 }

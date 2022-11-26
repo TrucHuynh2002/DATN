@@ -9,6 +9,7 @@ function ListCategory() {
   const id_category = useParams();
 
   const [listCategory, setListCategory] = useState([]);
+ 
   useEffect(() => {
     getData();
   },[]);

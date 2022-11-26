@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom';
 function NavAdminUser() {
   return (
     <>
-        {/* menu */}
-        
       <ul id="menu-account">
         <li><NavLink to="">
           <i className='bx bx-home'></i> Thông tin tài khoản</NavLink>

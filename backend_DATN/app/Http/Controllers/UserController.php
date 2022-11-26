@@ -15,27 +15,30 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function User_SelectAll(){
+    public function User_SelectAll()
+    {
         $Title = "Danh sách tài khoản";
         $User_SelectAll = User::all();
         return response()
-                ->json([
-                    'data' => $User_SelectAll,
-                    'status'=> true
-                ]);
+            ->json([
+                'data' => $User_SelectAll,
+                'status' => true
+            ]);
     }
 
-    public function User_SelectOne(Request $request,$id_user){
+    public function User_SelectOne(Request $request, $id_user)
+    {
         $Title = "Chi tiết tài khoản";
         $User_SelectOne = User::find($id_user);
         return response()
-                ->json([
-                    'data' => $User_SelectOne,
-                    'status'=> true
-                ]);
+            ->json([
+                'data' => $User_SelectOne,
+                'status' => true
+            ]);
     }
-    public function UserAdd(Request $request){
-        $validation = Validator::make($request->all(),[ 
+    public function UserAdd(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:Users',
             'password' => 'required|max:255',
@@ -45,7 +48,7 @@ class UserController extends Controller
             // 'id_img_user' => 'required',
             // 'email_verified_at' => 'required',
             // 'remember_token' => 'required',
-        ],[
+        ], [
             'full_name.required' => 'Không được bỏ trống',
             'full_name.string' => 'Không đúng định dạng',
             'full_name.max' => 'Độ dài không cho phép',
@@ -62,12 +65,12 @@ class UserController extends Controller
             'address.required' => 'Không được bỏ trống',
             'address.max' => 'Độ dài không cho phép'
         ]);
-        if($validation->fails()){
+        if ($validation->fails()) {
             return response()
-            ->json([
-                'messages' =>  $validation->messages(),
-                'status'=> false
-            ]);
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
         }
         $t = new User();
         $t->full_name = $request->full_name;
@@ -81,64 +84,66 @@ class UserController extends Controller
         $t->remember_token = $request->remember_token;
         $t->save();
         return response()
-                ->json([
-                    'data' => $t,
-                    'status'=> true
-                ]);
+            ->json([
+                'data' => $t,
+                'status' => true
+            ]);
     }
-    public function UserEdit(Request $request, $id_user){
+    public function UserEdit(Request $request, $id_user)
+    {
         $t = User::find($id_user);
         $t->full_name = $request->full_name;
         $t->email = $request->email;
-        $t->password = $request->password;
+        // $t->password = $request->password;
         $t->phone = $request->phone;
         $t->address = $request->address;
-        $t->role = $request->role;
-        $t->id_img_user = $request->id_img_user;
-        $t->email_verified_at = $request->email_verified_at;
-        $t->remember_token = $request->remember_token;
+        // $t->role = $request->role;
+        // $t->id_img_user = $request->id_img_user;
+        // $t->email_verified_at = $request->email_verified_at;
+        // $t->remember_token = $request->remember_token;
         $t->save();
         return response()
-                ->json([
-                    'data' => $t,
-                    'status'=> true
-                ]);
+            ->json([
+                'data' => $t,
+                'status' => true
+            ]);
     }
-    public function UserDelete(Request $request,$id_user){
-        $t= User::find($id_user);
+    public function UserDelete(Request $request, $id_user)
+    {
+        $t = User::find($id_user);
         $t->delete();
         return response()
-                ->json([
-                    'data' => $t,
-                    'status'=> true
-                ]);
+            ->json([
+                'data' => $t,
+                'status' => true
+            ]);
     }
-    public function PasswordEdit(Request $request, $id_user){
+    public function PasswordEdit(Request $request, $id_user)
+    {
         $t = User::find($id_user);
-        if($t){
-            if($t->password == $request->password){
-            $t->password = $request->password_new;
+        if ($t) {
+            if ($t->password == $request->password) {
+                $t->password = $request->password_new;
                 $t->save();
                 return response()
-                        ->json([
-                            'data' => $t,
-                            'status'=> true
-                        ]);
-                    }else{
-                        return response()
-                        ->json([
-                            'messess' => 'Mật khẩu hiện tại không đúng',
-                            'status'=> false
-                        ]);
-                    }
-        }else{
+                    ->json([
+                        'data' => $t,
+                        'status' => true
+                    ]);
+            } else {
+                return response()
+                    ->json([
+                        'messess' => 'Mật khẩu hiện tại không đúng',
+                        'status' => false
+                    ]);
+            }
+        } else {
             return response()
-                        ->json([
-                            'messess' => 'Không tìm thấy tài khoản của bạn',
-                            'status'=> false
-                        ]);
+                ->json([
+                    'messess' => 'Không tìm thấy tài khoản của bạn',
+                    'status' => false
+                ]);
         }
-        
     }
     public function UserLogin(Request $request)
     {
@@ -147,28 +152,27 @@ class UserController extends Controller
         $credentials = request(['email', 'password']);
         // $check_role = User::where('role','=','')->first();
         // $tokenResult = $User_SelectOne->createToken('authToken')->plainTextToken;
-        if(!Auth::attempt($credentials)){
+        if (!Auth::attempt($credentials)) {
             return response()
                 ->json([
                     'messages' => "Tài khoản hoặc mật khẩu không chính xác",
-                    'status'=> false
+                    'status' => false
                 ]);
         }
-        $user_admin = User::where('email', $request->email)->where('role','=','1')->first();
-        if($user_admin){
+        $user_admin = User::where('email', $request->email)->where('role', '=', '1')->first();
+        if ($user_admin) {
             $tokenResult = $user_admin->createToken('authToken')->plainTextToken;
             return response()->json([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
                 'data' => $user_admin,
                 'status' => true,
-            
+
             ]);
             event(new Registered($user_admin));
 
             Auth::login($user_admin);
-            
-        }else{
+        } else {
             $user_cus = User::where('email', $request->email)->first();
             return response()->json([
                 'access_token' => "khách hàng",
@@ -176,24 +180,24 @@ class UserController extends Controller
                 'status' => true,
             ]);
         }
-     
+
         // return redirect()->intended(RouteServiceProvider::HOME);
     }
     // public function UserForgotPassword(Request $request)
     // {
     //     $Check_User = User::where('email','=',$request->email)->first();
     //     if($Check_User){
-    //     // $request->authenticate();
+    //     $request->authenticate();
 
-    //     // $request->session()->regenerate();
+    //     $request->session()->regenerate();
 
-    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    //     return redirect()->intended(RouteServiceProvider::HOME);
     //         return response()
     //             ->json([
     //                 'messages' => "Kiểm tra mail để đổi mật khẩu",
     //                 'status'=> true
     //             ]);
-    //         // Mail::to($request->email)->send(new Resetpassword($Check_User));
+    //         Mail::to($request->email)->send(new Resetpassword($Check_User));
     //     }else{
     //         return response()
     //             ->json([
@@ -201,10 +205,10 @@ class UserController extends Controller
     //                 'status'=> false
     //             ]);
     //     }
-    //     // $request->authenticate();
+    //     $request->authenticate();
 
-    //     // $request->session()->regenerate();
+    //     $request->session()->regenerate();
 
-    //     // return redirect()->intended(RouteServiceProvider::HOME);
+    //     return redirect()->intended(RouteServiceProvider::HOME);
     // }
 }

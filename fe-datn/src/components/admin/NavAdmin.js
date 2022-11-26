@@ -6,8 +6,13 @@ function NavAdmin() {
     <>
         <ul id="menu">
 
+<<<<<<< HEAD
           <li><NavLink to="">
             <i className='bx bx-home'></i> Trang chủ</NavLink>
+=======
+          <li><NavLink to="/">
+            <i class='bx bx-home'></i> Trang chủ</NavLink>
+>>>>>>> c8fd3e97d548d999413181fff3a9d973ab1493fc
           </li>
           <li><NavLink to="list_category"><i className='bx bx-category-alt'></i> Danh mục 
               <i className='bx bx-chevron-down'></i>
@@ -41,14 +46,19 @@ function NavAdmin() {
               <li><NavLink to="add_furniture" className='sub-menu'>Thêm</NavLink></li>
             </ul>
           </li>
+<<<<<<< HEAD
           <li><NavLink to="list_post"><i className='bx bx-notepad'></i> Bài đăng
                 <i className='bx bx-chevron-down'></i>
+=======
+          {/* <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
+                <i class='bx bx-chevron-down'></i>
+>>>>>>> c8fd3e97d548d999413181fff3a9d973ab1493fc
               </NavLink>
             <ul id="sub">             
               <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li> 
               <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
             </ul>
-          </li>
+          </li> */}
           
           <li><NavLink to="list_comment"><i className='bx bx-message-dots'></i> Bình luận
                 <i className='bx bx-chevron-down'></i>

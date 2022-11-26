@@ -9,7 +9,7 @@ function Footer() {
     <>
       <footer>
         <div className="footer">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-3">
                 <img src={LogoFooter} alt="" width="80%" />

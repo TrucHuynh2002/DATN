@@ -23,7 +23,35 @@ ul#menu>li>ul#sub {
     word-wrap: break-word;
 
 }
+.dropdown-menu{
+    min-width: 400px;
+    border-bottom: 1px solid #C0C0C0;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    left: -90%;
+    /* top: 125%; */
+}
 
+.aw__t16jo35{
+    /* text-align: center; */
+    padding-bottom: 8px;
+}
+.aw__tfaflwg{
+    border-bottom: 3px solid #FF8800;
+    color: #222222;
+    font-weight: 700;
+}
+.aw__t1bz0i0v{
+    overflow: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #C0C0C0;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
 ul#menu>li:hover>ul#sub {
     display: block;
 }
