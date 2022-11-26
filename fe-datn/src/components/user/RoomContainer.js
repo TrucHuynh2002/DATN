@@ -5,10 +5,9 @@ import RoomTitle from './RoomTitle'
 function RoomContainer() {
   return (
     <> 
-     
- <RoomTitle />
-<RoomContent />
- </>
+      <RoomTitle />
+      <RoomContent />
+    </>
   )
 }
 

@@ -1,8 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Evaluate from './Evaluate';
-
+import { useEffect, useState } from 'react';
+import { Table, Button } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios'
 function RoomDetail() {
+    const {id_post} = useParams();
+    const [listPost, setListPost] = useState([]);
+    // console.log(id_post);
+    useEffect(() => {
+        getData();
+    },[]);
+
+    // danh sach post
+    const getData = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+    // console.log(res);
+    setListPost(res.data.data);
+    };
   return (
     <>
         <div className="pd-wrap">
@@ -33,7 +48,7 @@ function RoomDetail() {
                         <div className="product-dtl">
                             <div className="product-info">
                                 <div className="product-name">
-                                    <h2>Phòng trọ A</h2>
+                                    <h2>{listPost.post_name}</h2>
                                 </div>
                                 <div className="reviews-counter">
                                     <div className="rate">
@@ -52,9 +67,10 @@ function RoomDetail() {
                                         <span>3 đánh giá</span>
                                     </div>
                                 </div>
-                                <div className="product-price-discount">1.000.000 vnd</div>
+                                <div className="product-price-discount">{listPost.room_price} vnd</div>
+                                <div className="product-price-discount">Số Lượng : {listPost.quantity}</div>
                                 <div>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p> {listPost.description_sort}</p>
                                 </div>
                             </div>
                         </div>
@@ -90,15 +106,7 @@ function RoomDetail() {
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" >
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum. Sed ut
-                            perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                            doloremque laudantium, totam rem aperiam.
+                        {listPost.description}
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div className="review-heading">

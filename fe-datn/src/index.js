@@ -88,7 +88,7 @@ root.render(
         <Route path="contact" element={<Contact />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
-        <Route path="roomdetail" element={<RoomDetail />} />
+        <Route path="roomdetail/:id_post" element={<RoomDetail />} />
         <Route path="addpost" element={<AddPostUser />} />
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />

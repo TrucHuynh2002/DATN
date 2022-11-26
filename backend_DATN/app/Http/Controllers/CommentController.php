@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CommentModel;
+use App\Models\CommentModel as CommentModel;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -11,10 +11,10 @@ class CommentController extends Controller
     {
         $t = new CommentModel();
         $t->content = $request->content;
-        $t->date = $request->date;
-        $t->status = $request->status;
-        $t->id_user = $request->id_user;
-        $t->id_post = $request->id_post;
+        // $t->date = $request->date;
+        $t->status = 1;
+        // $t->id_user = $request->id_user;
+        // $t->id_post = $request->id_post;
         $t->save();
         return response()
             ->json([
@@ -26,7 +26,7 @@ class CommentController extends Controller
     {
         $t = CommentModel::find($id_comment);
         $t->content = $request->content;
-        $t->date = $request->date;
+        // $t->date = $request->date;
         $t->status = $request->status;
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;

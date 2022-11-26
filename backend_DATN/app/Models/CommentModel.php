@@ -13,7 +13,7 @@ class CommentModel extends Model
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'content',
-        'date',
+        // 'date',
         'status',
         'id_user',
         'id_post'

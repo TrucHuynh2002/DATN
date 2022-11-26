@@ -7,23 +7,7 @@ import axios from 'axios';
 
 function AddCategory() {
 
-    // const navigate = useNavigate();
-    
-    // if (localStorage.getItem('user')){
-    //     const user = localStorage.getItem('user');
-    //     if(user['role'] != 1 or user['role'] != 2 ){
-    //         // Da no ra
-    //     }
-        
-    // }else{
-    //     // da no ra
-    // }
-    // this.setSate({
-    //     name_category:"",
-    // })
-    //  this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
     const [addCategory, setAddCategory] = useState({
-
         name_category:"",
     });
     const [alert, setAlert] = useState({
@@ -33,7 +17,6 @@ function AddCategory() {
     const handleChange = (e) => {
         setAddCategory({ ...addCategory, [e.target.name]: e.target.value});
     };
-    
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.post("http://127.0.0.1:8000/api/category/create", addCategory);
@@ -47,7 +30,7 @@ function AddCategory() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list.messages.name_category[0])
+          
         }
         // navigate("../list_category");  
         };

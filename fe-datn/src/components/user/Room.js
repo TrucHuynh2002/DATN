@@ -6,7 +6,6 @@ function Room() {
   return (
     <>
        <RoomContainer />
-
     </>
   )
 }

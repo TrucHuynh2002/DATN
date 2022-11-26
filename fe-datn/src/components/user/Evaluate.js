@@ -1,6 +1,29 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
+import { Table, Button } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
 
+import Comment from './Comment';
+import axios from 'axios'
 function Evaluate() {
+  var user = JSON.parse(localStorage.getItem("user"));
+  const {id_post} = useParams();
+  const [listPost, setListPost] = useState([]);
+  useEffect(() => {
+      getData();
+  },[]);
+
+  // danh sach post
+  const getData = async () => {
+  const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+  // console.log(res);
+  setListPost(res.data.data);
+  };
+
+
+ 
+
+  
   return (
     <>
       <div className="component-show-rate d-flex rounded-lg">
@@ -113,47 +136,7 @@ function Evaluate() {
         </div>
       </div>
       <div className="collapse-show-rate collapse row" id="collapseExample">
-        <form className="comment position-relative p-3 rounded-lg">
-          <div className="align-items-center col-4">
-            <p className="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
-            <div className="rate">
-              <input type="radio" id="star1" name="rate" defaultValue={1} />
-              <label htmlFor="star1" title="text" />
-              <input type="radio" id="star2" name="rate" defaultValue={2} />
-              <label htmlFor="star2" title="text" />
-              <input type="radio" id="star3" name="rate" defaultValue={3} />
-              <label htmlFor="star3" title="text" />
-              <input type="radio" id="star4" name="rate" defaultValue={4} />
-              <label htmlFor="star4" title="text" />
-              <input type="radio" id="star5" name="rate" defaultValue={5} />
-              <label htmlFor="star5" title="text" />
-            </div>
-          </div>
-         <div className="col-4" >
-            <div className="form-group">
-              <label htmlFor="txtTitle">2. Tiêu Đề</label>
-              <input
-                type="text"
-                className="form-control form-control-sm"
-                placeholder="Nhập tiêu đề nhận xét (không bắt buộc)"
-                id="txtTitle"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</label>
-              <textarea
-                className="form-control"
-                id="txtReview"
-                rows={3}
-                placeholder="Nhận xét của bạn về sản phẩm này"
-                defaultValue={""}
-              />
-            </div>
-          </div>
-          <button type="button" className="btn btn-warning position-absolute">
-            Gửi nhận xét
-          </button>
-        </form>
+       <Comment />
       </div>
       <hr />
       <div className='content_cmt'>                             
