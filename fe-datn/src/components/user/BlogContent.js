@@ -3,11 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import Slide3 from '../../images/sl03.png';
+import Pagination from './Pagination';
 
 function BlogContent() {
-
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] =useState(9);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
+ 
   useEffect(() => {
     getData();
   },[]);
@@ -22,7 +29,7 @@ function BlogContent() {
     <div className="blog">
         <div className="container">
           <div className="row">
-            {listBlog.map((blog, index) => {
+            {currentPosts.map((blog, index) => {
               return (
                 <div className="col-md-4">
                   <div className="blog_box">
@@ -44,6 +51,12 @@ function BlogContent() {
             })}            
 
           </div>
+          {/* phan trang */}
+          <Pagination totalPost={listBlog.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
+
         </div>
       </div>
   )

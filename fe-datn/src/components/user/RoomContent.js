@@ -1,22 +1,30 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
 import RoomNew from '../../images/phong1.png';
+import Pagination from './Pagination';
 
 function RoomND() {
-    // const id_post = useParams();
-  const [listPost, setListPost] = useState([]);
 
+  // phân trang
+  const [listPost, setListPost] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] =useState(9);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+
+
+  // danh sach post
+  // const id_post = useParams();  
   useEffect(() => {
     getData();
   },[]);
 
-  // danh sach post
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-//    console.log(res);
    setListPost(res.data.data);
   };
   
@@ -25,7 +33,7 @@ function RoomND() {
     <div className="our_room">
         <div className="container">
             <div className="row">
-            {listPost.map((post, index) => {
+            {currentPosts.map((post, index) => {
                   return (     
                     <div className="col-md-4 col-sm-6">
                         <div id="serv_hover" className="room">
@@ -42,6 +50,12 @@ function RoomND() {
                   );
                 })}
             </div>
+            {/* phan trang */}
+            <Pagination totalPost={listPost.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
+
         </div>
     </div>
     </>

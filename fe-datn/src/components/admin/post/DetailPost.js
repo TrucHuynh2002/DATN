@@ -1,10 +1,11 @@
 import React from 'react'
-import Evaluate from './Evaluate';
+// import Evaluate from '../../user/Evaluate';
 import { useEffect, useState } from 'react';
-import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
-function RoomDetail() {
+
+function DetailPost() {
+
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     // console.log(id_post);
@@ -18,7 +19,7 @@ function RoomDetail() {
     // console.log(res);
     setListPost(res.data.data);
     };
-    
+
   return (
     <>
         <div className="pd-wrap">
@@ -51,7 +52,7 @@ function RoomDetail() {
                                 <div className="product-name">
                                     <h2>{listPost.post_name}</h2>
                                 </div>
-                                <div className="reviews-counter">
+                                {/* <div className="reviews-counter">
                                     <div className="rate">
                                         <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
                                         <label htmlFor="star5" title="text">5 stars </label>
@@ -67,7 +68,7 @@ function RoomDetail() {
                                     <div >
                                         <span>3 đánh giá</span>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="product-price-discount">{listPost.room_price} vnd</div>
                                 <div className="product-price-discount">Số Lượng : {listPost.quantity}</div>
                                 <div>
@@ -77,14 +78,14 @@ function RoomDetail() {
                         </div>
                         <div className="product-count">
                             <Link to="" className="round-black-btn">
-                                Liên hệ ngay
+                                Phê duyệt
                             </Link>
                            <br />
-                            <Link to="" className="round-black-btn">
+                            {/* <Link to="" className="round-black-btn">
                                 Thông tin người đăng
-                            </Link>
+                            </Link> */}
                         </div>
-                        <div className="product-count-help" >
+                        {/* <div className="product-count-help" >
                             <div>
                             <i className='bx bx-support'></i>
                                 <label>Cần sự trợ giúp</label>
@@ -93,7 +94,7 @@ function RoomDetail() {
                             <i className='bx bx-error'></i>
                                 <label>Báo cáo tin này</label>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="product-info-tabs">
@@ -101,20 +102,20 @@ function RoomDetail() {
                         <li className="nav-item">
                             <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true"> Mô tả </a>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"> <span>170</span> lượt Đánh giá  </a>
-                        </li>
+                        </li> */}
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" >
                         {listPost.description}
                         </div>
-                        <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        {/* <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div className="review-heading">
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
                             <Evaluate />                    
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -124,4 +125,4 @@ function RoomDetail() {
   )
 }
 
-export default RoomDetail
+export default DetailPost

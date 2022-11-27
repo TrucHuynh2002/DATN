@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
+import Pagination from './Pagination';
 
 // link img
 import Slide1 from '../../images/sl01.png';
@@ -21,6 +22,13 @@ function Home() {
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
+
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] =useState(9);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -232,7 +240,7 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            {listPost.map((post, index) => {
+            {currentPosts.map((post, index) => {
               return (     
                 <div className="col-md-4 col-sm-6">
                     <div id="serv_hover" className="room">
@@ -248,8 +256,13 @@ function Home() {
                 </div>
               );
             })}          
-          </div>
+          </div>        
         </div>
+        {/* phan trang */}
+        <Pagination totalPost={listBlog.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
       </div>
       {/* end our_room */}
       {/* gallery */}

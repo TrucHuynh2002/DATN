@@ -48,12 +48,10 @@ function ListPost() {
                         <td>{post.post_name}</td>
                         <td>{post.description_sort}</td>
                         <td>
+                          <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
                             <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary">
-                                {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
-                            {/* <Link to="#"> */}
                             <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button>
-                            {/* </Link> */}
                         </td>
                     </tr>
                     );

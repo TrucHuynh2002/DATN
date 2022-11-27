@@ -7,6 +7,7 @@ import './css/app.css';
 import './css/style.css';
 import './css/responsive.css';
 import './css/blog.css';
+import './css/pagination.css';
 
 // admin home
 import App from './components/admin/App';
@@ -24,12 +25,12 @@ import ListRoomType from './components/admin/roomtype/ListRoomType';
 import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
+import DetailPost from './components/admin/post/DetailPost';
 
 // admin Blog 
 import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
-import DetailBlog from './components/admin/Blog/DetailBlog';
 
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
@@ -108,11 +109,11 @@ root.render(
         <Route path="list_post" element={<ListPost />} />
         <Route path="add_post" element={<AddPost />} />
         <Route path="edit_post/:id_post" element={<EditPost />} />
+        <Route path="detail_post/:id_post" element={<DetailPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
         <Route path="edit_blog/:id_blog" element={<EditBlog />} />
-        <Route path="detail_blog/:id_blog" element={<DetailBlog />} />
         {/* furniture */}
         <Route path="add_furniture" element={<AddFurniture />} />
         <Route path="edit_furniture/:id_furniture" element={<EditFurniture />} />
