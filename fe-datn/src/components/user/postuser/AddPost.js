@@ -17,13 +17,13 @@ function AddPost() {
         electricity_price: "",
         address: "",
         quantity: "",
-        id_furniture: "",
+        id_furniture: [],
         meta_title: "",
         meta_description: "",
         meta_keywords: "",
-        id_user: user[0].id,
+        id_user: 1,
         id_roomType: "",
-        img: "",
+        img: [],
 
     });
     const { 
@@ -44,30 +44,6 @@ function AddPost() {
         id_roomType,
         img,
         } = addPost;
-
-    const handleChange = (e) => {
-        setAddPost({ ...addPost, [e.target.name]: e.target.value});
-        // console.log(img);
-    };
-    const handleSumbit = async (e) => {
-        e.preventDefault();
-        const a = addPost
-        console.log(a)
-        // const res =  await axios.post('http://127.0.0.1:8000/api/post/create', addPost);
-        // if(res.data.status === true){
-        //     setAlert({
-        //         err_list: res.data
-        //     });
-        //     // console.log(alert.err_list)
-        // }
-        // else{
-        //     console.log(res.data)           
-        //     setAlert({
-        //         err_list: res
-        //     });
-        // }
-    };
-    const [checkFur, setFur] = useState([]);
        // xu ly loi
        const [alert, setAlert] = useState({
         err_list: {
@@ -75,41 +51,51 @@ function AddPost() {
             status: ""
         },
     });
+    
     const [uploadImages, setUploadImages] = useState([]);
     // console.log(uploadImages);
-  
-        // Lấy nội thất
-    useEffect(() => {
-        get_furnitures();
-    },[]);
+    // Xử lý input vlaue
+    const handleChange = (e) => {
+        setAddPost({ ...addPost, [e.target.name]: e.target.value});
+        // console.log(img);
+    };
+    // Lấy nội thất
+    const [checkFur, setFur] = useState([]);
+    // console.log(checkFur);
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
         setfuriture(get_data.data.data)
     };
+    useEffect(() => {
+        get_furnitures();
+    },[]);
 
     // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
-    useEffect(() => {
-        getDataRoomType();
-    },[]);
+  
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
         };
 
+        useEffect(() => {
+            getDataRoomType();
+        },[]);
 
+    
     const handle_idFuniture =  (e) => { 
         // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
         // console.log(e.target.name);
+     
         if(e.target.checked){
             setFur(pre => {
                return  [...pre, e.target.value]
             });
             // console.log(checkFur);
-            setAddPost(pre => {
-                return {...addPost,...pre, id_furniture: checkFur}
-            })
+            // setAddPost(pre => {
+            //     return {...addPost,...pre, id_furniture: checkFur}
+            // })
             // console.log(addPost);
         }
         else{
@@ -120,22 +106,63 @@ function AddPost() {
             //     return {...pre, id_furniture: checkFur}
             // })
             
-            // console.log(checkFur)
         }
-        // console.log(addPost);
+       
     }
+
     const handleChangeImages = (e) => {
-        setUploadImages([]);
+      
         let formData = new FormData();
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
+        // console.log(fileA)
         setUploadImages(e.target.files)       
-        Array.from(e.target[0].file).map(file => {
-            // console.log(file)
-            setAddPost({...addPost, img:file})
-        })
+        // Array.from(e.target.file).map(file => {
+        //     // console.log(file)
+        //     setAddPost({...uploadImages, file})
+        // })
     }
     }
+  
+    const handleSumbit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        // formData.append('img[]', Array(uploadImages));
+        for(let i = 0; i<uploadImages.length; i++) {
+            formData.append('img[]',uploadImages[i])
+        }
+        formData.append('post_name', post_name);
+        formData.append('address', address);
+        formData.append('area',area);
+        formData.append('description', description);
+        formData.append('description_sort', description_sort);
+        formData.append('electricity_price', electricity_price);
+        formData.append('id_roomType', id_roomType);
+        formData.append('id_user', id_user);
+        formData.append('meta_keywords', meta_keywords);
+        formData.append('meta_description', meta_description);
+        formData.append('meta_title', meta_title);
+        // formData.append('phone', phone);
+        formData.append('quantity', quantity);
+        formData.append('room_price', room_price);
+        formData.append('water_price', water_price);
+        formData.append('id_furniture', Array(checkFur));
+        // console.log(uploadImages.length);
+        
+        const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+            // console.log(alert.err_list)
+        }
+        else{
+            console.log(res.data)           
+            setAlert({
+                err_list: res
+            });
+        }
+    };
   return (
     <div className="content">
         <div className="add-post">
@@ -165,10 +192,14 @@ function AddPost() {
                         </Form.Group>
                         <Form.Group className="mb-3 img">
                             <Form.Label>Hình ảnh</Form.Label>
-                            <Form.Control type="file" name="img[]" multiple
-                            onChange = {(e) => handleChange(e)} />
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
+                            <Form.Control type="file" name="img" multiple
+                            onChange = {(e) => handleChangeImages(e)} />
+                            {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>} */}
+                            <div className='row'>
+                                
+                            </div>
                         </Form.Group>
+                        
                         <Form.Group className="mb-3 phone">
                             <Form.Label>Số điện thoại liên hệ</Form.Label>
                             <Form.Control type="text" name="phone" className=''
@@ -240,7 +271,7 @@ function AddPost() {
                                 {furniture.map((data,index) => {
                                     return (
                                             <div className="col-md-3" key={index}>
-                                                <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handleChange(e)} />
+                                                <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                 <Form.Label>{data.name}</Form.Label>
                                             </div>
                                         
@@ -255,7 +286,7 @@ function AddPost() {
                             onChange = {(e) => handleChange(e)}>
                                 {listRoomType.map((room, index) => {
                                     return (
-                                        <option value={room.id_room_type} >{room.name_room_type}</option>
+                                        <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
                                     );
                                 })}                            
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
