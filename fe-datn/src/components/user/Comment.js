@@ -9,21 +9,23 @@ function Comment() {
 
      // thêm comment
   const [addComment, setAddComment] = useState({
-    content:"",
-    id_user:"",
-    id_post: ""
+    content: "",
+    id_user: user[0].id,
+    id_post: id.id_post,
   });
   const [alert, setAlert] = useState({
       err_list: {},
   });
-  const { content, id_user, id_post  } = addComment;
+  const {content,id_user,id_post} = addComment;
   const handleChange = (e) => {
       setAddComment({ ...addComment, [e.target.name]: e.target.value});
   };
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://127.0.0.1:8000/api/comment/create", addComment);
+    const a = addComment;
+    console.log(a);
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -36,7 +38,7 @@ function Comment() {
     }
   };
   return (
-    <Form className="comment position-relative p-3 rounded-lg"  onSubmit={(e) => handleSumbit(e)} >
+    <div className="comment position-relative p-3 rounded-lg" >
           <div className="align-items-center col-4">
             {/* <p className="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
             <div className="rate">
@@ -53,47 +55,35 @@ function Comment() {
             </div> */}
           </div>
          <div className="col-4" >
+          <Form onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">
-              <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
-              <Form.Control
-              name="email"
-              value={user[0].email}
-                className="form-control form-control-sm"
-                placeholder="Vui lòng đăng nhập đê bình luận"
-                disabled
-              />
-                 <Form.Control
-                hidden
-              name="id_user"
-              value={user[0].id}
-              onChange={(e) => handleChange(e)}
-              />
-                 <Form.Control
-                 
-                hidden
-              name="id_post"
-              value={id.id_post}
-              onChange={(e) => handleChange(e)}
-              />
-            </Form.Group>
-            <Form.Group className="form-group">
-              <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
-              <textarea 
-              name="content"
-                className="form-control"
-                id="txtReview"
-                rows={3}
-                placeholder="Nhận xét của bạn về sản phẩm này"
-                value={content}
-                onChange={(e) => handleChange(e)}
-              />
-            </Form.Group>
+                <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
+                <Form.Control
+                name="email"
+                value={user[0].email}
+                  className="form-control form-control-sm"
+                  placeholder="Vui lòng đăng nhập đê bình luận"
+                  disabled
+                />
+              </Form.Group>
+              <Form.Group className="form-group">
+                <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
+                <textarea 
+                name="content"
+                  className="form-control"
+                  rows={3}
+                  placeholder="Nhận xét của bạn về sản phẩm này"
+                  value={content}
+                  onChange={(e) => handleChange(e)}
+                />
+              </Form.Group>
+              <button type="submit" className="btn btn-warning position-absolute">
+                Gửi nhận xét
+              </button>
+              {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} 
+            </Form>
           </div>
-          <button type="submit" className="btn btn-warning position-absolute">
-            Gửi nhận xét
-          </button>
-          {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>}                   
-        </Form>
+        </div>
   )
 }
 

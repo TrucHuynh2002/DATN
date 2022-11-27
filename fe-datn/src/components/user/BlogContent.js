@@ -6,7 +6,7 @@ import Slide3 from '../../images/sl03.png';
 import Pagination from './Pagination';
 
 function BlogContent() {
-  const id_blog = useParams();
+  const {id_blog} = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);

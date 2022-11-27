@@ -13,8 +13,8 @@ class CommentController extends Controller
         $t->content = $request->content;
         // $t->date = $request->date;
         $t->status = 1;
-        // $t->id_user = $request->id_user;
-        // $t->id_post = $request->id_post;
+        $t->id_user = $request->id_user;
+        $t->id_post = $request->id_post;
         $t->save();
         return response()
             ->json([

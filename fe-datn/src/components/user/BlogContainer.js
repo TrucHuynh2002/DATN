@@ -4,9 +4,9 @@ import BlogContent from './BlogContent'
 function BlogContainer() {
   return (
     <>
-    <BlogTitle />
- <BlogContent />
- </>
+      <BlogTitle />
+      <BlogContent />
+    </>
 
   )
 }

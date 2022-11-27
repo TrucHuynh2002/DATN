@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-
+import ContentComent from './ContentComent';
 import Comment from './Comment';
 import axios from 'axios'
 function Evaluate() {
@@ -136,13 +136,11 @@ function Evaluate() {
         </div>
       </div>
       <div className="collapse-show-rate collapse row" id="collapseExample">
-       <Comment />
+        <Comment />
       </div>
       <hr />
       <div className='content_cmt'>                             
-        <img src='https://th.bing.com/th/id/R.91cb545176720cc851687a7263984600?rik=VoUCP9UwZMLyQA&riu=http%3a%2f%2ftaihinhanhdep.xyz%2fwp-content%2fuploads%2f2016%2f03%2ftranh-anh-dep-thien-nhien.jpg&ehk=Nf6eDEiydnUXwDE2PXteDfDhxmcUKmLrxSQv9VYEZqY%3d&risl=&pid=ImgRaw&r=0' alt="img_cmnt" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
-        <b className='cmt_name'>Nhóm 1</b>
-        <p className='cmt_name1'>Sản phẩm chất lượng tốt</p>                                                                  
+        <ContentComent />                                                 
       </div>  
     </>
   )
