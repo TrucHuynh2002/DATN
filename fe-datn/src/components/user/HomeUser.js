@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 // link img
 import Slide1 from '../../images/sl01.png';
@@ -13,6 +15,30 @@ import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
 
 function Home() {
+
+  
+  const id_post = useParams();
+  const id_blog = useParams();
+  const [listBlog, setListBlog] = useState([]);
+  const [listPost, setListPost] = useState([]);
+
+  useEffect(() => {
+    getData();
+    getDataBlog();
+  },[]);
+
+  // danh sách post
+  const getData = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+   setListPost(res.data.data);
+  };
+ 
+  // danh sach Blog
+  const getDataBlog = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
+      setListBlog(res.data.data);
+  };
+
   return (
     <>
 
@@ -206,102 +232,22 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
+            {listPost.map((post, index) => {
+              return (     
+                <div className="col-md-4 col-sm-6">
+                    <div id="serv_hover" className="room">
+                        <div className="room_img">
+                            <figure><img src={RoomNew} alt="#" /></figure>
+                        </div>
+                        <div className="bed_room">
+                            <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>
+                            <h4>Giá: {post.room_price}</h4>
+                            <p>{post.description_sort}</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="bed_room">
-                  <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
-                </div>
-                <div className="bed_room">
-                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
-                </div>
-                <div className="bed_room">
-                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
-                </div>
-                <div className="bed_room">
-                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
-                </div>
-                <div className="bed_room">
-                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4 col-sm-6">
-              <div id="serv_hover" className="room">
-                <div className="room_img">
-                  <figure>
-                    <img src={RoomNew} alt="#" />
-                  </figure>
-                </div>
-                <div className="bed_room">
-                <h3><Link to="../roomdetail">Phòng trọ cần thơ</Link></h3>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
+              );
+            })}          
           </div>
         </div>
       </div>
@@ -388,60 +334,26 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <div className="blog_box">
-                <div className="blog_img">
-                  <figure>
-                    <img src={Slide3} alt="#" />
-                  </figure>
+            {listBlog.map((blog, index) => {
+              return (
+                <div className="col-md-4">
+                  <div className="blog_box">
+                    <div className="blog_img">
+                      <figure>
+                        <img src={Slide3} alt="#" />
+                      </figure>
+                    </div>
+                    <div className="blog_room">
+                      <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
+                      <span>Trúc Huỳnh</span>
+                      <p>
+                        {blog.description_sort}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="blog_room">
-                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
-                  <span>Tên người viết</span>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="blog_box">
-                <div className="blog_img">
-                  <figure>
-                    <img src={Slide2} alt="#" />
-                  </figure>
-                </div>
-                <div className="blog_room">
-                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
-                  <span>Tên người viết </span>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="blog_box">
-                <div className="blog_img">
-                  <figure>
-                    <img src={Slide3} alt="#" />
-                  </figure>
-                </div>
-                <div className="blog_room">
-                  <h3><Link to='../blogdetail'>Tiêu đề bài viết</Link></h3>
-                  <span>Tên người viết</span>
-                  <p>
-                    If you are going to use a passage of Lorem Ipsum, you need to be
-                    sure there isn't anything embarrassing hidden in the middle of
-                    text. All the Lorem Ipsum generatorsIf you are
-                  </p>
-                </div>
-              </div>
-            </div>
+              );
+            })}            
           </div>
         </div>
       </div>

@@ -29,6 +29,7 @@ import ListPost from './components/admin/post/ListPost';
 import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
+import DetailBlog from './components/admin/Blog/DetailBlog';
 
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
@@ -60,6 +61,8 @@ import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
+import Profile from './components/user/Profile';
+
 // postuser
 import AddPostUser from './components/user/postuser/AddPost';
 // admin post
@@ -84,7 +87,7 @@ root.render(
         <Route path="" element={<HomeUser />} />
         <Route path="about" element={<About />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="blogdetail" element={<BlogDetail />} />
+        <Route path="blogdetail/:id_blog" element={<BlogDetail />} />
         <Route path="contact" element={<Contact />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
@@ -94,6 +97,7 @@ root.render(
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
         <Route path="resetpw" element={<ResetPassword />} />
+        <Route path="profile" element={<Profile />} />
 
       </Route>
 
@@ -108,6 +112,7 @@ root.render(
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
         <Route path="edit_blog/:id_blog" element={<EditBlog />} />
+        <Route path="detail_blog/:id_blog" element={<DetailBlog />} />
         {/* furniture */}
         <Route path="add_furniture" element={<AddFurniture />} />
         <Route path="edit_furniture/:id_furniture" element={<EditFurniture />} />

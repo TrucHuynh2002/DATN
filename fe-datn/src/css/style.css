@@ -938,11 +938,15 @@ button {
 
 
 /** footer **/
+footer{
+    padding-top: 100px;
+}
 
 .footer {
     background: #0f1521;
     text-align: center;
 }
+
 
 .footer h3 {
     font-weight: 600;
@@ -1471,4 +1475,33 @@ ul.social_icon li a:hover {
 
 .cmt_name1{
     margin-left: 40px;
+}
+
+.list-post{
+    /* margin-top:100px; */
+    background-color:white;
+    border-radius:10px;
+    padding:20px;
+    /* border: ; */
+}
+
+.follow{
+    width:150px;
+    height:30px;
+    border-radius:20px;
+    background-color:black;
+    color:white;
+    text-align:center;
+    margin-top:10px;
+}
+
+.icon_profile{
+    font-size: 20px !important;
+}
+
+.content_profile{
+    /* padding: 10px 20px 20px 20px; */
+    max-height: 100%;
+    background-color:whitesmoke;
+    box-shadow: 0 2px 5px gainsboro;
 }

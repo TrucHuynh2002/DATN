@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
-function BlogDetail() {
+function DetailBlog() {
 
-  const {id_blog} = useParams();
+    const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
 
     useEffect(() => {
@@ -51,4 +51,4 @@ function BlogDetail() {
   )
 }
 
-export default BlogDetail
+export default DetailBlog

@@ -63,8 +63,8 @@ function AddPost() {
         id_roomType,
         img,
         } = addPost;
-        // Lấy nội thất
 
+        // Lấy nội thất
     const get_furnitures = async () => {
             var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
             // console.log(get_data)
@@ -161,20 +161,6 @@ function AddPost() {
         setListRoomType(res.data.data);
        };
 
-    // đổ list nội thất
-    const [listFurniture, setListFurniture] = useState([]);
-  
-    useEffect(() => {
-        getDataFurniture();
-    },[]);
-
-    const getDataFurniture = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/furniture/show');  
-          // console.log(res.data);
-          setListFurniture(res.data.data);
-      };
-
-
   return (
     <div className="content">
         <div className="add-post">
@@ -190,6 +176,16 @@ function AddPost() {
                         {alert.err_list.status === false && 
                         <span className="error">
                         {alert.err_list.messages.post_name[0]}
+                        </span>}
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="meta_title">
+                        <Form.Label>Tiêu đề bài viết</Form.Label>
+                        <Form.Control type="text" name="meta_title" className=''
+                        value={meta_title}
+                        onChange = {(e) => handleChange(e)}/>
+                        {alert.err_list.status === false && 
+                        <span className="error">
+                        {alert.err_list.messages.meta_title[0]}
                         </span>}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="img">
@@ -232,7 +228,9 @@ function AddPost() {
                         value={water_price}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
-                    </Form.Group>
+                    </Form.Group>                   
+                </Col>
+                <Col sm={6}>
                     <Form.Group className="mb-3" controlId="electricity_price">
                         <Form.Label>Giá điện</Form.Label>
                         <Form.Control type="text" name="electricity_price" className=""
@@ -240,8 +238,13 @@ function AddPost() {
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
                     </Form.Group> 
-                </Col>
-                <Col sm={6}>
+                    <Form.Group className="mb-3" controlId="address">
+                        <Form.Label>Địa chỉ</Form.Label>
+                        <Form.Control type="text" name="address" className=""
+                        value={address}
+                        onChange = {(e) => handleChange(e)}/>
+                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="area">
                         <Form.Label>Diện tích</Form.Label>
                         <Form.Control type="text" name="area" className="" 
@@ -261,7 +264,7 @@ function AddPost() {
                         <div className='row' style={{marginLeft:"10px",alginItem:"center"}}>
                             {furniture.map((data,index) => {
                                 return (
-                                        <div className="col-1" key={index}>
+                                        <div className="col-md-3" key={index}>
                                             <Form.Check  type="checkbox" name="furniture" value={data.id_furniture} onChange = {(e) => handleChange(e)} />
                                             <Form.Label>{data.name}</Form.Label>
                                         </div>
@@ -286,13 +289,6 @@ function AddPost() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa - Seo</Form.Label>
-                        <Form.Control type="text" name="meta_keyword" className='' 
-                        value={meta_keywords}
-                        onChange = {(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keyword[0]}</span>}
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="meta_keywords">
-                        <Form.Label>Từ khóa - Seo</Form.Label>
                         <Form.Control type="text" name="meta_keywords" className='' 
                         value={meta_keywords}
                         onChange = {(e) => handleChange(e)}/>
@@ -304,18 +300,6 @@ function AddPost() {
                         value={meta_description}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label htmlFor="id_roomType"
-                        value={id_roomType}
-                        onChange = {(e) => handleChange(e)}
-                        >ID room type</Form.Label>
-                        <Form.Select id="id_roomType" name="id_roomType" onChange={(e) => handleChange(e)}>
-                            <option></option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
-                        </Form.Select>
                     </Form.Group>
                 </Col>
                 <div className="d-grid gap-2">
