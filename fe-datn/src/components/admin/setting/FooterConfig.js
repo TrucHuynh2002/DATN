@@ -20,6 +20,10 @@ function FooterConfig() {
           <Form.Label>Số điện thoại</Form.Label>
           <Form.Control type="text" name="sdt" className='' rows={3}/>
       </Form.Group>
+      <Form.Group className="mb-3" controlId="introduce">
+          <Form.Label>Giới thiệu</Form.Label>
+          <Form.Control type="text" name="introduce" className='' rows={3}/>
+      </Form.Group>
       <Button variant="primary" className='' name="" type="submit">Cập nhật</Button>
     </>
   )

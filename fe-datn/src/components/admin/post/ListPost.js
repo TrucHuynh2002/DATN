@@ -34,8 +34,9 @@ function ListPost() {
             <thead>
             <tr>
                 <th>#</th>
+                <th></th>
                 <th>Tên bài viết</th>
-                <th>Mô tả</th>
+                <th>Trạng thái</th>
                 <th></th>
             </tr>
             </thead>
@@ -45,8 +46,12 @@ function ListPost() {
                     return (
                     <tr key={index}>
                         <td>{index+1}</td>
+                        <td></td>
                         <td>{post.post_name}</td>
-                        <td>{post.description_sort}</td>
+                        <td>
+                          {post.status === 1 && <Button variant="outline-success" disable name='' className="">Đã duyệt</Button> }
+                          {post.status === 0 && <Button variant="outline-danger" name='' className="">Phê duyệt</Button> }
+                        </td>
                         <td>
                           <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
                             <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary">

@@ -17,6 +17,7 @@ class ConfigModel extends Model
         'sdt',
         'email',
         'address',
-        'title'
+        'title',
+        'introduce'
     ];
 }

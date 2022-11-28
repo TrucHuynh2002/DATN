@@ -39,9 +39,9 @@ use App\Http\Controllers\FavoriteController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('config', [ConfigController::class, 'get_Config'])->name('getConfig');
+Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
-Route::put('config/update', [ConfigController::class, 'update_Config'])->name('getConfig');
+Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
 
 // category
 Route::get('/', [CategoryController::class, 'index']);
@@ -64,8 +64,8 @@ Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
-Route::get('post/delete', [PostController::class, 'show_delete']);
-Route::get('post/status', [PostController::class, 'show_status']);
+// Route::get('post/delete', [PostController::class, 'show_delete']);
+// Route::get('post/status', [PostController::class, 'show_status']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
