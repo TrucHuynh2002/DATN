@@ -10,7 +10,7 @@ class RatingModel extends Model
     use HasFactory;
     protected $table = "post_rate";
     protected $primaryKey = 'id_post_rate';
-    public $timestamps = false;
+    public $timestamps = true;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'rate',

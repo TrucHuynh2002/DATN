@@ -2,7 +2,7 @@ import React from 'react'
 // import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link, useParams } from 'react-router-dom';
-// import axios from 'axios';
+
 function NavConfig() {
 
   return (   

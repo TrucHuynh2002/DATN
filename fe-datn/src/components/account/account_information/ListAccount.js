@@ -1,9 +1,7 @@
-import React from 'react'
-import { Table, Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 function ListAccount() {
@@ -20,34 +18,30 @@ function ListAccount() {
         setListAccount(res.data.data);
     };
     return (
-        <div className="content">
-            <div className="add-post">
-                <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thông tin cá nhân</h1>
-                <Table>
+        
+            <div className="list-post">
+                <h1 style={{  padding: "5px", color: "#0d3380" }}>Thông tin cá nhân</h1>
+                <hr></hr>
+                
                 <tbody>
                     <tr>
-                        <td>Tên đăng nhập</td>
-                        <td>{listAccount.full_name}</td>
+                        <td>Tên đăng nhập:&nbsp;{listAccount.full_name}</td>
                     </tr> 
                     <tr>
-                        <td>Mật khẩu</td>
-                        <td>
-                            <Form.Group className="mb-3" controlId="">
+                        <td>Mật khẩu
+                          
                                 <Form.Control type="password" className="" name="" placeholder="********" disabled value={listAccount.password} />
-                            </Form.Group>
+                           
                         </td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>{listAccount.email}</td>
+                        <td>Email:&nbsp; {listAccount.email}</td>
                     </tr>  
                     <tr>
-                        <td>Số điện thoại</td>
-                        <td>{listAccount.phone}</td>
+                        <td>Số điện thoại: &nbsp;{listAccount.phone}</td>
                     </tr> 
                     <tr>
-                        <td>Địa chỉ</td>
-                        <td>{listAccount.address}</td>
+                        <td>Địa chỉ:&nbsp;{listAccount.address}</td>
                     </tr>  
                     <tr>
                         <td>
@@ -60,9 +54,9 @@ function ListAccount() {
                         </td>
                     </tr>
                 </tbody>
-                </Table>
+                
             </div>
-        </div>
+      
   )
 }
 

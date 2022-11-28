@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CommentModel as CommentModel;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CommentController extends Controller
 {
     public function CommentAdd(Request $request)
@@ -51,7 +51,10 @@ class CommentController extends Controller
     public function Comment_SelectAll()
     {
         $Title = "Danh sách các hỗ trợ";
-        $Comment_SelectAll = CommentModel::all();
+        $Comment_SelectAll = DB::table('comment')
+            ->join('users', 'comment.id_user', '=', 'users.id_user')
+            ->orderBy('comment.id_user')
+            ->get();
         return response()
             ->json([
                 'data' => $Comment_SelectAll,

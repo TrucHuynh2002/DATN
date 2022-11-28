@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import LogoAdminuser from '../../images/logo-ft.png';
 
 function HeaderAdminUser() {
@@ -21,8 +21,10 @@ function HeaderAdminUser() {
             <Link type="submit">Đăng xuất</Link>
         </form>
         </div>
-      </div>    
+      </div>   
+       
     </>
+    
   )
 }
 
