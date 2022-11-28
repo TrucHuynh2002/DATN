@@ -29,7 +29,7 @@ function NavAdmin() {
               </NavLink>
             <ul id="sub">          
               <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
-              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>          
+              {/* <li><NavLink to="../../addpost" className='sub-menu'>Thêm</NavLink></li>*/}
             </ul>
           </li>
           <li><NavLink to="list_blog"><i className='bx bx-book-content'></i> Blog

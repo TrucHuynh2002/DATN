@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/app.css';
 import './css/style.css';
@@ -77,7 +76,6 @@ import ConfirmAccount from './components/account/account_information/ConfirmAcco
 import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
 
-// const navigate = useNavigate();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
