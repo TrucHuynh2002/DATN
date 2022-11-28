@@ -50,8 +50,6 @@ function ListBlog() {
                         <td>{blog.description_sort}</td>
                         <td>{blog.description	}</td>
                         <td>
-                            <Link to={`../detail_blog/${blog.id_blog}`} className="bx bx-detail btn-edit btn btn-primary">
-                            </Link>
                             <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
                             </Link>                           
                             <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(blog.id_blog)}></Button>

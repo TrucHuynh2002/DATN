@@ -41,7 +41,7 @@ function RoomND() {
                                 <figure><img src={RoomNew} alt="#" /></figure>
                             </div>
                             <div className="bed_room">
-                                <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>
+                                <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                                 <h4>Giá: {post.room_price}</h4>
                                 <p>{post.description_sort}</p>
                             </div>
