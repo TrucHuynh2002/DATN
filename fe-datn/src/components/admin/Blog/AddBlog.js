@@ -4,13 +4,14 @@ import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
 function AddBlog() {
-
+    var user = JSON.parse(localStorage.getItem("user"));
     // const navigate = useNavigate();
     const [addBlog, setAddBlog] = useState({
         name_blog:"",
         meta_keywords:"",
         description_sort:"",
-        description:""
+        description:"",
+        id_user:user[0].id
     });
 
     const [alert, setAlert] = useState({

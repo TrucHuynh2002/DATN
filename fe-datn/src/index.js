@@ -61,19 +61,14 @@ import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
-import Profile from './components/user/Profile';
 
 // postuser
 import AddPostUser from './components/user/postuser/AddPost';
-// admin post
-import Add from './components/account/post/Add';
-import Edit from './components/account/post/Edit';
-import List from './components/account/post/List';
-// admin user
-import ListAccount from './components/account/account_information/ListAccount';
-import UpdateAccount from './components/account/account_information/UpdateAccount';
-import ConfirmAccount from './components/account/account_information/ConfirmAccount';
-import Layout from './components/account/Layout';
+// user
+import Profile from './components/user/account/Profile';
+import UpdateAccount from './components/user/account/UpdateAccount';
+import ConfirmAccount from './components/user/account/ConfirmAccount';
+// import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -96,8 +91,12 @@ root.render(
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
         <Route path="resetpw" element={<ResetPassword />} />
-        <Route path="profile" element={<Profile />} />
-
+        <Route path="/profile" element={<Profile />}>
+          <Route path=":id_post" element={<Profile />} />
+          <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
+          <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />    
+        </Route>
+        {/* <Route path="" element={< />} /> */}
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -142,18 +141,7 @@ root.render(
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
       </Route>
-
       {/* chuyển hướng admin user */}
-      <Route path="/adminuser" element={<Layout />}>
-        <Route path="" element={<ListAccount />} />
-        <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
-        <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />
-        {/* post */}
-        <Route path="add" element={<Add />} />
-        <Route path="edit" element={<Edit />} />
-        <Route path="list" element={<List />} />
-      </Route>
-
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

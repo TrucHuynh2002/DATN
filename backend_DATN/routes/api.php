@@ -65,8 +65,15 @@ Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
+<<<<<<< HEAD
+Route::get('post/delete', [PostController::class, 'show_delete']);
+Route::get('post/status', [PostController::class, 'show_status']);
+Route::get('post/user/{id}', [PostController::class, 'show_user']);
+
+=======
 // Route::get('post/delete', [PostController::class, 'show_delete']);
 // Route::get('post/status', [PostController::class, 'show_status']);
+>>>>>>> 7d97f96ebf2271a30a4a490dff2817357369053d
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);

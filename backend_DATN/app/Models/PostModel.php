@@ -10,7 +10,7 @@ class PostModel extends Model
     use HasFactory;
     protected $table = "post";
     protected $primaryKey = 'id_post';
-    public $timestamps = true;
+    // public $timestamps = true;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'post_name',

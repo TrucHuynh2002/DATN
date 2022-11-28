@@ -1,13 +1,13 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import axios from 'axios'
 
-
-function ListAccount() {
+function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user =user[0].id;
-    const [listAccount, setListAccount] = useState([]);
+    const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
         getData();
     },[]);
@@ -15,40 +15,40 @@ function ListAccount() {
     // danh sach Account
     const getData = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
-        setListAccount(res.data.data);
+        setInfoAccount(res.data.data);
     };
     return (
         
-            <div className="list-post">
+            <div className="Info-post">
                 <h1 style={{  padding: "5px", color: "#0d3380" }}>Thông tin cá nhân</h1>
                 <hr></hr>
                 
                 <tbody>
                     <tr>
-                        <td>Tên đăng nhập:&nbsp;{listAccount.full_name}</td>
+                        <td>Tên đăng nhập:&nbsp;{InfoAccount.full_name}</td>
                     </tr> 
                     <tr>
                         <td>Mật khẩu
                           
-                                <Form.Control type="password" className="" name="" placeholder="********" disabled value={listAccount.password} />
+                                <Form.Control type="password" className="" name="" placeholder="********" disabled value={InfoAccount.password} />
                            
                         </td>
                     </tr>
                     <tr>
-                        <td>Email:&nbsp; {listAccount.email}</td>
+                        <td>Email:&nbsp; {InfoAccount.email}</td>
                     </tr>  
                     <tr>
-                        <td>Số điện thoại: &nbsp;{listAccount.phone}</td>
+                        <td>Số điện thoại: &nbsp;{InfoAccount.phone}</td>
                     </tr> 
                     <tr>
-                        <td>Địa chỉ:&nbsp;{listAccount.address}</td>
+                        <td>Địa chỉ:&nbsp;{InfoAccount.address}</td>
                     </tr>  
                     <tr>
                         <td>
-                            <Link to={`update_acc/${listAccount.id_user}`}>
+                            <Link to={`update_acc/${InfoAccount.id_user}`}>
                                 <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                             </Link>
-                            <Link to={`confirm_acc/${listAccount.id_user}`}>
+                            <Link to={`confirm_acc/${InfoAccount.id_user}`}>
                                 <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
                             </Link>
                         </td>
@@ -60,4 +60,4 @@ function ListAccount() {
   )
 }
 
-export default ListAccount
+export default InfoAccount

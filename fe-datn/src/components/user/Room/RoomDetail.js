@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Evaluate from '../Evaluate';
+import Evaluate from '../Comment/Evaluate';
 function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);

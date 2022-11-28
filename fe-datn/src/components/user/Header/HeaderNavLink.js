@@ -66,12 +66,10 @@ function HeaderNavLink() {
                     </div>
                 </div>
                 : 
-               
                 <div className="btn-group">
                     <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>{user[0].fullname}</button>
                     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
-                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="adminuser">Thông tin tài khoản</Link>
-                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to="profile">Thông tin cá nhân</Link>
+                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
                         <form  onSubmit={(e) => handleSumbit(e)}>
                             <button className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} type="submit">Đăng xuất</button>
                         </form>

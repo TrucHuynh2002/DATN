@@ -40,7 +40,6 @@ function ListPost() {
             </tr>
             </thead>
             <tbody>
-
                 {listPost.map((post, index) => {
                     return (
                     <tr key={index}>
