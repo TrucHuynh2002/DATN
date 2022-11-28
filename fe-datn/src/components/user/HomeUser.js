@@ -29,6 +29,7 @@ function Home() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+  const currentBlog = listBlog.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -261,7 +262,7 @@ Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ 
           </div>        
         </div>
         {/* phan trang */}
-        <Pagination totalPost={listBlog.length} 
+        <Pagination totalPost={listPost.length} 
             postsPerPage={postsPerPage} 
             setCurrentPage={setCurrentPage}
             currentPage={currentPage} />
@@ -349,7 +350,7 @@ Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ 
             </div>
           </div>
           <div className="row">
-            {listBlog.map((blog, index) => {
+            {currentBlog.map((blog, index) => {
               return (
                 <div className="col-md-4">
                   <div className="blog_box">
@@ -371,6 +372,11 @@ Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ 
             })}            
           </div>
         </div>
+        {/* phan trang */}
+        <Pagination totalPost={listBlog.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
       </div>
       {/* end blog */}     
     </>
