@@ -11,9 +11,8 @@ class imgPost extends Model
     protected $primaryKey = 'id_img_post';
     public $timestamps = true;
     protected $fillable = [
-        'img_post_name',
-        'type_img',
+        'id_post',
         'link_img_user',
-        'id_post'
+      
     ];
 }

@@ -20,7 +20,7 @@ class Post extends Model
         'room_price',
         'electricity_price',
         'water_price',
-        'address',
+        'address',  
         // 'id_furniture',
         'meta_title',
         'meta_description',
