@@ -44,26 +44,26 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
     getDataInteractive();
 };
   return (
-    <div class="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
-    <ul class="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link nav-item-link active" tabindex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
+    <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
+    <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
+        <li className="nav-item">
+            <a className="nav-link nav-item-link active" tabindex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
         </li>
-        <li class="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
+        <li className="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
             <p>|</p>
         </li>
-        <li class="nav-item">
-            <a class="nav-link nav-item-link"  tabindex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
+        <li className="nav-item">
+            <a className="nav-link nav-item-link"  tabindex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
         </li>
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px"}}>
-        <div class="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
+        <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
             {!localStorage.getItem('user') ?
-                <div class="">
+                <div className="">
                     <div>Vui lòng đăng nhập để xem thông báo.</div>
                 </div>
                 : 
-                <div class="notifyInteractive">
+                <div className="notifyInteractive">
                     {listnotifyInteractive.map((cate, index) => {
                             return (     
                                 <div className='row'>  
@@ -81,13 +81,13 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 </div> 
             }
         </div>
-        <div class="aw__t16jo35 tab-pane fade " id="postSave" role="tabpanel" aria-labelledby="postSave-tab">
+        <div className="aw__t16jo35 tab-pane fade " id="postSave" role="tabpanel" aria-labelledby="postSave-tab">
             {!localStorage.getItem('user') ?
-                <div class="">
+                <div className="">
                     <div>Vui lòng đăng nhập để xem danh sách hoạt động.</div>
                 </div>
                 : 
-                <div class="">
+                <div className="">
                     <div>
                     {listnotifyfavorite.map((cate, index) => {
                             return (     

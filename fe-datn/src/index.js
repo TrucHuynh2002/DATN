@@ -50,12 +50,12 @@ import FooterConfig from './components/admin/setting/FooterConfig';
 // link menu user
 import HomeUser from './components/user/HomeUser';
 import About from './components/user/About';
-import Blog from './components/user/Blog';
-import BlogDetail from './components/user/BlogDetail';
+import Blog from './components/user/blog/Blog';
+import BlogDetail from './components/user/blog/BlogDetail';
 import Contact from './components/user/Contact';
-import Gallery from './components/user/Gallery';
-import Room from './components/user/Room';
-import RoomDetail from './components/user/RoomDetail';
+import Gallery from './components/user/Gallery/Gallery';
+import Room from './components/user/Room/Room';
+import RoomDetail from './components/user/Room/RoomDetail';
 import LayoutUser from './components/user/LayoutUser';
 import Login from './components/user/Login';
 import Signin from './components/user/Signin';

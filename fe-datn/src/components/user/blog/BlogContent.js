@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import Slide3 from '../../images/sl03.png';
-import Pagination from './Pagination';
+import Slide3 from '../../../images/sl03.png';
+import Pagination from '../Pagination';
 
 function BlogContent() {
   const {id_blog} = useParams();
