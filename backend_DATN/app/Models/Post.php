@@ -9,7 +9,7 @@ class Post extends Model
 {
     protected $table = 'post';
     protected $primaryKey = 'id_post';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'post_name',
         'phone',

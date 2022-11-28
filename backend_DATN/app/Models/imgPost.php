@@ -9,7 +9,7 @@ class imgPost extends Model
 {
     protected $table = 'img_post';
     protected $primaryKey = 'id_img_post';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'img_post_name',
         'type_img',

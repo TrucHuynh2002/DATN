@@ -9,7 +9,7 @@ class Blog extends Model
 {
     protected $table = 'blog';
     protected $primaryKey = 'id_blog';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'name_blog',
         'meta_keywords',

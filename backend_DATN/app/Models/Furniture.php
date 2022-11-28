@@ -9,7 +9,7 @@ class Furniture extends Model
 {
     protected $table = 'furniture';
     protected $primaryKey = 'id_furniture';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'name',
         'icon'
