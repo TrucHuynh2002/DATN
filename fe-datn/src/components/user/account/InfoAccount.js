@@ -6,7 +6,6 @@ import axios from 'axios'
 
 function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
-    const id_user =user[0].id;
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
         getData();
@@ -14,7 +13,7 @@ function InfoAccount() {
 
     // danh sach Account
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${user[0].id}`);
         setInfoAccount(res.data.data);
     };
     return (

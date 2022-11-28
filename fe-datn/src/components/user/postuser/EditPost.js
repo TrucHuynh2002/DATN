@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 function EditPost() {
-
     // console.log(get_furniture.data)
     // const navigate = useNavigate();
     const [addPost, setAddPost] = useState({

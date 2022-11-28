@@ -41,7 +41,6 @@ function Comment() {
   return (
     <div className="comment position-relative p-3 rounded-lg" >
       <div className="align-items-center col-4">
-
          <StarRading />
       </div>
          <div className="col-4" >
