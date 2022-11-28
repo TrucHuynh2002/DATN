@@ -68,7 +68,7 @@ class ConfigController extends Controller
             ]
         );
     }
-    public function update_Config(Request $request)
+    public function update_Config(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
             'sdt' => 'required||min:10|max:12|unique:config',
@@ -95,20 +95,20 @@ class ConfigController extends Controller
                     'status' => false
                 ]);
         }
-        $config = ConfigModel::find(1);
-        $get_image = $request->file('logo');
+        $config = ConfigModel::find($id);
+        // $get_image = $request->file('logo');
         $config->sdt = $request->sdt;
         $config->email = $request->email;
         $config->title = $request->title;
         $config->address = $request->address;
-        if ($get_image) {
-            $get_name_image = $get_image->getClientOriginalName();
-            $path = 'upload/';
-            $name_image  = current(explode('.', $get_name_image));
-            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $config->img = $new_image;
-        }
+        // if ($get_image) {
+        //     $get_name_image = $get_image->getClientOriginalName();
+        //     $path = 'upload/';
+        //     $name_image  = current(explode('.', $get_name_image));
+        //     $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+        //     $get_image->move($path, $new_image);
+        //     $config->img = $new_image;
+        // }
         $config->save();
         return response()->json(
             [

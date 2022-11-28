@@ -1,10 +1,10 @@
 import React from 'react'
 // import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 function NavConfig() {
-  const {id_config} = useParams();
+  // const {id_config} = useParams();
 
   return (   
         <ul id='nav-setting'>

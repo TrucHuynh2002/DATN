@@ -39,13 +39,10 @@ use App\Http\Controllers\FavoriteController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('config/1', [ConfigController::class, 'get_Config']);
-Route::post('config/', [ConfigController::class, 'create_Config']);
-Route::put('config/update/1', [ConfigController::class, 'update_Config']);
 
-// Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
-// Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
-// Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
+Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
+Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
+Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
 
 // category
 Route::get('/', [CategoryController::class, 'index']);
