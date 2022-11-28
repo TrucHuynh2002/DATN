@@ -96,9 +96,9 @@ class PostController extends Controller
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
-            $array_fur = explode(',',$request->id_furniture);
-           
-            
+            $array_fur = explode(',', $request->id_furniture);
+
+
             foreach ($array_fur as $furniture) {
                 $furniture_post = new furniture_post();
                 $furniture_post->id_post = $Get_Post->id_post;
@@ -110,20 +110,19 @@ class PostController extends Controller
         $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
-                
-                    $get_name_image = $img->getClientOriginalName();
-                    // $name = $get_name_image;
-                    $path = 'uploads/';
-                    $name_image  = current(explode('.',$get_name_image));
-                    $name_image = explode('.', $get_name_image);
-                    $new_image = $name_image[0] . rand(0, 99);
-                    $img->move($path, $new_image);
-                    // $imgPost->img = $new_image;
-                    $imgPost = new imgPost();
-                    $imgPost->link_img_user = env('APP_URL').'/uploads/'.$new_image;
-                    $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-                    $imgPost->save();
-                
+
+                $get_name_image = $img->getClientOriginalName();
+                // $name = $get_name_image;
+                $path = 'uploads/';
+                $name_image  = current(explode('.', $get_name_image));
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $img->move($path, $new_image);
+                // $imgPost->img = $new_image;
+                $imgPost = new imgPost();
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
+                $imgPost->save();
             }
             // return response()->json([
             //     'img' => $name
@@ -228,6 +227,14 @@ class PostController extends Controller
     public function show_status()
     {
         $data = Post::all()->where('status', '=', 1);
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function show_user(Request $request, $id)
+    {
+        $data = Post::all()->where('id_user', '=', $id);;
         return response()
             ->json([
                 'data' => $data

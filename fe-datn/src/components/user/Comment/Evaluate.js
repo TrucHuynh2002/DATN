@@ -20,10 +20,6 @@ function Evaluate() {
   setListPost(res.data.data);
   };
 
-
- 
-
-  
   return (
     <>
       <div className="component-show-rate d-flex rounded-lg">

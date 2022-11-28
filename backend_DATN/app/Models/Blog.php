@@ -9,11 +9,12 @@ class Blog extends Model
 {
     protected $table = 'blog';
     protected $primaryKey = 'id_blog';
-    public $timestamps = true;
+    // public $timestamps = true;
     protected $fillable = [
         'name_blog',
         'meta_keywords',
         'description_sort',
-        'description'
+        'description',
+        'id_user',
     ];
 }

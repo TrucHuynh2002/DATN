@@ -5,10 +5,7 @@ import BlogContainer from './BlogContainer';
 function Blog() {
   return (
     <>
-   
-
-   <BlogContainer />
-
+      <BlogContainer />
     </>
   )
 }

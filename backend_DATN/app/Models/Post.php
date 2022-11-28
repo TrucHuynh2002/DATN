@@ -9,7 +9,7 @@ class Post extends Model
 {
     protected $table = 'post';
     protected $primaryKey = 'id_post';
-    public $timestamps = true;
+    // public $timestamps = true;
     protected $fillable = [
         'post_name',
         'phone',
@@ -20,7 +20,7 @@ class Post extends Model
         'room_price',
         'electricity_price',
         'water_price',
-        'address',  
+        'address',
         // 'id_furniture',
         'meta_title',
         'meta_description',

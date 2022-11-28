@@ -66,6 +66,8 @@ Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
 Route::get('post/status', [PostController::class, 'show_status']);
+Route::get('post/user/{id}', [PostController::class, 'show_user']);
+
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
