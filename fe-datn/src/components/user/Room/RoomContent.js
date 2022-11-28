@@ -2,8 +2,8 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
-import RoomNew from '../../images/phong1.png';
-import Pagination from './Pagination';
+import RoomNew from '../../../images/phong1.png';
+import Pagination from '../Pagination';
 
 function RoomND() {
 

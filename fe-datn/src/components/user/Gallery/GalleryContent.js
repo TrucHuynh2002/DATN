@@ -1,9 +1,9 @@
 import React from 'react'
-import TabCanTho from '../../images/tab-cantho.png';
-import TabHaNoi from '../../images/tab-hanoi.png';
-import TabDaNang from '../../images/tab-danang.png';
-import TabHue from '../../images/tab-hue.png';
-import TabHCM from '../../images/tab-hcm.png';
+import TabCanTho from '../../../images/tab-cantho.png';
+import TabHaNoi from '../../../images/tab-hanoi.png';
+import TabDaNang from '../../../images/tab-danang.png';
+import TabHue from '../../../images/tab-hue.png';
+import TabHCM from '../../../images/tab-hcm.png';
 function GalleryContent() {
   return (
     <div className="gallery">
