@@ -307,6 +307,7 @@ button {
 
 .banner_main {
     position: relative;
+    margin-bottom: 200px;
 }
 
 .banner .carousel-indicators li {
@@ -597,9 +598,13 @@ button {
 
 /** about section **/
 
-.about {
+.about1 {
     background-color: #fff;
-    padding-top: 200px;
+    padding-top: 100px;
+    margin: 0 100px 0 100px;
+    
+}h2{
+font-size: 45px;
 }
 
 .about .titlepage {
