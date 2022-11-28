@@ -46,7 +46,7 @@ function ListPost() {
                     return (
                     <tr key={index}>
                         <td>{index+1}</td>
-                        <td>{post.link_img_user}</td>
+                        <td></td>
                         <td>{post.post_name}</td>
                         <td>
                           {post.status === 1 && <Button variant="outline-success" disable name='' className="">Đã duyệt</Button> }

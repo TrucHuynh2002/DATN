@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ConfigController extends Controller
 {
-    public function get_Config()
+    public function get_Config(Request $request)
     {
         $getConfig = ConfigModel::find(1);
         return response()->json(
@@ -19,7 +19,7 @@ class ConfigController extends Controller
         );
     }
 
-    public function create_config(Request $request)
+    public function create_Config(Request $request)
     {
         $validation = Validator::make($request->all(), [
             'sdt' => 'required||min:10|max:12|unique:config',
@@ -68,7 +68,7 @@ class ConfigController extends Controller
             ]
         );
     }
-    public function update_config(Request $request)
+    public function update_Config(Request $request)
     {
         $validation = Validator::make($request->all(), [
             'sdt' => 'required||min:10|max:12|unique:config',
@@ -95,7 +95,7 @@ class ConfigController extends Controller
                     'status' => false
                 ]);
         }
-        $config = ConfigModel::find(1)->first();
+        $config = ConfigModel::find(1);
         $get_image = $request->file('logo');
         $config->sdt = $request->sdt;
         $config->email = $request->email;

@@ -77,9 +77,9 @@ function DetailPost() {
                             </div>
                         </div>
                         <div className="product-count">
-                            <Link to="" className="round-black-btn">
+                            {/* <Link to="" className="round-black-btn">
                                 Phê duyệt
-                            </Link>
+                            </Link> */}
                            <br />
                             {/* <Link to="" className="round-black-btn">
                                 Thông tin người đăng

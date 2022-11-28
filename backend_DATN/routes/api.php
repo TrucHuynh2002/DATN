@@ -39,9 +39,13 @@ use App\Http\Controllers\FavoriteController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('config', [ConfigController::class, 'get_Config'])->name('getConfig');
-Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
-Route::put('config/update', [ConfigController::class, 'update_Config'])->name('getConfig');
+Route::get('config/1', [ConfigController::class, 'get_Config']);
+Route::post('config/', [ConfigController::class, 'create_Config']);
+Route::put('config/update/1', [ConfigController::class, 'update_Config']);
+
+// Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
+// Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
+// Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
 
 // category
 Route::get('/', [CategoryController::class, 'index']);
@@ -64,10 +68,15 @@ Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
+<<<<<<< HEAD
 Route::get('post/delete', [PostController::class, 'show_delete']);
 Route::get('post/status', [PostController::class, 'show_status']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
 
+=======
+// Route::get('post/delete', [PostController::class, 'show_delete']);
+// Route::get('post/status', [PostController::class, 'show_status']);
+>>>>>>> 7d97f96ebf2271a30a4a490dff2817357369053d
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);

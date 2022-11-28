@@ -208,11 +208,11 @@ class PostController extends Controller
     {
 
         $Post = Post::find($id);
-        $Post->delete = 1;
-        $Post->save();
+        // $Post->delete = 1;
+        $Post->delete();
         return response()
             ->json([
-                'data' =>  $Post,
+                'data' =>  'đã xóa',
                 'status' => true
             ]);
     }
