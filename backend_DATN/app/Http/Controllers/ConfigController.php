@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ConfigController extends Controller
 {
-    public function get_Config()
+    public function get_Config(Request $request)
     {
         $getConfig = ConfigModel::find(1);
         return response()->json(

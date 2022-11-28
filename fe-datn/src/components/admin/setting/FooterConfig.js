@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function FooterConfig() {
 
-  const {id_config} = useParams();
+  // const {id_config} = useParams();
+  // console.log(id_config);
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     email: "",
@@ -26,7 +27,7 @@ function FooterConfig() {
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.put(`http://127.0.0.1:8000/api/config/update/${id_config}`, editConfig);
+    const res = await axios.put("http://127.0.0.1:8000/api/config/update/1", editConfig);
     // if(res.data.status === true){
     //     setAlert({
     //         err_list: res.data
@@ -47,7 +48,7 @@ function FooterConfig() {
   }, []);
 
   const loadConfig = async () => {
-      const result = await axios.get(`http://127.0.0.1:8000/api/config/${id_config}`);
+      const result = await axios.get("http://127.0.0.1:8000/api/config/1");
       console.log(result);
       setEditConfig(result.data.data);
   };
