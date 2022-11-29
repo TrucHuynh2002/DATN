@@ -22,18 +22,16 @@ function Bloged() {
     };
   return (
     <div >
-        <h1><b>Bài viết đã đăng</b></h1>
+        <h1><b className="b_title">Bài viết đã đăng</b></h1>
         <hr></hr>
         <div className='row'>
             <>
             {!listblog ? 
-            <div>
-            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
+            <div className="text-center No_user____">
+                <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
                 <p>Chưa đăng bài nào </p>
-            
             </div>
-                : 
-                listblog.map((a, index) => {    
+                : listblog.map((a, index) => {    
                     return (     
                     <div className='row'>
                         <div className='col-md-2 text-center' >

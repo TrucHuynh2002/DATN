@@ -63,7 +63,8 @@ import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
 
 // postuser
-import AddPostUser from './components/user/postuser/AddPost';
+import AddPostUser from './components/user/postuser/App';
+import EditPostUser from './components/user/postuser/EditPost';
 // user
 import Profile from './components/user/account/Profile';
 import EditAvata from './components/user/account/EditAvata';
@@ -86,17 +87,17 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail/:id_post" element={<RoomDetail />} />
-        <Route path="addpost" element={<AddPostUser />} />
+        <Route path="addpost" element={<AddPostUser /> } />
+        <Route path="editpost/:id_post" element={<EditPostUser />} />
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
         <Route path="resetpw" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_post" element={<Profile />} />
-          <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
-          <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />   
-          
         </Route>
+        <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
+        <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
       </Route>
 
       {/* chuyển hướng admin tổng */}

@@ -16,7 +16,7 @@ function Notify() {
     },[]);
      // danh sach notify
   const getDatafavorite = async () => {
-    const id_user = user[0].id;
+    const id_user = user ? user[0].id : "";
    const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
       setListnotifyfavorite(ress.data.data);
   };
@@ -28,7 +28,7 @@ function Notify() {
   };
   // danh sach notify interactive
   const getDataInteractive = async () => {
-    const id_user = user[0].id;
+    const id_user = user ? user[0].id : "";
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
       setListnotifyInteractive(res.data.data);
 };

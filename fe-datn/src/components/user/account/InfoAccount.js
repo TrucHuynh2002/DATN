@@ -6,7 +6,6 @@ import axios from 'axios'
 
 function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
     const {id_post} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
@@ -20,7 +19,7 @@ function InfoAccount() {
     };
     return (
             <div>
-                <h1><b>Thông tin cá nhân</b></h1>
+                <h1><b className="b_title">Thông tin cá nhân</b></h1>
                 <hr></hr>
                 <div className='row'>
                     <div className='col-md-2 text-center div_imggggg'>
@@ -66,7 +65,7 @@ function InfoAccount() {
                             <span> Thỉnh thoảng (Phản hồi chậm)</span>
                         </div>
                         <div>
-                            <span className='icon_profile bx bx-check-circle'>Đã cung cấp : </span> 
+                            <span className='icon_profile bx bx-check-circle'> Đã cung cấp : </span> 
                             <span className='icon_profile bx bxl-facebook-circle'></span> 
                             <span className='icon_profile bx bxl-google-plus-circle'></span> 
                             <span className='icon_profile bx bx-envelope'></span>
@@ -76,10 +75,10 @@ function InfoAccount() {
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
                     <div>
-                        <Link to={`update_acc/${InfoAccount.id_user}`}>
+                        <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
-                        <Link to={`confirm_acc/${InfoAccount.id_user}`}>
+                        <Link to={`../confirm_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
                         </Link>
                     </div>

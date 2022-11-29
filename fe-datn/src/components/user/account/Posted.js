@@ -7,7 +7,6 @@ function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_post} = useParams();
     const [listpost, setListpost] = useState([]);
-
     useEffect(() => {
         getData();
     },[]);
@@ -22,17 +21,16 @@ function Posted() {
 
   return (
     <div>
-    <h1><b>Tin đã đăng</b></h1>
+    <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
     <div className='row'>
     <>
         {!listpost ?
-        <div>
-        <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
-              <p>Chưa đăng bài nào </p>
-      </div>
-         : 
-         listpost.map((post, index) => {
+        <div className="text-center No_user____">
+            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
+            <p>Chưa đăng bài nào </p>
+        </div>
+         : listpost.map((post, index) => {
             return (    
             <div className='row'>
                 <div className='col-md-2 text-center'>
@@ -51,7 +49,7 @@ function Posted() {
                     {user ? 
                         user[0].id = post.id_user  ?
                             <div className='button-fdp row'>
-                                <Link className='button-fix' >Sửa</Link>
+                                <Link to={`../editpost/${post.id_post}`} className='button-fix' >Sửa</Link>
                                 <Link className='button-del' >Xóa</Link>
                             </div>
                             : <div></div> 

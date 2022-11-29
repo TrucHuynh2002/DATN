@@ -14,7 +14,6 @@ function BlogContent() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
- 
   useEffect(() => {
     getData();
   },[]);
