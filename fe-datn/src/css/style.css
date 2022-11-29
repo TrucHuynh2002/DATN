@@ -870,6 +870,36 @@ font-size: 45px;
 }
 .row{
     align-items: center;
+    color: black;
+    
+}#rightpost{
+    align-items: center;
+    color: black;
+    margin-top: -20px;
+}
+h2{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}p1{
+    font-size: 25px;
+   
+}
+.row1{
+    width: 300px;
+    height: 50px;
+    
+}.avtuser{
+border-radius: 50px;
+width: 30px;
+height: 30px;
+margin-right: 5px;
+
+}.avtpost{
+  border-radius: 200px;
+    width: 160px;
+    height: 160px;
+    margin-top: -40px;
 }
 /** end blog section **/
 
@@ -1509,4 +1539,27 @@ ul.social_icon li a:hover {
     max-height: 100%;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
+}
+.button-fd{
+margin-top: 10px;
+}.button-fdp{
+    margin-top: -10px;
+    }
+.button-fix{
+    background-color: blue;
+    color: white;
+    width: 150px;
+   height: 30px;
+   border-radius: 7px;
+ 
+}
+.button-del{
+    background-color: whitesmoke;
+    color: black;
+    width: 150px;
+   height: 30px;
+   border-radius: 7px;
+   margin-left: 10px;
+}.imguser{
+    margin-top: 10px;
 }

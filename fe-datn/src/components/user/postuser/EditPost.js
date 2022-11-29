@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 function EditPost() {
-
     // console.log(get_furniture.data)
     // const navigate = useNavigate();
     const [addPost, setAddPost] = useState({
@@ -41,7 +40,7 @@ function EditPost() {
         },
     });
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages);
+
     const { 
         post_name,
         phone,
@@ -152,15 +151,18 @@ function EditPost() {
 
     const [listRoomType, setListRoomType] = useState([]);
 
-    useEffect(() => {
-        getDataRoomType();
-    },[]);
+    
 
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         console.log(res);
         setListRoomType(res.data.data);
        };
+       useEffect(() => {
+        getDataRoomType();
+    },[]);
+
+
 
   return (
     <div className="content">
@@ -195,13 +197,13 @@ function EditPost() {
                         onChange = {(e) => handleChange(e)} />
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="phone">
+                    {/* <Form.Group className="mb-3" controlId="phone">
                         <Form.Label>Số điện thoại liên hệ</Form.Label>
                         <Form.Control type="text" name="phone" className=''
                         value={phone}
                         onChange = {(e) => handleChange(e)}/>
                         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Nội dung ngắn</Form.Label>
                         <Form.Control type="text" name="description_sort" className=''
