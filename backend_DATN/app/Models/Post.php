@@ -31,4 +31,5 @@ class Post extends Model
         'id_user',
         'id_roomType'
     ];
+    
 }

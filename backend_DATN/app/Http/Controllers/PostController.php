@@ -22,7 +22,7 @@ class PostController extends Controller
     }
     public function show_id(Request $request, $id)
     {
-        $data = Post::find($id);;
+        $data = Post::find($id);
         return response()
             ->json([
                 'data' => $data
@@ -153,7 +153,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
-            'post_name' => 'required|tring',
+            'post_name' => 'required|string',
             'quantity' => 'required',
             'area' => 'required',
             'room_price' => 'required',
@@ -165,7 +165,7 @@ class PostController extends Controller
             'meta_keywords' => 'required',
             'meta_title' => 'required',
             'meta_description' => 'required',
-            'verification' => 'required',
+            // 'verification' => 'required',
             'id_user' => 'required',
             'id_furniture' => 'required',
             'id_roomType' => 'required'
@@ -182,7 +182,7 @@ class PostController extends Controller
             'meta_keywords.required' => 'Không được bỏ trống',
             'meta_title.required' => 'Không được bỏ trống',
             'meta_description.required' => 'Không được bỏ trống',
-            'verification.required' => 'Không được bỏ trống',
+            // 'verification.required' => 'Không được bỏ trống',
             'id_user.required' => 'Không được bỏ trống',
             'id_furniture.required' => 'Không được bỏ trống',
             'id_roomType.required' => 'Không được bỏ trống',
@@ -208,8 +208,45 @@ class PostController extends Controller
         $Post->meta_keywords = $request->meta_keywords;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
-        $Post->verification = $request->verification;
+        $Post->verification = 0;
         $Post->save();
+        $Get_Post = Post::where('id_post','=',$id)->first();
+        // $Post->id_furniture = $request->id_furniture; // khóa ngoại
+        if ($request->id_furniture) {
+            $array_fur = explode(',', $request->id_furniture);
+
+
+            foreach ($array_fur as $furniture) {
+                $furniture_post = new furniture_post();
+                $furnitures = $furniture_post::where('id_post','=',$id)->get();
+                $furnitures->id_post = $Get_Post->id_post;
+                $furnitures->id_furniture = $furniture;
+                $furnitures->save();
+            }
+        }
+        $get_image = $request->file('img');
+        $name = '';
+        if ($request->file('img')) {
+            foreach ($get_image as $img) {
+
+                $get_name_image = $img->getClientOriginalName();
+                // $name = $get_name_image;
+                $path = 'uploads/';
+                $name_image  = current(explode('.', $get_name_image));
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $img->move($path, $new_image);
+                // $imgPost->img = $new_image;
+                $imgPost = new imgPost();
+                $imgPosts = $imgPost::where('id_post','=',$id)->first();
+                $imgPosts->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPosts->id_post = $Get_Post->id_post; // khóa ngoại
+                $imgPosts->save();
+            }
+            // return response()->json([
+            //     'img' => $name
+            // ]);
+        }
         return response()
             ->json([
                 'data' =>  $Post,

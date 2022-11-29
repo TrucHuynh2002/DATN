@@ -10,7 +10,7 @@ function EditPost() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [editPost, setEditPost] = useState({
         post_name: "",
-        phone: "",
+        // phone: "",
         description_sort: "",
         description: "",
         area: "",
@@ -30,7 +30,7 @@ function EditPost() {
     });
     const { 
         post_name, 
-        phone,
+        // phone,
         description_sort,
         description,
         area,
@@ -48,6 +48,7 @@ function EditPost() {
         img,
         } = editPost;
        // xu ly loi
+       console.log(editPost)
        const [alert, setAlert] = useState({
         err_list: {
             messages: "",
@@ -64,7 +65,7 @@ function EditPost() {
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    // console.log(checkFur);
+    console.log(checkFur);
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
@@ -80,6 +81,11 @@ function EditPost() {
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
+        };
+        const loadFurn = async () => {
+            const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+            // console.log(result);
+            setEditPost(result.data.data);
         };
 
         useEffect(() => {
@@ -135,6 +141,7 @@ function EditPost() {
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
+        // console.log(post_name);
         formData.append('post_name', post_name);
         formData.append('address', address);
         formData.append('area',area);
@@ -153,7 +160,7 @@ function EditPost() {
         formData.append('id_furniture', Array(checkFur));
         // console.log(uploadImages.length);
         
-        const res =  await axios.put(`http://127.0.0.1:8000/api/post/update/${id_post}`, formData);
+        const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -168,10 +175,7 @@ function EditPost() {
         }
     };
 
-    const loadFurn = async () => {
-        const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-        setEditPost(result.data.data);
-    };
+   
 
   return (
     <div className="content">
@@ -210,13 +214,13 @@ function EditPost() {
                             </div>
                         </Form.Group>
                         
-                        <Form.Group className="mb-3 phone">
+                        {/* <Form.Group className="mb-3 phone">
                             <Form.Label>Số điện thoại liên hệ</Form.Label>
                             <Form.Control type="text" name="phone" className=''
                             value={phone}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="mb-3 description_sort">
                             <Form.Label>Nội dung ngắn</Form.Label>
                             <Form.Control type="text" name="description_sort" className=''

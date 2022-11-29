@@ -16,4 +16,6 @@ class furniture_post extends Model
         'id_post',
         'id_furniture'
     ];
+    CONST UPDATED_AT = NULL;
+    CONST CREATED_AT = NULL;
 }
