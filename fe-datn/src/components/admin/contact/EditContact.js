@@ -3,11 +3,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-// import  {CKEditor} from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditContact() {
-  // const navigate = useNavigate();
+
   const {id_contact} = useParams();
   const [editContact, setEditContact] = useState({
       full_name: "",
@@ -109,14 +107,6 @@ return (
              
                <Form.Group className="mb-3" controlId="reply">
                   <Form.Label>Phản hồi</Form.Label>
-                  {/* <CKEditor
-                    editor={ ClassicEditor }
-                   data={reply}
-                   onChange={ ( event, editor ) => {
-                    const data = editor.getData();
-                    this.setEditContact({reply, data});
-                } }
-                /> */}
                   <Form.Control type="text" name="reply" onChange={(e) => handleChange(e)}
                   value={reply}  className=''/>
 

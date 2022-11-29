@@ -233,7 +233,7 @@ function Home() {
           <div className="row">
             {currentPosts.map((post, index) => {
               return (     
-                <div className="col-md-4 col-sm-6">
+                <div className="col-md-4 col-sm-6" key={index}>
                     <div id="serv_hover" className="room">
                         <div className="room_img">
                             <Figure><img src={RoomNew} alt="#" /></Figure>
@@ -340,7 +340,7 @@ function Home() {
           <div className="row">
             {currentBlog.map((blog, index) => {
               return (
-                <div className="col-md-4">
+                <div className="col-md-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
                       <Figure>

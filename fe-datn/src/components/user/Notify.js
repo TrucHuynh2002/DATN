@@ -60,9 +60,9 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 <div className="notifyInteractive">
                     {listnotifyInteractive.map((cate, index) => {
                             return (     
-                                <div className='row'>  
+                                <div className='row' key={index}>  
                                     <div className="content_notifyInteractive_img col-2">
-                                        <img className="img-fluid" src={cate.id_img_user} />
+                                        <img className="img-fluid" src={cate.id_img_user} alt="images" />
                                     </div>
                                     <div className="content_notifyInteractive col-10">
                                         <span className="notify_name">{cate.full_name}</span> vừa 

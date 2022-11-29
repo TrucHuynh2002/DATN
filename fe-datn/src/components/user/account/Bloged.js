@@ -36,7 +36,7 @@ function Bloged() {
                     <div className='row'>
                         <div className='col-md-2 text-center' >
                             <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
-                            className=" avt_img"/>                        
+                            className="avt_img"/>                        
                         </div>
                         <div className='col-md-10'>            
                             <div className='account_content____'>

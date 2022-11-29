@@ -30,7 +30,7 @@ function BlogContent() {
           <div className="row">
             {currentPosts.map((blog, index) => {
               return (
-                <div className="col-md-4">
+                <div className="col-md-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
                       <figure>

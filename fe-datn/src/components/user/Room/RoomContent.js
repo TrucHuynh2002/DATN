@@ -35,7 +35,7 @@ function RoomND() {
             <div className="row">
             {currentPosts.map((post, index) => {
                   return (     
-                    <div className="col-md-4 col-sm-6">
+                    <div className="col-md-4 col-sm-6" key={index}>
                         <div id="serv_hover" className="room">
                             <div className="room_img">
                                 <figure><img src={RoomNew} alt="#" /></figure>

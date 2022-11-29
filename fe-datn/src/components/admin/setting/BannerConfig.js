@@ -71,7 +71,7 @@ useEffect(() => {
         <Form.Control type="file" name="banner[]" multiple onChange={(e) => handleChangeImages(e)}/>
       </Form.Group>
       {/* Thông báo  */}
-      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.logo[0]}</span>}
+      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.banner[0]}</span>}
       {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
       <Button variant="primary" name="" className='' type="submit">Cập nhật</Button>
     </>
