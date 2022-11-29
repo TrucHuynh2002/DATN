@@ -28,21 +28,34 @@ function Posted() {
                return (     
             <div className='row'>
                 <div className='col-md-2'>
-                    <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='hình ảnh' className="img-fluid" />                        
+                    <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0'
+                     alt='hình ảnh' className="avtpost" />                        
                 </div>
-                <div className='col-md-10'>
-                    <p>{post.post_name}</p>
-                    <p style={{color:"red"}}><b>{post.room_price}</b></p>
-                    <div className="row">
-                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='hình ảnh' className="img-fluid"/> 
-                        <p>{post.fullname}</p>
-                        <p>{post.created_at}</p>
-                        <p>{post.address}</p>
+                <div className='col-md-10' id='rightpost'>
+                    
+                    <h2>{post.post_name}</h2>
+                    <p1>{post.room_price}</p1>
+                    
+                    
+                    <div  className="row1">
+                    <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' 
+                        alt='hình ảnh' className="avtuser" /> 
+                        {post.fullname}{post.created_at}  &nbsp;{post.address} 
+                        
                     </div>
+                    <div className='button-fdp'>
+                    
+                    <button className='button-fix' >Sửa</button>
+              <button className='button-del' >Xóa</button>
+              
+             </div>
+
+                    
+                    <hr></hr>
                 </div>
             </div>
                )
-        }) : <span>Không có dữ liẹu</span>
+        }) : <span>Không có dữ liệu</span>
     }
         </div>
     </div>

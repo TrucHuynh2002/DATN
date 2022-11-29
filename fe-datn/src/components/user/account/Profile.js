@@ -45,6 +45,7 @@ function Profile() {
                     </div>
                 <InfoAccount />
                 <Posted />
+                <hr></hr>
                 <Bloged />
                    
                   
