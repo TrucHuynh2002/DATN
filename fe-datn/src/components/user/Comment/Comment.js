@@ -1,9 +1,10 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
-import { Table, Button,Form } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import StarRading from './starRading';
-import axios from 'axios'
+import axios from 'axios';
+
 function Comment() {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = useParams();
@@ -39,11 +40,11 @@ function Comment() {
     }
   };
   return (
-    <div className="comment position-relative p-3 rounded-lg" >
+    <div className="comment position-relative p-3 rounded-lg">
       <div className="align-items-center col-4">
          <StarRading />
       </div>
-         <div className="col-4" >
+         <div className="col-4">
           <Form onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">
                 <Form.Label htmlFor="txtTitle">2.Email</Form.Label>

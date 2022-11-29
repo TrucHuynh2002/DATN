@@ -5,7 +5,6 @@ function Header() {
   return (
     <>
      <header>
-      {/* header inner */}
       <div className="header">
         <div className="container">
           <HeaderContainer /> 

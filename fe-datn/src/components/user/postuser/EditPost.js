@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 function EditPost() {
-    // console.log(get_furniture.data)
-    // const navigate = useNavigate();
+
     const [addPost, setAddPost] = useState({
         post_name: "",
         phone: "",
@@ -67,15 +65,12 @@ function EditPost() {
         // Lấy nội thất
     const get_furnitures = async () => {
             var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
-            // console.log(get_data)
             setfuriture(get_data.data.data)
         };
     useEffect(() => {
             get_furnitures();
           },[]);
-    // useEffect(() => {
-    //     handle_idFuniture();
-    // },[])
+
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
         // console.log(img);
@@ -84,9 +79,6 @@ function EditPost() {
  
 
     const handle_idFuniture =  (e) => { 
-
-        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
-        // console.log(e.target.name);
         if(e.target.checked){
           
             setFur(pre => {
@@ -98,15 +90,12 @@ function EditPost() {
             setAddPost(pre => {
                 return {...addPost,...pre, id_furniture: checkFur}
             })
-            // console.log(addPost);
         }
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
             })
-            // setAddPost(pre => {
-            //     return {...pre, id_furniture: checkFur}
-            // })
+
             
             console.log(checkFur)
         }
@@ -120,13 +109,10 @@ function EditPost() {
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
         setUploadImages(e.target.files)       
         Array.from(e.target[0].file).map(file => {
-            // console.log(file)
             setAddPost({...addPost, img:file})
         })
     }
     }
-
-  
 
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -136,7 +122,6 @@ function EditPost() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
         }
         else{
             console.log(res.data)           
@@ -151,8 +136,6 @@ function EditPost() {
 
     const [listRoomType, setListRoomType] = useState([]);
 
-    
-
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         console.log(res);
@@ -161,8 +144,6 @@ function EditPost() {
        useEffect(() => {
         getDataRoomType();
     },[]);
-
-
 
   return (
     <div className="content">

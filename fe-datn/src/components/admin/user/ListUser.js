@@ -2,13 +2,21 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Pagination from '../../user/Pagination';
 
 function ListUser() {
 
   const id_user = useParams();
 
   const [listUser, setListUser] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] = useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listUser.slice(firstPageIndex, lastPageIndex);
+
   useEffect(() => {
     getData();
   },[]);
@@ -41,7 +49,7 @@ function ListUser() {
           </tr>
         </thead>
         <tbody>
-          {listUser.map((user, index) => {
+          {currentPosts.map((user, index) => {
             return (
             <tr key={index}>
               <td>{index+1}</td>
@@ -63,6 +71,11 @@ function ListUser() {
           })}
         </tbody>
     </Table>
+    {/* phan trang */}
+    <Pagination totalPost={listUser.length} 
+      postsPerPage={postsPerPage} 
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage} />
     </div>             
     </div>
   )

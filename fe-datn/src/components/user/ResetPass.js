@@ -53,12 +53,12 @@ function ResetPass() {
                 <div className="col-md-6">
                     <form onSubmit={(e) => handleSumbit(e)}>
                         <div className="row">
-                            <div className="col-md-12 ">
-                                <input type="password" id='password' name="password" className="text" placeholder="Nhập mật khẩu mới" onChange={(e) => {setPassWord(e.target.value)}} />
+                            <div className="col-md-12">
+                                <input type="password" id="password" name="password" className="text" placeholder="Nhập mật khẩu mới" onChange={(e) => {setPassWord(e.target.value)}} />
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password[0]}</span>}
                             </div>
                             <div className="d-grid gap-2">
-                                <Button type='submit'>Gửi</Button>
+                                <Button type="submit">Gửi</Button>
                             </div>                              
                         </div>
                     </form>

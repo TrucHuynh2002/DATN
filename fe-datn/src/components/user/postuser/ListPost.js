@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 function ListPost() {
 
@@ -48,11 +48,8 @@ function ListPost() {
                         <td>{post.description_sort}</td>
                         <td>
                             <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary">
-                                {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
-                            {/* <Link to="#"> */}
                             <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button>
-                            {/* </Link> */}
                         </td>
                     </tr>
                     );

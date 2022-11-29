@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Notify from '../Notify';
+
 function HeaderNavLink() {
     var user = JSON.parse(localStorage.getItem("user"));
     const handleSumbit = async (e) => {
@@ -8,8 +9,7 @@ function HeaderNavLink() {
     }
   return (
     <>
-        {/* <div className="collapse navbar-collapse" > */}
-            <ul className="navbar-nav mr-auto header-ul" id="navbarsExample04">
+            <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
             <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
@@ -72,13 +72,11 @@ function HeaderNavLink() {
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
                         <form  onSubmit={(e) => handleSumbit(e)}>
                             <button className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} type="submit">Đăng xuất</button>
-                        </form>
-                       
+                        </form>                       
                     </div>
                 </div> }
             </li>
         </ul>
-        {/* </div> */}
     </>
   )
 }

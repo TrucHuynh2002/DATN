@@ -1,7 +1,7 @@
 import React from 'react'
 import InfoAccount from './InfoAccount'
-import Posted from './Posted'
-import Bloged from './Bloged'
+import Posted from './Posted';
+import Bloged from './Bloged';
 
 function Profile() {
   return (

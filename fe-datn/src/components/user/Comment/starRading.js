@@ -1,8 +1,6 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Button,Form } from 'react-bootstrap';
-import axios from 'axios'
+import { Form } from 'react-bootstrap';
+
 function starRading() {
   return (
         <div>

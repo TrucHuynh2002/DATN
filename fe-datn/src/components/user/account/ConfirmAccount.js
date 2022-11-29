@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+
 function ConfirmAccount() {
   const {id_Account} = useParams();
-  // console.log(id_Account)
   const [editPassword, setEditPassword] = useState({
     password:"",
     password_new:""
@@ -18,10 +18,8 @@ function ConfirmAccount() {
  const {password, password_new } = editPassword;
  const handleChange = (e) => {
      setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
-     
-     // setEditAccount(e.target.value);
  };
- const handleSumbit = async (e) => {
+ const handleSubmit = async (e) => {
   e.preventDefault();
   const res = await axios.put(`http://127.0.0.1:8000/api/user/updatepassword/${id_Account}`, editPassword);
   if(res.data.status === true){
@@ -35,13 +33,13 @@ function ConfirmAccount() {
           err_list: res.data
       });
   }
-  // navigate("../list_Account");
 };
+
   return (
     <div className="content">
     <div className="add-post">
         <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Đổi mật khẩu</h1>
-        <Form onSubmit={(e) => handleSumbit(e)}>
+        <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group className="mb-3" controlId="">
                 <Form.Label>Mật khẩu củ</Form.Label>
                 <Form.Control type="password" name="password" value={password} onChange={(e) => handleChange(e)} className=''/>

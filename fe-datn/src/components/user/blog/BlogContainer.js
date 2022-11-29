@@ -1,6 +1,7 @@
-import React from 'react'
-import BlogTitle from './BlogTitle'
-import BlogContent from './BlogContent'
+import React from 'react';
+import BlogTitle from './BlogTitle';
+import BlogContent from './BlogContent';
+
 function BlogContainer() {
   return (
     <>

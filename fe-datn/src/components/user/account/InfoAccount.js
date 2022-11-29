@@ -6,7 +6,7 @@ import axios from 'axios'
 
 function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
-    // console.log(user);
+    console.log(user);
     const {id_post} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {

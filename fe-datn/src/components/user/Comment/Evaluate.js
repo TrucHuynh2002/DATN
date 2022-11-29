@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import { useEffect, useState } from 'react';
-import { Table, Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
-import ContentComent from './ContentComent';
+import { useParams } from 'react-router-dom';
+import ContentComment from './ContentComent';
 import Comment from './Comment';
-import axios from 'axios'
+import axios from 'axios';
+
 function Evaluate() {
   var user = JSON.parse(localStorage.getItem("user"));
   const {id_post} = useParams();
@@ -136,7 +136,7 @@ function Evaluate() {
       </div>
       <hr />
       <div className='content_cmt'>                             
-        <ContentComent />                                                 
+        <ContentComment />                                                 
       </div>  
     </>
   )

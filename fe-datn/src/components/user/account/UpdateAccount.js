@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+
 function UpdateAccount() {
     const {id_Account} = useParams();
     const [editAccount, setEditAccount] = useState({
@@ -20,10 +21,9 @@ function UpdateAccount() {
 
     const handleChange = (e) => {
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
-        // setEditAccount(e.target.value);
     };
    
-    const handleSumbit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await axios.put(`http://127.0.0.1:8000/api/user/update/${id_Account}`, editAccount);
         if(res.data.status === true){
@@ -37,7 +37,6 @@ function UpdateAccount() {
                 err_list: res.data
             });
         }
-        // navigate("../list_Account");
     };
 
     useEffect(() => {
@@ -53,7 +52,7 @@ function UpdateAccount() {
     <div className="content">
         <div className="add-post">
             <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật thông tin</h1>
-            <Form onSubmit={(e) => handleSumbit(e)}>
+            <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Tên đăng nhập</Form.Label>
                     <Form.Control type="text" name="full_name" value={full_name} className='' onChange={(e) => handleChange(e)} />

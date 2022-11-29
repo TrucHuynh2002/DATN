@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -15,19 +15,20 @@ function FooterConfig() {
     introduce: "",
   });
 
-  // const [alert, setAlert] = useState({
-  //   err_list: {},
-  // });
+  const [alert, setAlert] = useState({
+    err_list: {},
+  });
 
   const { sdt, email, address, introduce } = editConfig;
 
   const handleChange = (e) => {
     setEditConfig({ ...editConfig, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.put("http://127.0.0.1:8000/api/config/update/1", editConfig);
+    const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
     // if(res.data.status === true){
     //     setAlert({
     //         err_list: res.data

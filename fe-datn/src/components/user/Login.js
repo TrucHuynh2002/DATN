@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link ,useNavigate} from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Link, useNavigate} from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 function Login() {
@@ -20,11 +20,8 @@ function Login() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const item = { email,password };
-        // console.log(item);
         const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
-        // console.log(res);
         if(res.data.status === true){
-            // console.log(res.data.data);
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
                 user =[];
@@ -57,8 +54,7 @@ function Login() {
             });
         }
     }
-
-    
+   
     return (
     <>
      <div className="back_re">

@@ -2,12 +2,19 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Pagination from '../../user/Pagination';
 
 function ListFurniture() {
 
   const id_furniture = useParams();
   const [listFurniture, setListFurniture] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] = useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listFurniture.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -41,7 +48,7 @@ function ListFurniture() {
           </tr>
         </thead>
         <tbody className='list'>
-            {listFurniture.map((furn, index) => {
+            {currentPosts.map((furn, index) => {
               return(
               <tr key={index}>
                 <td>{index+1}</td>
@@ -60,6 +67,11 @@ function ListFurniture() {
             })}
         </tbody>
     </Table>
+    {/* phan trang */}
+    <Pagination totalPost={listFurniture.length} 
+      postsPerPage={postsPerPage} 
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage} />
     </div>             
     </div>
   )
