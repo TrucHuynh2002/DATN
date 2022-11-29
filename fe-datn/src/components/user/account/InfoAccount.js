@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -27,13 +26,6 @@ function InfoAccount() {
                         <td>Tên đăng nhập:&nbsp;{InfoAccount.full_name}</td>
                     </tr> 
                     <tr>
-                        <td>Mật khẩu
-                          
-                                <Form.Control type="password" className="" name="" placeholder="********" disabled value={InfoAccount.password} />
-                           
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Email:&nbsp; {InfoAccount.email}</td>
                     </tr>  
                     <tr>
@@ -50,13 +42,13 @@ function InfoAccount() {
                             <Link to={`confirm_acc/${InfoAccount.id_user}`}>
                                 <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
                             </Link>
+                            <Link to="avata">
+                                <Button variant="outline-primary" name='' className="btn-edit">Avata</Button>
+                            </Link>
                         </td>
                     </tr>
-                </tbody>
-                
-            </div>
-      
+                </tbody>              
+            </div>     
   )
 }
-
 export default InfoAccount

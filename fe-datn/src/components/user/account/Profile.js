@@ -1,7 +1,7 @@
 import React from 'react'
 import InfoAccount from './InfoAccount'
-import Posted from './Posted'
-import Bloged from './Bloged'
+import Posted from './Posted';
+import Bloged from './Bloged';
 
 function Profile() {
   return (
@@ -25,7 +25,7 @@ function Profile() {
                             <div className='col-md-6'>
                                 <div className='row'>
                                     <div className='col-md-3'>
-                                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='hình ảnh' style={{width:'100px', height:'100px', borderRadius:'50%'}} />                        
+                                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='images' style={{width:'100px', height:'100px', borderRadius:'50%'}} />                        
                                     </div>
                                     <div className='col-md-3'>
                                         <b>Nhóm 1 (DATN)</b>
@@ -46,8 +46,7 @@ function Profile() {
                 <InfoAccount />
                 <Posted />
                 <Bloged />
-                   
-                  
+                                    
                 </div>
             </div>
         </div>

@@ -6,9 +6,9 @@ import Header from '../user/Header/Header';
 function LayoutUser() {
   return (
     <>
-       <Header />
+      <Header />
         <Outlet />
-        <Footer />
+      <Footer />
     </>
   )
 }

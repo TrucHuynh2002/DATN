@@ -5,17 +5,15 @@ import axios from 'axios'
 
 function BlogDetail() {
 
-  const {id_blog} = useParams();
+    const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
 
     useEffect(() => {
         getData();
     },[]);
 
-    // danh sach blogdetail
     const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
-    // console.log(res);
     setListBlog(res.data.data);
     };
 
@@ -44,7 +42,7 @@ function BlogDetail() {
             <p>
             {listBlog.description}
             </p>
-            <img className="img-fluid text-center" src="https://2.bp.blogspot.com/-93lIHqW_YKM/XC70vRtpZSI/AAAAAAAAPQE/AOyXI7G9GU0C_XEmCgEYFmAzCuUZhCeFACLcBGAs/s640/For%2Ba%2Bminute%2Bshe%2Bstood%2Blooking%2Bat%2Bthe%2Bhouse.jpg" width={640} height={367} data-original-width={1000} data-original-height={574} />
+            <img className="img-fluid text-center" src="https://2.bp.blogspot.com/-93lIHqW_YKM/XC70vRtpZSI/AAAAAAAAPQE/AOyXI7G9GU0C_XEmCgEYFmAzCuUZhCeFACLcBGAs/s640/For%2Ba%2Bminute%2Bshe%2Bstood%2Blooking%2Bat%2Bthe%2Bhouse.jpg" alt="#" width={640} height={367} data-original-width={1000} data-original-height={574} />
         </div>
       </div>
     </>

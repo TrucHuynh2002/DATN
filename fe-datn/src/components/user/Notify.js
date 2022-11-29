@@ -1,7 +1,5 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import axios from 'axios'
 
 function Notify() {
@@ -9,8 +7,6 @@ function Notify() {
     const handleSumbit = async (e) => {
         localStorage.removeItem("user");
     }
-    // const {id_user} = useParams();
-    // console.log(id_user);
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     
@@ -22,7 +18,6 @@ function Notify() {
   const getDatafavorite = async () => {
     const id_user = user[0].id;
    const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
-        // console.log(ress);
       setListnotifyfavorite(ress.data.data);
   };
 
@@ -35,7 +30,6 @@ function Notify() {
   const getDataInteractive = async () => {
     const id_user = user[0].id;
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-    // console.log(res);
       setListnotifyInteractive(res.data.data);
 };
 // xoa notify interactive
@@ -47,13 +41,13 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
         <li className="nav-item">
-            <a className="nav-link nav-item-link active" tabindex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
+            <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
         </li>
         <li className="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
             <p>|</p>
         </li>
         <li className="nav-item">
-            <a className="nav-link nav-item-link"  tabindex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
+            <a className="nav-link nav-item-link" tabIndex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
         </li>
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px"}}>
@@ -103,8 +97,7 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 </div> 
             }
         </div>
-    </div>
-   
+    </div> 
 </div>
   )
 }

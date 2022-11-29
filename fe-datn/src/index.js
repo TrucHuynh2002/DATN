@@ -66,9 +66,9 @@ import ResetPassword from './components/user/ResetPass';
 import AddPostUser from './components/user/postuser/AddPost';
 // user
 import Profile from './components/user/account/Profile';
+import EditAvata from './components/user/account/EditAvata';
 import UpdateAccount from './components/user/account/UpdateAccount';
 import ConfirmAccount from './components/user/account/ConfirmAccount';
-// import Layout from './components/account/Layout';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -95,8 +95,8 @@ root.render(
           <Route path=":id_post" element={<Profile />} />
           <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
           <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />    
+          <Route path="editavata" element={<EditAvata />} />    
         </Route>
-        {/* <Route path="" element={< />} /> */}
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -132,7 +132,6 @@ root.render(
 
         {/* user list */}
         <Route path="list_user" element={<ListUser />} />
-        {/* <Route path="setting" element={<Setting />} />   */}
 
         {/* chuyển hướng các trang trong setting */}
         <Route path="setting" element={<LayoutConfig />}>
@@ -141,7 +140,6 @@ root.render(
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
       </Route>
-      {/* chuyển hướng admin user */}
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

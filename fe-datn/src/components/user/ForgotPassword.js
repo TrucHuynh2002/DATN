@@ -52,12 +52,12 @@ function ForgotPassword() {
                     <div className="col-md-6">
                         <form onSubmit={(e) => handleSumbit(e)}>
                             <div className="row">
-                                <div className="col-md-12 ">
-                                    <input type="email" id='email' name="email" className="text" placeholder="Nhập email của bạn để lấy lại mật khẩu" onChange={(e) => {setForgotEmail(e.target.value)}} />
+                                <div className="col-md-12">
+                                    <input type="email" id="email" name="email" className="text" placeholder="Nhập email của bạn để lấy lại mật khẩu" onChange={(e) => {setForgotEmail(e.target.value)}} />
                                     {alert.err_list === false && <span className="error">{alert.err_list.message.email[0]}</span>}
                                 </div>
                                 <div className="d-grid gap-2">
-                                    <Button type='submit'>Gửi</Button>
+                                    <Button type="submit">Gửi</Button>
                                 </div>                              
                             </div>
                         </form>
@@ -65,9 +65,7 @@ function ForgotPassword() {
                 </div>
             </div>
         </div>
-    </>
-
-    
+    </>    
   )
 }
 

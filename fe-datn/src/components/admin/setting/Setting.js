@@ -56,7 +56,7 @@ useEffect(() => {
       <Form onSubmit={(e) => handleSumbit(e)}>
         <Form.Group className="mb-3" controlId="logo">
           <Form.Label>Logo</Form.Label>
-          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" style={{width:'100px',margin:"20px"}}></img>
+          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" alt="#" style={{width:'100px',margin:"20px"}}></img>
           <Form.Control type="text" name="logo" onChange={(e) => handleChange(e)} value={logo} className=''/>
         </Form.Group>
         {/* Thông báo  */}
