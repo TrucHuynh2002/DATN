@@ -23,8 +23,16 @@ function InfoAccount() {
                 <h1><b>Thông tin cá nhân</b></h1>
                 <hr></hr>
                 <div className='row'>
-                    <div className='col-md-2 text-center'>
-                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />                        
+                    <div className='col-md-2 text-center div_imggggg'>
+                       <Link>
+                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />
+                        <div className="update_imggg">
+                            <Link to="">
+                                <span>Sữa</span>
+                                </Link>
+                            </div>  
+                       </Link>  
+                                       
                     </div>
                     <div className='col-md-4 info_content____'>
                         <div>

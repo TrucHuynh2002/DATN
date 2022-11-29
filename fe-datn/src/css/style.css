@@ -900,6 +900,29 @@ height: 80px;
     height: 160px;
     
 } */
+.update_imggg{
+    display:none;
+}
+.div_imggggg>a{
+    position:relative;
+}
+.div_imggggg>a:hover>.update_imggg{
+    display:block;
+}
+.div_imggggg>a>.update_imggg {
+
+    display: none;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 1px;
+    background: #0000007c;
+    height: 52px;
+    border-radius: 0 0 73px 72px;
+  }
+.div_imggggg>a>.update_imggg>a>span{
+    font-size: 20px;
+  }
 .avtuser{
 border-radius: 50px;
 width: 30px;

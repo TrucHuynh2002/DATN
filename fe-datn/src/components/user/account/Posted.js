@@ -42,11 +42,11 @@ function Posted() {
                 <div className='col-md-10 '>
                     <div className='account_content____'>
                         <h1 className="name_title">{post.post_name}</h1>
-                        <h3 className="content___">{post.room_price}</h3>
+                        <h3 className="content___">{post.description_sort}</h3>
                             <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' alt='' className="avtuser" /> 
-                        <span> {post.full_name}</span>
-                        <span>{post.address} </span>
-                        <span>{post.created_at}</span>
+                        <span> {post.full_name} | </span>
+                        <span> {post.address}  | </span>
+                        <span> {post.created_at}  | </span>
                     </div>
                     {user ? 
                         user[0].id = post.id_user  ?
