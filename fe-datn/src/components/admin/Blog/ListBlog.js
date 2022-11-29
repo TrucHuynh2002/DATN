@@ -3,11 +3,19 @@ import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
+import Pagination from '../../user/Pagination';
 
 function ListBlog() {
 
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] =useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
+ 
   useEffect(() => {
     getData();
   },[]);
@@ -41,7 +49,7 @@ function ListBlog() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listBlog.map((blog, index) => {
+                {currentPosts.map((blog, index) => {
                     return (     
                     <tr key={index}>
                         <td>{index+1}</td>
@@ -59,6 +67,11 @@ function ListBlog() {
                 })}
                 </tbody>
               </Table>
+              {/* phan trang */}
+            <Pagination totalPost={listBlog.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
             </div>
     </div>
   )

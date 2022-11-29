@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-// link img
 import LogoFooter from '../../images/logo-ft.png';
 
 function Footer() {
@@ -17,7 +15,7 @@ function Footer() {
                   Hệ thống tìm nhà trọ tốt nhất dành cho sinh viên
                 </h4>
               </div>
-              <div className=" col-md-3">
+              <div className="col-md-3">
                 <h3>Thông tin liên hệ</h3>
                 <ul className="conta">
                   <li>
@@ -26,16 +24,14 @@ function Footer() {
                   </li>
                   <li>
                     <span style={{ fontWeight: 750 }}>Hotline:</span>
-                    <a href="tel:0368503413"> 036 850 3413</a>
+                    <Link to="tel:0368503413"> 036 850 3413</Link>
                   </li>
                   <li>
-                    {" "}
-                    <span style={{ fontWeight: 750 }}>Email:</span>{" "}
-                    timtronhatui@gmail.com
+                    <span style={{ fontWeight: 750 }}>Email:</span> timtronhatui@gmail.com
                   </li>
                 </ul>
               </div>
-              <div className=" col-md-3 ">
+              <div className="col-md-3 ">
                 <h3>Hỗ trợ khách hàng</h3>
                 <ul className="conta ">
                   <li>
@@ -52,9 +48,9 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="col-md-3 ">
+              <div className="col-md-3">
                 <h3>Theo dõi chúng tôi tại</h3>
-                <ul className="social_icon ">
+                <ul className="social_icon">
                   <li>
                     <Link to="">
                       <i className="fa fa-facebook " aria-hidden="true" />
@@ -76,13 +72,13 @@ function Footer() {
                     </Link>
                   </li>
                 </ul>
-                <br />
-                <br />
+                <br/>
+                <br/>
                 <form className="bottom_form">
                   <input
                     className="enter"
                     placeholder="Enter your email"
-                    type="text"
+                    type="email"
                     name="Enter your email"
                   />
                   <button className="sub_btn">Gửi</button>
@@ -90,10 +86,10 @@ function Footer() {
               </div>
             </div>
           </div>
-          <div className="copyright ">
-            <div className="container ">
-              <div className="row ">
-                <div className="col-md-10 offset-md-1 ">
+          <div className="copyright">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-10 offset-md-1">
                   <p>© 2022 All Rights Reserved. Design by Galaticos Team</p>
                 </div>
               </div>
@@ -101,7 +97,6 @@ function Footer() {
           </div>
         </div>
       </footer>
-
     </>
   )
 }

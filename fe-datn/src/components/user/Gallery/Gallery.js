@@ -1,14 +1,11 @@
-import React from 'react'
-import GalleryContainer from './GalleryContainer'
+import React from 'react';
+import GalleryContainer from './GalleryContainer';
 
 
 function Gallery() {
   return (
     <>
-   <GalleryContainer />
-
-    
-
+      <GalleryContainer />
     </>
   )
 }

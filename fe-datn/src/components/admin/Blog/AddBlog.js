@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 
 function AddBlog() {
     var user = JSON.parse(localStorage.getItem("user"));
-    // const navigate = useNavigate();
     const [addBlog, setAddBlog] = useState({
         name_blog:"",
         meta_keywords:"",
@@ -38,7 +36,6 @@ function AddBlog() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name_blog[0])
         }};
 
 

@@ -38,14 +38,8 @@ function Contact() {
         setAlert({
             err_list: res.data
         });
-        // console.log(alert.err_list.messages.name[0])
     }
-    // navigate("../list_furniture");
   };
-
-
-
-
 
   return (
     <>
@@ -67,7 +61,7 @@ function Contact() {
             <div className="col-md-6">
               <form id="request" className="main_form" onSubmit={(e) => handleSumbit(e)}>
                 <div className="row">
-                  <div className="col-md-12 ">
+                  <div className="col-md-12">
                     <input
                       className="contactus"
                       placeholder="Họ tên"
@@ -113,7 +107,6 @@ function Contact() {
                       placeholder="Nội dung"
                       type="text"
                       name='content'
-                      // message="Name"
                       defaultValue={"Message"}
                       value={content}
                       onChange={(e) => handleChange(e)}/>
@@ -136,8 +129,7 @@ function Contact() {
                     height={550}
                     frameBorder={0}
                     style={{ border: 0, width: "100%" }}
-                    allowFullScreen=""
-                  />
+                    allowFullScreen=""/>
                 </div>
               </div>
             </div> 

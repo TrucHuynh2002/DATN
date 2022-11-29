@@ -2,12 +2,19 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Pagination from '../../user/Pagination';
 
 function ListContact() {
 
   const id_contact = useParams();
   const [listContact, setListContact] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] = useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listContact.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -45,7 +52,7 @@ function ListContact() {
           </tr>
         </thead>
         <tbody className='list'>
-          {listContact.map((contact, index) => {
+          {currentPosts.map((contact, index) => {
             return (
               <tr key={index}>
                 <td>{index+1}</td>
@@ -69,6 +76,11 @@ function ListContact() {
           })}
         </tbody>
     </Table>
+    {/* phan trang */}
+    <Pagination totalPost={listContact.length} 
+      postsPerPage={postsPerPage} 
+      setCurrentPage={setCurrentPage}
+      currentPage={currentPage} />
     </div>             
     </div>
   )

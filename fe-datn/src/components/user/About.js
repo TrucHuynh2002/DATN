@@ -1,9 +1,4 @@
 import React from 'react'
-// link css
-// import '../../css/bootstrap.min.css';
-// import '../../css/style.css';
-// import '../../css/responsive.css';
-// link img
 import Slide1 from '../../images/about1.jpg';
 
 function About() {
@@ -20,19 +15,16 @@ function About() {
             </div>
         </div>
     </div>
-      {/* about */}
+    
       <div className="about1">
         <div className="container-fluid">
           <div className="row">
           
-               <h2> NHATUI.COM sẽ giúp bạn tìm một phòng trọ ưng ý tại Thành Phố Cần Thơ một cách tiện lợi và nhanh chóng nhất và đặc biệt là tất cả đều miễn phí.
-               </h2> 
+               <h3><b>NHATUI.COM sẽ giúp bạn tìm một phòng trọ ưng ý tại Thành Phố Cần Thơ một cách tiện lợi và nhanh chóng nhất và đặc biệt là tất cả đều miễn phí.
+               </b></h3> 
               <p><br></br>Chúng tôi sẽ hỗ trợ bạn tìm những <b>NHÀ TRỌ GẦN TRƯỜNG ĐẠI HỌC CẦN THƠ</b> , 
                  Nhà trọ cho Sinh Viên Cần Thơ giá rẻ, và nhà trọ trên các tuyến đường lớn ở Cần Thơ Như: nhà trọ đường 3/2,
                  Nhà Trọ đường 30 tháng 4, Võ Văn Kiệt, nhà trọ đường Nguyễn Trãi, Nhà trọ Trung Tâm Tp Cần Thơ, Nhà trọ đường cách mạng tháng 8 ,….</p>
-                {/* <figure>
-                  <img src={Slide1} alt="#" />
-                </figure> */}
               <h1><br></br><b>NHÀ TRỌ GIÁ RẺ CẦN THƠ</b></h1>
                 <p>Nhatui.com cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.</p>
                 <p>
@@ -63,9 +55,7 @@ function About() {
                 </p>
 
                 <p><br></br>
-              <b>
-              Thuê phòng trọ Trung Tâm Cần Thơ giá gần 2 triệu
-                </b>
+              <b>Thuê phòng trọ Trung Tâm Cần Thơ giá gần 2 triệu</b>
                 </p>
 
                 <p><br></br>
@@ -112,15 +102,9 @@ function About() {
                   tìm người ở ghép để tìm được phòng ưng ý với chi phí hợp lý nhất. Nhưng lưu ý là đừng nên rủ quá nhiều người ở 
                   chung sẽ ảnh hưởng đến chất lượng cuộc sống sau này.
                 </p>
-
-
-
-
-              </div>
-            
+              </div>            
         </div>
       </div>
-      {/* end about */}
     </>
   )
 }

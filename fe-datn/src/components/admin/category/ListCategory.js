@@ -3,12 +3,20 @@ import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios'
+import Pagination from '../../user/Pagination';
 
 function ListCategory() {
 
   const id_category = useParams();
 
+  // phan trang
   const [listCategory, setListCategory] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] = useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listCategory.slice(firstPageIndex, lastPageIndex);
  
   useEffect(() => {
     getData();
@@ -42,7 +50,7 @@ function ListCategory() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listCategory.map((cate, index) => {
+                {currentPosts.map((cate, index) => {
                     return (     
                     <tr key={index}>
                         <td>{index+1}</td>
@@ -61,6 +69,11 @@ function ListCategory() {
                 })}
                 </tbody>
               </Table>
+              {/* phan trang */}
+            <Pagination totalPost={listCategory.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
             </div>
     </div>
   )

@@ -2,13 +2,21 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Pagination from '../../user/Pagination';
+
 
 function ListRoomType() {
 
   const id_room_type = useParams();
 
   const [listRoomType, setListRoomType] = useState([]);
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ postsPerPage, setPostsPerPage ] = useState(5);
+
+  const lastPageIndex = currentPage * postsPerPage;
+  const firstPageIndex = lastPageIndex - postsPerPage;
+  const currentPosts = listRoomType.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -42,7 +50,7 @@ function ListRoomType() {
                 </thead>
              
                 <tbody className="list-cate">                 
-                {listRoomType.map((room, index) => {
+                {currentPosts.map((room, index) => {
                     return (     
                     <tr key={index}>
                         <td>{index+1}</td>
@@ -61,6 +69,10 @@ function ListRoomType() {
                 })}
                 </tbody>
               </Table>
+              <Pagination totalPost={listRoomType.length} 
+              postsPerPage={postsPerPage} 
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage} />
             </div>
     </div>
   )

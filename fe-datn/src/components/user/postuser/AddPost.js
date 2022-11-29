@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-// import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 function AddPost() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +22,6 @@ function AddPost() {
         id_user: 1,
         id_roomType: "",
         img: [],
-
     });
     const { 
         post_name, phone,
@@ -53,15 +50,12 @@ function AddPost() {
     });
     
     const [uploadImages, setUploadImages] = useState([]);
-    // console.log(uploadImages);
     // Xử lý input vlaue
     const handleChange = (e) => {
         setAddPost({ ...addPost, [e.target.name]: e.target.value});
-        // console.log(img);
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    // console.log(checkFur);
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
@@ -84,30 +78,17 @@ function AddPost() {
         },[]);
 
     
-    const handle_idFuniture =  (e) => { 
-        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
-        // console.log(e.target.name);
-     
+    const handle_idFuniture =  (e) => {     
         if(e.target.checked){
             setFur(pre => {
                return  [...pre, e.target.value]
             });
-            // console.log(checkFur);
-            // setAddPost(pre => {
-            //     return {...addPost,...pre, id_furniture: checkFur}
-            // })
-            // console.log(addPost);
         }
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
-            })
-            // setAddPost(pre => {
-            //     return {...pre, id_furniture: checkFur}
-            // })
-            
-        }
-       
+            })           
+        }      
     }
 
     const handleChangeImages = (e) => {
@@ -128,7 +109,6 @@ function AddPost() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
-        // formData.append('img[]', Array(uploadImages));
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
@@ -148,14 +128,12 @@ function AddPost() {
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
-        // console.log(uploadImages.length);
         
         const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
         }
         else{
             console.log(res.data)           

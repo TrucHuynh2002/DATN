@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Figure from 'react-bootstrap/Figure';
 import axios from 'axios'
 import Pagination from './Pagination';
 
-// link img
 import Slide1 from '../../images/sl01.png';
 import Slide2 from '../../images/sl02.png';
 import Slide3 from '../../images/sl03.png';
@@ -16,8 +16,7 @@ import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
 
 function Home() {
-
-  
+ 
   const id_post = useParams();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
@@ -29,6 +28,7 @@ function Home() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+  const currentBlog = listBlog.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
@@ -63,41 +63,36 @@ function Home() {
               <img
                 className="first-slide"
                 src={Slide1}
-                alt="First slide"
-              />
+                alt="First slide"/>
               <div className="container"></div>
             </div>
             <div className="carousel-item">
               <img
                 className="second-slide"
                 src={Slide2}
-                alt="Second slide"
-              />
+                alt="Second slide"/>
             </div>
             <div className="carousel-item">
               <img
                 className="third-slide"
                 src={Slide3}
-                alt="Third slide"
-              />
+                alt="Third slide"/>
             </div>
           </div>
           <a
             className="carousel-control-prev"
             href="#myCarousel"
             role="button"
-            data-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
+            data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
             <span className="sr-only">Previous</span>
           </a>
           <a
             className="carousel-control-next"
             href="#myCarousel"
             role="button"
-            data-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
+            data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="sr-only">Next</span>
           </a>
         </div>
@@ -178,8 +173,8 @@ function Home() {
                       <div className="col-md-3 col-search">
                         <select className="form-select online_book3">
                           <option>Diện tích</option>
-                          <option>Dưới 20m<sup>2</sup></option>
-                          <option>Dưới 20m<sup>2</sup></option>
+                          <option>Dưới 20m</option>
+                          <option>Dưới 20m</option>
                         </select>
                       </div>
                       <div className="col-md-12">
@@ -215,9 +210,9 @@ function Home() {
             </div>
             <div className="col-md-7">
               <div className="about_img">
-              <figure1> 
+              <Figure> 
                   <img src={Slide1} width={700} height={500} alt="loading..." />
-                </figure1>
+                </Figure>
               </div>
             </div>
           </div>
@@ -241,7 +236,7 @@ function Home() {
                 <div className="col-md-4 col-sm-6">
                     <div id="serv_hover" className="room">
                         <div className="room_img">
-                            <figure><img src={RoomNew} alt="#" /></figure>
+                            <Figure><img src={RoomNew} alt="#" /></Figure>
                         </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>
@@ -255,7 +250,7 @@ function Home() {
           </div>        
         </div>
         {/* phan trang */}
-        <Pagination totalPost={listBlog.length} 
+        <Pagination totalPost={listPost.length} 
             postsPerPage={postsPerPage} 
             setCurrentPage={setCurrentPage}
             currentPage={currentPage} />
@@ -274,58 +269,58 @@ function Home() {
           <div className="row">
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabCanTho} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabHaNoi} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabDaNang} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabHCM} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabHue} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabCanTho} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabCanTho} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
             <div className="col-md-3 col-sm-6">
               <div className="gallery_img">
-                <figure>
+                <Figure>
                   <img src={TabCanTho} alt="#" />
-                </figure>
+                </Figure>
               </div>
             </div>
           </div>
@@ -343,14 +338,14 @@ function Home() {
             </div>
           </div>
           <div className="row">
-            {listBlog.map((blog, index) => {
+            {currentBlog.map((blog, index) => {
               return (
                 <div className="col-md-4">
                   <div className="blog_box">
                     <div className="blog_img">
-                      <figure>
+                      <Figure>
                         <img src={Slide3} alt="#" />
-                      </figure>
+                      </Figure>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
@@ -365,6 +360,11 @@ function Home() {
             })}            
           </div>
         </div>
+        {/* phan trang */}
+        <Pagination totalPost={listBlog.length} 
+            postsPerPage={postsPerPage} 
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage} />
       </div>
       {/* end blog */}     
     </>
