@@ -22,6 +22,7 @@ function DetailPost() {
 
   return (
     <>
+      <h1 className="content_h1_admin">Thêm bài viết</h1>
         <div className="pd-wrap">
             <div className="container">
                 <div className="row">

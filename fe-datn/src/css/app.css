@@ -296,15 +296,35 @@ a:hover{
 }
 
 .form-add{
-    margin: 10px;
+    margin: 21px 5px 21px 0;
     color: #fff ;
-    text-transform: none ;
+    text-transform: capitalize ;
 }
-
+tr:hover{
+    background-color:#ddd;
+    cursor:pointer;
+}
+table, th, td{
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc;
+}
+table{
+    border-collapse:collapse;
+    table-layout: fixed;
+}
+.content_h1_admin{
+    text-align: center;
+    color: #0f0f0f;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 35px;
+ }
 .btn-edit{
     margin: 10px;
 }
-
+tr>th{
+    text-transform: uppercase;
+}
 .nav-config{
     color: #5AB9A8 ;
     text-transform: none ;

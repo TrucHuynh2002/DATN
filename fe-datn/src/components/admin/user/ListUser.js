@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../../user/Pagination';
 
@@ -12,7 +12,6 @@ function ListUser() {
   const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(5);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listUser.slice(firstPageIndex, lastPageIndex);
@@ -24,7 +23,6 @@ function ListUser() {
   // danh sach user
   const getData = async () => {
   const res = await axios.get('http://127.0.0.1:8000/api/user/show');
-  console.log(res);
   setListUser(res.data.data);
   };
 
@@ -46,6 +44,7 @@ function ListUser() {
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Email</th>
+
           </tr>
         </thead>
         <tbody>

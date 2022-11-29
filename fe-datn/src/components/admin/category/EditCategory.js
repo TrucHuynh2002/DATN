@@ -55,7 +55,7 @@ function EditCategory() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật danh mục</h1>
+            <h1 className="content_h1_admin">Cập nhật danh mục</h1>
             <Form onSubmit={(e) => handleSumbit(e)}>
                 <Form.Group className="mb-3" controlId="name_category">
                     <Form.Label>Tên danh mục</Form.Label>

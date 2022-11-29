@@ -54,15 +54,15 @@ function InfoAccount() {
                     </div>
                     <div className='col-md-6 info_content____'>
                         <div>
-                            <span className='icon_profile bx bx-star'>Đánh giá : </span>
+                            <span className='icon_profile bx bx-star'> Đánh giá : </span>
                             <span> Chưa có đánh giá</span> 
                         </div>
                         <div>
-                            <span className='icon_profile bx bx-table'>Ngày tham gia : </span>
-                            <span> {InfoAccount.created_at}</span> 
+                            <span className='icon_profile bx bx-table'> Ngày tham gia : </span>
+                            <span> {InfoAccount.created_at} </span> 
                         </div>
                         <div>
-                            <span className='icon_profile bx bx-message-dots'>Phản hồi chat : </span> 
+                            <span className='icon_profile bx bx-message-dots'> Phản hồi chat : </span> 
                             <span> Thỉnh thoảng (Phản hồi chậm)</span>
                         </div>
                         <div>

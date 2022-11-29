@@ -38,7 +38,7 @@ function ListContact() {
   return (
     <div className="content">
     <div className="add-post">
-      <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách liên hệ</h1>
+      <h1 className="content_h1_admin">Danh sách liên hệ</h1>
       <Table bordered>
         <thead>
           <tr>
@@ -49,6 +49,8 @@ function ListContact() {
             <th>Số điện thoại</th>
             <th>Nội dung</th>
             <th>Trạng thái</th>
+            <th></th>
+
           </tr>
         </thead>
         <tbody className='list'>
