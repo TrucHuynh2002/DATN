@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { Container, Row } from 'react-bootstrap';
-import { Outlet, navigator, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import NavAdmin from './NavAdmin';
 import HeaderAdmin from './HeaderAdmin';
 import FooterAdmin from './FooterAdmin';

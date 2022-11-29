@@ -70,7 +70,7 @@ useEffect(() => {
       <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="logo">
           <Form.Label>Logo</Form.Label>
-          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" style={{width:'100px',margin:"20px"}}></img>
+          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" alt="images" style={{width:'100px',margin:"20px"}}></img>
           <Form.Control type="file" name="logo[]" multiple onChange={(e) => handleChangeImages(e)}/>
         </Form.Group>
         {/* Thông báo  */}

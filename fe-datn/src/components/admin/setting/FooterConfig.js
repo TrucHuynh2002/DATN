@@ -6,8 +6,7 @@ import axios from 'axios';
 
 function FooterConfig() {
 
-  // const {id_config} = useParams();
-  // console.log(id_config);
+  const {id_config} = useParams();
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     email: "",
@@ -23,24 +22,23 @@ function FooterConfig() {
 
   const handleChange = (e) => {
     setEditConfig({ ...editConfig, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSumbit = async (e) => {
     e.preventDefault();
     const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
-    // if(res.data.status === true){
-    //     setAlert({
-    //         err_list: res.data
-    //     });
-    //     console.log(alert.err_list)
-    // }
-    // else{           
-    //     setAlert({
-    //         err_list: res.data
-    //     });
-    // }
-    // navigate("../list_category");
+    // console.log(res);
+    if(res.data.status === true){
+        setAlert({
+            err_list: res.data
+        });
+        console.log(alert.err_list)
+    }
+    else{           
+        setAlert({
+            err_list: res.data
+        });
+    }
   };
 
 
@@ -77,7 +75,7 @@ function FooterConfig() {
             <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/>
             {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages.introduce[0]}</span>} */}
         </Form.Group>
-          {/* {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>} */}
+          {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
         <Button variant="primary" name="" type="submit">Cập nhật</Button>
       </Form>
     </>

@@ -53,7 +53,7 @@ function Comment() {
                 value={user[0].email}
                   className="form-control form-control-sm"
                   placeholder="Vui lòng đăng nhập đê bình luận"
-                  disabled
+                  disabled="true"
                 />
               </Form.Group>
               <Form.Group className="form-group">

@@ -28,7 +28,7 @@ function Bloged() {
             <>
             {!listblog ? 
             <div>
-            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
+            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
                 <p>Chưa đăng bài nào </p>
             
             </div>
@@ -38,7 +38,7 @@ function Bloged() {
                     <div className='row'>
                         <div className='col-md-2 text-center' >
                             <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
-                            className=" avt_img"/>                        
+                            className="avt_img"/>                        
                         </div>
                         <div className='col-md-10'>            
                             <div className='account_content____'>

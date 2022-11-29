@@ -58,7 +58,7 @@ function ListPost() {
                         <td></td>
                         <td>{post.post_name}</td>
                         <td>
-                          {post.status === 1 && <Button variant="outline-success" disable name='' className="">Đã duyệt</Button> }
+                          {post.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
                           {post.status === 0 && <Button variant="outline-danger" name='' className="">Phê duyệt</Button> }
                        
                           <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>

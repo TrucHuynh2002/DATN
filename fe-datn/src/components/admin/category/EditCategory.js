@@ -3,12 +3,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-
 
 function EditCategory() {
 
-    // const navigate = useNavigate();
     const {id_category} = useParams();
     const [editCategory, setEditCategory] = useState({
         name_category: "",
@@ -22,7 +19,6 @@ function EditCategory() {
 
     const handleChange = (e) => {
         setEditCategory({ ...editCategory, [e.target.name]: e.target.value });
-        // setEditCategory(e.target.value);
     };
    
     const handleSumbit = async (e) => {
