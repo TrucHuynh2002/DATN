@@ -37,6 +37,15 @@ function Posted() {
                         <p>{post.created_at}</p>
                         <p>{post.address}</p>
                     </div>
+                    <div className='button-fdp'>
+                    
+                    <button className='button-fix' >Sửa</button>
+              <button className='button-del' >Xóa</button>
+              
+             </div>
+
+                    
+                    <hr></hr>
                 </div>
             </div>
                )
