@@ -94,7 +94,8 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_post" element={<Profile />} />
           <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
-          <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />    
+          <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />   
+          
         </Route>
         {/* <Route path="" element={< />} /> */}
       </Route>

@@ -59,10 +59,6 @@ function UpdateAccount() {
                     <Form.Control type="text" name="full_name" value={full_name} className='' onChange={(e) => handleChange(e)} />
                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
                 </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="2">
-                    <Form.Label>Hình</Form.Label>
-                    <Form.Control type="file" name="" value="" className='' onChange={(e) => handleChange(e)} />
-                </Form.Group> */}
                 <Form.Group className="mb-3" controlId="3">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" name="email" value={email} className='' onChange={(e) => handleChange(e)} />

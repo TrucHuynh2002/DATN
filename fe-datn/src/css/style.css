@@ -868,38 +868,49 @@ font-size: 45px;
     width: 10%;
     height: 20px;
 }
-.row{
-    align-items: center;
-    color: black;
-    
-}#rightpost{
-    align-items: center;
-    color: black;
-    margin-top: -20px;
-}
-h2{
+
+.name_title{
     color: black;
     font-size: 30px;
     font-weight: bold;
-}p1{
+}
+.col-md-10>.content___{
     font-size: 25px;
    
 }
-.row1{
-    width: 300px;
-    height: 50px;
+.account_content____{
+    line-height: 4;
+}
+.info_content____{
+    line-height: 2.5;
+}
+.info_content____>div>span,.account_content____>span{
+    font-size: 17px;
+    font-weight: 600;
+}
+.info_content____>div>.bx{
+    margin-left: 10px;
+}
+.img_________{
+    width: 80px;
+height: 80px;
+}
+/* .row1{
+    width: 160px;
+    height: 160px;
     
-}.avtuser{
+} */
+.avtuser{
 border-radius: 50px;
 width: 30px;
 height: 30px;
 margin-right: 5px;
 
-}.avtpost{
-  border-radius: 200px;
-    width: 160px;
-    height: 160px;
-    margin-top: -40px;
+}
+.avt_img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
 }
 /** end blog section **/
 
@@ -1513,7 +1524,7 @@ ul.social_icon li a:hover {
 }
 
 .list-post{
-    /* margin-top:100px; */
+    margin-top:12px;
     background-color:white;
     border-radius:10px;
     padding:20px;
@@ -1530,9 +1541,7 @@ ul.social_icon li a:hover {
     margin-top:10px;
 }
 
-.icon_profile{
-    font-size: 20px !important;
-}
+
 
 .content_profile{
     /* padding: 10px 20px 20px 20px; */
@@ -1540,26 +1549,25 @@ ul.social_icon li a:hover {
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
 }
-.button-fd{
-margin-top: 10px;
-}.button-fdp{
-    margin-top: -10px;
-    }
 .button-fix{
     background-color: blue;
+    padding:5px;
     color: white;
     width: 150px;
-   height: 30px;
    border-radius: 7px;
  
 }
+.button-fdp{
+    text-align: center;
+}
 .button-del{
-    background-color: whitesmoke;
+    background-color: white;
+    padding:5px;
+    /* padding:2px; */
     color: black;
     width: 150px;
-   height: 30px;
    border-radius: 7px;
-   margin-left: 10px;
-}.imguser{
+}
+.imguser{
     margin-top: 10px;
 }

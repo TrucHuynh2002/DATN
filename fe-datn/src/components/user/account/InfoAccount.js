@@ -6,6 +6,8 @@ import axios from 'axios'
 
 function InfoAccount() {
     var user = JSON.parse(localStorage.getItem("user"));
+    // console.log(user);
+    const {id_post} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
         getData();
@@ -13,47 +15,67 @@ function InfoAccount() {
 
     // danh sach Account
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${user[0].id}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_post}`);
         setInfoAccount(res.data.data);
     };
     return (
-        
-            <div className="Info-post">
-                <h1 style={{  padding: "5px", color: "#0d3380" }}>Thông tin cá nhân</h1>
+            <div>
+                <h1><b>Thông tin cá nhân</b></h1>
                 <hr></hr>
-                
-                <tbody>
-                    <tr>
-                        <td>Tên đăng nhập:&nbsp;{InfoAccount.full_name}</td>
-                    </tr> 
-                    <tr>
-                        <td>Mật khẩu
-                          
-                                <Form.Control type="password" className="" name="" placeholder="********" disabled value={InfoAccount.password} />
-                           
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Email:&nbsp; {InfoAccount.email}</td>
-                    </tr>  
-                    <tr>
-                        <td>Số điện thoại: &nbsp;{InfoAccount.phone}</td>
-                    </tr> 
-                    <tr>
-                        <td>Địa chỉ:&nbsp;{InfoAccount.address}</td>
-                    </tr>  
-                    <tr>
-                        <td>
-                            <Link to={`update_acc/${InfoAccount.id_user}`}>
-                                <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
-                            </Link>
-                            <Link to={`confirm_acc/${InfoAccount.id_user}`}>
-                                <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
-                            </Link>
-                        </td>
-                    </tr>
-                </tbody>
-                
+                <div className='row'>
+                    <div className='col-md-2 text-center'>
+                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />                        
+                    </div>
+                    <div className='col-md-4 info_content____'>
+                        <div>
+                            <span>Tên đăng nhập : </span>
+                            <span>{InfoAccount.full_name}</span>
+                        </div>
+                        <div>
+                            <span>Email : </span>
+                            <span>{InfoAccount.email}</span>
+                        </div>
+                        <div>
+                            <span>Phone : </span>
+                            <span>{InfoAccount.phone}</span>
+                        </div>
+                        <div>
+                            <span>Địa chỉ : </span>
+                            <span>{InfoAccount.address}</span>
+                        </div>
+                    </div>
+                    <div className='col-md-6 info_content____'>
+                        <div>
+                            <span className='icon_profile bx bx-star'>Đánh giá : </span>
+                            <span> Chưa có đánh giá</span> 
+                        </div>
+                        <div>
+                            <span className='icon_profile bx bx-table'>Ngày tham gia : </span>
+                            <span> {InfoAccount.created_at}</span> 
+                        </div>
+                        <div>
+                            <span className='icon_profile bx bx-message-dots'>Phản hồi chat : </span> 
+                            <span> Thỉnh thoảng (Phản hồi chậm)</span>
+                        </div>
+                        <div>
+                            <span className='icon_profile bx bx-check-circle'>Đã cung cấp : </span> 
+                            <span className='icon_profile bx bxl-facebook-circle'></span> 
+                            <span className='icon_profile bx bxl-google-plus-circle'></span> 
+                            <span className='icon_profile bx bx-envelope'></span>
+                        </div>
+                    </div>
+                </div>
+                {user ? 
+                user[0].id = InfoAccount.id_user  ?
+                    <div>
+                        <Link to={`update_acc/${InfoAccount.id_user}`}>
+                            <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
+                        </Link>
+                        <Link to={`confirm_acc/${InfoAccount.id_user}`}>
+                            <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
+                        </Link>
+                    </div>
+                  : <div></div> : <div></div> }
             </div>
       
   )
