@@ -55,6 +55,7 @@ Route::delete('category/delete/{id}', [CategoryController::class, 'delete']);
 // Blog
 Route::get('blog/show', [BlogController::class, 'show']);
 Route::get('blog/show/{id}', [BlogController::class, 'show_id']);
+Route::get('blog/showUser/{id}', [BlogController::class, 'show_user']);
 Route::post('blog/create', [BlogController::class, 'created_at']);
 Route::put('blog/update/{id}', [BlogController::class, 'update']);
 Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
@@ -62,6 +63,7 @@ Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
 // post
 Route::get('post/show', [PostController::class, 'show']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
+Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);

@@ -27,6 +27,14 @@ class BlogController extends Controller
                 'data' => $data
             ]);
     }
+    public function show_user(Request $request, $id)
+    {
+        $data = Blog::all()->where('id_user', '=', $id);
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [

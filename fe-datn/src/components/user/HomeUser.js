@@ -206,15 +206,10 @@ function Home() {
                 <h2>Giới thiệu</h2>
                 <p>
                   .com cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.
-
-Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
-
-Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí.
-
-{" "}
+                  Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
+                  Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí. 
                 </p>
                 <a className="read_more" href="1">
-                  {" "}
                   Xem thêm
                 </a>
               </div>
@@ -223,7 +218,6 @@ Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ 
               <div className="about_img">
               <figure1> 
                   <img src={Slide1} width={700} height={500} alt="loading..." />
-                
                 </figure1>
               </div>
             </div>

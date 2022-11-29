@@ -7,6 +7,7 @@ use App\Models\furniture_post;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -22,6 +23,18 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);;
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function showUser(Request $request, $id)
+    {
+        $data = DB::table('post')
+            ->join('users', 'post.id_user', '=', 'users.id_user')
+            ->where('post.id_user', '=', $id)
+            ->orderBy('post.id_post', 'DESC')
+            ->get();
         return response()
             ->json([
                 'data' => $data
@@ -227,14 +240,6 @@ class PostController extends Controller
     public function show_status()
     {
         $data = Post::all()->where('status', '=', 1);
-        return response()
-            ->json([
-                'data' => $data
-            ]);
-    }
-    public function show_user(Request $request, $id)
-    {
-        $data = Post::all()->where('id_user', '=', $id);;
         return response()
             ->json([
                 'data' => $data
