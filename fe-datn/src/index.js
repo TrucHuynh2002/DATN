@@ -137,7 +137,7 @@ root.render(
         {/* chuyển hướng các trang trong setting */}
         <Route path="setting" element={<LayoutConfig />}>
           <Route path="" element={<Setting />} /> 
-          <Route path="footerConfig/1" element={<FooterConfig />} />        
+          <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
       </Route>

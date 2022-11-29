@@ -27,7 +27,7 @@ function FooterConfig() {
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.put("http://127.0.0.1:8000/api/config/update/1", editConfig);
+    const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
     // if(res.data.status === true){
     //     setAlert({
     //         err_list: res.data

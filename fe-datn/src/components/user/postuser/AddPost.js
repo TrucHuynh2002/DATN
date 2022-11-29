@@ -116,7 +116,8 @@ function AddPost() {
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
         // console.log(fileA)
-        setUploadImages(e.target.files)       
+        setUploadImages(e.target.files)
+                console.log(e.target.files)
         // Array.from(e.target.file).map(file => {
         //     // console.log(file)
         //     setAddPost({...uploadImages, file})

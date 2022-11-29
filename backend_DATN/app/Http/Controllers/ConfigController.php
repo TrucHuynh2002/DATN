@@ -98,32 +98,40 @@ class ConfigController extends Controller
         // }
         $config = ConfigModel::where('id_config','=','1')->first();
         //LOGO
+        // dd($request->file('logo'));
         $get_image_logo = $request->file('logo');
+        $name = '';
         if ($request->file('logo')) {
-                    $get_image_logo->getClientOriginalName();
+            foreach ($request->file('logo') as $img) {
+                    $get_image_logo = $img->getClientOriginalName();
                     $path = 'uploads/logo/';
                     $name_image_logo  = current(explode('.',$get_image_logo));
                     $name_image_logo = explode('.', $get_image_logo);
-                    $new_image_logo = $name_image_logo . rand(0, 99);
-                    $get_image_logo->move($path, $new_image_logo);
+                    $new_image_logo = $name_image_logo[0] . rand(0, 99);
+                    $name = $get_image_logo;
+                    $img->move($path, $new_image_logo);
                     $link_img_logo = env('APP_URL').'/uploads/logo/'.$new_image_logo;
                     $config->logo = $link_img_logo;
+                    
             // return response()->json([
             //     'img' => $name
             // ]);
+            }
         }
+        // dd($name);
         $config->sdt = $request->sdt;
         $config->email = $request->email;
         $config->title = $request->title;
         $config->address = $request->address;
         $config->introduce = $request->introduce;
+        // dd($request->sdt);
 
+        $config->save();
         //BANNER
         $get_image_banner = $request->file('banner');
         // $name = '';
         if ($request->file('banner')) {
-            foreach ($get_image_banner as $img) {
-                
+            foreach ($request->file('banner') as $img) {
                     $get_name_image_banner = $img->getClientOriginalName();
                     // $name = $get_name_image;
                     $path = 'uploads/banner/';
@@ -142,12 +150,13 @@ class ConfigController extends Controller
             //     'img' => $name
             // ]);
         }
-        $config->save();
+        
         return response()->json(
             [
                 'status' => true,
                 'data' => $config
             ]
         );
+        
     }
 }
