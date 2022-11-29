@@ -73,6 +73,7 @@ function Comment() {
                 Gửi nhận xét
               </button>
               {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} 
+              {alert.err_list.status === true && <span className="error">Bình luận thành công</span>} 
             </Form>
             : <Form>
                 <Form.Group className="form-group">

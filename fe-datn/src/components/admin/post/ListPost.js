@@ -40,13 +40,11 @@ function ListPost() {
             <Table bordered>
             <thead>
             <tr>
-                <th>#</th>
                 <th></th>
+                <th>ID</th>
                 <th>Tên bài viết</th>
                 <th>Trạng thái</th>
                 <th></th>
-          
-
             </tr>
             </thead>
             <tbody>
@@ -54,8 +52,8 @@ function ListPost() {
                 {currentPosts.map((post, index) => {
                     return (
                     <tr key={index}>
+                      <td></td>
                         <td>{index+1}</td>
-                        <td></td>
                         <td>{post.post_name}</td>
                         <td>
                           {post.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
