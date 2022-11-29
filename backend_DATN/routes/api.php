@@ -40,8 +40,8 @@ use App\Http\Controllers\FavoriteController;
 //     return $request->user();
 // });
 Route::get('config/1', [ConfigController::class, 'get_Config']);
-Route::post('config/', [ConfigController::class, 'create_Config']);
-Route::put('config/update/1', [ConfigController::class, 'update_Config']);
+// Route::post('config/', [ConfigController::class, 'create_Config']);
+Route::put('config/update', [ConfigController::class, 'update_Config']);
 
 // Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 // Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');

@@ -107,7 +107,7 @@ class PostController extends Controller
             }
         }
         $get_image = $request->file('img');
-        $name = '';
+        // $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 
