@@ -29,7 +29,6 @@ function ListLogo() {
             <th></th>
         </tr>
         </thead>
-      
         <tbody className="list-cate">                  
             <tr>
                 <td></td>
