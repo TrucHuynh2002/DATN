@@ -10,7 +10,7 @@ function ListPost() {
   const id_post = useParams();
   const [listPost, setListPost] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;

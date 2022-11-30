@@ -122,7 +122,7 @@ ul#menu-account li ul#sub {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2A3F54;
+    background-color: #0d3380;
 }
 
 .nav-top img{
@@ -181,7 +181,7 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color: #2A3F54;
+    background-color: #0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -206,7 +206,7 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color:#5AB9A8;
+    background-color:#0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -217,7 +217,7 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color:#2A3F54;
+    background-color:#0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -228,7 +228,7 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color: blue;
+    background-color: #0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -239,7 +239,7 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color: chocolate;
+    background-color: #0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -250,7 +250,29 @@ a:hover{
     color: white;
     font-weight: 700;
     font-size: 20px;
-    background-color: cornflowerblue;
+    background-color: #0d3380;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.roomtype{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #0d3380;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px black;
+}
+
+.contactlist{
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #0d3380;
     border-radius: 5px;
     display: flex;
     align-items: center;
