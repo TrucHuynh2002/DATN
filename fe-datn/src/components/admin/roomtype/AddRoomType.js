@@ -42,7 +42,7 @@ function AddRoomType() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm loại phòng</h1>
+            <h1 className="content_h1_admin">Thêm loại phòng</h1>
             <Form onSubmit={(e) => handleSumbit(e)}>
                 <Form.Group className="mb-3" controlId="name_room_type">
                     <Form.Label>Tên loại phòng</Form.Label>

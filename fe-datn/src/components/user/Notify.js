@@ -16,7 +16,7 @@ function Notify() {
     },[]);
      // danh sach notify
   const getDatafavorite = async () => {
-    const id_user = user[0].id;
+    const id_user = user ? user[0].id : "";
    const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
       setListnotifyfavorite(ress.data.data);
   };
@@ -28,7 +28,7 @@ function Notify() {
   };
   // danh sach notify interactive
   const getDataInteractive = async () => {
-    const id_user = user[0].id;
+    const id_user = user ? user[0].id : "";
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
       setListnotifyInteractive(res.data.data);
 };
@@ -60,9 +60,9 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 <div className="notifyInteractive">
                     {listnotifyInteractive.map((cate, index) => {
                             return (     
-                                <div className='row'>  
+                                <div className='row' key={index}>  
                                     <div className="content_notifyInteractive_img col-2">
-                                        <img className="img-fluid" src={cate.id_img_user} />
+                                        <img className="img-fluid" src={cate.id_img_user} alt="images" />
                                     </div>
                                     <div className="content_notifyInteractive col-10">
                                         <span className="notify_name">{cate.full_name}</span> vừa 

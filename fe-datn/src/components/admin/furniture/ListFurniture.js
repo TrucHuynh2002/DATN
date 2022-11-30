@@ -36,7 +36,7 @@ function ListFurniture() {
   return (
     <div className="content">
     <div className="add-post">
-      <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách nội thất</h1>
+      <h1 className="content_h1_admin">Danh sách nội thất</h1>
       <Link to="../add_furniture" className="btn btn-primary form-add">Thêm nội thất</Link>
       <Table bordered>
         <thead>
@@ -45,6 +45,7 @@ function ListFurniture() {
             <th>Tên nội thất</th>
             <th>Icons</th>
             <th></th>
+          
           </tr>
         </thead>
         <tbody className='list'>
@@ -58,6 +59,7 @@ function ListFurniture() {
                     <Link to={`../edit_furniture/${furn.id_furniture}`} className="bx bxs-edit btn-edit btn btn-primary">
                       {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                     </Link>
+                  
                     {/* <Link to="#"> */}
                       <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteFurniture(furn.id_furniture)}></Button>
                     {/* </Link> */}

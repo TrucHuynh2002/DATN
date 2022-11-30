@@ -58,7 +58,7 @@ function AddPost() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm bài viết</h1>
+            <h1 className="content_h1_admin">Thêm bài viết</h1>
             <Form onSubmit={(e) => handleSumbit(e)} enctype="">
             <Row>
                 <Col sm={6}>

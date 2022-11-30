@@ -35,8 +35,8 @@ function ListBlog() {
   return (
     <div className="content">
             <div className="add-post">
-              <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách blog</h1>
-              <Link to="../add_blog" className="btn btn-primary form-add">Thêm blog</Link>
+              <h1 className="content_h1_admin">Danh sách Blog</h1>
+              <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
               <Table bordered>
                 <thead>
                 <tr>
@@ -45,6 +45,7 @@ function ListBlog() {
                     <th>Từ khóa</th>
                     <th>Mô tả ngắn</th>
                     <th>Mô tả</th>
+            <th></th>
                 </tr>
                 </thead>
              
@@ -59,7 +60,7 @@ function ListBlog() {
                         <td>{blog.description	}</td>
                         <td>                            
                             <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
-                            </Link>                           
+                            </Link>           
                             <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(blog.id_blog)}></Button>
                         </td>
                       </tr>  

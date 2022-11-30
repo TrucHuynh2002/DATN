@@ -25,7 +25,6 @@ function ListRoomType() {
   // danh sach roomtype
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
-   console.log(res);
    setListRoomType(res.data.data);
   };
 
@@ -38,7 +37,7 @@ function ListRoomType() {
   return (
     <div className="content">
             <div className="add-post">
-              <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách loại phòng</h1>
+              <h1 className="content_h1_admin">Danh sách loại phòng</h1>
               <Link to="../add_roomtype" className="btn btn-primary form-add">Thêm loại phòng</Link>
               <Table bordered>
                 <thead>
@@ -56,13 +55,8 @@ function ListRoomType() {
                         <td>{index+1}</td>
                         <td>{room.name_room_type}</td>
                         <td>
-                            <Link to={`../edit_roomtype/${room.id_room_type}`} className="bx bxs-edit btn-edit btn btn-primary">
-                              {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
-                            </Link>
-                            {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
-                              deleteCategory(cate.id_category)}> */}
-                              <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteRoomType(room.id_room_type)}></Button>
-                            {/* </Link> */}
+                          <Link to={`../edit_roomtype/${room.id_room_type}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
+                          <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteRoomType(room.id_room_type)}></Button>
                         </td>
                       </tr>  
                     );     

@@ -7,6 +7,7 @@ function BannerConfig() {
   const [navConfig, setEditConfig] = useState({
     banner:[],
   });
+  const [listConfig, setListConfig] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi
   const [alert, setAlert] = useState({
@@ -59,19 +60,23 @@ useEffect(() => {
 
   // list config
   const getData = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/config");
+   const result = await axios.get("http://127.0.0.1:8000/api/config/banner");
   //  console.log(result);
-   setEditConfig(result.data.data);
+  setListConfig(result.data.data);
   };
   return (
     <>
       <Form.Group className="mb-3" controlId="slide" encType="multipart/form-data">
         <Form.Label>Slide</Form.Label>
-        
+        {listConfig.map((cate, index) => {
+          return (
+            <img src={cate.link_img_banner} alt="images" style={{width:'100px',height:'70px',margin:"20px"}}></img>
+          );
+        })}
         <Form.Control type="file" name="banner[]" multiple onChange={(e) => handleChangeImages(e)}/>
       </Form.Group>
       {/* Thông báo  */}
-      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.logo[0]}</span>}
+      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.banner[0]}</span>}
       {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
       <Button variant="primary" name="" className='' type="submit">Cập nhật</Button>
     </>

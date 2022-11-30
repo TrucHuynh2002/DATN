@@ -103,7 +103,7 @@ function Signin() {
                         </form>
                     </div>
                     <div className="col-md-6">
-                        <img src="https://bandon.vn/resize/1000x700/a-c/zc-1/f/uploads/posts/thiet-ke-nha-tro-dep-2020-bandon-0.jpg"/>
+                        <img src="https://bandon.vn/resize/1000x700/a-c/zc-1/f/uploads/posts/thiet-ke-nha-tro-dep-2020-bandon-0.jpg" alt='images'/>
                     </div>
                 </div>
             </div>

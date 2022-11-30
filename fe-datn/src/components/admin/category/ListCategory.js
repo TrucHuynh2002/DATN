@@ -25,7 +25,6 @@ function ListCategory() {
   // danh sach category
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/category/show');
-   console.log(res);
       setListCategory(res.data.data);
   };
 
@@ -38,7 +37,7 @@ function ListCategory() {
   return (
     <div className="content">
             <div className="add-post">
-              <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách danh mục</h1>
+              <h1 className="content_h1_admin">Danh sách danh mục</h1>
               <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
               <Table bordered>
                 <thead>
@@ -46,6 +45,8 @@ function ListCategory() {
                     <th>#</th>
                     <th>Tên danh mục</th>
                     <th></th>
+        
+
                 </tr>
                 </thead>
              
@@ -59,6 +60,7 @@ function ListCategory() {
                             <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
                               {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
+                         
                             {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
                               deleteCategory(cate.id_category)}> */}
                               <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCategory(cate.id_category)}></Button>

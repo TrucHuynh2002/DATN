@@ -22,7 +22,7 @@ function AddBlog() {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
     };
     
-    const handleSumbit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", addBlog);
         console.log(res);
@@ -42,8 +42,8 @@ function AddBlog() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm blog</h1>
-                <Form onSubmit={(e) => handleSumbit(e)}>
+            <h1 className="content_h1_admin">Thêm blog</h1>
+                <Form onSubmit={(e) => handleSubmit(e)}>
                     <Form.Group className="mb-3" controlId="name_blog">
                         <Form.Label>Tên blog</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"/>

@@ -180,7 +180,7 @@ function EditPost() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật bài viết</h1>
+            <h1 className="content_h1_admin">Cập nhật bài viết</h1>
             <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                 <Row>
                     <Col sm={6}>

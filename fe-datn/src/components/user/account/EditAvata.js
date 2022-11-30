@@ -14,7 +14,7 @@ function EditAvata() {
                                     <div className='col-md-12'>
                                     <Form>
                                         <Form.Group className="mb-3" controlId="logo">
-                                            <h3 style={{textAlign:"center", margin:"20px", fontSize:"20px"}}><b>Cập nhật ảnh đại diện</b></h3>
+                                            <h3 className="content_h1_admin"><b>Cập nhật ảnh đại diện</b></h3>
                                             {/* <Form.Label>Avata</Form.Label> */}
                                             <Form.Control type="file" name="avata" className=''/>
                                         </Form.Group>

@@ -19,6 +19,16 @@ class ConfigController extends Controller
             ]
         );
     }
+    public function get_Banner(Request $request)
+    {
+        $getBanner = banner_configModel::orderBy('id_banner_config', 'DESC')->get();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $getBanner
+            ]
+        );
+    }
 
     public function create_Config(Request $request)
     {
@@ -110,7 +120,7 @@ class ConfigController extends Controller
                     $new_image_logo = $name_image_logo[0] . rand(0, 99);
                     $name = $get_image_logo;
                     $img->move($path, $new_image_logo);
-                    $link_img_logo = env('APP_URL').'/uploads/logo/'.$new_image_logo;
+                    $link_img_logo = env('APP_URL').':8000/uploads/logo/'.$new_image_logo;
                     $config->logo = $link_img_logo;
                     
             // return response()->json([
@@ -141,8 +151,8 @@ class ConfigController extends Controller
                     $img->move($path, $new_image_banner);
                     // $imgPost->img = $new_image;
                     $imgbanner = new banner_configModel();
-                    $imgbanner->link_img_banner = env('APP_URL').'/uploads/banner/'.$new_image_banner;
-                    $imgbanner->id_config = 1; // khóa ngoại
+                    $imgbanner->link_img_banner = env('APP_URL').':8000/uploads/banner/'.$new_image_banner;
+                    // $imgbanner->id_config = 1; // khóa ngoại
                     $imgbanner->save();
                 
             }

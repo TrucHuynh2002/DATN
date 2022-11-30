@@ -40,6 +40,7 @@ use App\Http\Controllers\FavoriteController;
 //     return $request->user();
 // });
 Route::get('config', [ConfigController::class, 'get_Config']);
+Route::get('config/banner', [ConfigController::class, 'get_Banner']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
 

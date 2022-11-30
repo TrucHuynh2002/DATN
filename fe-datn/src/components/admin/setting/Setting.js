@@ -7,6 +7,7 @@ function Setting() {
   const [navConfig, setEditConfig] = useState({
     logo:[],
   });
+  const [listConfig, setListConfig] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi
   const [alert, setAlert] = useState({
@@ -60,8 +61,9 @@ useEffect(() => {
   // list config
   const getData = async () => {
    const result = await axios.get("http://127.0.0.1:8000/api/config");
-  //  console.log(result);
-   setEditConfig(result.data.data);
+   
+    setListConfig(result.data.data);
+    // console.log(setListConfig);
   };
 
 
@@ -70,7 +72,8 @@ useEffect(() => {
       <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="logo">
           <Form.Label>Logo</Form.Label>
-          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" style={{width:'100px',margin:"20px"}}></img>
+          <img src={listConfig.logo} alt="images" style={{width:'100px',height:'70px',margin:"20px"}}></img>
+          
           <Form.Control type="file" name="logo[]" multiple onChange={(e) => handleChangeImages(e)}/>
         </Form.Group>
         {/* Thông báo  */}

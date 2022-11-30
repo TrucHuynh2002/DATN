@@ -3,12 +3,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
-
 
 function EditCategory() {
 
-    // const navigate = useNavigate();
     const {id_category} = useParams();
     const [editCategory, setEditCategory] = useState({
         name_category: "",
@@ -22,7 +19,6 @@ function EditCategory() {
 
     const handleChange = (e) => {
         setEditCategory({ ...editCategory, [e.target.name]: e.target.value });
-        // setEditCategory(e.target.value);
     };
    
     const handleSumbit = async (e) => {
@@ -55,7 +51,7 @@ function EditCategory() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Cập nhật danh mục</h1>
+            <h1 className="content_h1_admin">Cập nhật danh mục</h1>
             <Form onSubmit={(e) => handleSumbit(e)}>
                 <Form.Group className="mb-3" controlId="name_category">
                     <Form.Label>Tên danh mục</Form.Label>

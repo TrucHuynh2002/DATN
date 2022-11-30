@@ -6,7 +6,7 @@ function NavAdmin() {
     <>
         <ul id="menu">
           <li><NavLink to="/">
-            <i class='bx bx-home'></i> Trang chủ</NavLink>
+            <i className='bx bx-home'></i> Trang chủ</NavLink>
           </li>
           <li><NavLink to="list_category"><i className='bx bx-category-alt'></i> Danh mục 
               <i className='bx bx-chevron-down'></i>

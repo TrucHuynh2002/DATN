@@ -43,7 +43,7 @@ function AddFurniture() {
   return (
     <div className="content">
         <div className="add-post">
-            <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thêm nội thất</h1>
+            <h1 className="content_h1_admin">Thêm nội thất</h1>
             <Form onSubmit={(e) => handleSumbit(e)}>
             <Row>
                 <Col sm={6}>

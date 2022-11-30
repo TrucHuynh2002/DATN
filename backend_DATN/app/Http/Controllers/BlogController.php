@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Blog as Blog;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -29,7 +30,11 @@ class BlogController extends Controller
     }
     public function show_user(Request $request, $id)
     {
-        $data = Blog::all()->where('id_user', '=', $id);
+        $data = DB::table('blog')
+            ->join('users', 'blog.id_user', '=', 'users.id_user')
+            ->where('blog.id_user', '=', $id)
+            ->orderBy('blog.id_blog', 'DESC')
+            ->get();
         return response()
             ->json([
                 'data' => $data

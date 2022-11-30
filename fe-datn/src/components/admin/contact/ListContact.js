@@ -38,7 +38,7 @@ function ListContact() {
   return (
     <div className="content">
     <div className="add-post">
-      <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách liên hệ</h1>
+      <h1 className="content_h1_admin">Danh sách liên hệ</h1>
       <Table bordered>
         <thead>
           <tr>
@@ -49,6 +49,8 @@ function ListContact() {
             <th>Số điện thoại</th>
             <th>Nội dung</th>
             <th>Trạng thái</th>
+            <th></th>
+
           </tr>
         </thead>
         <tbody className='list'>
@@ -62,11 +64,11 @@ function ListContact() {
                 <td>{contact.phone}</td>
                 <td>{contact.content}</td>
                 <td>
-                  {contact.status === 1 && <Button variant="outline-danger" disable name='' className="">Đã liên hệ</Button> }
+                  {contact.status === 1 && <Button variant="outline-danger" disable="true" name='' className="">Đã liên hệ</Button> }
                   {contact.status === 0 && <Button variant="outline-success" name='' className="">Chưa liên hệ</Button> }
                 </td>
                 {contact.status === 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-                {contact.status === 1 &&  <i className="bx bxs-edit btn-edit btn btn-primary"></i> }
+                {contact.status === 1 &&  <Link to="" className="bx bxs-edit btn-edit btn btn-primary"></Link> }
                
                 {/* <Button variant="outline-danger" name='' className="bx bx-edit" onClick={() => updatecontact(contact.id_contact)}></Button> */}
               
