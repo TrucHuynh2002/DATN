@@ -69,7 +69,7 @@ class ConfigController extends Controller
             ]
         );
     }
-    public function update_Config(Request $request, $id)
+    public function update_Config(Request $request)
     {
         // $validation = Validator::make($request->all(), [
         //     'sdt' => 'required||min:10|max:12|unique:config',
