@@ -43,10 +43,11 @@ import ListComment from './components/admin/comment/ListComment';
 // admin user
 import ListUser from './components/admin/user/ListUser';
 // admin setting
-import Setting from './components/admin/setting/Setting';
+import SettingConfig from './components/admin/setting/Setting';
 import BannerConfig from './components/admin/setting/BannerConfig';
 import FooterConfig from './components/admin/setting/FooterConfig';
 import EditBanner from './components/admin/setting/EditBanner';
+import ListLogo from './components/admin/setting/ListLogo';
 
 // link menu user
 import HomeUser from './components/user/HomeUser';
@@ -137,8 +138,9 @@ root.render(
         <Route path="list_user" element={<ListUser />} />
 
         {/* chuyển hướng các trang trong setting */}
-        <Route path="setting" element={<LayoutConfig />}>
-          <Route path="" element={<Setting />} /> 
+        <Route path="listlogo" element={<LayoutConfig />}>
+          <Route path="" element={<ListLogo />} /> 
+          <Route path="setting/:id_config" element={<SettingConfig />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
           <Route path="editBanner/:id_banner_config" element={<EditBanner />} />        

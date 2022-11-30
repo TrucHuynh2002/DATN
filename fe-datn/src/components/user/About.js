@@ -19,8 +19,7 @@ function About() {
     
       <div className="about1">
         <div className="container-fluid">
-          <div className="row">
-          
+          <div className="row">         
                <h3><b>NHATUI.COM sẽ giúp bạn tìm một phòng trọ ưng ý tại Thành Phố Cần Thơ một cách tiện lợi và nhanh chóng nhất và đặc biệt là tất cả đều miễn phí.
                </b></h3> 
               <p><br></br>Chúng tôi sẽ hỗ trợ bạn tìm những <b>NHÀ TRỌ GẦN TRƯỜNG ĐẠI HỌC CẦN THƠ</b> , 
