@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import Evaluate from '../Comment/Evaluate';
 
 function RoomDetail() {
@@ -9,25 +10,37 @@ function RoomDetail() {
     useEffect(() => {
         getData();
     },[]);
-
+    var showBtn = document.querySelector('#button_contact')
+    var hideBtn = document.querySelector('#button_phone')
+    const handleClick = (e) => {
+        showBtn.style.display = 'none'
+        hideBtn.style.display = 'block'
+         
+    };
+   
+    // hideBtn.addEventListener('click', () => {
+    //   div.style.display = 'none'
+    // })
     // danh sach post
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-    // console.log(res);
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+    console.log(res);
     setListPost(res.data.data);
     };
     
   return (
     <>
         <div className="pd-wrap">
-            <div className="container">
+            {listPost.map((a, index) => {
+               return(
+                <div className="container">
                 <div className="row">
                     <div className="col-md-6">
                         <div className="product-slider">
                             <div className="item" >
                                 <img className="img-fluid" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="#" />
                             </div>
-                           <div className="item item-img">
+                            <div className="item item-img">
                                 <div className="col-3">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
                                 </div>
@@ -40,14 +53,14 @@ function RoomDetail() {
                                 <div className="col-3">
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
                                 </div>
-                           </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="product-dtl">
                             <div className="product-info">
                                 <div className="product-name">
-                                    <h2>{listPost.post_name}</h2>
+                                    <h2>{a.post_name}</h2>
                                 </div>
                                 <div className="reviews-counter">
                                     <div className="rate">
@@ -66,19 +79,20 @@ function RoomDetail() {
                                         <span>3 đánh giá</span>
                                     </div>
                                 </div>
-                                <div className="product-price-discount">{listPost.room_price} vnd</div>
-                                <div className="product-price-discount">Số Lượng : {listPost.quantity}</div>
+                                <div className="product-price-discount">{a.room_price} vnd</div>
+                                <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
-                                    <p> {listPost.description_sort}</p>
+                                    <p> {a.description_sort}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="product-count">
-                            <Link to="" className="round-black-btn">
-                                Liên hệ ngay
-                            </Link>
-                           <br />
-                            <Link to="" className="round-black-btn">
+                            <Button onClick ={(e) => handleClick(e)}  className="round-black-btn">
+                                <span id="button_contact">Liên hệ ngay</span> 
+                                <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
+                            </Button>
+                            <br />
+                            <Link to={`../profile/${a.id_user}`} className="round-black-btn" >
                                 Thông tin người đăng
                             </Link>
                         </div>
@@ -105,7 +119,7 @@ function RoomDetail() {
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" >
-                        {listPost.description}
+                        {a.description}
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div className="review-heading">
@@ -115,7 +129,8 @@ function RoomDetail() {
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+               )})}
         </div>
 
     </>

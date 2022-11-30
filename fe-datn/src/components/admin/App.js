@@ -20,10 +20,10 @@ function App() {
           navigate('/');
         }
       }else{
-        navigate('/');
+        navigate('/Loi');
       }
     }else{
-      navigate('/');
+      navigate('/Loi');
     }
   }
   useEffect(() => {
