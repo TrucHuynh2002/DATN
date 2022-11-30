@@ -17,9 +17,9 @@ function Setting() {
 
   const handleChangeImages = (e) => {
       
-    let formData = new FormData();
-    if(e.target.files){
-    const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
+    // let formData = new FormData();
+    // if(e.target.files){
+    // const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
     // console.log(fileArray)
     setUploadImages(e.target.files)
     console.log(e.target.files);
@@ -27,17 +27,17 @@ function Setting() {
     //     // console.log(file)
     //     setAddPost({...uploadImages, file})
     // })
-}
+// }
 }
 
   const handleSumbit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
         // formData.append('img[]', Array(uploadImages));
-        for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('logo[]',uploadImages[i])
-        }
-    const res = await axios.put("http://127.0.0.1:8000/api/config/update", navConfig);
+      
+        formData.append('logo[]',uploadImages[0])
+        
+    const res = await axios.post("http://127.0.0.1:8000/api/config/update/logo/1?_method=PUT", formData);
     // console.log(res)
     if(res.data.status === true){
         setAlert({
@@ -71,7 +71,7 @@ useEffect(() => {
         <Form.Group className="mb-3" controlId="logo">
           <Form.Label>Logo</Form.Label>
           <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" style={{width:'100px',margin:"20px"}}></img>
-          <Form.Control type="file" name="logo[]" multiple onChange={(e) => handleChangeImages(e)}/>
+          <Form.Control type="file" name="logo" onChange={(e) => handleChangeImages(e)}/>
         </Form.Group>
         {/* Thông báo  */}
         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.logo[0]}</span>}

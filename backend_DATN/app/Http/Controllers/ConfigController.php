@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ConfigModel;
 use App\Models\banner_configModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class ConfigController extends Controller
@@ -96,28 +97,10 @@ class ConfigController extends Controller
         //             'status' => false
         //         ]);
         // }
-        $config = ConfigModel::where('id_config','=','1')->first();
+        $config = ConfigModel::where('id_config','=',$id)->first();
         //LOGO
         // dd($request->file('logo'));
-        $get_image_logo = $request->file('logo');
-        $name = '';
-        if ($request->file('logo')) {
-            foreach ($request->file('logo') as $img) {
-                    $get_image_logo = $img->getClientOriginalName();
-                    $path = 'uploads/logo/';
-                    $name_image_logo  = current(explode('.',$get_image_logo));
-                    $name_image_logo = explode('.', $get_image_logo);
-                    $new_image_logo = $name_image_logo[0] . rand(0, 99);
-                    $name = $get_image_logo;
-                    $img->move($path, $new_image_logo);
-                    $link_img_logo = env('APP_URL').'/uploads/logo/'.$new_image_logo;
-                    $config->logo = $link_img_logo;
-                    
-            // return response()->json([
-            //     'img' => $name
-            // ]);
-            }
-        }
+       
         // dd($name);
         $config->sdt = $request->sdt;
         $config->email = $request->email;
@@ -127,6 +110,55 @@ class ConfigController extends Controller
         // dd($request->sdt);
 
         $config->save();
+        
+        
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $config
+            ]
+        );
+        
+    }
+
+    public function Logo(Request $request,$id){
+        $get_image_logo = $request->file('logo');
+        // $name = '';
+        if ($request->file('logo')) {
+            foreach ($request->file('logo') as $img) {
+                    $get_image_logo = $img->getClientOriginalName();
+                    $path = 'uploads/logo/';
+                    $name_image_logo  = current(explode('.',$get_image_logo));
+                    $name_image_logo = explode('.', $get_image_logo);
+                    $new_image_logo = $name_image_logo[0] . rand(0, 99);
+                    // $name = $get_image_logo;
+                    $img->move($path, $new_image_logo);
+                    $link_img_logo = env('APP_URL').'/uploads/logo/'.$new_image_logo;
+                    $config = ConfigModel::find($id);
+                    if(File::exists($path.$config->name_logo)){
+                        File::delete($path.$config->name_logo);
+                    };
+                    $config->name_logo = $new_image_logo;
+                    $config->logo = $link_img_logo;
+                    $config->save();
+                    
+            // return response()->json([
+            //     'img' => $name
+            // ]);
+            }
+            return response()->json([
+                'status' => true,
+                'messsages' => 'Cập nhật thành công'
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'messsages' => 'Cập nhật false'
+            ]);
+        }
+    }
+
+    public function banner(Request $request){
         //BANNER
         $get_image_banner = $request->file('banner');
         // $name = '';
@@ -146,17 +178,15 @@ class ConfigController extends Controller
                     $imgbanner->save();
                 
             }
-            // return response()->json([
-            //     'img' => $name
-            // ]);
-        }
-        
-        return response()->json(
-            [
+            return response()->json([
                 'status' => true,
-                'data' => $config
-            ]
-        );
-        
+                'message' => "Cập nhật thành công"
+            ]);
+        }
+        return response()->json([
+            'status' => false,
+            'message' => "Cập nhật thất bại",
+            'data' => $request->file('banner')
+        ]);
     }
 }

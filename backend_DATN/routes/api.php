@@ -41,7 +41,7 @@ use App\Http\Controllers\FavoriteController;
 // });
 Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
-Route::put('config/update', [ConfigController::class, 'update_Config']);
+Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
@@ -113,6 +113,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
 Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 

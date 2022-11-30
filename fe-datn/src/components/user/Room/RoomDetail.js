@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+// import {FAsTAR} from "react-icons/fa";
 import Evaluate from '../Comment/Evaluate';
 
 function RoomDetail() {
@@ -112,6 +113,7 @@ function RoomDetail() {
                                 <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
                             </div>
                             <Evaluate />                    
+
                         </div>
                     </div>
                 </div>

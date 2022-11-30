@@ -6,10 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\Resetpassword;
+use App\Models\imgUserModel;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -182,6 +184,45 @@ class UserController extends Controller
         }
 
         // return redirect()->intended(RouteServiceProvider::HOME);
+    }
+    
+    public function userUpdateImg(Request $request,$id_user){
+        if($request->has('avatar')){
+            $img = $request->file('avatar');
+            foreach($img as $i) {
+                $get_name_image = $i->getClientOriginalName();
+            // $name = $get_name_image;
+                $path = 'uploads/images/';
+                // $name_image  = current(explode('.', $get_name_image));
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $i->move($path, $new_image);
+                // $imgPost->img = $new_image;
+                $imgUser = new imgUserModel();
+                $imgUser = $imgUser::where('id_user','=',$id_user)->first();
+                if(File::exists($path.$imgUser->name_img)){
+                    File::delete($path.$imgUser->name_img);
+
+                }
+                $imgUser->link_img_user = env('APP_URL').$path.$new_image;
+                $imgUser->name_img = $new_image;
+                $imgUser->type_img_user = $name_image[1]; // khóa ngoại
+                $imgUser->save();
+            }
+            return response()->json([
+                'status' => true,
+                'messages' => 'Cập nhật thành công',
+                'image' => $request->avatar
+            ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'messages' => 'Cập nhật thất bại',
+                'data' => $request->file('avatar')
+            ]);
+        };
+
+    
     }
     // public function UserForgotPassword(Request $request)
     // {

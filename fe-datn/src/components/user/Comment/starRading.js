@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form } from 'react-bootstrap';
 
-function starRading() {
+function starRading(zzz) {
   return (
         <div>
             <p className="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>

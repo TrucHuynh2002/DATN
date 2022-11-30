@@ -38,7 +38,10 @@ function Comment() {
             err_list: res.data
         });
     }
+
   };
+
+ 
   return (
     <div className="comment position-relative p-3 rounded-lg">
       <div className="align-items-center col-4">
