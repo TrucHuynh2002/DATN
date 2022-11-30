@@ -30,7 +30,7 @@ function RoomDetail() {
     };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
-        console.log(update)
+        // console.log(update)
     }
     
   return (
@@ -128,7 +128,7 @@ function RoomDetail() {
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div className="review-heading">
-                                <h1>Đánh giá Nồi chiên không dầu AVA AF358T 4 lít</h1>
+                                <h1 class="content_room_h1">Đánh giá {a.post_name}</h1>
                             </div>
                             <Evaluate />                    
                         </div>

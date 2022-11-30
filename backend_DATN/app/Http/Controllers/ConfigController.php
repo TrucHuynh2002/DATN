@@ -19,7 +19,7 @@ class ConfigController extends Controller
             ]
         );
     }
-    
+
 
     public function update_Config(Request $request)
     {
@@ -48,26 +48,26 @@ class ConfigController extends Controller
         //             'status' => false
         //         ]);
         // }
-        $config = ConfigModel::where('id_config','=','1')->first();
+        $config = ConfigModel::where('id_config', '=', '1')->first();
         //LOGO
         // dd($request->file('logo'));
         $get_image_logo = $request->file('logo');
         $name = '';
         if ($request->file('logo')) {
             foreach ($request->file('logo') as $img) {
-                    $get_image_logo = $img->getClientOriginalName();
-                    $path = 'uploads/logo/';
-                    $name_image_logo  = current(explode('.',$get_image_logo));
-                    $name_image_logo = explode('.', $get_image_logo);
-                    $new_image_logo = $name_image_logo[0] . rand(0, 99);
-                    $name = $get_image_logo;
-                    $img->move($path, $new_image_logo);
-                    $link_img_logo = env('APP_URL').':8000/uploads/logo/'.$new_image_logo;
-                    $config->logo = $link_img_logo;
-                    
-            // return response()->json([
-            //     'img' => $name
-            // ]);
+                $get_image_logo = $img->getClientOriginalName();
+                $path = 'uploads/logo/';
+                $name_image_logo  = current(explode('.', $get_image_logo));
+                $name_image_logo = explode('.', $get_image_logo);
+                $new_image_logo = $name_image_logo[0] . rand(0, 99);
+                $name = $get_image_logo;
+                $img->move($path, $new_image_logo);
+                $link_img_logo = env('APP_URL') . ':8000/uploads/logo/' . $new_image_logo;
+                $config->logo = $link_img_logo;
+
+                // return response()->json([
+                //     'img' => $name
+                // ]);
             }
         }
         // dd($name);
@@ -85,6 +85,5 @@ class ConfigController extends Controller
                 'data' => $config
             ]
         );
-       
     }
 }

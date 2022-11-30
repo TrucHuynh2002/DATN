@@ -933,6 +933,11 @@ margin-right: 5px;
 div>h1>.b_title{
     text-transform: uppercase;
 }
+.content_room_h1{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .avt_img{
     width:120px;
     height:120px;

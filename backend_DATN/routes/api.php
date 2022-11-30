@@ -112,6 +112,7 @@ Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/show/{id}', [CommentController::class, 'Comment_SelectOne']);
+Route::get('comment/showUserDes', [CommentController::class, 'CommentDes']);
 Route::post('comment/create', [CommentController::class, 'CommentAdd']);
 Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
@@ -137,6 +138,7 @@ Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
 // noify
 Route::get('notify/show/{id}', [NotifyController::class, 'getNotify_Favorite']);
 Route::get('notify_interactive/show/{id}', [NotifyController::class, 'getNotyfi_interactive']);
+Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment']);
 
 
 

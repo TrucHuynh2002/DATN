@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\NotifyModel as Notify;
 
 class NotifyController extends Controller
 {
@@ -32,5 +33,21 @@ class NotifyController extends Controller
             'status' => true,
             'data' => $get_notify_favorite
         ]);
+    }
+    public function NotifyAddComment(Request $request)
+    {
+        $t = new Notify();
+        $t->id_user_tow = $request->id_user_tow;
+        // $t->date = $request->date;
+        $t->status = 1;
+        $t->interaction = 'bình luận';
+        $t->id_user = $request->id_user;
+        $t->id_post = $request->id_post;
+        $t->save();
+        return response()
+            ->json([
+                'data' => $t,
+                'status' => true
+            ]);
     }
 }

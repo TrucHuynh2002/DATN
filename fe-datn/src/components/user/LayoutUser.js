@@ -6,13 +6,13 @@ import  { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function LayoutUser() {
-  useEffect(() => {
-    updateView();
-},[]);
-  const updateView = async () => {
-    const update= await axios.put(`http://127.0.0.1:8000/api/updateViewIndex/`);
-    // console.log(update)
-}
+//   useEffect(() => {
+//     updateView();
+// },[]);
+//   const updateView = async () => {
+//     const update= await axios.put(`http://127.0.0.1:8000/api/updateViewIndex/`);
+//     // console.log(update)
+// }
   return (
     <>
       <Header />

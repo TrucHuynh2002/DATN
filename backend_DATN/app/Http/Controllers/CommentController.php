@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CommentModel as CommentModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class CommentController extends Controller
 {
     public function CommentAdd(Request $request)
@@ -89,6 +90,16 @@ class CommentController extends Controller
     {
         $Title = "Các bình luận đã phê duyệt";
         $Contact_SelectApprove = CommentModel::where('status', '=', '1');
+        return response()
+            ->json([
+                'data' => $Contact_SelectApprove,
+                'status' => true
+            ]);
+    }
+    public function CommentDes()
+    {
+        // $Title = "Các bình luận đã phê duyệt";
+        $Contact_SelectApprove = CommentModel::orderBy('id_comment', 'desc')->first();
         return response()
             ->json([
                 'data' => $Contact_SelectApprove,
