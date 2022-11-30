@@ -68,16 +68,16 @@ function NavAdmin() {
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_user" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_user" className='sub-menu'>User</NavLink></li>
               <li><NavLink to="list_contact" className='sub-menu'>Liên hệ</NavLink></li>
             </ul>
           </li>
           <li><NavLink to="setting"><i className='bx bx-cog'></i> Cấu hình
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
-            <ul id="sub">             
+            {/* <ul id="sub">             
               <li><NavLink to="setting" className='sub-menu'>Cấu hình chung</NavLink></li>
-            </ul>
+            </ul> */}
           </li>
           <li><NavLink to=""><i className='bx bx-log-out-circle'></i> Quay lại</NavLink></li>
         </ul>

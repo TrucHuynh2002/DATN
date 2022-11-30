@@ -26,6 +26,7 @@ class Post extends Model
         'verification',
         'status',
         'quantity',
+        'view',
         'delete',
         'id_user',
         'id_roomType'

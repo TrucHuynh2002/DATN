@@ -16,5 +16,6 @@ class Blog extends Model
         'description_sort',
         'description',
         'id_user',
+        'view',
     ];
 }

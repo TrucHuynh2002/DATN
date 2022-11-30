@@ -25,6 +25,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ViewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,11 +40,12 @@ use App\Http\Controllers\FavoriteController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::put('updateViewIndex/', [ViewController::class, 'updateViewIndex']);
+
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::get('config/banner', [ConfigController::class, 'get_Banner']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
-
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
 Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
@@ -62,6 +64,7 @@ Route::get('blog/show/{id}', [BlogController::class, 'show_id']);
 Route::get('blog/showUser/{id}', [BlogController::class, 'show_user']);
 Route::post('blog/create', [BlogController::class, 'created_at']);
 Route::put('blog/update/{id}', [BlogController::class, 'update']);
+Route::put('blog/updateView/{id}', [BlogController::class, 'updateView']);
 Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
 
 // post
@@ -74,6 +77,7 @@ Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
 Route::get('post/status', [PostController::class, 'show_status']);
+Route::put('post/updateView/{id}', [PostController::class, 'updateView']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
 
 

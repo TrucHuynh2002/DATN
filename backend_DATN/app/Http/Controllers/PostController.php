@@ -113,6 +113,7 @@ class PostController extends Controller
         $Post->verification = 1;
         $Post->status = 1;
         $Post->delete = 0;
+        $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
@@ -120,8 +121,6 @@ class PostController extends Controller
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             $array_fur = explode(',', $request->id_furniture);
-
-
             foreach ($array_fur as $furniture) {
                 $furniture_post = new furniture_post();
                 $furniture_post->id_post = $Get_Post->id_post;
@@ -263,7 +262,19 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-
+    public function updateView(Request $request, $id)
+    {
+        $Post = Post::all()->where('id_post', '=', $id);
+        foreach ($Post as $val) {
+            $view = $val['view'];
+        };
+        $update = Post::where('id_post', '=', $id)->update(['view' => $view + 1]);
+        return response()
+            ->json([
+                'data' =>  $update,
+                'status' => true
+            ]);
+    }
     public function delete(Request $request, $id)
     {
 
