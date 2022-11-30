@@ -51,7 +51,6 @@ function BannerConfig() {
             err_list: res.data
         });
     }
-    // navigate("../list_category");
 };
 
 useEffect(() => {
