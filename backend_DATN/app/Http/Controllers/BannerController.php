@@ -16,6 +16,16 @@ class BannerController extends Controller
             ]
         );
     }
+    public function get_Banner_id(Request $request,$id)
+    {
+        $getBannerId = banner_configModel::find($id);
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $getBannerId
+            ]
+        );
+    }
     public function update_Banner(Request $request,$id){
          //BANNER
          $imgbanner = banner_configModel::find($id);

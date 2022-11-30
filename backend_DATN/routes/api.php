@@ -44,6 +44,7 @@ Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
 
 Route::get('banner/show', [BannerController::class, 'get_Banner']);
+Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
 
 

@@ -1,20 +1,24 @@
 import React from 'react'
 import { Button, Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-function Setting() {
 
-  const [navConfig, setEditConfig] = useState({
-    logo:[],
+function EditBanner() {
+
+  const {id_banner_config} = useParams();
+  const [listBanner, setListBanner] = useState({
+    banner:[],
+    link_img_banner:"",
   });
-  const [listConfig, setListConfig] = useState([]);
+
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi
   const [alert, setAlert] = useState({
     err_list: {},
 });
 
-  const {logo} = navConfig;
+  const {banner, link_img_banner} = listBanner;
 
   const handleChangeImages = (e) => {
       
@@ -36,9 +40,9 @@ function Setting() {
     let formData = new FormData();
         // formData.append('img[]', Array(uploadImages));
         for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('logo[]',uploadImages[i])
+            formData.append('banner[]',uploadImages[i])
         }
-    const res = await axios.put("http://127.0.0.1:8000/api/config/update", navConfig);
+    const res = await axios.put(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}`, listBanner);
     // console.log(res)
     if(res.data.status === true){
         setAlert({
@@ -51,37 +55,32 @@ function Setting() {
             err_list: res.data
         });
     }
-    // navigate("../list_category");
 };
 
 useEffect(() => {
   getData();
 },[]);
 
-  // list config
+  // list banner
   const getData = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/config");
-   
-    setListConfig(result.data.data);
-    // console.log(setListConfig);
+   const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
+  //  console.log(result);
+  setListBanner(result.data.data);
   };
 
-
   return (
-    <>     
-      <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
-        <Form.Group className="mb-3" controlId="logo">
-          <img src={listConfig.logo} alt="images" style={{width:'100px',height:'70px',margin:"20px"}}></img>
-          
-          <Form.Control type="file" name="logo[]" multiple onChange={(e) => handleChangeImages(e)}/>
-        </Form.Group>
-        {/* Thông báo  */}
-        {alert.err_list.status === false && <span className="error">{alert.err_list.messages.logo[0]}</span>}
-        {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
-        <Button variant="primary" className='' name="" type="submit">Cập nhật</Button>   
-      </Form>  
-    </> 
+    <>
+     <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
+      <Form.Group className="mb-3" controlId="slide">
+        <Form.Control type="file" name="banner[]" multiple onChange={(e) => handleChangeImages(e)}/>
+      </Form.Group>
+      {/* Thông báo  */}
+      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.banner[0]}</span>}
+      {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+      <Button variant="primary" name="" className='' type="submit">Cập nhật</Button>
+      </Form>
+    </>
   )
 }
 
-export default Setting
+export default EditBanner
