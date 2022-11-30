@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
 import axios from 'axios'
 import Pagination from './Pagination';
+import PaginationBlog from './PaginationBlog';
 
 import Slide1 from '../../images/sl01.png';
 import Slide2 from '../../images/sl02.png';
@@ -22,13 +23,22 @@ function Home() {
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
 
+  // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-  const currentBlog = listBlog.slice(firstPageIndex, lastPageIndex);
+
+  // phan trang blog
+  const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
+  const [ blogPerPage, setBlogPerPage ] =useState(9);
+
+  const lastPageIndexBlog = currentPageBlog * blogPerPage;
+  const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
+  const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
+
 
   useEffect(() => {
     getData();
@@ -233,7 +243,7 @@ function Home() {
           <div className="row">
             {currentPosts.map((post, index) => {
               return (     
-                <div className="col-md-4 col-sm-6">
+                <div className="col-md-4 col-sm-6" key={index}>
                     <div id="serv_hover" className="room">
                         <div className="room_img">
                             <Figure><img src={RoomNew} alt="#" /></Figure>
@@ -340,7 +350,7 @@ function Home() {
           <div className="row">
             {currentBlog.map((blog, index) => {
               return (
-                <div className="col-md-4">
+                <div className="col-md-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
                       <Figure>
@@ -361,10 +371,10 @@ function Home() {
           </div>
         </div>
         {/* phan trang */}
-        <Pagination totalPost={listBlog.length} 
-            postsPerPage={postsPerPage} 
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage} />
+        <PaginationBlog totalBlog={listBlog.length}
+            blogPerPage={blogPerPage} 
+            setCurrentPageBlog={setCurrentPageBlog}
+            currentPageBlog={currentPageBlog} />
       </div>
       {/* end blog */}     
     </>

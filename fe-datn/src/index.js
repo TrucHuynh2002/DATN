@@ -43,9 +43,11 @@ import ListComment from './components/admin/comment/ListComment';
 // admin user
 import ListUser from './components/admin/user/ListUser';
 // admin setting
-import Setting from './components/admin/setting/Setting';
+import SettingConfig from './components/admin/setting/Setting';
 import BannerConfig from './components/admin/setting/BannerConfig';
 import FooterConfig from './components/admin/setting/FooterConfig';
+import EditBanner from './components/admin/setting/EditBanner';
+import ListLogo from './components/admin/setting/ListLogo';
 
 // link menu user
 import HomeUser from './components/user/HomeUser';
@@ -61,9 +63,11 @@ import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
+import Loi from './components/loi_404';
 
 // postuser
-import AddPostUser from './components/user/postuser/AddPost';
+import AddPostUser from './components/user/postuser/App';
+import EditPostUser from './components/user/postuser/EditPost';
 // user
 import Profile from './components/user/account/Profile';
 import EditAvata from './components/user/account/EditAvata';
@@ -86,17 +90,17 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail/:id_post" element={<RoomDetail />} />
-        <Route path="addpost" element={<AddPostUser />} />
+        <Route path="addpost" element={<AddPostUser /> } />
+        <Route path="editpost/:id_post" element={<EditPostUser />} />
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
         <Route path="resetpw" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_post" element={<Profile />} />
-          <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
-          <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} />   
-          
         </Route>
+        <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
+        <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -134,12 +138,15 @@ root.render(
         <Route path="list_user" element={<ListUser />} />
 
         {/* chuyển hướng các trang trong setting */}
-        <Route path="setting" element={<LayoutConfig />}>
-          <Route path="" element={<Setting />} /> 
+        <Route path="listlogo" element={<LayoutConfig />}>
+          <Route path="" element={<ListLogo />} /> 
+          <Route path="setting/:id_config" element={<SettingConfig />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
+          <Route path="editBanner/:id_banner_config" element={<EditBanner />} />        
         </Route>
       </Route>
+      <Route path="Loi" element={<Loi />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -930,6 +930,13 @@ height: 30px;
 margin-right: 5px;
 
 }
+div>h1>.b_title{
+    text-transform: uppercase;
+}
+.content_room_h1{
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 .avt_img{
     width:120px;
@@ -938,7 +945,9 @@ margin-right: 5px;
 }
 /** end blog section **/
 
-
+.No_user____{
+    margin-top:20px;
+}
 /** contact section **/
 
 .contact,.signin,.login {

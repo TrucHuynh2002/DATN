@@ -2,43 +2,48 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import PaginationBlog from '../PaginationBlog';
 
 import axios from 'axios'
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
 
     const {id_post} = useParams();
-    const [listblog, setlistblog] = useState([]);
+    const [listBlog, setListBlog] = useState([]);
+    const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
+    const [ blogPerPage, setBlogPerPage ] =useState(3);
+
+    const lastPageIndexBlog = currentPageBlog * blogPerPage;
+    const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
+    const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
+
     useEffect(() => {
         getData();
     },[]);
 
     // danh sach blogdetail
     const getData = async () => {
-        // console.log(id_post)
     const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_post}`);
-    // console.log(res);
-    setlistblog(res.data.data);
+    setListBlog(res.data.data);
     };
+
   return (
     <div >
-        <h1><b>Bài viết đã đăng</b></h1>
+        <h1><b className="b_title">Bài viết đã đăng</b></h1>
         <hr></hr>
         <div className='row'>
             <>
-            {!listblog ? 
-            <div>
-            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
+            {!currentBlog ? 
+            <div className="text-center No_user____">
+                <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
                 <p>Chưa đăng bài nào </p>
-            
             </div>
-                : 
-                listblog.map((a, index) => {    
+                : currentBlog.map((a, index) => {    
                     return (     
                     <div className='row'>
                         <div className='col-md-2 text-center' >
                             <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
-                            className=" avt_img"/>                        
+                            className="avt_img"/>                        
                         </div>
                         <div className='col-md-10'>            
                             <div className='account_content____'>
@@ -60,9 +65,13 @@ function Bloged() {
                         </div>
                     </div>
                     )
-                    }) 
-                }
+                    })}
             </>
+            {/* phan trang */}
+            <PaginationBlog totalBlog={listBlog.length}
+            blogPerPage={blogPerPage} 
+            setCurrentPageBlog={setCurrentPageBlog}
+            currentPageBlog={currentPageBlog} />
         </div>
     </div>
   )

@@ -81,7 +81,7 @@ class UserController extends Controller
         $t->phone = $request->phone;
         $t->address = $request->address;
         $t->role = $request->role;
-        $t->id_img_user = $request->id_img_user;
+        $t->id_img_user = 1;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
         $t->save();

@@ -10,7 +10,7 @@ function ListContact() {
   const id_contact = useParams();
   const [listContact, setListContact] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
@@ -64,11 +64,11 @@ function ListContact() {
                 <td>{contact.phone}</td>
                 <td>{contact.content}</td>
                 <td>
-                  {contact.status === 1 && <Button variant="outline-danger" disable name='' className="">Đã liên hệ</Button> }
+                  {contact.status === 1 && <Button variant="outline-danger" disable="true" name='' className="">Đã liên hệ</Button> }
                   {contact.status === 0 && <Button variant="outline-success" name='' className="">Chưa liên hệ</Button> }
                 </td>
                 {contact.status === 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-                {contact.status === 1 &&  <i className="bx bxs-edit btn-edit btn btn-primary"></i> }
+                {contact.status === 1 &&  <Link to="" className="bx bxs-edit btn-edit btn btn-primary"></Link> }
                
                 {/* <Button variant="outline-danger" name='' className="bx bx-edit" onClick={() => updatecontact(contact.id_contact)}></Button> */}
               

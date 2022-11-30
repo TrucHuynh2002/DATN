@@ -1,5 +1,6 @@
 import React from 'react'
 import Slide1 from '../../images/about1.jpg';
+import Figure from 'react-bootstrap/Figure';
 
 function About() {
   return (
@@ -18,8 +19,7 @@ function About() {
     
       <div className="about1">
         <div className="container-fluid">
-          <div className="row">
-          
+          <div className="row">         
                <h3><b>NHATUI.COM sẽ giúp bạn tìm một phòng trọ ưng ý tại Thành Phố Cần Thơ một cách tiện lợi và nhanh chóng nhất và đặc biệt là tất cả đều miễn phí.
                </b></h3> 
               <p><br></br>Chúng tôi sẽ hỗ trợ bạn tìm những <b>NHÀ TRỌ GẦN TRƯỜNG ĐẠI HỌC CẦN THƠ</b> , 
@@ -63,10 +63,10 @@ function About() {
               Thuê phòng trọ Trung Tâm Cần Thơ giá gần 3 triệu
                 </b>
                 </p>
-              <center><figure> <br></br><br></br>
+              <center><Figure> <br></br><br></br>
                   <img src={Slide1} alt="loading..." />
-                  <figcaption id="caption-attachment-1689" class="wp-caption-text">Nhà trọ Trung Tâm Cần Thơ</figcaption>
-                </figure></center>
+                  <figcaption id="caption-attachment-1689" className="wp-caption-text">Nhà trọ Trung Tâm Cần Thơ</figcaption>
+                </Figure></center>
                 <p>
               <b>  Tìm phòng trọ Trung Tâm Cần Thơ  </b> luôn là việc gặp nhiều khó khăn, đặc biệt là các bạn sinh viên lần đầu lên các thành phố lớn.
                  Ở khu vực Trung Tâm Ninh Kiều Cần Thơ bạn có thể cân nhắc các loại hình như thuê phòng ở ghép, thuê ký túc xá hay thuê chung cư mini.

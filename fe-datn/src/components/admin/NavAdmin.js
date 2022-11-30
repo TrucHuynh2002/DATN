@@ -6,7 +6,7 @@ function NavAdmin() {
     <>
         <ul id="menu">
           <li><NavLink to="/">
-            <i class='bx bx-home'></i> Trang chủ</NavLink>
+            <i className='bx bx-home'></i> Trang chủ</NavLink>
           </li>
           <li><NavLink to="list_category"><i className='bx bx-category-alt'></i> Danh mục 
               <i className='bx bx-chevron-down'></i>
@@ -47,16 +47,7 @@ function NavAdmin() {
               <li><NavLink to="list_furniture" className='sub-menu'>Danh sách</NavLink></li>
               <li><NavLink to="add_furniture" className='sub-menu'>Thêm</NavLink></li>
             </ul>
-          </li>
-          {/* <li><NavLink to="list_post"><i class='bx bx-notepad'></i> Bài đăng
-                <i class='bx bx-chevron-down'></i>
-              </NavLink>
-            <ul id="sub">             
-              <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li> 
-              <li><NavLink to="add_post" className='sub-menu'>Thêm</NavLink></li>
-            </ul>
-          </li> */}
-          
+          </li>         
           <li><NavLink to="list_comment"><i className='bx bx-message-dots'></i> Bình luận
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
@@ -68,15 +59,15 @@ function NavAdmin() {
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_user" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_user" className='sub-menu'>User</NavLink></li>
               <li><NavLink to="list_contact" className='sub-menu'>Liên hệ</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="setting"><i className='bx bx-cog'></i> Cấu hình
+          <li><NavLink to="listlogo"><i className='bx bx-cog'></i> Cấu hình
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="setting" className='sub-menu'>Cấu hình chung</NavLink></li>
+              <li><NavLink to="listlogo" className='sub-menu'>Cấu hình chung</NavLink></li>
             </ul>
           </li>
           <li><NavLink to=""><i className='bx bx-log-out-circle'></i> Quay lại</NavLink></li>

@@ -107,7 +107,6 @@ function Contact() {
                       placeholder="Nội dung"
                       type="text"
                       name='content'
-                      defaultValue={"Message"}
                       value={content}
                       onChange={(e) => handleChange(e)}/>
                       {alert.err_list.status === false && <span className="error">{alert.err_list.messages.content[0]}</span>}

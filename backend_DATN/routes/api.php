@@ -21,10 +21,12 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ViewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,10 +45,15 @@ Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 
+Route::get('config', [ConfigController::class, 'get_Config']);
+Route::put('config/update', [ConfigController::class, 'update_Config']);
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
 Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
 
+Route::get('banner/show', [BannerController::class, 'get_Banner']);
+Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
+Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
 // category
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
@@ -61,17 +68,20 @@ Route::get('blog/show/{id}', [BlogController::class, 'show_id']);
 Route::get('blog/showUser/{id}', [BlogController::class, 'show_user']);
 Route::post('blog/create', [BlogController::class, 'created_at']);
 Route::put('blog/update/{id}', [BlogController::class, 'update']);
+Route::put('blog/updateView/{id}', [BlogController::class, 'updateView']);
 Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
+Route::get('post/showPost/{id}', [PostController::class, 'showPost']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
 Route::get('post/status', [PostController::class, 'show_status']);
+Route::put('post/updateView/{id}', [PostController::class, 'updateView']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
 
 
@@ -104,6 +114,7 @@ Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/show/{id}', [CommentController::class, 'Comment_SelectOne']);
+Route::get('comment/showUserDes', [CommentController::class, 'CommentDes']);
 Route::post('comment/create', [CommentController::class, 'CommentAdd']);
 Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
@@ -130,6 +141,7 @@ Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
 // noify
 Route::get('notify/show/{id}', [NotifyController::class, 'getNotify_Favorite']);
 Route::get('notify_interactive/show/{id}', [NotifyController::class, 'getNotyfi_interactive']);
+Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment']);
 
 
 

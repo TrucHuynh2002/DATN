@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import { useEffect} from 'react';
+
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import StarRading from './starRading';
@@ -8,17 +10,35 @@ import axios from 'axios';
 function Comment() {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = useParams();
+  // list comment 
+  const [listCmt, setListCmt] = useState([]);
+  useEffect(() => {
+    getData();
+  },[]);
+  const getData = async () => {
+    const resss = await axios.get('http://127.0.0.1:8000/api/comment/showUserDes');
+       setListCmt(resss.data.data);
+   };
+   // thêm chuông
+   const [addNotify, setNotify] = useState({
+    id_user_tow: "",
+    id_user: user ? user[0].id : "",
+    id_post: id.id_post,
+  });
 
      // thêm comment
   const [addComment, setAddComment] = useState({
     content: "",
-    id_user: user[0].id,
+    id_user: user ? user[0].id : "",
     id_post: id.id_post,
   });
   const [alert, setAlert] = useState({
       err_list: {},
   });
-  const {content,id_user,id_post} = addComment;
+  // {listCmt.map((a, index) => {
+  //   const {id_user_tow} = a.id_user  = addNotify
+  //  })}
+  const {content} = addComment;
   const handleChange = (e) => {
       setAddComment({ ...addComment, [e.target.name]: e.target.value});
   };
@@ -26,9 +46,10 @@ function Comment() {
   const handleSumbit = async (e) => {
     e.preventDefault();
     const a = addComment;
-    console.log(a);
+    // console.log(a);
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
     if(res.data.status === true){
+      // const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
         setAlert({
             err_list: res.data
         });
@@ -48,7 +69,8 @@ function Comment() {
          <StarRading />
       </div>
          <div className="col-4">
-          <Form onSubmit={(e) => handleSumbit(e)}>
+         {user ? 
+          <Form className="" onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">
                 <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
                 <Form.Control
@@ -56,7 +78,7 @@ function Comment() {
                 value={user[0].email}
                   className="form-control form-control-sm"
                   placeholder="Vui lòng đăng nhập đê bình luận"
-                  disabled
+                  disabled="true"
                 />
               </Form.Group>
               <Form.Group className="form-group">
@@ -70,11 +92,22 @@ function Comment() {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
-              <button type="submit" className="btn btn-warning position-absolute">
+              <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
               {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} 
+              {alert.err_list.status === true && <span className="error">Bình luận thành công</span>} 
             </Form>
+            : <Form>
+                <Form.Group className="form-group">
+                  <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
+                  <Form.Control name="email" className="form-control form-control-sm" placeholder="Vui lòng đăng nhập đê bình luận" disabled />
+                </Form.Group>
+                <Form.Group className="form-group">
+                  <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
+                  <textarea name="content" className="form-control" rows={3} placeholder="Vui lòng đăng nhập đê bình luận" value={content} disabled onChange={(e) => handleChange(e)} />
+                </Form.Group>
+              </Form> }
           </div>
         </div>
   )

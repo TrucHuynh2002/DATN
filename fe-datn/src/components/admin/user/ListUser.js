@@ -11,7 +11,7 @@ function ListUser() {
 
   const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listUser.slice(firstPageIndex, lastPageIndex);
@@ -35,7 +35,7 @@ function ListUser() {
   return (
     <div className="content">
     <div className="add-post">
-      <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Danh sách người dùng</h1>
+      <h1 className="content_h1_admin">Danh sách người dùng</h1>
       <Table bordered>
         <thead>
           <tr>

@@ -1,8 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import LogoFooter from '../../images/logo-ft.png';
 
 function Footer() {
+
+  const [listConfig, setListConfig] = useState([]);
+
+  useEffect(() => {
+    getData();
+  },[]);
+
+  // danh sach category
+  const getData = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/config');
+    setListConfig(res.data.data);
+  };
+
   return (
     <>
       <footer>
@@ -12,22 +27,20 @@ function Footer() {
               <div className="col-md-3">
                 <img src={LogoFooter} alt="" width="80%" />
                 <h4 style={{ textAlign: "center" }}>
-                  Hệ thống tìm nhà trọ tốt nhất dành cho sinh viên
+                  {listConfig.title}
                 </h4>
               </div>
               <div className="col-md-3">
                 <h3>Thông tin liên hệ</h3>
                 <ul className="conta">
                   <li>
-                    <span style={{ fontWeight: 750 }}> Địa chỉ:</span> 288 Nguyễn Văn
-                    Linh, phường An Khánh, quận Ninh Kiều, thành phố Cần Thơ
+                    <span style={{ fontWeight: 750 }}> Địa chỉ:</span> {listConfig.address}
                   </li>
                   <li>
-                    <span style={{ fontWeight: 750 }}>Hotline:</span>
-                    <Link to="tel:0368503413"> 036 850 3413</Link>
+                    <span style={{ fontWeight: 750 }}>Hotline: </span> {listConfig.sdt}
                   </li>
                   <li>
-                    <span style={{ fontWeight: 750 }}>Email:</span> timtronhatui@gmail.com
+                    <span style={{ fontWeight: 750 }}>Email: </span>{listConfig.email}
                   </li>
                 </ul>
               </div>

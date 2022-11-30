@@ -2,11 +2,19 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import Pagination from '../Pagination';
+
 function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_post} = useParams();
-    const [listpost, setListpost] = useState([]);
+    const [listPost, setListPost] = useState([]);
+    const [ currentPage, setCurrentPage ] = useState(1);
+    const [ postsPerPage, setPostsPerPage ] =useState(3);
+
+    const lastPageIndex = currentPage * postsPerPage;
+    const firstPageIndex = lastPageIndex - postsPerPage;
+    const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
 
     useEffect(() => {
         getData();
@@ -14,27 +22,24 @@ function Posted() {
 
     // danh sach Posted
     const getData = async () => {
-        // console.log(id_post)
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_post}`);
-    // console.log(res);
-    setListpost(res.data.data);
+    setListPost(res.data.data);
     };
 
   return (
     <div>
-    <h1><b>Tin đã đăng</b></h1>
+    <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
     <div className='row'>
     <>
-        {!listpost ?
-        <div>
-        <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" />
-              <p>Chưa đăng bài nào </p>
-      </div>
-         : 
-         listpost.map((post, index) => {
+        {!currentPosts ?
+        <div className="text-center No_user____">
+            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
+            <p>Chưa đăng bài nào </p>
+        </div>
+         : currentPosts.map((post, index) => {
             return (    
-            <div className='row'>
+            <div className='row' key={index}>
                 <div className='col-md-2 text-center'>
                     <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0'
                      alt='' className=" avt_img" />                        
@@ -51,17 +56,22 @@ function Posted() {
                     {user ? 
                         user[0].id = post.id_user  ?
                             <div className='button-fdp row'>
-                                <Link className='button-fix' >Sửa</Link>
+                                <Link to={`../editpost/${post.id_post}`} className='button-fix' >Sửa</Link>
                                 <Link className='button-del' >Xóa</Link>
                             </div>
                             : <div></div> 
                         : <div></div> }
-                    <hr></hr>
+                    <hr></hr>                
                 </div>
             </div>
-           )  })
+           )})
     }
     </>
+        {/* phan trang */}
+        <Pagination totalPost={listPost.length} 
+        postsPerPage={postsPerPage} 
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage} />
         </div>
     </div>
   )

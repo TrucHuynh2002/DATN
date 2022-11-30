@@ -1,6 +1,7 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap';
+import React from 'react';
 import { useEffect, useState } from 'react';
+import { Table, Button, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function BannerConfig() {

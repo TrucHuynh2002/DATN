@@ -12,7 +12,7 @@ function ListCategory() {
   // phan trang
   const [listCategory, setListCategory] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;

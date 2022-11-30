@@ -10,7 +10,7 @@ function ListPost() {
   const id_post = useParams();
   const [listPost, setListPost] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
@@ -40,13 +40,11 @@ function ListPost() {
             <Table bordered>
             <thead>
             <tr>
-                <th>#</th>
                 <th></th>
+                <th>ID</th>
                 <th>Tên bài viết</th>
                 <th>Trạng thái</th>
                 <th></th>
-          
-
             </tr>
             </thead>
             <tbody>
@@ -54,11 +52,11 @@ function ListPost() {
                 {currentPosts.map((post, index) => {
                     return (
                     <tr key={index}>
+                      <td></td>
                         <td>{index+1}</td>
-                        <td></td>
                         <td>{post.post_name}</td>
                         <td>
-                          {post.status === 1 && <Button variant="outline-success" disable name='' className="">Đã duyệt</Button> }
+                          {post.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
                           {post.status === 0 && <Button variant="outline-danger" name='' className="">Phê duyệt</Button> }
                        
                           <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>

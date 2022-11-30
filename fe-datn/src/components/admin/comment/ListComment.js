@@ -10,7 +10,7 @@ function ListComment() {
   const id_comment = useParams();
   const [listCmt, setListCmt] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
 
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
@@ -62,7 +62,6 @@ function ListComment() {
                   <Link to="#">
                     <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
                   </Link>
-                  {/* <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCmt(cmt.id_comment)}></Button> */}
                 </td>
               </tr>
             );

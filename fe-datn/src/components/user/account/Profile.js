@@ -11,7 +11,7 @@ function Profile() {
                 <div className="row">
                     <div className="col-md-12">
                         <div className="title">
-                            <h2>Thông tin cá nhân</h2>
+                            <h2 className="b_title">Thông tin cá nhân</h2>
                         </div>
                     </div>
                 </div>

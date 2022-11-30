@@ -6,7 +6,6 @@ import Comment from './Comment';
 import axios from 'axios';
 
 function Evaluate() {
-  var user = JSON.parse(localStorage.getItem("user"));
   const {id_post} = useParams();
   const [listPost, setListPost] = useState([]);
   useEffect(() => {
