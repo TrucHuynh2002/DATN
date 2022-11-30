@@ -68,6 +68,7 @@ Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
 Route::get('post/show', [PostController::class, 'show']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
+Route::get('post/showPost/{id}', [PostController::class, 'showPost']);
 Route::post('post/create', [PostController::class, 'created_at']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);

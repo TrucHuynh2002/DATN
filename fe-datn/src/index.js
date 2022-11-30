@@ -61,6 +61,7 @@ import Login from './components/user/Login';
 import Signin from './components/user/Signin';
 import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
+import Loi from './components/loi_404';
 
 // postuser
 import AddPostUser from './components/user/postuser/App';
@@ -141,6 +142,7 @@ root.render(
           <Route path="bannerConfig" element={<BannerConfig />} />        
         </Route>
       </Route>
+      <Route path="Loi" element={<Loi />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

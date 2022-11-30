@@ -12,7 +12,6 @@ class Post extends Model
     // public $timestamps = true;
     protected $fillable = [
         'post_name',
-        'phone',
         'description_sort',
         'description',
         'meta_keywords',
@@ -31,5 +30,4 @@ class Post extends Model
         'id_user',
         'id_roomType'
     ];
-    
 }

@@ -40,12 +40,23 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
+    public function showPost(Request $request, $id)
+    {
+        $data = DB::table('post')
+            ->join('users', 'post.id_user', '=', 'users.id_user')
+            ->where('post.id_post', '=', $id)
+            ->orderBy('post.id_post', 'DESC')
+            ->get();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
             'post_name' => 'required|string',
             'quantity' => 'required',
-            // 'phone' => 'required',
             'area' => 'required',
             'room_price' => 'required',
             'electricity_price' => 'required',
@@ -88,7 +99,6 @@ class PostController extends Controller
         $Post = new Post();
         // thêm post
         $Post->post_name = $request->post_name;
-        // $Post->phone = $request->phone;
         $Post->description_sort = $request->description_sort;
         $Post->description = $request->description;
         $Post->area = $request->area;
@@ -210,7 +220,7 @@ class PostController extends Controller
         $Post->meta_description = $request->meta_description;
         $Post->verification = 0;
         $Post->save();
-        $Get_Post = Post::where('id_post','=',$id)->first();
+        $Get_Post = Post::where('id_post', '=', $id)->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             $array_fur = explode(',', $request->id_furniture);
@@ -218,7 +228,7 @@ class PostController extends Controller
 
             foreach ($array_fur as $furniture) {
                 $furniture_post = new furniture_post();
-                $furnitures = $furniture_post::where('id_post','=',$id)->get();
+                $furnitures = $furniture_post::where('id_post', '=', $id)->get();
                 $furnitures->id_post = $Get_Post->id_post;
                 $furnitures->id_furniture = $furniture;
                 $furnitures->save();
@@ -238,7 +248,7 @@ class PostController extends Controller
                 $img->move($path, $new_image);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
-                $imgPosts = $imgPost::where('id_post','=',$id)->first();
+                $imgPosts = $imgPost::where('id_post', '=', $id)->first();
                 $imgPosts->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
                 $imgPosts->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPosts->save();
