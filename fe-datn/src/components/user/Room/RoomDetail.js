@@ -8,6 +8,7 @@ function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     useEffect(() => {
+        updateView();
         getData();
     },[]);
     var showBtn = document.querySelector('#button_contact')
@@ -23,10 +24,14 @@ function RoomDetail() {
     // })
     // danh sach post
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-    console.log(res);
-    setListPost(res.data.data);
+                const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+                // console.log(res);
+                setListPost(res.data.data);
     };
+    const updateView = async () => {
+        const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
+        console.log(update)
+    }
     
   return (
     <>

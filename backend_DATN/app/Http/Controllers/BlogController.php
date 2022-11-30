@@ -64,6 +64,7 @@ class BlogController extends Controller
         $Blog->meta_keywords = $request->meta_keywords;
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
+        $Blog->view = 0;
         $Blog->save();
         return response()
             ->json([
@@ -99,6 +100,19 @@ class BlogController extends Controller
         return response()
             ->json([
                 'data' =>  $Blog,
+                'status' => true
+            ]);
+    }
+    public function updateView(Request $request, $id)
+    {
+        $blog = Blog::all()->where('id_blog', '=', $id);
+        foreach ($blog as $val) {
+            $view = $val['view'];
+        };
+        $update = Blog::where('id_blog', '=', $id)->update(['view' => $view + 1]);
+        return response()
+            ->json([
+                'data' =>  $update,
                 'status' => true
             ]);
     }

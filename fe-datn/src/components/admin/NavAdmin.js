@@ -59,7 +59,7 @@ function NavAdmin() {
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_user" className='sub-menu'>Danh sách</NavLink></li>
+              <li><NavLink to="list_user" className='sub-menu'>User</NavLink></li>
               <li><NavLink to="list_contact" className='sub-menu'>Liên hệ</NavLink></li>
             </ul>
           </li>

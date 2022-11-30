@@ -21,16 +21,7 @@ function BannerConfig() {
 
   return (
     <>
-      <Table bordered>
-        <thead>
-        <tr>
-            <th>#</th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-      
-        <tbody className="list-cate">                 
+      <Table >
         {listBanner.map((banner, index) => {
             return (     
             <tr key={index}>
@@ -43,7 +34,6 @@ function BannerConfig() {
               </tr>  
             );     
         })}
-        </tbody>
       </Table>
     </>
   )

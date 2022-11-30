@@ -7,16 +7,19 @@ function BlogDetail() {
 
     const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
-
     useEffect(() => {
+        updateView();
         getData();
+        
     },[]);
-
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
-    setListBlog(res.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
+        setListBlog(res.data.data);
     };
-
+    const updateView = async () => {
+        const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
+        console.log(update)
+    }
   return (
     <>
       <div className="container">

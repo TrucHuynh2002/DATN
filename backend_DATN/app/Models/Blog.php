@@ -15,6 +15,10 @@ class Blog extends Model
         'description_sort',
         'description',
         'id_user',
+<<<<<<< HEAD
         'view'
+=======
+        'view',
+>>>>>>> 57e0561cc5d4a5515e29563ec0504eebe2ffd8c8
     ];
 }
