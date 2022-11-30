@@ -46,6 +46,7 @@ import ListUser from './components/admin/user/ListUser';
 import Setting from './components/admin/setting/Setting';
 import BannerConfig from './components/admin/setting/BannerConfig';
 import FooterConfig from './components/admin/setting/FooterConfig';
+import EditBanner from './components/admin/setting/EditBanner';
 
 // link menu user
 import HomeUser from './components/user/HomeUser';
@@ -140,6 +141,7 @@ root.render(
           <Route path="" element={<Setting />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
+          <Route path="editBanner/:id_banner_config" element={<EditBanner />} />        
         </Route>
       </Route>
       <Route path="Loi" element={<Loi />} />
