@@ -11,7 +11,7 @@ function ListUser() {
 
   const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] = useState(5);
+  const [ postsPerPage, setPostsPerPage ] = useState(10);
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listUser.slice(firstPageIndex, lastPageIndex);
