@@ -60,7 +60,7 @@ useEffect(() => {
 
   // list config
   const getData = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/config/banner");
+   const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
   //  console.log(result);
   setListConfig(result.data.data);
   };
