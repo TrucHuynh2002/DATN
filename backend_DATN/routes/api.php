@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
@@ -40,13 +41,12 @@ use App\Http\Controllers\FavoriteController;
 //     return $request->user();
 // });
 Route::get('config', [ConfigController::class, 'get_Config']);
-Route::get('config/banner', [ConfigController::class, 'get_Banner']);
-// Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
 
-Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
-Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
-Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
+Route::get('banner/show', [BannerController::class, 'get_Banner']);
+Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
+Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
+
 
 // category
 Route::get('/', [CategoryController::class, 'index']);

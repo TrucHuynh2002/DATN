@@ -13,7 +13,6 @@ class banner_configModel extends Model
     public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
-        'id_config',
         'link_img_banner'
     ];
 }

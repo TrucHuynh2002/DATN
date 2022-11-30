@@ -1,35 +1,16 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap';
+import React from 'react';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Table } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios'
 
 function BannerConfig() {
-  const [navConfig, setEditConfig] = useState({
-    banner:[],
-  });
-  const [listConfig, setListConfig] = useState([]);
-  const [uploadImages, setUploadImages] = useState([]);
-  // xu ly loi
-  const [alert, setAlert] = useState({
-    err_list: {},
-});
 
-  const {banner} = navConfig;
+  const [listBanner, setListBanner] = useState([]);
 
-  const handleChangeImages = (e) => {
-      
-    let formData = new FormData();
-    if(e.target.files){
-    const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
-    // console.log(fileArray)
-    setUploadImages(e.target.files)
-    console.log(e.target.files);
-    // Array.from(e.target.file).map(file => {
-    //     // console.log(file)
-    //     setAddPost({...uploadImages, file})
-    // })
-}
-}
+  useEffect(() => {
+    getData();
+  },[]);
 
   const handleSumbit = async (e) => {
     e.preventDefault();
@@ -58,26 +39,40 @@ useEffect(() => {
 },[]);
 
   // list config
+  // list banner
   const getData = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/config/banner");
+   const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
   //  console.log(result);
-  setListConfig(result.data.data);
+  setListBanner(result.data.data);
   };
+
   return (
     <>
-      <Form.Group className="mb-3" controlId="slide" encType="multipart/form-data">
-        <Form.Label>Slide</Form.Label>
-        {listConfig.map((cate, index) => {
-          return (
-            <img src={cate.link_img_banner} alt="images" style={{width:'100px',height:'70px',margin:"20px"}}></img>
-          );
+      <Table bordered>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+      
+        <tbody className="list-cate">                 
+        {listBanner.map((banner, index) => {
+            return (     
+            <tr key={index}>
+                <td>{index+1}</td>
+                <img src={banner.link_img_banner} alt="images" style={{width:'100px',height:'70px',margin:"20px"}}></img>
+                <td>
+                    <Link to={`../editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
+                      {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
+                    </Link>
+                </td>
+              </tr>  
+            );     
         })}
-        <Form.Control type="file" name="banner[]" multiple onChange={(e) => handleChangeImages(e)}/>
-      </Form.Group>
-      {/* Thông báo  */}
-      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.banner[0]}</span>}
-      {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
-      <Button variant="primary" name="" className='' type="submit">Cập nhật</Button>
+        </tbody>
+      </Table>
     </>
   )
 }

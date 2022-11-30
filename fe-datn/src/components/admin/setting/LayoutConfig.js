@@ -10,10 +10,10 @@ function LayoutConfig() {
             <div className="add-post">
                 <h1 style={{ textAlign: "center", padding: "5px", color: "#0d3380" }}>Thiết lập cấu hình</h1>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={2}>
                         <NavConfig />
                     </Col>
-                    <Col sm={8}>                   
+                    <Col sm={10}>                   
                         <Outlet />
                     </Col>
                 </Row>
