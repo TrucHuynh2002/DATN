@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-// link img
-import LogoAdmin from '../../images/logo-ft.png';
+import axios from 'axios'
 
 function HeaderAdmin() {
+
+  const [listConfig, setListConfig] = useState([]);
+
+  useEffect(() => {
+    getData();
+  },[]);
+
+  // danh sach category
+  const getData = async () => {
+   const res = await axios.get('http://127.0.0.1:8000/api/config/1');
+    setListConfig(res.data.data);
+  };
+
   return (
     <>
         <div className="nav-top">
@@ -11,7 +23,7 @@ function HeaderAdmin() {
               <i className='bx bx-menu'></i>
           </div>
           <a href="/">
-              <img src={LogoAdmin} alt="logo" width="100%" />
+              <img src={listConfig.logo} alt="images" width="100%" />
           </a>
           <div className="nav-top-logout">
               <NavLink to="" className='logout'>Đăng xuất</NavLink>

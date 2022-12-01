@@ -44,14 +44,12 @@ function Setting() {
         setAlert({
             err_list: res.data
         });
-        // console.log(alert.err_list)
     }
     else{           
         setAlert({
             err_list: res.data
         });
     }
-    // navigate("../list_category");
 };
 
 useEffect(() => {
@@ -71,8 +69,7 @@ useEffect(() => {
     <>     
       <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="logo">
-          <Form.Label>Logo</Form.Label>
-          <img src="https://images3.content-hci.com/commimg/myhotcourses/blog/post/myhc_94121.jpg" style={{width:'100px',margin:"20px"}}></img>
+          <Form.Label>Logo</Form.Label> 
           <Form.Control type="file" name="logo" onChange={(e) => handleChangeImages(e)}/>
         </Form.Group>
         {/* Thông báo  */}
