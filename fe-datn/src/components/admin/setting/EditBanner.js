@@ -7,27 +7,25 @@ import axios from 'axios';
 function EditBanner() {
 
   const {id_banner_config} = useParams();
-  const [listBanner, setListBanner] = useState({
-    banner:[],
-    link_img_banner:"",
-  });
-
+  const [listBanner, setListBanner] = useState([]);
+  // const [getImages, setGetImages] = useState 
+  console.log(listBanner.link_img_banner)
   const [uploadImages, setUploadImages] = useState([]);
+  console.log(uploadImages);
   // xu ly loi
   const [alert, setAlert] = useState({
     err_list: {},
 });
 
-  const {banner, link_img_banner} = listBanner;
+  // const {banner,} = listBanner;
 
   const handleChangeImages = (e) => {
       
-    let formData = new FormData();
     if(e.target.files){
-    const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
+    const fileArray = Array.from(e.target.files).map((file) => {setListBanner(URL.createObjectURL(file))});
     // console.log(fileArray)
     setUploadImages(e.target.files)
-    console.log(e.target.files);
+    // console.log(e.target.files);
     // Array.from(e.target.file).map(file => {
     //     // console.log(file)
     //     setAddPost({...uploadImages, file})
@@ -39,11 +37,11 @@ function EditBanner() {
     e.preventDefault();
     let formData = new FormData();
         // formData.append('img[]', Array(uploadImages));
-        for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('banner[]',uploadImages[i])
-        }
-    const res = await axios.put(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}`, listBanner);
-    // console.log(res)
+        
+     formData.append('banner[]',uploadImages[0])
+        
+    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/22?_method=PUT`, formData);
+    console.log(res)
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -64,7 +62,7 @@ useEffect(() => {
   // list banner
   const getData = async () => {
    const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
-  //  console.log(result);
+  //  console.log(result.data.data);
   setListBanner(result.data.data);
   };
 
@@ -72,10 +70,19 @@ useEffect(() => {
     <>
      <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
       <Form.Group className="mb-3" controlId="slide">
-        <Form.Control type="file" name="banner[]" multiple onChange={(e) => handleChangeImages(e)}/>
+        <Form.Control type="file" name="banner" onChange={(e) => handleChangeImages(e)}/>
+        {
+           listBanner.link_img_banner
+            ? 
+          <img src={listBanner.link_img_banner} alt={listBanner.name_banner} width={120} height={120} />
+            // console.log(listBanner)
+           :
+           <img src={listBanner} width={120} height={120} />
+          
+        }
       </Form.Group>
       {/* Thông báo  */}
-      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.banner[0]}</span>}
+      {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>}
       {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
       <Button variant="primary" name="" className='' type="submit">Cập nhật</Button>
       </Form>
