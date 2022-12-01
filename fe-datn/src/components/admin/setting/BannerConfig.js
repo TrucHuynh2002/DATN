@@ -17,7 +17,9 @@ function BannerConfig() {
     err_list: {},
 });
 
-  // const {banner} = navConfig;
+  useEffect(() => {
+    getData();
+  },[]);
 
   useEffect(() => {
     getData();
