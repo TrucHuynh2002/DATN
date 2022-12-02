@@ -27,6 +27,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\StatisticalSController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,7 +42,7 @@ use App\Http\Controllers\ViewController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('config', [ConfigController::class, 'get_Config']);
+// Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 
@@ -160,7 +161,7 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
+    Route::put('reset-password/{token}', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {
@@ -183,3 +184,14 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+//StatisticalS
+Route::get('StatisticalSController/category', [StatisticalSController::class, 'count_category']);
+Route::get('StatisticalSController/roomType', [StatisticalSController::class, 'count_roomType']);
+Route::get('StatisticalSController/post', [StatisticalSController::class, 'count_post']);
+Route::get('StatisticalSController/blog', [StatisticalSController::class, 'count_blog']);
+Route::get('StatisticalSController/furniture', [StatisticalSController::class, 'count_furniture']);
+Route::get('StatisticalSController/comment', [StatisticalSController::class, 'count_comment']);
+Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
+Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
+Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);

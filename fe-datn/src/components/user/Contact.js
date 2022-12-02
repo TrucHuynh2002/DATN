@@ -69,7 +69,7 @@ function Contact() {
                       name="full_name"
                       value={full_name}
                       onChange={(e) => handleChange(e)}/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
+                      {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                   </div>
                   <div className="col-md-12">
                     <input
@@ -79,7 +79,7 @@ function Contact() {
                       name="email"
                       value={email}
                       onChange={(e) => handleChange(e)}/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.email[0]}</span>}
+                      {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                   </div>
                   <div className="col-md-12">
                     <input
@@ -89,7 +89,7 @@ function Contact() {
                       name="phone"
                       value={phone}
                       onChange={(e) => handleChange(e)}/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.phone[0]}</span>}
+                      {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
                   </div>
                   <div className="col-md-12">
                     <input
@@ -99,7 +99,7 @@ function Contact() {
                       name="subject"
                       value={subject}
                       onChange={(e) => handleChange(e)}/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.subject[0]}</span>}
+                      {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.subject[0]}</div>}
                   </div>
                   <div className="col-md-12">
                     <textarea
@@ -109,12 +109,12 @@ function Contact() {
                       name='content'
                       value={content}
                       onChange={(e) => handleChange(e)}/>
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.content[0]}</span>}
+                      {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.content[0]}</div>}
                   </div>
                  
                   <div className="d-grid gap-2">
                     <Button type='submit'>Gửi</Button>
-                    {alert.err_list.status === true && <span className="noti">Liên hệ thành công</span>}
+                    {alert.err_list.status === true && <div className="notice success_____">Liên hệ thành công</div>}
                   </div>              
                 </div>
               </form>

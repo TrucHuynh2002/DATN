@@ -45,7 +45,7 @@ class BannerController extends Controller
                  if(File::exists($path.$imgbanner->name_banner)){
                     File::delete($path.$imgbanner->name_banner);
                 };
-                 $imgbanner->link_img_banner = env('APP_URL').'uploads/banner/'.$new_image_banner.'.'.$name_image_banner[1];
+                 $imgbanner->link_img_banner = env('APP_URL').':8000/uploads/banner/'.$new_image_banner.'.'.$name_image_banner[1];
                  $imgbanner->name_banner = $new_image_banner;
                      // $imgbanner->id_config = 1; // khóa ngoại
                      $imgbanner->save();

@@ -52,11 +52,11 @@ function AddRoomType() {
                     value={name_room_type}
                     className=''
                     onChange={(e) => handleChange(e)}/>
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
                 </Form.Group>
                 
                 <div className="d-grid gap-2">
-                    {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
+                    {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                     <Button variant="primary" size="sm" name='' type="submit">
                         Thêm loại phòng
                     </Button>

@@ -12,15 +12,11 @@ function Login() {
     const [alert, setAlert] = useState({
         err_list: {},
     });
-
-    useEffect(() => {
-        
-    }, []);
-
     const handleSumbit = async (e) => {
         e.preventDefault();
         const item = { email,password };
         const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
+        console.log(res);
         if(res.data.status === true){
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
@@ -45,8 +41,9 @@ function Login() {
                     navigate("/admin/");
                 }
            }else{
-                alert("Đăng nhập thất bại ");
-                return;
+                setAlert({
+                    err_list: res.data
+                });
            }
         }else{           
             setAlert({
@@ -76,9 +73,11 @@ function Login() {
                             <div className="row">
                                 <div className="col-md-12 ">
                                     <input type="email" className="text" name="email" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}}/>
+                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                                 </div>    
                                 <div className="col-md-12 ">
                                     <input type="password" className="text" name="password" placeholder="Mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
+                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>
@@ -86,20 +85,18 @@ function Login() {
                                 </div>
                                 <div className="d-grid gap-2">
                                     <Button type='submit'>Đăng nhập</Button>
-                                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>}
-                                    {alert.err_list.status === true && <span className="noti">Đăng Nhập Thành Công</span>}
+                                    {alert.err_list.status === true && <div className="notice success_____">Đăng Nhập Thành Công</div>}
                                 </div>
-                                <div className="d-grid gap-2">
-                                   <button className="button">
-                                        <Link to="../forgotpw">Quên mật khẩu?</Link>
-                                   </button>
-                                   <button className="button">
-                                        <Link  to="../signin">Bạn chưa có tài khoản ? Đăng ký ngay</Link>
-                                   </button>
-                                    
-                                </div>    
                             </div> 
                         </form>
+                        <div className="d-grid gap-2">
+                            <button className="button">
+                                <Link to="../forgotpw">Quên mật khẩu?</Link>
+                            </button>
+                            <button className="button">
+                                <Link  to="../signin">Bạn chưa có tài khoản ? Đăng ký ngay</Link>
+                            </button>
+                        </div>    
                     </div>
                     <div className="col-md-6">
                         <img src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg" className="img-fluid" alt='images'/>

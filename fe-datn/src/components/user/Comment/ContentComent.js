@@ -23,7 +23,6 @@ function ContentComent() {
     // setRate(resRate.data.data)
     
   };
-  
 return (
  <div>
   {listComment.map((comment, index) => {

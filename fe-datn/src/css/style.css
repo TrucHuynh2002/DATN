@@ -23,7 +23,7 @@
 @import url(owl.carousel.min.css);
 /* @import url(swiper.min.css); */
 @import url(slick.css);
-@import url(jquery.fancybox.min.css);
+@import url(jquery.fancybox.min.css); 
 @import url(jquery-ui.css);
 @import url(nice-select.css);
 
@@ -321,9 +321,7 @@ button {
 .banner .carousel-indicators .active {
     background-color: #fe0000;
 }
-.btn-drow{
-    
-}
+
 .notifyInteractive>.row{
     padding-bottom: 10px;
 }
@@ -377,8 +375,7 @@ button {
     padding-bottom: 20px;
 }
 
-.book_room2 {
-   
+.book_room2 {  
     background-color: white;
     padding: 15px;
     border-left: none solid 5px;
@@ -407,8 +404,23 @@ button {
     padding-right: 20px;
 }
 
-.col-search{
-    width: 20% !important;
+.col-search1{
+    width: 26.7% !important;
+}
+.col-search2{
+    width: 26.7% !important;
+    
+}
+.col-search3{
+    width: 26.7% !important;
+}
+.col-search4{
+    width: 26.7% !important;
+}
+.search-filter{
+    margin-left: -1%;
+    display: flex;
+    width: 150%;
 }
 
 .book_now2 .loc {
@@ -436,16 +448,18 @@ button {
     width: 80%;
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
+    border-radius: 0px;
     background-color: transparent;
     color: black;
     padding: 0 10px;
     padding-right: 61px;
     margin-bottom: 25px;
     position: relative;
+    border-radius: 0px;
 }
 
 .book_now2 .online_book2 {
-    width: 96%;
+    width: 134%;
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
     background-color: transparent;
@@ -454,7 +468,7 @@ button {
     padding-right: 61px;
     margin-bottom: 25px;
     position: relative;
-    border-radius: 7px;
+    border-radius: 0px;
 }
 
 .book_room {
@@ -913,15 +927,18 @@ height: 80px;
 
     display: none;
     position: absolute;
-    width: 100%;
+    width: 98%;
     text-align: center;
+    left: 2px;
     bottom: 1px;
     background: #0000007c;
     height: 52px;
     border-radius: 0 0 73px 72px;
   }
+  
 .div_imggggg>a>.update_imggg>a>span{
     font-size: 20px;
+    font-weight: bold;
   }
 .avtuser{
 border-radius: 50px;
@@ -930,6 +947,7 @@ height: 30px;
 margin-right: 5px;
 
 }
+
 div>h1>.b_title{
     text-transform: uppercase;
 }
@@ -937,7 +955,117 @@ div>h1>.b_title{
     text-transform: uppercase;
     font-weight: bold;
 }
-
+/* .notice {
+    position: relative;
+    color: red;
+    padding: 1.3em;
+    margin-top: -16px;
+    border-left: 4px solid #DDD;
+    top: 8px;
+  }
+  .notice:before {
+    position: absolute;
+    top: 20px;
+    left: -17px;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  .success_____ {
+    border-color: #2ECC40;
+  }
+  .success_____:before {
+    content: "√";
+    background-color: #2ECC40;
+    margin-top: -16px;
+  }
+  .warning_____ {
+    border-color: #FFDC00;
+  }
+  .warning_____:before {
+    content: "!";
+    background-color: #FFDC00;
+    margin-top: -16px;
+  } */
+  /* .error{
+    color: red;
+  } */
+  .notice {
+    position: relative;
+    margin-bottom: 10px;
+    background: #F9F9F9;
+    padding: 1em 1em 1em 2em;
+    border-left: 4px solid #DDD;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+  }
+  
+  .notice:before {
+    position: absolute;
+    top: 50%;
+    left: -17px;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  .notice1 {
+    position: relative;
+    margin: 15px 0 10px 0;
+    background: #F9F9F9;
+    padding: 1em 1em 1em 2em;
+    border-left: 4px solid #DDD;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+  }
+  
+  .notice1:before {
+    position: absolute;
+    top: 50%;
+    left: -17px;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  .success_____ {
+    border-color: #2ECC40;
+  
+  }
+  
+  .success_____:before {
+    content: "√";
+    background-color: #2ECC40;
+    margin-top: -16px;
+  }
+  
+  .warning_____ {
+    border-color: #FFDC00;
+   
+  }
+  
+  .warning_____:before {
+    content: "!";
+    background-color: #FFDC00;
+    margin-top: -16px;
+  }
+  .error{
+    color: red;
+  }
 .avt_img{
     width:120px;
     height:120px;
@@ -1023,6 +1151,7 @@ footer{
 
 .footer {
     background: #0f1521;
+    padding-top: 25px;
     text-align: center;
 }
 
@@ -1603,4 +1732,29 @@ ul.social_icon li a:hover {
 }
 .imguser{
     margin-top: 10px;
+}
+
+.search-btn{
+    background-color: white;
+    margin-top: 2%;
+    margin-left: 50%;
+    max-width: 189px;
+    width: 120px;
+    /* margin: 0px auto; */
+    padding: 6px 0;
+    border: 1px solid none;
+}
+.book_btn_search{
+    background-color: #0d3380;
+    max-width: 189px;
+    width: 120px;
+    margin: 0px auto;
+    padding: 7px 0;
+    border: 1px solid#0d3380;
+    border-radius: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+   
 }

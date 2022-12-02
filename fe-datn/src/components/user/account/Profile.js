@@ -1,9 +1,22 @@
-import React from 'react'
 import InfoAccount from './InfoAccount'
 import Posted from './Posted';
 import Bloged from './Bloged';
-
+import { useParams } from 'react-router-dom';
+import React, {useEffect} from 'react'
+import { Container, Row } from 'react-bootstrap';
+import { Outlet, useNavigate} from 'react-router-dom';
 function Profile() {
+    const navigate = useNavigate();
+    const {id_post} = useParams();
+    const checkAdmin = async () => {
+        // console.log(get_user)
+      if(!id_post){
+        navigate('/Loi');
+      }
+    }
+    useEffect(() => {
+      checkAdmin();
+    },[])
   return (
     <>
         <div className="back_re">

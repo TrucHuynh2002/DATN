@@ -138,9 +138,9 @@ function Comment() {
                 <Form.Control
                 name="email"
                 value={user[0].email}
-                  className="form-control form-control-sm"
-                  placeholder="Vui lòng đăng nhập đê bình luận"
-                  disabled="true"
+                className="form-control form-control-sm"
+                placeholder="Vui lòng đăng nhập đê bình luận"
+                disabled="true"
                 />
               </Form.Group>
               <Form.Group className="form-group">
@@ -157,8 +157,8 @@ function Comment() {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-              {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} 
-              {alert.err_list.status === true && <span className="error">Bình luận thành công</span>} 
+              {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages}</div>} 
+              {alert.err_list.status === true && <div className="notice success_____">Bình luận thành công</div>} 
             </Form>
             : <Form>
                 <Form.Group className="form-group">

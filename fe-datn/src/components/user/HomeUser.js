@@ -2,12 +2,11 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
-import axios from 'axios'
+import axios from 'axios';
+import Carousel from 'react-bootstrap/Carousel';
 import Pagination from './Pagination';
 import PaginationBlog from './PaginationBlog';
-
 import Slide1 from '../../images/sl01.png';
-import Slide2 from '../../images/sl02.png';
 import Slide3 from '../../images/sl03.png';
 import RoomNew from '../../images/phong1.png';
 import TabCanTho from '../../images/tab-cantho.png';
@@ -22,6 +21,7 @@ function Home() {
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
+  const [listBanner, setListBanner] = useState([]);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -43,6 +43,7 @@ function Home() {
   useEffect(() => {
     getData();
     getDataBlog();
+    getDataBanner();
   },[]);
 
   // danh sách post
@@ -57,55 +58,33 @@ function Home() {
       setListBlog(res.data.data);
   };
 
+  // danh sach banner
+    const getDataBanner = async () => {
+     const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+     console.log(result);
+     setListBanner(result.data.data);
+    };
+
   return (
     <>
-
       {/* banner */}
       <section className="banner_main">
-        <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to={0} className="active" />
-            <li data-target="#myCarousel" data-slide-to={1} />
-            <li data-target="#myCarousel" data-slide-to={2} />
-          </ol>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
+      <div className="carousel slide banner">
+        <Carousel>
+          {listBanner.map((banner, index) => {
+            return (
+              <Carousel.Item key={index}>
+                <img
                 className="first-slide"
-                src={Slide1}
-                alt="First slide"/>
-              <div className="container"></div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="second-slide"
-                src={Slide2}
-                alt="Second slide"/>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="third-slide"
-                src={Slide3}
-                alt="Third slide"/>
-            </div>
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#myCarousel"
-            role="button"
-            data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#myCarousel"
-            role="button"
-            data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
+                src={banner.link_img_banner}
+                alt={banner.name_banner}
+                />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      </div>
+
         <div className="booking_ocline">
           <div className="container">
             <div className="row">
@@ -144,51 +123,48 @@ function Home() {
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-12">
-                        <input
-                          className="online_book2"
-                          placeholder="Tìm kiếm"
-                          type="text"
-                          name=""
-                        />
+                      <div className="col-md-9">
+                        <input className="online_book2" placeholder="Tìm kiếm" type="text" name="" />
+                      </div>                      
+                      <div className="col-md-3">
+                        <button className="search-btn">
+                          <i class='bx bx-search' style={{color:"#0d3380", width:"190px"}}></i>
+                        </button>
                       </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Lọc</option>
-                          <option></option>
-                          <option></option>
-                        </select>
-                      </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Loại phòng</option>
-                          <option>Phòng trọ</option>
-                          <option>Căn hộ mini</option>
-                        </select>
-                      </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Tỉnh</option>
-                          <option>Hồ Chí Minh</option>
-                          <option>Cần Thơ</option>
-                        </select>
-                      </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Giá</option>
-                          <option>Dưới 1 triệu</option>
-                          <option>Từ 1 - 2 triệu</option>
-                        </select>
-                      </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Diện tích</option>
-                          <option>Dưới 20m</option>
-                          <option>Dưới 20m</option>
-                        </select>
-                      </div>
-                      <div className="col-md-12">
-                        <button className="book_btn">Xem kết quả</button>
+                      <div className='search-filter'>
+                        <div className="col-md-2 col-search1">
+                          <select className="form-select online_book3">
+                            <option>Loại phòng</option>
+                            <option>Phòng trọ</option>
+                            <option>Căn hộ mini</option>
+                          </select>
+                        </div>
+                        <div className="col-md-2 col-search2">
+                          <select className="form-select online_book3">
+                            <option>Tỉnh</option>
+                            <option>Hồ Chí Minh</option>
+                            <option>Cần Thơ</option>
+                          </select>
+                        </div>
+                        <div className="col-md-2 col-search3">
+                          <select className="form-select online_book3">
+                            <option>Giá</option>
+                            <option>Dưới 1 triệu</option>
+                            <option>Từ 1 - 2 triệu</option>
+                          </select>
+                        </div>
+                        <div className="col-md-2 col-search4">
+                          <select className="form-select online_book3">
+                            <option>Diện tích</option>
+                            <option>Dưới 20m</option>
+                            <option>Dưới 20m</option>
+                          </select>
+                        </div>
+                        <div className="col-md-2 col-search">
+                          <div className="col-md-12">
+                            <button className="book_btn">Xem kết quả</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </form>
