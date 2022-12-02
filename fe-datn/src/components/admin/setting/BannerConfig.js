@@ -72,7 +72,7 @@ function BannerConfig() {
               <td>{index}</td>
               <img src={banner.link_img_banner} alt="banner.name" style={{width:'100px',height:'70px',margin:"20px"}}></img>
               <td>
-                  <Link to={`editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
+                  <Link to={`EditBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
                   </Link>
               </td>
             </tr>  
