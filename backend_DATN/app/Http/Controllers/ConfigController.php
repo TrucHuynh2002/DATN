@@ -148,12 +148,12 @@ class ConfigController extends Controller
             }
             return response()->json([
                 'status' => true,
-                'messages' => 'Cập nhật thành công'
+                'messsages' => 'Cập nhật thành công'
             ]);
         }else{
             return response()->json([
                 'status' => false,
-                'messages' => 'Cập nhật false'
+                'messsages' => 'Cập nhật false'
             ]);
         }
     }
