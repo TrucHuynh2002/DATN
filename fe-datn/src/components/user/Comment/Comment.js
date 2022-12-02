@@ -113,7 +113,7 @@ function Comment() {
                 </div>
               </div>
         </div>
-        <div className="col-4">
+        <div className="col-8">
          {user ? 
           <Form className="" onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">

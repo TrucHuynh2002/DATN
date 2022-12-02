@@ -1243,7 +1243,8 @@
   
 .collapse-show-rate .comment .rate {
        height: 46px;
-       padding: 0 10px;
+       padding: 11px 48px;
+       font-size: 29px;
 }
   
 .collapse-show-rate .comment .rate:not(:checked) > input {
