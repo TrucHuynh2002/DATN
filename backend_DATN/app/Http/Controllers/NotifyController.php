@@ -24,8 +24,8 @@ class NotifyController extends Controller
     public function getNotyfi_interactive(Request $request, $id)
     {
         $get_notify_favorite = DB::table('notify')
-            ->join('users', 'notify.id_user_tow', '=', 'users.id_user')
-            ->where('notify.id_user', '=', $id)
+            ->join('users', 'notify.id_user', '=', 'users.id_user')
+            ->where('notify.id_user_tow', '=', $id)
             ->take(10)
             ->orderBy('notify.id_notify', 'DESC')
             ->get();
