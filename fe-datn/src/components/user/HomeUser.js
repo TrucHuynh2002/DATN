@@ -6,9 +6,7 @@ import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import Pagination from './Pagination';
 import PaginationBlog from './PaginationBlog';
-
 import Slide1 from '../../images/sl01.png';
-import Slide2 from '../../images/sl02.png';
 import Slide3 from '../../images/sl03.png';
 import RoomNew from '../../images/phong1.png';
 import TabCanTho from '../../images/tab-cantho.png';
@@ -86,51 +84,7 @@ function Home() {
           })}
         </Carousel>
       </div>
-{/*   
-        <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to={1} />
-            <li data-target="#myCarousel" data-slide-to={2} />
-            <li data-target="#myCarousel" data-slide-to={3} />
-          </ol>
-          <div className="">
-            <div className="carousel-item active">
-              <img
-                className="first-slide"
-                src={Slide1}
-                alt="First slide"/>
-              <div className="container"></div>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="second-slide"
-                src={Slide2}
-                alt="Second slide"/>
-            </div>
-            <div className="carousel-item">
-              <img
-                className="third-slide"
-                src={Slide3}
-                alt="Third slide"/>
-            </div>
-          </div>
-          <a
-            className="carousel-control-prev"
-            href="#myCarousel"
-            role="button"
-            data-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#myCarousel"
-            role="button"
-            data-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="sr-only">Next</span>
-          </a>
-        </div> */}
+
         <div className="booking_ocline">
           <div className="container">
             <div className="row">
