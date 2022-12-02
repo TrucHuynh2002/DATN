@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function ConfirmAccount() {
   const {id_Account} = useParams();
+  const [resetPassword, setResetPassword] = useState("");
   const [editPassword, setEditPassword] = useState({
     password:"",
     password_new:""
@@ -47,6 +48,11 @@ function ConfirmAccount() {
             </Form.Group>
             <Form.Group className="mb-3" controlId="">
                 <Form.Label>Nhập mật khẩu mới</Form.Label>
+                <Form.Control type="password" name="password_new" value={password_new} onChange={(e) => handleChange(e)} className=''/>
+                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password_new[0]}</span>}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="">
+                <Form.Label>Xác nhận mật khẩu mới</Form.Label>
                 <Form.Control type="password" name="password_new" value={password_new} onChange={(e) => handleChange(e)} className=''/>
                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password_new[0]}</span>}
             </Form.Group>

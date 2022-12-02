@@ -51,12 +51,12 @@
         <h2>ĐỔI MẬT KHẨU</h2>
         <p>Hello, {{$user->full_name}}</p>
         <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn.</p>
-        {{-- <p>{{$token}}</p> --}}
+        <p>{{$token}}</p>
         {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
         <p>Đặt lại mật khẩu ngay tại đây:</p>
-        <a href="#" style="padding: 17px;background-color: black; margin-left: 260px;" class="button">Đổi mật khẩu</a>
+        <a href="http://localhost:3000/resetpw/{{$token}}" style="padding: 17px;background-color: black; margin-left: 260px;" class="button">Đổi mật khẩu</a>
         {{-- <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style=" padding: 17px;
     background-color: aliceblue;margin-left: 260px;" class="button">Đổi mật khẩu</a> --}}
     </div>

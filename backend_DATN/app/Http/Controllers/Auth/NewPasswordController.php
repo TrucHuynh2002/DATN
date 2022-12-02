@@ -31,11 +31,11 @@ class NewPasswordController extends Controller
         // ]);
         $check_token = password_resets::where('token','=',$request->token)->first();
         if($check_token){
-            $check_user = User::where('email','=',$request->email)->first();
+            $check_user = User::where('email','=',$check_token->email)->first();
             if($check_user){
                 $check_user->password = Hash::make($request->password);
-                $check_user->save();     
-                Mail::to($request->email)->send(new ResetPasswordSuccess($check_user));
+                $check_user->save();
+                Mail::to($check_token->email)->send(new ResetPasswordSuccess($check_user));
                 password_resets::where('token','=',$request->token)->delete();
                 return response()
                 ->json([
@@ -52,9 +52,6 @@ class NewPasswordController extends Controller
                 // return redirect(route('login'));
             }
             };
-        return redirect('/');
-
-        
-
+        // return redirect('/');
     }
 }
