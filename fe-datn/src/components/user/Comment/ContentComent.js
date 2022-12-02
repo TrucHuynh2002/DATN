@@ -48,7 +48,7 @@ return (
       
     })}
  </div>
-)
+  )
 }
 
 export default ContentComent
