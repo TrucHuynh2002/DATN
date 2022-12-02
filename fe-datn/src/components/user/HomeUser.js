@@ -2,7 +2,8 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
-import axios from 'axios'
+import axios from 'axios';
+import Carousel from 'react-bootstrap/Carousel';
 import Pagination from './Pagination';
 import PaginationBlog from './PaginationBlog';
 
@@ -68,16 +69,31 @@ function Home() {
 
   return (
     <>
-
       {/* banner */}
       <section className="banner_main">
+      <div className="carousel slide banner">
+        <Carousel>
+          {listBanner.map((banner, index) => {
+            return (
+              <Carousel.Item key={index}>
+                <img
+                className="first-slide"
+                src={banner.link_img_banner}
+                alt={banner.name_banner}
+                />
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+      </div>
+{/*   
         <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to={1} />
             <li data-target="#myCarousel" data-slide-to={2} />
             <li data-target="#myCarousel" data-slide-to={3} />
           </ol>
-          <div className="carousel-inner">
+          <div className="">
             <div className="carousel-item active">
               <img
                 className="first-slide"
@@ -114,7 +130,7 @@ function Home() {
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="sr-only">Next</span>
           </a>
-        </div>
+        </div> */}
         <div className="booking_ocline">
           <div className="container">
             <div className="row">
@@ -160,17 +176,7 @@ function Home() {
                           type="text"
                           name=""
                         />
-                        {/* <div className='search'> */}
-                          <button className="book_btn_search"><i class='bx bx-search'></i></button>
-                        {/* </div> */}
-                      </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Lọc</option>
-                          <option></option>
-                          <option></option>
-                        </select>
-                      </div>
+                      </div>                     
                       <div className="col-md-3 col-search">
                         <select className="form-select online_book3">
                           <option>Loại phòng</option>
@@ -199,9 +205,14 @@ function Home() {
                           <option>Dưới 20m</option>
                         </select>
                       </div>
-                      <div className="col-md-12">
-                        <button className="book_btn">Xem kết quả</button>
+                      <div className="col-md-3 col-search">
+                        <div className="col-md-12">
+                          <button className="book_btn">Xem kết quả</button>
+                        </div>
                       </div>
+                      {/* <div className="col-md-12">
+                        <button className="book_btn">Xem kết quả</button>
+                      </div> */}
                     </div>
                   </form>
                 </div>
