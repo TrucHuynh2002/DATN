@@ -30,7 +30,7 @@ function Notify() {
   const getDataInteractive = async () => {
     const id_user = user ? user[0].id : "";
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-    console.log(res);
+    // console.log(res);
       setListnotifyInteractive(res.data.data);
 };
 // xoa notify interactive

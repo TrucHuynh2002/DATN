@@ -14,86 +14,61 @@ function Home() {
   const [listView, setListView] = useState([]);
 
   useEffect(() => {
-    getCategory();
-  },[]);
-  useEffect(() => {
-    getRoomtype();
-  },[]);
-  useEffect(() => {
-    getPost();
-  },[]);
-  useEffect(() => {
-    getBlog();
-  },[]);
-  useEffect(() => {
-    getFurniture();
-  },[]);
-  useEffect(() => {
-    getComment();
-  },[]);
-  useEffect(() => {
-    getUser();
-  },[]);
-  useEffect(() => {
-    getContact();
-  },[]);
-  useEffect(() => {
     getView();
+    getContact();
+    getUser();
+    getComment();
+    getFurniture();
+    getBlog();
+    getPost();
+    getRoomtype();
+    getCategory();
   },[]);
 
 // list Category
   const getCategory = async () => {
    const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/category");
-  //  console.log(result);
+
   setListCategory(result.data.data);
   };
 // list Category
 const getRoomtype = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
- //  console.log(result);
  setListRoomType(result.data.data);
  };
  // list Category
  const getPost = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/post");
- //  console.log(result);
  setListPost(result.data.data);
  };
  // list Category
  const getBlog = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/blog");
- //  console.log(result);
  setListBlog(result.data.data);
  };
  // list Category
  const getFurniture = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/furniture");
- //  console.log(result);
  setListFurniture(result.data.data);
  };
  // list Category
  const getComment = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/comment");
- //  console.log(result);
  setListComment(result.data.data);
  };
  // list Category
  const getUser = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/user");
- //  console.log(result);
  setListUser(result.data.data);
  };
  const getContact = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/contact");
- //  console.log(result);
  setListContact(result.data.data);
  };
  const getView = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
- //  console.log(result);
  setListView(result.data.data);
  };
-
   return (
     <>      
         <div className="content">
@@ -131,7 +106,6 @@ const getRoomtype = async () => {
                 </div>
               </div>
             </div>
-
             <div className="row content-row">
               <div className="col col-admin interior">
                 <i className="bx bx-arch postcard-i"></i>

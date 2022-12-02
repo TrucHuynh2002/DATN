@@ -70,7 +70,6 @@ import AddPostUser from './components/user/postuser/App';
 import EditPostUser from './components/user/postuser/EditPost';
 // user
 import Profile from './components/user/account/Profile';
-import EditAvata from './components/user/account/EditAvata';
 import UpdateAccount from './components/user/account/UpdateAccount';
 import ConfirmAccount from './components/user/account/ConfirmAccount';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
@@ -95,7 +94,7 @@ root.render(
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
-        <Route path="resetpw" element={<ResetPassword />} />
+        <Route path="resetpw/:token" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_post" element={<Profile />} />
         </Route>

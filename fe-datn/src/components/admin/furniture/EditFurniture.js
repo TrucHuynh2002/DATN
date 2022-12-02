@@ -62,7 +62,7 @@ function EditFurniture() {
                     <Form.Label>Tên nội thất</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={name} name="name" className=''/>
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
                 </Form.Group>
             </Col>
             <Col sm={6}>
@@ -70,11 +70,11 @@ function EditFurniture() {
                     <Form.Label>Icons</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={icon} name="icon" className=''/>
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.icon[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.icon[0]}</div>}
                 </Form.Group>
             </Col>
             <div className="d-grid gap-2">
-            {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+            {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                 <Button variant="primary" size="sm" name='' type="submit">
                     Cập nhật nội thất
                 </Button>

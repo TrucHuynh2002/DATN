@@ -31,7 +31,6 @@ function Posted() {
     <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
     <div className='row'>
-    <>
         {!currentPosts ?
         <div className="text-center No_user____">
             <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
@@ -66,7 +65,6 @@ function Posted() {
             </div>
            )})
     }
-    </>
         {/* phan trang */}
         <Pagination totalPost={listPost.length} 
         postsPerPage={postsPerPage} 

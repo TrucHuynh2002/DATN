@@ -54,9 +54,10 @@ function ForgotPassword() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="email" id="email" name="email" className="text" placeholder="Nhập email của bạn để lấy lại mật khẩu" onChange={(e) => {setForgotEmail(e.target.value)}} />
-                                    {alert.err_list === false && <span className="error">{alert.err_list.message.email[0]}</span>}
+                                    {alert.err_list === false && <div className="notice warning_____">{alert.err_list.message.email[0]}</div>}
                                 </div>
                                 <div className="d-grid gap-2">
+                                {alert.err_list.status === true && <div className="notice success_____">Đăng ký thành công</div>}
                                     <Button type="submit">Gửi</Button>
                                 </div>                              
                             </div>

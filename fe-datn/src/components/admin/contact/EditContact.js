@@ -65,7 +65,7 @@ return (
                   value={full_name} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                    
               </Form.Group>
              
@@ -75,7 +75,7 @@ return (
                   value={email} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.email[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="phone">
@@ -84,7 +84,7 @@ return (
                   value={phone} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.phone[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="content">
@@ -93,7 +93,7 @@ return (
                   value={content} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.content[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.content[0]}</div>}
               </Form.Group>
               <Form.Group className="mb-3" controlId="subject">
                   <Form.Label>Tiêu đề</Form.Label>
@@ -101,7 +101,7 @@ return (
                   value={subject} disable className=''/>
 
                       {/* Thông báo  */}
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.subject[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.subject[0]}</div>}
                    
               </Form.Group>
              
@@ -111,11 +111,11 @@ return (
                   value={reply}  className=''/>
 
                       {/* Thông báo  */}
-                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_Contact[0]}</span>}  
+                     {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name_Contact[0]}</div>}  
                </Form.Group> 
             
               <div className="d-grid gap-2">
-              {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+              {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                   <Button variant="primary" size="sm" name='' type="submit">
                       Gửi
                   </Button>

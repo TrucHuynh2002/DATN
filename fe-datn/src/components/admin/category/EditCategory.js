@@ -59,10 +59,10 @@ function EditCategory() {
                     value={name_category} className=''/>
 
                         {/* Thông báo  */}
-                      {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_category[0]}</span>}
-                      {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+                        {alert.err_list.status === false && <div className="notice warning_____ ">{alert.err_list.messages.name_category[0]}</div>}    
                 </Form.Group>
                 <div className="d-grid gap-2">
+                {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                     <Button variant="primary" size="sm" name='' type="submit">
                         Cập nhật danh mục
                     </Button>

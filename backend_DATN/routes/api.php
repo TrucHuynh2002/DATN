@@ -160,7 +160,7 @@ Route::middleware('guest')->group(function () {
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
+    Route::put('reset-password/{token}', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {

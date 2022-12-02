@@ -30,17 +30,14 @@ function Comment() {
   };
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const a = addComment;
-    // console.log(a);
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
     if(res.data.status === true){
       const {id_user_tow} = addNotify;
-     setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
-    const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-        // setAlert({
-        //   err_list: res.data
-        // });
-  
+      setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+      const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+      setAlert({
+        err_list: res.data
+      });
     }else{           
         setAlert({
             err_list: res.data
@@ -79,8 +76,8 @@ function Comment() {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-              {alert.err_list.status === false && <span className="error">{alert.err_list.messages}</span>} 
-              {alert.err_list.status === true && <span className="error">Bình luận thành công</span>} 
+              {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages}</div>} 
+              {alert.err_list.status === true && <div className="notice success_____">Bình luận thành công</div>} 
             </Form>
             : <Form>
                 <Form.Group className="form-group">

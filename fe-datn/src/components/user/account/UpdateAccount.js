@@ -56,29 +56,29 @@ function UpdateAccount() {
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Tên đăng nhập</Form.Label>
                     <Form.Control type="text" name="full_name" value={full_name} className='' onChange={(e) => handleChange(e)} />
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.full_name[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="3">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" name="email" value={email} className='' onChange={(e) => handleChange(e)} />
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.email[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Số điện thoại</Form.Label>
                     <Form.Control type="text" name="phone" value={phone} className='' onChange={(e) => handleChange(e)} />
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.phone[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Địa chỉ</Form.Label>
                     <Form.Control type="text" name="address" value={address} className='' onChange={(e) => handleChange(e)} />
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
                 </Form.Group>
                 <div className="d-grid gap-2">
                     <Button variant="primary" size="sm" name='' type="submit">
                       Cập nhật thông tin
                     </Button>
                 </div>
-                {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+                {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
             </Form>
         </div>
     </div>
