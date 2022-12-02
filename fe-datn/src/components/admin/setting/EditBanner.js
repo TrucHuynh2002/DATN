@@ -8,16 +8,11 @@ function EditBanner() {
 
   const {id_banner_config} = useParams();
   const [listBanner, setListBanner] = useState([]);
-  // const [getImages, setGetImages] = useState 
-  console.log(listBanner.link_img_banner)
   const [uploadImages, setUploadImages] = useState([]);
-  console.log(uploadImages);
   // xu ly loi
   const [alert, setAlert] = useState({
     err_list: {},
 });
-
-  // const {banner,} = listBanner;
 
   const handleChangeImages = (e) => {
       
@@ -77,7 +72,7 @@ useEffect(() => {
           <img src={listBanner.link_img_banner} alt={listBanner.name_banner} width={120} height={120} />
             // console.log(listBanner)
            :
-           <img src={listBanner} width={120} height={120} />
+           <img src={listBanner} alt="images" width={120} height={120} />
           
         }
       </Form.Group>
