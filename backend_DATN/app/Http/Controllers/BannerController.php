@@ -47,8 +47,6 @@ class BannerController extends Controller
                 };
                  $imgbanner->link_img_banner = env('APP_URL').'uploads/banner/'.$new_image_banner.'.'.$name_image_banner[1];
                  $imgbanner->name_banner = $new_image_banner;
-                
-                 
                      // $imgbanner->id_config = 1; // khóa ngoại
                      $imgbanner->save();
                  

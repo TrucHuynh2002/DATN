@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CommentModel as CommentModel;
+use App\Models\RatingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,10 +18,22 @@ class CommentController extends Controller
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
         $t->save();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
+        
+        $comment = CommentModel::orderby('id_comment','DESC')->first();
+        if($request->rate){
+
+            $rate = new RatingModel();
+            $rate->rate = $request->rate;
+            $rate->id_post = $request->id_post;
+            $rate->id_comment = $comment->id_comment;
+            $rate->save();
+        }else{
+            
+        }
+        return response()->json([
+                'message' => 'Cám ơn bạn đã đánh giá!',
+                'status' => true,
+                'data' => $comment
             ]);
     }
     public function CommentEdit(Request $request, $id_comment)
@@ -60,6 +73,23 @@ class CommentController extends Controller
             ->json([
                 'data' => $Comment_SelectAll,
                 'status' => true
+            ]);
+    }
+    public function Comment_SelectPost(Request $request, $id_post)
+    {
+        $Title = "Danh sách các hỗ trợ";
+        $Comment_SelectPost = DB::table('comment')
+            ->join('users', 'comment.id_user', '=', 'users.id_user')
+            // ->join('post','post.id_post','comment.id_post')
+            // ->rightJoin('post_rate','post_rate.id_comment','=','comment.id_comment')
+            ->where('comment.id_post',$id_post)
+            ->orderBy('comment.id_user','DESC')
+            ->get();
+        return response()
+            ->json([
+                'data' => $Comment_SelectPost,
+                'status' => true,
+                'id_post' => $id_post
             ]);
     }
     public function Comment_SelectOne(Request $request, $id_comment)

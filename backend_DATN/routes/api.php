@@ -113,6 +113,7 @@ Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
+Route::get('comment/post/show/{id_post}', [CommentController::class, 'Comment_SelectPost']);
 Route::get('comment/show/{id}', [CommentController::class, 'Comment_SelectOne']);
 Route::get('comment/showUserDes', [CommentController::class, 'CommentDes']);
 Route::post('comment/create', [CommentController::class, 'CommentAdd']);
