@@ -4,9 +4,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 function Setting() {
 
-  const [navConfig, setEditConfig] = useState({
-    logo:[],
-  });
   const [listConfig, setListConfig] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi
@@ -14,7 +11,6 @@ function Setting() {
     err_list: {},
 });
 
-  const {logo} = navConfig;
 
   const handleChangeImages = (e) => {
       
@@ -38,7 +34,7 @@ function Setting() {
       
         formData.append('logo[]',uploadImages[0])
         
-    const res = await axios.post("http://127.0.0.1:8000/api/update/logo/1?_method=PUT", formData);
+    const res = await axios.post(`http://127.0.0.1:8000/api/config/update/logo/1?_method=PUT`, formData);
     // console.log(res)
     if(res.data.status === true){
         setAlert({
@@ -69,10 +65,9 @@ useEffect(() => {
     <>     
       <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="logo">
-          <Form.Label>Logo</Form.Label> 
           <Form.Control type="file" name="logo" onChange={(e) => handleChangeImages(e)}/>
         </Form.Group>
-        {/* Thông báo  */}
+        {/* Thông báo */}
         {alert.err_list.status === false && <span className="error">{alert.err_list.messages.logo[0]}</span>}
         {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
         <Button variant="primary" className='' name="" type="submit">Cập nhật</Button>   

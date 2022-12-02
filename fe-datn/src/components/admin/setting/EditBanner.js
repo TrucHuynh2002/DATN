@@ -8,16 +8,11 @@ function EditBanner() {
 
   const {id_banner_config} = useParams();
   const [listBanner, setListBanner] = useState([]);
-  // const [getImages, setGetImages] = useState 
-  console.log(listBanner.link_img_banner)
   const [uploadImages, setUploadImages] = useState([]);
-  console.log(uploadImages);
   // xu ly loi
   const [alert, setAlert] = useState({
     err_list: {},
 });
-
-  // const {banner,} = listBanner;
 
   const handleChangeImages = (e) => {
       
@@ -40,7 +35,7 @@ function EditBanner() {
         
      formData.append('banner[]',uploadImages[0])
         
-    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/22?_method=PUT`, formData);
+    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}?_method=PUT`, formData);
     console.log(res)
     if(res.data.status === true){
         setAlert({
@@ -77,7 +72,7 @@ useEffect(() => {
           <img src={listBanner.link_img_banner} alt={listBanner.name_banner} width={120} height={120} />
             // console.log(listBanner)
            :
-           <img src={listBanner} width={120} height={120} />
+           <img src={listBanner} alt="images" width={120} height={120} />
           
         }
       </Form.Group>

@@ -72,31 +72,31 @@ class ConfigController extends Controller
     }
     public function update_Config(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'sdt' => 'required||min:10|max:12|unique:config',
-            'email' => 'required|email|unique:config',
-            'title' => 'required|string|max:255',
-            'address' => 'required',
-        ], [
-            'sdt.required' => 'Không được bỏ trống',
-            'sdt.min' => 'Không đủ 10 số',
-            'sdt.max' => 'Không đúng',
-            'sdt.unique' => 'Đã tồn tại',
-            'email.required' => 'Không được bỏ trống',
-            'email.email' => 'Không đúng định dạng',
-            'email.unique' => 'Đã tồn tại',
-            'title.required' => 'Không được bỏ trống',
-            'title.string' => 'Không đúng định dạng',
-            'title.max' => 'Độ dài không cho phép',
-            'address.required' => 'Không được bỏ trống'
-        ]);
-        if ($validation->fails()) {
-            return response()
-                ->json([
-                    'messages' =>  $validation->messages(),
-                    'status' => false
-                ]);
-        }
+        // $validation = Validator::make($request->all(), [
+        //     'sdt' => 'required||min:10|max:12|unique:config',
+        //     'email' => 'required|email|unique:config',
+        //     'title' => 'required|string|max:255',
+        //     'address' => 'required',
+        // ], [
+        //     'sdt.required' => 'Không được bỏ trống',
+        //     'sdt.min' => 'Không đủ 10 số',
+        //     'sdt.max' => 'Không đúng',
+        //     'sdt.unique' => 'Đã tồn tại',
+        //     'email.required' => 'Không được bỏ trống',
+        //     'email.email' => 'Không đúng định dạng',
+        //     'email.unique' => 'Đã tồn tại',
+        //     'title.required' => 'Không được bỏ trống',
+        //     'title.string' => 'Không đúng định dạng',
+        //     'title.max' => 'Độ dài không cho phép',
+        //     'address.required' => 'Không được bỏ trống'
+        // ]);
+        // if ($validation->fails()) {
+        //     return response()
+        //         ->json([
+        //             'messages' =>  $validation->messages(),
+        //             'status' => false
+        //         ]);
+        // }
         $config = ConfigModel::where('id_config','=','1')->first();
         //LOGO
         // dd($request->file('logo'));

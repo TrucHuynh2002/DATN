@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class View extends Model
 {
-    protected $table = 'view';
-    protected $primaryKey = 'id_view';
+    protected $table = 'view_index';
+    protected $primaryKey = 'id_view_index';
     protected $fillable = [
         'view_index',
     ];
