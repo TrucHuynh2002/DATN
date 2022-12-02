@@ -204,7 +204,7 @@ class UserController extends Controller
                 if (File::exists($path . $imgUser->name_img)) {
                     File::delete($path . $imgUser->name_img);
                 }
-                $imgUser->link_img_user = env('APP_URL') . $path . $new_image;
+                $imgUser->link_img_user = env('APP_URL').':8000/uploads/images/'.$new_image;
                 $imgUser->name_img = $new_image;
                 $imgUser->type_img_user = $name_image[1]; // khóa ngoại
                 $imgUser->save();

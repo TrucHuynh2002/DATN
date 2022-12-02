@@ -41,7 +41,7 @@ function ConfirmAccount() {
         <h1 className="content_h1_admin">Đổi mật khẩu</h1>
         <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group className="mb-3" controlId="">
-                <Form.Label>Mật khẩu củ</Form.Label>
+                <Form.Label>Mật khẩu cũ</Form.Label>
                 <Form.Control type="password" name="password" value={password} onChange={(e) => handleChange(e)} className=''/>
                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password[0]}</span>}
             </Form.Group>
