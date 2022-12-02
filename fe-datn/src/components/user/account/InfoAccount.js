@@ -3,13 +3,13 @@ import { Button, Form, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
+import EditAvata from './EditAvata';
 
 function InfoAccount() {
     const user = JSON.parse(localStorage.getItem("user"));
     // console.log(user[0].id);
     const {id_post} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
-    const [uploadImages, setUploadImages] = useState([]);
     useEffect(() => {
         getData();
     },[]);
@@ -19,52 +19,21 @@ function InfoAccount() {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_post}`);
         setInfoAccount(res.data.data);
     };
-
-    const handleUpdateAvatar = (e) => {
-        setUploadImages(e.target.files);
-    }
-
-    const handleSumbitData = async (e) => {
-        e.preventDefault();
-        let formData = new FormData();
-        formData.append('avatar[]', uploadImages[0]);
-        const res =  await axios.post(`http://127.0.0.1:8000/api/user/avatar/2?_method=PUT`, formData);
-        if(res.data.status === true){
-            // setAlert({
-            //     err_list: res.data
-            // });
-            console.log(res);
-        }
-        else{
-            console.log(res.data)           
-            // setAlert({
-            //     err_list: res
-            // });
-            
-        }
-    }
     return (
             <div>
                 <h1><b className="b_title">Thông tin cá nhân</b></h1>
                 <hr></hr>
                 <div className='row'>
                     <div className='col-md-2 text-center div_imggggg'>
+                        <Link to="#">
                         <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />
-                        <div className="update_imggg">
-                            <Link to="">
-                                <span>Sửa</span>
-                            </Link>
-                        </div>  
-                        <div>
-                            <Form onSubmit={e => handleSumbitData(e)} encType="multipart/form-data">
-                                <Form.Group className="mb-3" controlId="logo">
-                                    <h3 style={{textAlign:"center", margin:"20px", fontSize:"20px"}}><b>Cập nhật ảnh đại diện</b></h3>
-                                    {/* <Form.Label>Avata</Form.Label> */}
-                                    <Form.Control type="file" name="avatar" className='' onChange={e => handleUpdateAvatar(e)}/>
-                                </Form.Group>
-                                <Button variant="primary" className='' name="" type="submit">Cập nhật</Button> 
-                            </Form>        
-                        </div>      
+                            <div className="update_imggg">
+                                <Link to="">
+                                    <span>Sửa</span>
+                                </Link>
+                            </div>  
+                        </Link>
+                        <EditAvata />
                     </div>
                     <div className='col-md-4 info_content____'>
                         <div>
