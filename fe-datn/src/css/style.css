@@ -951,7 +951,47 @@ div>h1>.b_title{
     text-transform: uppercase;
     font-weight: bold;
 }
-
+.notice {
+    position: relative;
+    color: red;
+    padding: 1.3em;
+    margin-top: -16px;
+    border-left: 4px solid #DDD;
+    top: 8px;
+  }
+  .notice:before {
+    position: absolute;
+    top: 20px;
+    left: -17px;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  .success_____ {
+    border-color: #2ECC40;
+  }
+  .success_____:before {
+    content: "√";
+    background-color: #2ECC40;
+    margin-top: -16px;
+  }
+  .warning_____ {
+    border-color: #FFDC00;
+  }
+  .warning_____:before {
+    content: "!";
+    background-color: #FFDC00;
+    margin-top: -16px;
+  }
+  .error{
+    color: red;
+  }
 .avt_img{
     width:120px;
     height:120px;

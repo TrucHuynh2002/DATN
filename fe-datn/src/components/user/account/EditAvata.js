@@ -37,7 +37,7 @@ function EditAvata() {
                                 </Form.Group>
                                 <Button variant="primary" className='' name="" type="submit">Cập nhật</Button> 
                             </Form>        
-                        </div>      
+            </div>      
     </>
   )
 }
