@@ -70,7 +70,7 @@ class ConfigController extends Controller
             ]
         );
     }
-    public function update_Config(Request $request, $id)
+    public function update_Config(Request $request)
     {
         // $validation = Validator::make($request->all(), [
         //     'sdt' => 'required||min:10|max:12|unique:config',
@@ -97,7 +97,7 @@ class ConfigController extends Controller
         //             'status' => false
         //         ]);
         // }
-        $config = ConfigModel::where('id_config','=',$id)->first();
+        $config = ConfigModel::where('id_config','=','1')->first();
         //LOGO
         // dd($request->file('logo'));
        
@@ -148,12 +148,12 @@ class ConfigController extends Controller
             }
             return response()->json([
                 'status' => true,
-                'messsages' => 'Cập nhật thành công'
+                'messages' => 'Cập nhật thành công'
             ]);
         }else{
             return response()->json([
                 'status' => false,
-                'messsages' => 'Cập nhật false'
+                'messages' => 'Cập nhật false'
             ]);
         }
     }

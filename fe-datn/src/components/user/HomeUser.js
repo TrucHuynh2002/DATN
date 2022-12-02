@@ -22,6 +22,7 @@ function Home() {
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
+  const [listBanner, setListBanner] = useState([]);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -43,6 +44,7 @@ function Home() {
   useEffect(() => {
     getData();
     getDataBlog();
+    getDataBanner();
   },[]);
 
   // danh sách post
@@ -57,6 +59,13 @@ function Home() {
       setListBlog(res.data.data);
   };
 
+  // danh sach banner
+    const getDataBanner = async () => {
+     const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+     console.log(result);
+     setListBanner(result.data.data);
+    };
+
   return (
     <>
 
@@ -64,9 +73,9 @@ function Home() {
       <section className="banner_main">
         <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
           <ol className="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to={0} className="active" />
             <li data-target="#myCarousel" data-slide-to={1} />
             <li data-target="#myCarousel" data-slide-to={2} />
+            <li data-target="#myCarousel" data-slide-to={3} />
           </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
@@ -151,6 +160,9 @@ function Home() {
                           type="text"
                           name=""
                         />
+                        {/* <div className='search'> */}
+                          <button className="book_btn_search"><i class='bx bx-search'></i></button>
+                        {/* </div> */}
                       </div>
                       <div className="col-md-3 col-search">
                         <select className="form-select online_book3">

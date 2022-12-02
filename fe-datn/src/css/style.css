@@ -1604,3 +1604,17 @@ ul.social_icon li a:hover {
 .imguser{
     margin-top: 10px;
 }
+
+.book_btn_search{
+    background-color: #0d3380;
+    max-width: 189px;
+    width: 120px;
+    margin: 0px auto;
+    padding: 7px 0;
+    border: 1px solid#0d3380;
+    border-radius: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+}

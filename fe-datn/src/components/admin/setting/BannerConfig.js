@@ -1,59 +1,24 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Table, Button, Form } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function BannerConfig() {
-  const [uploadImages, setUploadImages] = useState([]);
-  // console.log(uploadImages[0])
-  const [oldImage,setOldImage] = useState([
-  ]);
-  console.log(oldImage);
+
   const [listBanner, setListBanner] = useState([])
   console.log(listBanner);
-  // xu ly loi
-  const [alert, setAlert] = useState({
-    err_list: {},
-});
 
   useEffect(() => {
-    getData();
-  },[]);
-
-  useEffect(() => {
-    getData();
+    getDataBanner();
   },[]);
   
     // list banner
-    const getData = async () => {
-     const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/`);
+    const getDataBanner = async () => {
+     const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
     //  console.log(result.data.data);
      setListBanner(result.data.data);
     };
-
-//   const handleSumbit = async (e) => {
-//     e.preventDefault();
-//     let formData = new FormData();
-//         // formData.append('img[]', Array(uploadImages));
-//         for(let i = 0; i<uploadImages.length; i++) {
-//             formData.append('banner[]',uploadImages[i])
-//         }
-//     const res = await axios.put("http://127.0.0.1:8000/api/config/update", formData);
-//     // console.log(res)
-//     if(res.data.status === true){
-//         setAlert({
-//             err_list: res.data
-//         });
-//         // console.log(alert.err_list)
-//     }
-//     else{           
-//         setAlert({
-//             err_list: res.data
-//         });
-//     }
-//     // navigate("../list_category");
-// };
 
   return (
     <>
@@ -68,17 +33,17 @@ function BannerConfig() {
       
         <tbody className="list-cate">
           {listBanner.map((banner,index) => {
-            return  <tr key={index}>
-              <td>{index}</td>
-              <img src={banner.link_img_banner} alt="banner.name" style={{width:'100px',height:'70px',margin:"20px"}}></img>
-              <td>
-                  <Link to={`editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
-                  </Link>
-              </td>
-            </tr>  
-          }) 
-           
-          }                  
+            return (
+              <tr key={index}>
+                <td>{index+1}</td>
+                <img src={banner.link_img_banner} alt="banner.name" style={{width:'100px',height:'70px',margin:"20px"}}></img>
+                <td>
+                    <Link to={`../editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
+                    </Link>
+                </td>
+              </tr>  
+            );
+          })}                  
             
         </tbody>
       </Table>
