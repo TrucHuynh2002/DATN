@@ -38,7 +38,7 @@ function BannerConfig() {
                     <Link to={`editBanner/${a.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
                     </Link>
                 </td>
-              </tr>  
+              </tr>
         })}
         </tbody>
       </Table>
