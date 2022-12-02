@@ -6,11 +6,29 @@ use App\Models\CommentModel as CommentModel;
 use App\Models\RatingModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
     public function CommentAdd(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            'content' => 'required',
+            'id_user' => 'required',
+            'id_post' => 'required',
+
+        ], [
+            'content.required' => 'Bạn vui lòng viết nội dung bình luận',
+            'id_user.required' => 'Không được bỏ trống',
+            'id_post.string' => 'Không được bỏ trống',
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
         $t = new CommentModel();
         $t->content = $request->content;
         // $t->date = $request->date;
@@ -18,23 +36,28 @@ class CommentController extends Controller
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
         $t->save();
-        
-        $comment = CommentModel::orderby('id_comment','DESC')->first();
-        if($request->rate){
+        $Comment_PostUser = DB::table('comment')
+            ->join('post', 'comment.id_post', '=', 'post.id_post')
+            ->select('post.id_user')
+            ->orderBy('comment.id_comment', 'DESC')
+            ->take(1)
+            ->get();
+        $comment = CommentModel::orderby('id_comment', 'DESC')->first();
+        if ($request->rate) {
 
             $rate = new RatingModel();
             $rate->rate = $request->rate;
             $rate->id_post = $request->id_post;
             $rate->id_comment = $comment->id_comment;
             $rate->save();
-        }else{
-            
+        } else {
         }
         return response()->json([
-                'message' => 'Cám ơn bạn đã đánh giá!',
-                'status' => true,
-                'data' => $comment
-            ]);
+            'message' => 'Cám ơn bạn đã đánh giá!',
+            'status' => true,
+            'data' => $comment,
+            'id' => $Comment_PostUser,
+        ]);
     }
     public function CommentEdit(Request $request, $id_comment)
     {
@@ -82,8 +105,8 @@ class CommentController extends Controller
             ->join('users', 'comment.id_user', '=', 'users.id_user')
             // ->join('post','post.id_post','comment.id_post')
             // ->rightJoin('post_rate','post_rate.id_comment','=','comment.id_comment')
-            ->where('comment.id_post',$id_post)
-            ->orderBy('comment.id_user','DESC')
+            ->where('comment.id_post', $id_post)
+            ->orderBy('comment.id_user', 'DESC')
             ->get();
         return response()
             ->json([
