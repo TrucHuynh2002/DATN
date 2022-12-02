@@ -70,34 +70,34 @@ class ConfigController extends Controller
             ]
         );
     }
-    public function update_Config(Request $request, $id)
+    public function update_Config(Request $request)
     {
-        // $validation = Validator::make($request->all(), [
-        //     'sdt' => 'required||min:10|max:12|unique:config',
-        //     'email' => 'required|email|unique:config',
-        //     'title' => 'required|string|max:255',
-        //     'address' => 'required',
-        // ], [
-        //     'sdt.required' => 'Không được bỏ trống',
-        //     'sdt.min' => 'Không đủ 10 số',
-        //     'sdt.max' => 'Không đúng',
-        //     'sdt.unique' => 'Đã tồn tại',
-        //     'email.required' => 'Không được bỏ trống',
-        //     'email.email' => 'Không đúng định dạng',
-        //     'email.unique' => 'Đã tồn tại',
-        //     'title.required' => 'Không được bỏ trống',
-        //     'title.string' => 'Không đúng định dạng',
-        //     'title.max' => 'Độ dài không cho phép',
-        //     'address.required' => 'Không được bỏ trống'
-        // ]);
-        // if ($validation->fails()) {
-        //     return response()
-        //         ->json([
-        //             'messages' =>  $validation->messages(),
-        //             'status' => false
-        //         ]);
-        // }
-        $config = ConfigModel::where('id_config','=',$id)->first();
+        $validation = Validator::make($request->all(), [
+            'sdt' => 'required||min:10|max:12|unique:config',
+            'email' => 'required|email|unique:config',
+            'title' => 'required|string|max:255',
+            'address' => 'required',
+        ], [
+            'sdt.required' => 'Không được bỏ trống',
+            'sdt.min' => 'Không đủ 10 số',
+            'sdt.max' => 'Không đúng',
+            'sdt.unique' => 'Đã tồn tại',
+            'email.required' => 'Không được bỏ trống',
+            'email.email' => 'Không đúng định dạng',
+            'email.unique' => 'Đã tồn tại',
+            'title.required' => 'Không được bỏ trống',
+            'title.string' => 'Không đúng định dạng',
+            'title.max' => 'Độ dài không cho phép',
+            'address.required' => 'Không được bỏ trống'
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
+        $config = ConfigModel::where('id_config','=','1')->first();
         //LOGO
         // dd($request->file('logo'));
        
@@ -133,7 +133,7 @@ class ConfigController extends Controller
                     $new_image_logo = $name_image_logo[0] . rand(0, 99);
                     // $name = $get_image_logo;
                     $img->move($path, $new_image_logo);
-                    $link_img_logo = env('APP_URL').'/uploads/logo/'.$new_image_logo;
+                    $link_img_logo = env('APP_URL').':8000/uploads/logo/'.$new_image_logo;
                     $config = ConfigModel::find($id);
                     if(File::exists($path.$config->name_logo)){
                         File::delete($path.$config->name_logo);
@@ -173,7 +173,7 @@ class ConfigController extends Controller
                     $img->move($path, $new_image_banner);
                     // $imgPost->img = $new_image;
                     $imgbanner = new banner_configModel();
-                    $imgbanner->link_img_banner = env('APP_URL').'/uploads/banner/'.$new_image_banner;
+                    $imgbanner->link_img_banner = env('APP_URL').':8000/uploads/banner/'.$new_image_banner;
                     $imgbanner->id_config = 1; // khóa ngoại
                     $imgbanner->save();
                 

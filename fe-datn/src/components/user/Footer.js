@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import LogoFooter from '../../images/logo-ft.png';
 
 function Footer() {
 
@@ -25,7 +24,7 @@ function Footer() {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-3">
-                <img src={LogoFooter} alt="" width="80%" />
+                <img src={listConfig.logo} alt="" width="80%" />
                 <h4 style={{ textAlign: "center" }}>
                   {listConfig.title}
                 </h4>

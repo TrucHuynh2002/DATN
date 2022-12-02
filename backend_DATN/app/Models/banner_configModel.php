@@ -15,6 +15,6 @@ class banner_configModel extends Model
     protected $fillable = [
         'id_config',
         'link_img_banner',
-        // 'name_img_banner'
+        'name_banner'
     ];
 }

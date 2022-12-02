@@ -38,7 +38,6 @@ class NotifyController extends Controller
     {
         $t = new Notify();
         $t->id_user_tow = $request->id_user_tow;
-        // $t->date = $request->date;
         $t->status = 1;
         $t->interaction = 'bình luận';
         $t->id_user = $request->id_user;

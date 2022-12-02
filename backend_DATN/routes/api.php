@@ -41,7 +41,7 @@ use App\Http\Controllers\ViewController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::get('config', [ConfigController::class, 'get_Config']);
+// Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 

@@ -185,13 +185,14 @@ class UserController extends Controller
 
         // return redirect()->intended(RouteServiceProvider::HOME);
     }
-    
-    public function userUpdateImg(Request $request,$id_user){
-        if($request->has('avatar')){
+
+    public function userUpdateImg(Request $request, $id_user)
+    {
+        if ($request->has('avatar')) {
             $img = $request->file('avatar');
-            foreach($img as $i) {
+            foreach ($img as $i) {
                 $get_name_image = $i->getClientOriginalName();
-            // $name = $get_name_image;
+                // $name = $get_name_image;
                 $path = 'uploads/images/';
                 // $name_image  = current(explode('.', $get_name_image));
                 $name_image = explode('.', $get_name_image);
@@ -199,12 +200,11 @@ class UserController extends Controller
                 $i->move($path, $new_image);
                 // $imgPost->img = $new_image;
                 $imgUser = new imgUserModel();
-                $imgUser = $imgUser::where('id_user','=',$id_user)->first();
-                if(File::exists($path.$imgUser->name_img)){
-                    File::delete($path.$imgUser->name_img);
-
+                $imgUser = $imgUser::where('id_user', '=', $id_user)->first();
+                if (File::exists($path . $imgUser->name_img)) {
+                    File::delete($path . $imgUser->name_img);
                 }
-                $imgUser->link_img_user = env('APP_URL').$path.$new_image;
+                $imgUser->link_img_user = env('APP_URL') . $path . $new_image;
                 $imgUser->name_img = $new_image;
                 $imgUser->type_img_user = $name_image[1]; // khóa ngoại
                 $imgUser->save();
@@ -214,15 +214,13 @@ class UserController extends Controller
                 'messages' => 'Cập nhật thành công',
                 'image' => $request->avatar
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'messages' => 'Cập nhật thất bại',
                 'data' => $request->file('avatar')
             ]);
         };
-
-    
     }
     // public function UserForgotPassword(Request $request)
     // {

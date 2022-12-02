@@ -14,7 +14,7 @@ function Signin() {
         role: 0,
     });
 
-    const { full_name, password, email, phone, address, role } = addUser;
+    const {full_name, password, email, phone, address} = addUser;
 
     const handleChange = (e) => {
         setAddUser({ ...addUser, [e.target.name]: e.target.value});
@@ -28,7 +28,7 @@ function Signin() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.post("http://127.0.0.1:8000/api/user/create", addUser);
-        console.log(res);
+        // console.log(res);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -40,7 +40,6 @@ function Signin() {
             });
         }
     }
-
   return (
     <>
         <div className="back_re">
@@ -89,7 +88,7 @@ function Signin() {
                                
                                 <div className="d-grid gap-2">
                                     <Button type="submit"> Đăng ký</Button>
-                                    {alert.err_list.status === false && <span className="noti">Đăng ký thành công</span>}
+                                    {alert.err_list.status === true && <span className="noti">Đăng ký thành công</span>}
                                 </div>
                                 <div className="d-grid gap-2">
                                    <button className="button">

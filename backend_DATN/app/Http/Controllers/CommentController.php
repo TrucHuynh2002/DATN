@@ -17,8 +17,14 @@ class CommentController extends Controller
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
         $t->save();
+        $Comment_PostUser = DB::table('comment')
+            ->join('post', 'comment.id_post', '=', 'post.id_post')
+            ->select('post.id_user')
+            ->orderBy('comment.id_comment', 'DESC')
+            ->get();
         return response()
             ->json([
+                'id' => $Comment_PostUser,
                 'data' => $t,
                 'status' => true
             ]);

@@ -10,7 +10,6 @@ function InfoAccount() {
     const {id_post} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages);
     useEffect(() => {
         getData();
     },[]);
@@ -22,10 +21,7 @@ function InfoAccount() {
     };
 
     const handleUpdateAvatar = (e) => {
-        
         setUploadImages(e.target.files);
-      
-       
     }
 
     const handleSumbitData = async (e) => {
@@ -53,25 +49,21 @@ function InfoAccount() {
                 <hr></hr>
                 <div className='row'>
                     <div className='col-md-2 text-center div_imggggg'>
-                       
                         <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />
                         <div className="update_imggg">
                             <Link to="">
                                 <span>Sửa</span>
                             </Link>
                         </div>  
-
-                       
-
                         <div>
-                                <Form onSubmit={e => handleSumbitData(e)} encType="multipart/form-data">
-                                        <Form.Group className="mb-3" controlId="logo">
-                                            <h3 style={{textAlign:"center", margin:"20px", fontSize:"20px"}}><b>Cập nhật ảnh đại diện</b></h3>
-                                            {/* <Form.Label>Avata</Form.Label> */}
-                                            <Form.Control type="file" name="avatar" className='' onChange={e => handleUpdateAvatar(e)}/>
-                                        </Form.Group>
-                                        <Button variant="primary" className='' name="" type="submit">Cập nhật</Button>   
-                                </Form>        
+                            <Form onSubmit={e => handleSumbitData(e)} encType="multipart/form-data">
+                                <Form.Group className="mb-3" controlId="logo">
+                                    <h3 style={{textAlign:"center", margin:"20px", fontSize:"20px"}}><b>Cập nhật ảnh đại diện</b></h3>
+                                    {/* <Form.Label>Avata</Form.Label> */}
+                                    <Form.Control type="file" name="avatar" className='' onChange={e => handleUpdateAvatar(e)}/>
+                                </Form.Group>
+                                <Button variant="primary" className='' name="" type="submit">Cập nhật</Button> 
+                            </Form>        
                         </div>      
                     </div>
                     <div className='col-md-4 info_content____'>

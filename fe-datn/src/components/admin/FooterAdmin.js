@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-// link img
-import LogoFooter from '../../images/logo-ft.png';
 
 function FooterAdmin() {
 
@@ -15,7 +13,7 @@ function FooterAdmin() {
 
   // danh sach category
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/config');
+   const res = await axios.get('http://127.0.0.1:8000/api/config/1');
     setListConfig(res.data.data);
   };
 
@@ -27,7 +25,7 @@ function FooterAdmin() {
           <div className="container">
             <div className="row">
               <div className="col-md-3">
-                <img src={LogoFooter} alt="" width="80%" />
+                <img src={listConfig.logo} alt="images" width="80%" />
                 <h4 style={{ textAlign: "center" }}>
                 {listConfig.title}
                 </h4>

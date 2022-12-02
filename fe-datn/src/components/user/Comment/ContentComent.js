@@ -13,7 +13,6 @@ function ContentComent() {
   const res = await axios.get(`http://127.0.0.1:8000/api/comment/show`);
   setListComment(res.data.data);
   };
-  
 return (
  <div>
   {listComment.map((comment, index) => {

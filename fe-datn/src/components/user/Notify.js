@@ -46,9 +46,9 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
         <li className="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
             <p>|</p>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
             <a className="nav-link nav-item-link" tabIndex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
-        </li>
+        </li> */}
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px"}}>
         <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
@@ -75,7 +75,7 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 </div> 
             }
         </div>
-        <div className="aw__t16jo35 tab-pane fade " id="postSave" role="tabpanel" aria-labelledby="postSave-tab">
+        {/* <div className="aw__t16jo35 tab-pane fade " id="postSave" role="tabpanel" aria-labelledby="postSave-tab">
             {!localStorage.getItem('user') ?
                 <div className="">
                     <div>Vui lòng đăng nhập để xem danh sách hoạt động.</div>
@@ -96,7 +96,7 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                     </div> 
                 </div> 
             }
-        </div>
+        </div> */}
     </div> 
 </div>
   )

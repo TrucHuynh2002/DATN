@@ -128,7 +128,6 @@ function AddPost() {
             formData.append('room_price', room_price);
             formData.append('water_price', water_price);
             formData.append('id_furniture', Array(checkFur));
-            
             const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
             if(res.data.status === true){
                 setAlert({
