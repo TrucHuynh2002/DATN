@@ -22,6 +22,7 @@ function Home() {
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
+  const [listBanner, setListBanner] = useState([]);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -43,6 +44,7 @@ function Home() {
   useEffect(() => {
     getData();
     getDataBlog();
+    getDataBanner();
   },[]);
 
   // danh sách post
@@ -57,6 +59,13 @@ function Home() {
       setListBlog(res.data.data);
   };
 
+  // danh sach banner
+    const getDataBanner = async () => {
+     const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+     console.log(result);
+     setListBanner(result.data.data);
+    };
+
   return (
     <>
 
@@ -64,9 +73,9 @@ function Home() {
       <section className="banner_main">
         <div id="myCarousel" className="carousel slide banner" data-ride="carousel">
           <ol className="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to={0} className="active" />
             <li data-target="#myCarousel" data-slide-to={1} />
             <li data-target="#myCarousel" data-slide-to={2} />
+            <li data-target="#myCarousel" data-slide-to={3} />
           </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
@@ -144,48 +153,50 @@ function Home() {
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-12">
+                      <div className="col-md-9">
                         <input
                           className="online_book2"
                           placeholder="Tìm kiếm"
                           type="text"
                           name=""
                         />
+                        {/* <div className='search'> */}
+                         
+                        {/* </div> */}
                       </div>
-                      <div className="col-md-3 col-search">
-                        <select className="form-select online_book3">
-                          <option>Lọc</option>
-                          <option></option>
-                          <option></option>
-                        </select>
+                      <div className="col-md-3">
+                      <button className="search-btn"><i class='bx bx-search' style={{color:"#0d3380", width:"190px"}}></i></button>
                       </div>
-                      <div className="col-md-3 col-search">
+                      <div className='search-filter'>
+                      <div className="col-md-5 col-search1">
                         <select className="form-select online_book3">
                           <option>Loại phòng</option>
                           <option>Phòng trọ</option>
                           <option>Căn hộ mini</option>
                         </select>
                       </div>
-                      <div className="col-md-3 col-search">
+                      
+                      <div className="col-md-5 col-search2">
                         <select className="form-select online_book3">
                           <option>Tỉnh</option>
                           <option>Hồ Chí Minh</option>
                           <option>Cần Thơ</option>
                         </select>
                       </div>
-                      <div className="col-md-3 col-search">
+                      <div className="col-md-5 col-search3">
                         <select className="form-select online_book3">
                           <option>Giá</option>
                           <option>Dưới 1 triệu</option>
                           <option>Từ 1 - 2 triệu</option>
                         </select>
                       </div>
-                      <div className="col-md-3 col-search">
+                      <div className="col-md-5 col-search4">
                         <select className="form-select online_book3">
                           <option>Diện tích</option>
                           <option>Dưới 20m</option>
                           <option>Dưới 20m</option>
                         </select>
+                      </div>
                       </div>
                       <div className="col-md-12">
                         <button className="book_btn">Xem kết quả</button>

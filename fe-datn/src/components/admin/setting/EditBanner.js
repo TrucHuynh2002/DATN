@@ -40,7 +40,7 @@ function EditBanner() {
         
      formData.append('banner[]',uploadImages[0])
         
-    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/22?_method=PUT`, formData);
+    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}?_method=PUT`, formData);
     console.log(res)
     if(res.data.status === true){
         setAlert({

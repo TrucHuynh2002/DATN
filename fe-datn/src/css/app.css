@@ -301,10 +301,10 @@ a:hover{
 .footer{
     max-width: 100%;
     text-align: center;
-    font-weight: 700;
+    /* font-weight: 700; */
     color: #0d3380;
-    margin: 30px;
-    padding: 30px;
+    /* margin: 30px; */
+    /* padding: 30px; */
     border-top: 2px solid gainsboro;
 }
 

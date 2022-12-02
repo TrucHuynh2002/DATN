@@ -27,6 +27,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\StatisticalSController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -182,3 +183,14 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+//StatisticalS
+Route::get('StatisticalSController/category', [StatisticalSController::class, 'count_category']);
+Route::get('StatisticalSController/roomType', [StatisticalSController::class, 'count_roomType']);
+Route::get('StatisticalSController/post', [StatisticalSController::class, 'count_post']);
+Route::get('StatisticalSController/blog', [StatisticalSController::class, 'count_blog']);
+Route::get('StatisticalSController/furniture', [StatisticalSController::class, 'count_furniture']);
+Route::get('StatisticalSController/comment', [StatisticalSController::class, 'count_comment']);
+Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
+Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
+Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);

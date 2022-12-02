@@ -38,7 +38,7 @@ function Setting() {
       
         formData.append('logo[]',uploadImages[0])
         
-    const res = await axios.post("http://127.0.0.1:8000/api/update/logo/1?_method=PUT", formData);
+    const res = await axios.post("http://127.0.0.1:8000/api/config/update/logo/1?_method=PUT", formData);
     // console.log(res)
     if(res.data.status === true){
         setAlert({
