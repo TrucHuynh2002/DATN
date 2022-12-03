@@ -90,7 +90,8 @@ class StatisticalSController extends Controller
     }
     public function count_view(Request $request)
     {
-        $count_view = View::find(1);
+        // $count_view = View::find(1);
+        $count_view = View::all()->count();
         return response()
             ->json([
                 'data' => $count_view,

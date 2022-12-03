@@ -39,6 +39,9 @@ function RoomND() {
                         <div id="serv_hover" className="room">
                             <div className="room_img">
                                 <figure><img src={RoomNew} alt="#" /></figure>
+                                <div class="heart">
+                                  <i class='bx bxs-heart'></i>
+                                </div>
                             </div>
                             <div className="bed_room">
                                 <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
