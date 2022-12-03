@@ -70,7 +70,6 @@ import AddPostUser from './components/user/postuser/App';
 import EditPostUser from './components/user/postuser/EditPost';
 // user
 import Profile from './components/user/account/Profile';
-import EditAvata from './components/user/account/EditAvata';
 import UpdateAccount from './components/user/account/UpdateAccount';
 import ConfirmAccount from './components/user/account/ConfirmAccount';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
