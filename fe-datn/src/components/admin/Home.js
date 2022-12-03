@@ -21,7 +21,7 @@ function Home() {
     getFurniture();
     getBlog();
     getPost();
-    getRoomtype();
+    getRoomType();
     getCategory();
   },[]);
 
@@ -32,7 +32,7 @@ function Home() {
   setListCategory(result.data.data);
   };
 // list Category
-const getRoomtype = async () => {
+const getRoomType = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
  setListRoomType(result.data.data);
  };
@@ -149,10 +149,6 @@ const getRoomtype = async () => {
               </div>
             </div>            
             </div>
-
-         
-
-
     </>
   )
 }

@@ -1758,3 +1758,34 @@ ul.social_icon li a:hover {
     display: block;
    
 }
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.heart{
+    font-size: 25px;
+    margin-top: -35px;
+    margin-left: 300px;
+    color: white;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.heart:hover {
+    animation: heartbeat 1s infinite;
+    fill: red;
+    color: red;
+    opacity: 1;
+    transition: opacity 500ms;
+}
