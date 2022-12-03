@@ -44,7 +44,6 @@ class CommentController extends Controller
             ->get();
         $comment = CommentModel::orderby('id_comment', 'DESC')->first();
         if ($request->rate) {
-
             $rate = new RatingModel();
             $rate->rate = $request->rate;
             $rate->id_post = $request->id_post;
