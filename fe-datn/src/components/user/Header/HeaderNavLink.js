@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
 
 function HeaderNavLink() {
     var user = JSON.parse(localStorage.getItem("user"));
-    // const handleSumbit = async (e) => {
-    //     localStorage.removeItem("user");
-    // }
+    // const navigate = useNavigate();
+    const handleSLogout = async (e) => {
+        localStorage.removeItem("user");
+        window.location.reload();
+        // navigate("../../");
+
+    }
     // xu ly add post
     const get_user = JSON.parse(localStorage.getItem('user'));
         const [addPost, setAddPost] = useState({
@@ -69,6 +73,7 @@ function HeaderNavLink() {
             setfuriture(get_data.data.data)
         };
         useEffect(() => {
+            getDataRoomType();
             get_furnitures();
         },[]);
     
@@ -79,12 +84,6 @@ function HeaderNavLink() {
             const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
             setListRoomType(res.data.data);
             };
-    
-            useEffect(() => {
-                getDataRoomType();
-            },[]);
-    
-        
         const handle_idFuniture =  (e) => {     
             if(e.target.checked){
                 setFur(pre => {
@@ -97,7 +96,6 @@ function HeaderNavLink() {
                 })           
             }      
         }
-    
         const handleChangeImages = (e) => {
           
             let formData = new FormData();
@@ -107,8 +105,6 @@ function HeaderNavLink() {
         }
         }     
         const handleSumbit = async (e) => {
-            e.preventDefault();
-            localStorage.removeItem("user");
             let formData = new FormData();
             for(let i = 0; i<uploadImages.length; i++) {
                 formData.append('img[]',uploadImages[i])
@@ -146,11 +142,19 @@ function HeaderNavLink() {
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const navigate = useNavigate();
+    const handleShow = () => {
+    const get_user = JSON.parse(localStorage.getItem('user'));
+        // console.log(get_user)
+      if(get_user){
+        setShow(true);
+      }else {
+        navigate('/Loi');
+      }
+    }
   return (
     <>
-            <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
+         <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
             <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
@@ -194,11 +198,6 @@ function HeaderNavLink() {
                 <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow}>
                     Đăng bài
                 </Button>
-                {/* <div className="btn-group">
-                    <Link className="nav-link btn btn-warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} to="addpost">
-                    Đăng bài
-                    </Link>
-                </div> */}
             </li>
             {/* start Đăng bài */}
             <Modal show={show} onHide={handleClose}>
@@ -347,7 +346,7 @@ function HeaderNavLink() {
                             </Form.Group>
                         </Col>
                         <div className="d-grid gap-2">
-                            {alert.err_list.status === true && <span className="noti">Thêm thành công</span>}
+                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
                             </Button>
@@ -376,7 +375,7 @@ function HeaderNavLink() {
                     <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>{user[0].fullname}</button>
                     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
-                        <form  onSubmit={(e) => handleSumbit(e)}>
+                        <form  onSubmit={(e) => handleSLogout(e)}>
                             <button className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} type="submit">Đăng xuất</button>
                         </form>                       
                     </div>

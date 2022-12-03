@@ -64,11 +64,11 @@ function EditRoomtype() {
                     value={name_room_type}
                     className=''
                     onChange={(e) => handleChange(e)}/>
-                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.name_room_type[0]}</span>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name_room_type[0]}</div>}
                 </Form.Group>
                 
                 <div className="d-grid gap-2">
-                    {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+                    {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                     <Button variant="primary" size="sm" name='' type="submit">
                         Cập nhật loại phòng
                     </Button>

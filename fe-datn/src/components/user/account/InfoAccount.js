@@ -77,10 +77,10 @@ function InfoAccount() {
                             <Modal.Body>
                                 <Form onSubmit={e => handleSumbitData(e)} encType="multipart/form-data">
                                     <Form.Group className="mb-3" controlId="logo">
-                                        <h3 style={{textAlign:"center", margin:"20px", fontSize:"20px"}}><b>Cập nhật ảnh đại diện</b></h3>
+                                       
                                         <Form.Control type="file" name="avatar" className='' onChange={e => handleUpdateAvatar(e)}/>
                                     </Form.Group>
-                                    {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+                                    {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                                     <Button variant="primary" className='' name="" type="submit">Cập nhật</Button> 
                                 </Form>
                             </Modal.Body>
@@ -104,35 +104,21 @@ function InfoAccount() {
                             <span>Phone : </span>
                             <span>{InfoAccount.phone}</span>
                         </div>
+                    </div>
+                    <div className='col-md-6 info_content____'> 
                         <div>
-                            <span>Địa chỉ : </span>
+                            <span> Địa chỉ : </span>
                             <span>{InfoAccount.address}</span>
                         </div>
-                    </div>
-                    <div className='col-md-6 info_content____'>
                         <div>
-                            <span className='icon_profile bx bx-star'> Đánh giá : </span>
-                            <span> Chưa có đánh giá</span> 
-                        </div>
-                        <div>
-                            <span className='icon_profile bx bx-table'> Ngày tham gia : </span>
+                            <span> Ngày tham gia : </span>
                             <span> {InfoAccount.created_at} </span> 
-                        </div>
-                        <div>
-                            <span className='icon_profile bx bx-message-dots'> Phản hồi chat : </span> 
-                            <span> Thỉnh thoảng (Phản hồi chậm)</span>
-                        </div>
-                        <div>
-                            <span className='icon_profile bx bx-check-circle'> Đã cung cấp : </span> 
-                            <span className='icon_profile bx bxl-facebook-circle'></span> 
-                            <span className='icon_profile bx bxl-google-plus-circle'></span> 
-                            <span className='icon_profile bx bx-envelope'></span>
                         </div>
                     </div>
                 </div>
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
-                    <div>
+                    <div className='col-12'>
                         <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>

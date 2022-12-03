@@ -34,17 +34,21 @@ function BannerConfig() {
             <th></th>
         </tr>
         </thead>
-        <tbody className="list-cate"> 
-        {listBanner.map((a, index) => {         
-            <tr key={index}>
-                <td>{a.id_banner_config}</td>
-                <img src={a.link_img_banner} alt="images" style={{width:'100px',height:'70px',margin:"20px"}} />
-                <td>
-                    <Link to={`editBanner/${a.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
-                    </Link>
-                </td>
-              </tr>
-        })}
+      
+        <tbody className="list-cate">
+          {listBanner.map((banner,index) => {
+            return  <tr key={index}>
+              <td>{index}</td>
+              <img src={banner.link_img_banner} alt={banner.name_banner} style={{width:'100px',height:'70px',margin:"20px"}}></img>
+              <td>
+                  <Link to={`editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
+                  </Link>
+              </td>
+            </tr>  
+          }) 
+           
+          }                  
+            
         </tbody>
       </Table>
     </>

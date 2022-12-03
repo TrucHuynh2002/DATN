@@ -36,11 +36,9 @@ function ResetPass() {
                 setAlert({
                     err_list: res.data
                 });
-                console.log(res.data);
             }
         }else{
             setError('Nhập lại mật khẩu không khớp')
-            console.log('123')
         }
         
     }
@@ -67,13 +65,14 @@ function ResetPass() {
                         <div className="row">
                             <div className="col-md-12">
                                 <input type="password" id="password" name="password" className="text" placeholder="Nhập mật khẩu mới" onChange={(e) => {setPassWord(e.target.value)}} />
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password[0]}</span>}
+                                {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
                             </div>
                             <div className="col-md-12">
                                 <input type="password" id="resetPassword" name="resetPassword" className="text" placeholder="Xác nhận mật khẩu mới" onChange={(e) => {setResetPassword(e.target.value)}} />
-                                {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages.password[0]}</span>} */}
+                                {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>} */}
                             </div>
                             <div className="d-grid gap-2">
+                            {alert.err_list.status === true && <div className="notice success_____">Cập Nhật Thành Công</div>}
                                 <Button type="submit">Gửi</Button>
                             </div>                              
                         </div>
