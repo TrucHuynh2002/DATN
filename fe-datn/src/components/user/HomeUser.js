@@ -15,11 +15,10 @@ import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
 import { Button } from 'react-bootstrap';
+import { Select } from 'antd';
+const { Option } = Select;
 
 function Home() {
-  // xu ly tym
-  const colors  = ["red", "white"];
-  const [lit, setLit] = useState("red");
   
   const id_post = useParams();
   const id_blog = useParams();
@@ -72,7 +71,7 @@ function Home() {
     // xu ly tym
     var btnColor = document.getElementById('btn_heart');
     const handleClick = (e) => {
-      if(btnColor.style.color == 'red'){
+      if(btnColor.style.color === 'red'){
         btnColor.style.color = 'white'
       }
       else{
@@ -138,9 +137,40 @@ function Home() {
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-9">
-                        <input className="online_book2" placeholder="Tìm kiếm" type="text" name="" />
-                      </div>                      
+                    <div className="col-md-9">
+                            <Select className='search'
+                            showSearch
+                            style={{width:'133.7%'}}
+                            placeholder="Select a person"
+                            optionFilterProp="children"
+                            // onChange={onChange}
+                            // onSearch={onSearch}
+                            filterOption={(input, option) =>
+                              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
+                            // options={[
+                            //   {
+                            //     value: 'jack',
+                            //     label: 'Jack',
+                            //   },
+                            //   {
+                            //     value: 'lucy',
+                            //     label: 'Lucy',
+                            //   },
+                            //   {
+                            //     value: 'tom',
+                            //     label: 'Tom',
+                            //   },
+                            // ]}
+                            >
+                                {listPost.map((item) => (
+                                    <Option value={item.id_post} key={item.id_post}>{item.post_name} </Option>
+                                ))}
+                            </Select>
+                        {/* <div className='search'> */}
+                         
+                        {/* </div> */}
+                      </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
                           <i class='bx bx-search' style={{color:"#0d3380", width:"190px"}}></i>
