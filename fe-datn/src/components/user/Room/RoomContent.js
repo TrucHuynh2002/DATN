@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import RoomNew from '../../../images/phong1.png';
 import Pagination from '../Pagination';
+import HeartRoom from '../HeartRoom';
 
 function RoomND() {
 
@@ -39,8 +40,9 @@ function RoomND() {
                         <div id="serv_hover" className="room">
                             <div className="room_img">
                                 <figure><img src={RoomNew} alt="#" /></figure>
+                                {/* thả tym */}
                                 <div className="heart">
-                                  <i className='bx bxs-heart'></i>
+                                  <HeartRoom />
                                 </div>
                             </div>
                             <div className="bed_room">

@@ -8,6 +8,7 @@ function InfoAccount() {
     const user = JSON.parse(localStorage.getItem("user"));
     // console.log(user[0].id);
     const {id_post} = useParams();
+    const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
         getData();
@@ -65,6 +66,18 @@ function InfoAccount() {
 
 console.log(dateString);
 
+// list img user
+const [imgUser, setImgUser] = useState([]);
+useEffect(() => {
+    getImgUser();
+});
+
+const getImgUser = async () => {
+    const imgUser = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
+    console.log(imgUser);
+    setImgUser(imgUser.data.data);
+};
+
     return (
             <div>
                 <h1><b className="b_title">Thông tin cá nhân</b></h1>
@@ -72,7 +85,7 @@ console.log(dateString);
                 <div className='row'>
                     <div className='col-md-2 text-center div_imggggg'>
                         <Link to="#">
-                        <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0' alt='' className="avt_img" />
+                        <img src={imgUser.link_img_user} alt='' className="avt_img" />
                             <div className="update_imggg">
                                 <Link to="#" onClick={handleShow}>
                                     <span>Sửa</span>
@@ -128,6 +141,7 @@ console.log(dateString);
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
                     <div className='col-12'>
+                        <Button variant="outline-dark" name='' className="btn-edit">Theo dõi</Button>
                         <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
