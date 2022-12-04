@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Slide3 from '../../../images/sl03.png';
 import Pagination from '../Pagination';
+import HeartRoom from '../HeartRoom';
 
 function BlogContent() {
   const {id_blog} = useParams();
@@ -36,6 +36,10 @@ function BlogContent() {
                       <figure>
                         <img src={Slide3} alt="#" />
                       </figure>
+                      {/* thả tym */}
+                      <div className="heart">
+                        <HeartRoom />
+                      </div>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>

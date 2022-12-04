@@ -14,8 +14,8 @@ import TabHaNoi from '../../images/tab-hanoi.png';
 import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
-import { Button } from 'react-bootstrap';
 import { Select } from 'antd';
+import HeartRoom from './HeartRoom';
 const { Option } = Select;
 
 function Home() {
@@ -66,17 +66,6 @@ function Home() {
      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
      console.log(result);
      setListBanner(result.data.data);
-    };
-
-    // xu ly tym
-    var btnColor = document.getElementById('btn_heart');
-    const handleClick = (e) => {
-      if(btnColor.style.color === 'red'){
-        btnColor.style.color = 'white'
-      }
-      else{
-        btnColor.style.color = 'red'
-      }
     };
 
   return (
@@ -141,7 +130,6 @@ function Home() {
                             <Select className='search'
                             showSearch
                             style={{width:'133.7%'}}
-                            placeholder="Select a person"
                             optionFilterProp="children"
                             // onChange={onChange}
                             // onSearch={onSearch}
@@ -167,9 +155,6 @@ function Home() {
                                     <Option value={item.id_post} key={item.id_post}>{item.post_name} </Option>
                                 ))}
                             </Select>
-                        {/* <div className='search'> */}
-                         
-                        {/* </div> */}
                       </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
@@ -270,14 +255,11 @@ function Home() {
                             <Figure><img src={RoomNew} alt="#" /></Figure>
                             {/* thả tym */}
                             <div className="heart">
-                            <i id="btn_heart" onClick ={(e) => handleClick(e)} className='heart bx bxs-heart'></i>
+                              <HeartRoom />
                             </div>
-                              {/* <Button id="btn_heart" onClick={handleClick} className="heart"> */}
-                                {/* <i id="btn_heart" onClick={handleClick} className='heart bx bxs-heart'></i> */}
-                              {/* </Button> */}
                         </div>
                         <div className="bed_room">
-                            <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>
+                            <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                             <h4>Giá: {post.room_price}</h4>
                             <p>{post.description_sort}</p>
                         </div>
@@ -384,6 +366,10 @@ function Home() {
                       <Figure>
                         <img src={Slide3} alt="#" />
                       </Figure>
+                      {/* thả tym */}
+                      <div className="heart">
+                        <HeartRoom />
+                      </div>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>

@@ -43,7 +43,7 @@ function Posted() {
                     <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0'
                      alt='' className=" avt_img" />                        
                 </div>
-                <div className='col-md-10 '>
+                <div className='col-md-10'>
                     <div className='account_content____'>
                         <h1 className="name_title">{post.post_name}</h1>
                         <h3 className="content___">{post.description_sort}</h3>
@@ -55,8 +55,8 @@ function Posted() {
                     {user ? 
                         user[0].id = post.id_user  ?
                             <div className='button-fdp row'>
-                                <Link to={`../editpost/${post.id_post}`} className='button-fix' >Sửa</Link>
-                                <Link className='button-del' >Xóa</Link>
+                                <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
+                                <Link className='button-del'>Xóa</Link>
                             </div>
                             : <div></div> 
                         : <div></div> }

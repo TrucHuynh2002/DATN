@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
-// import {FAsTAR} from "react-icons/fa";
 import Evaluate from '../Comment/Evaluate';
+import HeartRoom from '../HeartRoom';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -12,6 +12,7 @@ function RoomDetail() {
         updateView();
         getData();
     },[]);
+    // show phone contact
     var showBtn = document.querySelector('#button_contact')
     var hideBtn = document.querySelector('#button_phone')
     const handleClick = (e) => {
@@ -89,8 +90,8 @@ function RoomDetail() {
                             </div>
                         </div>
                         <div className="product-count">
-                            <Button className="round-black-btn">
-                                Lưu tin
+                            <Button className="round-btn">
+                                <HeartRoom />
                             </Button>
                             <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">

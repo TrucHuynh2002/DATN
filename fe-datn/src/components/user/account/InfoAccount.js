@@ -119,6 +119,7 @@ function InfoAccount() {
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
                     <div className='col-12'>
+                        <Button variant="outline-dark" name='' className="btn-edit">Theo dõi</Button>
                         <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
