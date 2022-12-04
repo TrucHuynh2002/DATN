@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\imgPost;
 use App\Models\furniture_post;
+use App\Models\ProvinceModel;
+use App\Models\districtModel;
+use App\Models\wardModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +38,30 @@ class PostController extends Controller
             ->where('post.id_user', '=', $id)
             ->orderBy('post.id_post', 'DESC')
             ->get();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function show_province(Request $request)
+    {
+        $data = ProvinceModel::all();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function show_district(Request $request,$id_province)
+    {
+        $data = districtModel::where('district._province_id','=',$id_province)->get();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function show_ward(Request $request,$id_district)
+    {
+        $data = wardModel::where('ward._district_id','=',$id_district)->get();
         return response()
             ->json([
                 'data' => $data
@@ -106,6 +133,9 @@ class PostController extends Controller
         $Post->water_price = $request->water_price;
         $Post->electricity_price = $request->electricity_price;
         $Post->address = $request->address;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_ward = $request->id_ward;
         $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
@@ -212,6 +242,9 @@ class PostController extends Controller
         $Post->electricity_price = $request->electricity_price;
         $Post->water_price = $request->water_price;
         $Post->address = $request->address;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_ward = $request->id_ward;
         $Post->description = $request->description;
         $Post->description_sort = $request->description_sort;
         $Post->meta_keywords = $request->meta_keywords;

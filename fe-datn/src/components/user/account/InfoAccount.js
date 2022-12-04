@@ -55,6 +55,15 @@ function InfoAccount() {
             
         }
     };
+    const now = new Date(InfoAccount.created_at);
+    const dateString = now.toLocaleDateString({
+    weekday: "short",
+    year: "numeric",
+    month: "2-digit",
+    day: "numeric"
+    })
+
+console.log(dateString);
 
     return (
             <div>
@@ -112,7 +121,7 @@ function InfoAccount() {
                         </div>
                         <div>
                             <span> Ngày tham gia : </span>
-                            <span> {InfoAccount.created_at} </span> 
+                            <span> {dateString}</span> 
                         </div>
                     </div>
                 </div>
