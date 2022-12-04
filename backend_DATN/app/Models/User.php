@@ -29,6 +29,7 @@ class User extends Authenticatable
         'id_img_user',
         'email_verified_at',
         'remember_token'
+        // 'created_at'
     ];
 
     /**
