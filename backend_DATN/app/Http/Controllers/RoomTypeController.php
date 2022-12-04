@@ -13,6 +13,7 @@ class RoomTypeController extends Controller
         $data = RoomType::all();
         return response()
             ->json([
+                'status' => true,
                 'data' => $data
             ]);
     }

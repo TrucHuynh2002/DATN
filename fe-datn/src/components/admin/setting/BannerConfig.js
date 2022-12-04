@@ -34,7 +34,6 @@ function BannerConfig() {
             <th></th>
         </tr>
         </thead>
-<<<<<<< HEAD
       
         <tbody className="list-cate">
           {listBanner.map((banner,index) => {
@@ -50,19 +49,6 @@ function BannerConfig() {
            
           }                  
             
-=======
-        <tbody className="list-cate"> 
-        {listBanner.map((a, index) => {         
-            <tr key={index}>
-                <td>{a.id_banner_config}</td>
-                <img src={a.link_img_banner} alt="images" style={{width:'100px',height:'70px',margin:"20px"}} />
-                <td>
-                    <Link to={`editBanner/${a.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
-                    </Link>
-                </td>
-              </tr>
-        })}
->>>>>>> c97b08b353d8b210abf3b1362e59b42d5b4b720c
         </tbody>
       </Table>
     </>

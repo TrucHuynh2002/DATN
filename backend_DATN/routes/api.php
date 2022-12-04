@@ -26,6 +26,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 /*
@@ -153,6 +154,14 @@ Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
+
+
+/// Search
+Route::get('search/', [SearchController::class, 'keyword_searching']);
+
+// Province
+Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
+
 
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store']);
