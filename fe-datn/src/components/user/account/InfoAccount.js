@@ -70,9 +70,14 @@ function InfoAccount() {
 // console.log(dateString);
 
 // list img user
+const [imgUser, setImgUser] = useState([]);
+useEffect(() => {
+    getImgUser();
+},[]);
+
 const getImgUser = async () => {
-    const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/18`);
-    // console.log(img);
+    const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
+    console.log(img);
     setImgUser(img.data.data);
 };
 
@@ -87,6 +92,7 @@ const getImgUser = async () => {
                             <div className="update_imggg">
                                 <Link to="#" onClick={handleShow}>
                                     <span>Sửa</span>
+                                    {imgUser.link_img_user}
                                 </Link>  
                             </div>  
                         </Link>
