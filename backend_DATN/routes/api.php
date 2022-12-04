@@ -86,6 +86,10 @@ Route::get('post/status', [PostController::class, 'show_status']);
 Route::put('post/updateView/{id}', [PostController::class, 'updateView']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
 
+//address
+Route::get('post/show_province', [PostController::class, 'show_province']);
+Route::get('post/show_district/{id}', [PostController::class, 'show_district']);
+Route::get('post/show_ward/{id}', [PostController::class, 'show_ward']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
@@ -125,6 +129,7 @@ Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+Route::get('user/showimg/{id_user}', [UserController::class, 'ImgUser']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);

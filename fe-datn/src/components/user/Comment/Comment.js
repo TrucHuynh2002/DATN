@@ -4,7 +4,7 @@ import { useEffect} from 'react';
 
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import StarRading from './starRading';
+// import StarRading from './starRading';
 import axios from 'axios';
 
 
@@ -44,7 +44,12 @@ function Comment() {
             // console.log(a);
             const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
             if(res.data.status === true){
+<<<<<<< HEAD
               // addNotify.id_user_tow = 
+=======
+              const {id_user_tow} = addNotify;
+              setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+>>>>>>> b09ce82a498cafdbe2ec3c882937c50bb109e85c
               const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
                 setAlert({
                     err_list: res.data
@@ -72,16 +77,13 @@ function Comment() {
   const [alert, setAlert] = useState({
       err_list: {},
   });
+<<<<<<< HEAD
   {listCmt.map((a, index) => {
     const {id_user_tow} = a.id_user  = addNotify
    })}
+=======
+>>>>>>> b09ce82a498cafdbe2ec3c882937c50bb109e85c
 
-
-// STAR
-
-// const handleChangeStar = (star) => {
-//   console.log(star)
-// }
 
 
  
@@ -91,16 +93,6 @@ function Comment() {
               <div>
                 <p className="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
                 <div className="rate">
-                  {/* <Form.Control type="radio" id="star1" name="rate" defaultValue={1} />
-                  <label htmlFor="star1" title="text" />
-                  <Form.Control type="radio" id="star2" name="rate" defaultValue={2} />
-                  <label htmlFor="star2" title="text" />
-                  <Form.Control type="radio" id="star3" name="rate" defaultValue={3} />
-                  <label htmlFor="star3" title="text" />
-                  <Form.Control type="radio" id="star4" name="rate" defaultValue={4} />
-                  <label htmlFor="star4" title="text" />
-                  <Form.Control type="radio" id="star5" name="rate" defaultValue={5} />
-                  <label htmlFor="star5" title="text" /> */}
                   {
                     Array(5).fill()
                             .map((_,index) => 
@@ -134,7 +126,7 @@ function Comment() {
                 </div>
               </div>
         </div>
-        <div className="col-4">
+        <div className="col-8">
          {user ? 
           <Form className="" onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">
@@ -147,6 +139,7 @@ function Comment() {
                 disabled="true"
                 />
               </Form.Group>
+             
               <Form.Group className="form-group">
                 <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
                 <textarea 
@@ -158,10 +151,11 @@ function Comment() {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
+              {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.content[0]}</div>} 
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-              {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages}</div>} 
+          
               {alert.err_list.status === true && <div className="notice success_____">Bình luận thành công</div>} 
             </Form>
             : <Form>

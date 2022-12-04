@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
-// import {FAsTAR} from "react-icons/fa";
 import Evaluate from '../Comment/Evaluate';
+import HeartRoom from '../HeartRoom';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -12,17 +12,14 @@ function RoomDetail() {
         updateView();
         getData();
     },[]);
+    // show phone contact
     var showBtn = document.querySelector('#button_contact')
     var hideBtn = document.querySelector('#button_phone')
     const handleClick = (e) => {
         showBtn.style.display = 'none'
-        hideBtn.style.display = 'block'
-         
+        hideBtn.style.display = 'block'        
     };
-   
-    // hideBtn.addEventListener('click', () => {
-    //   div.style.display = 'none'
-    // })
+
     // danh sach post
     const getData = async () => {
                 const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
@@ -81,11 +78,11 @@ function RoomDetail() {
                                         <input type="radio" id="star1" name="rate" defaultValue={1} />
                                         <label htmlFor="star1" title="text"> 1 star</label>
                                     </div>
-                                    <div >
+                                    <div>
                                         <span>3 đánh giá</span>
                                     </div>
                                 </div>
-                                <div className="product-price-discount">{a.room_price} vnd</div>
+                                <div className="product-price-discount">{a.room_price} vnd</div>                                   
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
                                     <p> {a.description_sort}</p>
@@ -93,12 +90,16 @@ function RoomDetail() {
                             </div>
                         </div>
                         <div className="product-count">
-                            <Button onClick ={(e) => handleClick(e)}  className="round-black-btn">
-                                <span id="button_contact">Liên hệ ngay</span> 
+                            <Button className="round-btn">
+                                <HeartRoom />
+                            </Button>
+                            <br />
+                            <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
+                                <span id="button_contact">Liên hệ ngay</span>
                                 <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
                             </Button>
                             <br />
-                            <Link to={`../profile/${a.id_user}`} className="round-black-btn" >
+                            <Link to={`../profile/${a.id_user}`} className="round-black-btn">
                                 Thông tin người đăng
                             </Link>
                         </div>
