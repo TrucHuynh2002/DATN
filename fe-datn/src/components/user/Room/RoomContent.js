@@ -39,8 +39,8 @@ function RoomND() {
                         <div id="serv_hover" className="room">
                             <div className="room_img">
                                 <figure><img src={RoomNew} alt="#" /></figure>
-                                <div class="heart">
-                                  <i class='bx bxs-heart'></i>
+                                <div className="heart">
+                                  <i className='bx bxs-heart'></i>
                                 </div>
                             </div>
                             <div className="bed_room">

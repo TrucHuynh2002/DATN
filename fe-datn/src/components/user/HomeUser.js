@@ -14,9 +14,13 @@ import TabHaNoi from '../../images/tab-hanoi.png';
 import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
+import { Button } from 'react-bootstrap';
 
 function Home() {
- 
+  // xu ly tym
+  const colors  = ["red", "white"];
+  const [lit, setLit] = useState("red");
+  
   const id_post = useParams();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
@@ -63,6 +67,17 @@ function Home() {
      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
      console.log(result);
      setListBanner(result.data.data);
+    };
+
+    // xu ly tym
+    var btnColor = document.getElementById('btn_heart');
+    const handleClick = (e) => {
+      if(btnColor.style.color == 'red'){
+        btnColor.style.color = 'white'
+      }
+      else{
+        btnColor.style.color = 'red'
+      }
     };
 
   return (
@@ -223,9 +238,13 @@ function Home() {
                     <div id="serv_hover" className="room">
                         <div className="room_img">
                             <Figure><img src={RoomNew} alt="#" /></Figure>
-                            <div class="heart">
-                              <i class='bx bxs-heart'></i>
+                            {/* thả tym */}
+                            <div className="heart">
+                            <i id="btn_heart" onClick ={(e) => handleClick(e)} className='heart bx bxs-heart'></i>
                             </div>
+                              {/* <Button id="btn_heart" onClick={handleClick} className="heart"> */}
+                                {/* <i id="btn_heart" onClick={handleClick} className='heart bx bxs-heart'></i> */}
+                              {/* </Button> */}
                         </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>

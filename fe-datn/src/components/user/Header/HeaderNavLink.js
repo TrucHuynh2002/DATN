@@ -151,7 +151,8 @@ function HeaderNavLink() {
       }else {
         navigate('/Loi');
       }
-    }
+    };
+
   return (
     <>
          <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
