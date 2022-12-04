@@ -64,18 +64,16 @@ function InfoAccount() {
     day: "numeric"
     })
 
-console.log(dateString);
-
 // list img user
 const [imgUser, setImgUser] = useState([]);
 useEffect(() => {
     getImgUser();
-});
+},[]);
 
 const getImgUser = async () => {
-    const imgUser = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
-    console.log(imgUser);
-    setImgUser(imgUser.data.data);
+    const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
+    console.log(img);
+    setImgUser(img.data.data);
 };
 
     return (
