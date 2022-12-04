@@ -14,9 +14,12 @@ import TabHaNoi from '../../images/tab-hanoi.png';
 import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
+import { Select } from 'antd';
+import HeartRoom from './HeartRoom';
+const { Option } = Select;
 
 function Home() {
- 
+  
   const id_post = useParams();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
@@ -123,9 +126,36 @@ function Home() {
                   <h1>Tìm phòng trống</h1>
                   <form className="book_now2">
                     <div className="row">
-                      <div className="col-md-9">
-                        <input className="online_book2" placeholder="Tìm kiếm" type="text" name="" />
-                      </div>                      
+                    <div className="col-md-9">
+                            <Select className='search'
+                            showSearch
+                            style={{width:'133.7%'}}
+                            optionFilterProp="children"
+                            // onChange={onChange}
+                            // onSearch={onSearch}
+                            filterOption={(input, option) =>
+                              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                            }
+                            // options={[
+                            //   {
+                            //     value: 'jack',
+                            //     label: 'Jack',
+                            //   },
+                            //   {
+                            //     value: 'lucy',
+                            //     label: 'Lucy',
+                            //   },
+                            //   {
+                            //     value: 'tom',
+                            //     label: 'Tom',
+                            //   },
+                            // ]}
+                            >
+                                {listPost.map((item) => (
+                                    <Option value={item.id_post} key={item.id_post}>{item.post_name} </Option>
+                                ))}
+                            </Select>
+                      </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
                           <i class='bx bx-search' style={{color:"#0d3380", width:"190px"}}></i>
@@ -223,12 +253,13 @@ function Home() {
                     <div id="serv_hover" className="room">
                         <div className="room_img">
                             <Figure><img src={RoomNew} alt="#" /></Figure>
-                            <div class="heart">
-                              <i class='bx bxs-heart'></i>
+                            {/* thả tym */}
+                            <div className="heart">
+                              <HeartRoom />
                             </div>
                         </div>
                         <div className="bed_room">
-                            <h3><Link to={`../roomdetail/${index+1}`}>{post.post_name}</Link></h3>
+                            <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                             <h4>Giá: {post.room_price}</h4>
                             <p>{post.description_sort}</p>
                         </div>
@@ -335,6 +366,10 @@ function Home() {
                       <Figure>
                         <img src={Slide3} alt="#" />
                       </Figure>
+                      {/* thả tym */}
+                      <div className="heart">
+                        <HeartRoom />
+                      </div>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>

@@ -755,7 +755,6 @@ font-size: 45px;
     transform: scale(1.2);
 }
 
-
 /** end gallery  section **/
 
 
@@ -1579,6 +1578,17 @@ ul.social_icon li a:hover {
     text-align: center;
 }
 
+.round-btn {
+    border-radius: 4px;
+    background: #212529;
+    color: #fff;
+    padding: 7px 45px;
+    display: inline-block;
+    margin-top: 20px;
+    border: solid 1px #fff;
+    transition: all 0.5s ease-in-out 0s;
+}
+
 .round-black-btn {
     border-radius: 4px;
     background: #212529;
@@ -1759,33 +1769,10 @@ ul.social_icon li a:hover {
    
 }
 
-@keyframes heartbeat {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.25);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
 .heart{
-    font-size: 25px;
-    margin-top: -35px;
+    font-size: 30px;
+    margin-top: -40px;
     margin-left: 300px;
     color: white;
     opacity: 0.7;
-    cursor: pointer;
-}
-
-.heart:hover {
-    animation: heartbeat 1s infinite;
-    fill: red;
-    color: red;
-    opacity: 1;
-    transition: opacity 500ms;
 }

@@ -7,6 +7,7 @@ import './css/style.css';
 import './css/responsive.css';
 import './css/blog.css';
 import './css/pagination.css';
+import 'antd/dist/reset.css';
 
 // admin home
 import App from './components/admin/App';

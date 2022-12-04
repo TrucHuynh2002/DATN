@@ -9,6 +9,7 @@ use App\Mail\Resetpassword;
 use App\Models\imgUserModel;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -84,6 +85,7 @@ class UserController extends Controller
         $t->id_img_user = 1;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
+        // $t->created_at= Carbon::today();
         $t->save();
         return response()
             ->json([

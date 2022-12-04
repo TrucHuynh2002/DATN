@@ -55,6 +55,15 @@ function InfoAccount() {
             
         }
     };
+    const now = new Date(InfoAccount.created_at);
+    const dateString = now.toLocaleDateString({
+    weekday: "short",
+    year: "numeric",
+    month: "2-digit",
+    day: "numeric"
+    })
+
+console.log(dateString);
 
     return (
             <div>
@@ -112,13 +121,14 @@ function InfoAccount() {
                         </div>
                         <div>
                             <span> Ngày tham gia : </span>
-                            <span> {InfoAccount.created_at} </span> 
+                            <span> {dateString}</span> 
                         </div>
                     </div>
                 </div>
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
                     <div className='col-12'>
+                        <Button variant="outline-dark" name='' className="btn-edit">Theo dõi</Button>
                         <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
