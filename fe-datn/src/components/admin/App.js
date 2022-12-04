@@ -15,7 +15,6 @@ function App() {
       const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
       if(res.data.status === true){
         const user_data = res.data.data;
-        // console.log(user_data); 
         if(user_data.role == 0){
           navigate('/');
         }

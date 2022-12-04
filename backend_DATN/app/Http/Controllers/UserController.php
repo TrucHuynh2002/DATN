@@ -149,20 +149,20 @@ class UserController extends Controller
     }
     public function UserLogin(Request $request)
     {
-        // $validation = Validator::make($request->all(), [
-        //     'email' => 'required|email|max:255|unique:Users',
-        //     'password' => 'required|max:255',
-        // ], [
-        //     'email.required' => 'Không được bỏ trống',
-        //     'password.required' => 'Không được bỏ trống',
-        // ]);
-        // if ($validation->fails()) {
-        //     return response()
-        //         ->json([
-        //             'messages' =>  $validation->messages(),
-        //             'status' => false
-        //         ]);
-        // }
+        $validation = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+        ], [
+            'email.required' => 'Không được bỏ trống',
+            'password.required' => 'Không được bỏ trống',
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
             return response()
