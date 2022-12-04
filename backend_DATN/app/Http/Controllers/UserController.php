@@ -42,9 +42,7 @@ class UserController extends Controller
     }
     public function ImgUser(Request $request, $id_user)
     {
-        $get_img = DB::table('img_user')
-            ->where('id_user', '=', $id_user)           
-            ->get();
+        $get_img = imgUserModel::where('id_user', '=', $id_user)->get();
         return response()->json([
             'status' => true,
             'data' => $get_img

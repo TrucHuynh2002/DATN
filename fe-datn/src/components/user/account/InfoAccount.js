@@ -64,7 +64,7 @@ function InfoAccount() {
     day: "numeric"
     })
 
-console.log(dateString);
+// console.log(dateString);
 
 // list img user
 const [imgUser, setImgUser] = useState([]);
