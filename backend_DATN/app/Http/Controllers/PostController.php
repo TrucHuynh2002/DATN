@@ -53,7 +53,7 @@ class PostController extends Controller
     }
     public function show_district(Request $request,$id_province)
     {
-        $data = districtModel::where('district._province_id','=',$id_province)->get();
+        $data = districtModel::where('_province_id','=',$id_province)->get();
         return response()
             ->json([
                 'data' => $data
@@ -61,7 +61,7 @@ class PostController extends Controller
     }
     public function show_ward(Request $request,$id_district)
     {
-        $data = wardModel::where('ward._district_id','=',$id_district)->get();
+        $data = wardModel::where('_district_id','=',$id_district)->get();
         return response()
             ->json([
                 'data' => $data
