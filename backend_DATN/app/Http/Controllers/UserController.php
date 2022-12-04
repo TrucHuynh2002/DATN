@@ -138,16 +138,24 @@ class UserController extends Controller
         $t = User::find($id_user);
         // $pass_old = Hash::make($request->password);
         if ($t) {
-            
-            if (Hash::check($request->password,$t->password)) {
-                $t->password = Hash::make($request->password_new);
-                $t->save();
-                return response()
+            if (Hash::check($request->password,$t->password)) {  
+                if($request->password_new == $request->password_neww){
+                    $t->password = Hash::make($request->password_new);
+                    $t->save();
+                    return response()
+                        ->json([
+                            'messess' => 'Đổi mật khẩu thành công',
+                            'data' => $t,
+                            'status' => true
+                        ]);
+                }else{
+                    return response()
                     ->json([
-                        'messess' => 'Đổi mật khẩu thành công',
-                        'data' => $t,
-                        'status' => true
+                        'messess' => 'Nhập lại mật khẩu không khớp',
+                        // 'data' => $t,
+                        'status' => false
                     ]);
+                }
             } else {
                 // dd($pass_old);
                 // dd(Hash::make($t->password));

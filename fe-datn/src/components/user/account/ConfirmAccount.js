@@ -9,14 +9,15 @@ function ConfirmAccount() {
   const [resetPassword, setResetPassword] = useState("");
   const [editPassword, setEditPassword] = useState({
     password:"",
-    password_new:""
+    password_new:"",
+    password_neww:"",
  });
 
  const [alert, setAlert] = useState({
      err_list: {},
  });
 
- const {password, password_new } = editPassword;
+ const {password, password_new, password_neww } = editPassword;
  const handleChange = (e) => {
      setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
  };
@@ -53,8 +54,8 @@ function ConfirmAccount() {
             </Form.Group>
             <Form.Group className="mb-3" controlId="">
                 <Form.Label>Xác nhận mật khẩu mới</Form.Label>
-                <Form.Control type="password" name="password_new" value={password_new} onChange={(e) => handleChange(e)} className=''/>
-                {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password_new[0]}</div>}
+                <Form.Control type="password" name="password_neww" value={password_neww} onChange={(e) => handleChange(e)} className=''/>
+                {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password_neww[0]}</div>}
             </Form.Group>
             <div className="d-grid gap-2">
                 {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
