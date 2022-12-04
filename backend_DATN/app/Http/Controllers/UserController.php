@@ -40,17 +40,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-    public function ImgUser(Request $request, $id_user)
+    
+    public function ImgUser(Request $request)
     {
-        $get_img = DB::table('img_user')
-            ->where('id_user', '=', $id_user)           
-            ->get();
-        return response()->json([
-            'status' => true,
-            'data' => $get_img
-        ]);
+        $get_img = imgUserModel::where('id_user', '=', 18)->get();
+        return response()
+            ->json([
+                'data' => $get_img,
+                'status' => true
+            ]);
     }
-
 
     public function UserAdd(Request $request)
     {
@@ -110,7 +109,7 @@ class UserController extends Controller
     {
         $t = User::find($id_user);
         $t->full_name = $request->full_name;
-        $t->email = $request->email;
+        // $t->email = $request->email;
         // $t->password = $request->password;
         $t->phone = $request->phone;
         $t->address = $request->address;
@@ -138,16 +137,21 @@ class UserController extends Controller
     public function PasswordEdit(Request $request, $id_user)
     {
         $t = User::find($id_user);
+        // $pass_old = Hash::make($request->password);
         if ($t) {
-            if ($t->password == $request->password) {
-                $t->password = $request->password_new;
+            
+            if (Hash::check($request->password,$t->password)) {
+                $t->password = Hash::make($request->password_new);
                 $t->save();
                 return response()
                     ->json([
+                        'messess' => 'Đổi mật khẩu thành công',
                         'data' => $t,
                         'status' => true
                     ]);
             } else {
+                // dd($pass_old);
+                // dd(Hash::make($t->password));
                 return response()
                     ->json([
                         'messess' => 'Mật khẩu hiện tại không đúng',

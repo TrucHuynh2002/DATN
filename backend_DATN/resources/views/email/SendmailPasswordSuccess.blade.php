@@ -33,7 +33,7 @@
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
         <b>Hello, tên </b>
         <p>Chúc mừng bạn đã đổi mật khẩu thành công</p>
-        <p>Nhấp <a href="/">vào đây</a> để đăng nhập vào tài khoản.</p>
+        <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để đăng nhập vào tài khoản.</p>
         
     </div>
     <div class="footer">

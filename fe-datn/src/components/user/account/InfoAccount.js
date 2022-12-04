@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
-// import EditAvata from './EditAvata';
+import axios from 'axios';
 
 function InfoAccount() {
     const user = JSON.parse(localStorage.getItem("user"));
     // console.log(user[0].id);
     const {id_post} = useParams();
     const {id_user} = useParams();
+    
     const [InfoAccount, setInfoAccount] = useState([]);
+    const [imgUser, setImgUser] = useState([]);
+    console.log(imgUser);
     useEffect(() => {
         getData();
+        getImgUser();
     },[]);
 
     // xu ly loi
@@ -41,7 +44,7 @@ function InfoAccount() {
         e.preventDefault();
         let formData = new FormData();
         formData.append('avatar[]', uploadImages[0]);
-        const res =  await axios.post(`http://127.0.0.1:8000/api/user/avatar/2?_method=PUT`, formData);
+        const res =  await axios.post(`http://127.0.0.1:8000/api/user/avatar/18?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -64,15 +67,12 @@ function InfoAccount() {
     day: "numeric"
     })
 
-// list img user
-const [imgUser, setImgUser] = useState([]);
-useEffect(() => {
-    getImgUser();
-},[]);
+// console.log(dateString);
 
+// list img user
 const getImgUser = async () => {
-    const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
-    console.log(img);
+    const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/18`);
+    // console.log(img);
     setImgUser(img.data.data);
 };
 
@@ -83,7 +83,7 @@ const getImgUser = async () => {
                 <div className='row'>
                     <div className='col-md-2 text-center div_imggggg'>
                         <Link to="#">
-                        <img src={imgUser.link_img_user} alt='' className="avt_img" />
+                        <img src={imgUser[0].link_img_user} alt={imgUser[0].id_img_user} className="avt_img"/>
                             <div className="update_imggg">
                                 <Link to="#" onClick={handleShow}>
                                     <span>Sửa</span>
@@ -139,7 +139,6 @@ const getImgUser = async () => {
                 {user ? 
                 user[0].id = InfoAccount.id_user  ?
                     <div className='col-12'>
-                        <Button variant="outline-dark" name='' className="btn-edit">Theo dõi</Button>
                         <Link to={`../update_acc/${InfoAccount.id_user}`}>
                             <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
                         </Link>
