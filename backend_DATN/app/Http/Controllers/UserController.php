@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -39,6 +40,18 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+    public function ImgUser(Request $request, $id_user)
+    {
+        $get_img = DB::table('img_user')
+            ->where('id_user', '=', $id_user)           
+            ->get();
+        return response()->json([
+            'status' => true,
+            'data' => $get_img
+        ]);
+    }
+
+
     public function UserAdd(Request $request)
     {
         $validation = Validator::make($request->all(), [
