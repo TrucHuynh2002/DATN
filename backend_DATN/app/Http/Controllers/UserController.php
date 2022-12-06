@@ -29,6 +29,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+    public function UserAcount(Request $request, $id_user)
+    {
+        $User_SelectOne = User::find($id_user);
+        return response()
+            ->json([
+                'data' => $User_SelectOne,
+                'status' => true
+            ]);
+    }
+
 
     public function User_SelectOne(Request $request, $id_user)
     {
@@ -59,9 +69,9 @@ class UserController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|max:255',
-            'phone' => 'required|max:12|min:10',
+            'phone' => 'required|max:12|min:10|unique:users',
             'address' => 'required|max:255',
             // 'role' => 'required',
             // 'id_img_user' => 'required',
@@ -113,10 +123,10 @@ class UserController extends Controller
     {
         $t = User::find($id_user);
         $t->full_name = $request->full_name;
-        // $t->email = $request->email;
-        // $t->password = $request->password;
         $t->phone = $request->phone;
         $t->address = $request->address;
+        // $t->email = $request->email;
+        // $t->password = $request->password;
         // $t->role = $request->role;
         // $t->id_img_user = $request->id_img_user;
         // $t->email_verified_at = $request->email_verified_at;
@@ -181,7 +191,7 @@ class UserController extends Controller
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => 'required|',
             'password' => 'required',
         ], [
             'email.required' => 'Không được bỏ trống',

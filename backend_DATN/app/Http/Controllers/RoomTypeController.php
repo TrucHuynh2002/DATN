@@ -57,9 +57,9 @@ class RoomTypeController extends Controller
             'name_room_type' => 'required|string|max:255'
 
         ], [
-            'name_category.required' => 'Không được bỏ trống',
-            'name_category.string' => 'Không đúng định dạng',
-            'name_category.max' => 'Độ dài không cho phép'
+            'name_room_type.required' => 'Không được bỏ trống',
+            'name_room_type.string' => 'Không đúng định dạng',
+            'name_room_type.max' => 'Độ dài không cho phép'
         ]);
         if ($validation->fails()) {
             return response()

@@ -3,15 +3,10 @@ import HeaderContainer from './HeaderContainer';
 
 function Header() {
   return (
-    <>
-     <header>
-      <div className="header">
-        <div className="container">
+      <div className="header container">
           <HeaderContainer /> 
         </div>
-      </div>
-    </header>
-    </>
+      
   )
 }
 
