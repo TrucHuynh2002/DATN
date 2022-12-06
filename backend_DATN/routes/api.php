@@ -27,6 +27,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 /*
@@ -170,7 +171,7 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 
 
 /// Search
-Route::get('search', [SearchController::class, 'keyword_searching']);
+Route::post('search', [search_trendsController::class, 'search_key_word']);
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
