@@ -60,8 +60,11 @@ function Search() {
                 )
                 : 
                 (
-                      <div className="col-md-4 col-sm-6">
-                                Không có kết quả tìm kiếm
+                      <div className="searchroom__">
+                               
+                               <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={200} height={200} class="shopee-search-empty-result-section__icon"></img>
+                               <br></br>
+                               <b> Không có kết quả tìm kiếm</b>
                         </div>
                 )
             }

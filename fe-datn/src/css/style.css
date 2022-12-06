@@ -1925,3 +1925,11 @@ gallery {
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.searchroom__{
+ color: black;
+ font-size: 24px;
+margin: -100px 0 80px 0;
+}.our_room{
+    background-color: white;
+    text-align: center;
+}

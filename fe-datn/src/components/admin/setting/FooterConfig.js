@@ -81,7 +81,7 @@ function FooterConfig() {
             <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/>
             {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages.introduce[0]}</span>} */}
         </Form.Group>
-          {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+          {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>} 
         <Button variant="primary" name="" type="submit">Cập nhật</Button>
       </Form>
     </>
