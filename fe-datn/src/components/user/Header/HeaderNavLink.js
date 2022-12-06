@@ -1,10 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function HeaderNavLink() {
+    // CKEditor.replace('description')
     var user = JSON.parse(localStorage.getItem("user"));
     // console.log(user[0].id)
     // const navigate = useNavigate();
@@ -279,6 +283,23 @@ function HeaderNavLink() {
                                 <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
                                 value={description}
                                 onChange = {(e) => handleChange(e)}/>
+                                <CKEditor 
+                                editor={ClassicEditor}
+                                data={description}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
+                                }}
+                                onChange={(event,editor)=> {
+                                    const data=editor.getData()
+                                    setAddPost({ ...addPost, description : data});
+                                    console.log(description);
+                                }}
+                                
+                                >
+
+                                </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
                             <Form.Group className="mb-12 room_price">
@@ -418,13 +439,26 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
                             </Form.Group>
+<<<<<<< HEAD
+                           =
+                        </Col>
+                           
+                        
+                        <div className="d-grid gap-2">
+=======
                         <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+>>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
                             </Button>
                             {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                         </div>
+<<<<<<< HEAD
+
+                    </Row>
+=======
                     
+>>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                 </Form>
                 </Modal.Body>
                 <Modal.Footer>
