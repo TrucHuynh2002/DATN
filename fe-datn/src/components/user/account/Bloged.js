@@ -2,12 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 import PaginationBlog from '../PaginationBlog';
 
 import axios from 'axios'
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
-
     const {id_user} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
@@ -26,7 +26,11 @@ function Bloged() {
     const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
     setListBlog(res.data.data);
     };
-
+ // xoa Blog
+ const deleteBlog = async (id_blog) => {
+    await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
+    getData();
+  };
   return (
     <div >
         <h1><b className="b_title">Bài viết đã đăng</b></h1>
@@ -56,8 +60,8 @@ function Bloged() {
                             {user ? 
                                 user[0].id = a.id_user  ?
                                     <div className='button-fdp row'>
-                                        <Link className='button-fix' >Sửa</Link>
-                                        <Link className='button-del' >Xóa</Link>
+                                        <Link className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</Link>
+                                        <Button className='button-del' onClick={() => deleteBlog(a.id_blog)} >Xóa</Button>
                                     </div>
                                 : <div></div> 
                             : <div></div> }
