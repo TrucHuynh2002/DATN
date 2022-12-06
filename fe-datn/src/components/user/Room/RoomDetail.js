@@ -90,9 +90,9 @@ function RoomDetail() {
                             </div>
                         </div>
                         <div className="product-count">
-                            <Button className="round-btn">
-                                {/* <HeartRoom /> */}
-                            </Button>
+                            {/* <Button className="round-btn">
+                                 <HeartRoom /> *
+                            </Button> */}
                             <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
                                 <span id="button_contact">Liên hệ ngay</span>

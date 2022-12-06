@@ -46,7 +46,7 @@ function Contact() {
     <div className="back_re">
         <div className="container">
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-12">
                     <div className="title">
                         <h2>LIÊN HỆ</h2>
                     </div>
@@ -58,10 +58,10 @@ function Contact() {
     <div className="contact">
         <div className="container">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-12">
               <form id="request" className="main_form" onSubmit={(e) => handleSumbit(e)}>
                 <div className="row">
-                  <div className="col-md-12">
+                  <div className="col-12">
                     <input
                       className="contactus"
                       placeholder="Họ tên"
@@ -71,7 +71,7 @@ function Contact() {
                       onChange={(e) => handleChange(e)}/>
                       {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-12">
                     <input
                       className="contactus"
                       placeholder="Email"
@@ -81,7 +81,7 @@ function Contact() {
                       onChange={(e) => handleChange(e)}/>
                       {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-12">
                     <input
                       className="contactus"
                       placeholder="Số điện thoại"
@@ -91,7 +91,7 @@ function Contact() {
                       onChange={(e) => handleChange(e)}/>
                       {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-12">
                     <input
                       className="contactus"
                       placeholder="Tiêu đề"
@@ -101,7 +101,7 @@ function Contact() {
                       onChange={(e) => handleChange(e)}/>
                       {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.subject[0]}</div>}
                   </div>
-                  <div className="col-md-12">
+                  <div className="col-12">
                     <textarea
                       className="textarea"
                       placeholder="Nội dung"
@@ -112,14 +112,14 @@ function Contact() {
                       {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.content[0]}</div>}
                   </div>
                  
-                  <div className="d-grid gap-2">
+                  <div className="d-grid gap-2" style={{marginBottom: "20px"}}>
                     <Button type='submit'>Gửi</Button>
                     {alert.err_list.status === true && <div className="notice success_____">Liên hệ thành công</div>}
                   </div>              
                 </div>
               </form>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-12">
               <div className="map_main">
                 <div className="map-responsive">
                   <iframe
