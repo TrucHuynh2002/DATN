@@ -46,7 +46,6 @@ use App\Http\Controllers\StatisticalSController;
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
-
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
@@ -100,9 +99,11 @@ Route::get('post/show_ward/{id}', [PostController::class, 'show_ward']);
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
 Route::get('imgPost/show/{id}', [imgPostController::class, 'show_id']);
+Route::get('imgPost/show_detail/{id}', [imgPostController::class, 'show_img_detail']);
 Route::post('imgPost/create', [imgPostController::class, 'created_at']);
 Route::put('imgPost/update/{id}', [imgPostController::class, 'update']);
 Route::delete('imgPost/delete/{id}', [imgPostController::class, 'delete']);
+
 
 // Furniture
 Route::get('furniture/show', [FurnitureController::class, 'show']);

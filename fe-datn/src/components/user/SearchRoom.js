@@ -17,7 +17,6 @@ function Search() {
         console.log(res.data)
         setData(res.data);
       }
-    
     useEffect(() => {
         getPostSearch();
     },[])

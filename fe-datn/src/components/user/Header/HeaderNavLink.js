@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Modal, Button, Form } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
 import {CKEditor} from 'ckeditor4-react'
@@ -94,6 +94,7 @@ function HeaderNavLink() {
             getDataProvince();
             getDataRoomType();
             get_furnitures();
+            getData();
         },[]);
     
         // lấy tỉnh 
@@ -192,39 +193,27 @@ function HeaderNavLink() {
             navigate('/Loi');
         }
     };
+
+    // list category
+    const id_category = useParams();
+    const [listCategory, setListCategory] = useState([]);
+    const getData = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/category/show');
+           setListCategory(res.data.data);
+    };
+
   return (
-    <div class="collapse navbar-collapse "  id="navbarExample04">
-         <ul className="navbar-nav">
-            <li className="nav-item ">
-                <Link className="nav-link" to="">
-                Trang chủ
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="about">
-                Giới thiệu
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="room">
-                Phòng
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="gallery">
-                Nổi bật
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="blog">
-                Blog
-                </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="contact">
-                Liên hệ
-                </Link>
-            </li>
+    <div class="collapse navbar-collapse"  id="navbarExample04">
+        <ul className="navbar-nav" >
+            {listCategory.map((cate, index) => {
+                return (           
+                    <li className="nav-item ">
+                        <Link className="nav-link" to={cate.link_to}>
+                        {cate.name_category}
+                        </Link>
+                    </li>            
+                );
+            })}     
             <li className="nav-item">
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
@@ -347,7 +336,8 @@ function HeaderNavLink() {
                                 <Form.Label>Quận/Huyện/TP</Form.Label>
                                 <Form.Select name="id_district"
                                 onChange = {(e) => handleadd(e)}
-                                >
+                                >  
+                                <option>Quận/Huyện/TP</option>
                                     {listDistrict.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id}>{room._name}</option>
@@ -360,7 +350,8 @@ function HeaderNavLink() {
                                 <Form.Label>Xã/Phường</Form.Label>
                                 <Form.Select name="id_ward"
                                 onChange = {(e) => handssdbdfb(e)}
-                                >
+                                > 
+                                <option>Xã/Phường</option>
                                     {listWard.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id} >{room._name}</option>

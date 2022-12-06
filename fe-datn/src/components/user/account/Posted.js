@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../Pagination';
+import { Button, Form } from 'react-bootstrap';
 
 function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -22,10 +23,13 @@ function Posted() {
 
     // danh sach Posted
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`);
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
     setListPost(res.data.data);
     };
-
+    const deletePost = async (id_post) => {
+        await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
+        getData();
+      };
   return (
     <>
     <h1><b className="b_title">Tin đã đăng</b></h1>
@@ -56,7 +60,7 @@ function Posted() {
                         user[0].id = post.id_user  ?
                             <div className='button-fdp row'>
                                 <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
-                                <Link className='button-del'>Xóa</Link>
+                                <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
                             : <div></div> 
                         : <div></div> }

@@ -1,8 +1,7 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import Pagination from '../../user/Pagination';
 
 function ListCategory() {
@@ -44,9 +43,8 @@ function ListCategory() {
                 <tr>
                     <th>#</th>
                     <th>Tên danh mục</th>
+                    <th>Link to</th>
                     <th></th>
-        
-
                 </tr>
                 </thead>
              
@@ -56,6 +54,7 @@ function ListCategory() {
                     <tr key={index}>
                         <td>{index+1}</td>
                         <td>{cate.name_category}</td>
+                        <td>{cate.link_to}</td>
                         <td>
                             <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
                               {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
@@ -66,7 +65,7 @@ function ListCategory() {
                               <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCategory(cate.id_category)}></Button>
                             {/* </Link> */}
                         </td>
-                      </tr>  
+                    </tr>  
                     );     
                 })}
                 </tbody>

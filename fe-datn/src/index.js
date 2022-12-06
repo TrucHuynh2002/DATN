@@ -31,6 +31,7 @@ import DetailPost from './components/admin/post/DetailPost';
 import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
+import EditBBlog from './components/user/blog/EditBlog';
 
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
@@ -100,6 +101,7 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
+        <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom/" element={<SearchRoom />} /> 
@@ -113,6 +115,7 @@ root.render(
         {/* <Route path="add_post" element={<AddPost />} /> */}
         <Route path="edit_post/:id_post" element={<EditPost />} />
         <Route path="detail_post/:id_post" element={<DetailPost />} />
+        {/* <Route path="roomdetail/:id_post" element={<DetailPost />} /> */}
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />

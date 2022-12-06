@@ -1,4 +1,5 @@
 import React from 'react'
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
@@ -25,6 +26,8 @@ function Home() {
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
   const [listBanner, setListBanner] = useState([]);
+  const [listImg, setListImg] = useState([]);
+  // console.log(listImg);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -33,6 +36,7 @@ function Home() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+  // console.log(currentPosts);
 
   // phan trang blog
   const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
@@ -48,12 +52,14 @@ function Home() {
     getDataBanner()
     getTypeRoom()
     getProvinces()
+    getImg()
   },[]);
+  // console.log(currentPosts, listImg)
 
   // danh sách post
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   console.log(res)
+  //  console.log(res)
    setListPost(res.data.data);
   };
  
@@ -62,6 +68,13 @@ function Home() {
    const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
       setListBlog(res.data.data);
   };
+ //danh sach img
+  const getImg = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+    // console.log(res);
+    setListImg(res.data.data);
+    
+};
 
   // danh sach banner
     const getDataBanner = async () => {
@@ -73,6 +86,7 @@ function Home() {
     const [keyword,setKeyword] = useState({
       keywords: "",
       province: "",
+      // district: "",
       price:"",
       area:"",
       typeRoom:""
@@ -86,32 +100,48 @@ function Home() {
     } = getDataSearch
 
     const [getProvince,setProvince] = useState([]);
+    // const [getDistrict,setDistrict] = useState([]);
     // console.log(getProvince)
     const getTypeRoom = async () => {
       let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-      // console.log(dataRoom)
       setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
-    const getProvinces = async () => {
-      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
-      // console.log(dataRooms)
-      setProvince(dataRooms.data.data)
-    }
-  
     const {
       keywords,
       province,
+      district,
       price,
       area,
       typeRoom
     } = keyword
-    // const [province,setProvince] = useState(undefined);
-    // const [price,setPrice] = useState(undefined);
-    // const [area,setArea] = useState(undefined);
+    const getProvinces = async () => {
+      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+      setProvince(dataRooms.data.data)
+    }
+    const handledistrice = async (e) => {
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+      getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+  }
+ 
+  const handleadd = async (e) => {
+      getDataWard(({[e.id_district] : e.target.value}).undefined)
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+  }
+  const handssdbdfb = async (e) => {
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+  }
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+    const getDataDistrict = async (id_province) => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        setListDistrict(ress.data.data);
+    }
+    const getDataWard = async (id_district) => {
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+        setListWard(resss.data.data);
+    }     
     const [searching,setSearching] = useState(false);
-    // const [keySearch, setKeySearch] = useState("");  
     const handleChangeKeyWord = (e) => {
-      // console.log(e.target.value)
       setKeyword({ ...keyword,[e.target.name]:e.target.value})
     }
 
@@ -122,9 +152,7 @@ function Home() {
       // }
       navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
     }
-
-    
-
+  
   return (
     <>
       {/* banner */}
@@ -231,8 +259,8 @@ function Home() {
                             {/* <option>Căn hộ mini</option> */}
                           </select>
                         </div>
-                        <div className="col-2 ">
-                          <select className="form-select online_book3" name="provinces">
+                        <div className="col-2">
+                          <Form.Select name="provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
                             <option>Tỉnh</option>
                             {
                               getProvince.map((p,i) => {
@@ -240,7 +268,31 @@ function Home() {
                               })
                             }
                          
-                          </select>
+                          </Form.Select>
+                        </div>
+                        <div className="col-2">
+                                <Form.Select name="id_district" className="form-select online_book3"
+                                onChange = {(e) => handleadd(e)}
+                                >
+                                   <option>Quận/Huyện/TP</option>
+                                    {listDistrict.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
+                        </div>
+                        <div className="col-2">
+                                <Form.Select name="id_ward" className="form-select online_book3"
+                                onChange = {(e) => handssdbdfb(e)}
+                                > 
+                                <option>Xã</option>
+                                    {listWard.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
                         </div>
                         <div className="col-2 ">
                           <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
@@ -313,13 +365,18 @@ function Home() {
               return (     
                 <div className="col-md-4 col-sm-12" key={index}>
                     <div id="serv_hover" className="room">
-                        <div className="room_img">
-                            <Figure><img src={post.link_img_post} alt="#" /></Figure>
-                            {/* thả tym */}
-                            <div className="heart">
-                              {/* <HeartRoom /> */}
+                    <div className="room_img">
+                            {listImg.map((a, index) => {
+                              
+                                return a.id_post == post.id_post && (
+
+                                    <Figure><img src={a.link_img_user} alt="#" /></Figure>
+                                   
+                                
+            )
+            // break;
+            })}
                             </div>
-                        </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                             <h4>Giá: {post.room_price}</h4>
