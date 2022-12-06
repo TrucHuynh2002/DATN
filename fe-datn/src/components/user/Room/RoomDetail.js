@@ -65,7 +65,7 @@ function RoomDetail() {
                                 <div className="product-name">
                                     <h2>{a.post_name}</h2>
                                 </div>
-                                <div className="reviews-counter">
+                                {/* <div className="reviews-counter">
                                     <div className="rate">
                                         <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
                                         <label htmlFor="star5" title="text">5 stars </label>
@@ -81,7 +81,7 @@ function RoomDetail() {
                                     <div>
                                         <span>3 đánh giá</span>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="product-price-discount">{a.room_price} vnd</div>                                   
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
@@ -126,7 +126,7 @@ function RoomDetail() {
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" >
-                        {a.description}
+                        <div dangerouslySetInnerHTML={{__html:a.description}} />   
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                             <div className="review-heading">
