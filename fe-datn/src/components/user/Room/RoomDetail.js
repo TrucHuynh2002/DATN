@@ -135,8 +135,14 @@ function RoomDetail() {
                             <Evaluate />                
 
                         </div>
+
                     </div>
+
                 </div>
+                <h3 className="dccuthe">Vị trí cụ thể</h3>
+                <div dangerouslySetInnerHTML={{__html: a.ifarme}} />
+                
+                
                 </div>
                )})}
         </div>

@@ -164,6 +164,7 @@ function HeaderNavLink() {
             formData.append('water_price', water_price);
             formData.append('id_furniture', Array(checkFur));
             const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
+            
             if(res.data.status === true){
                 setAlert({
                     err_list: res.data
@@ -351,6 +352,13 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
+                            <Form.Group className="mb-12 address">
+                                <Form.Label>Ifarme map</Form.Label>
+                                <Form.Control type="text" name="ifarme" className=""
+                                value={ifarme}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                            </Form.Group>
                             
                             <Form.Group className="mb-12 area">
                                 <Form.Label>Diện tích</Form.Label>
@@ -387,6 +395,7 @@ function HeaderNavLink() {
                                 <Form.Label >Loại phòng</Form.Label>
                                 <Form.Select name="id_roomType" 
                                 onChange = {(e) => handleChange(e)}>
+                                    <option value='' >Chọn</option>
                                     {listRoomType.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
