@@ -148,7 +148,7 @@ function HeaderNavLink() {
             formData.append('description_sort', description_sort);
             formData.append('electricity_price', electricity_price);
             formData.append('id_roomType', id_roomType);
-            formData.append('id_user', id_user);
+            formData.append('id_user', user[0].id);
             formData.append('id_province', id_province);
             formData.append('id_district', id_district);
             formData.append('id_ward', id_ward);
@@ -306,8 +306,10 @@ function HeaderNavLink() {
                                 <Form.Select name="id_province"
                                 onChange = {(e) => handledistrice(e)}
                                 >
+                                    <option>Chọn tỉnh</option>
                                     {listProvince.map((room, index) => {
                                         return (
+                                            
                                             <option key={index} value={room.id} >{room._name}</option>
                                         );
                                     })}                            
