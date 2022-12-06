@@ -236,7 +236,7 @@ function HeaderNavLink() {
             {/* start Đăng bài */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Bài viết</Modal.Title>
+                    <Modal.Title>Đăng Tin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
                 <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
