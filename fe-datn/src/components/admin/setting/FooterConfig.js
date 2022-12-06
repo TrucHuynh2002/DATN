@@ -90,7 +90,7 @@ function FooterConfig() {
         <Form.Group className="mb-3" controlId="introduce">
             <Form.Label>Giới thiệu</Form.Label>
             <CKEditor
-                  editor={ClassicEditor}
+                                editor={ClassicEditor}
                                 data={introduce}
                                 onReady={(editor)=>{
                                     editor.editing.view.change((writer)=>{
@@ -102,7 +102,6 @@ function FooterConfig() {
                                     setEditConfig({ ...editConfig, introduce : data});
                                     // console.log(description);
                                 }}
-                                
                                 >
                         </CKEditor>
             {/* <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/> */}
