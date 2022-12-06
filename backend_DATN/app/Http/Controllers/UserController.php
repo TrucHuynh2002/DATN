@@ -69,9 +69,9 @@ class UserController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|max:255',
-            'phone' => 'required|max:12|min:10',
+            'phone' => 'required|max:12|min:10|unique:users',
             'address' => 'required|max:255',
             // 'role' => 'required',
             // 'id_img_user' => 'required',
@@ -191,7 +191,7 @@ class UserController extends Controller
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'email' => 'required',
+            'email' => 'required|',
             'password' => 'required',
         ], [
             'email.required' => 'Không được bỏ trống',

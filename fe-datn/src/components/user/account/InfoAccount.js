@@ -55,7 +55,8 @@ function InfoAccount() {
             
         }
     };
-    const now = new Date(InfoAccount.created_at);
+    console.log(InfoAccount.created_at);
+    const now = new Date(InfoAccount.updated_at);
     const dateString = now.toLocaleDateString({
     weekday: "short",
     year: "numeric",
