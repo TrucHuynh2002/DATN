@@ -32,7 +32,6 @@ function InfoAccount() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
     const [uploadImages, setUploadImages] = useState([]);
     const handleUpdateAvatar = (e) => {
         setUploadImages(e.target.files);

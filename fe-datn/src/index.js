@@ -22,7 +22,7 @@ import EditRoomType from './components/admin/roomtype/EditRoomType';
 import ListRoomType from './components/admin/roomtype/ListRoomType';
 
 // admin post
-import AddPost from './components/admin/post/AddPost';
+// import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
 import DetailPost from './components/admin/post/DetailPost';
@@ -110,7 +110,7 @@ root.render(
         <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
-        <Route path="add_post" element={<AddPost />} />
+        {/* <Route path="add_post" element={<AddPost />} /> */}
         <Route path="edit_post/:id_post" element={<EditPost />} />
         <Route path="detail_post/:id_post" element={<DetailPost />} />
         {/* blog */}

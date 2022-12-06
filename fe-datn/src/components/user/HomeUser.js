@@ -211,7 +211,6 @@ function Home() {
                             </div>    
                             )
                           }
-                                          
                       </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
@@ -263,12 +262,9 @@ function Home() {
                         </div>
                       </div>
                     </div>
-
                   </form>
-
                 </div>
                 {/* end search */}
-
               </div>
             </div>
           </div>

@@ -63,7 +63,7 @@ function Comment() {
   },[]);
   const getData = async () => {
     const resss = await axios.get('http://127.0.0.1:8000/api/comment/showUserDes');
-    console.log(resss)
+      console.log(resss)
        setListCmt(resss.data.data);
    };
   
@@ -72,9 +72,11 @@ function Comment() {
   const [alert, setAlert] = useState({
       err_list: {},
   });
-  {listCmt.map((a, index) => {
+  {
+    Array.from(listCmt).map((a, index) => {
     const {id_user_tow} = a.id_user  = addNotify
-   })}
+   })
+  }
 
   return (
     <div className="comment position-relative p-3 rounded-lg">

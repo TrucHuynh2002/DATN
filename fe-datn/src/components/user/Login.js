@@ -6,6 +6,7 @@ import axios from 'axios';
 function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    console.log(email);
     const [password, setPassword] = useState("");
 
     // xu ly loi
@@ -19,7 +20,7 @@ function Login() {
         },
     });
     // console.log('TRIEN KD');
-    console.log(alert.err_list.messages.email[0]);
+    console.log(alert.err_list.messages.password[0]);
     const handleSumbit = async (e) => {
         e.preventDefault();
         const item = { email,password };
@@ -88,7 +89,7 @@ function Login() {
                                 </div>    
                                 <div className="col-md-12 ">
                                     <input type="password" className="text" name="password" placeholder="Mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
-                                    {/* {alert.err_list.messages.password[0] && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>} */}
+                                    {alert.err_list.messages.password[0] && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>
