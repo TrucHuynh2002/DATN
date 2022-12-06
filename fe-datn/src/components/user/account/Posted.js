@@ -7,7 +7,7 @@ import Pagination from '../Pagination';
 
 function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
-    const {id_post} = useParams();
+    const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ postsPerPage, setPostsPerPage ] =useState(3);
@@ -22,12 +22,12 @@ function Posted() {
 
     // danh sach Posted
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_post}`);
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`);
     setListPost(res.data.data);
     };
 
   return (
-    <div>
+    <>
     <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
     <div className='row'>
@@ -71,7 +71,7 @@ function Posted() {
         setCurrentPage={setCurrentPage}
         currentPage={currentPage} />
         </div>
-    </div>
+    </>
   )
 }
 

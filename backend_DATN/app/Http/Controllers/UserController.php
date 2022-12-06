@@ -29,6 +29,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+    public function UserAcount(Request $request, $id_user)
+    {
+        $User_SelectOne = User::find($id_user);
+        return response()
+            ->json([
+                'data' => $User_SelectOne,
+                'status' => true
+            ]);
+    }
+
 
     public function User_SelectOne(Request $request, $id_user)
     {

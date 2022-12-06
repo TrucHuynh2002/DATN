@@ -8,7 +8,7 @@ import axios from 'axios'
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
 
-    const {id_post} = useParams();
+    const {id_user} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
     const [ blogPerPage, setBlogPerPage ] =useState(3);
@@ -23,7 +23,7 @@ function Bloged() {
 
     // danh sach blogdetail
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_post}`);
+    const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
     setListBlog(res.data.data);
     };
 
