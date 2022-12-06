@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\imgPost as imgPost;
+use App\Models\Post as Post;
+use Illuminate\Support\Facades\DB;
 
 class imgPostController extends Controller
 {
     public function show()
     {
-        $data = imgPost::all();
+        $data = DB::table('img_post')->get();
         return response()
             ->json([
                 'data' => $data
@@ -17,7 +19,19 @@ class imgPostController extends Controller
     }
     public function show_id(Request $request, $id)
     {
-        $data = imgPost::find($id);;
+        $data = imgPost::find($id);
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function show_img_detail(Request $request, $id)
+    {
+        $data = DB::table('img_post')
+            ->join('post', 'img_post.id_post', '=', 'post.id_post')
+            ->where('img_post.id_post', '=', $id)
+            ->orderBy('post.id_post', 'DESC')
+            ->get();
         return response()
             ->json([
                 'data' => $data

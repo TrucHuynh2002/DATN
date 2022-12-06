@@ -101,6 +101,7 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
+    
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -359,4 +360,5 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
+
 }
