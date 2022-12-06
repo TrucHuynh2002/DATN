@@ -85,6 +85,7 @@ function Home() {
     const [keyword,setKeyword] = useState({
       keywords: "",
       province: "",
+      // district: "",
       price:"",
       area:"",
       typeRoom:""
@@ -98,6 +99,7 @@ function Home() {
     } = getDataSearch
 
     const [getProvince,setProvince] = useState([]);
+    // const [getDistrict,setDistrict] = useState([]);
     // console.log(getProvince)
     const getTypeRoom = async () => {
       let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
@@ -109,10 +111,17 @@ function Home() {
       // console.log(dataRooms)
       setProvince(dataRooms.data.data)
     }
+    // const getDistrict = async () => {
+    //   let dataRooms = await axios.get("http://127.0.0.1:8000/api/district/show");
+    //   setDistrict(dataRooms.data.data)
+    // }
+
+
   
     const {
       keywords,
       province,
+      district,
       price,
       area,
       typeRoom
@@ -243,7 +252,7 @@ function Home() {
                             {/* <option>Căn hộ mini</option> */}
                           </select>
                         </div>
-                        <div className="col-2 ">
+                        <div className="col-2">
                           <select className="form-select online_book3" name="provinces">
                             <option>Tỉnh</option>
                             {
@@ -252,6 +261,26 @@ function Home() {
                               })
                             }
                          
+                          </select>
+                        </div>
+                        <div className="col-2">
+                          <select className="form-select online_book3" name="provinces">
+                            <option>Huyện</option>
+                            {/* {
+                              getProvince.map((p,i) => {
+                                return <option key={i} value={p.id}>{p._name}</option>
+                              })
+                            }                          */}
+                          </select>
+                        </div>
+                        <div className="col-2">
+                          <select className="form-select online_book3" name="provinces">
+                            <option>Xã</option>
+                            {/* {
+                              getProvince.map((p,i) => {
+                                return <option key={i} value={p.id}>{p._name}</option>
+                              })
+                            }                          */}
                           </select>
                         </div>
                         <div className="col-2 ">

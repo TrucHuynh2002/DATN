@@ -11,6 +11,7 @@ class Category extends Model
     protected $primaryKey = 'id_category';
     // public $timestamps = true;
     protected $fillable = [
-        'name_category'
+        'name_category',
+        'link_to'
     ];
 }

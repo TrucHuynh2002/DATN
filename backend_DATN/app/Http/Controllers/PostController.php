@@ -54,6 +54,7 @@ class PostController extends Controller
     {
         $data = DB::table('post')
             ->join('users', 'post.id_user', '=', 'users.id_user')
+            ->join('img_user', 'img_user.id_user', '=', 'post.id_user')
             ->where('post.id_user', '=', $id)
             ->orderBy('post.id_post', 'DESC')
             ->get();

@@ -46,7 +46,6 @@ use App\Http\Controllers\StatisticalSController;
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
-
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');

@@ -22,7 +22,7 @@ function Posted() {
 
     // danh sach Posted
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`);
+    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
     setListPost(res.data.data);
     };
 
