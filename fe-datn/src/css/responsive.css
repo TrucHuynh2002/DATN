@@ -101,12 +101,15 @@
 @media (max-width: 575px) {
     .logo {
         text-align: center !important;
-        padding-bottom: 6px;
+        /* padding-bottom: 6px; */
         float: left;
+     
+            width: 70%;
+        
     }
   
     .carousel-item img {
-        min-height: 570px;
+        min-height: 500px;
     }
     .book_room h1 {
         font-size: 20px;
