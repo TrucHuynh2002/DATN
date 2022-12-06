@@ -333,7 +333,8 @@ function HeaderNavLink() {
                                 <Form.Label>Quận/Huyện/TP</Form.Label>
                                 <Form.Select name="id_district"
                                 onChange = {(e) => handleadd(e)}
-                                >
+                                >  
+                                <option>Quận/Huyện/TP</option>
                                     {listDistrict.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id}>{room._name}</option>
@@ -346,7 +347,8 @@ function HeaderNavLink() {
                                 <Form.Label>Xã/Phường</Form.Label>
                                 <Form.Select name="id_ward"
                                 onChange = {(e) => handssdbdfb(e)}
-                                >
+                                > 
+                                <option>Xã/Phường</option>
                                     {listWard.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id} >{room._name}</option>
