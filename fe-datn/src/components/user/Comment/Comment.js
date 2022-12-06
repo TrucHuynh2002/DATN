@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect} from 'react';
-
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 // import StarRading from './starRading';
@@ -11,33 +10,43 @@ import axios from 'axios';
 function Comment() {
   const user = JSON.parse(localStorage.getItem("user"));
   const id = useParams();
-  // const [number , setNumber] = useState(undefined);
-  // console.log(id);
-  // list comment 
-  const [listCmt, setListCmt] = useState([]);
        // thêm comment
-       const [addComment, setAddComment] = useState({
+  const [addComment, setAddComment] = useState({
         rate: undefined,
         content: "",
         id_user: user ? user[0].id : "",
         id_post: id.id_post,
       });
-     const {
-        rate,
-        cotent,
-        id_user,
-        id_post
-      } = addComment;
-      const [hoverStar, setHoverStar] = useState(undefined);
+  const {rate,cotent,id_user,id_post} = addComment;
+
+  const [hoverStar, setHoverStar] = useState(undefined);
          // thêm chuông
-   const [addNotify, setNotify] = useState({
-    id_user_tow: '',
+  const [addNotify, setNotify] = useState({
+    id_user_tow: "",
     id_user: user ? user[0].id : "",
     id_post: id.id_post,
   });
-      const handleChange = (e) => {
-        setAddComment({ ...addComment, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+    setAddComment({ ...addComment, [e.target.name]: e.target.value});
     };
+  const handleSumbit = async (e) => {
+    e.preventDefault();
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
+      if(res.data.status === true){
+        const {id_user_tow} = addNotify;
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+        const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+   
+        setAlert({
+          err_list: res.data
+          });
+      }else{           
+        setAlert({
+          err_list: res.data
+        });
+      }
+    };
+<<<<<<< HEAD
           const handleSumbit = async (e) => {
             e.preventDefault();
             const a = addComment;
@@ -69,15 +78,11 @@ function Comment() {
   
 
 
+=======
+>>>>>>> 6c951a53cb98e28c6768e415d4b8b15737f8c5cb
   const [alert, setAlert] = useState({
       err_list: {},
   });
-  {
-    Array.from(listCmt).map((a, index) => {
-    const {id_user_tow} = a.id_user  = addNotify
-   })
-  }
-
   return (
     <div className="comment position-relative p-3 rounded-lg">
         <div className="align-items-center col-4">
@@ -130,7 +135,6 @@ function Comment() {
                 disabled="true"
                 />
               </Form.Group>
-             
               <Form.Group className="form-group">
                 <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
                 <textarea 
@@ -146,7 +150,6 @@ function Comment() {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-          
               {alert.err_list.status === true && <div className="notice success_____">Bình luận thành công</div>} 
             </Form>
             : <Form>

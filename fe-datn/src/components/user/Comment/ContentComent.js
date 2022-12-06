@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function ContentComent() {
   const id = useParams();
-  console.log(id);
   const [listComment, setListComment] = useState([]);
   const [rates,setRate] = useState([]);
   // console.log(rate);
@@ -15,13 +14,8 @@ function ContentComent() {
 
   // danh sach Comment
   const getData = async () => {
-   
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id.id_post}`);
-    console.log(res)
+    const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id}`);
     setListComment(res.data.data);
-    // const resRate = await axios.get(`http://127.0.0.1:8000/api/rating/show`);
-    // setRate(resRate.data.data)
-    
   };
 return (
  <div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\NotifyModel as Notify;
+use Illuminate\Support\Facades\Validator;
 
 class NotifyController extends Controller
 {
@@ -36,6 +37,23 @@ class NotifyController extends Controller
     }
     public function NotifyAddComment(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            'id_user_tow' => 'required',
+            'id_user' => 'required',
+            'id_post' => 'required',
+        ], [
+            'id_user_tow.required' => 'Không được bỏ trống',
+            'id_user.required' => 'Không được bỏ trống',
+            'id_post.required' => 'Không được bỏ trống',
+
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
         $t = new Notify();
         $t->id_user_tow = $request->id_user_tow;
         $t->status = 1;
