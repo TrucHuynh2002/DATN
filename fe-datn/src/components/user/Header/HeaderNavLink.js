@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function HeaderNavLink() {
     var user = JSON.parse(localStorage.getItem("user"));
+    console.log(user[0])
     // const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
@@ -105,6 +106,7 @@ function HeaderNavLink() {
         }
         }     
         const handleSumbit = async (e) => {
+            e.preventDefault();
             let formData = new FormData();
             for(let i = 0; i<uploadImages.length; i++) {
                 formData.append('img[]',uploadImages[i])
@@ -116,7 +118,8 @@ function HeaderNavLink() {
             formData.append('description_sort', description_sort);
             formData.append('electricity_price', electricity_price);
             formData.append('id_roomType', id_roomType);
-            formData.append('id_user', id_user);
+            // formData.append('id_user', id_user);
+            formData.append('id_user',2)
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
             formData.append('meta_title', meta_title);

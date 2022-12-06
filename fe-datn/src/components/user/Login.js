@@ -6,6 +6,7 @@ import axios from 'axios';
 function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
+    console.log(email);
     const [password, setPassword] = useState("");
 
     // xu ly loi
@@ -72,12 +73,20 @@ function Login() {
                         <form onSubmit={(e) => handleSumbit(e)}>
                             <div className="row">
                                 <div className="col-md-12 ">
-                                    <input type="email" className="text" name="email" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}}/>
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
-                                </div>    
+                                    <input type="email" className="text" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                    {alert.err_list.status === false
+                                     && 
+                                     alert.err_list.messages.email[0]
+                                      ( 
+                                      <div className="notice warning_____"></div>
+                                      )}
+                                </div>   
                                 <div className="col-md-12 ">
-                                    <input type="password" className="text" name="password" placeholder="Mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
+                                    <input type="password" className="text" name="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                    {alert.err_list.status === false && alert.err_list.messages.password[0] 
+                                    (
+                                    <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>
+                                    )}
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>
