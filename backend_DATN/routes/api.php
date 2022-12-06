@@ -80,6 +80,7 @@ Route::delete('heartFeeling/delete/{id}', [HeartFeelingController::class, 'delet
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
+Route::get('post/showHeart', [PostController::class, 'showHeart']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
 Route::get('post/showPost/{id}', [PostController::class, 'showPost']);

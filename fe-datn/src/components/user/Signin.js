@@ -27,6 +27,12 @@ function Signin() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
+        const dataForm = new FormData();
+        dataForm.append('full_name',full_name);
+        dataForm.append('password',password);
+        dataForm.append('email',email);
+        dataForm.append('phone',phone);
+        dataForm.append('address',address);
         const res = await axios.post("http://127.0.0.1:8000/api/user/create", addUser);
         // console.log(res);
         if(res.data.status === true){
@@ -61,17 +67,17 @@ function Signin() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="text" className="text" name="full_name" value={full_name} placeholder="Tên người dùng" onChange={(e) => handleChange(e)} />
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
-                                </div>
+                                    { alert.err_list.status == false && alert.err_list.messages.full_name &&
+                                       <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}                                </div>
                                 <div className="col-md-12">
                                     <input type="password" className="text" name="password" value={password} placeholder="Mật khẩu" onChange={(e) => handleChange(e)} />
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
-                                </div>
+                                    { alert.err_list.status == false && alert.err_list.messages.password &&
+                                       <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}                                </div>
                                 <div className="col-md-12 ">
                                     <input type="text" className="text" name="email" value={email}
                                     placeholder="Email" onChange={(e) => handleChange(e)} />
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
-                                </div>
+                                    { alert.err_list.status == false && alert.err_list.messages.email &&
+                                       <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}                                </div>
                                 <div className="col-md-12">
                                     <input 
                                         type="text"
@@ -79,11 +85,13 @@ function Signin() {
                                         name="phone" value={phone}
                                         placeholder="Số điện thoại" onChange={(e) => handleChange(e)}
                                     />
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
+                                    { alert.err_list.status == false && alert.err_list.messages.phone &&
+                                       <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>} 
                                 </div>
                                 <div className="col-md-12">
                                     <input type="text" className="text" name="address" value={address} placeholder="Địa chỉ" onChange={(e) => handleChange(e)} />
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
+                                    { alert.err_list.status == false && alert.err_list.messages.address &&
+                                       <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>} 
                                 </div>
                                
                                 <div className="d-grid gap-2">

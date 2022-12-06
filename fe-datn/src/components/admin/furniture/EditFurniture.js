@@ -27,6 +27,9 @@ function EditFurniture() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
+        const dataForm = new FormData();
+        dataForm.append('name',name);
+        dataForm.append('icon',icon);
         const res = await axios.put(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
         if(res.data.status === true){
             setAlert({
@@ -62,7 +65,8 @@ function EditFurniture() {
                     <Form.Label>Tên nội thất</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={name} name="name" className=''/>
-                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
+                    { alert.err_list.status == false && alert.err_list.messages.name &&
+                                <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
                 </Form.Group>
             </Col>
             <Col sm={6}>
@@ -70,7 +74,8 @@ function EditFurniture() {
                     <Form.Label>Icons</Form.Label>
                     <Form.Control type="text" onChange={(e) => handleChange(e)}
                     value={icon} name="icon" className=''/>
-                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.icon[0]}</div>}
+                    { alert.err_list.status == false && alert.err_list.messages.icon &&
+                                <div className="notice warning_____">{alert.err_list.messages.icon[0]}</div>}
                 </Form.Group>
             </Col>
             <div className="d-grid gap-2">

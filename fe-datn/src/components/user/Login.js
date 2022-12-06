@@ -6,20 +6,12 @@ import axios from 'axios';
 function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    console.log(email);
     const [password, setPassword] = useState('');
-    console.log(password)
     // xu ly loi
     const [alert, setAlert] = useState({
-        err_list: {
-            status: Boolean,
-            messages: {
-                email: [],
-                password: []
-            }
-        },
+        err_list: {},
     });
-    console.log(alert)
+    // console.log(alert)   
     const handleSumbit = async (e) => {
         e.preventDefault();
         // const item = { email,password };
@@ -85,7 +77,7 @@ function Login() {
                         <form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                             <div className="row">
                                 <div className="col-md-12 ">
-                                    <input type="email" className="text" name="email"   onChange={e => setEmail(e.target.value)} />
+                                    <input type="email" className="text" name="email" placeholder="Email"  onChange={e => setEmail(e.target.value)} />
                                     {/* {alert.err_list.status === false
                                      && 
                                      alert.err_list.messages.email.length > 0
@@ -93,16 +85,12 @@ function Login() {
                                       <div className="notice warning_____"></div>
                                       )} */}
                                        { alert.err_list.status == false && alert.err_list.messages.email &&
-                                    
-                                    <div className="notice warning_____">Email không được bỏ trống</div>
-                                }
+                                       <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                                 </div>   
                                 <div className="col-md-12 ">
                                     <input type="password" className="text" name="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)}/>
                                     {   alert.err_list.status == false && alert.err_list.messages.password &&
-                                    
-                                        <div className="notice warning_____">Mật khẩu chưa nhập</div>
-                                    }
+                                    <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>

@@ -27,6 +27,7 @@ function HeaderNavLink() {
             water_price: "",
             electricity_price: "",
             address: "",
+            ifarme:"",
             quantity: "",
             id_furniture: [],
             meta_title: "",
@@ -40,7 +41,8 @@ function HeaderNavLink() {
             img: [],
         });
         const { 
-            post_name, phone,
+            post_name,
+            phone,
             description_sort,
             description,
             area,
@@ -48,6 +50,7 @@ function HeaderNavLink() {
             water_price,
             electricity_price,
             address,
+            ifarme,
             quantity,
             id_furniture,
             meta_title,
@@ -156,6 +159,7 @@ function HeaderNavLink() {
             formData.append('id_province', id_province);
             formData.append('id_district', id_district);
             formData.append('id_ward', id_ward);
+            formData.append('ifarme', ifarme);
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
             formData.append('meta_title', meta_title);
@@ -191,8 +195,8 @@ function HeaderNavLink() {
         }
     };
   return (
-    <>
-         <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
+    <div class="collapse navbar-collapse "  id="navbarExample04">
+         <ul className="navbar-nav">
             <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
@@ -240,13 +244,11 @@ function HeaderNavLink() {
             {/* start Đăng bài */}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Bài viết</Modal.Title>
+                    <Modal.Title>Đăng Tin</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body className="show-grid">
                 <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
-                    <Row>
-                        <Col sm={6}>
-                            <Form.Group className="mb-3 post_name">
+                            <Form.Group className="mb-12 post_name">
                                 <Form.Label>Tên bài viết</Form.Label>
                                 <Form.Control type="text" name="post_name" className=''
                                 value={post_name}
@@ -255,27 +257,27 @@ function HeaderNavLink() {
                             </Form.Group>
                             {/* <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>} */}
-                            <Form.Group className="mb-3 meta_title">
+                            <Form.Group className="mb-12 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
                                 value={meta_title}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 img">
+                            <Form.Group className="mb-12 img">
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
                                 onChange = {(e) => handleChangeImages(e)} />
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 description_sort">
+                            <Form.Group className="mb-12 description_sort">
                                 <Form.Label>Nội dung ngắn</Form.Label>
                                 <Form.Control type="text" name="description_sort" className=''
                                 value={description_sort}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 description">
+                            <Form.Group className="mb-12 description">
                                 <Form.Label>Nội dung</Form.Label>
                                 <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
                                 value={description}
@@ -299,30 +301,30 @@ function HeaderNavLink() {
                                 </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 room_price">
+                            <Form.Group className="mb-12 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
                                 <Form.Control type="number" name="room_price" className="" 
                                 value={room_price}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 water_price">
+                            <Form.Group className="mb-12 water_price">
                                 <Form.Label>Giá nước</Form.Label>
                                 <Form.Control type="number" name="water_price" className="" 
                                 value={water_price}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
                             </Form.Group>                   
-                        </Col>
-                        <Col sm={6}>
-                            <Form.Group className="mb-3 electricity_price">
+                       
+                        
+                            <Form.Group className="mb-12 electricity_price">
                                 <Form.Label>Giá điện</Form.Label>
                                 <Form.Control type="text" name="electricity_price" className=""
                                 value={electricity_price}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
                             </Form.Group> 
-                            <Form.Group className="mb-3 id_province">
+                            <Form.Group className="mb-12 id_province">
                                 <Form.Label>Tỉnh</Form.Label>
                                 <Form.Select name="id_province"
                                 onChange = {(e) => handledistrice(e)}
@@ -337,7 +339,7 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 id_district">
+                            <Form.Group className="mb-12 id_district">
                                 <Form.Label>Quận/Huyện/TP</Form.Label>
                                 <Form.Select name="id_district"
                                 onChange = {(e) => handleadd(e)}
@@ -350,7 +352,7 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 id_ward">
+                            <Form.Group className="mb-12 id_ward">
                                 <Form.Label>Xã/Phường</Form.Label>
                                 <Form.Select name="id_ward"
                                 onChange = {(e) => handssdbdfb(e)}
@@ -363,43 +365,46 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 address">
+                            <Form.Group className="mb-12 address">
                                 <Form.Label>Địa chỉ</Form.Label>
                                 <Form.Control type="text" name="address" className=""
                                 value={address}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 area">
+                            
+                            <Form.Group className="mb-12 area">
                                 <Form.Label>Diện tích</Form.Label>
                                 <Form.Control type="text" name="area" className="" 
                                 value={area}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 quantity">
+                            <Form.Group className="mb-12 quantity">
                                 <Form.Label>Số lượng</Form.Label>
                                 <Form.Control type="number" name="quantity" className=""
                                 value={quantity}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 formGridCheckbox">
+                            <Form.Group className="mb-12 formGridCheckbox">
                                 <Form.Label >Nội thất</Form.Label>
-                                <div className='row' style={{marginLeft:"10px",alginItem:"center"}}>
+                                <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
                                     {furniture.map((data,index) => {
                                         return (
-                                                <div className="col-md-3" key={index}>
-                                                    <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
+                                                <div class="col-2 row">
+                                                 <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                     <Form.Label>{data.name}</Form.Label>
                                                 </div>
+                                                   
+                                               
                                             
                                         )
                                     })}
                                 </div>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                             </Form.Group>      
-                            <Form.Group className="mb-3">
+                            <Form.Group className="mb-12">
                                 <Form.Label >Loại phòng</Form.Label>
                                 <Form.Select name="id_roomType" 
                                 onChange = {(e) => handleChange(e)}>
@@ -411,36 +416,44 @@ function HeaderNavLink() {
                                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                                 </Form.Select>
                             </Form.Group>
-                            <Form.Group className="mb-3 meta_keywords">
+                            <Form.Group className="mb-12 meta_keywords">
                                 <Form.Label>Từ khóa - Seo</Form.Label>
                                 <Form.Control type="text" name="meta_keywords" className='' 
                                 value={meta_keywords}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
                             </Form.Group>
-                            <Form.Group className="mb-3 meta_description">
+                            <Form.Group className="mb-12 meta_description">
                                 <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
                                 <Form.Control as="textarea" name="meta_description" className="" rows={3} 
                                 value={meta_description}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
                             </Form.Group>
+<<<<<<< HEAD
                            =
                         </Col>
                            
                         
                         <div className="d-grid gap-2">
+=======
+                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+>>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
                             </Button>
                             {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                         </div>
+<<<<<<< HEAD
 
                     </Row>
+=======
+                    
+>>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                 </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}> 
+                    <Button variant="secondary" onClick={handleClose} > 
                       Đóng
                     </Button>
                 </Modal.Footer>
@@ -467,7 +480,7 @@ function HeaderNavLink() {
                 </div> }
             </li>
         </ul>
-    </>
+    </div>
   )
 }
 

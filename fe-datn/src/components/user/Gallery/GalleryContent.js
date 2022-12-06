@@ -12,13 +12,6 @@ function GalleryContent() {
     <div className="gallery">
     <div className="container">
       <div className="row">
-        <div className="col-md-12">
-          <div className="titlepage">
-            <h2>Xu hướng tìm kiếm</h2>
-          </div>
-        </div>
-      </div>
-      <div className="row">
         <div className="col-md-3 col-sm-6">
           <div className="gallery_img show-first">
             <Figure>

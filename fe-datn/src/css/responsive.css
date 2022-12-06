@@ -69,19 +69,20 @@
         padding-top: 5px !important;
     }
     .navigation .navbar-collapse {
-        background: #0f1521;
-        padding: 20px 0px 30px 8px;
+        background: white;
+        padding: 0 0px 31px 16px;
         align-items: baseline;
-        margin-top: 56px;
         position: absolute;
-        width: 100%;
+        width: 285%;
+        left: 100%;
+        top: -56%;
         margin-right: 20px;
         z-index: 999;
     }
     .btn-group{margin-top:20px}
     .navigation.navbar-dark .navbar-nav .nav-link {
         padding: 10px 0;
-        color: #fff;
+        color: black;
     }
     .navigation.navbar-dark .navbar-toggler {
         border: inherit;
@@ -140,7 +141,7 @@
     .btn-group{margin-top:20px}
     .nav-item {width:100%}
     .navigation .navbar-collapse {
-        background: #0f1521;
+        background: white;
         padding: 20px 0px 30px 8px;
         align-items: baseline;
        margin-top: -5px;
@@ -152,7 +153,7 @@
     }
     .navigation.navbar-dark .navbar-nav .nav-link {
         padding: 10px 0;
-        color: #fff;
+        color: black;
     }
     .navigation.navbar-dark .navbar-toggler {
         float: right;

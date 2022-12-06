@@ -384,6 +384,7 @@ button {
     top: 130%;
     /* margin-bottom: -350px; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: -20px;
 }
 
 .book_room2 h1 {
@@ -445,18 +446,129 @@ button {
 }
 
 .book_now2 .online_book3 {
-    width: 80%;
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0px;
-    background-color: transparent;
-    color: black;
-    padding: 0 10px;
-    padding-right: 61px;
-    margin-bottom: 25px;
+    border-radius: 10px;
+    margin: 25px 0;
     position: relative;
-    border-radius: 0px;
 }
+.fitele-search{
+    align-items: center;
+}
+gallery {
+    padding-top: 60px;
+}
+
+.gallery .titlepage {
+    text-align: center;
+}
+
+.gallery .gallery_img {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.gallery .gallery_img figure {
+    margin: 0;
+}
+
+.gallery .gallery_img figure img {
+    width: 100%;
+    transition: all .5s;
+}
+
+.gallery .gallery_img figure img:hover {
+    transform: scale(1.2);
+}
+/* show mask */
+.aspect{
+    position: relative;
+    padding-bottom: 120%;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .gallery_img .mask{
+    width: 91%;
+    height: 90%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    margin-left: 4.5%;
+    text-align: center;
+    
+  }
+  .tab-text{
+    font-size: 30px;
+  }
+  
+  .show-first a.more {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px; 
+    background: #FFF;
+    color: #222;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000;
+    position: relative;
+    border: 1px solid #999;
+  
+  }
+  
+  .show-first a.more:hover {
+    box-shadow: 0 0 5px #000;
+  }
+  
+  .show-first p{
+    letter-spacing: 0.15em;
+    color: #f4f4f4;
+    font-size: 28px; 
+  }
+  
+  .show-first img {
+    transition: all 0.2s linear;
+  }
+  
+  .show-first .mask {
+    opacity: 0;
+    background-color:  rgba(0,0,0,0.7);
+    transition: all 0.4s ease-in-out;
+  }
+  .show-first h2 {
+    color: #f2f2f2;
+    margin-top: 40%;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    background: none;
+    font-style: italic;
+  }
+  .show-first p {
+    opacity: 0;
+    transition: all 0.2s linear;
+  }
+  .show-first a.info{
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .show-first:hover img {
+    transform: scale(1.2);
+  }
+  .show-first:hover .mask {
+    opacity: 1;
+  }
+  .show-first:hover h2,
+  .show-first:hover p,
+  .show-first:hover a.info {
+    opacity: 1;
+  }
+  .show-first:hover p {
+    transition-delay: 0.1s;
+  }
+  .show-first:hover a.info {
+    transition-delay: 0.2s;
+  }
 
 .book_now2 .online_book2 {
     width: 134%;
@@ -470,7 +582,9 @@ button {
     position: relative;
     border-radius: 0px;
 }
-
+label{
+    margin: 10px 0;
+}
 .book_room {
     padding: 20px;
     border-left: none solid 5px;
@@ -1041,6 +1155,31 @@ div>h1>.b_title{
     font-family: Georgia;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
   }
+
+  .noticecmt {
+    position: relative;
+    margin-bottom: 10px;
+    background: #F9F9F9;
+    padding: 1em 1em 1em 2em;
+    border-left: 4px solid #DDD;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
+    color: black;
+  }
+  
+  .noticecmt:before {
+    position: absolute;
+    top: 50%;
+    left: -17px;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    font-family: Georgia;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);}
+
   .success_____ {
     border-color: #2ECC40;
   
@@ -1272,6 +1411,11 @@ ul.social_icon {
     width: 100%;
     float: left;
     text-align: left;
+}
+.navbar-nav{
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
 }
 
 ul.social_icon li {
@@ -1768,120 +1912,7 @@ ul.social_icon li a:hover {
     display: block;
    
 }
-gallery {
-    padding-top: 60px;
-}
 
-.gallery .titlepage {
-    text-align: center;
-}
-
-.gallery .gallery_img {
-    overflow: hidden;
-    margin-bottom: 30px;
-}
-
-.gallery .gallery_img figure {
-    margin: 0;
-}
-
-.gallery .gallery_img figure img {
-    width: 100%;
-    transition: all .5s;
-}
-
-.gallery .gallery_img figure img:hover {
-    transform: scale(1.2);
-}
-/* show mask */
-.aspect{
-    position: relative;
-    padding-bottom: 120%;
-    height: 0;
-    overflow: hidden;
-  }
-  
-  .gallery_img .mask{
-    width: 91%;
-    height: 90%;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    margin-left: 4.5%;
-    text-align: center;
-    
-  }
-  .tab-text{
-    font-size: 30px;
-  }
-  
-  .show-first a.more {
-    display: inline-block;
-    text-decoration: none;
-    padding: 7px 14px; 
-    background: #FFF;
-    color: #222;
-    text-transform: uppercase;
-    box-shadow: 0 0 1px #000;
-    position: relative;
-    border: 1px solid #999;
-  
-  }
-  
-  .show-first a.more:hover {
-    box-shadow: 0 0 5px #000;
-  }
-  
-  .show-first p{
-    letter-spacing: 0.15em;
-    color: #f4f4f4;
-    font-size: 28px; 
-  }
-  
-  .show-first img {
-    transition: all 0.2s linear;
-  }
-  
-  .show-first .mask {
-    opacity: 0;
-    background-color:  rgba(0,0,0,0.7);
-    transition: all 0.4s ease-in-out;
-  }
-  .show-first h2 {
-    color: #f2f2f2;
-    margin-top: 40%;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    background: none;
-    font-style: italic;
-  }
-  .show-first p {
-    opacity: 0;
-    transition: all 0.2s linear;
-  }
-  .show-first a.info{
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .show-first:hover img {
-    transform: scale(1.2);
-  }
-  .show-first:hover .mask {
-    opacity: 1;
-  }
-  .show-first:hover h2,
-  .show-first:hover p,
-  .show-first:hover a.info {
-    opacity: 1;
-  }
-  .show-first:hover p {
-    transition-delay: 0.1s;
-  }
-  .show-first:hover a.info {
-    transition-delay: 0.2s;
-  }
 .heart{
     font-size: 30px;
     margin-top: -40px;
@@ -1899,4 +1930,13 @@ gallery {
     padding: 5px;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.searchroom{
+
+    text-align: center;
+    color: black;
+    width: 1100px;
+    font-size: 24px;
+}.shopee-search-empty-result-section__icon{
+margin-left: 450px;
 }

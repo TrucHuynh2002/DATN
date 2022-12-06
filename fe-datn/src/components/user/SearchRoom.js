@@ -50,9 +50,9 @@ function Search() {
                                             </div>
                                         </div>
                                         <div className="bed_room">
-                                            <h3><Link to="../roomdetail">Nhà trọ sinh viên</Link></h3>
-                                            <h4>Giá: 1.000.000 VNĐ</h4>
-                                            <p>Mô tả nhà trọ sinh viên</p>
+                                            <h3><Link to={`../roomdetail/${room.id_post}`}>{room.post_name}</Link></h3>
+                                            <h4>Giá: {room.room_price}</h4>
+                                            <p>{room.description_sort}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,8 @@ function Search() {
                 : 
                 (
                       <div className="col-md-4 col-sm-6">
-                                Không có kết quả tìm kiếm
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={200} height={200} className="shopee-search-empty-result-section__icon"></img>
+                                <p className='searchroom'>Không tìm thấy kết quả nào</p>
                         </div>
                 )
             }

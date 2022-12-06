@@ -19,6 +19,19 @@ class PostController extends Controller
     {
         $data = Post::all();
         $heart = DB::table('post')
+            ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
+            ->orderBy('post.id_post')
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function showHeart()
+    {
+        $data = Post::all();
+        $heart = DB::table('post')
             ->join('heart_feeling', 'post.id_post', '=', 'heart_feeling.id_post')
             ->select('heart_feeling.heart_feeling', 'heart_feeling.id_post', 'heart_feeling.id_user')
             ->orderBy('post.id_post')
@@ -145,6 +158,7 @@ class PostController extends Controller
         $Post->id_province = $request->id_province;
         $Post->id_district = $request->id_district;
         $Post->id_ward = $request->id_ward;
+        $Post->ifarme = $request->ifarme;
         $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
@@ -253,6 +267,7 @@ class PostController extends Controller
         $Post->id_province = $request->id_province;
         $Post->id_district = $request->id_district;
         $Post->id_ward = $request->id_ward;
+        $Post->ifarme = $request->ifarme;
         $Post->description = $request->description;
         $Post->description_sort = $request->description_sort;
         $Post->meta_keywords = $request->meta_keywords;
@@ -289,7 +304,7 @@ class PostController extends Controller
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
                 $imgPosts = $imgPost::where('id_post', '=', $id)->first();
-                $imgPosts->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPosts->link_img_user = env('APP_URL') . ':8000/uploads/' . $new_image;
                 $imgPosts->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPosts->save();
             }
