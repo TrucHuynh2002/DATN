@@ -966,6 +966,9 @@ font-size: 45px;
     display:"flex";
     align-items:"baseline";
 }
+.bed_room>.mota{
+    text-transform: lowercase;
+}
 .gap-2>.button{
     padding: 7px;
     margin-top: 11px;
