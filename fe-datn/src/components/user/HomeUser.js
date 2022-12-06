@@ -37,21 +37,23 @@ function Home() {
   // phan trang blog
   const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
   const [ blogPerPage, setBlogPerPage ] =useState(9);
-
   const lastPageIndexBlog = currentPageBlog * blogPerPage;
   const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
   const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
 
- 
+
   useEffect(() => {
-    getData();
-    getDataBlog();
-    getDataBanner();
+    getData()
+    getDataBlog()
+    getDataBanner()
+    getTypeRoom()
+    getProvinces()
   },[]);
 
   // danh sách post
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+   console.log(res)
    setListPost(res.data.data);
   };
  
@@ -64,7 +66,7 @@ function Home() {
   // danh sach banner
     const getDataBanner = async () => {
      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
-     console.log(result);
+    //  console.log(result);
      setListBanner(result.data.data);
     };
      // SEARCHING
@@ -84,10 +86,10 @@ function Home() {
     } = getDataSearch
 
     const [getProvince,setProvince] = useState([]);
-    console.log(getProvince)
+    // console.log(getProvince)
     const getTypeRoom = async () => {
       let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-      console.log(dataRoom)
+      // console.log(dataRoom)
       setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
     const getProvinces = async () => {
@@ -95,10 +97,7 @@ function Home() {
       // console.log(dataRooms)
       setProvince(dataRooms.data.data)
     }
-    useEffect(() => {
-      getTypeRoom()
-      getProvinces()
-    },[])
+  
     const {
       keywords,
       province,
@@ -112,7 +111,7 @@ function Home() {
     const [searching,setSearching] = useState(false);
     // const [keySearch, setKeySearch] = useState("");  
     const handleChangeKeyWord = (e) => {
-      console.log(e.target.value)
+      // console.log(e.target.value)
       setKeyword({ ...keyword,[e.target.name]:e.target.value})
     }
 
@@ -316,7 +315,7 @@ function Home() {
                 <div className="col-md-4 col-sm-6" key={index}>
                     <div id="serv_hover" className="room">
                         <div className="room_img">
-                            <Figure><img src={RoomNew} alt="#" /></Figure>
+                            <Figure><img src={post.link_img_post} alt="#" /></Figure>
                             {/* thả tym */}
                             <div className="heart">
                               {/* <HeartRoom /> */}

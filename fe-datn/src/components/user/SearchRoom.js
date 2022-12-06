@@ -50,9 +50,9 @@ function Search() {
                                             </div>
                                         </div>
                                         <div className="bed_room">
-                                            <h3><Link to="../roomdetail">Nhà trọ sinh viên</Link></h3>
-                                            <h4>Giá: 1.000.000 VNĐ</h4>
-                                            <p>Mô tả nhà trọ sinh viên</p>
+                                            <h3><Link to={`../roomdetail/${room.id_post}`}>{room.post_name}</Link></h3>
+                                            <h4>Giá: {room.room_price}</h4>
+                                            <p>{room.description_sort}</p>
                                         </div>
                                     </div>
                                 </div>

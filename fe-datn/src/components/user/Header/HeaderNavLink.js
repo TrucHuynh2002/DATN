@@ -23,6 +23,7 @@ function HeaderNavLink() {
             water_price: "",
             electricity_price: "",
             address: "",
+            ifarme:"",
             quantity: "",
             id_furniture: [],
             meta_title: "",
@@ -36,7 +37,8 @@ function HeaderNavLink() {
             img: [],
         });
         const { 
-            post_name, phone,
+            post_name,
+            phone,
             description_sort,
             description,
             area,
@@ -44,6 +46,7 @@ function HeaderNavLink() {
             water_price,
             electricity_price,
             address,
+            ifarme,
             quantity,
             id_furniture,
             meta_title,
@@ -152,6 +155,7 @@ function HeaderNavLink() {
             formData.append('id_province', id_province);
             formData.append('id_district', id_district);
             formData.append('id_ward', id_ward);
+            formData.append('ifarme', ifarme);
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
             formData.append('meta_title', meta_title);
@@ -349,6 +353,7 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
+                            
                             <Form.Group className="mb-3 area">
                                 <Form.Label>Diện tích</Form.Label>
                                 <Form.Control type="text" name="area" className="" 
