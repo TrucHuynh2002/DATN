@@ -15,7 +15,7 @@ import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
 // import { Select } from 'antd';
-import HeartRoom from './HeartRoom';
+// import HeartRoom from './HeartRoom';
 // const { Option } = Select;
 
 function Home() {
@@ -64,7 +64,7 @@ function Home() {
   // danh sach banner
     const getDataBanner = async () => {
      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
-    //  console.log(result);
+     console.log(result);
      setListBanner(result.data.data);
     };
      // SEARCHING
@@ -74,20 +74,26 @@ function Home() {
       price:"",
       area:"",
       typeRoom:""
+
+    })
+    const [getDataSearch,setGetDataSearch] = useState({
+      typeRooms:[]
     });
-    const [keySearch, setKeySearch] = useState("");
-    const handle = (e) => {
-      // console.log(e.target.value);
+    const {
+      typeRooms,
+    } = getDataSearch
+
+    const [getProvince,setProvince] = useState([]);
+    console.log(getProvince)
+    const getTypeRoom = async () => {
+      let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+      console.log(dataRoom)
+      setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
     const getProvinces = async () => {
       let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
       // console.log(dataRooms)
       setProvince(dataRooms.data.data)
-    }
-    const getTypeRoom = async () => {
-      let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-      console.log(dataRoom)
-      setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
     useEffect(() => {
       getTypeRoom()
@@ -103,7 +109,7 @@ function Home() {
     // const [province,setProvince] = useState(undefined);
     // const [price,setPrice] = useState(undefined);
     // const [area,setArea] = useState(undefined);
-    const [searching, setSearching] = useState(false);
+    const [searching,setSearching] = useState(false);
     // const [keySearch, setKeySearch] = useState("");  
     const handleChangeKeyWord = (e) => {
       console.log(e.target.value)
@@ -186,6 +192,7 @@ function Home() {
                             optionFilterProp="children"
                             filterOption={(input, option) =>
                               (option?.label ?? '').toLowerCase().includes(input.toLowerCase())  
+
                             }
                             onChange={(e) => handle(e)}
                             >
@@ -204,7 +211,6 @@ function Home() {
                             </div>    
                             )
                           }
-                                          
                       </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
@@ -256,12 +262,9 @@ function Home() {
                         </div>
                       </div>
                     </div>
-
                   </form>
-
                 </div>
                 {/* end search */}
-
               </div>
             </div>
           </div>

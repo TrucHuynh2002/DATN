@@ -6,6 +6,7 @@ import axios from 'axios';
 
 function HeaderNavLink() {
     var user = JSON.parse(localStorage.getItem("user"));
+    console.log(user[0])
     // const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
