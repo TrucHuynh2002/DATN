@@ -1,4 +1,5 @@
 import React from 'react'
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
@@ -26,7 +27,7 @@ function Home() {
   const [listPost, setListPost] = useState([]);
   const [listBanner, setListBanner] = useState([]);
   const [listImg, setListImg] = useState([]);
-  console.log(listImg);
+  // console.log(listImg);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -35,7 +36,7 @@ function Home() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-  console.log(currentPosts);
+  // console.log(currentPosts);
 
   // phan trang blog
   const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
@@ -58,7 +59,7 @@ function Home() {
   // danh sách post
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   console.log(res)
+  //  console.log(res)
    setListPost(res.data.data);
   };
  
@@ -70,7 +71,7 @@ function Home() {
  //danh sach img
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    console.log(res);
+    // console.log(res);
     setListImg(res.data.data);
     
 };
@@ -103,21 +104,8 @@ function Home() {
     // console.log(getProvince)
     const getTypeRoom = async () => {
       let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-      // console.log(dataRoom)
       setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
-    const getProvinces = async () => {
-      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
-      // console.log(dataRooms)
-      setProvince(dataRooms.data.data)
-    }
-    // const getDistrict = async () => {
-    //   let dataRooms = await axios.get("http://127.0.0.1:8000/api/district/show");
-    //   setDistrict(dataRooms.data.data)
-    // }
-
-
-  
     const {
       keywords,
       province,
@@ -126,13 +114,34 @@ function Home() {
       area,
       typeRoom
     } = keyword
-    // const [province,setProvince] = useState(undefined);
-    // const [price,setPrice] = useState(undefined);
-    // const [area,setArea] = useState(undefined);
+    const getProvinces = async () => {
+      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+      setProvince(dataRooms.data.data)
+    }
+    const handledistrice = async (e) => {
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+      getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+  }
+ 
+  const handleadd = async (e) => {
+      getDataWard(({[e.id_district] : e.target.value}).undefined)
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+  }
+  const handssdbdfb = async (e) => {
+      // setAddPost({ ...addPost, [e.target.name] : e.target.value});
+  }
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+    const getDataDistrict = async (id_province) => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        setListDistrict(ress.data.data);
+    }
+    const getDataWard = async (id_district) => {
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+        setListWard(resss.data.data);
+    }     
     const [searching,setSearching] = useState(false);
-    // const [keySearch, setKeySearch] = useState("");  
     const handleChangeKeyWord = (e) => {
-      // console.log(e.target.value)
       setKeyword({ ...keyword,[e.target.name]:e.target.value})
     }
 
@@ -143,9 +152,7 @@ function Home() {
       // }
       navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
     }
-
-    
-
+  
   return (
     <>
       {/* banner */}
@@ -253,7 +260,7 @@ function Home() {
                           </select>
                         </div>
                         <div className="col-2">
-                          <select className="form-select online_book3" name="provinces">
+                          <Form.Select name="provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
                             <option>Tỉnh</option>
                             {
                               getProvince.map((p,i) => {
@@ -261,27 +268,31 @@ function Home() {
                               })
                             }
                          
-                          </select>
+                          </Form.Select>
                         </div>
                         <div className="col-2">
-                          <select className="form-select online_book3" name="provinces">
-                            <option>Huyện</option>
-                            {/* {
-                              getProvince.map((p,i) => {
-                                return <option key={i} value={p.id}>{p._name}</option>
-                              })
-                            }                          */}
-                          </select>
+                                <Form.Select name="id_district" className="form-select online_book3"
+                                onChange = {(e) => handleadd(e)}
+                                >
+                                   <option>Quận/Huyện/TP</option>
+                                    {listDistrict.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
                         </div>
                         <div className="col-2">
-                          <select className="form-select online_book3" name="provinces">
-                            <option>Xã</option>
-                            {/* {
-                              getProvince.map((p,i) => {
-                                return <option key={i} value={p.id}>{p._name}</option>
-                              })
-                            }                          */}
-                          </select>
+                                <Form.Select name="id_ward" className="form-select online_book3"
+                                onChange = {(e) => handssdbdfb(e)}
+                                > 
+                                <option>Xã</option>
+                                    {listWard.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
                         </div>
                         <div className="col-2 ">
                           <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
