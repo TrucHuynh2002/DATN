@@ -77,7 +77,7 @@ class BlogController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
-            'name_blog' => 'required|string|unique:blog',
+            'name_blog' => 'required|string',
             'meta_keywords' => 'required',
             'description' => 'required',
             'description_sort' => 'required',
