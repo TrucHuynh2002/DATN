@@ -20,30 +20,30 @@ function RoomND() {
     getData();
   },[]);
  
-  const [addHeart, setAddHeart] = useState({
-        heart_feeling :1,
-        id_post :"",
-        id_user : user[0].id
-  });
+  // const [addHeart, setAddHeart] = useState({
+  //       heart_feeling :1,
+  //       id_post :"",
+  //       id_user : user[0].id
+  // });
   const [alert, setAlert] = useState({
     err_list: {},
   });
-  const {id_post} = addHeart;
-  const handleClick = async (index) => {
-    setAddHeart({...addHeart , id_post : index });
-    const res = await axios.post(`http://127.0.0.1:8000/api/heartFeeling/create`,addHeart);
-    if(res.data.status === true){
-      setAlert({
-          err_list: res.data
-      });
-      console.log(alert.err_list)
-    }
-    else{           
-        setAlert({
-            err_list: res.data
-        });
-    }
-  };
+  // const {id_post} = addHeart;
+  // const handleClick = async (index) => {
+  //   setAddHeart({...addHeart , id_post : index });
+  //   const res = await axios.post(`http://127.0.0.1:8000/api/heartFeeling/create`,addHeart);
+  //   if(res.data.status === true){
+  //     setAlert({
+  //         err_list: res.data
+  //     });
+  //     console.log(alert.err_list)
+  //   }
+  //   else{           
+  //       setAlert({
+  //           err_list: res.data
+  //       });
+  //   }
+  // };
  
     // var btnColor = document.querySelector(".btn_heart");
    
@@ -51,9 +51,9 @@ function RoomND() {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
   //  console.log(res);
    setListPost(res.data.data);
-   setListHeart(res.data.heart);
+  //  setListHeart(res.data.heart);
   //  var heart = document.querySelector('.heart');
-   var btn_heart =  document.querySelectorAll(".btn-heart");
+  //  var btn_heart =  document.querySelectorAll(".btn-heart");
   //  for (let i = 0; i < btn_heart.length; i++) {
   //   heart[i].style.backgroundColor = "red";
   //   for (let i = 0; i < btn_heart.length; i++) {

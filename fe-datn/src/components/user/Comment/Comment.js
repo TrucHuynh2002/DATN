@@ -46,40 +46,6 @@ function Comment() {
         });
       }
     };
-<<<<<<< HEAD
-          const handleSumbit = async (e) => {
-            e.preventDefault();
-            const a = addComment;
-            // console.log(a);
-            const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
-            if(res.data.status === true){
-              // addNotify.id_user_tow = 
-              const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-                setAlert({
-                    err_list: res.data
-                });
-                console.log(alert.err_list)
-            }else{           
-                setAlert({
-                    err_list: res.data
-                });
-            }
-        
-          };
-
-  useEffect(() => {
-    getData();
-  },[]);
-  const getData = async () => {
-    const resss = await axios.get('http://127.0.0.1:8000/api/comment/showUserDes');
-      console.log(resss)
-       setListCmt(resss.data.data);
-   };
-  
-
-
-=======
->>>>>>> 6c951a53cb98e28c6768e415d4b8b15737f8c5cb
   const [alert, setAlert] = useState({
       err_list: {},
   });
