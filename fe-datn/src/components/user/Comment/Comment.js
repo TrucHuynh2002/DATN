@@ -112,11 +112,12 @@ function Comment() {
                   onChange={(e) => handleChange(e)}
                 />
               </Form.Group>
-              {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.content[0]}</div>} 
+              {alert.err_list.status === false && <div className="noticecmt warning_____">{alert.err_list.messages.content[0]}</div>} 
+              {alert.err_list.status === true && <div className="noticecmt success_____">Bình luận thành công</div>} 
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-              {alert.err_list.status === true && <div className="notice success_____">Bình luận thành công</div>} 
+             
             </Form>
             : <Form>
                 <Form.Group className="form-group">
