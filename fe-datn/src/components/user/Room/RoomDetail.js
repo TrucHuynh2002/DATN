@@ -8,9 +8,12 @@ import Evaluate from '../Comment/Evaluate';
 function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
+    const [listImg, setListImg] = useState([]);
+    console.log(listImg);
     useEffect(() => {
         updateView();
         getData();
+        getImg();
     },[]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -26,6 +29,12 @@ function RoomDetail() {
                 // console.log(res);
                 setListPost(res.data.data);
     };
+    const getImg = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
+        // console.log(res);
+        setListImg(res.data.data);
+        
+};
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
         // console.log(update)
@@ -41,22 +50,18 @@ function RoomDetail() {
                     <div className="col-md-6">
                         <div className="product-slider">
                             <div className="item" >
-                                <img className="img-fluid" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="#" />
-                            </div>
-                            <div className="item item-img">
-                                <div className="col-3">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
+                            {listImg.map((a, index) => {
+                                return(
+                                <img className="img-fluid" src={a.link_img_user} alt="#" />
+                                )})}
                                 </div>
+                            {/* <div className="item item-img">
+                            
                                 <div className="col-3">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
+                                    <img src={a.link_img_user} alt="#" />
                                 </div>
-                                <div className="col-3">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
-                                </div>
-                                <div className="col-3">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQI6nUmObt62eDkqNSmIvCN_KkQExtbpJmUbVx_eTh_Y3v3r-Jw" alt="#" />
-                                </div>
-                            </div>
+           
+                            </div> */}
                         </div>
                     </div>
                     <div className="col-md-6">
