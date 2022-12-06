@@ -14,6 +14,7 @@ function ContentComent() {
   // danh sach Comment
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
+    // console.log(res)
     setListComment(res.data.data);
   };
 return (

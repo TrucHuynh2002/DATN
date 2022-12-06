@@ -133,16 +133,11 @@ function RoomDetail() {
                                 <h1 class="content_room_h1">Đánh giá {a.post_name}</h1>
                             </div>
                             <Evaluate />                
-
                         </div>
-
                     </div>
-
                 </div>
                 <h3 className="dccuthe">Vị trí cụ thể</h3>
                 <div dangerouslySetInnerHTML={{__html: a.ifarme}} />
-                
-                
                 </div>
                )})}
         </div>

@@ -102,14 +102,14 @@ class CommentController extends Controller
         $Title = "Danh sách các hỗ trợ";
         $Comment_SelectPost = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
-            ->where('comment.id_post', $id_post and 'param_id', '=', Null)
+            ->where('comment.id_post', $id_post)
+            ->where('comment.param_id', '=', Null)
             ->orderBy('comment.id_user', 'DESC')
             ->get();
         return response()
             ->json([
                 'data' => $Comment_SelectPost,
                 'status' => true,
-                'id_post' => $id_post
             ]);
     }
     public function Comment_SelectPostParamid_NotNull(Request $request, $id_post)
