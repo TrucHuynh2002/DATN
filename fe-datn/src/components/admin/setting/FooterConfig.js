@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function FooterConfig() {
 
   const {id_config} = useParams();
@@ -88,7 +89,23 @@ function FooterConfig() {
         </Form.Group>
         <Form.Group className="mb-3" controlId="introduce">
             <Form.Label>Giới thiệu</Form.Label>
-            <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/>
+            <CKEditor
+                                editor={ClassicEditor}
+                                data={introduce}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
+                                }}
+                                onChange={(event,editor)=> {
+                                    const data=editor.getData()
+                                    setEditConfig({ ...editConfig, description : data});
+                                    // console.log(description);
+                                }}
+                                
+                                >
+                        </CKEditor>
+            {/* <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/> */}
             { alert.err_list.status == false && alert.err_list.messages.introduce &&
                                        <div className="notice warning_____">{alert.err_list.messages.introduce[0]}</div>}
         </Form.Group>
