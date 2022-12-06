@@ -9,6 +9,7 @@ function RoomND() {
   var user = JSON.parse(localStorage.getItem("user"));
   // phân trang
   const [listPost, setListPost] = useState([]);
+  const [listImg, setListImg] = useState([]);
   const [listHeart, setListHeart] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
@@ -18,6 +19,7 @@ function RoomND() {
   // danh sach post
   useEffect(() => {
     getData();
+    getImg();
   },[]);
  
   // const [addHeart, setAddHeart] = useState({
@@ -83,6 +85,12 @@ function RoomND() {
     
   };
   // console.log(listHeart);
+  const getImg = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+    // console.log(res);
+    setListImg(res.data.data);
+    
+};
   return (
   <>
     <div className="our_room">
@@ -93,7 +101,11 @@ function RoomND() {
                   <div className="col-md-4 col-sm-6" key={index}>
                       <div id="serv_hover" className="room">
                           <div className="room_img">
-                              <figure><img src={RoomNew} alt="#" /></figure>
+                          {listImg.map((a, index) => {
+                            return a.id_post == post.id_post && (
+                              <figure><img src={a.link_img_user} alt="#" /></figure>
+                              )})}
+
                               {/* thả tym */}
                               {/* {listHeart.map((heart, index) => { */}
                               <div className="btn-heart" value={post.id_post}>

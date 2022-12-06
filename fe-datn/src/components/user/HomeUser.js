@@ -25,6 +25,8 @@ function Home() {
   const [listBlog, setListBlog] = useState([]);
   const [listPost, setListPost] = useState([]);
   const [listBanner, setListBanner] = useState([]);
+  const [listImg, setListImg] = useState([]);
+  console.log(listImg);
 
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -33,6 +35,7 @@ function Home() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+  console.log(currentPosts);
 
   // phan trang blog
   const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
@@ -43,13 +46,14 @@ function Home() {
 
 
   useEffect(() => {
-    getData();
-    getDataBlog();
-    getDataBanner();
-    getTypeRoom();
-    getProvinces();
-    // getDistrict();
+    getData()
+    getDataBlog()
+    getDataBanner()
+    getTypeRoom()
+    getProvinces()
+    getImg()
   },[]);
+  // console.log(currentPosts, listImg)
 
   // danh sách post
   const getData = async () => {
@@ -63,6 +67,13 @@ function Home() {
    const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
       setListBlog(res.data.data);
   };
+ //danh sach img
+  const getImg = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+    console.log(res);
+    setListImg(res.data.data);
+    
+};
 
   // danh sach banner
     const getDataBanner = async () => {
@@ -343,13 +354,18 @@ function Home() {
               return (     
                 <div className="col-md-4 col-sm-12" key={index}>
                     <div id="serv_hover" className="room">
-                        <div className="room_img">
-                            <Figure><img src={post.link_img_post} alt="#" /></Figure>
-                            {/* thả tym */}
-                            <div className="heart">
-                              {/* <HeartRoom /> */}
+                    <div className="room_img">
+                            {listImg.map((a, index) => {
+                              
+                                return a.id_post == post.id_post && (
+
+                                    <Figure><img src={a.link_img_user} alt="#" /></Figure>
+                                   
+                                
+            )
+            // break;
+            })}
                             </div>
-                        </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                             <h4>Giá: {post.room_price}</h4>
