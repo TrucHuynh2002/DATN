@@ -798,10 +798,10 @@ font-size: 45px;
 }
 
 .our_room .room {
-    text-align: center;
     background-color: #fff;
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
+    height: 95%;
 }
 
 .our_room .room .room_img {
@@ -828,8 +828,6 @@ font-size: 45px;
 .our_room .room .bed_room h3 {
     color: #121212;
     font-size: 25px;
-    line-height: 20px;
-    font-weight: 500;
     transition: ease-in all 0.5s;
     margin: auto;
 }
@@ -901,6 +899,7 @@ font-size: 45px;
 
 .blog .blog_box {
     text-align: left;
+    height:95%;
     background-color: #fff;
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
@@ -931,9 +930,6 @@ font-size: 45px;
 .blog .blog_box .blog_room h3 {
     color: #121212;
     font-size: 25px;
-    line-height: 20px;
-    font-weight: 500;
-    padding-bottom: 5px;
     transition: ease-in all 0.5s;
     margin: auto;
 }
@@ -1824,7 +1820,9 @@ ul.social_icon li a:hover {
 .review-form textarea.form-control {
     resize: none;
 }
-
+.room>.bed_room>h3>a, .blog_box>.blog_room>h3>a{
+    text-transform: capitalize;
+}
 .review-form .round-black-btn {
     text-transform: uppercase;
     cursor: pointer;

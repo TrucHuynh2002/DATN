@@ -479,7 +479,7 @@ function Home() {
           <div className="row">
             {currentBlog.map((blog, index) => {
               return (
-                <div className="col-md-3" key={index}>
+                <div className="col-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
                       <Figure>
