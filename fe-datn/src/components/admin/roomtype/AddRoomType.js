@@ -36,7 +36,7 @@ function AddRoomType() {
             });
             // console.log(alert.err_list.messages.name[0])
         }
-        // navigate("../list_furniture");
+        // navigate("../lis t_furniture");
     };
 
   return (

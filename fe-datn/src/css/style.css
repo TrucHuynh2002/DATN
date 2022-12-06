@@ -1793,7 +1793,120 @@ ul.social_icon li a:hover {
     display: block;
    
 }
+gallery {
+    padding-top: 60px;
+}
 
+.gallery .titlepage {
+    text-align: center;
+}
+
+.gallery .gallery_img {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.gallery .gallery_img figure {
+    margin: 0;
+}
+
+.gallery .gallery_img figure img {
+    width: 100%;
+    transition: all .5s;
+}
+
+.gallery .gallery_img figure img:hover {
+    transform: scale(1.2);
+}
+/* show mask */
+.aspect{
+    position: relative;
+    padding-bottom: 120%;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .gallery_img .mask{
+    width: 91%;
+    height: 90%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    margin-left: 4.5%;
+    text-align: center;
+    
+  }
+  .tab-text{
+    font-size: 30px;
+  }
+  
+  .show-first a.more {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px; 
+    background: #FFF;
+    color: #222;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000;
+    position: relative;
+    border: 1px solid #999;
+  
+  }
+  
+  .show-first a.more:hover {
+    box-shadow: 0 0 5px #000;
+  }
+  
+  .show-first p{
+    letter-spacing: 0.15em;
+    color: #f4f4f4;
+    font-size: 28px; 
+  }
+  
+  .show-first img {
+    transition: all 0.2s linear;
+  }
+  
+  .show-first .mask {
+    opacity: 0;
+    background-color:  rgba(0,0,0,0.7);
+    transition: all 0.4s ease-in-out;
+  }
+  .show-first h2 {
+    color: #f2f2f2;
+    margin-top: 40%;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    background: none;
+    font-style: italic;
+  }
+  .show-first p {
+    opacity: 0;
+    transition: all 0.2s linear;
+  }
+  .show-first a.info{
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .show-first:hover img {
+    transform: scale(1.2);
+  }
+  .show-first:hover .mask {
+    opacity: 1;
+  }
+  .show-first:hover h2,
+  .show-first:hover p,
+  .show-first:hover a.info {
+    opacity: 1;
+  }
+  .show-first:hover p {
+    transition-delay: 0.1s;
+  }
+  .show-first:hover a.info {
+    transition-delay: 0.2s;
+  }
 .heart{
     font-size: 30px;
     margin-top: -40px;

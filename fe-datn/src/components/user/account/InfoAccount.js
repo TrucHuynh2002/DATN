@@ -134,21 +134,19 @@ function InfoAccount() {
                         </div>
                     </div>
                      );
-                    //    {user ? 
-                    //     user[0].id = info.id_user  ?
-                    //         <div className='col-12'>
-                    //             <Link to={`../update_acc/${info.id_user}`}>
-                    //                 <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
-                    //             </Link>
-                    //             <Link to={`../confirm_acc/${info.id_user}`}>
-                    //                 <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
-                    //             </Link>
-                    //         </div>
-                    //       : <div></div> : <div></div> }
-                   
-             
                 })}
-                
+                 {user ? 
+                        user[0].id = id_user  ?
+                            <div className='col-12'>
+                                <Link to={`../update_acc/${id_user}`}>
+                                    <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
+                                </Link>
+                                <Link to={`../confirm_acc/${id_user}`}>
+                                    <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
+                                </Link>
+                            </div>
+                       
+                          : <div></div>  : <div></div> }
             </div>
       
   )

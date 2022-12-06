@@ -5,19 +5,28 @@ import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState('');
     console.log(email);
-    const [password, setPassword] = useState("");
-
+    const [password, setPassword] = useState('');
+    console.log(password)
     // xu ly loi
     const [alert, setAlert] = useState({
-        err_list: {},
+        err_list: {
+            status: Boolean,
+            messages: {
+                email: [],
+                password: []
+            }
+        },
     });
+    console.log(alert)
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const item = { email,password };
-        const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
-        console.log(res);
+        // const item = { email,password };
+        const dataForm = new FormData();
+        dataForm.append('email',email);
+        dataForm.append('password',password);
+        const res = await axios.post("http://127.0.0.1:8000/api/user/login", dataForm);
         if(res.data.status === true){
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
@@ -31,6 +40,7 @@ function Login() {
                     address:res.data.data.address,
                     role:res.data.data.role,
                 })
+                
                 setAlert({
                     err_list: res.data
                 });
@@ -42,11 +52,13 @@ function Login() {
                     navigate("/admin/");
                 }
            }else{
+                
                 setAlert({
                     err_list: res.data
                 });
            }
-        }else{           
+        }else{
+            console.log(res.data);
             setAlert({
                 err_list: res.data
             });
@@ -70,23 +82,27 @@ function Login() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">
-                        <form onSubmit={(e) => handleSumbit(e)}>
+                        <form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                             <div className="row">
                                 <div className="col-md-12 ">
-                                    <input type="email" className="text" name="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                                    {alert.err_list.status === false
+                                    <input type="email" className="text" name="email"   onChange={e => setEmail(e.target.value)} />
+                                    {/* {alert.err_list.status === false
                                      && 
-                                     alert.err_list.messages.email[0]
+                                     alert.err_list.messages.email.length > 0
                                       ( 
                                       <div className="notice warning_____"></div>
-                                      )}
+                                      )} */}
+                                       { alert.err_list.status == false && alert.err_list.messages.email &&
+                                    
+                                    <div className="notice warning_____">Email không được bỏ trống</div>
+                                }
                                 </div>   
                                 <div className="col-md-12 ">
                                     <input type="password" className="text" name="password" placeholder="Mật khẩu" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                                    {alert.err_list.status === false && alert.err_list.messages.password[0] 
-                                    (
-                                    <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>
-                                    )}
+                                    {   alert.err_list.status == false && alert.err_list.messages.password &&
+                                    
+                                        <div className="notice warning_____">Mật khẩu chưa nhập</div>
+                                    }
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>

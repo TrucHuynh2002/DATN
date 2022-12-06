@@ -9,7 +9,7 @@ class RoomType extends Model
 {
     protected $table = 'room_type';
     protected $primaryKey = 'id_room_type';
-    // public $timestamps = true;
+    public $timestamps = false;
     protected $fillable = [
         'name_room_type'
     ];

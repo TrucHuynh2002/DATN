@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function HeaderNavLink() {
     var user = JSON.parse(localStorage.getItem("user"));
-    // console.log(user[0])
+    // console.log(user[0].id)
     // const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
@@ -249,8 +249,8 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                             </Form.Group>
-                            <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>}
+                            {/* <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>} */}
                             <Form.Group className="mb-3 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
