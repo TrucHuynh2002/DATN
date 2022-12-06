@@ -320,6 +320,7 @@ button {
 
 .banner .carousel-indicators .active {
     background-color: #fe0000;
+    display: none;
 }
 
 .notifyInteractive>.row{
@@ -644,6 +645,7 @@ label{
     font-size: 16px;
     font-weight: 600;
     display: block;
+    margin-left: 300%;
 }
 
 .book_btn:hover {
@@ -823,6 +825,17 @@ font-size: 45px;
 
 .our_room .room .bed_room {
     padding: 33px 30px;
+    width: 100%;
+    height: auto;
+}
+.mota{
+    font-weight: 400;
+    text-align: justify;
+}
+.gia{
+    font-weight: 600;
+    font-size: 18px;
+    color: red;
 }
 
 .our_room .room .bed_room h3 {
@@ -924,7 +937,8 @@ font-size: 45px;
 
 .blog .blog_box .blog_room {
     padding: 33px 30px;
-    text-align: left;
+   
+    
 }
 
 .blog .blog_box .blog_room h3 {
@@ -932,6 +946,7 @@ font-size: 45px;
     font-size: 25px;
     transition: ease-in all 0.5s;
     margin: auto;
+    text-align: center;
 }
 
 .blog .blog_box .blog_room span {
@@ -945,6 +960,7 @@ font-size: 45px;
 .blog .blog_box .blog_room p {
     font-size: 14px;
     line-height: 20px;
+    text-align: justify;
 }
 .gap-2{
     display:"flex";
@@ -1677,6 +1693,8 @@ ul.social_icon li a:hover {
     line-height: 24px;
     color: #7a7a7a;
 }
+
+
 
 .product-dtl .form-control {
     font-size: 15px;
