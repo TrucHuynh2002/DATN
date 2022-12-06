@@ -145,7 +145,7 @@ root.render(
           <Route path="setting/:id_config" element={<SettingConfig />} /> 
           <Route path="footerConfig" element={<FooterConfig />} />        
           <Route path="bannerConfig" element={<BannerConfig />} />        
-          <Route path="editBanner/:id_banner_config" element={<EditBanner />} />        
+          <Route path="bannerConfig/editBanner/:id_banner_config" element={<EditBanner />} />        
         </Route>
       </Route>
       <Route path="Loi" element={<Loi />} />

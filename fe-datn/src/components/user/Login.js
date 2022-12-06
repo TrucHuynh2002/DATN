@@ -11,7 +11,13 @@ function Login() {
     console.log(password)
     // xu ly loi
     const [alert, setAlert] = useState({
-        err_list: {},
+        err_list: {
+            status: Boolean,
+            messages: {
+                email: [],
+                password: []
+            }
+        },
     });
     console.log(alert)
     const handleSumbit = async (e) => {
@@ -34,6 +40,7 @@ function Login() {
                     address:res.data.data.address,
                     role:res.data.data.role,
                 })
+                
                 setAlert({
                     err_list: res.data
                 });
@@ -45,11 +52,13 @@ function Login() {
                     navigate("/admin/");
                 }
            }else{
+                
                 setAlert({
                     err_list: res.data
                 });
            }
-        }else{           
+        }else{
+            console.log(res.data);
             setAlert({
                 err_list: res.data
             });
