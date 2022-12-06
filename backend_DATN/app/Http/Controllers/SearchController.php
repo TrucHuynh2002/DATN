@@ -20,15 +20,25 @@ class SearchController extends Controller
         if($request->province){
             $get_data = $get_data->where('id_province','=',$request->province);
         }
+
+        if($request->district){
+            $get_data = $get_data->where('id_district','=',$request->province);
+        }
+        if($request->ward){
+            $get_data = $get_data->where('id_ward','=',$request->ward);
+            
+        }
         
         if($request->price){
             $price = $request->price;
-            if($price == 1){
-                $get_data= $get_data->where('room_price','<',1000000);
+            if((int) $price == 1){
+                $get_data= $get_data->where('room_price','<',3000000);
             }
-            if($price == 2){
-                $get_data= $get_data->where('room_price','>',1000000)->where('room_price','<',2000000);
+            if((int)$price == 2){
+                $get_data= $get_data->where('room_price','BETWEEN',1000000,'AND',2000000);
+                
             }
+            
             // $get_data= $get_data->where('room_price','>',0);
         }
 
@@ -47,7 +57,7 @@ class SearchController extends Controller
         return response()->json([
             'status' => true,
             'data' => $get_postSearch,
-            'keyword' => (integer) $request->typeRoom
+            'keyword' => $request->price
         ]);
     }
 }
