@@ -6,11 +6,12 @@ function AddCategory() {
 
     const [addCategory, setAddCategory] = useState({
         name_category:"",
+        link_to:"",
     });
     const [alert, setAlert] = useState({
         err_list: {},
     });
-    const { name_category } = addCategory;
+    const { name_category, link_to } = addCategory;
     const handleChange = (e) => {
         setAddCategory({ ...addCategory, [e.target.name]: e.target.value});
     };
@@ -39,6 +40,11 @@ function AddCategory() {
                     <Form.Label>Tên danh mục</Form.Label>
                       <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_category} name="name_category" className=''/>
                       {alert.err_list.status === false && <div className="notice warning_____ ">{alert.err_list.messages.name_category[0]}</div>}                   
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="link_to">
+                    <Form.Label>Link to</Form.Label>
+                      <Form.Control type="text" onChange={(e) => handleChange(e)} value={link_to} name="link_to" className=''/>
+                      {alert.err_list.status === false && <div className="notice warning_____ ">{alert.err_list.messages.link_to[0]}</div>}                   
                   </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
