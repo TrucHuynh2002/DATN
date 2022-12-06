@@ -445,17 +445,14 @@ button {
 }
 
 .book_now2 .online_book3 {
-    width: 80%;
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0px;
-    background-color: transparent;
-    color: black;
-    padding: 0 10px;
-    padding-right: 61px;
-    margin-bottom: 25px;
+    border-radius: 10px;
+    margin: 25px 0;
     position: relative;
-    border-radius: 0px;
+}
+.fitele-search{
+    align-items: center;
 }
 
 .book_now2 .online_book2 {
@@ -1297,6 +1294,11 @@ ul.social_icon {
     width: 100%;
     float: left;
     text-align: left;
+}
+.navbar-nav{
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
 }
 
 ul.social_icon li {

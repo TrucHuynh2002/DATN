@@ -187,8 +187,8 @@ function HeaderNavLink() {
         }
     };
   return (
-    <>
-         <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
+    <div class="collapse navbar-collapse "  id="navbarExample04">
+         <ul className="navbar-nav">
             <li className="nav-item ">
                 <Link className="nav-link" to="">
                 Trang chủ
@@ -442,7 +442,7 @@ function HeaderNavLink() {
                 </div> }
             </li>
         </ul>
-    </>
+    </div>
   )
 }
 
