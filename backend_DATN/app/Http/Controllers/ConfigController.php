@@ -20,7 +20,16 @@ class ConfigController extends Controller
             ]
         );
     }
-
+    public function get_About(Request $request)
+    {
+        $getConfig = ConfigModel::select('introduce')->get();
+        return response()->json(
+            [
+                'status' => true,
+                'data' => $getConfig
+            ]
+        );
+    }
     public function create_Config(Request $request)
     {
         $validation = Validator::make($request->all(), [
