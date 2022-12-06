@@ -800,11 +800,10 @@ font-size: 45px;
 }
 
 .our_room .room {
-    /* text-align: center; */
-   
     background-color: #fff;
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
+    height: 95%;
 }
 
 .our_room .room .room_img {
@@ -841,10 +840,7 @@ font-size: 45px;
 
 .our_room .room .bed_room h3 {
     color: #121212;
-   text-align: center;
-    font-size: 20px;
-    line-height: 35px;
-    font-weight: 500;
+    font-size: 25px;
     transition: ease-in all 0.5s;
     margin: auto;
 }
@@ -916,6 +912,7 @@ font-size: 45px;
 
 .blog .blog_box {
     text-align: left;
+    height:95%;
     background-color: #fff;
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
@@ -946,10 +943,7 @@ font-size: 45px;
 
 .blog .blog_box .blog_room h3 {
     color: #121212;
-    font-size: 16px;
-    line-height: 32px;
-    font-weight: 500;
-    padding-bottom: 5px;
+    font-size: 25px;
     transition: ease-in all 0.5s;
     margin: auto;
     text-align: center;
@@ -971,6 +965,9 @@ font-size: 45px;
 .gap-2{
     display:"flex";
     align-items:"baseline";
+}
+.bed_room>.mota{
+    text-transform: lowercase;
 }
 .gap-2>.button{
     padding: 7px;
@@ -1844,7 +1841,9 @@ ul.social_icon li a:hover {
 .review-form textarea.form-control {
     resize: none;
 }
-
+.room>.bed_room>h3>a, .blog_box>.blog_room>h3>a{
+    text-transform: capitalize;
+}
 .review-form .round-black-btn {
     text-transform: uppercase;
     cursor: pointer;

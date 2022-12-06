@@ -86,7 +86,8 @@ function Home() {
     const [keyword,setKeyword] = useState({
       keywords: "",
       province: "",
-      // district: "",
+      district: "",
+      ward: null,
       price:"",
       area:"",
       typeRoom:""
@@ -110,10 +111,12 @@ function Home() {
       keywords,
       province,
       district,
+      ward,
       price,
       area,
       typeRoom
     } = keyword
+    console.log(district);
     const getProvinces = async () => {
       let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
       setProvince(dataRooms.data.data)
@@ -121,16 +124,23 @@ function Home() {
     const handledistrice = async (e) => {
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
       getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+      setKeyword({ ...keyword,province: e.target.value})
   }
  
   const handleadd = async (e) => {
       getDataWard(({[e.id_district] : e.target.value}).undefined)
+      console.log(e.target.value)
+      setKeyword({ ...keyword,district: e.target.value})
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
   }
   const handssdbdfb = async (e) => {
+      console.log(ward);
+      setKeyword({ ...keyword,ward: e.target.value})
+
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
   }
     const [listDistrict, setListDistrict] = useState([]);
+    console.log(listDistrict)
     const [listWard, setListWard] = useState([]);
     const getDataDistrict = async (id_province) => {
         const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
@@ -150,7 +160,7 @@ function Home() {
       // if(keyword){
       //   console.log('123')
       // }
-      navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
+      navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&ward=${keyword.ward}&&district=${keyword.district}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
     }
   
   return (
@@ -289,7 +299,7 @@ function Home() {
                                 <option>Xã</option>
                                     {listWard.map((room, index) => {
                                         return (
-                                            <option key={index} value={room.id} >{room._name}</option>
+                                            <option key={index} value={room.id}  >{room._name}</option>
                                         );
                                     })}                            
                                 </Form.Select>
@@ -297,8 +307,8 @@ function Home() {
                         <div className="col-2 ">
                           <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
                             <option>Giá</option>
-                            <option value="1">Dưới 1 triệu</option>
-                            <option value="2">Từ 1 - 2 triệu</option>
+                            <option value={1}>Dưới 1 triệu</option>
+                            <option value={2}>Từ 1 - 2 triệu</option>
                           </select>
                         </div>
                         <div className="col-2 ">
@@ -479,7 +489,7 @@ function Home() {
           <div className="row">
             {currentBlog.map((blog, index) => {
               return (
-                <div className="col-md-3" key={index}>
+                <div className="col-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
                       <Figure>
