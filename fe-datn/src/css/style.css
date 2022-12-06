@@ -1812,7 +1812,17 @@ ul.social_icon li a:hover {
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+<<<<<<< HEAD
 .searchroom{
+=======
+/* .searchroom__{
+ color: black;
+ font-size: 24px;
+margin: -100px 0 80px 0; */
+/* } */
+.our_room{
+    background-color: white;
+>>>>>>> 354ee245c54678b98008a18a91bfd9abdd71d52a
     text-align: center;
     color: black;
     width: 1100px;
