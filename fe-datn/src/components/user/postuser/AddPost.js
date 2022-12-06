@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
+
+
 function AddPost() {
     const get_user = JSON.parse(localStorage.getItem('user'));
         const [addPost, setAddPost] = useState({
