@@ -7,7 +7,7 @@ import './css/style.css';
 import './css/responsive.css';
 import './css/blog.css';
 import './css/pagination.css';
-import 'antd/dist/reset.css';
+// import 'antd/dist/reset.css';
 
 // admin home
 import App from './components/admin/App';
@@ -102,7 +102,7 @@ root.render(
         </Route>
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
-        <Route path="searchroom" element={<SearchRoom />} /> 
+        <Route path="searchroom/" element={<SearchRoom />} /> 
       </Route>
 
       {/* chuyển hướng admin tổng */}
