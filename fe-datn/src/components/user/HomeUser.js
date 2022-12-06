@@ -317,8 +317,8 @@ function Home() {
             <div className="col-5">
               <div className="titlepage">
                 <h2>Giới thiệu</h2>
-                <p>
-                  .com cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.
+                <p align="justify">
+                  Tìm trọ Nhà Tui cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.
                   Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
                   Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí. 
                 </p>~
@@ -368,8 +368,8 @@ function Home() {
                             </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                            <h4>Giá: {post.room_price}</h4>
-                            <p>{post.description_sort}</p>
+                            <h4 className='gia'>Giá: {post.room_price}/tháng</h4>
+                            <p className='mota'>{post.description_sort}</p>
                         </div>
                     </div>
                 </div>
