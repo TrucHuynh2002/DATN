@@ -940,17 +940,19 @@ font-size: 45px;
 
 .blog .blog_box .blog_room {
     padding: 33px 30px;
-    text-align: left;
+   
+    
 }
 
 .blog .blog_box .blog_room h3 {
     color: #121212;
-    font-size: 25px;
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 32px;
     font-weight: 500;
     padding-bottom: 5px;
     transition: ease-in all 0.5s;
     margin: auto;
+    text-align: center;
 }
 
 .blog .blog_box .blog_room span {
@@ -964,6 +966,7 @@ font-size: 45px;
 .blog .blog_box .blog_room p {
     font-size: 14px;
     line-height: 20px;
+    text-align: justify;
 }
 .gap-2{
     display:"flex";
