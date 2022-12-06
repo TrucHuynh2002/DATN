@@ -132,7 +132,7 @@ function RoomDetail() {
                             <div className="review-heading">
                                 <h1 class="content_room_h1">Đánh giá {a.post_name}</h1>
                             </div>
-                            <Evaluate />                    
+                            <Evaluate />                
 
                         </div>
                     </div>
