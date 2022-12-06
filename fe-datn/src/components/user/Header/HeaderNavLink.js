@@ -439,26 +439,13 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
                             </Form.Group>
-<<<<<<< HEAD
-                           =
-                        </Col>
-                           
-                        
-                        <div className="d-grid gap-2">
-=======
                         <div className="d-grid gap-2" style={{margin: "20px 0"}}>
->>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
                             </Button>
                             {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                         </div>
-<<<<<<< HEAD
-
-                    </Row>
-=======
                     
->>>>>>> d164dcffdf6665e65575c238f86cea879be1a4c9
                 </Form>
                 </Modal.Body>
                 <Modal.Footer>

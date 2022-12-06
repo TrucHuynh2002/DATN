@@ -16,6 +16,7 @@ function AddPost() {
             water_price: "",
             electricity_price: "",
             address: "",
+            ifarme:"",
             quantity: "",
             id_furniture: [],
             meta_title: "",
@@ -34,6 +35,7 @@ function AddPost() {
             water_price,
             electricity_price,
             address,
+            ifarme,
             quantity,
             id_furniture,
             meta_title,
@@ -116,6 +118,7 @@ function AddPost() {
             }
             formData.append('post_name', post_name);
             formData.append('address', address);
+            formData.append('ifarme', ifarme);
             formData.append('area',area);
             formData.append('description', description);
             formData.append('description_sort', description_sort);
@@ -232,6 +235,13 @@ function AddPost() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
                             </Form.Group>
+                            <Form.Group className="mb-3 address">
+                                <Form.Label>Ifarme map</Form.Label>
+                                <Form.Control type="text" name="ifarme" className=""
+                                value={ifarme}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.ifarme[0]}</div>}
+                            </Form.Group>
                             <Form.Group className="mb-3 area">
                                 <Form.Label>Diện tích</Form.Label>
                                 <Form.Control type="text" name="area" className="" 
@@ -249,6 +259,7 @@ function AddPost() {
                             <Form.Group className="mb-3 formGridCheckbox">
                                 <Form.Label >Nội thất</Form.Label>
                                 <div className='row' style={{marginLeft:"10px",alginItem:"center"}}>
+                                <option value='' >Chọn</option>
                                     {furniture.map((data,index) => {
                                         return (
                                                 <div className="col-md-3" key={index}>
