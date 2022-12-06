@@ -133,6 +133,7 @@ Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
+// Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);

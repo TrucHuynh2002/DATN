@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -32,13 +33,28 @@ class UserController extends Controller
     public function User_SelectOne(Request $request, $id_user)
     {
         $Title = "Chi tiết tài khoản";
-        $User_SelectOne = User::find($id_user);
+        $User_SelectOne = DB::table('users')
+            ->join('img_user', 'img_user.id_user', '=', 'users.id_user')
+            ->where('users.id_user', '=', $id_user)
+            ->orderBy('users.id_user')
+            ->get();
         return response()
             ->json([
                 'data' => $User_SelectOne,
                 'status' => true
             ]);
     }
+
+    public function ImgUser(Request $request, $id)
+    {
+        $get_img = imgUserModel::where('id_user', '=', $id);
+        return response()
+            ->json([
+                'data' => $get_img,
+                'status' => true
+            ]);
+    }
+
     public function UserAdd(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -97,7 +113,7 @@ class UserController extends Controller
     {
         $t = User::find($id_user);
         $t->full_name = $request->full_name;
-        $t->email = $request->email;
+        // $t->email = $request->email;
         // $t->password = $request->password;
         $t->phone = $request->phone;
         $t->address = $request->address;
@@ -125,16 +141,29 @@ class UserController extends Controller
     public function PasswordEdit(Request $request, $id_user)
     {
         $t = User::find($id_user);
+        // $pass_old = Hash::make($request->password);
         if ($t) {
-            if ($t->password == $request->password) {
-                $t->password = $request->password_new;
-                $t->save();
-                return response()
-                    ->json([
-                        'data' => $t,
-                        'status' => true
-                    ]);
+            if (Hash::check($request->password, $t->password)) {
+                if ($request->password_new == $request->password_neww) {
+                    $t->password = Hash::make($request->password_new);
+                    $t->save();
+                    return response()
+                        ->json([
+                            'messess' => 'Đổi mật khẩu thành công',
+                            'data' => $t,
+                            'status' => true
+                        ]);
+                } else {
+                    return response()
+                        ->json([
+                            'messess' => 'Nhập lại mật khẩu không khớp',
+                            // 'data' => $t,
+                            'status' => false
+                        ]);
+                }
             } else {
+                // dd($pass_old);
+                // dd(Hash::make($t->password));
                 return response()
                     ->json([
                         'messess' => 'Mật khẩu hiện tại không đúng',

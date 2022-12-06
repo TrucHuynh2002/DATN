@@ -68,6 +68,11 @@ function Home() {
      setListBanner(result.data.data);
     };
 
+    const [keySearch, setKeySearch] = useState("");
+    const handle = (e) => {
+      console.log(e.target.value);
+    }
+
   return (
     <>
       {/* banner */}
@@ -127,34 +132,28 @@ function Home() {
                   <form className="book_now2">
                     <div className="row">
                     <div className="col-md-9">
-                            <Select className='search'
+                      <input className="online_book2" placeholder="" type="text" name="" />
+                            {/* <Select className='search'
                             showSearch
                             style={{width:'133.7%'}}
                             optionFilterProp="children"
-                            // onChange={onChange}
-                            // onSearch={onSearch}
                             filterOption={(input, option) =>
-                              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())  
+
                             }
-                            // options={[
-                            //   {
-                            //     value: 'jack',
-                            //     label: 'Jack',
-                            //   },
-                            //   {
-                            //     value: 'lucy',
-                            //     label: 'Lucy',
-                            //   },
-                            //   {
-                            //     value: 'tom',
-                            //     label: 'Tom',
-                            //   },
-                            // ]}
+                            onChange={(e) => handle(e)}
                             >
                                 {listPost.map((item) => (
                                     <Option value={item.id_post} key={item.id_post}>{item.post_name} </Option>
                                 ))}
-                            </Select>
+                            </Select> */}
+                          <div className='show_search'>
+                            <ul>
+                              <li>
+                                <Link to="">Nhà trọ cần thơ</Link>
+                              </li>
+                            </ul>                            
+                          </div>                     
                       </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
@@ -197,7 +196,9 @@ function Home() {
                         </div>
                       </div>
                     </div>
+
                   </form>
+
                 </div>
                 {/* end search */}
 

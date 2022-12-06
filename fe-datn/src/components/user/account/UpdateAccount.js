@@ -8,7 +8,6 @@ function UpdateAccount() {
     const {id_Account} = useParams();
     const [editAccount, setEditAccount] = useState({
        full_name:"",
-       email:"",
        phone: "",
        address:""
     });
@@ -17,7 +16,7 @@ function UpdateAccount() {
         err_list: {},
     });
 
-    const {full_name,email,phone,address } = editAccount;
+    const {full_name,phone,address } = editAccount;
 
     const handleChange = (e) => {
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
@@ -58,11 +57,11 @@ function UpdateAccount() {
                     <Form.Control type="text" name="full_name" value={full_name} className='' onChange={(e) => handleChange(e)} />
                     {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="3">
+                {/* <Form.Group className="mb-3" controlId="3">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" name="email" value={email} className='' onChange={(e) => handleChange(e)} />
                     {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Số điện thoại</Form.Label>
                     <Form.Control type="text" name="phone" value={phone} className='' onChange={(e) => handleChange(e)} />

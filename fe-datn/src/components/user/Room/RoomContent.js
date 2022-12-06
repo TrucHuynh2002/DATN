@@ -61,25 +61,25 @@ function RoomND() {
   //   }
   // }
  
-   {listHeart.map((e,index) => {
+  //  {listHeart.map((e,index) => {
    
-      // for (let i = 0; i < btn_heart.length; i++) {
-        if(btn_heart.value = e.id_post){
-          // console.log(btn_heart)
-          for (let i = 0; i < btn_heart.value.length; i++) {
-            // console.log(btn_heart.value)
-            btn_heart[i].innerHTML = `<div class="heart"><i class="bx bxs-heart" onclick=handleClick(e.id_post)></i></div>`;
-            var heart=  document.querySelectorAll(".btn-heart");
-            for (let i = 0; i < heart.length; i++) {
-            heart[i].style.backgroundColor = "red";
-            }
-          }
-        }
-    // }
-    else{
-      // btnColor.style.color = 'red'
-    }
-   })}
+  //     // for (let i = 0; i < btn_heart.length; i++) {
+  //       if(btn_heart.value = e.id_post){
+  //         // console.log(btn_heart)
+  //         for (let i = 0; i < btn_heart.value.length; i++) {
+  //           // console.log(btn_heart.value)
+  //           btn_heart[i].innerHTML = `<div class="heart"><i class="bx bxs-heart" onclick=handleClick(e.id_post)></i></div>`;
+  //           var heart=  document.querySelectorAll(".btn-heart");
+  //           for (let i = 0; i < heart.length; i++) {
+  //           heart[i].style.backgroundColor = "red";
+  //           }
+  //         }
+  //       }
+  //   // }
+  //   else{
+  //     // btnColor.style.color = 'red'
+  //   }
+  //  })}
     
   };
   // console.log(listHeart);
