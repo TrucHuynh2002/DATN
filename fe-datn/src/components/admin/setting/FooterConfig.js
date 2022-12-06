@@ -99,7 +99,7 @@ function FooterConfig() {
                                 }}
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
-                                    setEditConfig({ ...editConfig, description : data});
+                                    setEditConfig({ ...editConfig, introduce : data});
                                     // console.log(description);
                                 }}
                                 
