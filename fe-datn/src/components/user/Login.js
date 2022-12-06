@@ -10,13 +10,21 @@ function Login() {
 
     // xu ly loi
     const [alert, setAlert] = useState({
-        err_list: {},
+        err_list: {
+            status: Boolean,
+            messages: {
+                email: [],
+                password: []
+            }
+        },
     });
+    // console.log('TRIEN KD');
+    console.log(alert.err_list.messages.email[0]);
     const handleSumbit = async (e) => {
         e.preventDefault();
         const item = { email,password };
         const res = await axios.post("http://127.0.0.1:8000/api/user/login", item);
-        console.log(res);
+        console.log(res.data);
         if(res.data.status === true){
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
@@ -30,6 +38,7 @@ function Login() {
                     address:res.data.data.address,
                     role:res.data.data.role,
                 })
+                
                 setAlert({
                     err_list: res.data
                 });
@@ -41,11 +50,13 @@ function Login() {
                     navigate("/admin/");
                 }
            }else{
+                
                 setAlert({
                     err_list: res.data
                 });
            }
-        }else{           
+        }else{
+            console.log(res.data);
             setAlert({
                 err_list: res.data
             });
@@ -73,11 +84,11 @@ function Login() {
                             <div className="row">
                                 <div className="col-md-12 ">
                                     <input type="email" className="text" name="email" placeholder="Email" onChange={(e) => {setEmail(e.target.value)}}/>
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
+                                    {alert.err_list.messages.email[0] && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                                 </div>    
                                 <div className="col-md-12 ">
                                     <input type="password" className="text" name="password" placeholder="Mật khẩu" onChange={(e) => setPassword(e.target.value)}/>
-                                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
+                                    {/* {alert.err_list.messages.password[0] && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>} */}
                                 </div>
                                 <div className="col-md-12 " style={{display:"flex",align_items:"baseline"}}>
                                     <input style={{ border: "1px solid #0D3380" }} type="checkbox" id="checkbox-1-1" className="custom-checkbox"/>

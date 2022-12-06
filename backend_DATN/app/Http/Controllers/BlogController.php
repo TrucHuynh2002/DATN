@@ -65,6 +65,7 @@ class BlogController extends Controller
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
         $Blog->view = 0;
+        $Blog->id_user = $request->id_user;
         $Blog->save();
         return response()
             ->json([
@@ -96,6 +97,7 @@ class BlogController extends Controller
         $Blog->meta_keywords = $request->meta_keywords;
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
+        $Blog->id_user = $request->id_user;
         $Blog->save();
         return response()
             ->json([
