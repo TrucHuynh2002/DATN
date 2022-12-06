@@ -10,10 +10,12 @@ function Search() {
     const province = urlParam.get('province');
     const price = urlParam.get('price');
     const area = urlParam.get('area');
+    const ward = urlParam.get('ward');
+    const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
     const [Data,setData] = useState([])
     const getPostSearch = async () => {
-        let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
+        let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         console.log(res.data)
         setData(res.data);
       }
