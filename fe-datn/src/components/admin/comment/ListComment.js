@@ -44,8 +44,8 @@ function ListComment() {
             <th>Tên người dùng</th>
             <th>Nội dung</th>
             <th>Ngày bình luận</th>
-            <th>Trạng thái</th>
-            <th></th>
+            {/* <th>Trạng thái</th>
+            <th></th> */}
 
           </tr>
         </thead>
@@ -57,12 +57,12 @@ function ListComment() {
                 <td>{cmt.id_user}</td>
                 <td>{cmt.content}</td>
                 <td>{cmt.date}</td>
-                <td>{cmt.status}</td>
+                {/* <td>{cmt.status}</td>
                 <td>
                   <Link to="#">
                     <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
                   </Link>
-                </td>
+                </td> */}
               </tr>
             );
           })}

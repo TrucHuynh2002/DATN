@@ -23,6 +23,9 @@ function AddFurniture() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
+        const dataForm = new FormData();
+        dataForm.append('name',name);
+        dataForm.append('icon',icon);
         const res = await axios.post('http://127.0.0.1:8000/api/furniture/create', addFurniture);
         console.log(res);
         if(res.data.status === true){
@@ -55,7 +58,8 @@ function AddFurniture() {
                         value={name}
                         className=''
                         onChange={(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
+                            { alert.err_list.status == false && alert.err_list.messages.name &&
+                                <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}                    
                     </Form.Group>
                 </Col>
                 <Col sm={6}>
@@ -67,7 +71,8 @@ function AddFurniture() {
                         value={icon}
                         className=''
                         onChange={(e) => handleChange(e)}/>
-                        {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.icon[0]}</div>}
+                            { alert.err_list.status == false && alert.err_list.messages.icon &&
+                                <div className="notice warning_____">{alert.err_list.messages.icon[0]}</div>}                   
                     </Form.Group>
                 </Col>
                 

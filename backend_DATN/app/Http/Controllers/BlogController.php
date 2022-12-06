@@ -44,13 +44,14 @@ class BlogController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name_blog' => 'required|string|unique:blog',
-            'name_blog' => 'required',
             'meta_keywords' => 'required',
             'description' => 'required',
+            'description_sort' => 'required',
         ], [
             'name_blog.required' => 'Không được bỏ trống',
             'meta_keywords.required' => 'Không được bỏ trống',
             'description.required' => 'Không được bỏ trống',
+            'description_sort.required' => 'Không được bỏ trống',
         ]);
         if ($validation->fails()) {
             return response()
@@ -77,13 +78,14 @@ class BlogController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name_blog' => 'required|string|unique:blog',
-            'name_blog' => 'required',
             'meta_keywords' => 'required',
             'description' => 'required',
+            'description_sort' => 'required',
         ], [
             'name_blog.required' => 'Không được bỏ trống',
             'meta_keywords.required' => 'Không được bỏ trống',
             'description.required' => 'Không được bỏ trống',
+            'description_sort.required' => 'Không được bỏ trống',
         ]);
         if ($validation->fails()) {
             return response()

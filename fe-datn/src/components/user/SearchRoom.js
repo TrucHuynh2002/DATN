@@ -60,7 +60,7 @@ function Search() {
                 )
                 : 
                 (
-                      <div className="searchroom__">
+                      <div className="col-md-12 searchroom__">
                                
                                <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={200} height={200} class="shopee-search-empty-result-section__icon"></img>
                                <br></br>

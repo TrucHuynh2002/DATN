@@ -55,7 +55,7 @@ function InfoAccount() {
             
         }
     };
-    console.log(InfoAccount.created_at);
+    // console.log(InfoAccount.updated_at);
     const now = new Date(InfoAccount.updated_at);
     const dateString = now.toLocaleDateString({
     weekday: "short",
@@ -129,8 +129,11 @@ function InfoAccount() {
                                 <span>{info.address}</span>
                             </div>
                             <div>
+                                {
+
+                                }
                                 <span> Ngày tham gia : </span>
-                                <span> {dateString}</span> 
+                                <span> {info.updated_at}</span> 
                             </div>
                         </div>
                     </div>
