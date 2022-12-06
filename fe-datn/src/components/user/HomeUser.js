@@ -64,13 +64,13 @@ function Home() {
   // danh sach banner
     const getDataBanner = async () => {
      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
-     console.log(result);
+    //  console.log(result);
      setListBanner(result.data.data);
     };
 
     const [keySearch, setKeySearch] = useState("");
     const handle = (e) => {
-      console.log(e.target.value);
+      // console.log(e.target.value);
     }
 
   return (
@@ -139,7 +139,6 @@ function Home() {
                             optionFilterProp="children"
                             filterOption={(input, option) =>
                               (option?.label ?? '').toLowerCase().includes(input.toLowerCase())  
-
                             }
                             onChange={(e) => handle(e)}
                             >

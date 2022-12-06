@@ -54,7 +54,8 @@ class PostController extends Controller
         $data = ProvinceModel::all();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_district(Request $request, $id_province)
@@ -62,7 +63,8 @@ class PostController extends Controller
         $data = districtModel::where('district._province_id', '=', $id_province)->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_ward(Request $request, $id_district)
@@ -70,7 +72,8 @@ class PostController extends Controller
         $data = wardModel::where('ward._district_id', '=', $id_district)->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function showPost(Request $request, $id)
@@ -168,7 +171,6 @@ class PostController extends Controller
         // $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
-
                 $get_name_image = $img->getClientOriginalName();
                 // $name = $get_name_image;
                 $path = 'uploads/';

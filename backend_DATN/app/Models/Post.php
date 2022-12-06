@@ -9,7 +9,6 @@ class Post extends Model
 {
     protected $table = 'post';
     protected $primaryKey = 'id_post';
-    // public $timestamps = true;
     protected $fillable = [
         'post_name',
         'description_sort',

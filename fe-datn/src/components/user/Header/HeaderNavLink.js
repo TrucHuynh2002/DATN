@@ -10,11 +10,8 @@ function HeaderNavLink() {
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         window.location.reload();
-        // navigate("../../");
-
     }
     // xu ly add post
-    const get_user = JSON.parse(localStorage.getItem('user'));
         const [addPost, setAddPost] = useState({
             post_name: "",
             phone: "",
@@ -30,7 +27,10 @@ function HeaderNavLink() {
             meta_title: "",
             meta_description: "",
             meta_keywords: "",
-            id_user: 1,
+            id_province : "",
+            id_district : "",
+            id_ward : "",
+            id_user: "",
             id_roomType: "",
             img: [],
         });
@@ -48,23 +48,36 @@ function HeaderNavLink() {
             meta_title,
             meta_description,
             meta_keywords,
+            id_province ,
+            id_district ,
+            id_ward ,
             id_user,
             id_roomType,
             img,
             } = addPost;
            // xu ly loi
-           const [alert, setAlert] = useState({
+        const [alert, setAlert] = useState({
             err_list: {
                 messages: "",
                 status: ""
             },
         });
-        
-        const [uploadImages, setUploadImages] = useState([]);
         // Xử lý input vlaue
-        const handleChange = (e) => {
-            setAddPost({ ...addPost, [e.target.name]: e.target.value});
-        };
+        const handleChange = async (e) => {
+            setAddPost({ ...addPost, [e.target.name] : e.target.value});
+        }
+        const handledistrice = async (e) => {
+            setAddPost({ ...addPost, [e.target.name] : e.target.value});
+            getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+        }
+       
+        const handleadd = async (e) => {
+            getDataWard(({[e.id_district] : e.target.value}).undefined)
+            setAddPost({ ...addPost, [e.target.name] : e.target.value});
+        }
+        const handssdbdfb = async (e) => {
+            setAddPost({ ...addPost, [e.target.name] : e.target.value});
+        }
         // Lấy nội thất
         const [checkFur, setFur] = useState([]);
         const [furniture, setfuriture] = useState([]);
@@ -73,13 +86,29 @@ function HeaderNavLink() {
             setfuriture(get_data.data.data)
         };
         useEffect(() => {
+            getDataProvince();
             getDataRoomType();
             get_furnitures();
         },[]);
     
-        // Lấy roomtype
+        // lấy tỉnh 
+        const [listProvince, setListProvince] = useState([]);
+        const [listDistrict, setListDistrict] = useState([]);
+        const [listWard, setListWard] = useState([]);
+        const getDataProvince = async () => {
+            const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+            setListProvince(res.data.data);
+        }
+        const getDataDistrict = async (id_province) => {
+            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+            setListDistrict(ress.data.data);
+        }
+        const getDataWard = async (id_district) => {
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+            setListWard(resss.data.data);
+        }     
+         // Lấy roomtype
         const [listRoomType, setListRoomType] = useState([]);
-      
         const getDataRoomType = async () => {
             const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
             setListRoomType(res.data.data);
@@ -96,15 +125,17 @@ function HeaderNavLink() {
                 })           
             }      
         }
+        // xử lý hình ảnh 
+        const [uploadImages, setUploadImages] = useState([]);
         const handleChangeImages = (e) => {
-          
             let formData = new FormData();
             if(e.target.files){
-            const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
+            const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
             setUploadImages(e.target.files)
-        }
+            }
         }     
         const handleSumbit = async (e) => {
+            e.preventDefault();
             let formData = new FormData();
             for(let i = 0; i<uploadImages.length; i++) {
                 formData.append('img[]',uploadImages[i])
@@ -117,10 +148,12 @@ function HeaderNavLink() {
             formData.append('electricity_price', electricity_price);
             formData.append('id_roomType', id_roomType);
             formData.append('id_user', id_user);
+            formData.append('id_province', id_province);
+            formData.append('id_district', id_district);
+            formData.append('id_ward', id_ward);
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
             formData.append('meta_title', meta_title);
-            // formData.append('phone', phone);
             formData.append('quantity', quantity);
             formData.append('room_price', room_price);
             formData.append('water_price', water_price);
@@ -144,15 +177,14 @@ function HeaderNavLink() {
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handleShow = () => {
-    const get_user = JSON.parse(localStorage.getItem('user'));
-        // console.log(get_user)
-      if(get_user){
-        setShow(true);
-      }else {
-        navigate('/Loi');
-      }
+        const get_user = JSON.parse(localStorage.getItem('user'));
+            // console.log(get_user)
+        if(get_user){
+            setShow(true);
+        }else {
+            navigate('/Loi');
+        }
     };
-
   return (
     <>
          <ul className="navbar-nav mr-auto header-ul" id="navbarExample04">
@@ -206,7 +238,7 @@ function HeaderNavLink() {
                     <Modal.Title>Bài viết</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
                     <Row>
                         <Col sm={6}>
                             <Form.Group className="mb-3 post_name">
@@ -214,37 +246,22 @@ function HeaderNavLink() {
                                 <Form.Control type="text" name="post_name" className=''
                                 value={post_name}
                                 onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && 
-                                <span className="error">
-                                {alert.err_list.messages.post_name[0]}
-                                </span>}
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                             </Form.Group>
+                            <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>}
                             <Form.Group className="mb-3 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
                                 value={meta_title}
                                 onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && 
-                                <span className="error">
-                                {alert.err_list.messages.meta_title[0]}
-                                </span>}
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
                             </Form.Group>
                             <Form.Group className="mb-3 img">
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
                                 onChange = {(e) => handleChangeImages(e)} />
-                                {/* {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>} */}
-                                <div className='row'>
-                                    
-                                </div>
-                            </Form.Group>
-                            
-                            <Form.Group className="mb-3 phone">
-                                <Form.Label>Số điện thoại liên hệ</Form.Label>
-                                <Form.Control type="text" name="phone" className=''
-                                value={phone}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
                             </Form.Group>
                             <Form.Group className="mb-3 description_sort">
                                 <Form.Label>Nội dung ngắn</Form.Label>
@@ -283,6 +300,45 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
                             </Form.Group> 
+                            <Form.Group className="mb-3 id_province">
+                                <Form.Label>Tỉnh</Form.Label>
+                                <Form.Select name="id_province"
+                                onChange = {(e) => handledistrice(e)}
+                                >
+                                    {listProvince.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-3 id_district">
+                                <Form.Label>Quận/Huyện/TP</Form.Label>
+                                <Form.Select name="id_district"
+                                onChange = {(e) => handleadd(e)}
+                                >
+                                    {listDistrict.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-3 id_ward">
+                                <Form.Label>Xã/Phường</Form.Label>
+                                <Form.Select name="id_ward"
+                                onChange = {(e) => handssdbdfb(e)}
+                                >
+                                    {listWard.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}                            
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                            </Form.Group>
                             <Form.Group className="mb-3 address">
                                 <Form.Label>Địa chỉ</Form.Label>
                                 <Form.Control type="text" name="address" className=""
@@ -347,17 +403,17 @@ function HeaderNavLink() {
                             </Form.Group>
                         </Col>
                         <div className="d-grid gap-2">
-                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
                             </Button>
+                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                         </div>
                     </Row>
                 </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Đóng
+                    <Button variant="secondary" onClick={handleClose}> 
+                      Đóng
                     </Button>
                 </Modal.Footer>
             </Modal>
