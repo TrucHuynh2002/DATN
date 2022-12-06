@@ -280,9 +280,9 @@ function HeaderNavLink() {
                             </Form.Group>
                             <Form.Group className="mb-12 description">
                                 <Form.Label>Nội dung</Form.Label>
-                                <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
+                                {/* <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
                                 value={description}
-                                onChange = {(e) => handleChange(e)}/>
+                                onChange = {(e) => handleChange(e)}/> */}
                                 <CKEditor 
                                 editor={ClassicEditor}
                                 data={description}
@@ -374,7 +374,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
                             <Form.Group className="mb-12 address">
-                                <Form.Label>Ifarme map</Form.Label>
+                                <Form.Label>Iframe map</Form.Label>
                                 <Form.Control type="text" name="ifarme" className=""
                                 value={ifarme}
                                 onChange = {(e) => handleChange(e)}/>

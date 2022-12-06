@@ -214,7 +214,7 @@ function Home() {
                         </div>                     
                         <div className="col-1">
                           <button className="btn btn-outline-secondary">
-                            <i class='bx bx-search' style={{color:"#0d3380", width:"190px"}}></i>
+                            <i class='bx bx-search' style={{color:"#0d3380"}}></i>
                           </button>
                         </div>
                       </div>
