@@ -43,8 +43,6 @@ function AddBlog() {
                 err_list: res.data
             });
         }};
-
-
   return (
     <div className="content">
         <div className="add-post">
@@ -80,7 +78,6 @@ function AddBlog() {
                                     setAddBlog({ ...addBlog, description : data});
                                     console.log(description);
                                 }}
-                                
                                 >
                         </CKEditor>
                         {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" /> */}
