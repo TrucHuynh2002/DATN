@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useNavigate } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
@@ -14,12 +14,12 @@ import TabHaNoi from '../../images/tab-hanoi.png';
 import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
-import { Select } from 'antd';
+// import { Select } from 'antd';
 import HeartRoom from './HeartRoom';
-const { Option } = Select;
+// const { Option } = Select;
 
 function Home() {
-  
+  const navigate = useNavigate();
   const id_post = useParams();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
@@ -42,7 +42,7 @@ function Home() {
   const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
   const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
 
-
+ 
   useEffect(() => {
     getData();
     getDataBlog();
@@ -67,11 +67,64 @@ function Home() {
      console.log(result);
      setListBanner(result.data.data);
     };
+     // SEARCHING
+    const [keyword,setKeyword] = useState({
+      keywords: "",
+      province: "",
+      price:"",
+      area:"",
+      typeRoom:""
 
-    const [keySearch, setKeySearch] = useState("");
-    const handle = (e) => {
-      console.log(e.target.value);
+    })
+    const [getDataSearch,setGetDataSearch] = useState({
+      typeRooms:[]
+    });
+    const {
+      typeRooms,
+    } = getDataSearch
+
+    const [getProvince,setProvince] = useState([]);
+    console.log(getProvince)
+    const getTypeRoom = async () => {
+      let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+      console.log(dataRoom)
+      setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
     }
+    const getProvinces = async () => {
+      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+      // console.log(dataRooms)
+      setProvince(dataRooms.data.data)
+    }
+    useEffect(() => {
+      getTypeRoom()
+      getProvinces()
+    },[])
+    const {
+      keywords,
+      province,
+      price,
+      area,
+      typeRoom
+    } = keyword
+    // const [province,setProvince] = useState(undefined);
+    // const [price,setPrice] = useState(undefined);
+    // const [area,setArea] = useState(undefined);
+    const [searching,setSearching] = useState(false);
+    // const [keySearch, setKeySearch] = useState("");  
+    const handleChangeKeyWord = (e) => {
+      console.log(e.target.value)
+      setKeyword({ ...keyword,[e.target.name]:e.target.value})
+    }
+
+    const handleSubmitSearch = e => {
+      e.preventDefault()
+      // if(keyword){
+      //   console.log('123')
+      // }
+      navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
+    }
+
+    
 
   return (
     <>
@@ -129,10 +182,10 @@ function Home() {
                 {/* search */}
                 <div className="book_room2">
                   <h1>Tìm phòng trống</h1>
-                  <form className="book_now2">
+                  <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                     <div className="row">
                     <div className="col-md-9">
-                      <input className="online_book2" placeholder="" type="text" name="" />
+                      <input className="online_book2" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                             {/* <Select className='search'
                             showSearch
                             style={{width:'133.7%'}}
@@ -147,13 +200,18 @@ function Home() {
                                     <Option value={item.id_post} key={item.id_post}>{item.post_name} </Option>
                                 ))}
                             </Select> */}
-                          <div className='show_search'>
-                            <ul>
-                              <li>
-                                <Link to="">Nhà trọ cần thơ</Link>
-                              </li>
-                            </ul>                            
-                          </div>                     
+                          {
+                            searching && (
+                              <div className='show_search'>
+                              <ul>
+                                <li>
+                                  <Link to="">Nhà trọ cần thơ</Link>
+                                </li>
+                              </ul>                            
+                            </div>    
+                            )
+                          }
+                                          
                       </div>                     
                       <div className="col-md-3">
                         <button className="search-btn">
@@ -162,36 +220,45 @@ function Home() {
                       </div>
                       <div className='search-filter'>
                         <div className="col-md-2 col-search1">
-                          <select className="form-select online_book3">
+                          <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
                             <option>Loại phòng</option>
-                            <option>Phòng trọ</option>
-                            <option>Căn hộ mini</option>
+                            {
+                              typeRooms.map((r,i) => {
+                                return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+                              })
+                            }
+                           
+                            {/* <option>Căn hộ mini</option> */}
                           </select>
                         </div>
                         <div className="col-md-2 col-search2">
-                          <select className="form-select online_book3">
+                          <select className="form-select online_book3" name="provinces">
                             <option>Tỉnh</option>
-                            <option>Hồ Chí Minh</option>
-                            <option>Cần Thơ</option>
+                            {
+                              getProvince.map((p,i) => {
+                                return <option key={i} value={p.id}>{p._name}</option>
+                              })
+                            }
+                         
                           </select>
                         </div>
                         <div className="col-md-2 col-search3">
-                          <select className="form-select online_book3">
+                          <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
                             <option>Giá</option>
-                            <option>Dưới 1 triệu</option>
-                            <option>Từ 1 - 2 triệu</option>
+                            <option value="1">Dưới 1 triệu</option>
+                            <option value="2">Từ 1 - 2 triệu</option>
                           </select>
                         </div>
                         <div className="col-md-2 col-search4">
-                          <select className="form-select online_book3">
+                          <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
                             <option>Diện tích</option>
-                            <option>Dưới 20m</option>
-                            <option>Dưới 20m</option>
+                            <option value="1">Dưới 20m</option>
+                            <option value="2">Trên 20m</option>
                           </select>
                         </div>
                         <div className="col-md-2 col-search">
                           <div className="col-md-12">
-                            <button className="book_btn">Xem kết quả</button>
+                            <button type="submit" className="book_btn">Xem kết quả</button>
                           </div>
                         </div>
                       </div>

@@ -12,7 +12,8 @@ class SearchController extends Controller
         $keyword = $request->keyword;
         $get_data =  PostModel::where('post_name', 'like', '%'. $keyword . '%');
         if($request->typeRoom){
-            $get_data = $get_data->Where('id_roomType',$request->typeRoom);
+            
+            $get_data = $get_data->Where('id_roomType','=',$request->typeRoom);
 
         }
 
@@ -46,7 +47,7 @@ class SearchController extends Controller
         return response()->json([
             'status' => true,
             'data' => $get_postSearch,
-            'keyword' => $keyword
+            'keyword' => (integer) $request->typeRoom
         ]);
     }
 }

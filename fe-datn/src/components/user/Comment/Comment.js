@@ -44,12 +44,7 @@ function Comment() {
             // console.log(a);
             const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
             if(res.data.status === true){
-<<<<<<< HEAD
               // addNotify.id_user_tow = 
-=======
-              const {id_user_tow} = addNotify;
-              setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
->>>>>>> b09ce82a498cafdbe2ec3c882937c50bb109e85c
               const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
                 setAlert({
                     err_list: res.data
@@ -77,12 +72,9 @@ function Comment() {
   const [alert, setAlert] = useState({
       err_list: {},
   });
-<<<<<<< HEAD
   {listCmt.map((a, index) => {
     const {id_user_tow} = a.id_user  = addNotify
    })}
-=======
->>>>>>> b09ce82a498cafdbe2ec3c882937c50bb109e85c
 
 
 
