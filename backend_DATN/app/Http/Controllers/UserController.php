@@ -33,17 +33,21 @@ class UserController extends Controller
     public function User_SelectOne(Request $request, $id_user)
     {
         $Title = "Chi tiết tài khoản";
-        $User_SelectOne = User::find($id_user);
+        $User_SelectOne = DB::table('users')
+            ->join('img_user', 'img_user.id_user', '=', 'users.id_user')
+            ->where('users.id_user', '=', $id_user)
+            ->orderBy('users.id_user')
+            ->get();
         return response()
             ->json([
                 'data' => $User_SelectOne,
                 'status' => true
             ]);
     }
-    
-    public function ImgUser(Request $request)
+
+    public function ImgUser(Request $request, $id)
     {
-        $get_img = imgUserModel::where('id_user', '=', 18)->get();
+        $get_img = imgUserModel::where('id_user', '=', $id);
         return response()
             ->json([
                 'data' => $get_img,
@@ -139,8 +143,8 @@ class UserController extends Controller
         $t = User::find($id_user);
         // $pass_old = Hash::make($request->password);
         if ($t) {
-            if (Hash::check($request->password,$t->password)) {  
-                if($request->password_new == $request->password_neww){
+            if (Hash::check($request->password, $t->password)) {
+                if ($request->password_new == $request->password_neww) {
                     $t->password = Hash::make($request->password_new);
                     $t->save();
                     return response()
@@ -149,13 +153,13 @@ class UserController extends Controller
                             'data' => $t,
                             'status' => true
                         ]);
-                }else{
+                } else {
                     return response()
-                    ->json([
-                        'messess' => 'Nhập lại mật khẩu không khớp',
-                        // 'data' => $t,
-                        'status' => false
-                    ]);
+                        ->json([
+                            'messess' => 'Nhập lại mật khẩu không khớp',
+                            // 'data' => $t,
+                            'status' => false
+                        ]);
                 }
             } else {
                 // dd($pass_old);
@@ -176,20 +180,20 @@ class UserController extends Controller
     }
     public function UserLogin(Request $request)
     {
-        // $validation = Validator::make($request->all(), [
-        //     'email' => 'required|email|max:255|unique:Users',
-        //     'password' => 'required|max:255',
-        // ], [
-        //     'email.required' => 'Không được bỏ trống',
-        //     'password.required' => 'Không được bỏ trống',
-        // ]);
-        // if ($validation->fails()) {
-        //     return response()
-        //         ->json([
-        //             'messages' =>  $validation->messages(),
-        //             'status' => false
-        //         ]);
-        // }
+        $validation = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+        ], [
+            'email.required' => 'Không được bỏ trống',
+            'password.required' => 'Không được bỏ trống',
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials)) {
             return response()

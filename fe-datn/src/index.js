@@ -98,7 +98,7 @@ root.render(
         <Route path="forgotpw" element={<ForgotPassword />} />
         <Route path="resetpw/:token" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />}>
-          <Route path=":id_post" element={<Profile />} />
+          <Route path=":id_user" element={<Profile />} />
         </Route>
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 

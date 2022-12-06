@@ -7,10 +7,10 @@ import { Container, Row } from 'react-bootstrap';
 import { Outlet, useNavigate} from 'react-router-dom';
 function Profile() {
     const navigate = useNavigate();
-    const {id_post} = useParams();
+    const {id_user} = useParams();
     const checkAdmin = async () => {
         // console.log(get_user)
-      if(!id_post){
+      if(!id_user){
         navigate('/Loi');
       }
     }

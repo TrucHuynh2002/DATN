@@ -323,7 +323,7 @@ function Home() {
                             <Figure><img src={RoomNew} alt="#" /></Figure>
                             {/* thả tym */}
                             <div className="heart">
-                              <HeartRoom />
+                              {/* <HeartRoom /> */}
                             </div>
                         </div>
                         <div className="bed_room">
@@ -436,7 +436,7 @@ function Home() {
                       </Figure>
                       {/* thả tym */}
                       <div className="heart">
-                        <HeartRoom />
+                        {/* <HeartRoom /> */}
                       </div>
                     </div>
                     <div className="blog_room">

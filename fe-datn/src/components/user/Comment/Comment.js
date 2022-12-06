@@ -38,6 +38,7 @@ function Comment() {
       const handleChange = (e) => {
         setAddComment({ ...addComment, [e.target.name]: e.target.value});
     };
+<<<<<<< HEAD
           const handleSumbit = async (e) => {
             e.preventDefault();
             const a = addComment;
@@ -58,6 +59,25 @@ function Comment() {
         
           };
 
+=======
+    const handleSumbit = async (e) => {
+      e.preventDefault();
+      const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
+      if(res.data.status === true){
+        const {id_user_tow} = addNotify;
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+        const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+        setAlert({
+          err_list: res.data
+        });
+              // console.log(alert.err_list)
+      }else{           
+        setAlert({
+          err_list: res.data
+        });
+      }
+    };
+>>>>>>> c0f2671d39226e68a090d515c8a7e982e6dde399
   useEffect(() => {
     getData();
   },[]);
@@ -66,9 +86,18 @@ function Comment() {
     console.log(resss)
        setListCmt(resss.data.data);
    };
+<<<<<<< HEAD
   
 
 
+=======
+   // thêm chuông
+  const [addNotify, setNotify] = useState({
+    id_user_tow: "",
+    id_user: user ? user[0].id : "",
+    id_post: id.id_post,
+  });
+>>>>>>> c0f2671d39226e68a090d515c8a7e982e6dde399
   const [alert, setAlert] = useState({
       err_list: {},
   });
@@ -76,9 +105,6 @@ function Comment() {
     const {id_user_tow} = a.id_user  = addNotify
    })}
 
-
-
- 
   return (
     <div className="comment position-relative p-3 rounded-lg">
         <div className="align-items-center col-4">

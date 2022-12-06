@@ -12,7 +12,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoomTypeController;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\HeartFeelingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -52,10 +52,10 @@ Route::put('config/update', [ConfigController::class, 'update_Config']);
 Route::get('config/{id}', [ConfigController::class, 'get_Config'])->name('getConfig');
 Route::post('config/', [ConfigController::class, 'create_Config'])->name('createConfig');
 Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->name('getConfig');
-
 Route::get('banner/show', [BannerController::class, 'get_Banner']);
 Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
+
 // category
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
@@ -72,6 +72,11 @@ Route::post('blog/create', [BlogController::class, 'created_at']);
 Route::put('blog/update/{id}', [BlogController::class, 'update']);
 Route::put('blog/updateView/{id}', [BlogController::class, 'updateView']);
 Route::delete('blog/delete/{id}', [BlogController::class, 'delete']);
+
+//HeartFeeling 
+Route::post('heartFeeling/create', [HeartFeelingController::class, 'created_at']);
+Route::get('heartFeeling/show/{id}', [HeartFeelingController::class, 'show_id']);
+Route::delete('heartFeeling/delete/{id}', [HeartFeelingController::class, 'delete']);
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
@@ -129,7 +134,7 @@ Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
-Route::get('user/showimg/{id_user}', [UserController::class, 'ImgUser']);
+// Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);

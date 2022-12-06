@@ -3,7 +3,7 @@ import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
-import HeartRoom from '../HeartRoom';
+// import HeartRoom from '../HeartRoom';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -91,7 +91,7 @@ function RoomDetail() {
                         </div>
                         <div className="product-count">
                             <Button className="round-btn">
-                                <HeartRoom />
+                                {/* <HeartRoom /> */}
                             </Button>
                             <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
