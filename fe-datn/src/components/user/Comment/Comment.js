@@ -32,26 +32,23 @@ function Comment() {
       const handleChange = (e) => {
         setAddComment({ ...addComment, [e.target.name]: e.target.value});
     };
-          const handleSumbit = async (e) => {
-            e.preventDefault();
-            const a = addComment;
-            // console.log(a);
-            const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
-            if(res.data.status === true){
-              const {id_user_tow} = addNotify;
-              setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
-              const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-                setAlert({
-                    err_list: res.data
-                });
-                console.log(alert.err_list)
-            }else{           
-                setAlert({
-                    err_list: res.data
-                });
-            }
-        
-          };
+    const handleSumbit = async (e) => {
+      e.preventDefault();
+      const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
+      if(res.data.status === true){
+        const {id_user_tow} = addNotify;
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+        const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+        setAlert({
+          err_list: res.data
+        });
+              // console.log(alert.err_list)
+      }else{           
+        setAlert({
+          err_list: res.data
+        });
+      }
+    };
   useEffect(() => {
     getData();
   },[]);
@@ -60,20 +57,15 @@ function Comment() {
        setListCmt(resss.data.data);
    };
    // thêm chuông
-   const [addNotify, setNotify] = useState({
+  const [addNotify, setNotify] = useState({
     id_user_tow: "",
     id_user: user ? user[0].id : "",
     id_post: id.id_post,
   });
-
-
   const [alert, setAlert] = useState({
       err_list: {},
   });
 
-
-
- 
   return (
     <div className="comment position-relative p-3 rounded-lg">
         <div className="align-items-center col-4">

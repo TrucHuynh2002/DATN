@@ -18,9 +18,15 @@ class PostController extends Controller
     public function show()
     {
         $data = Post::all();
+        $heart = DB::table('post')
+            ->join('heart_feeling', 'post.id_post', '=', 'heart_feeling.id_post')
+            ->select('heart_feeling.heart_feeling', 'heart_feeling.id_post', 'heart_feeling.id_user')
+            ->orderBy('post.id_post')
+            ->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'heart' => $heart
             ]);
     }
     public function show_id(Request $request, $id)
@@ -51,17 +57,17 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
-    public function show_district(Request $request,$id_province)
+    public function show_district(Request $request, $id_province)
     {
-        $data = districtModel::where('district._province_id','=',$id_province)->get();
+        $data = districtModel::where('district._province_id', '=', $id_province)->get();
         return response()
             ->json([
                 'data' => $data
             ]);
     }
-    public function show_ward(Request $request,$id_district)
+    public function show_ward(Request $request, $id_district)
     {
-        $data = wardModel::where('ward._district_id','=',$id_district)->get();
+        $data = wardModel::where('ward._district_id', '=', $id_district)->get();
         return response()
             ->json([
                 'data' => $data

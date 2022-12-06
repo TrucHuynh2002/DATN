@@ -15,7 +15,7 @@ import TabDaNang from '../../images/tab-danang.png';
 import TabHue from '../../images/tab-hue.png';
 import TabHCM from '../../images/tab-hcm.png';
 import { Select } from 'antd';
-import HeartRoom from './HeartRoom';
+// import HeartRoom from './HeartRoom';
 const { Option } = Select;
 
 function Home() {
@@ -255,7 +255,7 @@ function Home() {
                             <Figure><img src={RoomNew} alt="#" /></Figure>
                             {/* thả tym */}
                             <div className="heart">
-                              <HeartRoom />
+                              {/* <HeartRoom /> */}
                             </div>
                         </div>
                         <div className="bed_room">
@@ -368,7 +368,7 @@ function Home() {
                       </Figure>
                       {/* thả tym */}
                       <div className="heart">
-                        <HeartRoom />
+                        {/* <HeartRoom /> */}
                       </div>
                     </div>
                     <div className="blog_room">
