@@ -1,12 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
-import {CKEditor} from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import {CKEditor} from 'ckeditor4-react'
 function HeaderNavLink() {
     // CKEditor.replace('description')
     var user = JSON.parse(localStorage.getItem("user"));
@@ -280,26 +277,32 @@ function HeaderNavLink() {
                             </Form.Group>
                             <Form.Group className="mb-12 description">
                                 <Form.Label>Nội dung</Form.Label>
-                                {/* <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
-                                value={description}
-                                onChange = {(e) => handleChange(e)}/> */}
-                                <CKEditor 
-                                editor={ClassicEditor}
-                                data={description}
-                                onReady={(editor)=>{
-                                    editor.editing.view.change((writer)=>{
-                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
-                                    })
+                               <CKEditor
+                                config={{
+                                    // extraPlugins: 'easyimage',
+                                    // removePlugins: 'image',
+                                    // removeDialogTabs: 'link:advanced',
+        
+                                    // cloudServices_uploadUrl: 'https://33333.cke-cs.com/easyimage/upload/',
+                                    // cloudServices_tokenUrl: 'https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt',
+                                    // easyimage_toolbar: [
+                                    //     'EasyImageFull',
+                                    //     'EasyImageSide',
+                                    //     'EasyImageGradient1',
+                                    //     'EasyImageGradient2',
+                                    //     'EasyImageNoGradient',
+                                    //     'EasyImageAlt'
+                                    //   ],
+                                    
                                 }}
-                                onChange={(event,editor)=> {
-                                    const data=editor.getData()
-                                    setAddPost({ ...addPost, description : data});
-                                    console.log(description);
+                                debug={true}
+                                initData={(e) => {console.log(e.target.value)}}
+                                onChange={(event) => {
+                                        // console.log(event.data)
                                 }}
-                                
-                                >
+                               >
 
-                                </CKEditor>
+                               </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
                             <Form.Group className="mb-12 room_price">
