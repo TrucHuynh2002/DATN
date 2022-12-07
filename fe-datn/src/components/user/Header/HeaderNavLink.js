@@ -184,17 +184,31 @@ function HeaderNavLink() {
 
     // modal post
     const [show, setShow] = useState(false);
+    // const [show_tv, setShow_tv] = useState(false);
     const handleClose = () => setShow(false);
+    // const handleClose_tv = () => setShow_tv(false);
     const navigate = useNavigate();
     const handleShow = () => {
         const get_user = JSON.parse(localStorage.getItem('user'));
             // console.log(get_user)
-        if(get_user){
+        if(get_user[0].role==1 || get_user[0].role==2){
             setShow(true);
-        }else {
+        }
+        else {
             navigate('/Loi');
         }
     };
+    // const handleShow_tv = () => {
+    //     const get_user = JSON.parse(localStorage.getItem('user'));
+    //         // console.log(get_user)
+    //     if(get_user[0].role==0){
+    //         setShow_tv(true);
+    //     }
+    //     else {
+    //         navigate('/Loi');
+    //     }
+    // };
+    // console.log(get_user);
 
     // list category
     const id_category = useParams();
@@ -225,12 +239,21 @@ function HeaderNavLink() {
                    <Notify />
                 </div>
             </li>
+            
             <li className="nav-item">
+                {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
                 <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow}>
-                    Đăng bài
-                </Button>
+                Đăng bài
+            </Button>
+            {/* : */}
+                 {/* <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow_tv}>
+                 Đăng bài thành viên 
+            </Button>  */}
+                {/* } */}
+               
+                
             </li>
-            {/* start Đăng bài */}
+            {/* start Đăng bài chủ trọ*/}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Đăng Tin</Modal.Title>
@@ -449,6 +472,50 @@ function HeaderNavLink() {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            {/* start Đăng bài thành viên*/}
+            {/* <Modal show={show_tv} onHide={handleClose_tv}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Đăng Tin cho thành viên</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="show-grid">
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
+                            <Form.Group className="mb-12 post_name">
+                                <Form.Label>Tên bài viết</Form.Label>
+                                <Form.Control type="text" name="post_name" className=''
+                                value={post_name}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 description">
+                            <Form.Label>Nội dung</Form.Label>
+                                <Form.Control type="text" name="description" className=''
+                                value={description}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 description_sort">
+                                <Form.Label>Nội dung ngắn</Form.Label>
+                                <Form.Control type="text" name="description_sort" className=''
+                                value={description_sort}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
+                            </Form.Group>
+                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+                            <Button variant="primary" size="sm" name='' type="submit">
+                                Thêm bài viết
+                            </Button>
+                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                        </div>
+                    
+                </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose} > 
+                      Đóng
+                    </Button>
+                </Modal.Footer>
+            </Modal> */}
             {/* end Đăng bài */}
             <li className="nav-item">
                 {!localStorage.getItem('user') ?

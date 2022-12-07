@@ -40,7 +40,7 @@ class imgPostController extends Controller
     public function created_at(Request $request)
     {
         $imgPost = new imgPost();
-        $imgPost->img_post_name = $request->img_post_name;
+        $imgPost->img_post_name =    $request->img_post_name;
         $imgPost->type_img = $request->type_img;
         $imgPost->link_img_user = $request->link_img_user;
         $imgPost->id_post = $request->id_post; // khóa ngoại
