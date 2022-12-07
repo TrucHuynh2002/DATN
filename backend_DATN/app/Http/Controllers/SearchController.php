@@ -10,6 +10,9 @@ class SearchController extends Controller
     public function keyword_searching(Request $request)
     {
         $keyword = $request->keyword;
+        if($keyword != ''){
+            
+        }
         $get_data =  PostModel::where('post_name', 'like', '%'. $keyword . '%');
         if($request->typeRoom){
             
@@ -57,7 +60,7 @@ class SearchController extends Controller
         return response()->json([
             'status' => true,
             'data' => $get_postSearch,
-            'keyword' => $request->price
+            'keyword' => $request->keyword
         ]);
     }
 }

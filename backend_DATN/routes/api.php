@@ -30,6 +30,8 @@ use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
+use App\Http\Controllers\UploadCkeditController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,6 +48,9 @@ use App\Http\Controllers\StatisticalSController;
 // });
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
+// TEST CK
+Route::post('uploads/',[UploadCkeditController::class,'upload_CK']);
+
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
@@ -175,6 +180,7 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 
 /// Search
 Route::post('search', [search_trendsController::class, 'search_key_word']);
+Route::get('search', [SearchController::class, 'keyword_searching']);
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
