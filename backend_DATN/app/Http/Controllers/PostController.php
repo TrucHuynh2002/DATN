@@ -102,7 +102,51 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
-    
+    public function show_tv(Request $request)
+    {
+        $data = DB::table('post')
+            ->join('users', 'post.id_user', '=', 'users.id_user')
+            ->where('users.role', '=', '0')
+            ->orderBy('post.id_post', 'DESC')
+            ->get();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
+    public function created_at_tv(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'post_name' => 'required',
+            'description' => 'required',
+            'description_sort' => 'required',
+            'id_user' => 'required',
+        ], [
+            'post_name.required' => 'Không được bỏ trống',
+            'description.required' => 'Không được bỏ trống',
+            'description_sort.required' => 'Không được bỏ trống',
+            'id_user.required' => 'Không được bỏ trống',
+        ]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
+        $Post = new Post();
+        // thêm post
+        $Post->post_name = $request->post_name;
+        $Post->description_sort = $request->description_sort;
+        $Post->description = $request->description;
+        $Post->id_user = $request->id_user; // khóa ngoại
+        $Post->save();
+        return response()
+            ->json([
+                'data' =>  $Post,
+                'status' => true,
+            ]);
+    }
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [

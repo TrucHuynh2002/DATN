@@ -86,11 +86,13 @@ Route::delete('heartFeeling/delete/{id}', [HeartFeelingController::class, 'delet
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
+Route::get('post/show_tv', [PostController::class, 'show_tv']);
 Route::get('post/showHeart', [PostController::class, 'showHeart']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
 Route::get('post/showPost/{id}', [PostController::class, 'showPost']);
 Route::post('post/create', [PostController::class, 'created_at']);
+Route::post('post/create_tv', [PostController::class, 'created_at_tv']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
@@ -178,6 +180,7 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 
 /// Search
 Route::post('search', [search_trendsController::class, 'search_key_word']);
+Route::get('search', [SearchController::class, 'keyword_searching']);
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);

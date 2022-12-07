@@ -60,7 +60,7 @@ class SearchController extends Controller
         return response()->json([
             'status' => true,
             'data' => $get_postSearch,
-            'keyword' => $request->price
+            'keyword' => $request->keyword
         ]);
     }
 }

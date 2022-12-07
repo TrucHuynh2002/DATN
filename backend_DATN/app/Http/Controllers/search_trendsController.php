@@ -10,11 +10,11 @@ class search_trendsController extends Controller
     public function search_key_word(Request $request)
     {   
         $get_data = search_trendsModel::all();
-        $get_key_word = search_trendsModel::where('key_word' ,'like', '%'. $request->key_word . '%' )->get();
+        $get_key_word = search_trendsModel::where('key_word' ,'=', $request->key_word  )->get();
         // dd($get_key_word);
         if($get_key_word){
-            // dd(123);
-            $get_key_word->view = $get_key_word ->view + 1  ;
+            dd(123);
+            $get_key_word->view++;
             return response()
             ->json([
                 'data' => $get_key_word,
