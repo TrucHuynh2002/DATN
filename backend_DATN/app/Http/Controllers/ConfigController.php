@@ -79,6 +79,7 @@ class ConfigController extends Controller
             ]
         );
     }
+    
     public function update_Config(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -109,16 +110,12 @@ class ConfigController extends Controller
                 ]);
         }
         $config = ConfigModel::where('id_config', '=', '1')->first();
-        //LOGO
-        // dd($request->file('logo'));
 
-        // dd($name);
         $config->sdt = $request->sdt;
         $config->email = $request->email;
         $config->title = $request->title;
         $config->address = $request->address;
         $config->introduce = $request->introduce;
-        // dd($request->sdt);
 
         $config->save();
 
@@ -144,7 +141,7 @@ class ConfigController extends Controller
                 $new_image_logo = $name_image_logo[0] . rand(0, 99);
                 // $name = $get_image_logo;
                 $img->move($path, $new_image_logo);
-                $link_img_logo = env('APP_URL') . ':8000/uploads/logo/' . $new_image_logo;
+                $link_img_logo = env('APP_URL') . '/uploads/logo/' . $new_image_logo;
                 $config = ConfigModel::find($id);
                 if (File::exists($path . $config->name_logo)) {
                     File::delete($path . $config->name_logo);
@@ -159,12 +156,12 @@ class ConfigController extends Controller
             }
             return response()->json([
                 'status' => true,
-                'messsages' => 'Cập nhật thành công'
+                'messages' => 'Cập nhật thành công'
             ]);
         } else {
             return response()->json([
                 'status' => false,
-                'messsages' => 'Cập nhật false'
+                'messages' => 'Cập nhật thất bại'
             ]);
         }
     }
@@ -185,7 +182,7 @@ class ConfigController extends Controller
                 $img->move($path, $new_image_banner);
                 // $imgPost->img = $new_image;
                 $imgbanner = new banner_configModel();
-                $imgbanner->link_img_banner = env('APP_URL') . ':8000/uploads/banner/' . $new_image_banner;
+                $imgbanner->link_img_banner = env('APP_URL') . '/uploads/banner/' . $new_image_banner;
                 $imgbanner->id_config = 1; // khóa ngoại
                 $imgbanner->save();
             }

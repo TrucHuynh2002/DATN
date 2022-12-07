@@ -7,9 +7,9 @@ import {CKEditor} from  '@ckeditor/ckeditor5-react'
 import ClassicEditor from  '@ckeditor/ckeditor5-build-classic'
 function HeaderNavLink() {
     // CKEditor.replace('description')
-    var user = JSON.parse(localStorage.getItem("user"));
     // console.log(user[0].id)
     // const navigate = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user'));
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         window.location.reload();
@@ -180,21 +180,20 @@ function HeaderNavLink() {
                 });
             }
         };
-
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handleShow = () => {
-        const get_user = JSON.parse(localStorage.getItem('user'));
             // console.log(get_user)
-        if(get_user){
+        if(user ){
             setShow(true);
-        }else {
+        }
+        else {
             navigate('/Loi');
         }
     };
-
+    
     // list category
     const id_category = useParams();
     const [listCategory, setListCategory] = useState([]);
@@ -229,12 +228,21 @@ function HeaderNavLink() {
                    <Notify />
                 </div>
             </li>
+            
             <li className="nav-item">
+                {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
                 <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow}>
-                    Đăng bài
-                </Button>
+                Đăng bài
+            </Button>
+            {/* : */}
+                 {/* <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow_tv}>
+                 Đăng bài thành viên 
+            </Button>  */}
+                {/* } */}
+               
+                
             </li>
-            {/* start Đăng bài */}
+            {/* start Đăng bài chủ trọ*/}
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Đăng Tin</Modal.Title>
@@ -247,7 +255,7 @@ function HeaderNavLink() {
                                 value={post_name}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
-                            </Form.Group>
+                            </Form.Group> 
                             {/* <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>} */}
                             <Form.Group className="mb-12 meta_title">
@@ -310,6 +318,8 @@ function HeaderNavLink() {
                                </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
+                            {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
                                 <Form.Control type="number" name="room_price" className="" 
@@ -317,15 +327,20 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                             </Form.Group>
+                            : <div></div> }
+                            {user ? 
+                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 water_price">
                                 <Form.Label>Giá nước</Form.Label>
                                 <Form.Control type="number" name="water_price" className="" 
                                 value={water_price}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
-                            </Form.Group>                   
+                            </Form.Group>     
+                             : <div></div> }           
                        
-                        
+                        {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 electricity_price">
                                 <Form.Label>Giá điện</Form.Label>
                                 <Form.Control type="text" name="electricity_price" className=""
@@ -333,6 +348,9 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
                             </Form.Group> 
+                            : <div></div> } 
+                            {user ?        
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_province">
                                 <Form.Label>Tỉnh</Form.Label>
                                 <Form.Select name="id_province"
@@ -348,8 +366,11 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_district">
-                                <Form.Label>Quận/Huyện/TP</Form.Label>
+                                <Form.Label>Quận/Huyện</Form.Label>
                                 <Form.Select name="id_district"
                                 onChange = {(e) => handleadd(e)}
                                 >  
@@ -362,6 +383,9 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_ward">
                                 <Form.Label>Xã/Phường</Form.Label>
                                 <Form.Select name="id_ward"
@@ -376,6 +400,9 @@ function HeaderNavLink() {
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Địa chỉ</Form.Label>
                                 <Form.Control type="text" name="address" className=""
@@ -383,6 +410,9 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ? 
+                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Iframe map</Form.Label>
                                 <Form.Control type="text" name="ifarme" className=""
@@ -390,7 +420,9 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
-                            
+                            : <div></div> } 
+                            {user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 area">
                                 <Form.Label>Diện tích</Form.Label>
                                 <Form.Control type="text" name="area" className="" 
@@ -398,6 +430,9 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ?
+                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 quantity">
                                 <Form.Label>Số lượng</Form.Label>
                                 <Form.Control type="number" name="quantity" className=""
@@ -405,6 +440,9 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                            {user ?
+                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 formGridCheckbox">
                                 <Form.Label >Nội thất</Form.Label>
                                 <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
@@ -421,7 +459,10 @@ function HeaderNavLink() {
                                     })}
                                 </div>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
-                            </Form.Group>      
+                            </Form.Group>   
+                            : <div></div> } 
+                             { user ?
+                            user[0].role == 0 ? "" :   
                             <Form.Group className="mb-12">
                                 <Form.Label >Loại phòng</Form.Label>
                                 <Form.Select name="id_roomType" 
@@ -433,8 +474,10 @@ function HeaderNavLink() {
                                         );
                                     })}                            
                                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
-                                </Form.Select>
-                            </Form.Group>
+                                </Form.Select> </Form.Group>
+                                : <div></div> } 
+                                { user ?
+                                 user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_keywords">
                                 <Form.Label>Từ khóa - Seo</Form.Label>
                                 <Form.Control type="text" name="meta_keywords" className='' 
@@ -442,12 +485,59 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
                             </Form.Group>
+                            : <div></div> } 
+                             {user ?
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_description">
                                 <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
                                 <Form.Control as="textarea" name="meta_description" className="" rows={3} 
                                 value={meta_description}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
+                            </Form.Group> 
+                            : <div></div> } 
+                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+                            <Button variant="primary" size="sm" name='' type="submit">
+                                Thêm bài viết
+                            </Button>
+                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                        </div>
+                </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose} > 
+                      Đóng
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* start Đăng bài thành viên*/}
+            {/* <Modal show={show_tv} onHide={handleClose_tv}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Đăng Tin cho thành viên</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="show-grid">
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
+                            <Form.Group className="mb-12 post_name">
+                                <Form.Label>Tên bài viết</Form.Label>
+                                <Form.Control type="text" name="post_name" className=''
+                                value={post_name}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 description">
+                            <Form.Label>Nội dung</Form.Label>
+                                <Form.Control type="text" name="description" className=''
+                                value={description}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 description_sort">
+                                <Form.Label>Nội dung ngắn</Form.Label>
+                                <Form.Control type="text" name="description_sort" className=''
+                                value={description_sort}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
                             </Form.Group>
                         <div className="d-grid gap-2" style={{margin: "20px 0"}}>
                             <Button variant="primary" size="sm" name='' type="submit">
@@ -463,7 +553,7 @@ function HeaderNavLink() {
                       Đóng
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal> */}
             {/* end Đăng bài */}
             <li className="nav-item">
                 {!localStorage.getItem('user') ?

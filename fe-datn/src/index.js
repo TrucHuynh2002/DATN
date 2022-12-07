@@ -67,6 +67,7 @@ import ForgotPassword from './components/user/ForgotPassword';
 import ResetPassword from './components/user/ResetPass';
 import Loi from './components/loi_404';
 import SearchRoom from './components/user/SearchRoom';
+import QA from './components/user/QA';
 
 // postuser
 import AddPostUser from './components/user/postuser/App';
@@ -105,6 +106,7 @@ root.render(
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom/" element={<SearchRoom />} /> 
+        <Route path="hoidap" element={<QA />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}

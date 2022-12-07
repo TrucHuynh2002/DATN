@@ -49,7 +49,7 @@ use App\Http\Controllers\UploadCkeditController;
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 // TEST CK
-Route::post('uploads/',[UploadCkeditController::class,'upload_CK']);
+Route::post('uploads/', [UploadCkeditController::class, 'upload_CK']);
 
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
@@ -86,11 +86,13 @@ Route::delete('heartFeeling/delete/{id}', [HeartFeelingController::class, 'delet
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
+Route::get('post/show_tv', [PostController::class, 'show_tv']);
 Route::get('post/showHeart', [PostController::class, 'showHeart']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
 Route::get('post/showPost/{id}', [PostController::class, 'showPost']);
 Route::post('post/create', [PostController::class, 'created_at']);
+Route::post('post/create_tv', [PostController::class, 'created_at_tv']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
