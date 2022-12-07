@@ -9,7 +9,7 @@ function About() {
   },[]);
   const [listAbout, setListAbout] = useState([]);
   const getData= async () => {
-    const result = await axios.get("http://127.0.0.1:8000/api/about/show");
+    const result = await axios.get("http://127.0.0.1:8000/api/config");
     setListAbout(result.data.data);
    };
   return (
@@ -26,7 +26,7 @@ function About() {
         </div>
     </div>
      <div className="about1">
-     <div className="container-fluid" dangerouslySetInnerHTML={{__html: listAbout[0].introduce}} />
+     <div className="container-fluid" dangerouslySetInnerHTML={{__html: listAbout.introduce}} />
     </div>
     </>
   )
