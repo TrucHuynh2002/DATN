@@ -1,17 +1,19 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+
 function About() {
+
+  const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
     getData()
    
   },[]);
-  const [listAbout, setListAbout] = useState([]);
+  
   const getData= async () => {
     const result = await axios.get("http://127.0.0.1:8000/api/config");
     setListAbout(result.data.data);
    };
+
   return (
     <>
       <div className="back_re">
@@ -26,7 +28,7 @@ function About() {
         </div>
     </div>
      <div className="about1">
-     <div className="container-fluid" dangerouslySetInnerHTML={{__html: listAbout.introduce}} />
+        <div className="container-fluid" dangerouslySetInnerHTML={{__html: listAbout.introduce}} />
     </div>
     </>
   )

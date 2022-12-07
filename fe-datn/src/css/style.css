@@ -1934,8 +1934,7 @@ ul.social_icon li a:hover {
     color: white;
     font-size: 16px;
     font-weight: 600;
-    display: block;
-   
+    display: block;  
 }
 
 .heart{
@@ -1957,11 +1956,28 @@ ul.social_icon li a:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .searchroom{
-
     text-align: center;
     color: black;
     width: 1100px;
     font-size: 24px;
-}.shopee-search-empty-result-section__icon{
-margin-left: 450px;
+}
+
+.shopee-search-empty-result-section__icon{
+    margin-left: 450px;
+}
+
+.qa {
+    width: 50%;
+    height: 100%;
+    margin: 0px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.avt_qa {
+    width:40px;
+    height:40px;
+    margin: 10px 10px 10px 0px;
+    border-radius:50%;
 }

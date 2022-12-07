@@ -45,7 +45,8 @@ function ListBlog() {
                     <th>Từ khóa</th>
                     <th>Mô tả ngắn</th>
                     <th>Mô tả</th>
-            <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
              
@@ -57,7 +58,8 @@ function ListBlog() {
                         <td>{blog.name_blog}</td>
                         <td>{blog.meta_keywords}</td>
                         <td>{blog.description_sort}</td>
-                        <td>{blog.description	}</td>
+                        <td>{blog.description}</td>
+                        <td>{blog.img_blog}</td>
                         <td>                            
                             <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
                             </Link>           

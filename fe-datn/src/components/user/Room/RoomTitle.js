@@ -2,7 +2,7 @@ import React from 'react';
 
 function RoomTitle() {
   return (
-   <div className="back_re">
+        <div className="back_re">
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">

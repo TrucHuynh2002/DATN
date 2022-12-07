@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
@@ -9,7 +9,6 @@ import Pagination from './Pagination';
 import PaginationBlog from './PaginationBlog';
 import Slide1 from '../../images/sl01.png';
 import Slide3 from '../../images/sl03.png';
-import RoomNew from '../../images/phong1.png';
 import TabCanTho from '../../images/tab-cantho.png';
 import TabHaNoi from '../../images/tab-hanoi.png';
 import TabDaNang from '../../images/tab-danang.png';
@@ -160,6 +159,8 @@ function Home() {
       // }
       navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
     }
+    // list about
+     
   
   return (
     <>
@@ -340,7 +341,7 @@ function Home() {
                   Tìm trọ Nhà Tui cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.
                   Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
                   Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí. 
-                </p>~
+                </p>
                 <a className="read_more" href="1">
                   Xem thêm
                 </a>
