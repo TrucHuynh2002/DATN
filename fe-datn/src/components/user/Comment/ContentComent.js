@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 function ContentComent() {
@@ -37,6 +38,10 @@ return (
             </div>
             <div>
                 <span style={{"margin-left":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
+              
+            </div>
+            <div>
+              
             </div>
         </div>
         </> 
