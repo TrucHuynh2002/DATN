@@ -177,8 +177,9 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 
 
 /// Search
-Route::post('search_key', [search_trendsController::class, 'search_key_word']);
+Route::post('search', [search_trendsController::class, 'search_key_word']);
 Route::get('search', [SearchController::class, 'keyword_searching']);
+
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
 

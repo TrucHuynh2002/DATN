@@ -9,7 +9,8 @@ class search_trendsController extends Controller
 {
     public function search_key_word(Request $request)
     {
-        $get_key_word = search_trendsModel::where('key_word', 'like', '%' . $request->keyword . '%')->get();
+
+        $get_key_word = search_trendsModel::where('key_word', '=', $request->key_word)->first();
         if ($get_key_word) {
             $get_key_word->view = $get_key_word->view + 1;
             $get_key_word->save();
@@ -20,7 +21,7 @@ class search_trendsController extends Controller
                 ]);
         } else {
             $data = new search_trendsModel();
-            $data->key_word = $request->keyword;
+            $data->key_word = $request->key_word;
             $data->view = 0;
             $data->save();
             return response()

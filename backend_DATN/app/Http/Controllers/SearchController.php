@@ -46,10 +46,10 @@ class SearchController extends Controller
         $get_postSearch = $get_data->get();
 
         // $get_data->get();
-        return response()
-            ->json([
-                'data' => $get_postSearch,
-                'status' => true
-            ]);
+        return response()->json([
+            'status' => true,
+            'data' => $get_postSearch,
+            'keyword' => $request->keyword
+        ]);
     }
 }
