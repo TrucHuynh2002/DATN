@@ -106,6 +106,7 @@ class CommentController extends Controller
         $Comment_SelectPost = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
             ->join('img_user','users.id_user','=','img_user.id_user')
+            ->select('users.full_name','comment.content','comment.id_comment','img_user.link_img_user')
             ->where('comment.id_post', $id_post)
             ->where('comment.param_id', '=', Null)
             ->orderBy('comment.id_user', 'DESC')
@@ -114,8 +115,10 @@ class CommentController extends Controller
         $Comment_Child = DB::table('comment')
         ->join('users', 'comment.id_user', '=', 'users.id_user')
         ->join('img_user','users.id_user','=','img_user.id_user')
+        ->select('users.full_name','comment.content','comment.id_comment','img_user.link_img_user','users.id_user','comment.param_id')
         ->where('comment.id_post', $id_post)
         ->whereNotNull('comment.param_id')
+        ->orderBy('comment.id_comment','DESC')
         ->get();
         return response()
             ->json([
