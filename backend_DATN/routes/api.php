@@ -49,7 +49,7 @@ use App\Http\Controllers\UploadCkeditController;
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 // TEST CK
-Route::post('uploads/',[UploadCkeditController::class,'upload_CK']);
+Route::post('uploads/', [UploadCkeditController::class, 'upload_CK']);
 
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
@@ -177,8 +177,8 @@ Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 
 
 /// Search
-Route::post('search', [search_trendsController::class, 'search_key_word']);
-
+Route::post('search_key', [search_trendsController::class, 'search_key_word']);
+Route::get('search', [SearchController::class, 'keyword_searching']);
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
 

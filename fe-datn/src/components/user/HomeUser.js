@@ -116,7 +116,7 @@ function Home() {
       area,
       typeRoom
     } = keyword
-    console.log(district);
+    // console.log(district);
     const getProvinces = async () => {
       let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
       setProvince(dataRooms.data.data)
@@ -129,17 +129,17 @@ function Home() {
  
   const handleadd = async (e) => {
       getDataWard(({[e.id_district] : e.target.value}).undefined)
-      console.log(e.target.value)
+      // console.log(e.target.value)
       setKeyword({ ...keyword,district: e.target.value})
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
   }
   const handssdbdfb = async (e) => {
-      console.log(ward);
+      // console.log(ward);
       setKeyword({ ...keyword,ward: e.target.value})
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
   }
     const [listDistrict, setListDistrict] = useState([]);
-    console.log(listDistrict)
+    // console.log(listDistrict)
     const [listWard, setListWard] = useState([]);
     const getDataDistrict = async (id_province) => {
         const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
@@ -158,7 +158,7 @@ function Home() {
       // if(keyword){
       //   console.log('123')
       // }
-      navigate(`searchroom?keyword=${keywords}&&province=${keyword.province}&&ward=${keyword.ward}&&district=${keyword.district}&&price=${keyword.price}&&area=${keyword.area}&&typeRoom=${typeRoom}`);
+      navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
     }
   
   return (

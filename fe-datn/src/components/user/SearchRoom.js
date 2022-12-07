@@ -14,15 +14,15 @@ function Search() {
     const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
     const [addTrendSearch, setListTrendSearch] = useState({
-        keywords: keyword,
+        keywords: urlParam.get('keyword'),
       })
-    const [Data,setData] = useState([])
+    const [aData,setData] = useState([])
     const getPostSearch = async () => {
-        let ress = await axios.post("http://127.0.0.1:8000/api/search", addTrendSearch)
+        let ress = await axios.post("http://127.0.0.1:8000/api/search_key", addTrendSearch)
         console.log(ress);
-        let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
-        // console.log(res.data)
-        setData(res.data);
+        // let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&province=${province}&ward=${ward}&district=${district}&price=${price}&area=${area}&typeRoom=${typeRoom}`);
+        // console.log(res)
+        // setData(res.data);
       }
     useEffect(() => {
         getPostSearch();
@@ -45,8 +45,8 @@ function Search() {
         <div className="container">
             <div className="row">  
             {
-                Data.status == true && Data.data.length >= 1 ? (
-                    Data.data.map((room,index) => {
+                aData.status == true && aData.data.length >= 1 ? (
+                    aData.data.map((room,index) => {
                         return  <div className="col-md-4 col-sm-6">
                                     <div id="serv_hover" className="room">
                                         <div className="room_img">
