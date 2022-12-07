@@ -106,9 +106,16 @@ class CommentController extends Controller
             ->where('comment.param_id', '=', Null)
             ->orderBy('comment.id_user', 'DESC')
             ->get();
+        
+        $Comment_Child = DB::table('comment')
+        ->join('users', 'comment.id_user', '=', 'users.id_user')
+        ->where('comment.id_post', $id_post)
+        ->whereNotNull('comment.param_id')
+        ->get();
         return response()
             ->json([
                 'data' => $Comment_SelectPost,
+                'comment_child' => $Comment_Child,
                 'status' => true,
             ]);
     }
