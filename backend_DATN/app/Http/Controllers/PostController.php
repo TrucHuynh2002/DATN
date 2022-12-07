@@ -306,7 +306,7 @@ class PostController extends Controller
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
                 $imgPosts = $imgPost::where('id_post', '=', $id)->first();
-                $imgPosts->link_img_user = env('APP_URL') . ':8000/uploads/' . $new_image;
+                $imgPosts->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
                 $imgPosts->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPosts->save();
             }
