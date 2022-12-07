@@ -49,7 +49,7 @@ use App\Http\Controllers\UploadCkeditController;
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 // TEST CK
-Route::post('uploads/',[UploadCkeditController::class,'upload_CK']);
+Route::post('uploads/', [UploadCkeditController::class, 'upload_CK']);
 
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);

@@ -247,7 +247,7 @@ function HeaderNavLink() {
                     <Modal.Title>Đăng Tin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                             <Form.Group className="mb-12 post_name">
                                 <Form.Label>Tên bài viết</Form.Label>
                                 <Form.Control type="text" name="post_name" className=''
