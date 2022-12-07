@@ -6,8 +6,10 @@ import axios from 'axios';
 import {CKEditor} from  '@ckeditor/ckeditor5-react'
 import ClassicEditor from  '@ckeditor/ckeditor5-build-classic'
 function HeaderNavLink() {
+    // CKEditor.replace('description')
+    // console.log(user[0].id)
+    // const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
-
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         window.location.reload();
@@ -183,9 +185,8 @@ function HeaderNavLink() {
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handleShow = () => {
-        const get_user = JSON.parse(localStorage.getItem('user'));
             // console.log(get_user)
-        if(get_user){
+        if(user ){
             setShow(true);
         }
         else {
@@ -247,7 +248,7 @@ function HeaderNavLink() {
                     <Modal.Title>Đăng Tin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
                             <Form.Group className="mb-12 post_name">
                                 <Form.Label>Tên bài viết</Form.Label>
                                 <Form.Control type="text" name="post_name" className=''
@@ -312,6 +313,7 @@ function HeaderNavLink() {
                                     filebrowserUploadMethod: 'form'
                                 }}
                               >
+                               
                                 
                                </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
