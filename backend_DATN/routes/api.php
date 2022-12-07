@@ -29,6 +29,8 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
+use App\Http\Controllers\UploadCkeditController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +47,9 @@ use App\Http\Controllers\StatisticalSController;
 // });
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
+// TEST CK
+Route::post('uploads/',[UploadCkeditController::class,'upload_CK']);
+
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
