@@ -44,7 +44,10 @@ function QA() {
                   <Form>
                     <Form.Group className="mb-3" controlId="name_category">
                         <Form.Control type="text" name="" className=''/>            
-                    </Form.Group>                  
+                    </Form.Group>
+                    <Button variant="primary" size="sm" name='' type="submit">
+                      Gửi
+                    </Button>                    
                   </Form>    
                   </div>
                 </div>
