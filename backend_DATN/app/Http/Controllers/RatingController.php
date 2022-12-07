@@ -105,4 +105,23 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
+
+    public function Rating_Average(Request $request,$id_post){
+        $get_star = RatingModel::where('id_post','=',$id_post)->get();
+        $average = 0;
+        $ratingNumber = 0;
+        $count = 0;
+        if($get_star){
+            foreach ($get_star as $rate) {
+                $ratingNumber += $rate->rate;
+                $count += 1;
+            }
+            $average = $ratingNumber/$count;
+        };
+        return response()->json([
+            'status' => true,
+            'ratingNumber' => $average,
+            'data' => $get_star
+        ]);
+    }
 }

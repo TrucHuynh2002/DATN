@@ -8,8 +8,11 @@ import axios from 'axios';
 function Evaluate() {
   const {id_post} = useParams();
   const [listPost, setListPost] = useState([]);
+  const [averageRate,setAverageRate] = useState(1);
+  const [dataAverageRate,setDataAverageRate] = useState([]);
   useEffect(() => {
       getData();
+      getAverageRate();
   },[]);
 
   // danh sach post
@@ -18,25 +21,60 @@ function Evaluate() {
   // console.log(res);
   setListPost(res.data.data);
   };
+  // Getting Star
+  const getAverageRate = async () => {
+  const res = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
+  console.log(res);
+      setAverageRate(res.data.ratingNumber)
+      setDataAverageRate(res.data.data);
+  }
 
+  const [total,setTotal] = useState(0);
+  
   return (
     <>
       <div className="component-show-rate d-flex rounded-lg">
         <div className="content-left col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
           <p>Đánh giá trung bình</p>
           <div className="avg-rate font-weight-bold">
-            <span>4.5</span>
+            <span>{averageRate}</span>
             <span>/5</span>
           </div>
           <div className="star-rate">
+            {
+              Array(5).fill()
+                      .map((_,index) => {
+                        let rate = index +1
+                        return rate > averageRate
+                        ?
+                          
+                            index + 0.5 > averageRate
+                            ?
+                            <>
+                             <i className="fa fa-star" />
+                            </>
+                            :
+                            
+                              <i className="fa fa-star-half checked" />
+                            
+                          
+                        :
+                      
+                        (
+                          <>
+                            <i className="fa fa-star checked" />
+                          </>
+                        )
+                      })
+            }
+          
+            {/* <i className="fa fa-star checked" />
             <i className="fa fa-star checked" />
             <i className="fa fa-star checked" />
-            <i className="fa fa-star checked" />
-            <i className="fa fa-star checked" />
-            <i className="fa fa-star-half-alt checked" />
+            <i className="fa fa-star-half checked" /> */}
           </div>
           <p className="review m-0">
-            (<span>10</span> nhận xét)
+            (<span>{dataAverageRate.length}</span> nhận xét)
           </p>
         </div>
         <div className="content-center col-sm-6 p-3 d-flex flex-column justify-content-center align-items-center">
