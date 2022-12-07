@@ -966,6 +966,9 @@ font-size: 45px;
     display:"flex";
     align-items:"baseline";
 }
+.product-info>div>p{
+    text-transform: lowercase;
+}
 .bed_room>.mota{
     text-transform: lowercase;
 }

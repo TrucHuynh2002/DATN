@@ -16,7 +16,7 @@ function Search() {
     const [Data,setData] = useState([])
     const getPostSearch = async () => {
         let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
-        console.log(res.data)
+        // console.log(res.data)
         setData(res.data);
       }
     useEffect(() => {
