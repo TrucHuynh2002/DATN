@@ -3,14 +3,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
-<<<<<<< HEAD
 import {CKEditor} from  '@ckeditor/ckeditor5-react'
 import ClassicEditor from  '@ckeditor/ckeditor5-build-classic'
-=======
-import {CKEditor} from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
->>>>>>> bd42396347a18910d9a9ff8d98ee6e25a0862971
 function HeaderNavLink() {
     // CKEditor.replace('description')
     var user = JSON.parse(localStorage.getItem("user"));
@@ -279,37 +273,12 @@ function HeaderNavLink() {
                             <Form.Group className="mb-12 description">
                                 <Form.Label>Nội dung</Form.Label>
                                <CKEditor
-<<<<<<< HEAD
                                editor={ClassicEditor}
                                debug={true}
                                data={description}
                                onReady={editor => {
                                    console.log('Editor to ready');
                                }}
-=======
-                                // config={{
-                                //     // extraPlugins: 'easyimage',
-                                //     // removePlugins: 'image',
-                                //     // removeDialogTabs: 'link:advanced',
-                                //     // cloudServices_uploadUrl: 'https://33333.cke-cs.com/easyimage/upload/',
-                                //     // cloudServices_tokenUrl: 'https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt',
-                                //     // easyimage_toolbar: [
-                                //     //     'EasyImageFull',
-                                //     //     'EasyImageSide',
-                                //     //     'EasyImageGradient1',
-                                //     //     'EasyImageGradient2',
-                                //     //     'EasyImageNoGradient',
-                                //     //     'EasyImageAlt'
-                                //     //   ],
-                                    
-                                // }}
-                                debug={true}
-                                initData={(e) => {console.log(e.target.value)}}
-                                onChange={(event) => {
-                                        // console.log(event.data)
-                                }}
-                               >
->>>>>>> bd42396347a18910d9a9ff8d98ee6e25a0862971
 
                                onChange={(event,editor) => {
                                        let data = event.getData();
