@@ -87,7 +87,7 @@ function Home() {
       keywords: "",
       province: "",
       district: "",
-      ward: null,
+      ward: "",
       price:"",
       area:"",
       typeRoom:""
