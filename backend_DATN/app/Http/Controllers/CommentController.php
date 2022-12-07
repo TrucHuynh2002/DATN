@@ -31,6 +31,9 @@ class CommentController extends Controller
         }
         $t = new CommentModel();
         $t->content = $request->content;
+        if($request->parent_id){
+            $t->param_id = (int) $request->parent_id;
+        }
         // $t->date = $request->date;
         $t->status = 1;
         $t->id_user = $request->id_user;
@@ -179,5 +182,9 @@ class CommentController extends Controller
                 'data' => $Contact_SelectApprove,
                 'status' => true
             ]);
+    }
+
+    public function ReplyComment(Request $request, $id_post){
+
     }
 }

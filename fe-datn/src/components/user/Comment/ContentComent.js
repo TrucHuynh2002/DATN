@@ -2,18 +2,37 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
+import moment from 'moment'
 import axios from 'axios';
 
 function ContentComent() {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  const id_user = user[0].id;
   const {id_post} = useParams();
+  const [loader,setLoader] = useState(0);
   const [listComment, setListComment] = useState({
       Comment_parent: [],
       Comment_child: []
   });
   const [Comment,setComment] = useState('');
+  const [getIdComment,setGetIdComment] = useState(undefined);
+  console.log(getIdComment);
+  const [Reply,setReply] = useState(false);
 
   const handleChangeComment = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
+    setComment(e.target.value)
+  }
+  const handleReplyComment = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',Comment)
+    formData.append('id_user',id_user)
+    formData.append('id_post',id_post)
+    formData.append('parent_id',getIdComment)
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    setLoader(res.data.length+1);
   }
   const {
     Comment_parent,
@@ -22,7 +41,7 @@ function ContentComent() {
   // console.log(rate);
   useEffect(() => {
       getData();
-  },[]);
+  },[loader]);
 
   // danh sach Comment
   const getData = async () => {
@@ -43,14 +62,28 @@ return (
                 <p className='cmt_name1'>{comment.content}</p>   
               </div>
               <div>
-                  <span style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
-                <Form>
-                      <Form.Group>
-                      <Form.Control type="text" name="reply_cmt" className=''
-                                value=''
-                                onChange = {(e) => handleChangeComment(e)}/>
-                      </Form.Group>
-                </Form>
+                  <span onClick={() => {setGetIdComment(comment.id_comment); setReply(true)}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
+                  {
+                  Reply == true 
+                  &&
+                  <div style={{"marginLeft":"36px"}}>
+                        <Form onSubmit={e => handleReplyComment(e)}>
+                          <Form.Group>
+                          <Form.Control 
+                                    style={{"padding":"24px 0 24px 12px"}}
+                                    type="text"
+                                    name="reply_cmt" 
+                                    className=''
+                                   
+                                    onChange = {(e) => handleChangeComment(e)}
+                                    placeholder="Trả lời bình luận"
+                          />
+                          </Form.Group>
+
+                          <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                        </Form>
+                  </div> 
+                  } 
               </div>
            </div>
            {
@@ -66,10 +99,31 @@ return (
                         <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                         <b className='cmt_name'>{cmt.full_name}</b>
                         <p className='cmt_name1'>{cmt.content}</p>
+                        <p>{moment(cmt.email_verified_at).fromNow()}</p>
                       </div>
                       <div>
-                        <span style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
+                        <span onClick={() => {setGetIdComment(cmt.id_comment); setReply(true)}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
+                        {
+                        Reply == true 
+                        &&
+                        <div style={{"marginLeft":"36px"}}>
+                              <Form onSubmit={e => handleReplyComment(e)}>
+                                <Form.Group>
+                                <Form.Control 
+                                          style={{"padding":"24px 0 24px 12px"}}
+                                          type="text"
+                                          name="reply_cmt" 
+                                          className=''
+                                        
+                                          onChange = {(e) => handleChangeComment(e)}
+                                          placeholder="Trả lời bình luận"
+                                />
+                                </Form.Group>
 
+                                <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                              </Form>
+                        </div> 
+                        } 
                       </div>
                       </div>
                    </div>
