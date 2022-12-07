@@ -136,7 +136,6 @@ function Home() {
   const handssdbdfb = async (e) => {
       console.log(ward);
       setKeyword({ ...keyword,ward: e.target.value})
-
       // setAddPost({ ...addPost, [e.target.name] : e.target.value});
   }
     const [listDistrict, setListDistrict] = useState([]);
@@ -154,7 +153,6 @@ function Home() {
     const handleChangeKeyWord = (e) => {
       setKeyword({ ...keyword,[e.target.name]:e.target.value})
     }
-
     const handleSubmitSearch = e => {
       e.preventDefault()
       // if(keyword){

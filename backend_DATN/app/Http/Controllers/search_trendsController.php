@@ -11,9 +11,7 @@ class search_trendsController extends Controller
     {   
         $get_data = search_trendsModel::all();
         $get_key_word = search_trendsModel::where('key_word' ,'like', '%'. $request->key_word . '%' )->get();
-        // dd($get_key_word);
         if($get_key_word){
-            // dd(123);
             $get_key_word->view = $get_key_word ->view + 1  ;
             return response()
             ->json([
@@ -21,7 +19,6 @@ class search_trendsController extends Controller
                 'status'=> true
             ]);
         }else{
-            dd(345);
             $data = new search_trendsModel();
             $data->key_word = $request->key_word;
             $data->view = 0;

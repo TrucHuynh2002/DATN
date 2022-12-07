@@ -13,8 +13,13 @@ function Search() {
     const ward = urlParam.get('ward');
     const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
+    const [addTrendSearch, setListTrendSearch] = useState({
+        keywords: keyword,
+      })
     const [Data,setData] = useState([])
     const getPostSearch = async () => {
+        let ress = await axios.post("http://127.0.0.1:8000/api/search", addTrendSearch)
+        console.log(ress);
         let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         // console.log(res.data)
         setData(res.data);

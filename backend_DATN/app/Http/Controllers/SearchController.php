@@ -12,9 +12,7 @@ class SearchController extends Controller
         $keyword = $request->keyword;
         $get_data =  PostModel::where('post_name', 'like', '%'. $keyword . '%');
         if($request->typeRoom){
-            
             $get_data = $get_data->Where('id_roomType','=',$request->typeRoom);
-
         }
 
         if($request->province){
