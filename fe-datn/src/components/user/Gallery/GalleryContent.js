@@ -18,13 +18,20 @@ function GalleryContent() {
     setDataPostTrend(res.data.data);
   };
   return (
+    <>
     <div className="gallery">
       <div className="container">
         {ListSearchTrend.map((list,a) => {
           return (
-            <div className="row searchTrend">
+            <div
+            type="button"
+            className="row searchTrend"  
+            data-toggle="collapse"
+            data-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample" >
               <div className="col-1">{list.id_search}</div>
-              <div className="col-9">
+              <div className="col-8">
                 <div> {list.key_word}</div>
                 {ListDataPostTrend.map((list,a) =>{
                   return(
@@ -34,14 +41,29 @@ function GalleryContent() {
                 )}
              </div>
               <div className="col-2 view___">
+            
                 <div>{list.view}</div>
                 <span >lượt tìm kiếm</span>
               </div>
+              <div className="col-1">
+                <i className="	fas fa-angle-down"></i>
+              </div>
           </div>
+         
           )
         })}
-      </div>
+         <div className="collapse-show-rate collapse row" id="collapseExample">
+          <h3>sdvsdvsdv</h3>
+         </div>
     </div>
+
+  </div>
+
+  <div className="collapse-show-rate collapse row" id="collapseExample">
+
+  </div>
+   
+    </>
   )
 }
 

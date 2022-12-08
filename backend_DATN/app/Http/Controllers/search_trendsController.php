@@ -32,7 +32,7 @@ class search_trendsController extends Controller
     }
     public function show(Request $request)
     {
-        $count_post = search_trendsModel::where('view', '>', 0)->orderby('id_search', 'DESC')->take(10)->get();
+        $count_post = search_trendsModel::where('view', '>', 0)->orderby('view', 'DESC')->take(10)->get();
         return response()
             ->json([
                 'data' => $count_post,
