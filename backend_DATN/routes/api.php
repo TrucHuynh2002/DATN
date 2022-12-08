@@ -102,6 +102,11 @@ Route::get('post/delete', [PostController::class, 'show_delete']);
 Route::get('post/status', [PostController::class, 'show_status']);
 Route::put('post/updateView/{id}', [PostController::class, 'updateView']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
+Route::get('post/furniture/{id_post}', [PostController::class, 'show_furniture_post']);
+Route::get('post/show_province_detail/{id_post}', [PostController::class, 'show_province_detail']);
+Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_district_detail']);
+Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
+Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
@@ -134,6 +139,7 @@ Route::get('furniture/show/{id}', [FurnitureController::class, 'show_id']);
 Route::post('furniture/create', [FurnitureController::class, 'created_at']);
 Route::put('furniture/update/{id}', [FurnitureController::class, 'update']);
 Route::delete('furniture/delete/{id}', [FurnitureController::class, 'delete']);
+Route::get('furniture/furniture/{id_furniture}', [FurnitureController::class, 'show_furniture']);
 
 // Favorite
 Route::get('favorite/show', [FavoriteController::class, 'show']);

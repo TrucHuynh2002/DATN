@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
+import Modal from 'react-bootstrap/Modal';
 
 function RoomDetail() {
     const {id_post} = useParams();
-    // console.log(id_post);
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    // console.log(listImg);
+    const [listFurniture, setListFurniture] = useState([]);
+    const [listprovince, setListprovince] = useState([]);
+    const [listdistrict, setListdistrict] = useState([]);
+    const [listward, setListward] = useState([]);
+    // const [listAddress, setListAddress] = useState([]);
+
     useEffect(() => {
         updateView();
         getData();
         getImg();
+        province();
+        district();
+        ward();
+        Furniture();
     },[]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -22,20 +31,47 @@ function RoomDetail() {
         showBtn.style.display = 'none'
         hideBtn.style.display = 'block'        
     };
-
     // danh sach post
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-        setListPost(res.data.data);
+                const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+                setListPost(res.data.data);
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        setListImg(res.data.data);
+        setListImg(res.data.data);        
     };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
-    }
-    
+    };
+    const Furniture = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
+          setListFurniture(res.data.data);
+      };
+      const province = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
+        console.log(res);
+          setListprovince(res.data.data);
+      }; 
+      const district = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
+        console.log(res);
+          setListdistrict(res.data.data);
+      };   
+      const ward = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
+        console.log(res);
+          setListward(res.data.data);
+      };  
+    //    const street = async () => {
+    //     const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
+    //     console.log(res);
+    //       setListstreet(res.data.data);
+    //   }; 
+    // show mo ta phong
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
   return (
     <>
         <div className="pd-wrap">
@@ -49,16 +85,8 @@ function RoomDetail() {
                             {listImg.map((a, index) => {
                                 return(
                                 <img className="img-fluid" src={a.link_img_user} alt="#" />
-                                )
-                                })}
+                                )})}
                             </div>
-                            {/* <div className="item item-img">
-                            
-                                <div className="col-3">
-                                    <img src={a.link_img_user} alt="#" />
-                                </div>
-           
-                            </div> */}
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -67,35 +95,18 @@ function RoomDetail() {
                                 <div className="product-name">
                                     <h2>{a.post_name}</h2>
                                 </div>
-                                {/* <div className="reviews-counter">
-                                    <div className="rate">
-                                        <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
-                                        <label htmlFor="star5" title="text">5 stars </label>
-                                        <input type="radio"id="star4"name="rate" defaultValue={4} defaultChecked=""/>
-                                        <label htmlFor="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" defaultValue={3} defaultChecked=""/>
-                                        <label htmlFor="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" defaultValue={2} />
-                                        <label htmlFor="star2" title="text"> 2 stars </label>
-                                        <input type="radio" id="star1" name="rate" defaultValue={1} />
-                                        <label htmlFor="star1" title="text"> 1 star</label>
-                                    </div>
-                                    <div>
-                                        <span>3 đánh giá</span>
-                                    </div>
-                                </div> */}
+                               
                                 <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
-                                {/* <div className="product-price-discount">{.room_price} </div>                                    */}
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
-                                    <p> {a.description_sort}</p>
+                                    <p>{a.description_sort}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="product-count">
-                            {/* <Button className="round-btn">
-                                 <HeartRoom /> *
-                            </Button> */}
+                            <Button onClick={handleShow} className="round-black-btn">
+                                Chi tiết
+                            </Button>
                             <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
                                 <span id="button_contact">Liên hệ ngay</span>
@@ -106,6 +117,63 @@ function RoomDetail() {
                                 Thông tin người đăng
                             </Link>
                         </div>
+                        {/* start show chi tiết phòng */}
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Mô tả chi tiết</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div className=''>                                   
+                                    <p>Diện tích: {a.area}m<sup>2</sup></p>    
+                                    <p>Giá nước: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</p>
+                                    <p>Giá điện: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</p>
+                                    <p>Nội thất:
+                                    {listFurniture.map(( furn, index) => {
+                                    return (                                             
+                                        <option key={index} value={furn.id_furniture}>{furn.name}</option>                           
+                                    );
+                                    })}
+                                    </p> 
+                                    <p> Tinh : </p>  
+                                    {listprovince.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                     <p> quna : </p>  
+                                    {listdistrict.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                     <p> xa : </p>  
+                                    {listward.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                   
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button> 
+                            </Modal.Footer>
+                        </Modal>
+                        {/* end show chi tiết phòng */}
                         <div className="product-count-help" >
                             <div>
                             <i className='bx bx-support'></i>

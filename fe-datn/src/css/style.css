@@ -2055,7 +2055,7 @@ ul.social_icon li a:hover {
 }
 
 .qa {
-    width: 50%;
+    width: 70%;
     height: 100%;
     margin: 0px auto;
     padding: 20px;
@@ -2069,4 +2069,9 @@ ul.social_icon li a:hover {
     height:40px;
     margin: 10px 10px 10px 0px;
     border-radius:50%;
+}
+
+.qa_link {
+    text-transform : none;
+    font-size: 16px;
 }

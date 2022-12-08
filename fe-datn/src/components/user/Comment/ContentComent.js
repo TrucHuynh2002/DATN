@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import moment from 'react-moment'
+import moment from 'moment'
 import axios from 'axios';
 
 function ContentComent() {
@@ -49,6 +49,7 @@ function ContentComent() {
     formData.append('id_post',id_post)
     // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    console.log(res);
     setLoader(res.data.length+1);
   }
   const {
@@ -62,10 +63,12 @@ function ContentComent() {
   // danh sach Comment
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
+    console.log(res);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
   };
 return (
  <>
+  <h2>Có {Comment_parent.length + Comment_child.length} Bình luận</h2>
   <div>
     <Form onSubmit={e => handleComment(e)}>
                           <Form.Group>
@@ -102,16 +105,15 @@ return (
                   <div style={{"marginLeft":"36px"}}>
                         <Form onSubmit={e => handleReplyComment(e)}>
                           <Form.Group>
-                          <Form.Control
-                            style={{"padding":"24px 0 24px 12px"}}
-                            type="text"
-                            name="reply_cmt" 
-                            className=''
-                            onChange = {(e) => handleChangeComment(e)}
-                            placeholder="Trả lời bình luận"
+                          <Form.Control 
+                                    style={{"padding":"24px 0 24px 12px"}}
+                                    type="text"
+                                    name="reply_cmt" 
+                                    className=''                                 
+                                    onChange = {(e) => handleChangeComment(e)}
+                                    placeholder="Trả lời bình luận"
                           />
                           </Form.Group>
-
                           <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                         </Form>
                   </div> 
@@ -145,13 +147,11 @@ return (
                                           style={{"padding":"24px 0 24px 12px"}}
                                           type="text"
                                           name="reply_cmt" 
-                                          className=''
-                                        
+                                          className=''                                        
                                           onChange = {(e) => handleChangeComment(e)}
                                           placeholder="Trả lời bình luận"
                                 />
                                 </Form.Group>
-
                                 <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                               </Form>
                         </div> 
@@ -162,15 +162,10 @@ return (
                </>    
                       
             })
-           }
-        
-
-            
+           }            
         </div>
-        </> 
-  
-    })
-    
+        </>  
+    })    
 }
  </>
 )

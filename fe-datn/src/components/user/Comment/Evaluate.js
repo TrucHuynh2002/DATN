@@ -10,9 +10,27 @@ function Evaluate() {
   const [listPost, setListPost] = useState([]);
   const [averageRate,setAverageRate] = useState(1);
   const [dataAverageRate,setDataAverageRate] = useState([]);
+  const [reviewStar,setReviewStar]= useState({
+    five_star: 0,
+    four_star: 0,
+    three_star: 0,
+    two_star: 0,
+    one_star: 0,
+    count:0
+  })  
+  const {
+    five_star,
+    four_star,
+    three_star,
+    two_star,
+    one_star,
+    count
+  } = reviewStar
+  console.log(count)
   useEffect(() => {
       getData();
       getAverageRate();
+      HandleProgessBar()
   },[]);
 
   // danh sach post
@@ -23,11 +41,27 @@ function Evaluate() {
   // Getting Star
   const getAverageRate = async () => {
   const res = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
+  console.log(res.data);
       setAverageRate(res.data.ratingNumber)
       setDataAverageRate(res.data.data);
+      setReviewStar({...reviewStar,
+                  five_star: res.data.review_star.five_star,
+                  four_star: res.data.review_star.four_star,
+                  three_star: res.data.review_star.three_star,
+                  two_star: res.data.review_star.two_star,
+                  one_star: res.data.review_star.one_star,
+                  
+                  count: res.data.review_star.count  })
   }
 
+  const HandleProgessBar = () => {
+      // const Pr_fiveStar = document.querySelector('progress-bar-1').css('width',76);
+
+  }
+
+
   const [total,setTotal] = useState(0);
+  
   
   return (
     <>
@@ -84,12 +118,13 @@ function Evaluate() {
               <div
                 className="progress-bar-1 progress-bar bg-success"
                 role="progressbar"
-                aria-valuenow={76}
+                style={{"width":(five_star/count) * 100 + '%'}}
+                aria-valuenow={(five_star/count)}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">76%</div>
+            <div className="percent">{five_star / count * 100}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -99,12 +134,13 @@ function Evaluate() {
               <div
                 className="progress-bar-2 progress-bar bg-success"
                 role="progressbar"
-                aria-valuenow={6}
+                style={{"width":(four_star/count) * 100 + '%'}}
+                aria-valuenow={four_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">6%</div>
+            <div className="percent">{(four_star/count) * 100}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -114,12 +150,13 @@ function Evaluate() {
               <div
                 className="progress-bar-3 progress-bar bg-success"
                 role="progressbar"
-                aria-valuenow={9}
+                style={{"width":(three_star/count) * 100 + '%'}}
+                aria-valuenow={three_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">9%</div>
+            <div className="percent">{three_star/count * 100}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -129,12 +166,13 @@ function Evaluate() {
               <div
                 className="progress-bar-4 progress-bar"
                 role="progressbar"
-                aria-valuenow={7}
+                style={{"width":(two_star/count) * 100 + '%'}}
+                aria-valuenow={two_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">7%</div>
+            <div className="percent">{two_star/count * 100}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -144,12 +182,13 @@ function Evaluate() {
               <div
                 className="progress-bar-5 progress-bar"
                 role="progressbar"
-                aria-valuenow={2}
+                style={{"width":(one_star/count) * 100 + '%'}}
+                aria-valuenow={one_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">2%</div>
+            <div className="percent">{one_star/count * 100}%</div>
           </div>
         </div>
         <div className="content-right col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">

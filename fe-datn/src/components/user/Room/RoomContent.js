@@ -5,7 +5,6 @@ import Pagination from '../Pagination';
 
 function RoomND() {
   var user = JSON.parse(localStorage.getItem("user"));
-  // phân trang
 
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -87,8 +86,7 @@ function RoomND() {
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
     // console.log(res);
-    setListImg(res.data.data);
-    
+    setListImg(res.data.data);   
 };
 
   return (
@@ -115,19 +113,7 @@ function RoomND() {
                           </div>
                           <div className="bed_room">
                               <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                            
-                          
-
-                              {/* <NumberFormat value={post.room_price} displayType={'text'} format="###.###. ###.###" /> */}
-                              {/* <NumericFormat value={post.room_price} decimalScale={3} />; */}
                              <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
-                            {/* <h4>  Giá:{post.room_price} VNĐ</h4> */}
-                            {/* <NumericFormat value="post.room_price" allowLeadingZeros thousandSeparator="," />; */}
-                            {/* <PatternFormat displayType="text" value={post.room_price} />; */}
-                            {/* <NumericFormat value="post.room_price" allowNegative />; */}
-
-
-
                               <p>{post.description_sort}</p>
                           </div>
                       </div>
