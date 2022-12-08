@@ -206,6 +206,18 @@ function EditPost() {
                             <Form.Control type="file" name="img" multiple
                             onChange = {(e) => handleChangeImages(e)} />
                         </Form.Group>
+            
+      <div className="container containeredit">
+      
+        <div className="preview-images-zone row">
+
+          <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
+            <div className="image-cancel" data-no={1}>x</div>
+            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" /></div>
+            <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>
+          </div>
+        </div>
+      </div>
                         <Form.Group className="mb-3 description_sort">
                             <Form.Label>Nội dung ngắn</Form.Label>
                             <Form.Control type="text" name="description_sort" className=''

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
 function About() {
-<<<<<<< HEAD
-  
-=======
+
 
   const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
@@ -17,8 +15,7 @@ function About() {
     setListAbout(result.data.data);
    };
 
->>>>>>> a83fb8cac23a33884730e96367899bc02d5c5785
-  return (
+    return (
     <>
       <div className="back_re">
         <div className="container">
