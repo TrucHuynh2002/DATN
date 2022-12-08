@@ -283,7 +283,7 @@ function Home() {
                                 <Form.Select name="id_district" className="form-select online_book3"
                                 onChange = {(e) => handleadd(e)}
                                 >
-                                   <option>Quận/Huyện/TP</option>
+                                   <option>Quận/Huyện</option>
                                     {listDistrict.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id}>{room._name}</option>
@@ -388,7 +388,7 @@ function Home() {
                             </div>
                         <div className="bed_room">
                             <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                            <h4 className='gia'>Giá: {post.room_price}/tháng</h4>
+                            <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)} /Tháng</span>
                             <p className='mota'>{post.description_sort}</p>
                         </div>
                     </div>

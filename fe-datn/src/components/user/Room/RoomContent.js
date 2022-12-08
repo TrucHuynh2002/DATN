@@ -6,7 +6,7 @@ import Pagination from '../Pagination';
 function RoomND() {
   var user = JSON.parse(localStorage.getItem("user"));
   // phân trang
-  const NumberFormat = require('react-number-format');
+
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [listHeart, setListHeart] = useState([]);
