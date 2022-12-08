@@ -87,7 +87,8 @@ function RoomDetail() {
                                         <span>3 đánh giá</span>
                                     </div>
                                 </div> */}
-                                <div className="product-price-discount">{a.room_price} vnd</div>                                   
+                                <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
+                                {/* <div className="product-price-discount">{.room_price} </div>                                    */}
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
                                     <p> {a.description_sort}</p>
