@@ -107,6 +107,7 @@ Route::get('post/show_province_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_district_detail']);
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
+Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
