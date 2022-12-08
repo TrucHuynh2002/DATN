@@ -7,7 +7,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function HeaderNavLink() {
     // CKEditor.replace('description')
-    // console.log(user[0].id)
+   
     // const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     const handleSLogout = async (e) => {
@@ -174,7 +174,7 @@ function HeaderNavLink() {
                 });
             }
             else{
-                console.log(res.data)           
+                 
                 setAlert({
                     err_list: res
                 });
@@ -185,7 +185,7 @@ function HeaderNavLink() {
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handleShow = () => {
-            // console.log(get_user)
+           
         if(user ){
             setShow(true);
         }
@@ -294,7 +294,7 @@ function HeaderNavLink() {
                                 onChange={(event,editor) => {
                                     let data = editor.getData();
                                     setAddPost({...addPost, description:data});
-                                    // console.log(event.data)
+                                 
                             }}
                                 >
                                 </CKEditor>
@@ -492,50 +492,6 @@ function HeaderNavLink() {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-            {/* start Đăng bài thành viên*/}
-            {/* <Modal show={show_tv} onHide={handleClose_tv}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Đăng Tin cho thành viên</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="show-grid">
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
-                            <Form.Group className="mb-12 post_name">
-                                <Form.Label>Tên bài viết</Form.Label>
-                                <Form.Control type="text" name="post_name" className=''
-                                value={post_name}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description">
-                            <Form.Label>Nội dung</Form.Label>
-                                <Form.Control type="text" name="description" className=''
-                                value={description}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description_sort">
-                                <Form.Label>Nội dung ngắn</Form.Label>
-                                <Form.Control type="text" name="description_sort" className=''
-                                value={description_sort}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
-                            </Form.Group>
-                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
-                            <Button variant="primary" size="sm" name='' type="submit">
-                                Thêm bài viết
-                            </Button>
-                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
-                        </div>
-                    
-                </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose} > 
-                      Đóng
-                    </Button>
-                </Modal.Footer>
-            </Modal> */}
             {/* end Đăng bài */}
             <li className="nav-item">
                 {!localStorage.getItem('user') ?

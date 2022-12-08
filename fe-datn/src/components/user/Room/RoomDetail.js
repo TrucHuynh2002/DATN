@@ -9,7 +9,7 @@ function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    console.log(listImg);
+    // console.log(listImg);
     useEffect(() => {
         updateView();
         getData();
@@ -25,13 +25,11 @@ function RoomDetail() {
 
     // danh sach post
     const getData = async () => {
-                const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-                // console.log(res);
-                setListPost(res.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+        setListPost(res.data.data);
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        // console.log(res);
         setListImg(res.data.data);
         
 };

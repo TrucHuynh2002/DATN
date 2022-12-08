@@ -6,10 +6,8 @@ import axios from 'axios';
 
 function InfoAccount() {
     const user = JSON.parse(localStorage.getItem("user"));
-    // console.log(user[0].id);
     const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
-    // console.log(imgUser);
     useEffect(() => {
         getData();
     },[]);
@@ -45,17 +43,14 @@ function InfoAccount() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(res);
         }
         else{
-            // console.log(res.data)           
             setAlert({
                 err_list: res
             });
             
         }
     };
-    // console.log(InfoAccount.updated_at);
     const now = new Date(InfoAccount.updated_at);
     const dateString = now.toLocaleDateString({
     weekday: "short",
@@ -63,16 +58,6 @@ function InfoAccount() {
     month: "2-digit",
     day: "numeric"
     })
-
-// console.log(dateString);
-
-// list img user
-// const getImgUser = async () => {
-//     const img = await axios.get(`http://127.0.0.1:8000/api/user/showimg/${id_user}`);
-//     console.log(img);
-//     // setImgUser(img.data.data[0]);
-// };
-
     return (
             <div>
                 <h1><b className="b_title">Thông tin cá nhân</b></h1>

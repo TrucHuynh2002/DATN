@@ -42,6 +42,18 @@ class PostController extends Controller
                 'heart' => $heart
             ]);
     }
+    public function show_trend()
+    {
+        $data = Post::where('view', '>', 0)
+            ->orderBy('post.id_post', 'DESC')
+            ->take(1)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
@@ -426,5 +438,4 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
-
 }

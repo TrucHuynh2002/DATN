@@ -9,7 +9,6 @@ function Profile() {
     const navigate = useNavigate();
     const {id_user} = useParams();
     const checkAdmin = async () => {
-        // console.log(get_user)
       if(!id_user){
         navigate('/Loi');
       }

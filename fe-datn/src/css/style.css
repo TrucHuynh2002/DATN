@@ -972,6 +972,21 @@ font-size: 45px;
 .bed_room>.mota{
     text-transform: lowercase;
 }
+.link_____{
+    color: #0d5df0b5!important;
+    font-size: 17px;
+}
+.searchTrend{
+    height: 118px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #93888870;
+    border-top: 1px solid #93888870;
+    align-items: baseline;
+    font-size: 25px;
+}
+.view___>span{
+    font-size: 16px;
+}
 .gap-2>.button{
     padding: 7px;
     margin-top: 11px;
