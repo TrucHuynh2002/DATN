@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form, Row, Col } from 'react-bootstrap';
-import moment from 'moment'
+// import moment from 'moment'
 import axios from 'axios';
 
 function ContentComent() {
@@ -88,16 +88,17 @@ return (
                         
     </Form>
   </div>
+  <hr />
   {Comment_parent.map((comment, index) => {
     return <>
        <div key={index}>
            <div key={index}>
-            <span style={{color: "orange"}} ><i class="bi bi-star-fill"></i></span>
+            {/* <span style={{color: "orange"}} ><i class="bi bi-star-fill"></i></span> */}
               <div>
                 <img src={comment.link_img_user} alt="images" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
                 <b className='cmt_name'>{comment.full_name}</b>
                 <p className='cmt_name1'>{comment.content}</p> 
-                <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).local().startOf('day').fromNow()}</p>  
+                {/* <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).local().startOf('day').fromNow()}</p>   */}
               </div>
               <div>
                   <span onClick={() => {setGetIdComment(comment.id_comment); setReply({...Reply,activeComment:true,id:comment.id_comment})}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
@@ -132,12 +133,12 @@ return (
                    <div key={i}>
                     <hr />
                       <div style={{ "paddingLeft": "36px" }}>
-                      <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span>
+                      {/* <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span> */}
                       <div>
                         <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                         <b className='cmt_name'>{cmt.full_name}</b>
                         <p className='cmt_name1'>{cmt.content}</p>
-                        <p>{moment(cmt.created_at).fromNow()}</p>
+                        {/* <p>{moment(cmt.created_at).fromNow()}</p> */}
                       </div>
                       <div>
                         <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>

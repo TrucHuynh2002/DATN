@@ -17,6 +17,19 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
+    // public function show_tv()
+    // {
+    //     $data = DB::table('img_post')
+    //     ->join('post', 'img_post.id_post', '=', 'post.id_post')
+    //     ->join('users', 'post.id_user', '=', 'users.id_user')
+    //     ->where('post.role', '=', '0')
+    //     ->orderBy('img_post.id_post', 'DESC')
+    //     ->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $data
+    //         ]);
+    // }
     public function show_id(Request $request, $id)
     {
         $data = imgPost::find($id);
