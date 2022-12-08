@@ -177,6 +177,7 @@ Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
+Route::get('rating/average/{id_post}', [RatingController::class,'Rating_Average']);
 
 
 /// Search

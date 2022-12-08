@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
-import {CKEditor} from  '@ckeditor/ckeditor5-react'
-import ClassicEditor from  '@ckeditor/ckeditor5-build-classic'
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function HeaderNavLink() {
     // CKEditor.replace('description')
     // console.log(user[0].id)
@@ -283,42 +283,21 @@ function HeaderNavLink() {
                             </Form.Group>
                             <Form.Group className="mb-12 description">
                                 <Form.Label>Nội dung</Form.Label>
-                               <CKEditor
-                               editor={ClassicEditor}
-                               debug={true}
-                               data={description}
-                               onReady={editor => {
-                                   console.log('Editor to ready');
-                               }}
-
-                               onChange={(event,editor) => {
-                                       let data = event.getData();
-                                       setAddPost({...addPost, description:data})
-                                       // console.log(event.data)
-                               }}
-                               onBlur={ ( event, editor ) => {
-                                console.log( 'Blur.', editor );
-                            } }
-                                onFocus={ ( event, editor ) => {
-                                    console.log( 'Focus.', editor );
-                                } }
-
-                                // onInit={(editor) => {
-                                //     editor.ui.view.editable.element.style.height = "200px"
-                                //     uploadAdapterPlugin(editor)
-                                //   }}
-
-                                config={{
-                                    // ckfinder: {
-                                    //     uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-                                    // }
-                                    filebrowserUploadUrl: 'http://localhost:8000/api/uploads',
-                                    filebrowserUploadMethod: 'form'
+                                <CKEditor
+                                editor={ClassicEditor}
+                                data={description}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
                                 }}
-                              >
-                               
-                                
-                               </CKEditor>
+                                onChange={(event,editor) => {
+                                    let data = editor.getData();
+                                    setAddPost({...addPost, description:data});
+                                    // console.log(event.data)
+                            }}
+                                >
+                                </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
                             { user ? 

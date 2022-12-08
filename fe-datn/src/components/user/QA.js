@@ -7,12 +7,12 @@ function QA() {
 
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
-  const {id_post} = useParams();
-  const [listComment, setListComment] = useState([]);
+  // const {id_post} = useParams();
+  // const [listComment, setListComment] = useState([]);
   useEffect(() => {
     getData();
     getImg();
-    getComment();
+    // getComment();
   },[]);
 
    // danh sach 
@@ -26,8 +26,12 @@ function QA() {
     // console.log(res);
     setListImg(res.data.data);
   //get comment
+//   const getImg = async () => {
+//     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+//     // console.log(res);
+//     setListImg(res.data.data);
     
-};
+// };
   return (
     <>
         <div className="back_re">
@@ -97,5 +101,5 @@ function QA() {
     </>
   )
 }
-
+}
 export default QA
