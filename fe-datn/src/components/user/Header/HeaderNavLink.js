@@ -408,13 +408,13 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                             </Form.Group>   
                             <Form.Group className="mb-12">
-                                <Form.Label >Loại phòng</Form.Label>
+                                <Form.Label>Loại phòng</Form.Label>
                                 <Form.Select name="id_roomType" 
                                 onChange = {(e) => handleChange(e)}>
                                     <option value='' >Chọn</option>
                                     {listRoomType.map((room, index) => {
                                         return (
-                                            <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
+                                            <option key={index} value={room.id_room_type}>{room.name_room_type}</option>
                                         );
                                     })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                                 </Form.Select> 

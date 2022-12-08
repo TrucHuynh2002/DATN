@@ -89,4 +89,5 @@ class FurnitureController extends Controller
                 'status' => true
             ]);
     }
+
 }

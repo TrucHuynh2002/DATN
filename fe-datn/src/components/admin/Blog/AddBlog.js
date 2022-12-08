@@ -16,11 +16,14 @@ function AddBlog() {
         description:"",
         id_user:user[0].id
     });
+    console.log(123);
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
     const handleChangeImages = (e) => {
-        setUploadImages(e.target.files)
+        console.log(321);
+        // setUploadImages(e.target.files)
     }
+    console.log(uploadImages);
 
     const [alert, setAlert] = useState({
         err_list: {},
@@ -30,6 +33,7 @@ function AddBlog() {
   
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
+        console.log(123);
     };
     
     const handleSubmit = async (e) => {
@@ -63,21 +67,24 @@ function AddBlog() {
                         <Form.Label>Tên blog</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"/>
                         { alert.err_list.status == false && alert.err_list.messages.name_blog &&
-                                       <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}
+                    </Form.Group>
                    <Form.Group className="mb-3" controlId="img_blog">
-                <Form.Control type="file" name="img_blog" onChange={(e) => handleChangeImages(e)} multiple/>
-          {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>}
-        </Form.Group>
+                        <Form.Label>Hình ảnh</Form.Label>
+                        <Form.Control type="file" name="img_blog_add" onChange={(e) => handleChangeImages(e)} />
+                        {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>} */}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={meta_keywords} name="meta_keywords" />
                         { alert.err_list.status == false && alert.err_list.messages.meta_keywords &&
-                                       <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Mô tả ngắn</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={description_sort} name="description_sort" />
                         { alert.err_list.status == false && alert.err_list.messages.description_sort &&
-                                       <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}                                   
+                        <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}                                   
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Mô tả</Form.Label>
@@ -96,9 +103,9 @@ function AddBlog() {
                                 }}
                                 >
                         </CKEditor>
-                        {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" /> */}
                         { alert.err_list.status == false && alert.err_list.messages.description &&
-                                       <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
+                    </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <div className="noti">Thêm thành công</div>}
                       <Button variant="primary" size="sm" name='' type="submit">

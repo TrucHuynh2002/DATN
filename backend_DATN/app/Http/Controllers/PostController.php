@@ -6,7 +6,9 @@ use App\Models\imgPost;
 use App\Models\imgUserModel;
 use App\Models\furniture_post;
 use App\Models\ProvinceModel;
+use App\Models\furniture;
 use App\Models\districtModel;
+
 use App\Models\wardModel;
 use App\Models\StreetModel;
 use Illuminate\Http\Request;
@@ -20,10 +22,10 @@ class PostController extends Controller
     public function show()
     {
         $data = Post::all();
-        $heart = DB::table('post')
-            ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
-            ->orderBy('post.id_post')
-            ->get();
+        // $heart = DB::table('post')
+        //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
+        //     ->orderBy('post.id_post')
+        //     ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -397,6 +399,68 @@ class PostController extends Controller
         return response()
             ->json([
                 'data' => $data
+            ]);
+    }
+
+    public function show_furniture_post(Request $request, $id_post)
+    {
+        $data = DB::table('furniture_post')
+        ->join('furniture','furniture_post.id_furniture','=','furniture.id_furniture')
+        -> where('furniture_post.id_post', '=', $id_post)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_address_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+        ->join('province','post.id_province','=','province.id')
+        ->join('district','post.id_district','=','district.id')
+        ->join('ward','post.id_ward','=','ward.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    } public function show_province_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+        ->join('province','post.id_province','=','province.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+     public function show_district_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+       
+        ->join('district','post.id_district','=','district.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_ward_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+        ->join('ward','post.id_ward','=','ward.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
             ]);
     }
 }

@@ -12,16 +12,23 @@ function EditBlog() {
     const {id_blog} = useParams();
     const [editBlog, setEditBlog] = useState({
         name_blog:"",
+        img_blog:[],
+        name_img_blog:"",
         meta_keywords:"",
         description_sort:"",
         description:"",
     });
+    // xu ly hinh anh
+    const [uploadImages, setUploadImages] = useState([]);
+    const handleChangeImages = (e) => {
+        setUploadImages(e.target.files)
+    }
 
     const [alert, setAlert] = useState({
         err_list: {},
     });
 
-    const { name_blog, meta_keywords, description_sort, description } = editBlog;
+    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description } = editBlog;
   
     const handleChange = (e) => {
         setEditBlog({ ...editBlog, [e.target.name]: e.target.value});
@@ -30,6 +37,7 @@ function EditBlog() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const dataForm = new FormData();
+        dataForm.append('img_blog[]',uploadImages[0])
         dataForm.append('name_blog',name_blog);
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
@@ -46,7 +54,6 @@ function EditBlog() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name_blog[0])
         }
         };
 
@@ -68,17 +75,25 @@ function EditBlog() {
                         <Form.Label>Tên blog</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"  />
                         { alert.err_list.status == false && alert.err_list.messages.name_blog &&
-                                       <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}                       
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="img_blog">
+                        <Form.Label>Hình ảnh</Form.Label>
+                        <Form.Control type="file" name="img_blog" onChange={(e) => handleChangeImages(e)} multiple/>
+                        {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>}
+                    </Form.Group>         
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={meta_keywords} name="meta_keywords" />
                         { alert.err_list.status == false && alert.err_list.messages.meta_keywords &&
-                                       <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Mô tả ngắn</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={description_sort} name="description_sort" />
                         { alert.err_list.status == false && alert.err_list.messages.description_sort &&
-                                       <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}
+                    </Form.Group>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Mô tả</Form.Label>
                         <CKEditor
@@ -96,14 +111,14 @@ function EditBlog() {
                                 }}
                                 >
                         </CKEditor>
-                        {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" /> */}
-                        { alert.err_list.status == false && alert.err_list.messages.description &&
-                                       <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}                    </Form.Group>
+                        {alert.err_list.status == false && alert.err_list.messages.description &&
+                        <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
+                    </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
-                      <Button variant="primary" size="sm" name='' type="submit">
-                      Cập nhật blog
-                      </Button>                     
+                    <Button variant="primary" size="sm" name='' type="submit">
+                        Cập nhật blog
+                    </Button>                     
                   </div>
                 </Form>     
             </div>

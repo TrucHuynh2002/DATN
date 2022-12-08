@@ -105,16 +105,15 @@ return (
                   <div style={{"marginLeft":"36px"}}>
                         <Form onSubmit={e => handleReplyComment(e)}>
                           <Form.Group>
-                          <Form.Control
-                            style={{"padding":"24px 0 24px 12px"}}
-                            type="text"
-                            name="reply_cmt" 
-                            className=''
-                            onChange = {(e) => handleChangeComment(e)}
-                            placeholder="Trả lời bình luận"
+                          <Form.Control 
+                                    style={{"padding":"24px 0 24px 12px"}}
+                                    type="text"
+                                    name="reply_cmt" 
+                                    className=''                                 
+                                    onChange = {(e) => handleChangeComment(e)}
+                                    placeholder="Trả lời bình luận"
                           />
                           </Form.Group>
-
                           <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                         </Form>
                   </div> 
@@ -148,13 +147,11 @@ return (
                                           style={{"padding":"24px 0 24px 12px"}}
                                           type="text"
                                           name="reply_cmt" 
-                                          className=''
-                                        
+                                          className=''                                        
                                           onChange = {(e) => handleChangeComment(e)}
                                           placeholder="Trả lời bình luận"
                                 />
                                 </Form.Group>
-
                                 <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                               </Form>
                         </div> 
@@ -165,15 +162,10 @@ return (
                </>    
                       
             })
-           }
-        
-
-            
+           }            
         </div>
-        </> 
-  
-    })
-    
+        </>  
+    })    
 }
  </>
 )
