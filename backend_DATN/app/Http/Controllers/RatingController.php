@@ -116,10 +116,10 @@ class RatingController extends Controller
         $three_star = 0;
         $two_star = 0;
         $one_star = 0;
-        if($get_star){
+        if(count($get_star) > 0){
             foreach ($get_star as $rate) {
                 $ratingNumber += $rate->rate;
-                $count += 1;
+                $count++;
                 if($rate->rate == 5) {
                     $five_star++;
                 }

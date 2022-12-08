@@ -27,31 +27,6 @@ function ContentComent() {
     activeComment,
     id
   } = Reply
-
-  const handleChangeComment = (e) => {
-    setComment(e.target.value)
-  }
-  const handleReplyComment = async (e) => {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('content',Comment)
-    formData.append('id_user',id_user)
-    formData.append('id_post',id_post)
-    formData.append('parent_id',getIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-    setLoader(res.data.length+1);
-  }
-  const handleComment = async (e) => {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append('content',Comment)
-    formData.append('id_user',id_user)
-    formData.append('id_post',id_post)
-    // formData.append('parent_id',getIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-    console.log(res);
-    setLoader(res.data.length+1);
-  }
   const {
     Comment_parent,
     Comment_child
@@ -66,6 +41,32 @@ function ContentComent() {
     console.log(res);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
   };
+
+  const handleChangeComment = (e) => {
+    setComment(e.target.value)
+  }
+  const handleReplyComment = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',Comment)
+    formData.append('id_user',id_user)
+    formData.append('id_post',id_post)
+    formData.append('parent_id',getIdComment)
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    setLoader(res.data.length++);
+  }
+  const handleComment = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',Comment)
+    formData.append('id_user',id_user)
+    formData.append('id_post',id_post)
+    // formData.append('parent_id',getIdComment)
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    console.log(res);
+    setLoader(res.data.length++);
+  }
+
 return (
  <>
   <h2>Có {Comment_parent.length + Comment_child.length} Bình luận</h2>
