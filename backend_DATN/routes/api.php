@@ -27,8 +27,11 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
+use App\Http\Controllers\UploadCkeditController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +48,9 @@ use App\Http\Controllers\StatisticalSController;
 // });
 // Route::get('config', [ConfigController::class, 'get_Config']);
 // Route::post('config/', [ConfigController::class, 'create_Config']);
+// TEST CK
+Route::post('uploads/', [UploadCkeditController::class, 'upload_CK']);
+
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
@@ -54,6 +60,7 @@ Route::put('config/update/{id}', [ConfigController::class, 'update_Config'])->na
 Route::get('banner/show', [BannerController::class, 'get_Banner']);
 Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
+Route::get('about/show', [ConfigController::class, 'get_About']);
 
 // category
 Route::get('/', [CategoryController::class, 'index']);
@@ -79,11 +86,13 @@ Route::delete('heartFeeling/delete/{id}', [HeartFeelingController::class, 'delet
 
 // post
 Route::get('post/show', [PostController::class, 'show']);
+Route::get('post/show_tv', [PostController::class, 'show_tv']);
 Route::get('post/showHeart', [PostController::class, 'showHeart']);
 Route::get('post/show/{id}', [PostController::class, 'show_id']);
 Route::get('post/showUser/{id}', [PostController::class, 'showUser']);
 Route::get('post/showPost/{id}', [PostController::class, 'showPost']);
 Route::post('post/create', [PostController::class, 'created_at']);
+Route::post('post/create_tv', [PostController::class, 'created_at_tv']);
 Route::put('post/update/{id}', [PostController::class, 'update']);
 Route::delete('post/delete/{id}', [PostController::class, 'delete']);
 Route::get('post/delete', [PostController::class, 'show_delete']);
@@ -167,9 +176,11 @@ Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
+Route::get('rating/average/{id_post}', [RatingController::class,'Rating_Average']);
 
 
 /// Search
+Route::post('search', [search_trendsController::class, 'search_key_word']);
 Route::get('search', [SearchController::class, 'keyword_searching']);
 
 // Province

@@ -31,6 +31,9 @@ class CommentController extends Controller
         }
         $t = new CommentModel();
         $t->content = $request->content;
+        if($request->parent_id){
+            $t->param_id = (int) $request->parent_id;
+        }
         // $t->date = $request->date;
         $t->status = 1;
         $t->id_user = $request->id_user;
@@ -102,13 +105,25 @@ class CommentController extends Controller
         $Title = "Danh sách các hỗ trợ";
         $Comment_SelectPost = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
+            ->join('img_user','users.id_user','=','img_user.id_user')
+            ->select('users.full_name','comment.content','comment.id_comment','img_user.link_img_user')
             ->where('comment.id_post', $id_post)
             ->where('comment.param_id', '=', Null)
             ->orderBy('comment.id_user', 'DESC')
             ->get();
+        
+        $Comment_Child = DB::table('comment')
+        ->join('users', 'comment.id_user', '=', 'users.id_user')
+        ->join('img_user','users.id_user','=','img_user.id_user')
+        ->select('users.full_name','comment.content','comment.id_comment','img_user.link_img_user','users.id_user','comment.param_id')
+        ->where('comment.id_post', $id_post)
+        ->whereNotNull('comment.param_id')
+        ->orderBy('comment.id_comment','DESC')
+        ->get();
         return response()
             ->json([
                 'data' => $Comment_SelectPost,
+                'comment_child' => $Comment_Child,
                 'status' => true,
             ]);
     }
@@ -170,5 +185,9 @@ class CommentController extends Controller
                 'data' => $Contact_SelectApprove,
                 'status' => true
             ]);
+    }
+
+    public function ReplyComment(Request $request, $id_post){
+
     }
 }

@@ -200,7 +200,7 @@ function AddPost() {
                             </Form.Group>
                             <Form.Group className="mb-3 description">
                                 <Form.Label>Nội dung</Form.Label>
-                                <Form.Control as="textarea" name="description" className='ckeditor' rows={3} 
+                                <Form.Control as="textarea" name="description" className='' rows={3} 
                                 value={description}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}

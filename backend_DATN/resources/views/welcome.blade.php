@@ -129,4 +129,7 @@
             </div>
         </div>
     </body>
+    <script src="./ckfinder/ckfinder.js">
+
+    </script>
 </html>

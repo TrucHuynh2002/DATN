@@ -38,7 +38,7 @@ function BannerConfig() {
         <tbody className="list-cate">
           {listBanner.map((banner,index) => {
             return  <tr key={index}>
-              <td>{index}</td>
+              <td>{index+1}</td>
               <img src={banner.link_img_banner} alt={banner.name_banner} style={{width:'100px',height:'70px',margin:"20px"}}></img>
               <td>
                   <Link to={`editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
