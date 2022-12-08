@@ -3,6 +3,7 @@ import Slide1 from '../../images/about1.jpg';
 import Figure from 'react-bootstrap/Figure';
 
 function About() {
+  
   return (
     <>
       <div className="back_re">
