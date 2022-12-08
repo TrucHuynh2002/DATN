@@ -1,13 +1,11 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import RoomNew from '../../../images/phong1.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
 
 function RoomND() {
   var user = JSON.parse(localStorage.getItem("user"));
-  // phân trang
+
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [listHeart, setListHeart] = useState([]);
@@ -91,10 +89,6 @@ function RoomND() {
     setListImg(res.data.data);   
 };
 
-// định dạng tiền tệ
-
-
-
   return (
   <>
     <div className="our_room">
@@ -119,7 +113,7 @@ function RoomND() {
                           </div>
                           <div className="bed_room">
                               <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                              <h4>Giá: {post.room_price}</h4>
+                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
                               <p>{post.description_sort}</p>
                           </div>
                       </div>

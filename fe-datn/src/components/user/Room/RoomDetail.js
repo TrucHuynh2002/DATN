@@ -9,11 +9,15 @@ function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    console.log(listImg);
+    const [listFurniture, setListFurniture] = useState([]);
+    const [listAddress, setListAddress] = useState([]);
+
     useEffect(() => {
         updateView();
         getData();
         getImg();
+        Furniture();
+        Address();
     },[]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -26,28 +30,29 @@ function RoomDetail() {
     // danh sach post
     const getData = async () => {
                 const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-                // console.log(res);
                 setListPost(res.data.data);
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        // console.log(res);
-        setListImg(res.data.data);
-        
+        setListImg(res.data.data);        
     };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
-        // console.log(update)
     };
+    const Furniture = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
+          setListFurniture(res.data.data);
+      };
+      const Address = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_address_detail/${id_post}`);  
+        setListAddress(res.data.data);
+      }; 
 
-    // show 
+    // show mo ta phong
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
-
-    
+  
   return (
     <>
         <div className="pd-wrap">
@@ -62,7 +67,7 @@ function RoomDetail() {
                                 return(
                                 <img className="img-fluid" src={a.link_img_user} alt="#" />
                                 )})}
-                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -71,7 +76,8 @@ function RoomDetail() {
                                 <div className="product-name">
                                     <h2>{a.post_name}</h2>
                                 </div>
-                                <div className="product-price-discount">{a.room_price} vnd</div>                                   
+                               
+                                <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
                                     <p>{a.description_sort}</p>
@@ -98,28 +104,18 @@ function RoomDetail() {
                                 <Modal.Title>Mô tả chi tiết</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <Row>
-                                    <Col sm={6}>
-                                        <div className=''>
-                                            <div> 
-                                                <i className='bx bx-area' style={{margin:'5px'}}></i>
-                                                {a.area}m<sup>2</sup>
-                                            </div>
-                                            <div> 
-                                                <i className='bx bx-water' style={{margin:'5px'}}></i>
-                                                {a.water_price} VNĐ
-                                            </div>
-                                            <div> 
-                                                <i className='bx bx-pin' style={{margin:'5px'}}></i>
-                                                {a.electricity_price} VNĐ
-                                            </div>
-                                            <div> 
-                                                <i className='bx bx-money-withdraw' style={{margin:'5px'}}></i>
-                                                {a.room_price} VNĐ
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
+                                <div className=''>                                   
+                                    <p>Diện tích: {a.area}m<sup>2</sup></p>    
+                                    <p>Giá nước: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</p>
+                                    <p>Giá điện: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</p>
+                                    <p>Nội thất:
+                                    {listFurniture.map(( furn, index) => {
+                                    return (                                             
+                                        <option key={index} value={furn.id_furniture}>{furn.name}</option>                           
+                                    );
+                                    })}  
+                                </p> 
+                                </div>
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>

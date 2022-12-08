@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function About() {
 
+
   const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
     getData()
@@ -14,7 +15,7 @@ function About() {
     setListAbout(result.data.data);
    };
 
-  return (
+    return (
     <>
       <div className="back_re">
         <div className="container">
