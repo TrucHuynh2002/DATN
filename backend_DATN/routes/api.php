@@ -107,6 +107,7 @@ Route::get('post/show_ward/{id}', [PostController::class, 'show_ward']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
+// Route::get('imgPost/show_tv', [imgPostController::class, 'show_tv']);
 Route::get('imgPost/show/{id}', [imgPostController::class, 'show_id']);
 Route::get('imgPost/show_detail/{id}', [imgPostController::class, 'show_img_detail']);
 Route::post('imgPost/create', [imgPostController::class, 'created_at']);

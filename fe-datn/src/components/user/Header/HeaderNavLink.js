@@ -258,6 +258,8 @@ function HeaderNavLink() {
                             </Form.Group> 
                             {/* <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>} */}
+                            { user ? 
+                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
@@ -265,6 +267,7 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
                             </Form.Group>
+                            : <div></div> }
                             <Form.Group className="mb-12 img">
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
@@ -318,7 +321,7 @@ function HeaderNavLink() {
                                </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
-                            { !user ? 
+                            { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
@@ -328,7 +331,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                             </Form.Group>
                             : <div></div> }
-                            { !user ? 
+                            { user ? 
                              user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 water_price">
                                 <Form.Label>Giá nước</Form.Label>
@@ -339,7 +342,7 @@ function HeaderNavLink() {
                             </Form.Group>     
                              : <div></div> }           
                        
-                        { !user ? 
+                        { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 electricity_price">
                                 <Form.Label>Giá điện</Form.Label>
@@ -349,7 +352,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
                             </Form.Group> 
                             : <div></div> } 
-                            { !user ?        
+                            { user ?        
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_province">
                                 <Form.Label>Tỉnh</Form.Label>
@@ -367,7 +370,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ? 
+                            { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_district">
                                 <Form.Label>Quận/Huyện</Form.Label>
@@ -384,7 +387,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ? 
+                            { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_ward">
                                 <Form.Label>Xã/Phường</Form.Label>
@@ -401,7 +404,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ? 
+                            { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Địa chỉ</Form.Label>
@@ -411,7 +414,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ? 
+                            { user ? 
                              user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Iframe map</Form.Label>
@@ -421,7 +424,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ? 
+                            { user ? 
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 area">
                                 <Form.Label>Diện tích</Form.Label>
@@ -431,7 +434,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ?
+                            { user ?
                              user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 quantity">
                                 <Form.Label>Số lượng</Form.Label>
@@ -441,7 +444,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                            { !user ?
+                            { user ?
                              user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 formGridCheckbox">
                                 <Form.Label >Nội thất</Form.Label>
@@ -461,7 +464,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                             </Form.Group>   
                             : <div></div> } 
-                             { !user ?
+                             { user ?
                             user[0].role == 0 ? "" :   
                             <Form.Group className="mb-12">
                                 <Form.Label >Loại phòng</Form.Label>
@@ -476,7 +479,7 @@ function HeaderNavLink() {
                                     {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                                 </Form.Select> </Form.Group>
                                 : <div></div> } 
-                                { !user ?
+                                { user ?
                                  user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_keywords">
                                 <Form.Label>Từ khóa - Seo</Form.Label>
@@ -486,7 +489,7 @@ function HeaderNavLink() {
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
                             </Form.Group>
                             : <div></div> } 
-                             {!user ?
+                             {user ?
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_description">
                                 <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
