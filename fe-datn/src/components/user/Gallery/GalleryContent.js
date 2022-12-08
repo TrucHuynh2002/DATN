@@ -1,60 +1,47 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import{ Figure} from'react-bootstrap';
-import TabCanTho from '../../../images/tab-cantho.png';
-import TabHaNoi from '../../../images/tab-hanoi.png';
-import TabDaNang from '../../../images/tab-danang.png';
-import TabHue from '../../../images/tab-hue.png';
-import TabHCM from '../../../images/tab-hcm.png';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 function GalleryContent() {
+  useEffect(() => {
+    getData();
+    getDataPostTrend();
+  },[]);
+  const [ListSearchTrend, setListSearchTrend] = useState([]);
+  const [ListDataPostTrend, setDataPostTrend] = useState([]);
+  const getData = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/trend`);
+    setListSearchTrend(res.data.data);
+  };
+  const getDataPostTrend = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
+    setDataPostTrend(res.data.data);
+  };
   return (
     <div className="gallery">
-    <div className="container">
-      <div className="row">
-        <div className="col-md-3 col-sm-6">
-          <div className="gallery_img show-first">
-            <Figure>
-              <img src={TabCanTho} alt="#" />
-            </Figure>
-            <div className="mask">
-              <h2 className='tab-text'>Cần Thơ</h2>
-            </div>
+      <div className="container">
+        {ListSearchTrend.map((list,a) => {
+          return (
+            <div className="row searchTrend">
+              <div className="col-1">{list.id_search}</div>
+              <div className="col-9">
+                <div> {list.key_word}</div>
+                {ListDataPostTrend.map((list,a) =>{
+                  return(
+                    <Link className="link-info link_____" to={`../roomdetail/${list.id_post}`}>{list.post_name}</Link>
+                  )
+                }
+                )}
+             </div>
+              <div className="col-2 view___">
+                <div>{list.view}</div>
+                <span >lượt tìm kiếm</span>
+              </div>
           </div>
-        </div>
-        <div className="col-md-3 col-sm-6">
-          <div className="gallery_img show-first">
-            <Figure>
-              <img src={TabHaNoi} alt="#" />
-            </Figure>
-            <div className="mask">
-              <h2 className='tab-text'>Hà Nội</h2>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 col-sm-6 ">
-          <div className="gallery_img show-first">
-            <Figure>
-              <img src={TabDaNang} alt="#" />
-            </Figure>
-            <div className="mask">
-              <h2 className='tab-text'>Đà Nẵng</h2>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-3 col-sm-6">
-          <div className="gallery_img show-first">
-            <Figure>
-              <img src={TabHCM} alt="#" />
-            </Figure>
-            <div className="mask">
-              <h2 className='tab-text'>Hồ Chí Minh</h2>
-            </div>
-          </div>
-        </div>
+          )
+        })}
       </div>
     </div>
-  </div>
   )
 }
 

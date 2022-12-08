@@ -29,7 +29,6 @@ function UpdateAccount() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
         }
         else{           
             setAlert({
@@ -44,7 +43,6 @@ function UpdateAccount() {
 
     const loadCate = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/user/showAcount/${id_Account}`);
-        console.log(result);
         setEditAccount(result.data.data);
     };
   return (

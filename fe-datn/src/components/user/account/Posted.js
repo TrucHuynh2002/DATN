@@ -56,14 +56,13 @@ function Posted() {
                         <span> {post.address}  | </span>
                         <span> {post.created_at}  | </span>
                     </div>
-                    {user ? 
-                        user[0].id = post.id_user  ?
+                    {!user ? <div></div> :
+                         user[0].id != post.id_user  ?  <div></div> :
                             <div className='button-fdp row'>
                                 <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
                                 <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
-                            : <div></div> 
-                        : <div></div> }
+                           }
                     <hr></hr>                
                 </div>
             </div>

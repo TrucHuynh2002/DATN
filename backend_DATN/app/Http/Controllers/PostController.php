@@ -10,6 +10,7 @@ use App\Models\furniture;
 use App\Models\districtModel;
 
 use App\Models\wardModel;
+use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use Illuminate\Support\Facades\Validator;
@@ -21,10 +22,10 @@ class PostController extends Controller
     public function show()
     {
         $data = Post::all();
-        $heart = DB::table('post')
-            ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
-            ->orderBy('post.id_post')
-            ->get();
+        // $heart = DB::table('post')
+        //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
+        //     ->orderBy('post.id_post')
+        //     ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -43,6 +44,18 @@ class PostController extends Controller
             ->json([
                 'data' => $data,
                 'heart' => $heart
+            ]);
+    }
+    public function show_trend()
+    {
+        $data = Post::where('view', '>', 0)
+            ->orderBy('post.id_post', 'DESC')
+            ->take(1)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_id(Request $request, $id)
@@ -84,9 +97,22 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-    public function show_ward(Request $request, $id_district)
+    public function show_ward(Request $request)
     {
-        $data = wardModel::where('ward._district_id', '=', $id_district)->get();
+        $data = wardModel::where('_province_id', '=', $request->id_province)
+            ->where('_district_id', '=', $request->id_district)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_tree(Request $request)
+    {
+        $data = StreetModel::where('_province_id', '=', $request->id_province)
+            ->where('_district_id', '=', $request->id_district)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -118,104 +144,58 @@ class PostController extends Controller
                 'data' => $data
             ]);
     }
-    public function created_at_tv(Request $request)
-    {
-        $validation = Validator::make($request->all(), [
-            'post_name' => 'required',
-            'description' => 'required',
-            'description_sort' => 'required',
-            'id_user' => 'required',
-        ], [
-            'post_name.required' => 'Không được bỏ trống',
-            'description.required' => 'Không được bỏ trống',
-            'description_sort.required' => 'Không được bỏ trống',
-            'id_user.required' => 'Không được bỏ trống',
-        ]);
-        if ($validation->fails()) {
-            return response()
-                ->json([
-                    'messages' =>  $validation->messages(),
-                    'status' => false
-                ]);
-        }
-        $Post = new Post();
-        // thêm post
-        $Post->post_name = $request->post_name;
-        $Post->description_sort = $request->description_sort;
-        $Post->description = $request->description;
-        $Post->id_user = $request->id_user; // khóa ngoại
-        $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        $get_image = $request->file('img');
-        if ($request->file('img')) {
-            foreach ($get_image as $img) {
-                $get_name_image = $img->getClientOriginalName();
-                // $name = $get_name_image;
-                $path = 'uploads/';
-                $name_image  = current(explode('.', $get_name_image));
-                $name_image = explode('.', $get_name_image);
-                $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
-                // $imgPost->img = $new_image;
-                $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-                $imgPost->save();
-            }
-            // return response()->json([
-            //     'img' => $name
-            // ]);
-        }
-        $Post->save();
-        return response()
-            ->json([
-                'data' =>  $Post,
-                'status' => true,
-            ]);
-    }
     public function created_at(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'post_name' => 'required',
-            // 'quantity' => 'required',
-            // 'area' => 'required',
-            // 'room_price' => 'required',
-            // 'electricity_price' => 'required',
-            // 'water_price' => 'required',
-            // 'address' => 'required',
-            // 'description' => 'required',
-            'description_sort' => 'required',
-            // 'meta_keywords' => 'required',
-            // 'meta_title' => 'required',
-            // 'meta_description' => 'required',
-            // 'verification' => 'required',
-            'id_user' => 'required',
-            // 'id_furniture' => 'required',
-            // 'id_roomType' => 'required'
-        ], [
-            'post_name.required' => 'Không được bỏ trống',
-            // 'quantity.required' => 'Không được bỏ trống',
-            // 'area.required' => 'Không được bỏ trống',
-            // 'room_price.required' => 'Không được bỏ trống',
-            // 'electricity_price.required' => 'Không được bỏ trống',
-            // 'water_price.required' => 'Không được bỏ trống',
-            // 'address.required' => 'Không được bỏ trống',
-            // 'description.required' => 'Không được bỏ trống',
-            'description_sort.required' => 'Không được bỏ trống',
-            // 'meta_keywords.required' => 'Không được bỏ trống',
-            // 'meta_title.required' => 'Không được bỏ trống',
-            // 'meta_description.required' => 'Không được bỏ trống',
-            // 'verification.required' => 'Không được bỏ trống',
-            'id_user.required' => 'Không được bỏ trống',
-            // 'id_furniture.required' => 'Không được bỏ trống',
-            // 'id_roomType.required' => 'Không được bỏ trống',
-        ]);
-        if ($validation->fails()) {
-            return response()
-                ->json([
-                    'messages' =>  $validation->messages(),
-                    'status' => false
-                ]);
-        }
+        // $validation = Validator::make($request->all(), [
+        //     'post_name' => 'required',
+        //     'quantity' => 'required',
+        //     'area' => 'required',
+        //     'room_price' => 'required',
+        //     'electricity_price' => 'required',
+        //     'water_price' => 'required',
+        //     'address' => 'required',
+        //     'id_province' => 'required',
+        //     'id_district' => 'required',
+        //     'id_ward' => 'required',
+        //     'id_street' => 'required',
+        //     'description' => 'required',
+        //     'description_sort' => 'required',
+        //     'meta_keywords' => 'required',
+        //     'meta_title' => 'required',
+        //     'meta_description' => 'required',
+        //     'verification' => 'required',
+        //     'id_user' => 'required',
+        //     'id_furniture' => 'required',
+        //     'id_roomType' => 'required',
+        // ], [
+        //     'post_name.required' => 'Không được bỏ trống',
+        //     'quantity.required' => 'Không được bỏ trống',
+        //     'area.required' => 'Không được bỏ trống',
+        //     'room_price.required' => 'Không được bỏ trống',
+        //     'electricity_price.required' => 'Không được bỏ trống',
+        //     'water_price.required' => 'Không được bỏ trống',
+        //     'address.required' => 'Không được bỏ trống',
+        //     'id_province.required' => 'Không được bỏ trống',
+        //     'id_district.required' => 'Không được bỏ trống',
+        //     'id_ward.required' => 'Không được bỏ trống',
+        //     'id_street.required' => 'Không được bỏ trống',
+        //     'description.required' => 'Không được bỏ trống',
+        //     'description_sort.required' => 'Không được bỏ trống',
+        //     'meta_keywords.required' => 'Không được bỏ trống',
+        //     'meta_title.required' => 'Không được bỏ trống',
+        //     'meta_description.required' => 'Không được bỏ trống',
+        //     'verification.required' => 'Không được bỏ trống',
+        //     'id_user.required' => 'Không được bỏ trống',
+        //     'id_furniture.required' => 'Không được bỏ trống',
+        //     'id_roomType.required' => 'Không được bỏ trống',
+        // ]);
+        // if ($validation->fails()) {
+        //     return response()
+        //         ->json([
+        //             'messages' =>  $validation->messages(),
+        //             'status' => false
+        //         ]);
+        // }
         $Post = new Post();
         // thêm post
         $Post->post_name = $request->post_name;
@@ -229,6 +209,7 @@ class PostController extends Controller
         $Post->id_province = $request->id_province;
         $Post->id_district = $request->id_district;
         $Post->id_ward = $request->id_ward;
+        $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
         $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
@@ -242,7 +223,6 @@ class PostController extends Controller
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             $array_fur = explode(',', $request->id_furniture);
             foreach ($array_fur as $furniture) {
@@ -253,33 +233,24 @@ class PostController extends Controller
             }
         }
         $get_image = $request->file('img');
-        // $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
-                // $name = $get_name_image;
                 $path = 'uploads/';
                 $name_image  = current(explode('.', $get_name_image));
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
-                // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
                 $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
-            // return response()->json([
-            //     'img' => $name
-            // ]);
         }
-        # code...
-
         return response()
             ->json([
                 'data' =>  $Post,
                 'status' => true,
-                // '' => $request->file('img')
             ]);
     }
     public function update(Request $request, $id)
@@ -445,9 +416,45 @@ class PostController extends Controller
     public function show_address_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-        ->join('province','post.id_province','=','province.id_province')
-        ->join('district','post.id_district','=','district.id_district')
-        ->join('ward','post.id_ward','=','ward.id_ward')
+        ->join('province','post.id_province','=','province.id')
+        ->join('district','post.id_district','=','district.id')
+        ->join('ward','post.id_ward','=','ward.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    } public function show_province_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+        ->join('province','post.id_province','=','province.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+     public function show_district_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+       
+        ->join('district','post.id_district','=','district.id')
+        ->where('post.id_post', '=', $id_post)
+        ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_ward_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+        ->join('ward','post.id_ward','=','ward.id')
         ->where('post.id_post', '=', $id_post)
         ->get();
         return response()

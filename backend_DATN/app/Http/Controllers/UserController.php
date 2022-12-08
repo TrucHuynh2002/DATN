@@ -108,11 +108,16 @@ class UserController extends Controller
         $t->phone = $request->phone;
         $t->address = $request->address;
         $t->role = $request->role;
-        $t->id_img_user = 1;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
-        // $t->created_at= Carbon::today();
         $t->save();
+        $getUser = User::orderby('id_user', 'DESC')->first();
+        $imgUser = new imgUserModel();
+        $imgUser->type_img_user = 'Hình đại diện';
+        $imgUser->name_img = $getUser->full_name;
+        $imgUser->link_img_user = 'https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg';
+        $imgUser->id_user = $getUser->id_user;
+        $imgUser->save();
         return response()
             ->json([
                 'data' => $t,
@@ -212,7 +217,7 @@ class UserController extends Controller
                     'status' => false
                 ]);
         }
-        $user_admin = User::where('email', $request->email)->where('role', '=', '1')->first();
+        $user_admin = User::where('email', $request->email)->where('role', '=', '2')->first();
         if ($user_admin) {
             $tokenResult = $user_admin->createToken('authToken')->plainTextToken;
             return response()->json([

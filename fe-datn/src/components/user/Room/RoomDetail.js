@@ -10,14 +10,19 @@ function RoomDetail() {
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
     const [listFurniture, setListFurniture] = useState([]);
-    const [listAddress, setListAddress] = useState([]);
+    const [listprovince, setListprovince] = useState([]);
+    const [listdistrict, setListdistrict] = useState([]);
+    const [listward, setListward] = useState([]);
+    // const [listAddress, setListAddress] = useState([]);
 
     useEffect(() => {
         updateView();
         getData();
         getImg();
+        province();
+        district();
+        ward();
         Furniture();
-        Address();
     },[]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -26,7 +31,6 @@ function RoomDetail() {
         showBtn.style.display = 'none'
         hideBtn.style.display = 'block'        
     };
-
     // danh sach post
     const getData = async () => {
                 const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
@@ -43,11 +47,26 @@ function RoomDetail() {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
           setListFurniture(res.data.data);
       };
-      const Address = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_address_detail/${id_post}`);  
-        setListAddress(res.data.data);
+      const province = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
+        console.log(res);
+          setListprovince(res.data.data);
       }; 
-
+      const district = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
+        console.log(res);
+          setListdistrict(res.data.data);
+      };   
+      const ward = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
+        console.log(res);
+          setListward(res.data.data);
+      };  
+    //    const street = async () => {
+    //     const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
+    //     console.log(res);
+    //       setListstreet(res.data.data);
+    //   }; 
     // show mo ta phong
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -113,8 +132,39 @@ function RoomDetail() {
                                     return (                                             
                                         <option key={index} value={furn.id_furniture}>{furn.name}</option>                           
                                     );
-                                    })}  
-                                </p> 
+                                    })}
+                                    </p> 
+                                    <p> Tinh : </p>  
+                                    {listprovince.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                     <p> quna : </p>  
+                                    {listdistrict.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                     <p> xa : </p>  
+                                    {listward.map(( furn, index) => {
+                                    return (   
+                                        <>
+                                        <p>{furn._name}</p>   
+                                       
+                                        </> 
+                                                               
+                                    );
+                                    })}
+                                   
                                 </div>
                             </Modal.Body>
                             <Modal.Footer>
