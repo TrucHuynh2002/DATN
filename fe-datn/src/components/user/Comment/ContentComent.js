@@ -88,11 +88,12 @@ return (
                         
     </Form>
   </div>
+  <hr />
   {Comment_parent.map((comment, index) => {
     return <>
        <div key={index}>
            <div key={index}>
-            <span style={{color: "orange"}} ><i class="bi bi-star-fill"></i></span>
+            {/* <span style={{color: "orange"}} ><i class="bi bi-star-fill"></i></span> */}
               <div>
                 <img src={comment.link_img_user} alt="images" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
                 <b className='cmt_name'>{comment.full_name}</b>
@@ -132,7 +133,7 @@ return (
                    <div key={i}>
                     <hr />
                       <div style={{ "paddingLeft": "36px" }}>
-                      <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span>
+                      {/* <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span> */}
                       <div>
                         <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                         <b className='cmt_name'>{cmt.full_name}</b>
