@@ -57,14 +57,13 @@ function Bloged() {
                                 <span>{a.full_name}  |</span>
                                 <span> {a.created_at}  | </span>
                             </div>
-                            {user ? 
-                                user[0].id = a.id_user  ?
+                            {!user ? <div></div> :
+                                user[0].id != a.id_user  ?  <div></div> :
                                     <div className='button-fdp row'>
                                         <Link className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</Link>
                                         <Button className='button-del' onClick={() => deleteBlog(a.id_blog)} >Xóa</Button>
                                     </div>
-                                : <div></div> 
-                            : <div></div> }
+                                 }
                             <hr></hr>
                         </div>
                     </div>

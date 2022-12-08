@@ -36,7 +36,6 @@ function Comment() {
         const {id_user_tow} = addNotify;
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
         const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-   
         setAlert({
           err_list: res.data
           });

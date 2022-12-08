@@ -124,8 +124,8 @@ function InfoAccount() {
                     </div>
                      );
                 })}
-                 {!user ? 
-                        user[0].id = id_user  ?
+                 {!user ? <div></div> :
+                        user[0].id != id_user  ?  <div></div> :
                             <div className='col-12'>
                                 <Link to={`../update_acc/${id_user}`}>
                                     <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
@@ -134,7 +134,7 @@ function InfoAccount() {
                                     <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
                                 </Link>
                             </div>
-                          : <div></div>  : <div></div> }
+                           }
             </div>
       
   )
