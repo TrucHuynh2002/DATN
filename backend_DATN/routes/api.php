@@ -22,11 +22,14 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\comment_QAController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\img_QAController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\QAController;
 use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
@@ -100,6 +103,10 @@ Route::get('post/status', [PostController::class, 'show_status']);
 Route::put('post/updateView/{id}', [PostController::class, 'updateView']);
 Route::get('post/user/{id}', [PostController::class, 'show_user']);
 
+// Q&A
+Route::get('qa/show', [QAController::class, 'show']);
+Route::post('qa/created_at', [QAController::class, 'created_at']);
+
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
 Route::get('post/show_district/{id}', [PostController::class, 'show_district']);
@@ -116,6 +123,10 @@ Route::post('imgPost/create', [imgPostController::class, 'created_at']);
 Route::put('imgPost/update/{id}', [imgPostController::class, 'update']);
 Route::delete('imgPost/delete/{id}', [imgPostController::class, 'delete']);
 
+//imgQA
+Route::get('imgQa/show', [img_QAController::class, 'show']);
+Route::get('imgQa/show/{id}', [img_QAController::class, 'show_id']);
+Route::post('imgQa/create', [img_QAController::class, 'create']);
 
 // Furniture
 Route::get('furniture/show', [FurnitureController::class, 'show']);
@@ -145,11 +156,15 @@ Route::post('comment/create', [CommentController::class, 'CommentAdd']);
 Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
+// CommentQa
+Route::get('commentqa/show', [comment_QAController::class, 'Comment_SelectAll']);
+Route::get('commentqa/post/show/{id_post}', [comment_QAController::class, 'Comment_SelectPost']);
+Route::get('commentqa/show/{id}', [comment_QAController::class, 'Comment_SelectOne']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::get('user/showAcount/{id}', [UserController::class, 'UserAcount']);
-// Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
+Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);

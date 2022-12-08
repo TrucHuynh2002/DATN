@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\imgPost;
+use App\Models\imgUserModel;
 use App\Models\furniture_post;
 use App\Models\ProvinceModel;
 use App\Models\districtModel;
@@ -132,6 +133,7 @@ class PostController extends Controller
     {
         $data = DB::table('post')
             ->join('users', 'post.id_user', '=', 'users.id_user')
+            ->join('img_user', 'img_user.id_user', '=', 'post.id_user')
             ->where('users.role', '=', '0')
             ->orderBy('post.id_post', 'DESC')
             ->get();
