@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 function QA() {
 
-  const [listPost, setListPost] = useState([]);
+  const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
 
   useEffect(() => {
@@ -15,14 +15,15 @@ function QA() {
 
    // danh sach 
    const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/post/show_tv');
-    setListPost(res.data.data);
+    const res = await axios.get('http://127.0.0.1:8000/api/qa/show');
+    setListQa(res.data.data);
    };
    //danh sach img
   const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    setListImg(res.data.data);
-  }
+    const res = await axios.get(`http://127.0.0.1:8000/api/imgQa/show`);
+    // console.log(res);
+    setListImg(res.data.data);  
+};
 
   return (
     <>
@@ -39,15 +40,22 @@ function QA() {
         </div>
         <div className="our_room">
           <div className="container">
-            {listPost.map((listPost, index) => {
+            {/* <div className="row">   */}
+            {listQa.map((listQa, index) => {
               return (
               <div className="qa">
-                <h3>{listPost.post_name}</h3>
-                <h4>{listPost.description_sort}</h4>
-                <p>{listPost.description}</p>
+                <div className='qa_avata'>
+              
+                    <img src={listQa.link_img_user}
+                     alt='' className="avt_qa" />
+     
+                    <span><Link to={`../profile/${listQa.id_user}`}>{listQa.full_name}</Link></span> - <span>{listQa.created_at}</span>
+                </div><br></br>
+                <h3>{listQa.title}</h3>
+                <p>{listQa.content}</p>
                 {listImg.map((a, index) => {
-                  return a.id_post == listPost.id_post && (
-                <img src={a.link_img_user} alt='' width={400} height={200}></img>
+                  return a.id_qa == listQa.id_qa && (
+                <img src={a.link_img_qa} width={400} height={200}></img>
                 )
             })}
 
