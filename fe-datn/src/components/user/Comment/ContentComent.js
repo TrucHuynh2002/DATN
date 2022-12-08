@@ -27,6 +27,20 @@ function ContentComent() {
     activeComment,
     id
   } = Reply
+  const {
+    Comment_parent,
+    Comment_child
+  } = listComment
+  useEffect(() => {
+      getData();
+  },[loader]);
+
+  // danh sach Comment
+  const getData = async () => {
+    const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
+    console.log(res);
+    setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
+  };
 
   const handleChangeComment = (e) => {
     setComment(e.target.value)
@@ -39,7 +53,7 @@ function ContentComent() {
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-    setLoader(res.data.length+1);
+    setLoader(res.data.length++);
   }
   const handleComment = async (e) => {
     e.preventDefault();
@@ -49,23 +63,13 @@ function ContentComent() {
     formData.append('id_post',id_post)
     // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-    setLoader(res.data.length+1);
+    console.log(res);
+    setLoader(res.data.length++);
   }
-  const {
-    Comment_parent,
-    Comment_child
-  } = listComment
-  useEffect(() => {
-      getData();
-  },[loader]);
 
-  // danh sach Comment
-  const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
-    setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
-  };
 return (
  <>
+  <h2>Có {Comment_parent.length + Comment_child.length} Bình luận</h2>
   <div>
     <Form onSubmit={e => handleComment(e)}>
                           <Form.Group>
