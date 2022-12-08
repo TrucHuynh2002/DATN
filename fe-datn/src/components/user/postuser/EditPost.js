@@ -3,6 +3,8 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditPost() {
 
@@ -227,9 +229,24 @@ function EditPost() {
                         </Form.Group>
                         <Form.Group className="mb-3 description">
                             <Form.Label>Nội dung</Form.Label>
-                            <Form.Control as="textarea" name="description" className='' rows={3} 
+                            <CKEditor
+                                editor={ClassicEditor}
+                                data={description}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
+                                }}
+                                onChange={(event,editor)=> {
+                                    const data=editor.getData()
+                                    setEditPost({ ...editPost, description : data});
+                                    console.log(description);
+                                }}
+                                >
+                        </CKEditor>
+                            {/* <Form.Control as="textarea" name="description" className='' rows={3} 
                             value={description}
-                            onChange = {(e) => handleChange(e)}/>
+                            onChange = {(e) => handleChange(e)}/> */}
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
                         </Form.Group>
                         <Form.Group className="mb-3 room_price">

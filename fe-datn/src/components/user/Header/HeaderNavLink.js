@@ -304,9 +304,13 @@ function HeaderNavLink() {
                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
+
                                 <Form.Control type="number" name="room_price" className="" 
                                 value={room_price}
                                 onChange = {(e) => handleChange(e)}/>
+
+
+
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                             </Form.Group>
                             : <div></div> }

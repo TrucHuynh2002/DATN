@@ -207,9 +207,13 @@ function AddPost() {
                             </Form.Group>
                             <Form.Group className="mb-3 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
+
+
                                 <Form.Control type="number" name="room_price" className="" 
                                 value={room_price}
                                 onChange = {(e) => handleChange(e)}/>
+
+
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.room_price[0]}</div>}
                             </Form.Group>
                             <Form.Group className="mb-3 water_price">

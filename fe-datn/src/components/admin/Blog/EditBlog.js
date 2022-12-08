@@ -3,6 +3,8 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
+import {CKEditor} from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditBlog() {
     
@@ -79,7 +81,22 @@ function EditBlog() {
                                        <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}                    </Form.Group>
                     <Form.Group className="mb-3" controlId="description">
                         <Form.Label>Mô tả</Form.Label>
-                        <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" />
+                        <CKEditor
+                                editor={ClassicEditor}
+                                data={description}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
+                                }}
+                                onChange={(event,editor)=> {
+                                    const data=editor.getData()
+                                    setEditBlog({ ...editBlog, description : data});
+                                    console.log(description);
+                                }}
+                                >
+                        </CKEditor>
+                        {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" /> */}
                         { alert.err_list.status == false && alert.err_list.messages.description &&
                                        <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}                    </Form.Group>
                   <div className="d-grid gap-2">
