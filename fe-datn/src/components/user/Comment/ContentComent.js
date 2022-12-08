@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
-// import moment from 'moment';
+import moment from 'moment'
 import axios from 'axios';
 
 function ContentComent() {
@@ -18,7 +18,15 @@ function ContentComent() {
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
   console.log(getIdComment);
-  const [Reply,setReply] = useState(false);
+  const [Reply,setReply] = useState({
+    activeComment: false,
+    id:""
+  });
+
+  const {
+    activeComment,
+    id
+  } = Reply
 
   const handleChangeComment = (e) => {
     // console.log(e.target.value)
@@ -31,6 +39,16 @@ function ContentComent() {
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    setLoader(res.data.length+1);
+  }
+  const handleComment = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',Comment)
+    formData.append('id_user',id_user)
+    formData.append('id_post',id_post)
+    // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     setLoader(res.data.length+1);
   }
@@ -51,6 +69,25 @@ function ContentComent() {
   };
 return (
  <>
+  <div>
+    
+    <Form onSubmit={e => handleComment(e)}>
+                          <Form.Group>
+                          <Form.Control 
+                                    style={{"padding":"24px 0 24px 12px"}}
+                                    type="text"
+                                    name="reply_cmt" 
+                                    className=''
+                                   
+                                    onChange = {(e) => handleChangeComment(e)}
+                                    placeholder="Trả lời bình luận"
+                          />
+                          </Form.Group>
+
+                          <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                        
+    </Form>
+  </div>
   {Comment_parent.map((comment, index) => {
     return <>
        <div key={index}>
@@ -60,12 +97,12 @@ return (
                 <img src={comment.link_img_user} alt="images" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
                 <b className='cmt_name'>{comment.full_name}</b>
                 <p className='cmt_name1'>{comment.content}</p> 
-                {/* <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).fromNow()}</p>   */}
+                <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).local().startOf('day').fromNow()}</p>  
               </div>
               <div>
-                  <span onClick={() => {setGetIdComment(comment.id_comment); setReply(true)}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
+                  <span onClick={() => {setGetIdComment(comment.id_comment); setReply({...Reply,activeComment:true,id:comment.id_comment})}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
                   {
-                  Reply == true 
+                  activeComment && id == comment.id_comment
                   &&
                   <div style={{"marginLeft":"36px"}}>
                         <Form onSubmit={e => handleReplyComment(e)}>
@@ -98,12 +135,12 @@ return (
                         <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                         <b className='cmt_name'>{cmt.full_name}</b>
                         <p className='cmt_name1'>{cmt.content}</p>
-                        {/* <p>{moment(cmt.created_at).fromNow()}</p> */}
+                        <p>{moment(comment.created_at).local().startOf('day').fromNow()}</p>
                       </div>
                       <div>
-                        <span onClick={() => {setGetIdComment(cmt.id_comment); setReply(true)}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
+                        <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
                         {
-                        Reply == true 
+                        activeComment && id == cmt.id_comment
                         &&
                         <div style={{"marginLeft":"36px"}}>
                               <Form onSubmit={e => handleReplyComment(e)}>

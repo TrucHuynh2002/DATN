@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
-// import HeartRoom from '../HeartRoom';
+import Modal from 'react-bootstrap/Modal';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -34,11 +34,19 @@ function RoomDetail() {
         // console.log(res);
         setListImg(res.data.data);
         
-};
+    };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
         // console.log(update)
-    }
+    };
+
+    // show 
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
     
   return (
     <>
@@ -55,13 +63,6 @@ function RoomDetail() {
                                 <img className="img-fluid" src={a.link_img_user} alt="#" />
                                 )})}
                                 </div>
-                            {/* <div className="item item-img">
-                            
-                                <div className="col-3">
-                                    <img src={a.link_img_user} alt="#" />
-                                </div>
-           
-                            </div> */}
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -70,34 +71,17 @@ function RoomDetail() {
                                 <div className="product-name">
                                     <h2>{a.post_name}</h2>
                                 </div>
-                                {/* <div className="reviews-counter">
-                                    <div className="rate">
-                                        <input type="radio" id="star5" name="rate" defaultValue={5} defaultChecked="" />
-                                        <label htmlFor="star5" title="text">5 stars </label>
-                                        <input type="radio"id="star4"name="rate" defaultValue={4} defaultChecked=""/>
-                                        <label htmlFor="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" defaultValue={3} defaultChecked=""/>
-                                        <label htmlFor="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" defaultValue={2} />
-                                        <label htmlFor="star2" title="text"> 2 stars </label>
-                                        <input type="radio" id="star1" name="rate" defaultValue={1} />
-                                        <label htmlFor="star1" title="text"> 1 star</label>
-                                    </div>
-                                    <div>
-                                        <span>3 đánh giá</span>
-                                    </div>
-                                </div> */}
                                 <div className="product-price-discount">{a.room_price} vnd</div>                                   
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
-                                    <p> {a.description_sort}</p>
+                                    <p>{a.description_sort}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="product-count">
-                            {/* <Button className="round-btn">
-                                 <HeartRoom /> *
-                            </Button> */}
+                            <Button onClick={handleShow} className="round-black-btn">
+                                Chi tiết
+                            </Button>
                             <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
                                 <span id="button_contact">Liên hệ ngay</span>
@@ -108,6 +92,42 @@ function RoomDetail() {
                                 Thông tin người đăng
                             </Link>
                         </div>
+                        {/* start show chi tiết phòng */}
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Mô tả chi tiết</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Row>
+                                    <Col sm={6}>
+                                        <div className=''>
+                                            <div> 
+                                                <i className='bx bx-area' style={{margin:'5px'}}></i>
+                                                {a.area}m<sup>2</sup>
+                                            </div>
+                                            <div> 
+                                                <i className='bx bx-water' style={{margin:'5px'}}></i>
+                                                {a.water_price} VNĐ
+                                            </div>
+                                            <div> 
+                                                <i className='bx bx-pin' style={{margin:'5px'}}></i>
+                                                {a.electricity_price} VNĐ
+                                            </div>
+                                            <div> 
+                                                <i className='bx bx-money-withdraw' style={{margin:'5px'}}></i>
+                                                {a.room_price} VNĐ
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button> 
+                            </Modal.Footer>
+                        </Modal>
+                        {/* end show chi tiết phòng */}
                         <div className="product-count-help" >
                             <div>
                             <i className='bx bx-support'></i>
