@@ -110,7 +110,9 @@ Route::post('qa/created_at', [QAController::class, 'created_at']);
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
 Route::get('post/show_district/{id}', [PostController::class, 'show_district']);
-Route::get('post/show_ward/{id}', [PostController::class, 'show_ward']);
+Route::get('post/show_ward', [PostController::class, 'show_ward']);
+Route::get('post/show_tree', [PostController::class, 'show_tree']);
+Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
@@ -192,12 +194,13 @@ Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
-Route::get('rating/average/{id_post}', [RatingController::class,'Rating_Average']);
+Route::get('rating/average/{id_post}', [RatingController::class, 'Rating_Average']);
 
 
 /// Search
 Route::post('search', [search_trendsController::class, 'search_key_word']);
 Route::get('search', [SearchController::class, 'keyword_searching']);
+Route::get('trend', [search_trendsController::class, 'show']);
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);

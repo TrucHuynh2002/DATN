@@ -9,7 +9,6 @@ class search_trendsController extends Controller
 {
     public function search_key_word(Request $request)
     {
-
         $get_key_word = search_trendsModel::where('key_word', '=', $request->key_word)->first();
         if ($get_key_word) {
             $get_key_word->view = $get_key_word->view + 1;
@@ -30,5 +29,14 @@ class search_trendsController extends Controller
                     'status' => true
                 ]);
         }
+    }
+    public function show(Request $request)
+    {
+        $count_post = search_trendsModel::where('view', '>', 0)->orderby('id_search', 'DESC')->take(10)->get();
+        return response()
+            ->json([
+                'data' => $count_post,
+                'status' => true
+            ]);
     }
 }

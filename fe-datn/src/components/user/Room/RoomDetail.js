@@ -3,13 +3,13 @@ import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
-// import HeartRoom from '../HeartRoom';
 
 function RoomDetail() {
     const {id_post} = useParams();
+    // console.log(id_post);
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    console.log(listImg);
+    // console.log(listImg);
     useEffect(() => {
         updateView();
         getData();
@@ -25,19 +25,15 @@ function RoomDetail() {
 
     // danh sach post
     const getData = async () => {
-                const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-                // console.log(res);
-                setListPost(res.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+        setListPost(res.data.data);
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        // console.log(res);
         setListImg(res.data.data);
-        
-};
+    };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
-        // console.log(update)
     }
     
   return (
@@ -53,8 +49,9 @@ function RoomDetail() {
                             {listImg.map((a, index) => {
                                 return(
                                 <img className="img-fluid" src={a.link_img_user} alt="#" />
-                                )})}
-                                </div>
+                                )
+                                })}
+                            </div>
                             {/* <div className="item item-img">
                             
                                 <div className="col-3">

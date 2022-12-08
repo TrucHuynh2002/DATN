@@ -22,6 +22,7 @@ class Post extends Model
         'id_province',
         'id_district',
         'id_ward',
+        'id_street',
         'ifarme',
         'meta_title',
         'meta_description',

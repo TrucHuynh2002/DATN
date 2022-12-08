@@ -16,9 +16,11 @@ function Notify() {
     },[]);
      // danh sach notify
   const getDatafavorite = async () => {
-    const id_user = user ? user[0].id : "";
-   const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
-      setListnotifyfavorite(ress.data.data);
+    const id_user = user ? user[0].id : 0;
+    if(id_user != 0){
+        const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
+        setListnotifyfavorite(ress.data.data);
+    }
   };
 
   // xoa notify
@@ -28,10 +30,11 @@ function Notify() {
   };
   // danh sach notify interactive
   const getDataInteractive = async () => {
-    const id_user = user ? user[0].id : "";
+    const id_user = user ? user[0].id : 0;
+    if(id_user != 0){
     const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-    // console.log(res);
-      setListnotifyInteractive(res.data.data);
+          setListnotifyInteractive(res.data.data);
+    }
 };
 // xoa notify interactive
 const deletenotifyInteractive = async (id_notify_interactive) => {

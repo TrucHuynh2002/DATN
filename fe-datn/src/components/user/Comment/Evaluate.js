@@ -36,7 +36,6 @@ function Evaluate() {
   // danh sach post
   const getData = async () => {
   const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-  // console.log(res);
   setListPost(res.data.data);
   };
   // Getting Star

@@ -7,7 +7,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function HeaderNavLink() {
     // CKEditor.replace('description')
-    // console.log(user[0].id)
+   
     // const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     const handleSLogout = async (e) => {
@@ -34,6 +34,7 @@ function HeaderNavLink() {
             id_province : "",
             id_district : "",
             id_ward : "",
+            id_street : "",
             id_user: "",
             id_roomType: "",
             img: [],
@@ -54,9 +55,10 @@ function HeaderNavLink() {
             meta_title,
             meta_description,
             meta_keywords,
-            id_province ,
-            id_district ,
-            id_ward ,
+            id_province,
+            id_district,
+            id_ward,
+            id_street,
             id_user,
             id_roomType,
             img,
@@ -72,24 +74,24 @@ function HeaderNavLink() {
         const handleChange = async (e) => {
             setAddPost({ ...addPost, [e.target.name] : e.target.value});
         }
-        const handledistrice = async (e) => {
+        const [addProvince, setProvince] = useState([]);
+
+        const handleProvince = async (e) => {
             setAddPost({ ...addPost, [e.target.name] : e.target.value});
-            getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+            setProvince({...addProvince,[e.id_province] : e.target.value});
+            getDataDistrict(({[e.id_province] : e.target.value}).undefined);
         }
-       
-        const handleadd = async (e) => {
+        const handleDistrict = async (e) => {
             getDataWard(({[e.id_district] : e.target.value}).undefined)
-            setAddPost({ ...addPost, [e.target.name] : e.target.value});
-        }
-        const handssdbdfb = async (e) => {
+            getDataStreet(({[e.id_district] : e.target.value}).undefined);
             setAddPost({ ...addPost, [e.target.name] : e.target.value});
         }
         // Lấy nội thất
         const [checkFur, setFur] = useState([]);
-        const [furniture, setfuriture] = useState([]);
+        const [furniture, setFuriture] = useState([]);
         const get_furnitures = async () => {
             var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
-            setfuriture(get_data.data.data)
+            setFuriture(get_data.data.data)
         };
         useEffect(() => {
             getDataProvince();
@@ -98,21 +100,32 @@ function HeaderNavLink() {
             getData();
         },[]);
     
-        // lấy tỉnh 
+
         const [listProvince, setListProvince] = useState([]);
         const [listDistrict, setListDistrict] = useState([]);
         const [listWard, setListWard] = useState([]);
+        const [listStreet, setStreet] = useState([]);
+        // tỉnh
         const getDataProvince = async () => {
             const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
             setListProvince(res.data.data);
         }
+        // huyện 
         const getDataDistrict = async (id_province) => {
             const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
             setListDistrict(ress.data.data);
         }
+        // xã
         const getDataWard = async (id_district) => {
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+            var id_province = addProvince.undefined;
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
             setListWard(resss.data.data);
+        }     
+        // đường 
+        const getDataStreet = async (id_district) => {
+            var id_province = addProvince.undefined;
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+            setStreet(resss.data.data);
         }     
          // Lấy roomtype
         const [listRoomType, setListRoomType] = useState([]);
@@ -158,6 +171,7 @@ function HeaderNavLink() {
             formData.append('id_province', id_province);
             formData.append('id_district', id_district);
             formData.append('id_ward', id_ward);
+            formData.append('id_street', id_street);
             formData.append('ifarme', ifarme);
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
@@ -167,14 +181,12 @@ function HeaderNavLink() {
             formData.append('water_price', water_price);
             formData.append('id_furniture', Array(checkFur));
             const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
-            
             if(res.data.status === true){
                 setAlert({
                     err_list: res.data
                 });
             }
             else{
-                console.log(res.data)           
                 setAlert({
                     err_list: res
                 });
@@ -185,7 +197,6 @@ function HeaderNavLink() {
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handleShow = () => {
-            // console.log(get_user)
         if(user ){
             setShow(true);
         }
@@ -195,18 +206,11 @@ function HeaderNavLink() {
     };
     
     // list category
-    const id_category = useParams();
     const [listCategory, setListCategory] = useState([]);
     const getData = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/category/show');
            setListCategory(res.data.data);
     };
-
-    // function uploadAdapterPlugin(editor) {
-    //     editor.plugins.get("FileRepository").createUploadAdapter = (loader) =>
-    //       new UploadAdapter(loader)
-    //   }
-
   return (
     <div class="collapse navbar-collapse"  id="navbarExample04">
         <ul className="navbar-nav" >
@@ -228,19 +232,11 @@ function HeaderNavLink() {
                    <Notify />
                 </div>
             </li>
-            
             <li className="nav-item">
                 {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
                 <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow}>
                 Đăng bài
             </Button>
-            {/* : */}
-                 {/* <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow_tv}>
-                 Đăng bài thành viên 
-            </Button>  */}
-                {/* } */}
-               
-                
             </li>
             {/* start Đăng bài chủ trọ*/}
             <Modal show={show} onHide={handleClose}>
@@ -256,18 +252,13 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                             </Form.Group> 
-                            {/* <Form.Control name="id_user" value={user[0].id}  onChange = {(e) => handleChange(e)} />
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_user[0]}</span>} */}
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
                                 value={meta_title}
-                                onChange = {(e) => handleChange(e)}/>
+                                onChange = {(e) => handleChange(e)} />
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
                             </Form.Group>
-                            : <div></div> }
                             <Form.Group className="mb-12 img">
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
@@ -294,28 +285,18 @@ function HeaderNavLink() {
                                 onChange={(event,editor) => {
                                     let data = editor.getData();
                                     setAddPost({...addPost, description:data});
-                                    // console.log(event.data)
-                            }}
+                                }}
                                 >
                                 </CKEditor>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
                             </Form.Group>
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 room_price">
                                 <Form.Label>Giá phòng</Form.Label>
-
                                 <Form.Control type="number" name="room_price" className="" 
                                 value={room_price}
-                                onChange = {(e) => handleChange(e)}/>
-
-
-
+                                onChange = {(e) => handleChange(e)} />
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
                             </Form.Group>
-                            : <div></div> }
-                            { user ? 
-                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 water_price">
                                 <Form.Label>Giá nước</Form.Label>
                                 <Form.Control type="number" name="water_price" className="" 
@@ -323,82 +304,74 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
                             </Form.Group>     
-                             : <div></div> }           
-                       
-                        { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 electricity_price">
                                 <Form.Label>Giá điện</Form.Label>
                                 <Form.Control type="text" name="electricity_price" className=""
                                 value={electricity_price}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
-                            </Form.Group> 
-                            : <div></div> } 
-                            { user ?        
-                            user[0].role == 0 ? "" :
+                            </Form.Group>                             
                             <Form.Group className="mb-12 id_province">
                                 <Form.Label>Tỉnh</Form.Label>
                                 <Form.Select name="id_province"
-                                onChange = {(e) => handledistrice(e)}
+                                onChange = {(e) => handleProvince(e)}
                                 >
-                                    <option>Chọn tỉnh</option>
+                                    <option>Tỉnh</option>
                                     {listProvince.map((room, index) => {
                                         return (
-                                            
                                             <option key={index} value={room.id} >{room._name}</option>
                                         );
-                                    })}                            
+                                    })}       
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_district">
-                                <Form.Label>Quận/Huyện</Form.Label>
+                                <Form.Label>Quận/Huyện/TP</Form.Label>
                                 <Form.Select name="id_district"
-                                onChange = {(e) => handleadd(e)}
+                                onChange = {(e) => handleDistrict(e)}
                                 >  
                                 <option>Quận/Huyện/TP</option>
                                     {listDistrict.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id}>{room._name}</option>
                                         );
-                                    })}                            
-                                </Form.Select>
+                                    })}       </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 id_ward">
-                                <Form.Label>Xã/Phường</Form.Label>
+                                <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
                                 <Form.Select name="id_ward"
-                                onChange = {(e) => handssdbdfb(e)}
+                                onChange = {(e) => handleChange(e)}
                                 > 
-                                <option>Xã/Phường</option>
+                                <option>Xã/Phường/Thị Trấn</option>
                                     {listWard.map((room, index) => {
                                         return (
                                             <option key={index} value={room.id} >{room._name}</option>
                                         );
-                                    })}                            
-                                </Form.Select>
+                                    })}       </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                            </Form.Group>  
+                            <Form.Group className="mb-12 id_street">
+                                <Form.Label>Đường</Form.Label>
+                                <Form.Select name="id_street"
+                                onChange = {(e) => handleChange(e)}
+                                > 
+                                <option>Đường</option>
+                                    {listStreet.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}       
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Địa chỉ</Form.Label>
                                 <Form.Control type="text" name="address" className=""
                                 value={address}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
-                            </Form.Group>
-                            : <div></div> } 
-                            { user ? 
-                             user[0].role == 0 ? "" :
+                            </Form.Group>   
                             <Form.Group className="mb-12 address">
                                 <Form.Label>Iframe map</Form.Label>
                                 <Form.Control type="text" name="ifarme" className=""
@@ -406,9 +379,6 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ? 
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 area">
                                 <Form.Label>Diện tích</Form.Label>
                                 <Form.Control type="text" name="area" className="" 
@@ -416,9 +386,6 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ?
-                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 quantity">
                                 <Form.Label>Số lượng</Form.Label>
                                 <Form.Control type="number" name="quantity" className=""
@@ -426,9 +393,6 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                            { user ?
-                             user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 formGridCheckbox">
                                 <Form.Label >Nội thất</Form.Label>
                                 <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
@@ -438,17 +402,11 @@ function HeaderNavLink() {
                                                  <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                     <Form.Label>{data.name}</Form.Label>
                                                 </div>
-                                                   
-                                               
-                                            
-                                        )
+                                                )
                                     })}
                                 </div>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
                             </Form.Group>   
-                            : <div></div> } 
-                             { user ?
-                            user[0].role == 0 ? "" :   
                             <Form.Group className="mb-12">
                                 <Form.Label >Loại phòng</Form.Label>
                                 <Form.Select name="id_roomType" 
@@ -458,12 +416,9 @@ function HeaderNavLink() {
                                         return (
                                             <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
                                         );
-                                    })}                            
-                                    {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
-                                </Form.Select> </Form.Group>
-                                : <div></div> } 
-                                { user ?
-                                 user[0].role == 0 ? "" :
+                                    })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
+                                </Form.Select> 
+                            </Form.Group>
                             <Form.Group className="mb-12 meta_keywords">
                                 <Form.Label>Từ khóa - Seo</Form.Label>
                                 <Form.Control type="text" name="meta_keywords" className='' 
@@ -471,75 +426,25 @@ function HeaderNavLink() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
                             </Form.Group>
-                            : <div></div> } 
-                             {user ?
-                            user[0].role == 0 ? "" :
                             <Form.Group className="mb-12 meta_description">
                                 <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
                                 <Form.Control as="textarea" name="meta_description" className="" rows={3} 
                                 value={meta_description}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                            </Form.Group> 
-                            : <div></div> } 
-                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
-                            <Button variant="primary" size="sm" name='' type="submit">
-                                Thêm bài viết
-                            </Button>
-                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
-                        </div>
+                            </Form.Group>           
+                            <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+                                <Button variant="primary" size="sm" name='' type="submit">
+                                    Thêm bài viết
+                                </Button>
+                                {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                            </div>
                 </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose} > 
-                      Đóng
-                    </Button>
+                    <Button variant="secondary" onClick={handleClose} > Đóng </Button>
                 </Modal.Footer>
             </Modal>
-
-            {/* start Đăng bài thành viên*/}
-            {/* <Modal show={show_tv} onHide={handleClose_tv}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Đăng Tin cho thành viên</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="show-grid">
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
-                            <Form.Group className="mb-12 post_name">
-                                <Form.Label>Tên bài viết</Form.Label>
-                                <Form.Control type="text" name="post_name" className=''
-                                value={post_name}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description">
-                            <Form.Label>Nội dung</Form.Label>
-                                <Form.Control type="text" name="description" className=''
-                                value={description}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description_sort">
-                                <Form.Label>Nội dung ngắn</Form.Label>
-                                <Form.Control type="text" name="description_sort" className=''
-                                value={description_sort}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
-                            </Form.Group>
-                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
-                            <Button variant="primary" size="sm" name='' type="submit">
-                                Thêm bài viết
-                            </Button>
-                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
-                        </div>
-                    
-                </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose} > 
-                      Đóng
-                    </Button>
-                </Modal.Footer>
-            </Modal> */}
             {/* end Đăng bài */}
             <li className="nav-item">
                 {!localStorage.getItem('user') ?
