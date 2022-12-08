@@ -85,7 +85,7 @@ function RoomDetail() {
                                         <span>3 đánh giá</span>
                                     </div>
                                 </div> */}
-                                <div className="product-price-discount">{a.room_price} vnd</div>                                   
+                                <div className="product-price-discount">{a.room_price} VNĐ</div>                                   
                                 <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                                 <div>
                                     <p> {a.description_sort}</p>
