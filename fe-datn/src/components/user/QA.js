@@ -20,11 +20,11 @@ function QA() {
           <div className="container">
             <div className="row">  
               <div className="col-md-4 col-sm-6 qa">
-                <Link to="">Xây nhà chung cư mini cho thuê, nên cho thuê phòng trống hay đầu tư full nội thất, cái nào dễ cho thuê hơn ạ? Xin cám ơn</Link>
+                <Link to="" className='qa_link'>Xây nhà chung cư mini cho thuê, nên cho thuê phòng trống hay đầu tư full nội thất, cái nào dễ cho thuê hơn ạ? Xin cám ơn</Link>
                 <div className='qa_avata'>
                     <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0'
                      alt='' className="avt_qa" />
-                    <span>Trả lời bởi <Link to="">Nhóm 1</Link></span> - <span>19/12/2022</span>
+                    <span>Trả lời bởi <Link to="" className='qa_link'>Nhóm 1</Link></span> - <span>19/12/2022</span>
                 </div>
                 <div className='qa_content'>
                   Đầu tư full sẽ hay hơn là cho thuê theo kiểu phòng trọ công nhân.
@@ -35,14 +35,15 @@ function QA() {
                       data-toggle="collapse"
                       data-target="#collapseExample"
                       aria-expanded="false"
-                      aria-controls="collapseExample"
+                      aria-controls="collapseExample" 
+                      className='qa_link'
                     >
-                      Bình luận
+                     <i class='bx bx-message-dots'></i> Bình luận
                     </Link>
                   </div>
                   <div className="collapse-show-rate collapse row" id="collapseExample">
                   <Form>
-                    <Form.Group className="mb-3" controlId="name_category">
+                    <Form.Group className="mb-3" controlId="">
                         <Form.Control type="text" name="" className=''/>            
                     </Form.Group>
                     <Button variant="primary" size="sm" name='' type="submit">

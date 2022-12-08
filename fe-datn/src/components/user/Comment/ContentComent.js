@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import moment from 'moment'
+import { Button, Form } from 'react-bootstrap';
+// import moment from 'moment';
 import axios from 'axios';
 
 function ContentComent() {
@@ -60,7 +60,7 @@ return (
                 <img src={comment.link_img_user} alt="images" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
                 <b className='cmt_name'>{comment.full_name}</b>
                 <p className='cmt_name1'>{comment.content}</p> 
-                <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).fromNow()}</p>  
+                {/* <p style={{"marginLeft":"36px"}}>{moment(comment.created_at).fromNow()}</p>   */}
               </div>
               <div>
                   <span onClick={() => {setGetIdComment(comment.id_comment); setReply(true)}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
@@ -74,13 +74,11 @@ return (
                                     style={{"padding":"24px 0 24px 12px"}}
                                     type="text"
                                     name="reply_cmt" 
-                                    className=''
-                                   
+                                    className=''                                 
                                     onChange = {(e) => handleChangeComment(e)}
                                     placeholder="Trả lời bình luận"
                           />
                           </Form.Group>
-
                           <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                         </Form>
                   </div> 
@@ -100,7 +98,7 @@ return (
                         <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
                         <b className='cmt_name'>{cmt.full_name}</b>
                         <p className='cmt_name1'>{cmt.content}</p>
-                        <p>{moment(cmt.created_at).fromNow()}</p>
+                        {/* <p>{moment(cmt.created_at).fromNow()}</p> */}
                       </div>
                       <div>
                         <span onClick={() => {setGetIdComment(cmt.id_comment); setReply(true)}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
@@ -114,13 +112,11 @@ return (
                                           style={{"padding":"24px 0 24px 12px"}}
                                           type="text"
                                           name="reply_cmt" 
-                                          className=''
-                                        
+                                          className=''                                        
                                           onChange = {(e) => handleChangeComment(e)}
                                           placeholder="Trả lời bình luận"
                                 />
                                 </Form.Group>
-
                                 <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
                               </Form>
                         </div> 
@@ -131,15 +127,10 @@ return (
                </>    
                       
             })
-           }
-        
-
-            
+           }            
         </div>
-        </> 
-  
-    })
-    
+        </>  
+    })    
 }
  </>
 )

@@ -88,9 +88,13 @@ function RoomND() {
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
     // console.log(res);
-    setListImg(res.data.data);
-    
+    setListImg(res.data.data);   
 };
+
+// định dạng tiền tệ
+
+
+
   return (
   <>
     <div className="our_room">
