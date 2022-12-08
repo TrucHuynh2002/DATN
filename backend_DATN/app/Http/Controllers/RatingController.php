@@ -111,17 +111,45 @@ class RatingController extends Controller
         $average = 0;
         $ratingNumber = 0;
         $count = 0;
+        $five_star = 0;
+        $four_star = 0;
+        $three_star = 0;
+        $two_star = 0;
+        $one_star = 0;
         if($get_star){
             foreach ($get_star as $rate) {
                 $ratingNumber += $rate->rate;
                 $count += 1;
+                if($rate->rate == 5) {
+                    $five_star++;
+                }
+                if($rate->rate == 4) {
+                    $four_star++;
+                }
+                if($rate->rate == 3) {
+                    $three_star++;
+                }
+                if($rate->rate == 2) {
+                    $two_star++;
+                }
+                if($rate->rate == 1) {
+                    $one_star++;
+                }
             }
             $average = $ratingNumber/$count;
         };
         return response()->json([
             'status' => true,
             'ratingNumber' => $average,
-            'data' => $get_star
+            'data' => $get_star,
+            'review_star' => [
+                "five_star" => $five_star,
+                "four_star" => $four_star,
+                "three_star" => $three_star,
+                "two_star" => $two_star,
+                "one_star" => $one_star,
+                "count" => $count
+            ]
         ]);
     }
 }
