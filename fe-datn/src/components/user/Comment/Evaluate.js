@@ -2,8 +2,6 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Rate from './Rate';
-
-
 import axios from 'axios';
 
 function Evaluate() {
@@ -27,7 +25,7 @@ function Evaluate() {
     one_star,
     count
   } = reviewStar
-  console.log(count)
+
   useEffect(() => {
       getData();
       getAverageRate();
@@ -41,28 +39,22 @@ function Evaluate() {
   };
   // Getting Star
   const getAverageRate = async () => {
-  const res = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
-  console.log(res.data);
-      setAverageRate(res.data.ratingNumber)
-      setDataAverageRate(res.data.data);
-      setReviewStar({...reviewStar,
-                  five_star: res.data.review_star.five_star,
-                  four_star: res.data.review_star.four_star,
-                  three_star: res.data.review_star.three_star,
-                  two_star: res.data.review_star.two_star,
-                  one_star: res.data.review_star.one_star,  
-                  count: res.data.review_star.count  })
+    const res = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
+    setAverageRate(res.data.ratingNumber)
+    setDataAverageRate(res.data.data);
+    setReviewStar({...reviewStar,
+      five_star: res.data.review_star.five_star,four_star: res.data.review_star.four_star,
+      three_star: res.data.review_star.three_star,
+      two_star: res.data.review_star.two_star,one_star: res.data.review_star.one_star, 
+      count: res.data.review_star.count  
+    })
   }
 
   const HandleProgessBar = () => {
       // const Pr_fiveStar = document.querySelector('progress-bar-1').css('width',76);
-
   }
-
-
   const [total,setTotal] = useState(0);
-  
-  
+
   return (
     <>
       <div className="component-show-rate d-flex rounded-lg">
@@ -75,29 +67,17 @@ function Evaluate() {
           <div className="star-rate">
             {
               Array(5).fill()
-                      .map((_,index) => {
-                        let rate = index +1
-                        return rate > averageRate
-                        ?
-                          
-                            index + 0.5 > averageRate
-                            ?
-                            <>
-                             <i className="fa fa-star" />
-                            </>
-                            :
-                            
-                              <i className="fa fa-star-half checked" />
-                            
-                          
-                        :
-                      
-                        (
-                          <>
-                            <i className="fa fa-star checked" />
-                          </>
-                        )
-                      })
+              .map((_,index) => {
+                let rate = index +1
+                return rate > averageRate ?
+                    index + 0.5 > averageRate ?
+                    <> <i className="fa fa-star" /> </>
+                    : <i className="fa fa-star-half checked" /> 
+                    : 
+                    (
+                     <> <i className="fa fa-star checked" /> </>
+                    )
+              })
             }
           
             {/* <i className="fa fa-star checked" />
@@ -207,64 +187,24 @@ function Evaluate() {
       </div>
       <div className="collapse-show-rate collapse row" id="collapseExample">
         <Rate />
-
-
-
-       
       </div>
-      <br></br><hr></hr>
-      
-      
-
-
-    <div>
-
-
-    <p>sdasdsa</p>
-
-
-
-    </div>
-          <div className="star-rate">
-          
-            {
-              Array(5).fill()
-                      .map((_,index) => {
-                        let rate = index +1
-                        return rate > averageRate
-                        ?
-                          
-                            index + 0.5 > averageRate
-                            ?
-                            <>
-                             <i className="fa fa-star" />
-                            </>
-                            :
-                            
-                              <i className="fa fa-star-half checked" />
-                            
-                          
-                        :
-                      
-                        (
-                          <>
-                            <i className="fa fa-star checked" />
-                          </>
-                        )
-                      })
-            }
-          
-          </div>
-
-
-
-
-
-
-
-
-
-
+      <div className="star-rate">
+      {
+         Array(5).fill()
+         .map((_,index) => {
+           let rate = index +1
+           return rate > averageRate ? 
+           index + 0.5 > averageRate ?
+             <i className="fa fa-star" />
+           :
+             <i className="fa fa-star-half checked" />
+           :
+           (
+            <i className="fa fa-star checked" />
+           )
+         })
+      }
+      </div>
     </>
   )
 }

@@ -1181,7 +1181,7 @@ margin-right: 5px;
 
 }
 
-div>h1>.b_title{
+div>h1>.b_title,div>.b_title{
     text-transform: uppercase;
 }
 .content_room_h1{
@@ -2093,13 +2093,59 @@ ul.social_icon li a:hover {
     text-transform : none;
     font-size: 16px;
 }
-.detail_room {
-    height: 100%;
+.content_detail_____{
+    display:flex;
+    align-items: baseline;
+}
+.content_detail_____>.furniture__>span{
+    margin-left: 10px;
+}
+.content_detail_____>p{
+    font-size:19px
+}
+.content_detail_____>span{
+    font-size:18px
+}
+.furniture__{
+    font-size: 20px;
+}
+.content___________{
+    margin-top:10px
+}
+.content___________>p{
+    
+    font-size:19px
+}
+.content_detail_____>span>strong{
+    font-weight:normal;
+    font-size:18px
+}
+.content_comment____{
+    display:flex;
+    align-items: baseline;
+ 
+}.content_comment____gpgpg>p{
+    padding-left: 17px;
+}
+.content_comment____bp{
+    margin: 1px 16px 16px 16px;
+    border-radius: 10px;
+    padding: 17px;
+    background: #e8e8e85c;
+}
+.product-info-tabs{
+    /* box-shadow: 0px 0.1px 2px black; */
+    /* border-radius: 10px; */
+    font-size: 20px;
+}
+.detail_room  {
     margin: 20px 0px 20px 0px;
     background-color: white;
-    box-shadow: 0px 1px 3px black;
+    box-shadow: 0px 0.2px 1px black;
     border-radius: 10px;
     font-size: 16px;
+    padding: 10px;
+    line-height: 50px;
     
 }
 
@@ -2111,9 +2157,9 @@ ul.social_icon li a:hover {
     text-transform: uppercase;
 }
 
-.detail_room1 {
+/* .detail_room1 {
     padding: 0px 0px 20px 30px;
-}
+} */
 
 .icon-furniture {
     font-size: 18px;
