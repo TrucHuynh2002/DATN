@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
 import Modal from 'react-bootstrap/Modal';
@@ -13,7 +13,7 @@ function RoomDetail() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
-    // const [listAddress, setListAddress] = useState([]);
+    const [listRoom, setListRoom] = useState([]);
 
     useEffect(() => {
         updateView();
@@ -23,6 +23,7 @@ function RoomDetail() {
         district();
         ward();
         Furniture();
+        room();
     },[]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -49,28 +50,20 @@ function RoomDetail() {
       };
       const province = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
-        console.log(res);
           setListprovince(res.data.data);
       }; 
       const district = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
-        console.log(res);
           setListdistrict(res.data.data);
       };   
       const ward = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
-        console.log(res);
           setListward(res.data.data);
+      }; 
+      const room = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
+        setListRoom(res.data.data);
       };  
-    //    const street = async () => {
-    //     const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
-    //     console.log(res);
-    //       setListstreet(res.data.data);
-    //   }; 
-    // show mo ta phong
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
   
   return (
     <>
@@ -104,10 +97,6 @@ function RoomDetail() {
                             </div>
                         </div>
                         <div className="product-count">
-                            <Button onClick={handleShow} className="round-black-btn">
-                                Chi tiết
-                            </Button>
-                            <br />
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
                                 <span id="button_contact">Liên hệ ngay</span>
                                 <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
@@ -117,63 +106,6 @@ function RoomDetail() {
                                 Thông tin người đăng
                             </Link>
                         </div>
-                        {/* start show chi tiết phòng */}
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Mô tả chi tiết</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <div className=''>                                   
-                                    <p>Diện tích: {a.area}m<sup>2</sup></p>    
-                                    <p>Giá nước: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</p>
-                                    <p>Giá điện: {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</p>
-                                    <p>Nội thất:
-                                    {listFurniture.map(( furn, index) => {
-                                    return (                                             
-                                        <option key={index} value={furn.id_furniture}>{furn.name}</option>                           
-                                    );
-                                    })}
-                                    </p> 
-                                    <p> Tinh : </p>  
-                                    {listprovince.map(( furn, index) => {
-                                    return (   
-                                        <>
-                                        <p>{furn._name}</p>   
-                                       
-                                        </> 
-                                                               
-                                    );
-                                    })}
-                                     <p> quna : </p>  
-                                    {listdistrict.map(( furn, index) => {
-                                    return (   
-                                        <>
-                                        <p>{furn._name}</p>   
-                                       
-                                        </> 
-                                                               
-                                    );
-                                    })}
-                                     <p> xa : </p>  
-                                    {listward.map(( furn, index) => {
-                                    return (   
-                                        <>
-                                        <p>{furn._name}</p>   
-                                       
-                                        </> 
-                                                               
-                                    );
-                                    })}
-                                   
-                                </div>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
-                                </Button> 
-                            </Modal.Footer>
-                        </Modal>
-                        {/* end show chi tiết phòng */}
                         <div className="product-count-help" >
                             <div>
                             <i className='bx bx-support'></i>
@@ -186,6 +118,149 @@ function RoomDetail() {
                         </div>
                     </div>
                 </div>
+                <div className='row detail_room'>   
+                    <h3 className='room_h3'>Thông tin phòng</h3>                                
+                    <div className='col-md-3 detail_room1'>
+                        
+                        <p ><b>Giá phòng</b></p>    
+                        <span> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
+                            </div>
+
+                            <div className='col-md-3'>
+                        <p ><b>Diện tích</b></p>
+                            <span >{a.area}m<sup>2</sup></span>
+                            </div>
+
+                            <div className='col-md-3'>
+                        <p ><b>Giá nước</b></p>
+                            <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</span>
+                            </div>
+
+                             <div className='col-md-3'>
+                        <p ><b>Giá điện</b></p>
+                            <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</span>
+                    </div>
+                    
+                    <div className='col-md-3 detail_room1'>
+                        <p><b>Loại phòng</b></p>
+                            {listRoom.map((room_detail, index) => {
+                            return (                                             
+                                <span key={index} value={room_detail.id_room_type} style={{margin:'3px'}}>{room_detail.name_room_type} </span>                           
+                            );
+                            })} </div>
+                            
+                            
+                    <div className='col-12 detail_room1'>
+                    
+                       
+                        
+                     
+                        <b>Địa chỉ:</b>                 
+                        <span style={{margin:'3px'}}>Thành phố</span>
+                            {listprovince.map((pro_detail, index) => {
+                            return (   
+                                <span style={{margin:'3px'}} key={index}>{pro_detail._name},</span>                    
+                            );
+                            })}                   
+                        <span style={{margin:'3px'}}>Quận</span> 
+                            {listdistrict.map((dis_detail, index) => {
+                            return (   
+                                <span style={{margin:'3px'}} key={index}>{dis_detail._name},</span>            
+                            );
+                            })}                   
+                        <span style={{margin:'3px'}}>Xã</span>
+                            {listward.map((ward_detail, index) => {
+                            return (   
+                                <span style={{margin:'3px'}} key={index}>{ward_detail._name}.</span>                        
+                            );
+                            })} 
+                             </div>
+
+                </div>
+
+                
+
+
+
+
+                <div className='row detail_room'>   
+                    <h3 className='room_h3'>Nội thất</h3>                                
+                   
+                    <div className='col-md-3 detail_room2'>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                       </div>
+                       <div className='col-md-3  '>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                       </div>
+                    <div className='col-md-3 '>
+                   <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                    </div>    
+                    <div className='col-md-3 '>
+                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                    </div>
+         
+
+
+                    <div className='col-md-3 detail_room2'>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                       </div>
+                       <div className='col-md-3  '>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                      
+                       </div>
+                    <div className='col-md-3 '>
+                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span> 
+                      
+                    </div>    
+                    <div className='col-md-3 '>
+                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                    </div>
+
+
+                    <div className='col-md-3 detail_room2'>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                       </div>
+                       <div className='col-md-3  '>
+                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                       </div>
+                    <div className='col-md-3 '>
+                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                    </div>    
+                    <div className='col-md-3 '>
+                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
+                        
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div className="product-info-tabs">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item">

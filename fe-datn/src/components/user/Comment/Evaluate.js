@@ -117,7 +117,7 @@ function Evaluate() {
               <div
                 className="progress-bar-1 progress-bar bg-success"
                 role="progressbar"
-                style={{"width":five_star > 0 ? (five_star/count) * 100 + '%' : 0}}
+                style={{"width":(five_star > 0 ? (five_star/count) * 100  : 0) + '%'}}
                 aria-valuenow={(five_star/count)}
                 aria-valuemin={0}
                 aria-valuemax={100}
@@ -133,13 +133,13 @@ function Evaluate() {
               <div
                 className="progress-bar-2 progress-bar bg-success"
                 role="progressbar"
-                style={{"width":(four_star > 0 ? four_star/count * 100 : 0 + '%')}}
+                style={{"width":((four_star > 0 ? four_star/count * 100 : 0) + "%")}}
                 aria-valuenow={four_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(four_star > 0 ? four_star/count * 100 : 0) * 100}%</div>
+            <div className="percent">{(four_star > 0 ? four_star/count * 100 : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -149,13 +149,13 @@ function Evaluate() {
               <div
                 className="progress-bar-3 progress-bar bg-success"
                 role="progressbar"
-                style={{"width":(three_star > 0 ? three_star/count * 100 : 0 + '%')}}
+                style={{"width":((three_star > 0 ? three_star/count * 100 : 0) + '%')}}
                 aria-valuenow={three_star > 0 ?  three_star/count * 100 : 0}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{three_star > 0 ? three_star/count * 100 : 0}%</div>
+            <div className="percent">{(three_star > 0 ? three_star/count * 100 : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -165,13 +165,13 @@ function Evaluate() {
               <div
                 className="progress-bar-4 progress-bar"
                 role="progressbar"
-                style={{"width":(two_star > 0 ? two_star/count * 100 : 0 + '%')}}
-                aria-valuenow={two_star > 0 ? two_star/count * 100 : 0}
+                style={{"width":((two_star > 0 ? two_star/count * 100 : 0) + '%')}}
+                aria-valuenow={(two_star > 0 ? two_star/count * 100 : 0)}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{two_star > 0 ? two_star/count * 100 : 0}%</div>
+            <div className="percent">{(two_star > 0 ? two_star/count * 100 : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -181,13 +181,13 @@ function Evaluate() {
               <div
                 className="progress-bar-5 progress-bar"
                 role="progressbar"
-                style={{"width":(one_star > 0 ? one_star/count * 100 : 0 ) + '%'}}
+                style={{"width":((one_star > 0 ? one_star/count * 100 : 0) ) + '%'}}
                 aria-valuenow={one_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{one_star > 0 ? one_star/count * 100 : 0}%</div>
+            <div className="percent">{(one_star > 0 ? one_star/count * 100 : 0)}%</div>
           </div>
         </div>
         <div className="content-right col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">

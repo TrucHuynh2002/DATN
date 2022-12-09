@@ -468,4 +468,16 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
+    public function show_room_type(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+            ->join('room_type', 'post.id_roomType', '=', 'room_type.id_room_type')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
 }

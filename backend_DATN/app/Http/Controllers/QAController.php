@@ -48,7 +48,7 @@ class QAController extends Controller
         $qa = new QAModel();
         // thêm QA
         $qa->id_user = $request->id_user;
-        $qa->title = $request->title;
+        // $qa->title = $request->title;
         $qa->content = $request->content;
         // $qa->id_img_qa = $request->id_img_qa; // khóa ngoại
         $Get_qa = QAModel::orderby('id_qa', 'DESC')->first();

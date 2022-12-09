@@ -12,8 +12,8 @@ class QAModel extends Model
     public $timestamps = false;
     protected $fillable = [
         'id_user',
-        'title',
+        // 'title',
         'content',
-        'id_img_qa',
+        // 'id_img_qa',
     ];
 }

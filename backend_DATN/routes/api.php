@@ -107,6 +107,7 @@ Route::get('post/show_province_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_district_detail']);
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
+Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
@@ -163,9 +164,9 @@ Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
 
 // CommentQa
-Route::get('commentqa/show', [comment_QAController::class, 'Comment_SelectAll']);
-Route::get('commentqa/post/show/{id_post}', [comment_QAController::class, 'Comment_SelectPost']);
-Route::get('commentqa/show/{id}', [comment_QAController::class, 'Comment_SelectOne']);
+Route::get('comment_qa/show', [comment_QAController::class, 'show_all']);
+Route::get('comment_qa/show_qa', [comment_QAController::class, 'show_QA']);
+Route::post('comment_qa/create', [comment_QAController::class, 'Comment_QA_Add']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
