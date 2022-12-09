@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 function BlogDetail() {
 
@@ -9,8 +9,7 @@ function BlogDetail() {
     const [listBlog, setListBlog] = useState([]);
     useEffect(() => {
         updateView();
-        getData();
-        
+        getData();        
     },[]);
     const getData = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
@@ -20,6 +19,7 @@ function BlogDetail() {
         const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
         console.log(update)
     }
+    
   return (
     <>
       <div className="container">

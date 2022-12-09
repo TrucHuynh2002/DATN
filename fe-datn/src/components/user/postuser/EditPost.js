@@ -2,17 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditPost() {
 
     const {id_post} = useParams();
-    // const user = JSON.parse(localStorage.getItem("user"));
     const [editPost, setEditPost] = useState({
         post_name: "",
-        // phone: "",
         description_sort: "",
         description: "",
         area: "",
@@ -32,7 +29,6 @@ function EditPost() {
     });
     const { 
         post_name, 
-        // phone,
         description_sort,
         description,
         area,
@@ -59,11 +55,9 @@ function EditPost() {
     });
     
     const [uploadImages, setUploadImages] = useState([]);
-    // console.log(uploadImages);
     // Xử lý input vlaue
     const handleChange = (e) => {
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
-        // console.log(img);
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
@@ -96,28 +90,16 @@ function EditPost() {
         },[]);
 
     
-    const handle_idFuniture =  (e) => { 
-        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
-        // console.log(e.target.name);
-     
+    const handle_idFuniture =  (e) => {     
         if(e.target.checked){
             setFur(pre => {
                return  [...pre, e.target.value]
             });
-            // console.log(checkFur);
-            // setAddPost(pre => {
-            //     return {...addPost,...pre, id_furniture: checkFur}
-            // })
-            // console.log(addPost);
         }
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
-            })
-            // setAddPost(pre => {
-            //     return {...pre, id_furniture: checkFur}
-            // })
-            
+            })    
         }
        
     }
@@ -127,12 +109,7 @@ function EditPost() {
         let formData = new FormData();
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
-        // console.log(fileA)
         setUploadImages(e.target.files)       
-        // Array.from(e.target.file).map(file => {
-        //     // console.log(file)
-        //     setAddPost({...uploadImages, file})
-        // })
     }
     }
   
@@ -215,7 +192,7 @@ function EditPost() {
 
           <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
             <div className="image-cancel" data-no={1}>x</div>
-            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" /></div>
+            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" alt='' /></div>
             <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>
           </div>
         </div>

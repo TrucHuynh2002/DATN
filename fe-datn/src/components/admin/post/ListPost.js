@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -7,7 +6,6 @@ import Pagination from '../../user/Pagination';
 
 function ListPost() {
 
-  const id_post = useParams();
   const [listPost, setListPost] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);

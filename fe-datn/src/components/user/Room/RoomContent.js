@@ -19,12 +19,7 @@ function RoomND() {
     getData();
     getImg();
   },[]);
- 
-  // const [addHeart, setAddHeart] = useState({
-  //       heart_feeling :1,
-  //       id_post :"",
-  //       id_user : user[0].id
-  // });
+
   const [alert, setAlert] = useState({
     err_list: {},
   });

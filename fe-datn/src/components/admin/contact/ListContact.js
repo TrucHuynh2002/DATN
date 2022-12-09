@@ -1,13 +1,12 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../../user/Pagination';
 
 function ListContact() {
 
-  const id_contact = useParams();
   const [listContact, setListContact] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);
@@ -23,17 +22,8 @@ function ListContact() {
   // danh sach contact
   const getData = async () => {
     const res = await axios.get('http://127.0.0.1:8000/api/contact/show');
-      // console.log(res.data);
       setListContact(res.data.data);
   };
-
-  //  // cập nhật trạng thái liên hệ
-  //  const updatecontact = async (id_contact) => {
-  //   await axios.put(`http://127.0.0.1:8000/api/contact/update/${id_contact}`);
-  //   getData();
-  // };
-
-  // const statusContact
 
   return (
     <div className="content">
@@ -68,11 +58,7 @@ function ListContact() {
                   {contact.status === 0 && <Button variant="outline-success" name='' className="">Chưa liên hệ</Button> }
                 </td>
                 {contact.status === 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-                {contact.status === 1 &&  <Link to="" className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-               
-                {/* <Button variant="outline-danger" name='' className="bx bx-edit" onClick={() => updatecontact(contact.id_contact)}></Button> */}
-              
-              
+                {contact.status === 1 &&  <Link to="" className="bx bxs-edit btn-edit btn btn-primary"></Link> }             
               </tr>
             );
           })}

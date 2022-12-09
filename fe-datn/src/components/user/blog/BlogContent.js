@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Slide3 from '../../../images/sl03.png';
 import Pagination from '../Pagination';
-// import HeartRoom from '../HeartRoom';
 
 function BlogContent() {
-  const {id_blog} = useParams();
+  
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);

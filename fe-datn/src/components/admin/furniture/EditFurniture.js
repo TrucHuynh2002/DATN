@@ -3,11 +3,9 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 
 function EditFurniture() {
 
-    // const navigate = useNavigate();
     const {id_furniture} = useParams();
     const [editFurniture, setEditFurniture] = useState({
         name: "",
@@ -22,7 +20,6 @@ function EditFurniture() {
 
     const handleChange = (e) => {
         setEditFurniture({ ...editFurniture, [e.target.name]: e.target.value });
-        // setEditCategory(e.target.value);
     };
 
     const handleSumbit = async (e) => {
@@ -42,7 +39,6 @@ function EditFurniture() {
                 err_list: res.data
             });
         }
-        // navigate("../list_furniture");
     };
 
     useEffect(() => {

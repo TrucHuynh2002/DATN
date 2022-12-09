@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -12,7 +11,6 @@ function EditPost() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [editPost, setEditPost] = useState({
         post_name: "",
-        // phone: "",
         description_sort: "",
         description: "",
         area: "",
@@ -32,7 +30,6 @@ function EditPost() {
     });
     const { 
         post_name, 
-        // phone,
         description_sort,
         description,
         area,
@@ -59,11 +56,9 @@ function EditPost() {
     });
     
     const [uploadImages, setUploadImages] = useState([]);
-    // console.log(uploadImages);
     // Xử lý input vlaue
     const handleChange = (e) => {
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
-        // console.log(img);
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
@@ -86,7 +81,6 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            // console.log(result);
             setEditPost(result.data.data);
         };
 
@@ -96,28 +90,16 @@ function EditPost() {
         },[]);
 
     
-    const handle_idFuniture =  (e) => { 
-        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
-        // console.log(e.target.name);
-     
+    const handle_idFuniture =  (e) => {      
         if(e.target.checked){
             setFur(pre => {
                return  [...pre, e.target.value]
             });
-            // console.log(checkFur);
-            // setAddPost(pre => {
-            //     return {...addPost,...pre, id_furniture: checkFur}
-            // })
-            // console.log(addPost);
         }
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
-            })
-            // setAddPost(pre => {
-            //     return {...pre, id_furniture: checkFur}
-            // })
-            
+            })           
         }
        
     }
@@ -127,23 +109,16 @@ function EditPost() {
         let formData = new FormData();
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
-        // console.log(fileA)
         setUploadImages(e.target.files)       
-        // Array.from(e.target.file).map(file => {
-        //     // console.log(file)
-        //     setAddPost({...uploadImages, file})
-        // })
     }
     }
   
     const handleSumbit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
-        // formData.append('img[]', Array(uploadImages));
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
-        // console.log(post_name);
         formData.append('post_name', post_name);
         formData.append('address', address);
         formData.append('area',area);
@@ -155,19 +130,16 @@ function EditPost() {
         formData.append('meta_keywords', meta_keywords);
         formData.append('meta_description', meta_description);
         formData.append('meta_title', meta_title);
-        // formData.append('phone', phone);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
-        // console.log(uploadImages.length);
         
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
         }
         else{
             console.log(res.data)           
@@ -210,19 +182,10 @@ function EditPost() {
                             <Form.Label>Hình ảnh</Form.Label>
                             <Form.Control type="file" name="img" multiple
                             onChange = {(e) => handleChangeImages(e)} />
-                            {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img[0]}</div>} */}
                             <div className='row'>
                                 
                             </div>
                         </Form.Group>
-                        
-                        {/* <Form.Group className="mb-3 phone">
-                            <Form.Label>Số điện thoại liên hệ</Form.Label>
-                            <Form.Control type="text" name="phone" className=''
-                            value={phone}
-                            onChange = {(e) => handleChange(e)}/>
-                            {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.description_sort[0]}</div>}
-                        </Form.Group> */}
                         <Form.Group className="mb-3 description_sort">
                             <Form.Label>Nội dung ngắn</Form.Label>
                             <Form.Control type="text" name="description_sort" className=''

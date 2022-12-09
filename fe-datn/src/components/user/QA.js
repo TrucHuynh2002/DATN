@@ -132,7 +132,7 @@ function QA() {
             {/* <div className="row">   */}
             {listQa.map((listQa, index) => {
               return (
-              <div className="qa">
+              <div className="qa" key={index}>
                 <div className='qa_avata'>             
                     <img src={listQa.link_img_user}
                      alt='' className="avt_qa" />   
@@ -148,7 +148,7 @@ function QA() {
               {listComment.map((listComment, index) => {
                 return listQa.id_qa == listComment.id_qa && (
                   <>
-                <div className='qa_avata'>
+                <div className='qa_avata' key={index}>
                     <img src={listComment.link_img_user}
                      alt='' className="avt_qa" />
                     <span>Trả lời bởi <Link to="" className='qa_link'>{listComment.full_name}</Link></span> - <span>{listComment.created_at}</span>

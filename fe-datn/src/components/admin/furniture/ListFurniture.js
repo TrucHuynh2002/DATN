@@ -1,13 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Pagination from '../../user/Pagination';
 
 function ListFurniture() {
 
-  const id_furniture = useParams();
   const [listFurniture, setListFurniture] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);
@@ -56,12 +55,8 @@ function ListFurniture() {
                 <td>{furn.icon}</td>
                 <td>
                     <Link to={`../edit_furniture/${furn.id_furniture}`} className="bx bxs-edit btn-edit btn btn-primary">
-                      {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                     </Link>
-                  
-                    {/* <Link to="#"> */}
                       <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteFurniture(furn.id_furniture)}></Button>
-                    {/* </Link> */}
                 </td>
               </tr>
               );

@@ -1,11 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect} from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-// import StarRading from './starRading';
 import axios from 'axios';
-
 
 function Comment() {
   const user = JSON.parse(localStorage.getItem("user"));

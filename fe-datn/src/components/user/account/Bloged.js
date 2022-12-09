@@ -1,11 +1,9 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import PaginationBlog from '../PaginationBlog';
+import axios from 'axios';
 
-import axios from 'axios'
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
@@ -21,16 +19,16 @@ function Bloged() {
         getData();
     },[]);
 
-    // danh sach blogdetail
     const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
     setListBlog(res.data.data);
     };
- // xoa Blog
- const deleteBlog = async (id_blog) => {
-    await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
-    getData();
-  };
+
+    const deleteBlog = async (id_blog) => {
+        await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
+        getData();
+    };
+
   return (
     <div >
         <h1><b className="b_title">Bài viết đã đăng</b></h1>
@@ -40,11 +38,11 @@ function Bloged() {
             {!currentBlog ? 
             <div className="text-center No_user____">
                 <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
-                <p>Chưa đăng bài nào </p>
+                <p>Chưa đăng bài nào</p>
             </div>
                 : currentBlog.map((a, index) => {    
                     return (     
-                    <div className='row'>
+                    <div className='row' key={index}>
                         <div className='col-md-2 text-center' >
                             <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
                             className="avt_img"/>                        

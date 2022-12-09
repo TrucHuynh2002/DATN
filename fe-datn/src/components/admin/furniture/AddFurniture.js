@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-// import { useNavigate } from 'react-router-dom';
 
 function AddFurniture() {
 
-    // const navigate = useNavigate();
     const [addFurniture, setAddFurniture] = useState({
         name: "",
         icon: "",
@@ -38,9 +36,7 @@ function AddFurniture() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name[0])
-        }
-        // navigate("../list_furniture");
+        };
     };
 
   return (

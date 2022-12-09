@@ -25,7 +25,6 @@ function EditContact() {
 
   const handleChange = (e) => {
       setEditContact({ ...editContact, [e.target.name]: e.target.value })
-      // setEditContact(e.target.value);
   };
 
   const handleSumbit = async (e) => {
@@ -44,7 +43,6 @@ function EditContact() {
               err_list: res.data
           });
       }
-      // navigate("../list_Contact");
   };
 
   useEffect(() => {
