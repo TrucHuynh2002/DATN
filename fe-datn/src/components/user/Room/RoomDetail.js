@@ -138,7 +138,7 @@ function RoomDetail() {
                         <p><b>Nội thất</b></p>
                             {listFurniture.map((furn_detail, index) => {
                             return (                                             
-                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon} style={{margin:'3px'}}>{furn_detail.name} </span>                           
+                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon} style={{margin:'3px'}}>{furn_detail.name}</span>                           
                             );
                             })} 
                         <br></br>  
