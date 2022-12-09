@@ -4,9 +4,6 @@ import axios from 'axios'
 
 function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
-    const handleSumbit = async (e) => {
-        localStorage.removeItem("user");
-    }
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     

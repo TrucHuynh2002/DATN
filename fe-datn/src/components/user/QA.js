@@ -44,7 +44,11 @@ function QA() {
 };
 
   const handleChangeQA = (e) => {
+<<<<<<< HEAD
     setAddQA({...addQA, [e.target.name] : e.target.value})
+=======
+    // setQA({...addQA, [e.target.name] : e.target.value})
+>>>>>>> 1c9c43ec106b99c7478ffcef6266cfa63662e189
   }
   const handleQA = async (e) => {
     e.preventDefault();
@@ -59,7 +63,11 @@ function QA() {
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
+<<<<<<< HEAD
     setComment({...Comment, [e.target.name]: e.target.value})
+=======
+    // setComment({...Comment, e.target.name : e.target.value})
+>>>>>>> 1c9c43ec106b99c7478ffcef6266cfa63662e189
   }
   const handleComment = async (e) => {
     e.preventDefault();
@@ -113,7 +121,11 @@ function QA() {
                                 }}
                                 onChange={(event,editor) => {
                                     let data = editor.getData();
+<<<<<<< HEAD
                                     setAddQA({addQA, content:data});
+=======
+                                    // setAddQA({AddQA, content:data});
+>>>>>>> 1c9c43ec106b99c7478ffcef6266cfa63662e189
                                 }}
                                 >
                                 </CKEditor>

@@ -67,12 +67,10 @@ function ListContact() {
                   {contact.status === 1 && <Button variant="outline-danger" disable="true" name='' className="">Đã liên hệ</Button> }
                   {contact.status === 0 && <Button variant="outline-success" name='' className="">Chưa liên hệ</Button> }
                 </td>
+                <td>
                 {contact.status === 0 &&  <Link to={`../edit_contact/${contact.id_contact}`} className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-                {contact.status === 1 &&  <Link to="" className="bx bxs-edit btn-edit btn btn-primary"></Link> }
-               
-                {/* <Button variant="outline-danger" name='' className="bx bx-edit" onClick={() => updatecontact(contact.id_contact)}></Button> */}
-              
-              
+                {contact.status === 1 &&  <Link variant="outline-danger" className="bx bxs-edit btn-edit btn btn-primary"></Link> }
+                </td>
               </tr>
             );
           })}

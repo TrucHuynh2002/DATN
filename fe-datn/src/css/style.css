@@ -1048,9 +1048,20 @@ font-size: 45px;
 .link_____{
     color: #0d5df0b5!important;
     font-size: 17px;
+  
+}
+.Link_________{
+    font-size: 15px;
+    width: 50%;
+    color: #0d5df0b5!important;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.content____________{
+    display: flex;
+    align-items: center;
 }
 .searchTrend{
-    height: 118px;
     padding: 16px 24px;
     border-bottom: 1px solid #93888870;
     border-top: 1px solid #93888870;
@@ -2048,6 +2059,14 @@ ul.social_icon li a:hover {
     color: black;
     font-size: 24px;
 }
+.searchTrend_content____{
+    background: white;
+    box-shadow: black;
+    box-shadow: 0px 1px 3px #00000085;
+    border-radius: 9px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
 
 /* .shopee-search-empty-result-section__icon{
     margin-left: 450px;
@@ -2095,17 +2114,14 @@ ul.social_icon li a:hover {
 .detail_room1 {
     padding: 0px 0px 20px 30px;
 }
-.detail_room2 {
-    padding: 0px 0px 20px 30px;
-    font-size: 16px;
-} .icon-furniture {
+
+.icon-furniture {
     font-size: 18px;
     color: #333333;
     letter-spacing: 0;
     line-height: 24px;
     margin-left: 8px;
 }
-
 
 .qa_input {
     margin: 0px 150px 30px 170px;

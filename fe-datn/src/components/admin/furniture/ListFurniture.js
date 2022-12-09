@@ -53,27 +53,22 @@ function ListFurniture() {
               <tr key={index}>
                 <td>{index+1}</td>
                 <td>{furn.name}</td>
-                <td>{furn.icon}</td>
+                <td><div className={furn.icon}></div></td>
                 <td>
-                    <Link to={`../edit_furniture/${furn.id_furniture}`} className="bx bxs-edit btn-edit btn btn-primary">
-                      {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
-                    </Link>
-                  
-                    {/* <Link to="#"> */}
-                      <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteFurniture(furn.id_furniture)}></Button>
-                    {/* </Link> */}
+                  <Link to={`../edit_furniture/${furn.id_furniture}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
+                  <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteFurniture(furn.id_furniture)}></Button>
                 </td>
               </tr>
               );
             })}
         </tbody>
     </Table>
-    {/* phan trang */}
-    <Pagination totalPost={listFurniture.length} 
+      {/* phan trang */}
+      <Pagination totalPost={listFurniture.length} 
       postsPerPage={postsPerPage} 
       setCurrentPage={setCurrentPage}
       currentPage={currentPage} />
-    </div>             
+      </div>             
     </div>
   )
 }
