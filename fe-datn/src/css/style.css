@@ -2152,5 +2152,27 @@ ul.social_icon li a:hover {
     font-weight: normal;
   }.privacypolicy{
     color: black;
+  }.userroomdetail{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+   
+  } .nameuser{
+    text-transform: uppercase;
+   
+    font-size: 16px;
+    margin: -50px 0 0 60px;
+  }.rateuser{
+    padding-left :20px;
+  }.imguserrate{
+    width:50px;
+    height:50px;
+    border-radius: 100px;
+  }.namecolor{
+    color: black;
+  }.contentrate{
+    padding: 0 0 0 80px;
+  }.spancontentrate{
+    font-size: 20px;
+    color:black;
   }
-    

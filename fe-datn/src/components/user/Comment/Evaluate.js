@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Rate from './Rate';
-
+import logo from '../../../images/gallery5.jpg';
 
 import axios from 'axios';
 
@@ -217,47 +217,54 @@ function Evaluate() {
       
 
 
-    <div>
+   
 
-
-    <p>sdasdsa</p>
-
-
-
-    </div>
-          <div className="star-rate">
+<div className='rateuser'>
+<img className="imguserrate " src={logo} alt="#"  />
+   <div className='nameuser' >
+    <p className='namecolor'>Triển</p>
+   
+   <div className="star-rate ">
           
-            {
-              Array(5).fill()
-                      .map((_,index) => {
-                        let rate = index +1
-                        return rate > averageRate
-                        ?
-                          
-                            index + 0.5 > averageRate
-                            ?
-                            <>
-                             <i className="fa fa-star" />
-                            </>
-                            :
-                            
-                              <i className="fa fa-star-half checked" />
-                            
-                          
-                        :
-                      
-                        (
+          {
+            Array(5).fill()
+                    .map((_,index) => {
+                      let rate = index +1
+                      return rate > averageRate
+                      ?
+                        
+                          index + 0.5 > averageRate
+                          ?
                           <>
-                            <i className="fa fa-star checked" />
+                           <i className="fa fa-star" />
                           </>
-                        )
-                      })
-            }
-          
-          </div>
+                          :
+                          
+                            <i className="fa fa-star-half checked" />
+                          
+                        
+                      :
+                    
+                      (
+                        <>
+                          <i className="fa fa-star checked" />
+                        </>
+                      )
+                    })
+          }
+        
+        </div>
+   </div>
+         
 
+         
+ 
 
-
+</div><div  className='contentrate'>
+ <span className='spancontentrate'>Phòng sạch, đẹp, thơm lắm</span>
+ <br></br>
+  <p >26 ngày trước</p>
+ </div>
 
 
 
