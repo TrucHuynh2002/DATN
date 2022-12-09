@@ -2075,10 +2075,10 @@ ul.social_icon li a:hover {
     font-size: 16px;
 }
 .detail_room {
-    width: 55%;
     height: 100%;
     margin: 20px 0px 20px 0px;
-    background-color: #f4f5f7;
+    background-color: white;
+    box-shadow: 0px 1px 3px black;
     border-radius: 10px;
     font-size: 16px;
     
@@ -2115,4 +2115,26 @@ ul.social_icon li a:hover {
     border-radius: 50px;
     width: 780px;
 }
-
+.logo-privacy{
+   margin: 10px 0 10px 550px;
+  }.title-privacy{
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500 ;
+  }.content-privacy{
+    text-align: center;
+    padding: 30px 300px 0px 300px;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: normal;
+  }.h1privacy{
+    padding: 50px 300px 0px 300px;
+    font-weight: 500;
+  }.p-privacy{
+    padding: 20px 300px 0px 300px;
+    font-size: 18px;
+    font-weight: normal;
+  }.privacypolicy{
+    color: black;
+  }
+    

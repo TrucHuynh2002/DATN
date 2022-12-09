@@ -36,23 +36,21 @@ function QA() {
    //danh sach img
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgQa/show`);
-    // console.log(res);
     setListImg(res.data.data);  
   };
   const getComment = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
-    // console.log(res);
     setListComment(res.data.data);  
 };
 
   const handleChangeQA = (e) => {
-    setQA({...addQA, [e.target.name] : e.target.value})
+    setAddQA({...addQA, [e.target.name] : e.target.value})
   }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',content)
-    formData.append('title',title)
+    // formData.append('title',title)
     formData.append('id_user',id_user)
     // formData.append('id_img_qa',id_img_qa)
     // formData.append('parent_id',getIdComment)
@@ -61,13 +59,13 @@ function QA() {
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
-    setComment({...Comment, e.target.name : e.target.value})
+    setComment({...Comment, [e.target.name]: e.target.value})
   }
   const handleComment = async (e) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',content)
-    formData.append('id_qa',id_qa)
+    // formData.append('id_qa',id_qa)
     formData.append('id_user',id_user)
     // formData.append('id_img_qa',id_img_qa)
     // formData.append('parent_id',getIdComment)
@@ -88,7 +86,7 @@ function QA() {
                         <div className="title">
                             <h2>Hỏi đáp</h2>
                         </div>
-                    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -115,7 +113,7 @@ function QA() {
                                 }}
                                 onChange={(event,editor) => {
                                     let data = editor.getData();
-                                    setAddQA({AddQA, content:data});
+                                    setAddQA({addQA, content:data});
                                 }}
                                 >
                                 </CKEditor>
@@ -153,7 +151,7 @@ function QA() {
                 <div className='qa_avata'>
                     <img src={listComment.link_img_user}
                      alt='' className="avt_qa" />
-                    <span>Trả lời bởi <Link to="" className='qa_link'>{listComment.full_name}</Link></span> - <span>{listComment.created_at}</span>
+<span>Trả lời bởi <Link to="" className='qa_link'>{listComment.full_name}</Link></span> - <span>{listComment.created_at}</span>
                 </div>
                 <div className='qa_content'>
                 {listComment.content}
@@ -172,7 +170,7 @@ function QA() {
                       aria-controls="collapseExample" 
                       className='qa_link'
                     >
-                     <i class='bx bx-message-dots'></i> Bình luận
+                     <i className='bx bx-message-dots'></i> Bình luận
                     </Link>
                   </div>
                   <div className="collapse-show-rate collapse row" id="collapseExample">

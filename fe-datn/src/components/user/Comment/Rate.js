@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 function Comment() {
+ 
   const user = JSON.parse(localStorage.getItem("user"));
   const id = useParams();
        // thêm comment
@@ -132,5 +133,4 @@ function Comment() {
     </div>
   )
 }
-
 export default Comment

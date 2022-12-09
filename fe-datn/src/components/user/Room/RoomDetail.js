@@ -3,6 +3,9 @@ import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
+import Rate from '../Comment/Rate';
+import ContentComent from '../Comment/ContentComent';
+
 import Modal from 'react-bootstrap/Modal';
 
 function RoomDetail() {
@@ -243,38 +246,41 @@ function RoomDetail() {
 
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div className="product-info-tabs">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item">
-                            <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true"> Mô tả </a>
+                            <a className="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" 
+                            aria-controls="description" aria-selected="true"> Mô Tả </a>
+                            
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"> <span>170</span> lượt Đánh giá  </a>
+                            <a className="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                             aria-controls="review" aria-selected="false"> <span>170</span> Bình Luận  </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" id="rate-tab" data-toggle="tab" href="#rate" role="tab"
+                             aria-controls="rate" aria-selected="false">Đánh Giá  </a>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab" >
-                        <div dangerouslySetInnerHTML={{__html:a.description}} />   
+                            <div className='container'>
+                                <div dangerouslySetInnerHTML={{__html:a.description}} />
+                            </div>
+                            <div className='' style={{'marginTop':'19px'}}>
+                                 <h3 className="dccuthe">Vị trí cụ thể</h3>
+                                <div dangerouslySetInnerHTML={{__html: a.ifarme}} /> 
+                            </div>  
+                           
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <div className="review-heading">
+                                <h1 class="content_room_h1">Bình Luận</h1>
+                            </div>
+                            <ContentComent />
+
+                        </div>
+                        <div className="tab-pane fade" id="rate" role="rate" aria-labelledby="review-tab">
                             <div className="review-heading">
                                 <h1 class="content_room_h1">Đánh giá {a.post_name}</h1>
                             </div>
@@ -282,8 +288,7 @@ function RoomDetail() {
                         </div>
                     </div>
                 </div>
-                <h3 className="dccuthe">Vị trí cụ thể</h3>
-                <div dangerouslySetInnerHTML={{__html: a.ifarme}} />
+              
                 </div>
                )})}
         </div>

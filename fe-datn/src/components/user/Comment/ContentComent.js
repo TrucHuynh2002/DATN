@@ -102,7 +102,7 @@ return (
                                     placeholder="Trả lời bình luận"
                           />
                           </Form.Group>
-                          <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                          <Button type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
                         
     </Form>
   </div>
@@ -143,7 +143,7 @@ return (
                                     placeholder="Trả lời bình luận"
                           />
                           </Form.Group>
-                          <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                          <Button type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
                         </Form>
                   </div> 
                   } 
@@ -181,7 +181,7 @@ return (
                                           placeholder="Trả lời bình luận"
                                 />
                                 </Form.Group>
-                                <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
+                                <Button type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
                               </Form>
                         </div> 
                         } 
