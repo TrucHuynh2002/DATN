@@ -120,49 +120,70 @@ function RoomDetail() {
                 </div>
                 <div className='row detail_room'>   
                     <h3 className='room_h3'>Thông tin phòng</h3>                                
-                    <div className='col-md-6 detail_room1'>
-                        <p><b>Diện tích</b></p>    
-                            <span>{a.area}m<sup>2</sup></span>
+                    <div className='col-md-3 detail_room1'>
+                        
+                        <p><b>Giá phòng</b></p>    
+                        <span> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
+                            </div>
+
+                            <div className='col-md-3'>
+                        <p><b>Diện tích</b></p>
+                            <span >{a.area}m<sup>2</sup></span>
+                            </div>
+
+                            <div className='col-md-3'>
                         <p><b>Giá nước</b></p>
                             <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</span>
+                            </div>
+
+                             <div className='col-md-3'>
                         <p><b>Giá điện</b></p>
                             <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</span>
                     </div>
-                    <div className='col-md-6'>
+                    
+                    <div className='col-md-3 detail_room1'>
                         <p><b>Loại phòng</b></p>
                             {listRoom.map((room_detail, index) => {
                             return (                                             
                                 <span key={index} value={room_detail.id_room_type} style={{margin:'3px'}}>{room_detail.name_room_type} </span>                           
                             );
                             })} 
-                        <p><b>Nội thất</b></p>
-                            {listFurniture.map((furn_detail, index) => {
-                            return (                                             
-                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon} style={{margin:'3px'}}>{furn_detail.name} </span>                           
-                            );
-                            })} 
-                        <br></br>  
-                        <b>Địa chỉ</b>:                 
-                        <b style={{margin:'3px'}}>Thành phố</b>
+                    </div>                           
+                    <div className='col-12 detail_room1'>
+                        <b>Địa chỉ:</b>                 
+                        <span style={{margin:'3px'}}>Thành phố</span>
                             {listprovince.map((pro_detail, index) => {
                             return (   
                                 <span style={{margin:'3px'}} key={index}>{pro_detail._name},</span>                    
                             );
                             })}                   
-                        <b style={{margin:'3px'}}>Quận</b> 
+                        <span style={{margin:'3px'}}>Quận</span> 
                             {listdistrict.map((dis_detail, index) => {
                             return (   
                                 <span style={{margin:'3px'}} key={index}>{dis_detail._name},</span>            
                             );
                             })}                   
-                        <b style={{margin:'3px'}}>Xã</b>
+                        <span style={{margin:'3px'}}>Xã</span>
                             {listward.map((ward_detail, index) => {
                             return (   
                                 <span style={{margin:'3px'}} key={index}>{ward_detail._name}.</span>                        
                             );
                             })} 
-                    </div>                                                     
+                            </div>
                 </div>
+
+                <div className='row detail_room'>   
+                    <h3 className='room_h3'>Nội thất</h3>
+                                                            
+                        {listFurniture.map((furn_detail, index) => {
+                        return (       
+                            <div className='col-md-3 detail_room1'>                                       
+                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span>               
+                            </div>                                               
+                        );
+                        })}    
+                </div>
+
                 <div className="product-info-tabs">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item">

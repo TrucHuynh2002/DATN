@@ -36,11 +36,10 @@ function ListPost() {
     <div className="content">
         <div className="add-post">
             <h1 className="content_h1_admin">Danh sách bài viết</h1>
-            <Link to="../../addpost" className="btn btn-primary form-add">Thêm bài viết</Link>
+            {/* <Link to="../../addpost" className="btn btn-primary form-add">Thêm bài viết</Link> */}
             <Table bordered>
             <thead>
             <tr>
-                <th></th>
                 <th>ID</th>
                 <th>Tên bài viết</th>
                 <th>Trạng thái</th>
@@ -52,21 +51,17 @@ function ListPost() {
                 {currentPosts.map((post, index) => {
                     return (
                     <tr key={index}>
-                      <td></td>
                         <td>{index+1}</td>
                         <td>{post.post_name}</td>
                         <td>
                           {post.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
                           {post.status === 0 && <Button variant="outline-danger" name='' className="">Phê duyệt</Button> }
-                       
-                          <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
-                        
-                            <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary">
-                            </Link>
-                            </td>        
-                        <td>  
+                          </td>
+                          <td>
+                            <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
+                            <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
                             <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button>
-                        </td>
+                          </td>
                     </tr>
                     );
                 })}               

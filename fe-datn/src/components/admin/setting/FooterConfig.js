@@ -7,7 +7,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function FooterConfig() {
 
-  const {id_config} = useParams();
+  // const {id_config} = useParams();
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     title: "",
@@ -40,7 +40,6 @@ function FooterConfig() {
         setAlert({
             err_list: res.data
         });
-        console.log(alert.err_list)
     }
     else{           
         setAlert({
@@ -49,14 +48,12 @@ function FooterConfig() {
     }
   };
 
-
   useEffect(() => {
     loadConfig();
   }, []);
 
   const loadConfig = async () => {
       const result = await axios.get(`http://127.0.0.1:8000/api/config`);
-      console.log(result);
       setEditConfig(result.data.data);
   };
 
