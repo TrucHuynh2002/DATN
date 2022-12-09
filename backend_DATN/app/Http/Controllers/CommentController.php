@@ -50,10 +50,9 @@ class CommentController extends Controller
             $rate = new RatingModel();
             $rate->rate = $request->rate;
             $rate->id_post = $request->id_post;
-            $rate->id_comment = $comment->id_comment;
+            $rate->content = $request->content;
             $rate->save();
-        } else {
-        }
+        } 
         return response()->json([
             'message' => 'Cám ơn bạn đã đánh giá!',
             'status' => true,
@@ -109,7 +108,7 @@ class CommentController extends Controller
             ->select('users.full_name','comment.content','comment.id_comment','img_user.link_img_user')
             ->where('comment.id_post', $id_post)
             ->where('comment.param_id', '=', Null)
-            ->orderBy('comment.id_user', 'DESC')
+            ->orderBy('comment.id_comment', 'DESC')
             ->get();
         
         $Comment_Child = DB::table('comment')

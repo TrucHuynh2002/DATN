@@ -7,13 +7,18 @@ import axios from 'axios';
 
 function ContentComent() {
   const user = JSON.parse(localStorage.getItem('user'));
-
+ 
   const id_user = !user ? "" : user[0].id ;
   const {id_post} = useParams();
   const [loader,setLoader] = useState(0);
   const [listComment, setListComment] = useState({
       Comment_parent: [],
       Comment_child: []
+  });
+  const [addNotify, setNotify] = useState({
+    id_user_tow: "",
+    id_user: user ? user[0].id : "",
+    id_post: id_post.id_post,
   });
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
@@ -31,9 +36,7 @@ function ContentComent() {
     Comment_parent,
     Comment_child
   } = listComment
-  useEffect(() => {
-      getData();
-  },[loader]);
+
 
   // danh sach Comment
   const getData = async () => {
@@ -41,6 +44,10 @@ function ContentComent() {
     console.log(res);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
   };
+
+  useEffect(() => {
+    getData();
+},[loader]);
 
   const handleChangeComment = (e) => {
     setComment(e.target.value)
@@ -53,7 +60,13 @@ function ContentComent() {
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-    setLoader(res.data.length++);
+    console.log(res);
+      if(res.data.status == true ){
+        const {id_user_tow} = addNotify;
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+        const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+      }
+      setLoader(loader + res.data.id.length);
   }
   const handleComment = async (e) => {
     e.preventDefault();
@@ -64,7 +77,7 @@ function ContentComent() {
     // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     console.log(res);
-    setLoader(res.data.length++);
+    setLoader(loader + res.data.id.length);
   }
 
 return (
@@ -165,6 +178,7 @@ return (
             })
            }            
         </div>
+        <hr />
         </>  
     })    
 }
