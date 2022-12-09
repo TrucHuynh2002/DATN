@@ -24,7 +24,7 @@ function Search() {
         console.log(a);
         let ress = await axios.post('http://127.0.0.1:8000/api/search', addTrendSearch);
         let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
-        setData(res.data);
+        setData(res.data)   ;
       }
     useEffect(() => {
         getPostSearch();
