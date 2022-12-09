@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
 import Modal from 'react-bootstrap/Modal';
@@ -138,7 +138,7 @@ function RoomDetail() {
                         <p><b>Nội thất</b></p>
                             {listFurniture.map((furn_detail, index) => {
                             return (                                             
-                                <span key={index} value={furn_detail.id_furniture} style={{margin:'3px'}}>{furn_detail.name} </span>                           
+                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon} style={{margin:'3px'}}>{furn_detail.name} </span>                           
                             );
                             })} 
                         <br></br>  

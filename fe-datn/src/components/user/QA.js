@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link} from 'react-router-dom';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
+
 function QA() {
 
   const [listQa, setListQa] = useState([]);
@@ -22,8 +23,12 @@ function QA() {
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgQa/show`);
     // console.log(res);
-    setListImg(res.data.data);  
-};
+    setListImg(res.data.data);
+  };
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -40,22 +45,52 @@ function QA() {
         </div>
         <div className="our_room">
           <div className="container">
+            <div className='qa_input'>
+              <Button variant="secondary" className='btn_qa' onClick={handleShow}>
+                Bạn đang nghĩ gì thế?
+              </Button>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Tạo câu hỏi</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form encType="multipart/form-data">
+                    <Form.Group className="mb-3" controlId="title">
+                        <Form.Control type="text" name="title" placeholder='Tiêu đề' className=''/>            
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="content">
+                        <Form.Control type="text" name="content" placeholder='Nội dung' className=''/>            
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="link_img_qa">
+                        <Form.Control type="file" name="link_img_qa" className=''/>            
+                    </Form.Group>
+                    <Button variant="primary" name='' type="submit">
+                      Đăng
+                    </Button>                    
+                  </Form> 
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Đóng
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
             {/* <div className="row">   */}
             {listQa.map((listQa, index) => {
               return (
               <div className="qa">
-                <div className='qa_avata'>
-              
+                <div className='qa_avata'>             
                     <img src={listQa.link_img_user}
-                     alt='' className="avt_qa" />
-     
+                     alt='' className="avt_qa" />   
                     <span><Link to={`../profile/${listQa.id_user}`}>{listQa.full_name}</Link></span> - <span>{listQa.created_at}</span>
                 </div><br></br>
                 <h3>{listQa.title}</h3>
                 <p>{listQa.content}</p>
                 {listImg.map((a, index) => {
                   return a.id_qa == listQa.id_qa && (
-                <img src={a.link_img_qa} width={400} height={200}></img>
+                <img src={a.link_img_qa} width={400} alt='' height={200}></img>
                 )
             })}
 

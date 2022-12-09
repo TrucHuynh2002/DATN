@@ -2093,3 +2093,12 @@ ul.social_icon li a:hover {
 .detail_room1 {
     padding: 0px 0px 20px 30px;
 }
+
+.qa_input {
+    margin: 0px 150px 30px 170px;
+}
+
+.btn_qa {
+    border-radius: 50px;
+    width: 780px;
+}
