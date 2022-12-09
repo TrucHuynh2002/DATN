@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
