@@ -2075,11 +2075,13 @@ ul.social_icon li a:hover {
     font-size: 16px;
 }
 .detail_room {
-    width: 50%;
+    width: 55%;
     height: 100%;
     margin: 20px 0px 20px 0px;
     background-color: #f4f5f7;
     border-radius: 10px;
+    font-size: 16px;
+    
 }
 
 .room_h3 {
@@ -2094,6 +2096,14 @@ ul.social_icon li a:hover {
     padding: 0px 0px 20px 30px;
 }
 
+.icon-furniture {
+    font-size: 18px;
+    color: #333333;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-left: 8px;
+}
+
 .qa_input {
     margin: 0px 150px 30px 170px;
 }
@@ -2102,3 +2112,4 @@ ul.social_icon li a:hover {
     border-radius: 50px;
     width: 780px;
 }
+

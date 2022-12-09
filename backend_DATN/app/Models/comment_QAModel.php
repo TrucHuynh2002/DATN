@@ -9,7 +9,7 @@ class comment_QAModel extends Model
 {
     protected $table = 'comment_qa';
     protected $primaryKey = 'id_comment_qa';
-    // public $timestamps = true;
+    public $timestamps = false;
     // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'content',
