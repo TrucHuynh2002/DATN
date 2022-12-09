@@ -6,7 +6,6 @@ import axios, { AxiosHeaders } from 'axios';
 
 function ContentComent() {
   const user = JSON.parse(localStorage.getItem('user'));
- 
   const id_user = !user ? "" : user[0].id ;
   const {id_post} = useParams();
   const [loader,setLoader] = useState(0);
@@ -35,8 +34,8 @@ function ContentComent() {
     id
   } = Reply
  
-const [updateCmt,setUpdateCmt] = useState(false);
-const [contentUpdateCmt, setContentUpdateCmt] = useState('');
+  const [updateCmt,setUpdateCmt] = useState(false);
+  const [contentUpdateCmt, setContentUpdateCmt] = useState('');
   // danh sach Comment
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
@@ -45,7 +44,7 @@ const [contentUpdateCmt, setContentUpdateCmt] = useState('');
 
   useEffect(() => {
     getData();
-},[loader]);
+  },[loader]);
 
   const handleChangeComment = (e) => {
     setComment(e.target.value)
@@ -75,7 +74,7 @@ const [contentUpdateCmt, setContentUpdateCmt] = useState('');
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     setLoader(loader + res.data.id.length);
   }
-
+ 
   const handleDeleteComment = async (e,id_cmt) => {
       let res = await axios.post(`http://127.0.0.1:8000/api/comment/delete/${id_cmt}?_method=DELETE`);
       if(res.data.status = true){
@@ -90,16 +89,13 @@ const [contentUpdateCmt, setContentUpdateCmt] = useState('');
   const handleUpdateComment = async (e,id_cmt) => {
     // e.preventDefault();
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
-    console.log(id_cmt);
     let res = await  axios.get(`http://127.0.0.1:8000/api/comment/show/${id_cmt}`)
-    console.log(res)
     setContentUpdateCmt(res.data.data.content);
   
   }
 
   const handleUpdateContent = async (e,id_cmt) => {
     e.preventDefault();
-    console.log(id_cmt)
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
     let res = await  axios.post(`http://127.0.0.1:8000/api/comment/update/${id_cmt}?_method=PUT`,formData)
@@ -118,221 +114,231 @@ const [contentUpdateCmt, setContentUpdateCmt] = useState('');
 
 return (
  <>
- 
-    <Form className="content_comment____" onSubmit={e => handleComment(e)}>
+  <div className="input_comment">
+    <Form className="display_comment" onSubmit={e => handleComment(e)}>
       <Form.Group  className="col-10">
-          <Form.Control 
+        <Form.Control 
           style={{"padding":"24px 0 24px 12px"}}
           type="text"
           name="reply_cmt" 
-         
           onChange = {(e) => handleChangeComment(e)}
           placeholder="Viết bình luận của bạn"
-          />
+        />
       </Form.Group>
-      <Button  className="col-2"  type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
+      <Button  className="col-1 button_input_submit"  type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
     </Form>
-  <div style={{margin:' 26px 10px 0'}}>
-  <span>Xem {Comment_parent.length + Comment_child.length} bình luận trong bài </span>
-  <i class="fa-light fa-comment"></i>
+    <div style={{margin:' 26px 10px 0'}}>
+      <span>Xem {Comment_parent.length + Comment_child.length} bình luận trong bài </span>
+      <i class="fa-light fa-comment"></i>
+    </div>
   </div>
-<hr />
+  <hr />
   {Comment_parent.map((comment, index) => {
     return <>
-       <div key={index}>
-           <div key={index}>
-            {/* <span style={{color: "orange"}} ><i class="bi bi-star-fill"></i></span> */}
-              <div className="content_comment____" style={{ justifyContent: 'space-between'}}>
-               
-                <div className="content_comment____gpgpg" style={{display:"flex"}}>
-                <img src={comment.link_img_user} alt="images" style={{width:'30px', height:'30px', borderRadius:'50%'}} />
-                  <div className="content_comment____bp">
+        <div className="container_comment" key={index}>
+           {/* <div key={index}> */}
+              <div className="display_comment display_comment_justify" >
+                <div className="content_comment_img_user" >
+                  <img className="content_comment_img___" src={comment.link_img_user} alt="images" />
+                  <div className="content_comment____">
                     <b className=''>{comment.full_name}</b>
-                    {activeUpdateComment == true && idUpdateCmt == comment.id_comment
-                    ? 
-                    (
-                        <div style={{"padding": "16px"}}>
-                            <Form onSubmit={e => handleUpdateContent(e,comment.id_comment)} encType="multipart/form-data">
-                                <Form.Group>
-                                  <Form.Control type="text" name="updatecmt" onChange={(e) => handleChangeContent(e)}  value={contentUpdateCmt}  />
-                                </Form.Group>
-                            <Button style={{"marginTop":"8px"}} type="submit">Cập nhật</Button>
-                            </Form>
-                        </div>
-                      )
-                    
-                    :
-                    ( <p className=''>{comment.content}</p>) 
+                    {activeUpdateComment == true && idUpdateCmt == comment.id_comment ? (
+                      <div className="content_comment____form_input__" >
+                        <Form 
+                          className="display_comment" 
+                          onSubmit={e => handleUpdateContent(e,comment.id_comment)} 
+                          encType="multipart/form-data"
+                        >
+                          <Form.Group className="col-9">
+                            <Form.Control 
+                            type="text" 
+                            name="updatecmt" 
+                            onChange={(e) => handleChangeContent(e)}  
+                            value={contentUpdateCmt}  />
+                          </Form.Group>
+                          <Button  className="col-3 button_input_submit" type="submit">Cập nhật</Button>
+                        </Form>
+                      </div>
+                      ) : ( <p className=''>{comment.content}</p>) 
                     }
                   </div>
-                
-                 
+                  <div className="content_comment_chammmm">
+                  ...
+                    { id_user == comment.id_user &&
+                      <div className="content_comment_editAndDelete">
+                        <span onClick={(e) => handleDeleteComment(e,comment.id_comment)} >Xóa</span>  <br />
+                        <span onClick={(e) => handleUpdateComment(e,comment.id_comment)} >Chỉnh sữa</span>
+                      </div>
+                    }
+                  </div>
                 </div>
-                {
-                id_user == comment.id_user 
-                &&
-                    <div>
-                      <span className="bx bxs-trash btn btn-outline-secondary"   onClick={(e) => handleDeleteComment(e,comment.id_comment)}></span> 
-                      <span className="bx bxs-edit btn-edit btn btn-outline-secondary"  onClick={(e) => handleUpdateComment(e,comment.id_comment)}></span> 
-                    </div>
-                }
               </div>
-              <div>
-                 <div className="content_comment____" style={{"margin":"10px"}}>
-                  <span onClick={() => {setGetIdComment(comment.id_comment); setReply({...Reply,activeComment:true,id:comment.id_comment})}} style={{"marginLeft":"36px","Color":"#bebebe"}}><strong>Trả lời</strong></span>
-                  <p style={{"marginLeft":"8px","Color":"#bebebe"}}>{moment(comment.created_at).local().startOf('day').fromNow()}</p> 
-                 </div>
-                  { activeComment && id == comment.id_comment &&
-                    <div style={{"marginLeft":"36px"}}>
-                          <Form className="content_comment____" onSubmit={e => handleReplyComment(e)}>
-                            <Form.Group className="col-10">
+              <div className="btn_feedback_comment">
+                <div className="display_comment" >
+                  <span 
+                    onClick={() => {setGetIdComment(comment.id_comment); 
+                    setReply({...Reply,activeComment:true,id:comment.id_comment})}} 
+                    className="feedback_comment_span" >
+                    <strong>Trả lời</strong>
+                  </span>
+                  <p  className="feedback_comment_time" >
+                    {moment(comment.created_at).local().startOf('day').fromNow()}
+                  </p> 
+                </div>
+                { activeComment && id == comment.id_comment &&
+                  <div className="content_comment____form_input__">
+                    <Form className="display_comment" onSubmit={e => handleReplyComment(e)}>
+                      <Form.Group className="col-9">
+                        <Form.Control 
+                        style={{"padding":"24px 0 24px 12px"}}
+                        type="text"
+                        name="reply_cmt" 
+                        className=''                                 
+                        onChange = {(e) => handleChangeComment(e)}
+                        placeholder="Trả lời bình luận"
+                        />
+                      </Form.Group>
+                    <Button className="col-3 button_input_submit" type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
+                  </Form>
+                  </div> } 
+              </div>
+           {/* </div> */}
+           { Comment_child.map((cmt,i) => {
+            return  cmt.param_id == comment.id_comment ?  
+            <>
+              {/* <hr /> */}
+              <div className="feedback_comment_content" key={i}>
+                <div className="display_comment display_comment_justify">
+                  <div className="content_comment_img_user">
+                    <img className="content_comment_img___" src={cmt.link_img_user} alt="images" />
+                    <div className="content_comment____">
+                      <b className='cmt_name'>{cmt.full_name}</b>
+                      {activeUpdateComment == true && idUpdateCmt == cmt.id_comment ? ( 
+                      <div className="content_comment____form_input__">
+                        <Form 
+                          className="display_comment" 
+                          onSubmit={e => handleUpdateContent(e,cmt.id_comment)} 
+                          encType="multipart/form-data"
+                        >
+                          <Form.Group className="col-9">
                             <Form.Control 
-                                      style={{"padding":"24px 0 24px 12px"}}
-                                      type="text"
-                                      name="reply_cmt" 
-                                      className=''                                 
-                                      onChange = {(e) => handleChangeComment(e)}
-                                      placeholder="Trả lời bình luận"
+                              type="text" name="updatecmt" 
+                              onChange={(e) => handleChangeContent(e)}  
+                              value={contentUpdateCmt}  
                             />
-                            </Form.Group>
-                            <Button className="col-2" type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
-                          </Form>
+                          </Form.Group>
+                          <Button className="col-3" type="submit">Cập nhật</Button>
+                        </Form>
+                      </div> 
+                      ) : ( 
+                      <p className='cmt_name1'>{cmt.content}</p>) 
+                      }
+                    </div>
+                    <div className="content_comment_chammmm"> ...
+                      { id_user == cmt.id_user &&
+                        <div className="content_comment_editAndDelete">
+                          <span onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</span> <br />
+                          <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Chỉnh sữa</span> 
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                <div className="btn_feedback_comment">
+                  <div className="display_comment" >
+                    <span 
+                      onClick={() => {setGetIdComment(cmt.id_comment); 
+                      setReply({activeComment:true,id:cmt.id_comment})}} 
+                      className="feedback_comment_span"
+                    >
+                      <strong>Trả lời</strong>
+                    </span>
+                    <p className="feedback_comment_time" >{moment(cmt.created_at).fromNow()}</p>
+                  </div>
+                  { activeComment && id == cmt.id_comment &&
+                  <div className="content_comment____form_input__">
+                    <Form className="display_comment" onSubmit={e => handleReplyComment(e)}>
+                      <Form.Group className="col-9">
+                        <Form.Control 
+                          style={{"padding":"24px 0 24px 12px"}}
+                          type="text"
+                          name="reply_cmt" 
+                          className=''                                        
+                          onChange = {(e) => handleChangeComment(e)}
+                          placeholder="Trả lời bình luận"
+                        />
+                      </Form.Group>
+                      <Button className="col-3 button_input_submit" type="submit">Bình luận</Button>
+                    </Form>
+                  </div> 
+                  } 
+                </div>
+              </div>
+            </> :
+            <div className="feedback_comment_content" key={i}>
+              <div className="display_comment display_comment_justify">
+                <div className="content_comment_img_user">
+                  <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
+                  <div className="content_comment____">
+                    <b className='cmt_name'>{cmt.full_name}</b>
+                    {activeUpdateComment == true && idUpdateCmt == cmt.id_comment ? ( 
+                      <div className="content_comment____form_input__">
+                        <Form 
+                          className="display_comment"
+                          onSubmit={e => handleUpdateContent(e,cmt.id_comment)} 
+                          encType="multipart/form-data"
+                        >
+                          <Form.Group className="col-9">
+                            <Form.Control type="text" name="updatecmt" onChange={(e) => handleChangeContent(e)}  value={contentUpdateCmt}  />
+                          </Form.Group>
+                          <Button className="col-3" type="submit">Cập nhật</Button>
+                        </Form>
+                      </div>
+                      ) : 
+                      ( <p className='cmt_name1'>{cmt.content}</p>) 
+                    }
+                  </div>
+                  <div className="content_comment_chammmm"> ...
+                     { id_user == cmt.id_user &&
+                      <div className="content_comment_editAndDelete">
+                        <span onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</span>  <br />
+                        <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Chỉnh sữa</span> 
+                      </div>
+                      }
+                    </div>
+                </div>
+              </div>
+              <div className="btn_feedback_comment">
+                <div className="display_comment" >
+                  <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
+                  <p>{moment(cmt.created_at).fromNow()}</p>
+                  { activeComment && id == cmt.id_comment && 
+                    <div className="content_comment____form_input__">
+                      <Form 
+                        className="display_comment"
+                        onSubmit={e => handleReplyComment(e)}
+                      >
+                      <Form.Group className="col-9">
+                        <Form.Control 
+                          style={{"padding":"24px 0 24px 12px"}}
+                          type="text"
+                          name="reply_cmt" 
+                          className=''                                        
+                          onChange = {(e) => handleChangeComment(e)}
+                          placeholder="Trả lời bình luận"
+                        />
+                      </Form.Group>
+                      <Button  className="col-3" type="submit">Submit</Button>
+                    </Form>
                     </div> 
                   } 
+                </div>
               </div>
-           </div>
-           {
-            Comment_child.map((cmt,i) => {
-             return  cmt.param_id == comment.id_comment
-               ?  
-               <>
-                   <div key={i}>
-                    <hr />
-                      <div style={{ "paddingLeft": "36px" }}>
-                      {/* <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span> */}
-                      <div>
-                        <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
-                        <b className='cmt_name'>{cmt.full_name}</b>
-                        {activeUpdateComment == true && idUpdateCmt == cmt.id_comment
-                            ? 
-                            
-                            (
-                              <div style={{"padding": "16px"}}>
-                                  <Form  onSubmit={e => handleUpdateContent(e,cmt.id_comment)} encType="multipart/form-data">
-                                      <Form.Group>
-                                        <Form.Control type="text" name="updatecmt" onChange={(e) => handleChangeContent(e)}  value={contentUpdateCmt}  />
-                                      </Form.Group>
-                                  <Button style={{"marginTop":"8px"}} type="submit">Cập nhật</Button>
-                                  </Form>
-                              </div>
-                            )
-                            :
-                            ( <p className='cmt_name1'>{cmt.content}</p>) 
-                              
-                            }
-                        {
-                        id_user == cmt.id_user 
-                        &&
-                            <>
-                              <button onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</button> 
-                              <button onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Cập nhật</button> 
-                            </>
-                        }
-                      </div>
-                      <div className="content_comment____">
-                        <p>{moment(cmt.created_at).fromNow()}</p>
-                        <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
-                        {
-                        activeComment && id == cmt.id_comment
-                        &&
-                        <div style={{"marginLeft":"36px"}}>
-                              <Form onSubmit={e => handleReplyComment(e)}>
-                                <Form.Group>
-                                <Form.Control 
-                                          style={{"padding":"24px 0 24px 12px"}}
-                                          type="text"
-                                          name="reply_cmt" 
-                                          className=''                                        
-                                          onChange = {(e) => handleChangeComment(e)}
-                                          placeholder="Trả lời bình luận"
-                                />
-                                </Form.Group>
-                                <Button type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
-                              </Form>
-                        </div> 
-                        } 
-                      </div>
-                      </div>
-                   </div>
-               </>    
-              :
-              <>
-              <div key={i}>
-               <hr />
-                 <div style={{ "paddingLeft": "36px" }}>
-                 {/* <span style={{ color: "orange" }}><i class="bi bi-star-fill"></i></span> */}
-                 <div>
-                   <img src={cmt.link_img_user} alt="images" style={{ width: '30px', height: '30px', borderRadius: '50%' }} />
-                   <b className='cmt_name'>{cmt.full_name}</b>
-                   {activeUpdateComment == true && idUpdateCmt == cmt.id_comment
-                       ? 
-                       
-                       (
-                         <div style={{"padding": "16px"}}>
-                             <Form  onSubmit={e => handleUpdateContent(e,cmt.id_comment)} encType="multipart/form-data">
-                                 <Form.Group>
-                                   <Form.Control type="text" name="updatecmt" onChange={(e) => handleChangeContent(e)}  value={contentUpdateCmt}  />
-                                 </Form.Group>
-                             <Button style={{"marginTop":"8px"}} type="submit">Cập nhật</Button>
-                             </Form>
-                         </div>
-                       )
-                       :
-                       ( <p className='cmt_name1'>{cmt.content}</p>) 
-                         
-                       }
-                   <p>{moment(cmt.created_at).fromNow()}</p>
-                   {
-                   id_user == cmt.id_user 
-                   &&
-                       <>
-                         <button onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</button> 
-                         <button onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Cập nhật</button> 
-                       </>
-                   }
-                 </div>
-                 <div>
-                   <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
-                   {
-                   activeComment && id == cmt.id_comment
-                   &&
-                   <div style={{"marginLeft":"36px"}}>
-                         <Form onSubmit={e => handleReplyComment(e)}>
-                           <Form.Group>
-                           <Form.Control 
-                                     style={{"padding":"24px 0 24px 12px"}}
-                                     type="text"
-                                     name="reply_cmt" 
-                                     className=''                                        
-                                     onChange = {(e) => handleChangeComment(e)}
-                                     placeholder="Trả lời bình luận"
-                           />
-                           </Form.Group>
-                           <Button type="submit" style={{"marginTop":"12px"}}>Submit</Button>
-                         </Form>
-                   </div> 
-                   } 
-                 </div>
-                 </div>
-              </div>
-              </>       
-            })
-           }            
+            </div>
+          })}            
         </div>
-        <hr />
-        </>  
-    })    
-}
+    </> 
+    })}
  </>
 )
 }

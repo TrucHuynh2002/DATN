@@ -113,7 +113,6 @@ function Comment() {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-             
             </Form>
             : <Form>
                 <Form.Group className="form-group">

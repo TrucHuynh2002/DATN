@@ -187,6 +187,9 @@ function Evaluate() {
       <div className="collapse-show-rate collapse row" id="collapseExample">
         <Rate />
       </div>
+
+
+      {/* show đánh giá */}
       <div className="star-rate">
       {
          Array(5).fill()

@@ -193,7 +193,7 @@ function RoomDetail() {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
-                             aria-controls="review" aria-selected="false"> <span>170</span> Bình Luận  </a>
+                             aria-controls="review" aria-selected="false"> Bình Luận  </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" id="rate-tab" data-toggle="tab" href="#rate" role="tab"
@@ -211,9 +211,6 @@ function RoomDetail() {
                             </div>  
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-                            <div className="review-heading">
-                                <h1 className="content_room_h1">Bình Luận</h1>
-                            </div>
                             <ContentComent />
                         </div>
                         <div className="tab-pane fade" id="rate" role="rate" aria-labelledby="review-tab">

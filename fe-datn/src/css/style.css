@@ -1955,14 +1955,22 @@ ul.social_icon li a:hover {
     margin: 20px;
 }
 
-.cmt_name{
+/* .cmt_name{
     margin-left: 10px;
-}
+} */
 
-.cmt_name1{
+/* .cmt_name1{
     margin-left: 40px;
-}
+} */
+.feedback_comment_time{
+   margin-left:8px;
+   color:#bebebe;
 
+}
+.feedback_comment_span{
+   margin-left:36px;
+   color:#bebebe;
+}
 .list-post{
     margin-top:12px;
     background-color:white;
@@ -2120,18 +2128,75 @@ ul.social_icon li a:hover {
     font-weight:normal;
     font-size:18px
 }
-.content_comment____{
+.feedback_comment_content{
+    padding-left: 36px;
+    margin-top:20px ;
+}
+.button_input_submit{ 
+    padding:5px;
+}
+.display_comment{
     display:flex;
     align-items: baseline;
- 
-}.content_comment____gpgpg>p{
-    padding-left: 17px;
 }
-.content_comment____bp{
-    margin: 1px 16px 16px 16px;
+.display_comment
+.content_comment_img_user{
+    display:flex;
+    
+}
+.content_comment_chammmm{
+    position: relative;
+}
+.content_comment_chammmm:hover>.content_comment_editAndDelete{
+    display: block;
+}
+.chammmmmm{ 
+    padding: 8px;
+    background: #cecece;
+    border-radius: 41%;
+}
+.content_comment_editAndDelete>span{
+    color: white;
+    font-weight: bold;
+}
+.content_comment_editAndDelete{
+    position: absolute;
+    display: none; 
+    left: -40px;
+    top: 23px;
+    width: 128px;
+    text-align: left;
+    border-radius: 14px;
+    background: #2d2d2dde;
+    padding: 15px;
+}
+.content_comment_img_user>p{
+    padding-left: 17px;
+   
+}
+.content_comment_img___{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+.content_comment____form_input__{ 
+    padding: 16px;
+}
+.content_comment_button{
+    margin-top:8px
+}
+.content_comment____{
+    margin: 1px 18px 8px 7px;
     border-radius: 10px;
-    padding: 17px;
+    padding: 10px 9px 10px;
     background: #e8e8e85c;
+}
+.container_comment{
+    margin-bottom:15px;
+}
+.display_comment_justify{
+    justify-content: space-between;
+   
 }
 .product-info-tabs{
     /* box-shadow: 0px 0.1px 2px black; */
