@@ -36,12 +36,10 @@ function QA() {
    //danh sach img
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgQa/show`);
-    // console.log(res);
     setListImg(res.data.data);  
   };
   const getComment = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
-    // console.log(res);
     setListComment(res.data.data);  
 };
 

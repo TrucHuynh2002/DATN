@@ -122,22 +122,22 @@ function RoomDetail() {
                     <h3 className='room_h3'>Thông tin phòng</h3>                                
                     <div className='col-md-3 detail_room1'>
                         
-                        <p ><b>Giá phòng</b></p>    
+                        <p><b>Giá phòng</b></p>    
                         <span> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
                             </div>
 
                             <div className='col-md-3'>
-                        <p ><b>Diện tích</b></p>
+                        <p><b>Diện tích</b></p>
                             <span >{a.area}m<sup>2</sup></span>
                             </div>
 
                             <div className='col-md-3'>
-                        <p ><b>Giá nước</b></p>
+                        <p><b>Giá nước</b></p>
                             <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.water_price)}</span>
                             </div>
 
                              <div className='col-md-3'>
-                        <p ><b>Giá điện</b></p>
+                        <p><b>Giá điện</b></p>
                             <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.electricity_price)}</span>
                     </div>
                     
@@ -147,14 +147,9 @@ function RoomDetail() {
                             return (                                             
                                 <span key={index} value={room_detail.id_room_type} style={{margin:'3px'}}>{room_detail.name_room_type} </span>                           
                             );
-                            })} </div>
-                            
-                            
+                            })} 
+                    </div>                           
                     <div className='col-12 detail_room1'>
-                    
-                       
-                        
-                     
                         <b>Địa chỉ:</b>                 
                         <span style={{margin:'3px'}}>Thành phố</span>
                             {listprovince.map((pro_detail, index) => {
@@ -174,92 +169,20 @@ function RoomDetail() {
                                 <span style={{margin:'3px'}} key={index}>{ward_detail._name}.</span>                        
                             );
                             })} 
-                             </div>
-
+                            </div>
                 </div>
-
-                
-
-
-
 
                 <div className='row detail_room'>   
-                    <h3 className='room_h3'>Nội thất</h3>                                
-                   
-                    <div className='col-md-3 detail_room2'>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                       </div>
-                       <div className='col-md-3  '>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                       </div>
-                    <div className='col-md-3 '>
-                   <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                    </div>    
-                    <div className='col-md-3 '>
-                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                    </div>
-         
-
-
-                    <div className='col-md-3 detail_room2'>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                       </div>
-                       <div className='col-md-3  '>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                      
-                       </div>
-                    <div className='col-md-3 '>
-                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span> 
-                      
-                    </div>    
-                    <div className='col-md-3 '>
-                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                    </div>
-
-
-                    <div className='col-md-3 detail_room2'>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                       </div>
-                       <div className='col-md-3  '>
-                       <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                       </div>
-                    <div className='col-md-3 '>
-                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                    </div>    
-                    <div className='col-md-3 '>
-                    <span class='bx bxs-balloon icon-furniture'>Bong bóng</span>  
-                        
-                    </div>
-
-
+                    <h3 className='room_h3'>Nội thất</h3>
+                                                            
+                        {listFurniture.map((furn_detail, index) => {
+                        return (       
+                            <div className='col-md-3 detail_room1'>                                       
+                                <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span>               
+                            </div>                                               
+                        );
+                        })}    
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <div className="product-info-tabs">
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
