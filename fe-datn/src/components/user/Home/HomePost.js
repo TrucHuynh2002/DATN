@@ -49,8 +49,8 @@ useEffect(() => {
                       <div className="room_img">
                         {listImg.map((a, index) => {
                           return a.id_post == post.id_post && (
-                            <Figure><img src={a.link_img_user} alt="#" /></Figure>
-                          )
+                              <Figure key={index}><img src={a.link_img_user} alt="#" /></Figure>
+                            )
                           })}
                       </div>
                       <div className="bed_room">

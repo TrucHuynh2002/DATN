@@ -1,10 +1,9 @@
+import React, {useEffect} from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import InfoAccount from './InfoAccount'
 import Posted from './Posted';
 import Bloged from './Bloged';
-import { useParams } from 'react-router-dom';
-import React, {useEffect} from 'react'
-import { Container, Row } from 'react-bootstrap';
-import { Outlet, useNavigate} from 'react-router-dom';
+
 function Profile() {
     const navigate = useNavigate();
     const {id_user} = useParams();

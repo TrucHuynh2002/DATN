@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import Notify from '../Notify';
 import axios from 'axios';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 function HeaderNavLink() {
     // CKEditor.replace('description')
    
@@ -212,11 +213,11 @@ function HeaderNavLink() {
            setListCategory(res.data.data);
     };
   return (
-    <div class="collapse navbar-collapse"  id="navbarExample04">
+    <div className="collapse navbar-collapse"  id="navbarExample04">
         <ul className="navbar-nav" >
             {listCategory.map((cate, index) => {
                 return (           
-                    <li className="nav-item ">
+                    <li className="nav-item" key={index}>
                         <Link className="nav-link" to={cate.link_to}>
                         {cate.name_category}
                         </Link>
@@ -398,7 +399,7 @@ function HeaderNavLink() {
                                 <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
                                     {furniture.map((data,index) => {
                                         return (
-                                                <div class="col-2 row">
+                                                <div class="col-2 row" key={index}>
                                                  <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                     <Form.Label>{data.name}</Form.Label>
                                                 </div>

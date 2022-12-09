@@ -8,10 +8,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function EditPost() {
 
     const {id_post} = useParams();
-    // const user = JSON.parse(localStorage.getItem("user"));
     const [editPost, setEditPost] = useState({
         post_name: "",
-        // phone: "",
         description_sort: "",
         description: "",
         area: "",
@@ -31,7 +29,6 @@ function EditPost() {
     });
     const { 
         post_name, 
-        // phone,
         description_sort,
         description,
         area,
@@ -58,11 +55,9 @@ function EditPost() {
     });
     
     const [uploadImages, setUploadImages] = useState([]);
-    // console.log(uploadImages);
     // Xử lý input vlaue
     const handleChange = (e) => {
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
-        // console.log(img);
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
@@ -85,7 +80,6 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            // console.log(result);
             setEditPost(result.data.data);
         };
 
@@ -95,28 +89,16 @@ function EditPost() {
         },[]);
 
     
-    const handle_idFuniture =  (e) => { 
-        // setAddPost({ ...addPost, [e.target.name]: e.target.value, });
-        // console.log(e.target.name);
-     
+    const handle_idFuniture =  (e) => {     
         if(e.target.checked){
             setFur(pre => {
                return  [...pre, e.target.value]
             });
-            // console.log(checkFur);
-            // setAddPost(pre => {
-            //     return {...addPost,...pre, id_furniture: checkFur}
-            // })
-            // console.log(addPost);
         }
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
-            })
-            // setAddPost(pre => {
-            //     return {...pre, id_furniture: checkFur}
-            // })
-            
+            })    
         }
        
     }
@@ -126,12 +108,7 @@ function EditPost() {
         let formData = new FormData();
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
-        // console.log(fileA)
         setUploadImages(e.target.files)       
-        // Array.from(e.target.file).map(file => {
-        //     // console.log(file)
-        //     setAddPost({...uploadImages, file})
-        // })
     }
     }
   
@@ -142,7 +119,6 @@ function EditPost() {
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
-        // console.log(post_name);
         formData.append('post_name', post_name);
         formData.append('address', address);
         formData.append('area',area);
@@ -154,19 +130,16 @@ function EditPost() {
         formData.append('meta_keywords', meta_keywords);
         formData.append('meta_description', meta_description);
         formData.append('meta_title', meta_title);
-        // formData.append('phone', phone);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
-        // console.log(uploadImages.length);
         
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
         }
         else{
             console.log(res.data)           
@@ -214,7 +187,7 @@ function EditPost() {
 
           <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
             <div className="image-cancel" data-no={1}>x</div>
-            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" /></div>
+            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" alt='' /></div>
             <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>
           </div>
         </div>

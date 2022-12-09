@@ -8,7 +8,7 @@ function RoomND() {
 
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
-  const [listHeart, setListHeart] = useState([]);
+  // const [listHeart, setListHeart] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
   const lastPageIndex = currentPage * postsPerPage;
@@ -19,12 +19,7 @@ function RoomND() {
     getData();
     getImg();
   },[]);
- 
-  // const [addHeart, setAddHeart] = useState({
-  //       heart_feeling :1,
-  //       id_post :"",
-  //       id_user : user[0].id
-  // });
+
   const [alert, setAlert] = useState({
     err_list: {},
   });
@@ -85,7 +80,6 @@ function RoomND() {
   // console.log(listHeart);
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    // console.log(res);
     setListImg(res.data.data);   
 };
 
@@ -101,7 +95,7 @@ function RoomND() {
                           <div className="room_img">
                           {listImg.map((a, index) => {
                             return a.id_post == post.id_post && (
-                              <figure><img src={a.link_img_user} alt="#" /></figure>
+                              <figure key={index}><img src={a.link_img_user} alt="#" /></figure>
                               )})}
 
                               {/* thả tym */}

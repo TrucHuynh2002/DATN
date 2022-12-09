@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -11,7 +11,6 @@ function Login() {
     const [alert, setAlert] = useState({
         err_list: {},
     });
-    // console.log(alert)   
     const handleSumbit = async (e) => {
         e.preventDefault();
         // const item = { email,password };
@@ -78,12 +77,6 @@ function Login() {
                             <div className="row">
                                 <div className="col-md-12 ">
                                     <input type="email" className="text" name="email" placeholder="Email"  onChange={e => setEmail(e.target.value)} />
-                                    {/* {alert.err_list.status === false
-                                     && 
-                                     alert.err_list.messages.email.length > 0
-                                      ( 
-                                      <div className="notice warning_____"></div>
-                                      )} */}
                                        { alert.err_list.status == false && alert.err_list.messages.email &&
                                        <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
                                 </div>   

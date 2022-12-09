@@ -94,7 +94,7 @@ function HomeSearch() {
                       </div>                     
                       <div className="col-1">
                         <button className="btn btn-outline-secondary">
-                          <i class='bx bx-search' style={{color:"#0d3380"}}></i>
+                          <i className='bx bx-search' style={{color:"#0d3380"}}></i>
                         </button>
                       </div>
                     </div>
@@ -107,7 +107,6 @@ function HomeSearch() {
                               return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
                             })
                           }
-                          {/* <option>Căn hộ mini</option> */}
                         </select>
                       </div>
                       <div className="col-2">

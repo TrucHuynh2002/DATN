@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function InfoAccount() {
+
     const user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
@@ -51,20 +51,22 @@ function InfoAccount() {
             
         }
     };
+
     const now = new Date(InfoAccount.updated_at);
     const dateString = now.toLocaleDateString({
     weekday: "short",
     year: "numeric",
     month: "2-digit",
     day: "numeric"
-    })
+    });
+
     return (
             <div>
                 <h1><b className="b_title">Thông tin cá nhân</b></h1>
                 <hr></hr>
                 {InfoAccount.map((info, index) => {
                     return (
-                        <div className='row'>
+                        <div className='row' key={index}>
                         <div className='col-md-2 text-center div_imggggg'>
                             <Link to="#">
                             <img src={info.link_img_user} alt={info.id_img_user} className="avt_img"/>

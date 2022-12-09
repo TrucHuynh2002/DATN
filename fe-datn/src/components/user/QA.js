@@ -129,10 +129,9 @@ function QA() {
                 </Modal.Footer>
               </Modal>
             </div>
-            {/* <div className="row">   */}
             {listQa.map((listQa, index) => {
               return (
-              <div className="qa">
+              <div className="qa" key={index}>
                 <div className='qa_avata'>             
                     <img src={listQa.link_img_user}
                      alt='' className="avt_qa" />   
@@ -142,13 +141,13 @@ function QA() {
                 <p>{listQa.content}</p>
                 {listImg.map((a, index) => {
                   return a.id_qa == listQa.id_qa && (
-                <img src={a.link_img_qa} width={400} alt='' height={200}></img>
+                <img key={index} src={a.link_img_qa} width={400} alt='' height={200} />
                 )
             })}
               {listComment.map((listComment, index) => {
                 return listQa.id_qa == listComment.id_qa && (
                   <>
-                <div className='qa_avata'>
+                <div className='qa_avata' key={index}>
                     <img src={listComment.link_img_user}
                      alt='' className="avt_qa" />
 <span>Trả lời bởi <Link to="" className='qa_link'>{listComment.full_name}</Link></span> - <span>{listComment.created_at}</span>
@@ -178,9 +177,6 @@ function QA() {
                     <Form.Group className="mb-3" controlId="">
                         <Form.Control type="text" name="content" className='' onChange = {(e) => handleChangeComment(e)}/>            
                     </Form.Group>
-                    {/* <Form.Group className="mb-3" controlId="id_qa">
-                        <Form.Control type="text" name="id_qa" hidden value={listQa.id_qa} className=''/>            
-                    </Form.Group> */}
                     <Button variant="primary" size="sm" name='' type="submit">
                       Gửi
                     </Button>                    

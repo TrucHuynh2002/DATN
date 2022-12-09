@@ -3,10 +3,7 @@ import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import Evaluate from '../Comment/Evaluate';
-import Rate from '../Comment/Rate';
 import ContentComent from '../Comment/ContentComent';
-
-import Modal from 'react-bootstrap/Modal';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -79,7 +76,7 @@ function RoomDetail() {
                             <div className="item" >
                             {listImg.map((a, index) => {
                                 return(
-                                <img className="img-fluid" src={a.link_img_user} alt="#" />
+                                <img className="img-fluid" src={a.link_img_user} alt="#" key={index} />
                                 )})}
                             </div>
                         </div>
@@ -214,9 +211,15 @@ function RoomDetail() {
                             </div>  
                         </div>
                         <div className="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <div className="review-heading">
+                                <h1 className="content_room_h1">Bình Luận</h1>
+                            </div>
                             <ContentComent />
                         </div>
                         <div className="tab-pane fade" id="rate" role="rate" aria-labelledby="review-tab">
+                            <div className="review-heading">
+                                <h1 className="content_room_h1">Đánh giá {a.post_name}</h1>
+                            </div>
                             <Evaluate />                
                         </div>
                     </div>

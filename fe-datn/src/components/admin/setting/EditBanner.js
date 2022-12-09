@@ -47,7 +47,6 @@ function EditBanner() {
   // list banner
   const getData = async () => {
    const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
-  //  console.log(result.data.data);
   setListBanner(result.data.data);
   };
 
@@ -60,7 +59,6 @@ function EditBanner() {
            listBanner.link_img_banner
             ? 
           <img src={listBanner.link_img_banner} alt={listBanner.name_banner} width={120} height={120} />
-            // console.log(listBanner)
            :
            <img src={listBanner} alt="images" width={120} height={120} />
           

@@ -57,13 +57,8 @@ function ListCategory() {
                         <td>{cate.link_to}</td>
                         <td>
                             <Link to={`../edit_category/${cate.id_category}`} className="bx bxs-edit btn-edit btn btn-primary">
-                              {/* <Button variant="outline-primary" name='' className="bx bxs-edit btn-edit"></Button> */}
                             </Link>
-                         
-                            {/* <Link className=" btn btn-danger bx bxs-trash" onClick={() => 
-                              deleteCategory(cate.id_category)}> */}
                               <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCategory(cate.id_category)}></Button>
-                            {/* </Link> */}
                         </td>
                     </tr>  
                     );     

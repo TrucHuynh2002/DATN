@@ -1,10 +1,8 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 import Pagination from '../Pagination';
-import { Button, Form } from 'react-bootstrap';
 
 function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -26,10 +24,12 @@ function Posted() {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
     setListPost(res.data.data);
     };
+    
     const deletePost = async (id_post) => {
         await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
         getData();
       };
+
   return (
     <>
     <h1><b className="b_title">Tin đã đăng</b></h1>

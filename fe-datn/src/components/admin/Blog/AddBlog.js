@@ -72,7 +72,6 @@ function AddBlog() {
                    <Form.Group className="mb-3" controlId="img_blog">
                         <Form.Label>Hình ảnh</Form.Label>
                         <Form.Control type="file" name="img_blog_add" onChange={(e) => handleChangeImages(e)} />
-                        {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>} */}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>

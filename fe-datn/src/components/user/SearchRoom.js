@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link,useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import RoomNew from '../../images/phong1.png';
 
 function Search() {
@@ -29,7 +29,7 @@ function Search() {
     useEffect(() => {
         getPostSearch();
     },[])
-    // console.log(keyword,province)
+
   return (
     <>
     <div className="back_re">
@@ -49,12 +49,12 @@ function Search() {
             {
                 aData.status == true && aData.data.length >= 1 ? (
                     aData.data.map((room,index) => {
-                        return  <div className="col-md-4 col-sm-6">
+                        return  <div className="col-md-4 col-sm-6" key={index}>
                                     <div id="serv_hover" className="room">
                                         <div className="room_img">
                                             <figure><img src={RoomNew} alt="#" /></figure>
-                                            <div class="heart">
-                                            <i class='bx bxs-heart'></i>
+                                            <div className="heart">
+                                            <i className='bx bxs-heart'></i>
                                             </div>
                                         </div>
                                         <div className="bed_room">
