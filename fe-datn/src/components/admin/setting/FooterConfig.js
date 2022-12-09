@@ -7,7 +7,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function FooterConfig() {
 
-  const {id_config} = useParams();
+  // const {id_config} = useParams();
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     title: "",
@@ -35,12 +35,10 @@ function FooterConfig() {
         dataForm.append('sdt',sdt);
         dataForm.append('introduce',introduce);
     const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
-    // console.log(res);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
         });
-        console.log(alert.err_list)
     }
     else{           
         setAlert({
@@ -49,14 +47,12 @@ function FooterConfig() {
     }
   };
 
-
   useEffect(() => {
     loadConfig();
   }, []);
 
   const loadConfig = async () => {
       const result = await axios.get(`http://127.0.0.1:8000/api/config`);
-      console.log(result);
       setEditConfig(result.data.data);
   };
 
@@ -104,7 +100,6 @@ function FooterConfig() {
                                 }}
                                 >
                         </CKEditor>
-            {/* <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/> */}
             { alert.err_list.status == false && alert.err_list.messages.introduce &&
                                        <div className="notice warning_____">{alert.err_list.messages.introduce[0]}</div>}
         </Form.Group>

@@ -53,7 +53,13 @@ function ListComment() {
                 <td>{index+1}</td>
                 <td>{cmt.id_user}</td>
                 <td>{cmt.content}</td>
-                <td>{cmt.date}</td>
+                <td>{cmt.created_at}</td>
+                {/* <td>{cmt.status}</td>
+                <td>
+                  <Link to="#">
+                    <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
+                  </Link>
+                </td> */}
               </tr>
             );
           })}

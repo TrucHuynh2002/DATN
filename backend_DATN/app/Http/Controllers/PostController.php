@@ -8,13 +8,12 @@ use App\Models\furniture_post;
 use App\Models\ProvinceModel;
 use App\Models\furniture;
 use App\Models\districtModel;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\wardModel;
 use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -48,13 +47,18 @@ class PostController extends Controller
     }
     public function show_trend()
     {
-        $data = Post::where('view', '>', 0)
-            ->orderBy('post.id_post', 'DESC')
-            ->take(1)
-            ->get();
+        $data = DB::table('search_trends')
+            ->orderBy('view', 'DESC')->take(10)->get();
+        $abc = [];
+        foreach ($data as $key) {
+            $post =  DB::table('post')->where('post_name', 'like', '%' . $key->key_word . '%')->orderBy('view', 'DESC')->first();
+            array_push($abc, array($post));
+        }
+
         return response()
             ->json([
                 'data' => $data,
+                'post' => $abc,
                 'status' => true
             ]);
     }
@@ -405,8 +409,22 @@ class PostController extends Controller
     public function show_furniture_post(Request $request, $id_post)
     {
         $data = DB::table('furniture_post')
-        ->join('furniture','furniture_post.id_furniture','=','furniture.id_furniture')
-        -> where('furniture_post.id_post', '=', $id_post)->get();
+            ->join('furniture', 'furniture_post.id_furniture', '=', 'furniture.id_furniture')
+            ->where('furniture_post.id_post', '=', $id_post)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_address_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+            ->join('province', 'post.id_province', '=', 'province.id')
+            ->join('district', 'post.id_district', '=', 'district.id')
+            ->join('ward', 'post.id_ward', '=', 'ward.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -416,22 +434,22 @@ class PostController extends Controller
     public function show_province_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-        ->join('province','post.id_province','=','province.id')
-        ->where('post.id_post', '=', $id_post)
-        ->get();
+            ->join('province', 'post.id_province', '=', 'province.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
                 'status' => true
             ]);
     }
-     public function show_district_detail(Request $request, $id_post)
+    public function show_district_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-       
-        ->join('district','post.id_district','=','district.id')
-        ->where('post.id_post', '=', $id_post)
-        ->get();
+
+            ->join('district', 'post.id_district', '=', 'district.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -441,9 +459,9 @@ class PostController extends Controller
     public function show_ward_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-        ->join('ward','post.id_ward','=','ward.id')
-        ->where('post.id_post', '=', $id_post)
-        ->get();
+            ->join('ward', 'post.id_ward', '=', 'ward.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -453,9 +471,9 @@ class PostController extends Controller
     public function show_room_type(Request $request, $id_post)
     {
         $data = DB::table('post')
-        ->join('room_type','post.id_roomType','=','room_type.id_room_type')
-        ->where('post.id_post', '=', $id_post)
-        ->get();
+            ->join('room_type', 'post.id_roomType', '=', 'room_type.id_room_type')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
         return response()
             ->json([
                 'data' => $data,

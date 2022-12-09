@@ -68,6 +68,7 @@ import ResetPassword from './components/user/ResetPass';
 import Loi from './components/loi_404';
 import SearchRoom from './components/user/SearchRoom';
 import QA from './components/user/QA';
+import Privacy from './components/user/PrivacyPolicy';
 
 // postuser
 import AddPostUser from './components/user/postuser/App';
@@ -107,6 +108,7 @@ root.render(
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom/" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
+        <Route path="baomat" element={<Privacy />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}

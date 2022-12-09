@@ -5,52 +5,44 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 
 function HomeSearch() {
-    const navigate = useNavigate();
-    
-    useEffect(() => {
-        getTypeRoom()
-        getProvinces()
-      },[]);
-
-         // SEARCHING
-         const [keyword,setKeyword] = useState({
-            keywords: "",
-            province: "",
-            district: "",
-            ward: "",
-            price:"",
-            area:"",
-            typeRoom:""
-      
-          })
-          const [getDataSearch,setGetDataSearch] = useState({
-            typeRooms:[]
-          });
-          const {
-            typeRooms,
-          } = getDataSearch
-      
-          const [getProvince,setProvince] = useState([]);
-          const getTypeRoom = async () => {
-            let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-            setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
-          }
-          const {
-            keywords,
-            province,
-            district,
-            ward,
-            price,
-            area,
-            typeRoom
-          } = keyword
-          // console.log(district);
-          const getProvinces = async () => {
-            let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+  const navigate = useNavigate();
+  useEffect(() => {
+    getTypeRoom()
+    getProvinces()
+  },[]);
+    // SEARCHING
+  const [keyword,setKeyword] = useState({
+    keywords: "",
+    province: "",
+    district: "",
+    ward: "",
+    price:"",
+    area:"",
+    typeRoom:""
+  })
+  const [getDataSearch,setGetDataSearch] = useState({
+    typeRooms:[]
+  });
+  const {typeRooms} = getDataSearch
+  const [getProvince,setProvince] = useState([]);
+  const getTypeRoom = async () => {
+    let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+    setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
+  }
+      const {
+        keywords,
+        province,
+        district,
+        ward,
+        price,
+        area,
+        typeRoom
+      } = keyword
+      const getProvinces = async () => {
+        let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
             setProvince(dataRooms.data.data)
           }
           const handledistrice = async (e) => {
-            // setAddPost({ ...addPost, [e.target.name] : e.target.value});
             getDataDistrict(({[e.id_province] : e.target.value}).undefined)
             setKeyword({ ...keyword,province: e.target.value})
         }
@@ -65,12 +57,12 @@ function HomeSearch() {
           const [listDistrict, setListDistrict] = useState([]);
           const [listWard, setListWard] = useState([]);
           const getDataDistrict = async (id_province) => {
-              const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
-              setListDistrict(ress.data.data);
+              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+              setListDistrict(res.data.data);
           }
           const getDataWard = async (id_district) => {
-              const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
-              setListWard(resss.data.data);
+              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+              setListWard(res.data.data);
           }     
           const [searching,setSearching] = useState(false);
           const handleChangeKeyWord = (e) => {
@@ -102,7 +94,7 @@ function HomeSearch() {
                       </div>                     
                       <div className="col-1">
                         <button className="btn btn-outline-secondary">
-                          <i class='bx bx-search' style={{color:"#0d3380"}}></i>
+                          <i className='bx bx-search' style={{color:"#0d3380"}}></i>
                         </button>
                       </div>
                     </div>
@@ -115,8 +107,6 @@ function HomeSearch() {
                               return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
                             })
                           }
-                          
-                          {/* <option>Căn hộ mini</option> */}
                         </select>
                       </div>
                       <div className="col-2">

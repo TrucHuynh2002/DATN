@@ -69,7 +69,6 @@ function ResetPass() {
                             </div>
                             <div className="col-md-12">
                                 <input type="password" id="resetPassword" name="resetPassword" className="text" placeholder="Xác nhận mật khẩu mới" onChange={(e) => {setResetPassword(e.target.value)}} />
-                                {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>} */}
                             </div>
                             <div className="d-grid gap-2">
                             {alert.err_list.status === true && <div className="notice success_____">Cập Nhật Thành Công</div>}

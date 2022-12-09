@@ -65,9 +65,6 @@ class CommentController extends Controller
         $t = CommentModel::find($id_comment);
         $t->content = $request->content;
         // $t->date = $request->date;
-        $t->status = $request->status;
-        $t->id_user = $request->id_user;
-        $t->id_post = $request->id_post;
         $t->save();
         return response()
             ->json([
@@ -144,11 +141,12 @@ class CommentController extends Controller
     public function Comment_SelectOne(Request $request, $id_comment)
     {
         $Title = "Danh sách các hỗ trợ";
-        $Comment_SelectOne = CommentModel::find($id_comment);
+        $Comment_SelectOne = DB::table('comment')->where('id_comment','=',$id_comment)->first();
         return response()
             ->json([
                 'data' => $Comment_SelectOne,
-                'status' => true
+                'status' => true,
+                'id_comment' => $id_comment
             ]);
     }
     public function CommentApprove(Request $request, $id_comment)

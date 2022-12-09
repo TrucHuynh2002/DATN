@@ -5,19 +5,17 @@ import HomeSearch from './HomeSearch';
 
 function Baner() {
 
-    const [listBanner, setListBanner] = useState([]);
-    const getDataBanner = async () => {
-        const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
-        setListBanner(result.data.data);
-       };
-       useEffect(() => {
-        getDataBanner()
-      },[]);
-
+  const [listBanner, setListBanner] = useState([]);
+  const getDataBanner = async () => {
+      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+      setListBanner(result.data.data);
+   };
+  useEffect(() => {
+    getDataBanner()
+  },[]);
   return (
     <section className="banner_main">
     <div className="carousel slide banner">
-  
       <Carousel>
         {listBanner.map((banner, index) => {
           return (
@@ -32,7 +30,6 @@ function Baner() {
         })}
       </Carousel>
     </div>
-
       <div className="booking_ocline">
         <div className="container">
           <div className="row">

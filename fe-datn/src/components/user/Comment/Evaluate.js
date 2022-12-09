@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ContentComment from './ContentComent';
-import Comment from './Comment';
+import Rate from './Rate';
+
+
 import axios from 'axios';
 
 function Evaluate() {
@@ -204,12 +205,65 @@ function Evaluate() {
         </div>
       </div>
       <div className="collapse-show-rate collapse row" id="collapseExample">
-        <Comment />
+        <Rate />
+
+
+
+       
       </div>
-      <hr />
-      <div className='content_cmt'>                             
-        <ContentComment />                                                 
-      </div>  
+      <br></br><hr></hr>
+      
+      
+
+
+    <div>
+
+
+    <p>sdasdsa</p>
+
+
+
+    </div>
+          <div className="star-rate">
+          
+            {
+              Array(5).fill()
+                      .map((_,index) => {
+                        let rate = index +1
+                        return rate > averageRate
+                        ?
+                          
+                            index + 0.5 > averageRate
+                            ?
+                            <>
+                             <i className="fa fa-star" />
+                            </>
+                            :
+                            
+                              <i className="fa fa-star-half checked" />
+                            
+                          
+                        :
+                      
+                        (
+                          <>
+                            <i className="fa fa-star checked" />
+                          </>
+                        )
+                      })
+            }
+          
+          </div>
+
+
+
+
+
+
+
+
+
+
     </>
   )
 }

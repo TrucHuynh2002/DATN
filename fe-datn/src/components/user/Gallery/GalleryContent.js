@@ -3,70 +3,67 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
+import moment from 'moment';
 
 function GalleryContent() {
   useEffect(() => {
     getData();
-    getDataPostTrend();
+    // getDataPostTrend();
   },[]);
   const [ListSearchTrend, setListSearchTrend] = useState([]);
   const [ListDataPostTrend, setDataPostTrend] = useState([]);
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/trend`);
-    setListSearchTrend(res.data.data);
-  };
-  const getDataPostTrend = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
-    setDataPostTrend(res.data.data);
+    setListSearchTrend(res.data.data);
+    setDataPostTrend(res.data.post);
   };
+  // const getDataPostTrend = async (keyword) => {
+  //   console.log(keyword)
+  //   // const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
+  //   // setDataPostTrend(res.data.data);
+  // };
   const getDataPostTrendShow = async (keyword) => {
-    let res = await axios.get(`http://127.0.0.1:8000/api/search?key_word=${keyword}`);
-    console.log(res);
+    let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}`);
     setDataPostTrendShow(res.data.data);
+    setShow(true);
+    
   };
-  let x = document.querySelectorAll(".searchTrend");
-
-// Lặp qua các phần tử có class là menu
-for (let i = 0; i < x.length; i++) {
-    // Lắng nghe sự kiện click
-    x[i].onclick = function() {
-      handleShow();
-    };
-}
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   return (
     <>
     <div className="gallery">
       <div className="container">
         {ListSearchTrend.map((list,index) => {
           return (
-            <div
+          <div
+          key={index}
             type="button"
             className="row searchTrend"  
+            onClick={(e) =>getDataPostTrendShow(list.key_word) }
+            // onChange={(e) => getDataPostTrend(list.key_word)}
             >
-              <div className="col-1">{list.id_search}</div>
+              <div className="col-1">{index+1}</div>
               <div className="col-8">
                 <div> {list.key_word}</div>
-                {ListDataPostTrend.map((list,a) =>{
-                  return(
-                    <Link className="link-info link_____" to={`../roomdetail/${list.id_post}`}>{list.post_name}</Link>
-                  )
-                }
-                )}
+                <div className="content____________">
+                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend[index][0].id_post}`}>{ListDataPostTrend[index][0].post_name}
+                  </Link>
+                  <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
+                  {moment(ListDataPostTrend[index][0].created_at).local().startOf('day').fromNow()}
+                    </span>
+                </div>
              </div>
               <div className="col-2 view___">
-            
                 <div>{list.view}</div>
                 <span >lượt tìm kiếm</span>
               </div>
               <div className="col-1">
-                <i className="	fas fa-angle-down"></i>
+                <i className="fas fa-angle-down"></i>
               </div>
           </div>
-         
           )
         })}
     </div>
@@ -75,15 +72,17 @@ for (let i = 0; i < x.length; i++) {
         <Modal.Title>Những bài liên quan đến keyword</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-                                      
             {/* {ListDataPostTrendShow.status == true && ListDataPostTrendShow.length >= 1 ? ( */}
                    {ListDataPostTrendShow.map((room,index) => {
-                        return    <div className=''>   
+                        return    <div className='searchTrend_content____' key={index}>   
                                     <div className="room">
                                         <div className="bed_room">
                                             <h3><Link to={`../roomdetail/${room.id_post}`}>{room.post_name}</Link></h3>
                                             <h4>Giá: {room.room_price}</h4>
                                             <p>{room.description_sort}</p>
+                                            <p style={{"fontSize":"17px",'marginTop': '10px'}}>
+                                            {moment(room.created_at).local().startOf('day').fromNow()}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

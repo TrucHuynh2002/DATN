@@ -80,7 +80,6 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            // console.log(result);
             setEditPost(result.data.data);
         };
 
@@ -120,7 +119,6 @@ function EditPost() {
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
-        // console.log(post_name);
         formData.append('post_name', post_name);
         formData.append('address', address);
         formData.append('area',area);
@@ -132,19 +130,16 @@ function EditPost() {
         formData.append('meta_keywords', meta_keywords);
         formData.append('meta_description', meta_description);
         formData.append('meta_title', meta_title);
-        // formData.append('phone', phone);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
-        // console.log(uploadImages.length);
         
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
         }
         else{
             console.log(res.data)           
