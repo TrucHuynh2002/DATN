@@ -30,7 +30,7 @@ function AddBlog() {
     });
 
     const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description } = addBlog;
-  
+    
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
         // console.log(123);

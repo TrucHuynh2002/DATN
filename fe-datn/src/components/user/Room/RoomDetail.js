@@ -177,11 +177,9 @@ function RoomDetail() {
                                     <div className="content_detail_____">
                                         {listFurniture.map((furn_detail, index) => {
                                             return (       
-                                                <>
-                                                    <div className='furniture__' key={index}>                                               
-                                                    <span  value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
-                                                    </div>         
-                                                </>                                      
+                                            <div className='furniture__' key={index}>                                               
+                                                <span  value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
+                                            </div>         
                                             );
                                         })}  
                                     </div>

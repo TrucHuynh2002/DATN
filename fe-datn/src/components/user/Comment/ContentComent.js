@@ -19,8 +19,9 @@ function ContentComent() {
   } = listComment
   const [addNotify, setNotify] = useState({
     id_user_tow: "",
+    interaction:"",
     id_user: user ? user[0].id : "",
-    id_post: id_post.id_post,
+    id_post: id_post,
   });
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
@@ -33,7 +34,7 @@ function ContentComent() {
     activeComment,
     id
   } = Reply
- 
+  const {id_user_tow,interaction} = addNotify;
   const [updateCmt,setUpdateCmt] = useState(false);
   const [contentUpdateCmt, setContentUpdateCmt] = useState('');
   // danh sach Comment
@@ -58,9 +59,8 @@ function ContentComent() {
     formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
       if(res.data.status == true ){
-        const {id_user_tow} = addNotify;
-        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
-        const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
+        const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
       }
       setLoader(loader + res.data.id.length);
   }
@@ -72,6 +72,11 @@ function ContentComent() {
     formData.append('id_post',id_post)
     // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    if(res.data.status == true ){
+      // console.log(res.data.id[0].id_user)
+      setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
+      const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+    }
     setLoader(loader + res.data.id.length);
   }
  
@@ -87,7 +92,7 @@ function ContentComent() {
   }
 
   const handleUpdateComment = async (e,id_cmt) => {
-    // e.preventDefault();
+    e.preventDefault();
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
     let res = await  axios.get(`http://127.0.0.1:8000/api/comment/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);

@@ -70,11 +70,11 @@ function Evaluate() {
                 let rate = index +1
                 return rate > averageRate ?
                     index + 0.5 > averageRate ?
-                    <> <i className="fa fa-star" /> </>
-                    : <i className="fa fa-star-half checked" /> 
+                     <i className="fa fa-star" key={index} /> 
+                    : <i className="fa fa-star-half checked" key={index}/> 
                     : 
                     (
-                     <> <i className="fa fa-star checked" /> </>
+                      <i className="fa fa-star checked" key={index} /> 
                     )
               })
             }
@@ -197,12 +197,12 @@ function Evaluate() {
            let rate = index +1
            return rate > averageRate ? 
            index + 0.5 > averageRate ?
-             <i className="fa fa-star" />
+             <i className="fa fa-star" key={index} />
            :
-             <i className="fa fa-star-half checked" />
+             <i className="fa fa-star-half checked" key={index} />
            :
            (
-            <i className="fa fa-star checked" />
+            <i className="fa fa-star checked" key={index} />
            )
          })
       }

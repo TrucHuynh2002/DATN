@@ -153,7 +153,7 @@ Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
 Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
-
+ 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/post/show/{id_post}', [CommentController::class, 'Comment_SelectPost']);
