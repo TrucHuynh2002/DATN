@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams  } from 'react-router-dom';
 import axios from 'axios';
 
 function RoomRelatePost() {
 
   var user = JSON.parse(localStorage.getItem("user"));
-
+  const {id_post} = useParams();
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -23,8 +23,8 @@ function RoomRelatePost() {
     err_list: {},
   });  
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   setListPost(res.data.data);    
+    const res = await axios.get("http://127.0.0.1:8000/api/post/show");
+    setListPost(res.data.data);
   };
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
@@ -44,7 +44,7 @@ function RoomRelatePost() {
               </div>
             </div>
             <div className="row">
-            {currentPosts.map((post, index) => {
+            {listPost.map((post, index) => {
                 return (     
                   <div className="col-md-4 col-sm-6" key={index}>
                       <div id="serv_hover" className="room">
@@ -69,7 +69,8 @@ function RoomRelatePost() {
                       </div>
                   </div>
                 );
-              })}
+            })}
+
             </div>
         </div>
     </div>

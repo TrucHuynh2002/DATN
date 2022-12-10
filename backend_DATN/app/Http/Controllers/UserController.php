@@ -73,6 +73,7 @@ class UserController extends Controller
             'password' => 'required|max:255',
             'phone' => 'required|max:12|min:10|unique:users',
             'address' => 'required|max:255',
+
             // 'role' => 'required',
             // 'id_img_user' => 'required',
             // 'email_verified_at' => 'required',
@@ -107,6 +108,10 @@ class UserController extends Controller
         $t->password = Hash::make($request->password);
         $t->phone = $request->phone;
         $t->address = $request->address;
+        $t->id_province = $request->id_province;
+        $t->id_district = $request->id_district;
+        $t->id_ward = $request->id_ward;
+        $t->id_street = $request->id_street;
         $t->role = $request->role;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
@@ -130,6 +135,10 @@ class UserController extends Controller
         $t->full_name = $request->full_name;
         $t->phone = $request->phone;
         $t->address = $request->address;
+        $t->id_province = $request->id_province;
+        $t->id_district = $request->id_district;
+        $t->id_ward = $request->id_ward;
+        $t->id_street = $request->id_street;
         // $t->email = $request->email;
         // $t->password = $request->password;
         // $t->role = $request->role;
