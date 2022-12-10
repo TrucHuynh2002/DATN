@@ -156,7 +156,7 @@ return (
                             onChange={(e) => handleChangeContent(e)}  
                             value={contentUpdateCmt}  />
                           </Form.Group>
-                          <Button  className="col-3 button_input_submit" type="submit">Cập nhật</Button>
+                          <Button  className="col-1 button_input_submit btn btn-primary" type="submit">Cập nhật</Button>
                         </Form>
                       </div>
                       ) : ( <p className=''>{comment.content}</p>) 
@@ -198,7 +198,7 @@ return (
                         placeholder="Trả lời bình luận"
                         />
                       </Form.Group>
-                    <Button className="col-3 button_input_submit" type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
+                    <Button className="col-1 button_input_submit btn btn-primary" type="submit" style={{"marginTop":"12px"}}>Bình luận</Button>
                   </Form>
                   </div> } 
               </div>
@@ -268,7 +268,7 @@ return (
                           placeholder="Trả lời bình luận"
                         />
                       </Form.Group>
-                      <Button className="col-3 button_input_submit" type="submit">Bình luận</Button>
+                      <Button className="col-1 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
                     </Form>
                   </div> 
                   } 
@@ -311,7 +311,8 @@ return (
               <div className="btn_feedback_comment">
                 <div className="display_comment" >
                   <span onClick={() => {setGetIdComment(cmt.id_comment); setReply({activeComment:true,id:cmt.id_comment})}} style={{ "marginLeft": "36px", "Color": "#bebebe" }}><strong>Trả lời</strong></span>
-                  <p>{moment(cmt.created_at).fromNow()}</p>
+                  <p className="feedback_comment_time">{moment(cmt.created_at).fromNow()}</p>
+                 </div>
                   { activeComment && id == cmt.id_comment && 
                     <div className="content_comment____form_input__">
                       <Form 
@@ -328,12 +329,11 @@ return (
                           placeholder="Trả lời bình luận"
                         />
                       </Form.Group>
-                      <Button  className="col-3" type="submit">Submit</Button>
+                      <Button  className="col-1 button_input_submit btn btn-primary" type="submit">Bình Luận</Button>
                     </Form>
                     </div> 
                   } 
                 </div>
-              </div>
             </div>
           })}            
         </div>
