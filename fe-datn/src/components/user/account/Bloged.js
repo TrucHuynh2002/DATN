@@ -34,40 +34,43 @@ function Bloged() {
         <h1><b className="b_title">Bài viết đã đăng</b></h1>
         <hr></hr>
         <div className='row'>
-            <>
-            {!currentBlog ? 
-            <div className="text-center No_user____">
-                <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
-                <p>Chưa đăng bài nào</p>
-            </div>
-                : currentBlog.map((a, index) => {    
-                    return (     
-                    <div className='row' key={index}>
-                        <div className='col-md-2 text-center' >
-                            <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
-                            className="avt_img"/>                        
-                        </div>
-                        <div className='col-md-10'>            
-                            <div className='account_content____'>
-                                <h1 className="name_title">{a.name_blog}</h1>
-                                <p className="content___">{a.description_sort}</p>
-                                <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' alt='' className="avtuser" />
-                                <span>{a.full_name}  |</span>
-                                <span> {a.created_at}  | </span>
+            {
+                currentBlog.length > 0 
+                ? 
+                    currentBlog.map((a, index) => {    
+                        return (     
+                        <div className='row' key={index}>
+                            <div className='col-md-2 text-center' >
+                                <img src='https://static2.yan.vn/YanNews/2167221/202208/doi-227a6767.jpg' alt=''
+                                className="avt_img"/>                        
                             </div>
-                            {!user ? <div></div> :
-                                user[0].id != a.id_user  ?  <div></div> :
-                                    <div className='button-fdp row'>
-                                        <Link className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</Link>
-                                        <Button className='button-del' onClick={() => deleteBlog(a.id_blog)} >Xóa</Button>
-                                    </div>
-                                 }
-                            <hr></hr>
+                            <div className='col-md-10'>            
+                                <div className='account_content____'>
+                                    <h1 className="name_title">{a.name_blog}</h1>
+                                    <p className="content___">{a.description_sort}</p>
+                                    <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' alt='' className="avtuser" />
+                                    <span>{a.full_name}  |</span>
+                                    <span> {a.created_at}  | </span>
+                                </div>
+                                {!user ? "" :
+                                    user[0].id != a.id_user  ?  "" :
+                                        <div className='button-fdp row'>
+                                            <Link className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</Link>
+                                            <Button className='button-del' onClick={() => deleteBlog(a.id_blog)} >Xóa</Button>
+                                        </div>
+                                    }
+                                <hr></hr>
+                            </div>
                         </div>
-                    </div>
-                    )
-                    })}
-            </>
+                        )
+                        })
+                : 
+                <div className="text-center No_user____">
+                            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
+                            <p>Chưa đăng bài nào</p>
+                        </div>
+                    
+            }
             {/* phan trang */}
             <PaginationBlog totalBlog={listBlog.length}
             blogPerPage={blogPerPage} 

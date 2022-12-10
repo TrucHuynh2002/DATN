@@ -14,11 +14,16 @@ function Posted() {
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
+    const [listImg, setListImg] = useState([]);
 
     useEffect(() => {
         getData();
+        getImg();
     },[]);
-
+    const getImg = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+        setListImg(res.data.data);   
+    };
     // danh sach Posted
     const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
@@ -35,18 +40,17 @@ function Posted() {
     <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
     <div className='row'>
-        {!currentPosts ?
-        <div className="text-center No_user____">
-            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
-            <p>Chưa đăng bài nào </p>
-        </div>
-         : currentPosts.map((post, index) => {
+        {currentPosts.length > 0 ?
+        currentPosts.map((post, index) => {
             return (    
             <div className='row' key={index}>
-                <div className='col-md-2 text-center'>
-                    <img src='https://th.bing.com/th/id/R.0e0b8048a60c7df1b006dc922ccb40c2?rik=lef4Lt2Og7ea2Q&pid=ImgRaw&r=0'
-                     alt='' className=" avt_img" />                        
-                </div>
+                {listImg.map((a, index) => {
+                return a.id_post == post.id_post && (
+                    <div className='col-md-2 text-center' key={index}>
+                        <img src={a.link_img_user}
+                        alt='' className=" avt_img" />                        
+                    </div>
+                )})}
                 <div className='col-md-10'>
                     <div className='account_content____'>
                         <h1 className="name_title">{post.post_name}</h1>
@@ -67,6 +71,10 @@ function Posted() {
                 </div>
             </div>
            )})
+           : <div className="text-center No_user____">
+           <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
+           <p>Chưa đăng bài nào </p>
+       </div>
     }
         {/* phan trang */}
         <Pagination totalPost={listPost.length} 
