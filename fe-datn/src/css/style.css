@@ -727,6 +727,23 @@ label{
     transition: ease-in 0.2s;
 }
 
+.search_room_btn {
+    background-color: #0d3380;
+    border-radius: 0px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 7px 0;
+    width: 120px;
+    margin-top: 20px;
+}
+
+.search_room_btn:hover {
+    background-color: #072359;
+    color: white;
+    transition: ease-in 0.2s;
+} 
+
 .carousel-control-next,
 .carousel-control-prev {
     display: none;
@@ -2317,4 +2334,8 @@ ul.social_icon li a:hover {
     -webkit-line-clamp: 4; /* số dòng muốn hiện dấu ... */
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .search_room {
+    margin: 30px 10px 0px 10px;
   }

@@ -15,7 +15,7 @@ function UpdateAccount() {
         err_list: {},
     });
 
-    const {full_name,phone,address } = editAccount;
+    const {full_name,phone,address} = editAccount;
 
     const handleChange = (e) => {
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
@@ -44,6 +44,7 @@ function UpdateAccount() {
         const result = await axios.get(`http://127.0.0.1:8000/api/user/showAcount/${id_Account}`);
         setEditAccount(result.data.data);
     };
+
   return (
     <div className="content">
         <div className="add-post">

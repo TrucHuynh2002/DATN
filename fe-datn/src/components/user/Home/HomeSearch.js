@@ -1,10 +1,10 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import axios from 'axios';
 
 function HomeSearch() {
+
   const navigate = useNavigate();
   useEffect(() => {
     getTypeRoom()
