@@ -266,6 +266,7 @@ return (
                    </div>
                </>    
               :
+              cmt.param_id != cmt.id_comment &&
               <>
               <div key={i}>
                <hr />

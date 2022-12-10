@@ -70,10 +70,14 @@ class PasswordResetLinkController extends Controller
             ]);
             Mail::to($request->email)->send(new ResetPassAlert($checkEmail,$token));
             return back()->with(['message' => 'Vui lòng kiểm tra email để đổi mật khẩu']);
-        }else{
-            return back()->with(['error' => 'Email không tồn tại']);
-
         }
+        // else{
+        //     return response()->json([
+        //         "status" => false,
+        //         "messages" => "Email không tồn tại"
+        //     ]);
+
+        // }
         // kiem tra mail ton tai hay khong
         // neu co ton tai thi tao ra token cua email do trong password_reset
         // truyen token do vao form emaiil nguoi nhan

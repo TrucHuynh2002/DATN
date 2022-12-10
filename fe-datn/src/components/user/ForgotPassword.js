@@ -17,9 +17,11 @@ function ForgotPassword() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const item = { email };
-        const res = await axios.post("http://127.0.0.1:8000/api/forgot-password", item);
-        console.log(res);
+        const formData = new FormData();
+        formData.append('email',email);
+        const item = {email};
+        const res = await axios.post("http://127.0.0.1:8000/api/forgot-password", formData);
+        console.log(res.data.data.errors.email[0]);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -29,7 +31,7 @@ function ForgotPassword() {
             setAlert({
                 err_list: res.data
             });
-            console.log(res.data);
+            console.log(res.data.data.errors);
         }
     }
 
@@ -54,7 +56,7 @@ function ForgotPassword() {
                             <div className="row">
                                 <div className="col-md-12">
                                     <input type="email" id="email" name="email" className="text" placeholder="Nhập email của bạn để lấy lại mật khẩu" onChange={(e) => {setForgotEmail(e.target.value)}} />
-                                    {alert.err_list === false && <div className="notice warning_____">{alert.err_list.message.email[0]}</div>}
+                                    {alert.err_list === false && <div className="notice warning_____">{alert.err_list.data.errors.email[0]}</div>}
                                 </div>
                                 <div className="d-grid gap-2">
                                 {alert.err_list.status === true && <div className="notice success_____">Đăng ký thành công</div>}
