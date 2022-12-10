@@ -65,7 +65,7 @@ function Comment() {
                                   onClick={() => setAddComment({...addComment, rate:index+1})}
                                   style={{color: "orange"}}
                                 >
-                                  <i class="bi bi-star-fill"></i>
+                                  <i className="bi bi-star-fill"></i>
                                 </span>
                               )
                               :
@@ -75,7 +75,7 @@ function Comment() {
                                 onMouseOver={() => setHoverStar(index+1)}
                                 onMouseLeave = {() => setHoverStar(undefined)}
                                 onClick={() => setAddComment({...addComment, rate:index+1})}
-                                      ><i class="bi bi-star"></i>
+                                      ><i className="bi bi-star"></i>
                                 </span>
                               )
 

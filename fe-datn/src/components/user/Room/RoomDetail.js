@@ -67,7 +67,6 @@ function RoomDetail() {
       };  
   
   return (
-
         <div className="pd-wrap">
             {listPost.map((a, index) => {
                 return(
@@ -179,8 +178,8 @@ function RoomDetail() {
                                         {listFurniture.map((furn_detail, index) => {
                                             return (       
                                                 <>
-                                                    <div className='furniture__'>                                               
-                                                    <span key={index} value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
+                                                    <div className='furniture__' key={index}>                                               
+                                                    <span  value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
                                                     </div>         
                                                 </>                                      
                                             );

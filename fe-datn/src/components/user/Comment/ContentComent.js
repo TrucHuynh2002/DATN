@@ -129,7 +129,7 @@ return (
     </Form>
     <div style={{margin:' 26px 10px 0'}}>
       <span>Xem {Comment_parent.length + Comment_child.length} bình luận trong bài </span>
-      <i class="fa-light fa-comment"></i>
+      <i className="fa-light fa-comment"></i>
     </div>
   </div>
   <hr />
