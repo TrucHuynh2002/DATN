@@ -66,12 +66,13 @@ function EditBlog() {
                         <Form.Label>Tên blog</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"  />
                         { alert.err_list.status == false && alert.err_list.messages.name_blog &&
-                                       <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}                    </Form.Group>
+                        <div className="notice warning_____">{alert.err_list.messages.name_blog[0]}</div>}                    </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={meta_keywords} name="meta_keywords" />
-                        { alert.err_list.status == false && alert.err_list.messages.meta_keywords &&
-                                       <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}                    </Form.Group>
+                            { alert.err_list.status == false && alert.err_list.messages.meta_keywords &&
+                            <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}                    
+                        </Form.Group>
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Mô tả ngắn</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={description_sort} name="description_sort" />

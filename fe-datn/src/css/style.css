@@ -2155,6 +2155,28 @@ ul.social_icon li a:hover {
     background: #cecece;
     border-radius: 41%;
 }
+.qa_user____{ 
+    margin-left:12px;
+}
+.qa_avatar{
+    display: flex;
+    align-items: flex-start;
+}
+.qa_comment{
+    margin-top: 13px;
+}
+.qa_comment_feedback{ 
+    margin-left:20px;
+    margin-top:20px;
+}
+.qa_container{ 
+    margin-top:12px;
+}
+.qa_avatar>.img{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
 .content_comment_editAndDelete>span{
     color: white;
     font-weight: bold;
@@ -2240,7 +2262,7 @@ ul.social_icon li a:hover {
 
 .btn_qa {
     border-radius: 50px;
-    width: 780px;
+    width: 100%;
 }
 .logo-privacy{
    margin: 10px 0 10px 550px;
