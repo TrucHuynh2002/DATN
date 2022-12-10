@@ -41,7 +41,7 @@ function Signin() {
         dataForm.append('id_ward', id_ward);
         dataForm.append('id_street', id_street);
         const res = await axios.post("http://127.0.0.1:8000/api/user/create", addUser);
-        console.log(res);
+        // console.log(res);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
