@@ -29,6 +29,7 @@ useEffect(() => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
     setListImg(res.data.data);  
   };
+  
   return (
     <>
     <div className="our_room" id="room">

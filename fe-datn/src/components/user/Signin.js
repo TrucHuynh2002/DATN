@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -44,7 +44,51 @@ function Signin() {
                 err_list: res.data
             });
         }
-    }
+    };
+
+    useEffect(() => {
+        getDataProvince();
+    },[]);
+
+        const [listProvince, setListProvince] = useState([]);
+        const [listDistrict, setListDistrict] = useState([]);
+        const [listWard, setListWard] = useState([]);
+        const [listStreet, setStreet] = useState([]);
+
+        const [addProvince, setProvince] = useState([]);
+
+        const handleProvince = async (e) => {
+            setProvince({...addProvince,[e.id_province] : e.target.value});
+            getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+        }
+        const handleDistrict = async (e) => {
+            getDataWard(({[e.id_district] : e.target.value}).undefined)
+            getDataStreet(({[e.id_district] : e.target.value}).undefined);
+        }
+
+        // tỉnh
+        const getDataProvince = async () => {
+            const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+            setListProvince(res.data.data);
+        }
+        // huyện 
+        const getDataDistrict = async (id_province) => {
+            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+            setListDistrict(ress.data.data);
+        }
+        // xã
+        const getDataWard = async (id_district) => {
+            var id_province = addProvince.undefined;
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+            setListWard(resss.data.data);
+        }     
+        // đường 
+        const getDataStreet = async (id_district) => {
+            var id_province = addProvince.undefined;
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+            setStreet(resss.data.data);
+        }
+
   return (
     <>
         <div className="back_re">
@@ -91,10 +135,23 @@ function Signin() {
                                 { alert.err_list.status == false && alert.err_list.messages.phone &&
                                 <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>} 
                                 <div className="col-md-12">
+                                    <select name="id_province" className="text" onChange = {(e) => handleProvince(e)}>
+                                        <option>Tỉnh</option>
+                                        {listProvince.map((room, index) => {
+                                            return (
+                                                <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })} 
+                                    </select>
+                                </div>
+                                { alert.err_list.status == false && alert.err_list.messages.id_province &&
+                                <div className="notice warning_____">{alert.err_list.messages.id_province[0]}</div>}
+                                <div className="col-md-12">
                                     <input type="text" className="text" name="address" value={address} placeholder="Địa chỉ" onChange={(e) => handleChange(e)} />
                                 </div>
                                 { alert.err_list.status == false && alert.err_list.messages.address &&
                                 <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>} 
+
                                 <div className="d-grid gap-2">
                                 {alert.err_list.status == true && <div className="notice success_____">Đăng ký thành công</div>}
                                     <Button type="submit"> Đăng ký</Button>

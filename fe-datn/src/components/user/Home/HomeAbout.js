@@ -1,8 +1,10 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
 import Slide1 from '../../../images/sl01.png';
 
 function HomeAbout() {
+
   return (
     <>
         <div className="about">
@@ -16,9 +18,9 @@ function HomeAbout() {
                   Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
                   Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí. 
                 </p>
-                <a className="read_more" href="1">
+                <Link className="read_more" to="about">
                   Xem thêm
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-7">
