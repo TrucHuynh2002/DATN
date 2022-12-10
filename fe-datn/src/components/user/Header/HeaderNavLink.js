@@ -7,9 +7,7 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function HeaderNavLink() {
-    // CKEditor.replace('description')
    
-    // const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");

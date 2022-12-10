@@ -1,15 +1,15 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Pagination from '../Pagination';
+import axios from 'axios';
 
-function RoomND() {
+function RoomRelatePost() {
+
   var user = JSON.parse(localStorage.getItem("user"));
 
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ postsPerPage, setPostsPerPage ] =useState(9);
+  const [ postsPerPage, setPostsPerPage ] =useState(3);
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
@@ -32,9 +32,17 @@ function RoomND() {
 };
 
   return (
-  <>
+    <>     
     <div className="our_room">
         <div className="container">
+          <div className="row">
+              <div className="col-12">
+                <div className="titlepage">
+                  <h2>Phòng liên quan</h2>
+                  <p>Đây là những phòng trọ phù hợp với bạn</p>
+                </div>
+              </div>
+            </div>
             <div className="row">
             {currentPosts.map((post, index) => {
                 return (     
@@ -63,16 +71,10 @@ function RoomND() {
                 );
               })}
             </div>
-            {/* phan trang */}
-            <Pagination totalPost={listPost.length} 
-            postsPerPage={postsPerPage} 
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage} />
-
         </div>
     </div>
-  </>
+    </>
   )
 }
 
-export default RoomND
+export default RoomRelatePost

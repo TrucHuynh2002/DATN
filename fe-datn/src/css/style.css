@@ -1964,8 +1964,7 @@ ul.social_icon li a:hover {
 } */
 .feedback_comment_time{
    margin-left:8px;
-   color:#bebebe;
-
+   color: #bebebe;
 }
 .feedback_comment_span{
    margin-left:36px;
@@ -2104,18 +2103,20 @@ ul.social_icon li a:hover {
 .content_detail_____{
     display:flex;
     align-items: baseline;
+    flex-wrap: wrap;
 }
 .content_detail_____>.furniture__>span{
     margin-left: 10px;
 }
 .content_detail_____>p{
-    font-size:19px
+    font-size:19px;
 }
 .content_detail_____>span{
     font-size:18px
 }
 .furniture__{
     font-size: 20px;
+    width: 25%;
 }
 .content___________{
     margin-top:10px
@@ -2308,4 +2309,12 @@ ul.social_icon li a:hover {
   }.spancontentrate{
     font-size: 20px;
     color:black;
+  }
+
+  .home_about {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4; /* số dòng muốn hiện dấu ... */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
