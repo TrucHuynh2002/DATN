@@ -188,7 +188,7 @@ return [...pre.filter(check => check !== e.target.value)]
     };
     const loadFurn = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-        console.log(result.data.data)
+        console.log(result.data);
         setEditPost(result.data.data);
         setLinkImage(result.data.img);
     };
