@@ -53,6 +53,8 @@ function EditPost() {
             status: ""
         },
     });
+    const [Images,setLinkImage] = useState([])
+    console.log(Images)
     
     const [uploadImages, setUploadImages] = useState([]);
     // Xử lý input vlaue
@@ -67,9 +69,14 @@ function EditPost() {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
         setfuriture(get_data.data.data)
     };
+
+    
     useEffect(() => {
-        get_furnitures();
+       
+       
+       
     },[]);
+
 
     // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
@@ -78,16 +85,20 @@ function EditPost() {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
         };
+        useEffect(() => {
+            
+        },[])
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+            console.log(result.data)
             setEditPost(result.data.data);
+            setLinkImage(result.data.img);
         };
-
         useEffect(() => {
-            getDataRoomType();
             loadFurn();
-        },[]);
-
+            get_furnitures();
+            getDataRoomType();
+        },[])
     
     const handle_idFuniture =  (e) => {     
         if(e.target.checked){
@@ -97,11 +108,13 @@ function EditPost() {
         }
         else{
             setFur(pre => {
-                return [...pre.filter(check => check !== e.target.value) ]
+return [...pre.filter(check => check !== e.target.value) ]
             })    
         }
        
     }
+
+    
 
     const handleChangeImages = (e) => {
       
@@ -148,6 +161,19 @@ function EditPost() {
             });
         }
     };
+
+    // Xử lý update hình ảnh
+    const handleDeleteImage = async (e,id_img) => {
+        console.log(id_img)
+        let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);
+        console.log(res.data)
+        // if(res.data.status == true) {
+        //     console.log(res.data);
+        // }
+    }
+
+   
+
   return (
     <div className="content">
         <div className="add-post">
@@ -162,7 +188,7 @@ function EditPost() {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && 
                             <div className="notice warning_____">
-                            {alert.err_list.messages.post_name[0]}
+{alert.err_list.messages.post_name[0]}
                             </div>}
                         </Form.Group>
                         <Form.Group className="mb-3 meta_title">
@@ -184,12 +210,19 @@ function EditPost() {
       <div className="container containeredit">
       
         <div className="preview-images-zone row">
-
-          <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
-            <div className="image-cancel" data-no={1}>x</div>
-            <div className="image-zone"><img id="pro-img-3" src="https://tuyensinh.tvu.edu.vn/uploads/news/2022_04/f1.png" alt='' /></div>
-            <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>
-          </div>
+        {
+            
+            Images.map((img,i) => {
+            return  (
+                <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
+                    <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
+                    <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
+                    <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>
+                </div> 
+              )
+            })
+        }                        
+         
         </div>
       </div>
                         <Form.Group className="mb-3 description_sort">
@@ -209,7 +242,7 @@ function EditPost() {
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
                                     })
                                 }}
-                                onChange={(event,editor)=> {
+onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditPost({ ...editPost, description : data});
                                     console.log(description);
@@ -252,7 +285,7 @@ function EditPost() {
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
                         </Form.Group>
                         <Form.Group className="mb-3 area">
-                            <Form.Label>Diện tích</Form.Label>
+<Form.Label>Diện tích</Form.Label>
                             <Form.Control type="text" name="area" className="" 
                             value={area}
                             onChange = {(e) => handleChange(e)}/>
@@ -293,7 +326,7 @@ function EditPost() {
                         </Form.Group>
                         <Form.Group className="mb-3 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
-                            <Form.Control type="text" name="meta_keywords" className='' 
+<Form.Control type="text" name="meta_keywords" className='' 
                             value={meta_keywords}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}

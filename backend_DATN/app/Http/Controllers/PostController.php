@@ -65,10 +65,13 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
+        $image = imgPost::where('id_post','=', (int) $id)->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'img' => $image
             ]);
+
     }
     public function showUser(Request $request, $id)
     {
