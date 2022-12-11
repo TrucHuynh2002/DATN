@@ -11,6 +11,7 @@ function EditPost() {
     const [loader,setLoader] = useState(0);
     const [editPost, setEditPost] = useState({
         post_name: "",
+        phone: "",
         description_sort: "",
         description: "",
         area: "",
@@ -18,18 +19,24 @@ function EditPost() {
         water_price: "",
         electricity_price: "",
         address: "",
+        ifarme:"",
         quantity: "",
         id_furniture: [],
         meta_title: "",
         meta_description: "",
         meta_keywords: "",
-        id_user: 1,
+        id_province : "",
+        id_district : "",
+        id_ward : "",
+        id_street : "",
+        id_user: "",
         id_roomType: "",
         img: [],
 
     });
-    const { 
+    const {
         post_name, 
+        phone,
         description_sort,
         description,
         area,
@@ -37,17 +44,21 @@ function EditPost() {
         water_price,
         electricity_price,
         address,
+        ifarme,
         quantity,
         id_furniture,
         meta_title,
         meta_description,
         meta_keywords,
+        id_province,
+        id_district,
+        id_ward,
+        id_street,
         id_user,
         id_roomType,
         img,
         } = editPost;
        // xu ly loi
-       console.log(editPost)
        const [alert, setAlert] = useState({
         err_list: {
             messages: "",
@@ -55,42 +66,59 @@ function EditPost() {
         },
     });
     const [Images,setLinkImage] = useState([])
-    console.log(Images)
     
-    const [uploadImages, setUploadImages] = useState([]);
     // Xử lý input vlaue
-    const handleChange = (e) => {
-        setEditPost({ ...editPost, [e.target.name]: e.target.value});
+    const handleChange = async (e) => {
+        setEditPost({ ...editPost, [e.target.name] : e.target.value});
     };
+    const [addProvince, setProvince] = useState([]);
+    const handleProvince = async (e) => {
+        setProvince({...addProvince,[e.id_province] : e.target.value});
+        getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+    }
+    const handleDistrict = async (e) => {
+        getDataWard(({[e.id_district] : e.target.value}).undefined)
+        getDataStreet(({[e.id_district] : e.target.value}).undefined);
+    }
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    console.log(checkFur);
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
-        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        var get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
         setfuriture(get_data.data.data)
     };
-
-    
-    useEffect(() => {
-       
-       
-       
-    },[]);
-
-
+    const [listProvince, setListProvince] = useState([]);
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+    const [listStreet, setStreet] = useState([]);
+    // tỉnh
+    const getDataProvince = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        setListProvince(res.data.data);
+    }
+    // huyện 
+    const getDataDistrict = async (id_province) => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        setListDistrict(ress.data.data);
+    }
+    // xã
+    const getDataWard = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        setListWard(resss.data.data);
+    }     
+    // đường 
+    const getDataStreet = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        setStreet(resss.data.data);
+    }
     // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
   
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
-        };
-        const loadFurn = async () => {
-            const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            console.log(result.data)
-            setEditPost(result.data.data);
-            setLinkImage(result.data.img);
         };
         useEffect(() => {
             loadFurn();
@@ -106,27 +134,22 @@ function EditPost() {
         }
         else{
             setFur(pre => {
-return [...pre.filter(check => check !== e.target.value) ]
+return [...pre.filter(check => check !== e.target.value)]
             })    
         }
        
     }
-
-    
-
-    const handleChangeImages = (e) => {
-      
+    const [uploadImages, setUploadImages] = useState([]);
+    const handleChangeImages = (e) => {     
         let formData = new FormData();
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
         setUploadImages(e.target.files)       
     }
-    }
-  
+    } 
     const handleSumbit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
-        // formData.append('img[]', Array(uploadImages));
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
@@ -138,6 +161,11 @@ return [...pre.filter(check => check !== e.target.value) ]
         formData.append('electricity_price', electricity_price);
         formData.append('id_roomType', id_roomType);
         formData.append('id_user', id_user);
+        formData.append('id_province', id_province);
+        formData.append('id_district', id_district);
+        formData.append('id_ward', id_ward);
+        formData.append('id_street', id_street);
+        formData.append('ifarme', ifarme);
         formData.append('meta_keywords', meta_keywords);
         formData.append('meta_description', meta_description);
         formData.append('meta_title', meta_title);
@@ -146,18 +174,23 @@ return [...pre.filter(check => check !== e.target.value) ]
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
         
-        const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
+        const res = await axios.put(`http://127.0.0.1:8000/api/post/update/${id_post}`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
         }
-        else{
-            console.log(res.data)           
+        else{     
             setAlert({
                 err_list: res
             });
         }
+    };
+    const loadFurn = async () => {
+        const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+        console.log(result.data);
+        setEditPost(result.data.data);
+        setLinkImage(result.data.img);
     };
 
     // Xử lý update hình ảnh
@@ -165,13 +198,12 @@ return [...pre.filter(check => check !== e.target.value) ]
         console.log(id_img)
         let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);
         console.log(res.data)
-        
+       
         if(res.data.status == true) {
             setLoader(loader+1);
         }
     }
 
-   
 
   return (
     <div className="content">
@@ -187,7 +219,7 @@ return [...pre.filter(check => check !== e.target.value) ]
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && 
                             <div className="notice warning_____">
-{alert.err_list.messages.post_name[0]}
+                            {alert.err_list.messages.post_name[0]}
                             </div>}
                         </Form.Group>
                         <Form.Group className="mb-3 meta_title">
@@ -204,8 +236,7 @@ return [...pre.filter(check => check !== e.target.value) ]
                             <Form.Label>Hình ảnh</Form.Label>
                             <Form.Control type="file" name="img" multiple
                             onChange = {(e) => handleChangeImages(e)} />
-                        </Form.Group>
-            
+                        </Form.Group>            
       <div className="container containeredit">
       
         <div className="preview-images-zone row">
@@ -242,16 +273,13 @@ return [...pre.filter(check => check !== e.target.value) ]
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
                                     })
                                 }}
-onChange={(event,editor)=> {
+                                onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditPost({ ...editPost, description : data});
-                                    console.log(description);
+                                    // console.log(description);
                                 }}
                                 >
                         </CKEditor>
-                            {/* <Form.Control as="textarea" name="description" className='' rows={3} 
-                            value={description}
-                            onChange = {(e) => handleChange(e)}/> */}
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
                         </Form.Group>
                         <Form.Group className="mb-3 room_price">
@@ -277,6 +305,60 @@ onChange={(event,editor)=> {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.electricity_price[0]}</div>}
                         </Form.Group> 
+                        <Form.Group className="mb-12 id_province">
+                                <Form.Label>Tỉnh</Form.Label>
+                                <Form.Select name="id_province"
+                                onChange = {(e) => handleProvince(e)}
+                                >
+                                    <option>Tỉnh</option>
+                                    {listProvince.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}       
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 id_district">
+                                <Form.Label>Quận/Huyện/TP</Form.Label>
+                                <Form.Select name="id_district"
+                                onChange = {(e) => handleDistrict(e)}
+                                >  
+                                <option>Quận/Huyện/TP</option>
+                                    {listDistrict.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}       </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
+                            </Form.Group>
+                            <Form.Group className="mb-12 id_ward">
+                                <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
+                                <Form.Select name="id_ward"
+                                onChange = {(e) => handleChange(e)}
+                                > 
+                                <option>Xã/Phường/Thị Trấn</option>
+                                    {listWard.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}       </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                            </Form.Group>  
+                            <Form.Group className="mb-12 id_street">
+                                <Form.Label>Đường</Form.Label>
+                                <Form.Select name="id_street"
+                                onChange = {(e) => handleChange(e)}
+                                > 
+                                <option>Đường</option>
+                                    {listStreet.map((room, index) => {
+                                        return (
+                                            <option key={index} value={room.id} >{room._name}</option>
+                                        );
+                                    })}       
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
+                            </Form.Group>
                         <Form.Group className="mb-3 address">
                             <Form.Label>Địa chỉ</Form.Label>
                             <Form.Control type="text" name="address" className=""
@@ -284,8 +366,15 @@ onChange={(event,editor)=> {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
                         </Form.Group>
+                        <Form.Group className="mb-12 address">
+                                <Form.Label>Iframe map</Form.Label>
+                                <Form.Control type="text" name="ifarme" className=""
+                                value={ifarme}
+                                onChange = {(e) => handleChange(e)}/>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                            </Form.Group>
                         <Form.Group className="mb-3 area">
-<Form.Label>Diện tích</Form.Label>
+                            <Form.Label>Diện tích</Form.Label>
                             <Form.Control type="text" name="area" className="" 
                             value={area}
                             onChange = {(e) => handleChange(e)}/>
@@ -326,7 +415,7 @@ onChange={(event,editor)=> {
                         </Form.Group>
                         <Form.Group className="mb-3 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
-<Form.Control type="text" name="meta_keywords" className='' 
+                            <Form.Control type="text" name="meta_keywords" className='' 
                             value={meta_keywords}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
