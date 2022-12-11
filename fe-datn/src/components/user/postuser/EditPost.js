@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function EditPost() {
 
     const {id_post} = useParams();
+    const [loader,setLoader] = useState(0);
     const [editPost, setEditPost] = useState({
         post_name: "",
         description_sort: "",
@@ -85,9 +86,6 @@ function EditPost() {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
         };
-        useEffect(() => {
-            
-        },[])
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
             console.log(result.data)
@@ -98,7 +96,7 @@ function EditPost() {
             loadFurn();
             get_furnitures();
             getDataRoomType();
-        },[])
+        },[loader])
     
     const handle_idFuniture =  (e) => {     
         if(e.target.checked){
@@ -167,9 +165,10 @@ function EditPost() {
         console.log(id_img)
         let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);
         console.log(res.data)
-        // if(res.data.status == true) {
-        //     console.log(res.data);
-        // }
+        
+        if(res.data.status == true) {
+            setLoader(loader+1);
+        }
     }
 
    
@@ -211,7 +210,8 @@ function EditPost() {
       
         <div className="preview-images-zone row">
         {
-            
+      
+            Images.length > 0 &&
             Images.map((img,i) => {
             return  (
                 <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
