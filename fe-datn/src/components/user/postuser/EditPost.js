@@ -188,7 +188,6 @@ return [...pre.filter(check => check !== e.target.value)]
     };
     const loadFurn = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-        console.log(result.data);
         setEditPost(result.data.data);
         setLinkImage(result.data.img);
     };
@@ -252,7 +251,7 @@ return [...pre.filter(check => check !== e.target.value)]
             Images.length > 0 &&
             Images.map((img,i) => {
             return  (
-                <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
+                <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
                     <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
                     <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
                     <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div>

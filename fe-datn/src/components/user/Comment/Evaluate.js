@@ -48,7 +48,6 @@ function Evaluate() {
   const [getAllStar,setGetAllStar] = useState([])
   const getAllStarPost = async () =>{
     let res = await axios.get(`http://127.0.0.1:8000/api/rating/show/post/${id_post}`)
-    console.log(res.data);
     if(res.data.status == true){
       setGetAllStar(res.data.data);
     }

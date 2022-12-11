@@ -10,7 +10,6 @@ function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    console.log(listImg[0])
     const [listFurniture, setListFurniture] = useState([]);
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
@@ -41,7 +40,6 @@ function RoomDetail() {
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        console.log(res.data.data[0].link_img_user)
         setListImg(res.data.data);        
     };
     const updateView = async () => {
