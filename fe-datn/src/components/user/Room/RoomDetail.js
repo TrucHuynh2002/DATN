@@ -88,7 +88,8 @@ function RoomDetail() {
 
                                 <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
                                     {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    {listImg.map((img,i) => {
+                                    {
+                                    listImg.map((img,i) => {
                                         
                                        return <div className="item" key={i}>   
                                             <img className="img-fluid" src={img.link_img_user} alt="abcd"  />

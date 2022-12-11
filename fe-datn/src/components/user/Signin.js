@@ -71,8 +71,9 @@ function Signin() {
         }
         const handleDistrict = async (e) => {
             getDataWard(({[e.id_district] : e.target.value}).undefined)
-            getDataStreet(({[e.id_district] : e.target.value}).undefined);
+            getDataStreet(e.target.value);
             setAddUser({ ...addUser, [e.target.name]: e.target.value});
+            console.log(e.target.value)
         }
 
         // tỉnh
@@ -94,7 +95,8 @@ function Signin() {
         // đường 
         const getDataStreet = async (id_district) => {
             var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=1&&id_district=1`);
+            console.log(resss)
             setStreet(resss.data.data);
         }
 
