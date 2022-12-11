@@ -204,6 +204,13 @@ return [...pre.filter(check => check !== e.target.value)]
         }
     }
 
+    useEffect(() => {
+        getDataProvince();
+    },[]);
+
+       
+      
+
 
   return (
     <div className="content">
