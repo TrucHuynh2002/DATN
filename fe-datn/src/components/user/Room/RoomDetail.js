@@ -40,6 +40,7 @@ function RoomDetail() {
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
+        console.log(res.data)
         setListImg(res.data.data);        
     };
     const updateView = async () => {
@@ -79,10 +80,19 @@ function RoomDetail() {
                         <div className="col-md-6">
                             <div className="product-slider">
                                 <div className="item">
-                                {listImg.map((a, index) => {
-                                    return(
-                                    <img className="img-fluid" src={a.link_img_user} alt="#" key={index} />
-                                    )})}
+                          
+                                    <img className="img-fluid" src={listImg[0].link_img_user} alt="#" key={index} />
+                              
+                                </div>  
+
+                                <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
+                                    {/* SAU NÀY PHẢI LÀM SLIDER */}
+                                    {listImg.map((img,i) => {
+                                        
+                                       return <div className="item" key={i}>   
+                                            <img className="img-fluid" src={img.link_img_user} alt="abcd" />
+                                        </div>
+                                    })}
                                 </div>
                             </div>
                         </div>
