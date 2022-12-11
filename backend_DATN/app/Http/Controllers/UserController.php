@@ -273,32 +273,42 @@ class UserController extends Controller
             ]);
         };
     }
-    // public function UserForgotPassword(Request $request)
-    // {
-    //     $Check_User = User::where('email','=',$request->email)->first();
-    //     if($Check_User){
-    //     $request->authenticate();
+   
+    public function show_province_detail(Request $request, $id_user)
+    {
+        $data = DB::table('users')
+            ->join('province', 'users.id_province', '=', 'province.id')
+            ->where('users.id_user', '=', $id_user)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_district_detail(Request $request, $id_user)
+    {
+        $data = DB::table('users')
 
-    //     $request->session()->regenerate();
-
-    //     return redirect()->intended(RouteServiceProvider::HOME);
-    //         return response()
-    //             ->json([
-    //                 'messages' => "Kiểm tra mail để đổi mật khẩu",
-    //                 'status'=> true
-    //             ]);
-    //         Mail::to($request->email)->send(new Resetpassword($Check_User));
-    //     }else{
-    //         return response()
-    //             ->json([
-    //                 'messages' => "Mail không chính xác",
-    //                 'status'=> false
-    //             ]);
-    //     }
-    //     $request->authenticate();
-
-    //     $request->session()->regenerate();
-
-    //     return redirect()->intended(RouteServiceProvider::HOME);
-    // }
+            ->join('district', 'users.id_district', '=', 'district.id')
+            ->where('users.id_user', '=', $id_user)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_ward_detail(Request $request, $id_user)
+    {
+        $data = DB::table('users')
+            ->join('ward', 'users.id_ward', '=', 'ward.id')
+            ->where('users.id_user', '=', $id_user)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
 }

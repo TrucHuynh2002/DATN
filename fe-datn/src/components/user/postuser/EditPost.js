@@ -106,7 +106,7 @@ function EditPost() {
         }
         else{
             setFur(pre => {
-                return [...pre.filter(check => check !== e.target.value) ]
+return [...pre.filter(check => check !== e.target.value) ]
             })    
         }
        
@@ -187,7 +187,7 @@ function EditPost() {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && 
                             <div className="notice warning_____">
-                            {alert.err_list.messages.post_name[0]}
+{alert.err_list.messages.post_name[0]}
                             </div>}
                         </Form.Group>
                         <Form.Group className="mb-3 meta_title">
@@ -242,7 +242,7 @@ function EditPost() {
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
                                     })
                                 }}
-                                onChange={(event,editor)=> {
+onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditPost({ ...editPost, description : data});
                                     console.log(description);
@@ -285,7 +285,7 @@ function EditPost() {
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>}
                         </Form.Group>
                         <Form.Group className="mb-3 area">
-                            <Form.Label>Diện tích</Form.Label>
+<Form.Label>Diện tích</Form.Label>
                             <Form.Control type="text" name="area" className="" 
                             value={area}
                             onChange = {(e) => handleChange(e)}/>
@@ -326,7 +326,7 @@ function EditPost() {
                         </Form.Group>
                         <Form.Group className="mb-3 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
-                            <Form.Control type="text" name="meta_keywords" className='' 
+<Form.Control type="text" name="meta_keywords" className='' 
                             value={meta_keywords}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}

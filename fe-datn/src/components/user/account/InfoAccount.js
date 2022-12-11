@@ -8,8 +8,14 @@ function InfoAccount() {
     const user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
+    const [listprovince, setListprovince] = useState([]);
+    const [listdistrict, setListdistrict] = useState([]);
+    const [listward, setListward] = useState([]);
     useEffect(() => {
         getData();
+        province();
+        district();
+        ward();
     },[]);
 
     // xu ly loi
@@ -25,6 +31,18 @@ function InfoAccount() {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
         setInfoAccount(res.data.data);
     };
+    const province = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_province_detail/${id_user}`);
+          setListprovince(res.data.data);
+      }; 
+      const district = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_district_detail/${id_user}`);
+          setListdistrict(res.data.data);
+      };   
+      const ward = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_ward_detail/${id_user}`);
+          setListward(res.data.data);
+      }; 
 
     // xu ly avata
     const [show, setShow] = useState(false);
@@ -113,12 +131,27 @@ function InfoAccount() {
                         <div className='col-md-6 info_content____'> 
                             <div>
                                 <span> Địa chỉ : </span>
+                                <span style={{marginRight:'2px'}}>Thành phố </span>
+                                {listprovince.map((pro_detail, index) => {
+                                    return (   
+                                    <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}, </span>                    
+                                );
+                                })} 
+                                <span style={{marginRight:'2px'}}> Quận </span> 
+                                {listdistrict.map((dis_detail, index) => {
+                                    return (   
+                                        <span style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </span>            
+                                    );
+                                })} 
+                                <span style={{marginRight:'2px'}}> Xã </span>
+                                {listward.map((ward_detail, index) => {
+                                return (   
+                                    <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
+                                    );
+                                })}
                                 <span>{info.address}</span>
                             </div>
                             <div>
-                                {
-
-                                }
                                 <span> Ngày tham gia : </span>
                                 <span> {info.updated_at}</span> 
                             </div>
