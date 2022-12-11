@@ -469,4 +469,12 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
+
+    public function Post_DeleteImage(Request $request,$id_img){
+        
+        return response()->json([
+            "status" => true,
+            'id_img' => $id_img
+        ]);
+    }
 }

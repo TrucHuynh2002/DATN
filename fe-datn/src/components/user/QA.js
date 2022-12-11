@@ -39,6 +39,9 @@ function QA() {
     setListComment(res.data.data);  
 };
 
+  const handleChangeQA = (e) => {
+    setAddQA({...addQA, [e.target.name] : e.target.value})
+  }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -48,7 +51,7 @@ function QA() {
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
-    setComment({...Comment, [e.target.name]: e.target.value});
+    setComment({...Comment, [e.target.name]: e.target.value})
   }
   const handleComment = async (e,id_qa) => {
     e.preventDefault();
@@ -87,17 +90,24 @@ function QA() {
                   <Modal.Title>Bạn đang nghĩ gì</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <Form encType="multipart/form-data" onSubmit={(e) => handleQA(e)}>
-                    <CKEditor
-                      editor={ClassicEditor}
-                      data={addQA}
-                      onChange={(event,editor)=> {
-                        const data=editor.getData()
-                        setAddQA(data);
-                      }}
-                    >
-                    </CKEditor>
-                    <Button style={{marginTop:'15px'}} variant="primary" name='' type="submit"> Đăng </Button>                    
+                  <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
+                  <CKEditor
+                                editor={ClassicEditor}
+                                data={qa_content}
+                                onReady={(editor)=>{
+                                    editor.editing.view.change((writer)=>{
+                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                    })
+                                }}
+                                onChange={(event,editor) => {
+                                    let data = editor.getData();
+                                    setAddQA({addQA, content:data});
+                                }}
+                                >
+                                </CKEditor>
+                    <Button variant="primary" name='' type="submit">
+                      Đăng
+                    </Button>                    
                   </Form> 
                 </Modal.Body>
                 {/* <Modal.Footer>

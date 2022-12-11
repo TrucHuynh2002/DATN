@@ -65,6 +65,8 @@ Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
 Route::get('about/show', [ConfigController::class, 'get_About']);
 
+
+
 // category
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
@@ -108,7 +110,7 @@ Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
-
+Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
@@ -202,10 +204,12 @@ Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment'
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
+Route::get('rating/show/post/{id}',[RatingController::class,'get_allStarPost']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
 Route::get('rating/average/{id_post}', [RatingController::class, 'Rating_Average']);
+
 
 
 /// Search

@@ -38,27 +38,25 @@ class RatingController extends Controller
         //             'status' => false
         //         ]);
         // }
-        $t = new CommentModel();
-        $t->content = $request->content;
-        // $t->date = $request->date;
-        $t->status = 1;
-        $t->id_user = $request->id_user;
-        $t->id_post = $request->id_post;
-        $t->save();
         
         if($request->rate){
-            $comment =  CommentModel::where('id_comment','DESC')->first();
 
             $rate = new RatingModel();
             $rate->rate = $request->rate;
             $rate->id_post = $request->id_post;
-            $rate->id_comment = $comment->id_comment;
+            $rate->content = $request->content;
+            $rate->id_user = $request->id_user;
             $rate->save();
         }
+        $user = DB::table('post_rate')->join('post','post.id_post','post_rate.id_post')
+                                        ->select('post.id_user')
+                                        ->orderBy('post_rate.id_post_rate','DESC')
+                                        ->first();
         return response()
             ->json([
                 'message' => 'Cám ơn bạn đã đánh giá!',
-                'status' => true
+                'status' => true,
+                'data' => $user->id_user
             ]);
     }
     public function RatingEdit(Request $request, $id_post_rate)
@@ -150,6 +148,18 @@ class RatingController extends Controller
                 "one_star" => $one_star,
                 "count" => $count
             ]
+        ]);
+    }
+
+    public function get_allStarPost(Request $request,$id_post){
+        $get_allStar = DB::table('post_rate')
+        ->join('users','users.id_user','=','post_rate.id_user')
+        ->where('post_rate.id_post','=',$id_post)
+        ->orderBy('post_rate.id_post_rate','DESC')
+        ->get();
+        return response()->json([
+            'status' => true,
+            'data' => $get_allStar
         ]);
     }
 }

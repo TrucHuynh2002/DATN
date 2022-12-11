@@ -25,11 +25,6 @@ function Evaluate() {
     count
   } = reviewStar
 
-  useEffect(() => {
-      getData();
-      getAverageRate();
-      HandleProgessBar()
-  },[]);
 
   // danh sach post
   const getData = async () => {
@@ -49,10 +44,26 @@ function Evaluate() {
     })
   }
 
+  // Get all Star Post
+  const [getAllStar,setGetAllStar] = useState([])
+  const getAllStarPost = async () =>{
+    let res = await axios.get(`http://127.0.0.1:8000/api/rating/show/post/${id_post}`)
+    console.log(res.data);
+    if(res.data.status == true){
+      setGetAllStar(res.data.data);
+    }
+  }
+
   const HandleProgessBar = () => {
       // const Pr_fiveStar = document.querySelector('progress-bar-1').css('width',76);
   }
   const [total,setTotal] = useState(0);
+  useEffect(() => {
+    getData();
+    getAverageRate();
+    HandleProgessBar();
+    getAllStarPost()
+},[]);
 
   return (
     <>
@@ -60,7 +71,7 @@ function Evaluate() {
         <div className="content-left col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
           <p>Đánh giá trung bình</p>
           <div className="avg-rate font-weight-bold">
-            <span>{averageRate}</span>
+            <span>{Math.round(averageRate)}</span>
             <span>/5</span>
           </div>
           <div className="star-rate">
@@ -71,7 +82,8 @@ function Evaluate() {
                 return rate > averageRate ?
                     index + 0.5 > averageRate ?
                      <i className="fa fa-star" key={index} /> 
-                    : <i className="fa fa-star-half checked" key={index}/> 
+                    : 
+                    <i className="fa fa-star-half checked" key={index}/> 
                     : 
                     (
                       <i className="fa fa-star checked" key={index} /> 
@@ -103,7 +115,7 @@ function Evaluate() {
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{five_star > 0 ?  five_star / count * 100 : 0}%</div>
+            <div className="percent">{five_star > 0 ?  Math.round(five_star / count * 100) : 0}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -113,13 +125,13 @@ function Evaluate() {
               <div
                 className="progress-bar-2 progress-bar bg-success"
                 role="progressbar"
-                style={{"width":((four_star > 0 ? four_star/count * 100 : 0) + "%")}}
+                style={{"width":((four_star > 0 ? Math.round( four_star/count * 100) : 0) + "%")}}
                 aria-valuenow={four_star/count * 100}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(four_star > 0 ? four_star/count * 100 : 0)}%</div>
+            <div className="percent">{(four_star > 0 ? Math.round(four_star/count * 100) : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -145,13 +157,13 @@ function Evaluate() {
               <div
                 className="progress-bar-4 progress-bar"
                 role="progressbar"
-                style={{"width":((two_star > 0 ? two_star/count * 100 : 0) + '%')}}
-                aria-valuenow={(two_star > 0 ? two_star/count * 100 : 0)}
+                style={{"width":((two_star > 0 ? Math.round(two_star/count * 100) : 0) + '%')}}
+                aria-valuenow={(two_star > 0 ? Math.round(two_star/count * 100) : 0)}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(two_star > 0 ? two_star/count * 100 : 0)}%</div>
+            <div className="percent">{(two_star > 0 ? Math.floor(two_star/count * 100) : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -167,7 +179,7 @@ function Evaluate() {
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(one_star > 0 ? one_star/count * 100 : 0)}%</div>
+            <div className="percent">{(one_star > 0 ? Math.round(one_star/count * 100) : 0)}%</div>
           </div>
         </div>
         <div className="content-right col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
@@ -192,19 +204,50 @@ function Evaluate() {
       {/* show đánh giá */}
       <div className="star-rate">
       {
-         Array(5).fill()
-         .map((_,index) => {
-           let rate = index +1
-           return rate > averageRate ? 
-           index + 0.5 > averageRate ?
-             <i className="fa fa-star" key={index} />
-           :
-             <i className="fa fa-star-half checked" key={index} />
-           :
-           (
-            <i className="fa fa-star checked" key={index} />
-           )
-         })
+        getAllStar.map((rate,i) => {
+          return (
+            <>
+              <div key={i}>
+                <div className='Avtar'>
+                  <img />
+                </div>
+                <div className='infor'>
+                    <div className='infor_star'>
+                      {
+                          Array(5).fill()
+                          .map((_,index) => {
+                            return index+1 > rate.rate
+                            ? 
+                            index+0.5 > rate.rate
+                              ?
+                              (
+                                <span>   <i className="fa fa-star " key={index} /></span>
+                              )
+                              :
+                            
+                              (
+                                <i className="fa fa-star-half checked" key={index}/> 
+                              )
+
+                            :
+                            (
+                              <span>  <i className="fa fa-star checked "  key={index}  /></span>                                            
+
+                            )
+                          })
+                      }
+                    </div>
+                    <p>
+                      {rate.full_name}
+                    </p>
+                    <p>{rate.content}</p>
+                </div>
+
+              </div>
+            </>
+          )
+        })
+       
       }
       </div>
     </>
