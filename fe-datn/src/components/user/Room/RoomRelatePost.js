@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useParams  } from 'react-router-dom';
 import axios from 'axios';
+import Figure from 'react-bootstrap/Figure';
 
 function RoomRelatePost({onClick}) {
 
@@ -27,7 +28,7 @@ function RoomRelatePost({onClick}) {
     setListPost(res.data.data);
   };
   const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_one`);
     setListImg(res.data.data);   
 };
 
@@ -49,10 +50,9 @@ function RoomRelatePost({onClick}) {
                   <div className="col-md-4 col-sm-6" key={index}>
                       <div id="serv_hover" className="room">
                           <div className="room_img">
-                          {listImg.map((a, index) => {
-                            return a.id_post == post.id_post && (
-                              <figure key={index}><img src={a.link_img_user} alt="#" /></figure>
-                              )})}
+                          { listImg.id_post == post.id_post && (
+                              <Figure key={index}><img src={listImg.link_img_user} alt="#" /></Figure>
+                            )}
 
                               {/* thả tym */}
                               {/* {listHeart.map((heart, index) => { */}
