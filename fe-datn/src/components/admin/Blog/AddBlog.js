@@ -16,24 +16,24 @@ function AddBlog() {
         description:"",
         id_user:user[0].id
     });
-    console.log(123);
+    // console.log(123);
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
     const handleChangeImages = (e) => {
-        console.log(321);
+        // console.log(321);
         // setUploadImages(e.target.files)
     }
-    console.log(uploadImages);
+    // console.log(uploadImages);
 
     const [alert, setAlert] = useState({
         err_list: {},
     });
 
     const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description } = addBlog;
-  
+    
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
-        console.log(123);
+        // console.log(123);
     };
     
     const handleSubmit = async (e) => {
@@ -50,7 +50,7 @@ function AddBlog() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
+            // console.log(alert.err_list)
         }
         else{           
             setAlert({
@@ -72,7 +72,6 @@ function AddBlog() {
                    <Form.Group className="mb-3" controlId="img_blog">
                         <Form.Label>Hình ảnh</Form.Label>
                         <Form.Control type="file" name="img_blog_add" onChange={(e) => handleChangeImages(e)} />
-                        {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>} */}
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>
@@ -95,7 +94,7 @@ function AddBlog() {
                                     editor.editing.view.change((writer)=>{
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
                                     })
-                                }}
+                                }} 
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setAddBlog({ ...addBlog, description : data});

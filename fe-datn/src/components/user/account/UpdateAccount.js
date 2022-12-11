@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
@@ -16,7 +15,7 @@ function UpdateAccount() {
         err_list: {},
     });
 
-    const {full_name,phone,address } = editAccount;
+    const {full_name,phone,address} = editAccount;
 
     const handleChange = (e) => {
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
@@ -45,6 +44,7 @@ function UpdateAccount() {
         const result = await axios.get(`http://127.0.0.1:8000/api/user/showAcount/${id_Account}`);
         setEditAccount(result.data.data);
     };
+
   return (
     <div className="content">
         <div className="add-post">
@@ -55,11 +55,6 @@ function UpdateAccount() {
                     <Form.Control type="text" name="full_name" value={full_name} className='' onChange={(e) => handleChange(e)} />
                     {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.full_name[0]}</div>}
                 </Form.Group>
-                {/* <Form.Group className="mb-3" controlId="3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name="email" value={email} className='' onChange={(e) => handleChange(e)} />
-                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.email[0]}</div>}
-                </Form.Group> */}
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Số điện thoại</Form.Label>
                     <Form.Control type="text" name="phone" value={phone} className='' onChange={(e) => handleChange(e)} />

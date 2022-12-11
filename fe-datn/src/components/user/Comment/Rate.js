@@ -1,11 +1,7 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect} from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-// import StarRading from './starRading';
 import axios from 'axios';
-
 
 function Comment() {
  
@@ -69,7 +65,7 @@ function Comment() {
                                   onClick={() => setAddComment({...addComment, rate:index+1})}
                                   style={{color: "orange"}}
                                 >
-                                  <i class="bi bi-star-fill"></i>
+                                  <i className="bi bi-star-fill"></i>
                                 </span>
                               )
                               :
@@ -79,7 +75,7 @@ function Comment() {
                                 onMouseOver={() => setHoverStar(index+1)}
                                 onMouseLeave = {() => setHoverStar(undefined)}
                                 onClick={() => setAddComment({...addComment, rate:index+1})}
-                                      ><i class="bi bi-star"></i>
+                                      ><i className="bi bi-star"></i>
                                 </span>
                               )
 
@@ -117,7 +113,6 @@ function Comment() {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
-             
             </Form>
             : <Form>
                 <Form.Group className="form-group">

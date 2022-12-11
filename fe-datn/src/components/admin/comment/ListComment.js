@@ -44,9 +44,6 @@ function ListComment() {
             <th>Tên người dùng</th>
             <th>Nội dung</th>
             <th>Ngày bình luận</th>
-            {/* <th>Trạng thái</th>
-            <th></th> */}
-
           </tr>
         </thead>
         <tbody className='list_cmt'>

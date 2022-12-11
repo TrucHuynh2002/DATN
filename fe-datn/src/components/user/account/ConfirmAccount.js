@@ -1,12 +1,11 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function ConfirmAccount() {
+    
   const {id_Account} = useParams();
-  const [resetPassword, setResetPassword] = useState("");
   const [editPassword, setEditPassword] = useState({
     password:"",
     password_new:"",

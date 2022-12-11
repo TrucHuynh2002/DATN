@@ -15,7 +15,6 @@ function ListLogo() {
   // list banner
   const getData = async () => {
    const result = await axios.get("http://127.0.0.1:8000/api/config");
-  //  console.log(result);
   setListLogo(result.data.data);
   };
 

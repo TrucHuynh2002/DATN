@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
-
-
 function AddPost() {
     const get_user = JSON.parse(localStorage.getItem('user'));
         const [addPost, setAddPost] = useState({
@@ -100,13 +98,7 @@ function AddPost() {
             let formData = new FormData();
             if(e.target.files){
             const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
-            // console.log(fileA)
             setUploadImages(e.target.files)
-                    // console.log(e.target.files)
-            // Array.from(e.target.file).map(file => {
-            //     // console.log(file)
-            //     setAddPost({...uploadImages, file})
-            // })
         }
         }
       
@@ -128,7 +120,6 @@ function AddPost() {
             formData.append('meta_keywords', meta_keywords);
             formData.append('meta_description', meta_description);
             formData.append('meta_title', meta_title);
-            // formData.append('phone', phone);
             formData.append('quantity', quantity);
             formData.append('room_price', room_price);
             formData.append('water_price', water_price);
@@ -178,7 +169,6 @@ function AddPost() {
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
                                 onChange = {(e) => handleChangeImages(e)} />
-                                {/* {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img[0]}</div>} */}
                                 <div className='row'>
                                     
                                 </div>

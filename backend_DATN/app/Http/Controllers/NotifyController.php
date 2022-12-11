@@ -39,10 +39,12 @@ class NotifyController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'id_user_tow' => 'required',
+            'interaction' => 'required',
             'id_user' => 'required',
             'id_post' => 'required',
         ], [
             'id_user_tow.required' => 'Không được bỏ trống',
+            'interaction.required' => 'Không được bỏ trống',
             'id_user.required' => 'Không được bỏ trống',
             'id_post.required' => 'Không được bỏ trống',
 
@@ -57,7 +59,7 @@ class NotifyController extends Controller
         $t = new Notify();
         $t->id_user_tow = $request->id_user_tow;
         $t->status = 1;
-        $t->interaction = 'bình luận';
+        $t->interaction = $request->interaction;
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
         $t->save();

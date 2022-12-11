@@ -65,6 +65,8 @@ Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
 Route::get('about/show', [ConfigController::class, 'get_About']);
 
+
+
 // category
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
@@ -108,7 +110,7 @@ Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
-
+Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
@@ -153,7 +155,7 @@ Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
 Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
-
+ 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/post/show/{id_post}', [CommentController::class, 'Comment_SelectPost']);

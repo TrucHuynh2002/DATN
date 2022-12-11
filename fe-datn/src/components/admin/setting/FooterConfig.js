@@ -35,7 +35,6 @@ function FooterConfig() {
         dataForm.append('sdt',sdt);
         dataForm.append('introduce',introduce);
     const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
-    // console.log(res);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -101,7 +100,6 @@ function FooterConfig() {
                                 }}
                                 >
                         </CKEditor>
-            {/* <Form.Control type="text" name="introduce" onChange={(e) => handleChange(e)} value={introduce} className=''/> */}
             { alert.err_list.status == false && alert.err_list.messages.introduce &&
                                        <div className="notice warning_____">{alert.err_list.messages.introduce[0]}</div>}
         </Form.Group>

@@ -1,7 +1,6 @@
 import React from 'react'
-// import Evaluate from '../../user/Evaluate';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 function DetailPost() {
@@ -35,7 +34,7 @@ function DetailPost() {
                             <div className="item" >
                             {listImg.map((a, index) => {
                                 return(
-                                <img className="img-fluid" src={a.link_img_user} alt="#" />
+                                <img className="img-fluid" src={a.link_img_user} alt="#" key={index} />
                                 )})}
                             </div>
                         </div>

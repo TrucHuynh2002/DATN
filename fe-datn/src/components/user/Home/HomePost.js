@@ -29,6 +29,7 @@ useEffect(() => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
     setListImg(res.data.data);  
   };
+  
   return (
     <>
     <div className="our_room" id="room">
@@ -49,8 +50,8 @@ useEffect(() => {
                       <div className="room_img">
                         {listImg.map((a, index) => {
                           return a.id_post == post.id_post && (
-                            <Figure><img src={a.link_img_user} alt="#" /></Figure>
-                          )
+                              <Figure key={index}><img src={a.link_img_user} alt="#" /></Figure>
+                            )
                           })}
                       </div>
                       <div className="bed_room">

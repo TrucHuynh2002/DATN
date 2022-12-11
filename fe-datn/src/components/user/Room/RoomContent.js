@@ -1,6 +1,7 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import axios from 'axios';
 import Pagination from '../Pagination';
 
 function RoomND() {
@@ -8,7 +9,6 @@ function RoomND() {
 
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
-  const [listHeart, setListHeart] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
   const lastPageIndex = currentPage * postsPerPage;
@@ -19,78 +19,157 @@ function RoomND() {
     getData();
     getImg();
   },[]);
- 
-  // const [addHeart, setAddHeart] = useState({
-  //       heart_feeling :1,
-  //       id_post :"",
-  //       id_user : user[0].id
-  // });
+
   const [alert, setAlert] = useState({
     err_list: {},
-  });
-  // const {id_post} = addHeart;
-  // const handleClick = async (index) => {
-  //   setAddHeart({...addHeart , id_post : index });
-  //   const res = await axios.post(`http://127.0.0.1:8000/api/heartFeeling/create`,addHeart);
-  //   if(res.data.status === true){
-  //     setAlert({
-  //         err_list: res.data
-  //     });
-  //     console.log(alert.err_list)
-  //   }
-  //   else{           
-  //       setAlert({
-  //           err_list: res.data
-  //       });
-  //   }
-  // };
- 
-    // var btnColor = document.querySelector(".btn_heart");
-   
+  });  
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-  //  console.log(res);
-   setListPost(res.data.data);
-  //  setListHeart(res.data.heart);
-  //  var heart = document.querySelector('.heart');
-  //  var btn_heart =  document.querySelectorAll(".btn-heart");
-  //  for (let i = 0; i < btn_heart.length; i++) {
-  //   heart[i].style.backgroundColor = "red";
-  //   for (let i = 0; i < btn_heart.length; i++) {
-  //     btn_heart.innerHTML = btn_heart[i];
-  //   }
-  // }
- 
-  //  {listHeart.map((e,index) => {
-   
-  //     // for (let i = 0; i < btn_heart.length; i++) {
-  //       if(btn_heart.value = e.id_post){
-  //         // console.log(btn_heart)
-  //         for (let i = 0; i < btn_heart.value.length; i++) {
-  //           // console.log(btn_heart.value)
-  //           btn_heart[i].innerHTML = `<div class="heart"><i class="bx bxs-heart" onclick=handleClick(e.id_post)></i></div>`;
-  //           var heart=  document.querySelectorAll(".btn-heart");
-  //           for (let i = 0; i < heart.length; i++) {
-  //           heart[i].style.backgroundColor = "red";
-  //           }
-  //         }
-  //       }
-  //   // }
-  //   else{
-  //     // btnColor.style.color = 'red'
-  //   }
-  //  })}
-    
+   setListPost(res.data.data);    
   };
-  // console.log(listHeart);
   const getImg = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    // console.log(res);
     setListImg(res.data.data);   
 };
 
+// search
+const navigate = useNavigate();
+useEffect(() => {
+  getTypeRoom()
+  getProvinces()
+},[]);
+  // SEARCHING
+const [keyword,setKeyword] = useState({
+  keywords: "",
+  province: "",
+  district: "",
+  ward: "",
+  price:"",
+  area:"",
+  typeRoom:""
+})
+const [getDataSearch,setGetDataSearch] = useState({
+  typeRooms:[]
+});
+const {typeRooms} = getDataSearch
+const [getProvince,setProvince] = useState([]);
+const getTypeRoom = async () => {
+  let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+  setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
+}
+    const {
+      keywords,
+      province,
+      district,
+      ward,
+      price,
+      area,
+      typeRoom
+    } = keyword
+    const getProvinces = async () => {
+      let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+          setProvince(dataRooms.data.data)
+        }
+        const handledistrice = async (e) => {
+          getDataDistrict(({[e.id_province] : e.target.value}).undefined)
+          setKeyword({ ...keyword,province: e.target.value})
+      }
+     
+      const handleadd = async (e) => {
+          getDataWard(({[e.id_district] : e.target.value}).undefined)
+          setKeyword({ ...keyword,district: e.target.value})
+      }
+      const handssdbdfb = async (e) => {
+          setKeyword({ ...keyword,ward: e.target.value})
+      }
+        const [listDistrict, setListDistrict] = useState([]);
+        const [listWard, setListWard] = useState([]);
+        const getDataDistrict = async (id_province) => {
+            const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+            setListDistrict(res.data.data);
+        }
+        const getDataWard = async (id_district) => {
+            const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+            setListWard(res.data.data);
+        }     
+        const [searching,setSearching] = useState(false);
+        const handleChangeKeyWord = (e) => {
+          setKeyword({ ...keyword,[e.target.name]:e.target.value})
+        }
+        const handleSubmitSearch = e => {
+          e.preventDefault()
+          navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
+        }
+
   return (
   <>
+    <div className=''>
+      <div className='row search_room'>
+        <div className="col-2">
+          <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
+            <option>Loại phòng</option>
+            {
+              typeRooms.map((r,i) => {
+                return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+              })
+            }
+          </select>
+        </div>
+        <div className="col-2">
+          <Form.Select name="provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
+            <option>Tỉnh</option>
+            {
+              getProvince.map((p,i) => {
+                return <option key={i} value={p.id}>{p._name}</option>
+              })
+            }
+          
+          </Form.Select>
+        </div>
+        <div className="col-2">
+                <Form.Select name="id_district" className="form-select online_book3"
+                onChange = {(e) => handleadd(e)}
+                >
+                    <option>Quận/Huyện</option>
+                    {listDistrict.map((room, index) => {
+                        return (
+                            <option key={index} value={room.id}>{room._name}</option>
+                        );
+                    })}                            
+                </Form.Select>
+        </div>
+        <div className="col-2">
+                <Form.Select name="id_ward" className="form-select online_book3"
+                onChange = {(e) => handssdbdfb(e)}
+                > 
+                <option>Xã</option>
+                    {listWard.map((room, index) => {
+                        return (
+                            <option key={index} value={room.id}  >{room._name}</option>
+                        );
+                    })}                            
+                </Form.Select>
+        </div>
+        <div className="col-2 ">
+          <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
+            <option>Giá</option>
+            <option value={1}>Dưới 1 triệu</option>
+            <option value={2}>Từ 1 - 2 triệu</option>
+          </select>
+        </div>
+        <div className="col-2 ">
+          <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
+            <option>Diện tích</option>
+            <option value="1">Dưới 20m</option>
+            <option value="2">Trên 20m</option>
+          </select>
+        </div>
+        <div className="col-2">
+            <button type="submit" className='search_room_btn'>Lọc</button> 
+        </div>
+      </div>
+    </div>
+
     <div className="our_room">
         <div className="container">
             <div className="row">
@@ -101,7 +180,7 @@ function RoomND() {
                           <div className="room_img">
                           {listImg.map((a, index) => {
                             return a.id_post == post.id_post && (
-                              <figure><img src={a.link_img_user} alt="#" /></figure>
+                              <figure key={index}><img src={a.link_img_user} alt="#" /></figure>
                               )})}
 
                               {/* thả tym */}

@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 function AddBlog() {
     var user = JSON.parse(localStorage.getItem("user"));
     const [addBlog, setAddBlog] = useState({
@@ -34,14 +35,14 @@ function AddBlog() {
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
-            });
-    
+            });    
         }
         else{           
             setAlert({
                 err_list: res.data
             });
         }};
+
   return (
     <div className="content">
         <div className="add-post">
@@ -78,9 +79,9 @@ function AddBlog() {
                                 }}
                                 >
                         </CKEditor>
-                        {/* <Form.Control type="text" onChange={(e) => handleChange(e)} value={description} name="description" /> */}
                         { alert.err_list.status == false && alert.err_list.messages.description &&
-                                       <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}                    </Form.Group>
+                                       <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}                    
+                    </Form.Group>
                   <div className="d-grid gap-2">
                   {alert.err_list.status === true && <div className="noti">Thêm thành công</div>}
                       <Button variant="primary" size="sm" name='' type="submit">

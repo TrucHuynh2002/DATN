@@ -65,9 +65,11 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
+        $image = imgPost::where('id_post','=', (int) $id)->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'img' => $image
             ]);
     }
     public function showUser(Request $request, $id)
@@ -479,5 +481,13 @@ class PostController extends Controller
                 'data' => $data,
                 'status' => true
             ]);
+    }
+
+    public function Post_DeleteImage(Request $request,$id_img){
+        
+        return response()->json([
+            "status" => true,
+            'id_img' => $id_img
+        ]);
     }
 }

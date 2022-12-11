@@ -13,6 +13,7 @@ function Baner() {
   useEffect(() => {
     getDataBanner()
   },[]);
+  
   return (
     <section className="banner_main">
     <div className="carousel slide banner">

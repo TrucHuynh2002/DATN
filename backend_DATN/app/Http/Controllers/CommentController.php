@@ -121,6 +121,7 @@ class CommentController extends Controller
                 'data' => $Comment_SelectPost,
                 'comment_child' => $Comment_Child,
                 'status' => true,
+                'id_post' => $id_post
             ]);
     }
     public function Comment_SelectPostParamid_NotNull(Request $request, $id_post)
