@@ -417,20 +417,6 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-    public function show_address_detail(Request $request, $id_post)
-    {
-        $data = DB::table('post')
-            ->join('province', 'post.id_province', '=', 'province.id')
-            ->join('district', 'post.id_district', '=', 'district.id')
-            ->join('ward', 'post.id_ward', '=', 'ward.id')
-            ->where('post.id_post', '=', $id_post)
-            ->get();
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true
-            ]);
-    }
     public function show_province_detail(Request $request, $id_post)
     {
         $data = DB::table('post')

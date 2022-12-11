@@ -115,9 +115,9 @@ Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
-Route::get('post/show_district/{id}', [PostController::class, 'show_district']);
-Route::get('post/show_ward', [PostController::class, 'show_ward']);
-Route::get('post/show_tree', [PostController::class, 'show_tree']);
+Route::get('post/show_district/{id_province}', [PostController::class, 'show_district']);
+Route::get('post/show_ward/{id_province}', [PostController::class, 'show_ward']);
+Route::get('post/show_tree/{id_province}', [PostController::class, 'show_tree']);
 Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
@@ -177,6 +177,10 @@ Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
 Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
+Route::get('user/show_province_detail/{id}', [UserController::class, 'show_province_detail']);
+Route::get('user/show_district_detail/{id}', [UserController::class, 'show_district_detail']);
+Route::get('user/show_ward_detail/{id}', [UserController::class, 'show_ward_detail']);
+
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);

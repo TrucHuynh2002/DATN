@@ -31,9 +31,9 @@ function HomeSearch() {
   }
       const {
         keywords,
-        province,
-        district,
-        ward,
+        id_province,
+        id_district,
+        id_ward,
         price,
         area,
         typeRoom
@@ -110,7 +110,7 @@ function HomeSearch() {
                         </select>
                       </div>
                       <div className="col-2">
-                        <Form.Select name="provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
+                        <Form.Select name="id_provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
                           <option>Tỉnh</option>
                           {
                             getProvince.map((p,i) => {
