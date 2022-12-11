@@ -70,7 +70,6 @@ function RoomRelatePost({onClick}) {
                   </div>
                 );
             })}
-
             </div>
         </div>
     </div>

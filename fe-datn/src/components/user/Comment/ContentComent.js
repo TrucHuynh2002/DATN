@@ -255,7 +255,7 @@ return (
                   <div className="display_comment" >
                     <span 
                       onClick={() => {setGetIdComment(comment.id_comment); 
-                      setReply({activeComment:true,id:cmt.id_comment})}} 
+                      setReply({activeComment:true,id:cmt.id_comment})}}
                       className="feedback_comment_span"
                     >
                       <strong>Trả lời</strong>
