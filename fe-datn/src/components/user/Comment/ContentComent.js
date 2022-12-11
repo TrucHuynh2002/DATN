@@ -150,7 +150,7 @@ return (
                     {activeUpdateComment == true && idUpdateCmt == comment.id_comment ? (
                       <div className="content_comment____form_input__" >
                         <Form 
-                          className="display_comment" 
+                          className="display_comments" 
                           onSubmit={e => handleUpdateContent(e,comment.id_comment)} 
                           encType="multipart/form-data"
                         >
