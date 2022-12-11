@@ -82,7 +82,8 @@ function Evaluate() {
                 return rate > averageRate ?
                     index + 0.5 > averageRate ?
                      <i className="fa fa-star" key={index} /> 
-                    : <i className="fa fa-star-half checked" key={index}/> 
+                    : 
+                    <i className="fa fa-star-half checked" key={index}/> 
                     : 
                     (
                       <i className="fa fa-star checked" key={index} /> 
@@ -156,13 +157,13 @@ function Evaluate() {
               <div
                 className="progress-bar-4 progress-bar"
                 role="progressbar"
-                style={{"width":((two_star > 0 ? two_star/count * 100 : 0) + '%')}}
-                aria-valuenow={(two_star > 0 ? two_star/count * 100 : 0)}
+                style={{"width":((two_star > 0 ? Math.round(two_star/count * 100) : 0) + '%')}}
+                aria-valuenow={(two_star > 0 ? Math.round(two_star/count * 100) : 0)}
                 aria-valuemin={0}
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(two_star > 0 ? two_star/count * 100 : 0)}%</div>
+            <div className="percent">{(two_star > 0 ? Math.floor(two_star/count * 100) : 0)}%</div>
           </div>
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
@@ -178,7 +179,7 @@ function Evaluate() {
                 aria-valuemax={100}
               />
             </div>
-            <div className="percent">{(one_star > 0 ? one_star/count * 100 : 0)}%</div>
+            <div className="percent">{(one_star > 0 ? Math.round(one_star/count * 100) : 0)}%</div>
           </div>
         </div>
         <div className="content-right col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
@@ -206,7 +207,7 @@ function Evaluate() {
         getAllStar.map((rate,i) => {
           return (
             <>
-              <div>
+              <div key={i}>
                 <div className='Avtar'>
                   <img />
                 </div>
@@ -215,21 +216,23 @@ function Evaluate() {
                       {
                           Array(5).fill()
                           .map((_,index) => {
-                            let rate = index +1
-                            return index + 1 > rate.rate ? 
+                            return index+1 > rate.rate
+                            ? 
+                            index+0.5 > rate.rate
+                              ?
+                              (
+                                <span>   <i className="fa fa-star " key={index} /></span>
+                              )
+                              :
                             
-                            (
+                              (
+                                <i className="fa fa-star-half checked" key={index}/> 
+                              )
 
-                                 <span>  <i className="fa fa-star checked"  key={index} style={{"color":"orange"}}  />{rate.rate}</span>                   
-                            )
-                         
                             :
                             (
-                     
-                             
-                             
-                            <span>   <i className="fa fa-star checked" key={index} />{rate.rate}</span>
-                             
+                              <span>  <i className="fa fa-star checked "  key={index}  /></span>                                            
+
                             )
                           })
                       }
