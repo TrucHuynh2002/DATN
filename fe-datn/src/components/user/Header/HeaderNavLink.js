@@ -74,7 +74,6 @@ function HeaderNavLink() {
             setAddPost({ ...addPost, [e.target.name] : e.target.value});
         }
         const [addProvince, setProvince] = useState([]);
-
         const handleProvince = async (e) => {
             setAddPost({ ...addPost, [e.target.name] : e.target.value});
             setProvince({...addProvince,[e.id_province] : e.target.value});
