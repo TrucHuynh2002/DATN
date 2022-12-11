@@ -208,6 +208,7 @@ function Evaluate() {
           return (
             <>
               <div key={i}>
+                <hr/>
                 <div className='Avtar'>
                   <img />
                 </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams  } from 'react-router-dom';
+import { Link, NavLink, useParams  } from 'react-router-dom';
 import axios from 'axios';
 
-function RoomRelatePost() {
+function RoomRelatePost({onClick}) {
 
   var user = JSON.parse(localStorage.getItem("user"));
   const {id_post} = useParams();
@@ -62,7 +62,7 @@ function RoomRelatePost() {
                                 {/* })}  */}
                           </div>
                           <div className="bed_room">
-                              <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
+                              <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3>
                              <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
                               <p>{post.description_sort}</p>
                           </div>

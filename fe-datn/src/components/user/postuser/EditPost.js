@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function EditPost() {
 
     const {id_post} = useParams();
+    const [loader,setLoader] = useState(0);
     const [editPost, setEditPost] = useState({
         post_name: "",
         phone: "",
@@ -33,7 +34,7 @@ function EditPost() {
         img: [],
 
     });
-    const { 
+    const {
         post_name, 
         phone,
         description_sort,
@@ -67,19 +68,17 @@ function EditPost() {
     const [Images,setLinkImage] = useState([])
     
     // Xử lý input vlaue
-    const handleChange = (e) => {
-        setEditPost({ ...editPost, [e.target.name]: e.target.value});
+    const handleChange = async (e) => {
+        setEditPost({ ...editPost, [e.target.name] : e.target.value});
     };
     const [addProvince, setProvince] = useState([]);
     const handleProvince = async (e) => {
-        // setEditPost({ ...editPost, [e.target.name] : e.target.value});
         setProvince({...addProvince,[e.id_province] : e.target.value});
         getDataDistrict(({[e.id_province] : e.target.value}).undefined);
     }
     const handleDistrict = async (e) => {
         getDataWard(({[e.id_district] : e.target.value}).undefined)
         getDataStreet(({[e.id_district] : e.target.value}).undefined);
-        // setEditPost({ ...editPost, [e.target.name] : e.target.value});
     }
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
@@ -122,14 +121,10 @@ function EditPost() {
         setListRoomType(res.data.data);
         };
         useEffect(() => {
-            
-        },[])
-        useEffect(() => {
             loadFurn();
             get_furnitures();
             getDataRoomType();
-            getDataProvince();
-        },[])
+        },[loader])
     
     const handle_idFuniture =  (e) => {     
         if(e.target.checked){
@@ -139,7 +134,7 @@ function EditPost() {
         }
         else{
             setFur(pre => {
-return [...pre.filter(check => check !== e.target.value) ]
+return [...pre.filter(check => check !== e.target.value)]
             })    
         }
        
@@ -193,7 +188,7 @@ return [...pre.filter(check => check !== e.target.value) ]
     };
     const loadFurn = async () => {
         const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-        console.log(result.data)
+        console.log(result.data.data)
         setEditPost(result.data.data);
         setLinkImage(result.data.img);
     };
@@ -203,8 +198,11 @@ return [...pre.filter(check => check !== e.target.value) ]
         console.log(id_img)
         let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);
         console.log(res.data)
-    };
-
+       
+        if(res.data.status == true) {
+            setLoader(loader+1);
+        }
+    }
 
 
   return (
@@ -243,7 +241,8 @@ return [...pre.filter(check => check !== e.target.value) ]
       
         <div className="preview-images-zone row">
         {
-            
+      
+            Images.length > 0 &&
             Images.map((img,i) => {
             return  (
                 <div className="preview-image preview-show-3 col-lg-4 col-xm-12">

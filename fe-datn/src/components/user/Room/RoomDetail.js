@@ -15,7 +15,7 @@ function RoomDetail() {
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
     const [listRoom, setListRoom] = useState([]);
-
+    const [loader,setLoader] = useState(0);
     useEffect(() => {
         updateView();
         getData();
@@ -25,7 +25,7 @@ function RoomDetail() {
         ward();
         Furniture();
         room();
-    },[]);
+    },[loader]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
     var hideBtn = document.querySelector('#button_phone')
@@ -65,6 +65,10 @@ function RoomDetail() {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
         setListRoom(res.data.data);
       };  
+
+    const handleLoaderPost = (e,loaders) => {
+        setLoader(loader+1);
+    }
   
   return (
         <div className="pd-wrap">
@@ -225,7 +229,7 @@ function RoomDetail() {
                 </div>
             )})}
             <hr></hr>
-            <RoomRelatePost />
+            <RoomRelatePost onClick={handleLoaderPost}  />
         </div>
   )
 }

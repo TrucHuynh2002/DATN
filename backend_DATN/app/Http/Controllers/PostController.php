@@ -13,6 +13,7 @@ use App\Models\wardModel;
 use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -471,10 +472,15 @@ class PostController extends Controller
     }
 
     public function Post_DeleteImage(Request $request,$id_img){
-        
+        $path = 'uploads/';
+        $image = imgPost::find($id_img);
+        if(File::exists($path.$image->name_image)) {
+            File::delete($path.$image->name_image);
+        }
+        $image = $image->delete();
         return response()->json([
             "status" => true,
-            'id_img' => $id_img
+            'id_img' => $image
         ]);
     }
 }

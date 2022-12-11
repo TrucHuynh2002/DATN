@@ -13,6 +13,7 @@ class imgPost extends Model
     protected $fillable = [
         'id_post',
         'link_img_user',
+        'name_image'
 
     ];
 }
