@@ -15,6 +15,7 @@ class RatingModel extends Model
     protected $fillable = [
         'rate',
         'id_post',
-        'id_comment'
+        'id_user',
+        'content'
     ];
 }

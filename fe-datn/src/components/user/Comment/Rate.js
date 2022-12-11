@@ -28,10 +28,11 @@ function Comment() {
     };
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create/`, addComment);
+    const res = await axios.post(`http://127.0.0.1:8000/api/rating/create`, addComment);
+    // console.log(res.data)
       if(res.data.status === true){
         const {id_user_tow} = addNotify;
-        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user});
+        setNotify({...addNotify , id_user_tow : res.data.data});
         const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
         setAlert({
           err_list: res.data

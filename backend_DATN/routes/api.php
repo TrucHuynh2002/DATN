@@ -200,10 +200,12 @@ Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment'
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
+Route::get('rating/show/post/{id}',[RatingController::class,'get_allStarPost']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
 Route::get('rating/average/{id_post}', [RatingController::class, 'Rating_Average']);
+
 
 
 /// Search
