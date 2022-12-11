@@ -10,6 +10,7 @@ function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
+    console.log(listImg[0])
     const [listFurniture, setListFurniture] = useState([]);
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
@@ -40,7 +41,7 @@ function RoomDetail() {
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        console.log(res.data)
+        console.log(res.data.data[0].link_img_user)
         setListImg(res.data.data);        
     };
     const updateView = async () => {
@@ -81,7 +82,7 @@ function RoomDetail() {
                             <div className="product-slider">
                                 <div className="item">
                           
-                                    <img className="img-fluid" src={listImg[0].link_img_user} alt="#" key={index} />
+                                    <img className="img-fluid" src={listImg.length > 0 && listImg[0].link_img_user} alt="None_image" />
                               
                                 </div>  
 
@@ -90,7 +91,7 @@ function RoomDetail() {
                                     {listImg.map((img,i) => {
                                         
                                        return <div className="item" key={i}>   
-                                            <img className="img-fluid" src={img.link_img_user} alt="abcd" />
+                                            <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
                                         </div>
                                     })}
                                 </div>
