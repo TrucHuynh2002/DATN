@@ -238,7 +238,7 @@ return (
                         </Form>
                       </div> 
                       ) : ( 
-                      <p className='cmt_name1'>{cmt.content}</p>) 
+                      <p className='cmt_name1' key={i}>{cmt.content}</p>) 
                       }
                     </div>
                     <div className="content_comment_chammmm"> ...

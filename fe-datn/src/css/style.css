@@ -920,6 +920,10 @@ font-size: 45px;
     width: 100%;
     height: auto;
 }
+.img_room_lq>figure>img{ 
+width:350px;
+height:50%;
+}
 .mota{
     font-weight: 400;
     text-align: justify;
@@ -985,6 +989,13 @@ font-size: 45px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
    
+}
+.each-slide{
+    display: flex;
+    flex-wrap: wrap;
+}
+.react-slideshow-wrapper{
+    overflow:auto !important;
 }
 .blog_content{
     padding-top: 30px;
@@ -1960,7 +1971,9 @@ ul.social_icon li a:hover {
 .review-form input.form-control {
     height: 40px;
 }
-
+.content_Relate{
+    padding : 0 10px;
+}
 .review-form textarea.form-control {
     resize: none;
 }
