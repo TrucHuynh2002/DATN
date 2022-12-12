@@ -108,14 +108,17 @@ function RoomDetail() {
                         </div>
                     </div>
                     <div className="product-count">
-                        <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
-                            <span id="button_contact">Liên hệ ngay</span>
-                            <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
-                        </Button>
-                      
-                        <Link to={`../roomDetailManage/${id_post}`} className="round-black-btn">
-                            Xem chi tiết số lượng phòng
-                        </Link>
+                       <div>
+                            <Link to={`..//${id_post}`} className="round-black-btn">
+                                Xem chi tiết số lượng phòng
+                            </Link>
+                       </div>
+                       <div>
+                            <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
+                                <span id="button_contact">Liên hệ ngay</span>
+                                <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
+                            </Button>
+                       </div>
                         <Link to={`../profile/${a.id_user}`} className="round-black-btn">
                             Thông tin người đăng
                         </Link>
