@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel';
 import Evaluate from '../Comment/Evaluate';
 import ContentComent from '../Comment/ContentComent';
 import RoomRelatePost from './RoomRelatePost';
@@ -87,14 +87,14 @@ function RoomDetail() {
 
                                 {/* <div className='slider-image' style={{"display":"flex","alignItems":"center"}}> */}
                                     {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    <Carousel>
+                                    {/* <Carousel>
                                     { listImg.map((img,i) => {
                                        return (
                                        <div className="item" key={i}>   
                                             <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
                                         </div>
                                     );})}
-                                    </Carousel>
+                                    </Carousel> */}
                                 {/* </div> */}
                             </div>
                         </div>

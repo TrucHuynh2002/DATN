@@ -59,7 +59,7 @@ function ForgotPassword() {
                                     {alert.err_list === false && <div className="notice warning_____">{alert.err_list.data.errors.email[0]}</div>}
                                 </div>
                                 <div className="d-grid gap-2">
-                                {alert.err_list.status === true && <div className="notice success_____">Đăng ký thành công</div>}
+                                {alert.err_list.status === true && <div className="notice success_____">Mật khẩu đã được gửi về Gmail của bạn</div>}
                                     <Button type="submit">Gửi</Button>
                                 </div>                              
                             </div>
