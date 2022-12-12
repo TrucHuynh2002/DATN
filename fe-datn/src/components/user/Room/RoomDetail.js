@@ -112,10 +112,21 @@ function RoomDetail() {
                                 </div>
                             </div>
                             <div className="product-count">
+                                         <Link to={`../roomdetailmanage`} className="round-black-btn detailroom">
+                                         Xem chi tiết phòng 
+                                </Link>
+                                <Link to={`#`} className="round-black-btn detailroom">
+                                         Đặt phòng 
+                                </Link>
+                                <br />
                                 <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
                                     <span id="button_contact">Liên hệ ngay</span>
+                                    
                                     <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
                                 </Button>
+                                
+                              
+
                                 <br />
                                 <Link to={`../profile/${a.id_user}`} className="round-black-btn">
                                     Thông tin người đăng
