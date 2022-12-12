@@ -81,6 +81,7 @@ import Profile from './components/user/account/Profile';
 import UpdateAccount from './components/user/account/UpdateAccount';
 import ConfirmAccount from './components/user/account/ConfirmAccount';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
+import DetailRoomManage from './components/user/Room/DetailRoomManage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -106,6 +107,7 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
+         <Route path="roomdetailmanage" element={<DetailRoomManage />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
