@@ -2,9 +2,15 @@ import React, { useEffect, useState, Component } from 'react';
 // import Slider from "react-slick";
 import { Link, NavLink, useParams  } from 'react-router-dom';
 import axios from 'axios';
+<<<<<<< HEAD
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
 function RoomRelatePost({onClick})  {
+=======
+import Figure from 'react-bootstrap/Figure';
+
+function RoomRelatePost({onClick}) {
+>>>>>>> 424b684b52b6b200529157730a997a4042eddbf7
 
   var user = JSON.parse(localStorage.getItem("user"));
   const {id_post} = useParams();
@@ -37,7 +43,7 @@ const settings = {
   infinite: false,
   speed: 500,
   slidesToShow: 4,
-  slidesToScroll: 4,
+  slidesToScroll: 48,
   initialSlide: 0,
   responsive: [
     {
@@ -77,6 +83,7 @@ const settings = {
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
             {/* <div className="row"> */}
     {/* <div className="slide_show"> */}
             {/* <Slider {...settings} > */}
@@ -102,6 +109,36 @@ const settings = {
           {/* );})}  */}
           {/* </Slider> */}
           {/* </div> */}
+=======
+            <div className="row">
+            {listPost.map((post, index) => {
+                return (     
+                  <div className="col-md-4 col-sm-6" key={index}>
+                      <div id="serv_hover" className="room">
+                          <div className="room_img">
+                          { listImg.id_post == post.id_post && (
+                              <Figure key={index}><img src={listImg.link_img_user} alt="#" /></Figure>
+                            )}
+
+                              {/* thả tym */}
+                              {/* {listHeart.map((heart, index) => { */}
+                              <div className="btn-heart" value={post.id_post}>
+                               
+                              </div>
+                                {/* })}  */}
+                          </div>
+                          <div className="bed_room">
+                              <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3>
+                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
+                              <p>{post.description_sort}</p>
+                          </div>
+                      </div>
+                  </div>
+                );
+            })}
+
+            </div>
+>>>>>>> 424b684b52b6b200529157730a997a4042eddbf7
         </div>
   )
 }

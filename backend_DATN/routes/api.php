@@ -183,6 +183,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::get('user/showAcount/{id}', [UserController::class, 'UserAcount']);
 Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
+Route::get('user/showimg', [UserController::class, 'ImgUserAll']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
@@ -213,7 +214,7 @@ Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment'
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
-Route::get('rating/show/post/{id}',[RatingController::class,'get_allStarPost']);
+Route::get('rating/show/post/{id}', [RatingController::class, 'get_allStarPost']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);
