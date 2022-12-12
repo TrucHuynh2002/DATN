@@ -382,7 +382,7 @@ class PostController extends Controller
             ->json([
                 'data' =>  $Post,
                 'status' => true
-            ]);
+        ]);
     }
     public function updateView(Request $request, $id)
     {
