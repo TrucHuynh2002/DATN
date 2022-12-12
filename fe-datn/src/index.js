@@ -107,7 +107,7 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
-         <Route path="roomdetailmanage" element={<DetailRoomManage />} />
+         <Route path="roomDetailManage/:id_post" element={<DetailRoomManage />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 

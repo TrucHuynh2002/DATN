@@ -112,7 +112,10 @@ function RoomDetail() {
                             <span id="button_contact">Liên hệ ngay</span>
                             <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
                         </Button>
-                        <br />
+                      
+                        <Link to={`../roomDetailManage/${id_post}`} className="round-black-btn">
+                            Xem chi tiết số lượng phòng
+                        </Link>
                         <Link to={`../profile/${a.id_user}`} className="round-black-btn">
                             Thông tin người đăng
                         </Link>
