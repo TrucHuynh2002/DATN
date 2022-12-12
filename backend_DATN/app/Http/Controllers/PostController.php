@@ -238,13 +238,13 @@ class PostController extends Controller
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
 
         if($request->quantity){
-            for ($i=0; $i < $request->quality ; $i++) { 
-                RoomNumberModel::create([
-                    'id_post' => $Get_Post->id_post,
-                    'id_user' => $request->id_user,
-                    'room_number' => $i,
-                    'status' => 0
-                ]);
+            for ($i=1; $i <= $request->quantity ; $i++) { 
+                $roomNumber = new RoomNumberModel();
+                $roomNumber->id_user = $request->id_user;
+                $roomNumber->id_post = $Get_Post->id_post;
+                $roomNumber->room_number = $i;
+                $roomNumber->status = 0;
+                $roomNumber->save();
             };
         }
         if ($request->id_furniture) {
