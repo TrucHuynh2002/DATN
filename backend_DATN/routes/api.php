@@ -30,6 +30,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\img_QAController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\QAController;
+use App\Http\Controllers\RoomNumberController;
 use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
@@ -110,7 +111,13 @@ Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
-Route::delete('post/image/delete/{id_img}', [PostController::class, 'Post_DeleteImage']);
+Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
+
+// RoomNumber
+Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
+Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+
+
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
@@ -156,6 +163,7 @@ Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
 Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
+ 
 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
