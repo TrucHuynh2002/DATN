@@ -91,7 +91,7 @@ function Login() {
                                 </div>
                                 <div className="d-grid gap-2">
                                     <Button type='submit'>Đăng nhập</Button>
-                                    {alert.err_list.status === true && <div className="notice success_____">Đăng Nhập Thành Công</div>}
+                                    {alert.err_list.status === 1 && <div className="notice warning_____">Tài khoản hoặc mật khẩu không chính xác</div>}
                                 </div>
                             </div> 
                         </form>

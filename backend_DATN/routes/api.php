@@ -124,6 +124,7 @@ Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
+Route::get('imgPost/show_one', [imgPostController::class, 'show_one']);
 // Route::get('imgPost/show_tv', [imgPostController::class, 'show_tv']);
 Route::get('imgPost/show/{id}', [imgPostController::class, 'show_id']);
 Route::get('imgPost/show_detail/{id}', [imgPostController::class, 'show_img_detail']);

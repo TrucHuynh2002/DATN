@@ -2099,6 +2099,9 @@ ul.social_icon li a:hover {
     text-align: center;
     color: black;
     font-size: 24px;
+    padding: 0 0 10px 0;
+}.col-md-4.col-sm-6.searchroom{
+margin: 0 300px 0 375px;
 }
 .searchTrend_content____{
     background: white;
@@ -2356,3 +2359,27 @@ ul.social_icon li a:hover {
   .search_room {
     margin: 30px 10px 0px 10px;
   }
+<<<<<<< HEAD
+
+=======
+  .img404{
+    padding: 0px 0px 0px 440px;
+  }.text404{
+    text-align: center;
+  }.gobackbutton{
+    padding: 10px 0px 0px 715px;
+  
+  }
+  .goback{
+    background-color: #00bed37c;
+    padding: 5px 15px 5px 5px;
+    color: black;
+    width: 100px;
+   text-align: center;
+  }.bi.bi-arrow-left-short.icongoback{
+    width: 50px;
+    height: 50px;
+  }.loi404{
+    padding-top:10px;
+  }
+>>>>>>> 81234cea270985ba7aac50cdca390e0902ff850f
