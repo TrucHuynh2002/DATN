@@ -125,7 +125,7 @@ function RoomND() {
      </Button>
      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Đăng Tin</Modal.Title>
+          <Modal.Title>Lọc</Modal.Title>
         </Modal.Header>
         <Modal.Body className="show-grid">
           <div className="modal_show">
