@@ -110,7 +110,7 @@ Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
-Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
+Route::delete('post/image/delete/{id_img}', [PostController::class, 'Post_DeleteImage']);
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
@@ -156,7 +156,7 @@ Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
 Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
- 
+
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/post/show/{id_post}', [CommentController::class, 'Comment_SelectPost']);
@@ -175,6 +175,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::get('user/showAcount/{id}', [UserController::class, 'UserAcount']);
 Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
+Route::get('user/showimg', [UserController::class, 'ImgUserAll']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
@@ -205,7 +206,7 @@ Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment'
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
-Route::get('rating/show/post/{id}',[RatingController::class,'get_allStarPost']);
+Route::get('rating/show/post/{id}', [RatingController::class, 'get_allStarPost']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);

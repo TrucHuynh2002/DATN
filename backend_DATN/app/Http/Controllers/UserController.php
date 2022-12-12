@@ -54,7 +54,15 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-
+    public function ImgUserAll()
+    {
+        $get_img = imgUserModel::all();
+        return response()
+            ->json([
+                'data' => $get_img,
+                'status' => true
+            ]);
+    }
     public function ImgUser(Request $request, $id)
     {
         $get_img = imgUserModel::where('id_user', '=', $id);
@@ -273,7 +281,7 @@ class UserController extends Controller
             ]);
         };
     }
-   
+
     public function show_province_detail(Request $request, $id_user)
     {
         $data = DB::table('users')
