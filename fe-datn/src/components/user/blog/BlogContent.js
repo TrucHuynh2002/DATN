@@ -25,7 +25,7 @@ function BlogContent() {
 
   return (
     <div className="blog">
-        <div className="container">
+        <div className="container blog_content">
           <div className="row">
             {currentPosts.map((blog, index) => {
               return (

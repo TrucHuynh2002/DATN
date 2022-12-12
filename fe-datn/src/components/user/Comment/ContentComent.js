@@ -136,7 +136,7 @@ return (
     </Form>
     <div style={{margin:' 26px 10px 0'}}>
       <span>Xem {Comment_parent.length + Comment_child.length} bình luận trong bài </span>
-      <i className="fa-light fa-comment"></i>
+      <i className="fa-regular fa-comment"></i>
     </div>
   </div>
   <hr />
@@ -238,7 +238,7 @@ return (
                         </Form>
                       </div> 
                       ) : ( 
-                      <p className='cmt_name1'>{cmt.content}</p>) 
+                      <p className='cmt_name1' key={i}>{cmt.content}</p>) 
                       }
                     </div>
                     <div className="content_comment_chammmm"> ...
@@ -255,7 +255,7 @@ return (
                   <div className="display_comment" >
                     <span 
                       onClick={() => {setGetIdComment(comment.id_comment); 
-                      setReply({activeComment:true,id:cmt.id_comment})}} 
+                      setReply({activeComment:true,id:cmt.id_comment})}}
                       className="feedback_comment_span"
                     >
                       <strong>Trả lời</strong>
@@ -275,14 +275,13 @@ return (
                           placeholder="Trả lời bình luận"
                         />
                       </Form.Group>
-                      <Button className="col-1 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                      <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
                     </Form>
                   </div> 
                   } 
                 </div>
               </div>
             </> 
-         
           })}            
         </div>
     </> 

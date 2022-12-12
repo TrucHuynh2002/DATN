@@ -79,7 +79,7 @@ function HomeSearch() {
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className="col-10">
+                    <div className="col-11">
                       <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                           {searching && (
                               <div className='show_search'>
@@ -133,25 +133,13 @@ function HomeSearch() {
                               </Form.Select>
                       </div>
                       <div className="col-2">
-                              <Form.Select name="id_ward" className="form-select online_book3"
-                              onChange = {(e) => handssdbdfb(e)}
-                              > 
-                              <option>Xã</option>
-                                  {listWard.map((room, index) => {
-                                      return (
-                                          <option key={index} value={room.id}  >{room._name}</option>
-                                      );
-                                  })}                            
-                              </Form.Select>
-                      </div>
-                      <div className="col-2 ">
                         <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Giá</option>
                           <option value={1}>Dưới 1 triệu</option>
                           <option value={2}>Từ 1 - 2 triệu</option>
                         </select>
                       </div>
-                      <div className="col-2 ">
+                      <div className="col-2">
                         <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Diện tích</option>
                           <option value="1">Dưới 20m</option>
@@ -159,7 +147,7 @@ function HomeSearch() {
                         </select>
                       </div>
                       <div className="col-2">
-                          <button type="submit" className="book_btn">Xem kết quả</button>
+                          <button type="submit" className="search_room_btn">Lọc</button>
                       </div>
                     </div>
                 </form>

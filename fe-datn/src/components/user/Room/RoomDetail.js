@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 import Evaluate from '../Comment/Evaluate';
 import ContentComent from '../Comment/ContentComent';
 import RoomRelatePost from './RoomRelatePost';
+
 
 function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
-    console.log(listImg[0])
     const [listFurniture, setListFurniture] = useState([]);
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
@@ -41,7 +43,6 @@ function RoomDetail() {
     };
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        console.log(res.data.data[0].link_img_user)
         setListImg(res.data.data);        
     };
     const updateView = async () => {
@@ -71,7 +72,7 @@ function RoomDetail() {
     const handleLoaderPost = (e,loaders) => {
         setLoader(loader+1);
     }
-  
+ 
   return (
         <div className="pd-wrap">
             {listPost.map((a, index) => {
@@ -80,22 +81,21 @@ function RoomDetail() {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="product-slider">
-                                <div className="item">
-                          
+                                {/* <div className="item">
                                     <img className="img-fluid" src={listImg.length > 0 && listImg[0].link_img_user} alt="None_image" />
-                              
-                                </div>  
+                                </div>   */}
 
-                                <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
+                                {/* <div className='slider-image' style={{"display":"flex","alignItems":"center"}}> */}
                                     {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    {
-                                    listImg.map((img,i) => {
-                                        
-                                       return <div className="item" key={i}>   
+                                    <Carousel>
+                                    { listImg.map((img,i) => {
+                                       return (
+                                       <div className="item" key={i}>   
                                             <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
                                         </div>
-                                    })}
-                                </div>
+                                    );})}
+                                    </Carousel>
+                                {/* </div> */}
                             </div>
                         </div>
                         <div className="col-md-6">
