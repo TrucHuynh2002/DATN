@@ -15,9 +15,15 @@ function QA() {
   const [listImg, setListImg] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [loader,setLoader] = useState(0);
-  const [createComment,setCreateComment] = useState(0);
+  // const [createComment,setCreateComment] = useState(0);
   const [Comment,setComment] = useState({
    qa_content:"",
+  });
+  const [addNotify, setNotify] = useState({
+    id_user_tow: "",
+    interaction:"",
+    id_user: user ? user[0].id : "",
+    id_post: "",
   });
   const { qa_content } = Comment;
 
@@ -25,7 +31,7 @@ function QA() {
   useEffect(() => {
     getData();
     getComment();
-  },[]);
+  },[loader]);
 
    // danh sach 
    const getData = async () => {
@@ -39,13 +45,10 @@ function QA() {
     setListComment(res.data.data);  
 };
 
-  const handleChangeQA = (e) => {
-    setAddQA({...addQA, [e.target.name] : e.target.value})
-  }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
-    formData.append('content',addQA)
+    formData.append('content',addQA.content)
     formData.append('id_user',id_user)
     const res = await axios.post(`http://127.0.0.1:8000/api/qa/created_at`,formData);
     setLoader(res.data.length++);
@@ -60,8 +63,12 @@ function QA() {
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    if(res.data.status === true){
+      setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
+      const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+    }
     // console.log(res);
-    setCreateComment(res.data.length++);
+    setLoader(loader + res.data.id.length);
   }
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -134,6 +141,7 @@ function QA() {
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
                 <hr />
                 <div className='qa_cmt'>
+              
                   <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
                     <Form.Group className="col-11" controlId="">
                         <Form.Control 
@@ -146,7 +154,10 @@ function QA() {
                     <Button className="col-1 button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
                   </Form>    
                 </div>
-             
+                <div style={{margin:' 26px 10px 0'}}>
+                  <span>Xem {listComment.length} bình luận trong bài </span>
+                  <i className="fa-regular fa-comment"></i>
+                </div>
               {listComment.map((listComment, index) => {
                 return(
                     listQa.id_qa == listComment.id_qa && (

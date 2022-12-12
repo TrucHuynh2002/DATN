@@ -56,7 +56,7 @@ function ConfirmAccount() {
                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password_neww[0]}</div>}
             </Form.Group>
             <div className="d-grid gap-2">
-                {alert.err_list.status === true && <span className="noti">Cập nhật thành công</span>}
+                {alert.err_list.status === true && <span className="notice success_____">Cập nhật thành công</span>}
                 <Button variant="primary" size="sm" name='' type="submit">
                   Cập nhật
                 </Button>

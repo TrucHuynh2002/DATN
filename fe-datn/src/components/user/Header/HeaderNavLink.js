@@ -7,189 +7,188 @@ import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function HeaderNavLink() {
-   
     const user = JSON.parse(localStorage.getItem('user'));
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         window.location.reload();
     }
     // xu ly add post
-        const [addPost, setAddPost] = useState({
-            post_name: "",
-            phone: "",
-            description_sort: "",
-            description: "",
-            area: "",
-            room_price: "",
-            water_price: "",
-            electricity_price: "",
-            address: "",
-            ifarme:"",
-            quantity: "",
-            id_furniture: [],
-            meta_title: "",
-            meta_description: "",
-            meta_keywords: "",
-            id_province : "",
-            id_district : "",
-            id_ward : "",
-            id_street : "",
-            id_user: "",
-            id_roomType: "",
-            img: [],
-        });
-        const { 
-            post_name,
-            phone,
-            description_sort,
-            description,
-            area,
-            room_price,
-            water_price,
-            electricity_price,
-            address,
-            ifarme,
-            quantity,
-            id_furniture,
-            meta_title,
-            meta_description,
-            meta_keywords,
-            id_province,
-            id_district,
-            id_ward,
-            id_street,
-            id_user,
-            id_roomType,
-            img,
-            } = addPost;
-           // xu ly loi
-        const [alert, setAlert] = useState({
-            err_list: {
-                messages: "",
-                status: ""
-            },
-        });
-        // Xử lý input vlaue
-        const handleChange = async (e) => {
-            setAddPost({ ...addPost, [e.target.name] : e.target.value});
-        }
-        const [addProvince, setProvince] = useState([]);
-        const handleProvince = async (e) => {
-            setAddPost({ ...addPost, [e.target.name] : e.target.value});
-            setProvince({...addProvince,[e.id_province] : e.target.value});
-            getDataDistrict(({[e.id_province] : e.target.value}).undefined);
-        }
-        const handleDistrict = async (e) => {
-            getDataWard(({[e.id_district] : e.target.value}).undefined)
-            getDataStreet(({[e.id_district] : e.target.value}).undefined);
-            setAddPost({ ...addPost, [e.target.name] : e.target.value});
-        }
-        // Lấy nội thất
-        const [checkFur, setFur] = useState([]);
-        const [furniture, setFuriture] = useState([]);
-        const get_furnitures = async () => {
-            var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
-            setFuriture(get_data.data.data)
-        };
-        useEffect(() => {
-            getDataProvince();
-            getDataRoomType();
-            get_furnitures();
-            getData();
-        },[]);
-    
+    const [addPost, setAddPost] = useState({
+        post_name: "",
+        phone: "",
+        description_sort: "",
+        description: "",
+        area: "",
+        room_price: "",
+        water_price: "",
+        electricity_price: "",
+        address: "",
+        ifarme:"",
+        quantity: "",
+        id_furniture: [],
+        meta_title: "",
+        meta_description: "",
+        meta_keywords: "",
+        id_province : "",
+        id_district : "",
+        id_ward : "",
+        id_street : "",
+        id_user: "",
+        id_roomType: "",
+        img: [],
+    });
+    const { 
+        post_name,
+        phone,
+        description_sort,
+        description,
+        area,
+        room_price,
+        water_price,
+        electricity_price,
+        address,
+        ifarme,
+        quantity,
+        id_furniture,
+        meta_title,
+        meta_description,
+        meta_keywords,
+        id_province,
+        id_district,
+        id_ward,
+        id_street,
+        id_user,
+        id_roomType,
+        img,
+        } = addPost;
+       // xu ly loi
+    const [alert, setAlert] = useState({
+        err_list: {
+            messages: "",
+            status: ""
+        },
+    });
+    // Xử lý input vlaue
+    const handleChange = async (e) => {
+        setAddPost({ ...addPost, [e.target.name] : e.target.value});
+    }
+    const [addProvince, setProvince] = useState([]);
+    const handleProvince = async (e) => {
+        setAddPost({ ...addPost, [e.target.name] : e.target.value});
+        setProvince({...addProvince,[e.id_province] : e.target.value});
+        getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+    }
+    const handleDistrict = async (e) => {
+        getDataWard(({[e.id_district] : e.target.value}).undefined)
+        getDataStreet(({[e.id_district] : e.target.value}).undefined);
+        setAddPost({ ...addPost, [e.target.name] : e.target.value});
+    }
+    // Lấy nội thất
+    const [checkFur, setFur] = useState([]);
+    const [furniture, setFuriture] = useState([]);
+    const get_furnitures = async () => {
+        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        setFuriture(get_data.data.data)
+    };
+    useEffect(() => {
+        getDataProvince();
+        getDataRoomType();
+        get_furnitures();
+        getData();
+    },[]);
 
-        const [listProvince, setListProvince] = useState([]);
-        const [listDistrict, setListDistrict] = useState([]);
-        const [listWard, setListWard] = useState([]);
-        const [listStreet, setStreet] = useState([]);
-        // tỉnh
-        const getDataProvince = async () => {
-            const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
-            setListProvince(res.data.data);
-        }
-        // huyện 
-        const getDataDistrict = async (id_province) => {
-            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
-            setListDistrict(ress.data.data);
-        }
-        // xã
-        const getDataWard = async (id_district) => {
-            var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
-            setListWard(resss.data.data);
-        }     
-        // đường 
-        const getDataStreet = async (id_district) => {
-            var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-            setStreet(resss.data.data);
-        }     
-         // Lấy roomtype
-        const [listRoomType, setListRoomType] = useState([]);
-        const getDataRoomType = async () => {
-            const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
-            setListRoomType(res.data.data);
-            };
-        const handle_idFuniture =  (e) => {     
-            if(e.target.checked){
-                setFur(pre => {
-                   return  [...pre, e.target.value]
-                });
-            }
-            else{
-                setFur(pre => {
-                    return [...pre.filter(check => check !== e.target.value) ]
-                })           
-            }      
-        }
-        // xử lý hình ảnh 
-        const [uploadImages, setUploadImages] = useState([]);
-        const handleChangeImages = (e) => {
-            let formData = new FormData();
-            if(e.target.files){
-            const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
-            setUploadImages(e.target.files)
-            }
-        }     
-        const handleSumbit = async (e) => {
-            e.preventDefault();
-            let formData = new FormData();
-            for(let i = 0; i<uploadImages.length; i++) {
-                formData.append('img[]',uploadImages[i])
-            }
-            formData.append('post_name', post_name);
-            formData.append('address', address);
-            formData.append('area',area);
-            formData.append('description', description);
-            formData.append('description_sort', description_sort);
-            formData.append('electricity_price', electricity_price);
-            formData.append('id_roomType', id_roomType);
-            formData.append('id_user', user[0].id);
-            formData.append('id_province', id_province);
-            formData.append('id_district', id_district);
-            formData.append('id_ward', id_ward);
-            formData.append('id_street', id_street);
-            formData.append('ifarme', ifarme);
-            formData.append('meta_keywords', meta_keywords);
-            formData.append('meta_description', meta_description);
-            formData.append('meta_title', meta_title);
-            formData.append('quantity', quantity);
-            formData.append('room_price', room_price);
-            formData.append('water_price', water_price);
-            formData.append('id_furniture', Array(checkFur));
-            const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
-            if(res.data.status === true){
-                setAlert({
-                    err_list: res.data
-                });
-            }
-            else{
-                setAlert({
-                    err_list: res
-                });
-            }
+
+    const [listProvince, setListProvince] = useState([]);
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+    const [listStreet, setStreet] = useState([]);
+    // tỉnh
+    const getDataProvince = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        setListProvince(res.data.data);
+    }
+    // huyện 
+    const getDataDistrict = async (id_province) => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        setListDistrict(ress.data.data);
+    }
+    // xã
+    const getDataWard = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        setListWard(resss.data.data);
+    }     
+    // đường 
+    const getDataStreet = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        setStreet(resss.data.data);
+    }     
+     // Lấy roomtype
+    const [listRoomType, setListRoomType] = useState([]);
+    const getDataRoomType = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+        setListRoomType(res.data.data);
         };
+    const handle_idFuniture =  (e) => {     
+        if(e.target.checked){
+            setFur(pre => {
+               return  [...pre, e.target.value]
+            });
+        }
+        else{
+            setFur(pre => {
+                return [...pre.filter(check => check !== e.target.value) ]
+            })           
+        }      
+    }
+    // xử lý hình ảnh 
+    const [uploadImages, setUploadImages] = useState([]);
+    const handleChangeImages = (e) => {
+        let formData = new FormData();
+        if(e.target.files){
+        const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
+        setUploadImages(e.target.files)
+        }
+    }     
+    const handleSumbit = async (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        for(let i = 0; i<uploadImages.length; i++) {
+            formData.append('img[]',uploadImages[i])
+        }
+        formData.append('post_name', post_name);
+        formData.append('address', address);
+        formData.append('area',area);
+        formData.append('description', description);
+        formData.append('description_sort', description_sort);
+        formData.append('electricity_price', electricity_price);
+        formData.append('id_roomType', id_roomType);
+        formData.append('id_user', user[0].id);
+        formData.append('id_province', id_province);
+        formData.append('id_district', id_district);
+        formData.append('id_ward', id_ward);
+        formData.append('id_street', id_street);
+        formData.append('ifarme', ifarme);
+        formData.append('meta_keywords', meta_keywords);
+        formData.append('meta_description', meta_description);
+        formData.append('meta_title', meta_title);
+        formData.append('quantity', quantity);
+        formData.append('room_price', room_price);
+        formData.append('water_price', water_price);
+        formData.append('id_furniture', Array(checkFur));
+        const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+        }
+        else{
+            setAlert({
+                err_list: res
+            });
+        }
+    };
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -232,9 +231,13 @@ function HeaderNavLink() {
             </li>
             <li className="nav-item">
                 {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
-                <Button variant="warning" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} onClick={handleShow}>
-                Đăng bài
-            </Button>
+                <Button 
+                    variant="warning" 
+                    style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} 
+                    onClick={handleShow}
+                >
+                    ĐĂNG BÀI
+                </Button>
             </li>
             {/* start Đăng bài chủ trọ*/}
             <Modal show={show} onHide={handleClose}>
@@ -242,7 +245,7 @@ function HeaderNavLink() {
                     <Modal.Title>Đăng Tin</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="show-grid">
-                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
+                    <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
                             <Form.Group className="mb-12 post_name">
                                 <Form.Label>Tên bài viết</Form.Label>
                                 <Form.Control type="text" name="post_name" className=''
@@ -437,7 +440,7 @@ function HeaderNavLink() {
                                 </Button>
                                 {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                             </div>
-                </Form>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose} > Đóng </Button>
