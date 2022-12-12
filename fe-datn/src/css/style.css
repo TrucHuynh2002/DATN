@@ -668,6 +668,10 @@ label{
     font-weight: 650;
 
 }
+.detailRM{
+    margin: 10px 0 0 300px;
+    text-transform:uppercase;
+}
 .book_room h1 {
     font-weight: 500;
     font-size: 70px;
@@ -1893,13 +1897,36 @@ ul.social_icon li a:hover {
     color: #fff;
     padding: 7px 45px;
     display: inline-block;
-    margin-top: 20px;
+    margin: 20px 0 0 10px;
     border: solid 2px #212529;
     transition: all 0.5s ease-in-out 0s;
 }
 
 .round-black-btn:hover,
 .round-black-btn:focus {
+    background: transparent;
+    color: #212529;
+    text-decoration: none;
+}
+
+.review-form .round-black-btn.detail {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.round-black-btn.detail {
+    border-radius: 4px;
+    background: #212529;
+    color: #fff;
+    padding: 7px 45px;
+    display: inline-block;
+    margin-top: 20px;
+    border: solid 2px #212529;
+    transition: all 0.5s ease-in-out 0s; 
+
+}
+
+.round-black-btn.detail:hover,
+.round-black-btn.detail:focus {
     background: transparent;
     color: #212529;
     text-decoration: none;
@@ -2275,6 +2302,16 @@ margin: 0 300px 0 375px;
     
 }
 
+.detail_roommanage{
+    margin: 50px 300px 50px 300px;
+    background-color: white;
+    box-shadow: 0px 0.2px 1px black;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    line-height: 50px;
+    
+}
 .room_h3 {
     text-align: center;
     margin-top: 10px;
@@ -2388,3 +2425,36 @@ margin: 0 300px 0 375px;
     height: 10px;
     background-color: blue;
 }
+
+  .img404{
+    padding: 0px 0px 0px 440px;
+  }.text404{
+    text-align: center;
+  }
+  .gobackbutton{
+    padding: 10px 0px 0px 715px;
+  
+  }
+  .goback{
+    background-color: #00bed37c;
+    padding: 5px 15px 5px 5px;
+    color: black;
+    width: 100px;
+   text-align: center;
+  }.bi.bi-arrow-left-short.icongoback{
+    width: 50px;
+    height: 50px;
+  }.loi404{
+    padding-top:10px;
+  }.row.detail{
+    background-color: white;
+    margin: 20px 200px 20px 200px;
+    font-size: 16px;
+    padding: 10px;
+    line-height: 50px;
+  }.roomdetailM{
+    padding: 0 0px 50px 440px;
+  }.roomdetailM2{
+    padding: 0 0 50px 40px;
+    width: 1000px;
+  }
