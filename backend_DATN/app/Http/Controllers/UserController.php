@@ -194,7 +194,7 @@ class UserController extends Controller
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'email' => 'required|',
+            'email' => 'required',
             'password' => 'required',
         ], [
             'email.required' => 'Không được bỏ trống',
@@ -212,7 +212,7 @@ class UserController extends Controller
             return response()
                 ->json([
                     'messages' => "Tài khoản hoặc mật khẩu không chính xác",
-                    'status' => false
+                    'status' => 1
                 ]);
         }
         $user_admin = User::where('email', $request->email)->where('role', '=', '2')->first();

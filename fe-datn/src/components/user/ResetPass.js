@@ -6,7 +6,7 @@ import axios from 'axios';
 function ResetPass() {
 
     const [password, setPassWord] = useState("");
-    const [resetPassword, setResetPassword] = useState("");
+    const [password_confirm, SetPasswordConfirm] = useState("");
     const [error,setError] = useState("");
     const {token} = useParams();
 
@@ -21,10 +21,10 @@ function ResetPass() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        console.log(password)
-        console.log(resetPassword)
-        const item = { password:password, token:token };
-        if(password == resetPassword){
+        // console.log(password)
+        // console.log(resetPassword)
+        const item = { password:password, token:token, password_confirm:password_confirm};
+        // if(password == resetPassword){
             const res = await axios.post(`http://127.0.0.1:8000/api/reset-password/${token}?_method=PUT`, item);
             console.log(res);
             if(res.data.status === true){
@@ -37,9 +37,10 @@ function ResetPass() {
                     err_list: res.data
                 });
             }
-        }else{
-            setError('Nhập lại mật khẩu không khớp')
-        }
+        // }else{
+        //     // setError('Nhập lại mật khẩu không khớp')
+        //     console.log('Nhập lại mật khẩu không khớp');
+        // }
         
     }
 
@@ -65,13 +66,16 @@ function ResetPass() {
                         <div className="row">
                             <div className="col-md-12">
                                 <input type="password" id="password" name="password" className="text" placeholder="Nhập mật khẩu mới" onChange={(e) => {setPassWord(e.target.value)}} />
-                                {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
+                                {alert.err_list.status === false && alert.err_list.messages.password && <div className="notice warning_____">{alert.err_list.messages.password[0]}</div>}
                             </div>
                             <div className="col-md-12">
-                                <input type="password" id="resetPassword" name="resetPassword" className="text" placeholder="Xác nhận mật khẩu mới" onChange={(e) => {setResetPassword(e.target.value)}} />
+                                <input type="password" id="password_confirm" name="password_confirm" className="text" placeholder="Xác nhận mật khẩu mới" onChange={(e) => {SetPasswordConfirm(e.target.value)}} />
+                                {alert.err_list.status === false && alert.err_list.messages.password_confirm && <div className="notice warning_____">{alert.err_list.messages.password_confirm[0]}</div>}
                             </div>
                             <div className="d-grid gap-2">
-                            {alert.err_list.status === true && <div className="notice success_____">Cập Nhật Thành Công</div>}
+                            {alert.err_list.status === 1 && <div className="notice warning_____">Đổi pass thất bại</div>}
+                            {alert.err_list.status === 2 && <div className="notice warning_____">Nhập lại mật khẩu không khớp</div>}
+                            {alert.err_list.status === true && <div className="notice success_____">Đổi mật khẩu thành công</div>}
                                 <Button type="submit">Gửi</Button>
                             </div>                              
                         </div>

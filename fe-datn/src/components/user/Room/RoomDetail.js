@@ -75,7 +75,6 @@ function RoomDetail() {
   return (
         <div className="pd-wrap">
             {listPost.map((a, index) => {
-<<<<<<< HEAD
                 return (
                     <div className="pd-wrap">
                         {listPost.map((a, index) => {
@@ -99,26 +98,6 @@ function RoomDetail() {
                                                     </div>
                                                 })}
                                             </div>
-=======
-                return(
-                    <div className="container" key={index}>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="product-slider">
-                                <div className="item">
-                          
-                                    <img className="img-fluid" src={listImg.length > 0 && listImg[0].link_img_user} alt="None_image" />
-                              
-                                </div>  
-
-                                <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
-                                    {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    {
-                                    listImg.map((img,i) => {
-                                        
-                                       return <div className="item" key={i}>   
-                                            <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
->>>>>>> 507935ab5854265ddacf0440462d3126c5c76bfb
                                         </div>
                                     </div>
                                     <div className="col-md-6">
