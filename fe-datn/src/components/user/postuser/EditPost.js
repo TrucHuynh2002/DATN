@@ -188,6 +188,7 @@ function EditPost() {
         formData.append('quantity', editPost.quantity);
         formData.append('room_price',  editPost.room_price);
         formData.append('water_price', editPost.water_price);
+        formData.append('id_street',editPost.id_street)
         for(let i = 0; i<checkFur.length; i++){
 
             formData.append('id_furniture[]',checkFur[i]);
@@ -258,11 +259,11 @@ function EditPost() {
           Images.length > 0 &&
           Images.map((img,i) => {
           return  (
-              <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
+                <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
                   <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
                   <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
                   {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
-              </div> 
+                </div> 
             )
           })
       }                        
@@ -282,7 +283,7 @@ function EditPost() {
 
                             <CKEditor
                                 editor={ClassicEditor}
-                                data={editPost.description ? editPost.description : ""}
+                                data={editPost.description ? editPost.description : '' }
                                 onReady={(editor)=>{
                                     editor.editing.view.change((writer)=>{
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
@@ -307,7 +308,8 @@ function EditPost() {
                             <Form.Label>Giá nước</Form.Label>
                             <Form.Control type="number" name="water_price" className="" 
                             value={editPost.water_price && editPost.water_price}
-onChange = {(e) => handleChange(e)}/>
+                            onChange = {(e) => handleChange(e)}
+                            />
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.water_pirce[0]}</div>}
                         </Form.Group>                   
                     </Col>
@@ -410,9 +412,7 @@ onChange = {(e) => handleChange(e)}/>
                                     return (
                                         <div className="col-md-3" key={index}>
                                         {
-                                        
-                                                <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
-                                  
+                                            <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                         }
                                            
                                         <Form.Label>{data.name}</Form.Label>

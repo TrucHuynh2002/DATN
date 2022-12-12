@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::all();
+        $image = imgPost::where('id_post','=','id');
         $furniture_post = furniture_post::where('id_post','=',$id)->get();
         return response()
             ->json([
@@ -343,8 +343,11 @@ class PostController extends Controller
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->verification = 0;
+        $Post->id_roomType = $request->id_roomType;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_street = $request->id_street;
         $Post->save();
-        $Get_Post = Post::where('id_post', '=', $id)->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             // $array_fur = explode(',', $request->id_furniture);
@@ -354,11 +357,6 @@ class PostController extends Controller
                 $furniture_post->id_furniture = $furniture;
                 $furniture_post->save();
             }
-
-            return response()->json([
-                'status' => true,
-                'data' => $request->id_furniture
-            ]);
         }
         $get_image = $request->file('img');
         $name = '';
@@ -378,11 +376,6 @@ class PostController extends Controller
             //     $imgPost->name_image = $new_image;
             //     $imgPost->save();
             // }
-            return response()
-            ->json([
-                'data' =>  $request->file('img'),
-                'status' => true
-            ]);
          
         }
         return response()

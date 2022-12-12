@@ -31,5 +31,9 @@ class PostModel extends Model
         'delete',
         'id_user',
         'id_roomType',
+        'id_provice',
+        'id_district',
+        'id_ward',
+        'id_street'
     ];
 }
