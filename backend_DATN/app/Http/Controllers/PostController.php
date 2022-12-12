@@ -13,6 +13,7 @@ use App\Models\wardModel;
 use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
+use App\Models\RoomNumberModel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -66,7 +67,7 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::all();
+        $image = imgPost::where('id_post','=','id');
         $furniture_post = furniture_post::where('id_post','=',$id)->get();
         return response()
             ->json([
@@ -222,7 +223,8 @@ class PostController extends Controller
         $Post->id_ward = $request->id_ward;
         $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
-        $Post->quantity = $request->quantity;
+        
+            $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->meta_keywords = $request->meta_keywords;
@@ -234,6 +236,17 @@ class PostController extends Controller
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
+
+        if($request->quantity){
+            for ($i=1; $i <= $request->quantity ; $i++) { 
+                $roomNumber = new RoomNumberModel();
+                $roomNumber->id_user = $request->id_user;
+                $roomNumber->id_post = $Get_Post->id_post;
+                $roomNumber->room_number = $i;
+                $roomNumber->status = 0;
+                $roomNumber->save();
+            };
+        }
         if ($request->id_furniture) {
             $array_fur = explode(',', $request->id_furniture);
             foreach ($array_fur as $furniture) {
@@ -248,15 +261,18 @@ class PostController extends Controller
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
-                $name_image  = current(explode('.', $get_name_image));
+               
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
                 $imgPost = new imgPost();
                 $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->name_image = $new_image;
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
+         
+            
         }
         return response()
             ->json([
@@ -266,48 +282,48 @@ class PostController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $validation = Validator::make($request->all(), [
-            'post_name' => 'required|string',
-            'quantity' => 'required',
-            'area' => 'required',
-            'room_price' => 'required',
-            'electricity_price' => 'required',
-            'water_price' => 'required',
-            'address' => 'required',
-            'description' => 'required',
-            'description_sort' => 'required',
-            'meta_keywords' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
-            // 'verification' => 'required',
-            'id_user' => 'required',
-            'id_furniture' => 'required',
-            'id_roomType' => 'required'
-        ], [
-            'post_name.required' => 'Không được bỏ trống',
-            'quantity.required' => 'Không được bỏ trống',
-            'area.required' => 'Không được bỏ trống',
-            'room_price.required' => 'Không được bỏ trống',
-            'electricity_price.required' => 'Không được bỏ trống',
-            'water_price.required' => 'Không được bỏ trống',
-            'address.required' => 'Không được bỏ trống',
-            'description.required' => 'Không được bỏ trống',
-            'description_sort.required' => 'Không được bỏ trống',
-            'meta_keywords.required' => 'Không được bỏ trống',
-            'meta_title.required' => 'Không được bỏ trống',
-            'meta_description.required' => 'Không được bỏ trống',
-            // 'verification.required' => 'Không được bỏ trống',
-            'id_user.required' => 'Không được bỏ trống',
-            'id_furniture.required' => 'Không được bỏ trống',
-            'id_roomType.required' => 'Không được bỏ trống',
-        ]);
-        if ($validation->fails()) {
-            return response()
-                ->json([
-                    'messages' =>  $validation->messages(),
-                    'status' => false
-                ]);
-        }
+        // $validation = Validator::make($request->all(), [
+        //     'post_name' => 'required|string',
+        //     'quantity' => 'required',
+        //     'area' => 'required',
+        //     'room_price' => 'required',
+        //     'electricity_price' => 'required',
+        //     'water_price' => 'required',
+        //     'address' => 'required',
+        //     'description' => 'required',
+        //     'description_sort' => 'required',
+        //     'meta_keywords' => 'required',
+        //     'meta_title' => 'required',
+        //     'meta_description' => 'required',
+        //     // 'verification' => 'required',
+        //     'id_user' => 'required',
+        //     'id_furniture' => 'required',
+        //     'id_roomType' => 'required'
+        // ], [
+        //     'post_name.required' => 'Không được bỏ trống',
+        //     'quantity.required' => 'Không được bỏ trống',
+        //     'area.required' => 'Không được bỏ trống',
+        //     'room_price.required' => 'Không được bỏ trống',
+        //     'electricity_price.required' => 'Không được bỏ trống',
+        //     'water_price.required' => 'Không được bỏ trống',
+        //     'address.required' => 'Không được bỏ trống',
+        //     'description.required' => 'Không được bỏ trống',
+        //     'description_sort.required' => 'Không được bỏ trống',
+        //     'meta_keywords.required' => 'Không được bỏ trống',
+        //     'meta_title.required' => 'Không được bỏ trống',
+        //     'meta_description.required' => 'Không được bỏ trống',
+        //     // 'verification.required' => 'Không được bỏ trống',
+        //     'id_user.required' => 'Không được bỏ trống',
+        //     'id_furniture.required' => 'Không được bỏ trống',
+        //     'id_roomType.required' => 'Không được bỏ trống',
+        // ]);
+        // if ($validation->fails()) {
+        //     return response()
+        //         ->json([
+        //             'messages' =>  $validation->messages(),
+        //             'status' => false
+        //         ]);
+        // }
         $Post = Post::find($id);
         // cập nhật theo id_post
         $Post->post_name = $request->post_name;
@@ -327,19 +343,19 @@ class PostController extends Controller
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->verification = 0;
+        $Post->id_roomType = $request->id_roomType;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_street = $request->id_street;
         $Post->save();
-        $Get_Post = Post::where('id_post', '=', $id)->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
-            $array_fur = explode(',', $request->id_furniture);
-
-
-            foreach ($array_fur as $furniture) {
+            // $array_fur = explode(',', $request->id_furniture);
+            foreach ($request->id_furniture as $furniture) {
                 $furniture_post = new furniture_post();
-                $furnitures = $furniture_post::where('id_post', '=', $id)->get();
-                $furnitures->id_post = $Get_Post->id_post;
-                $furnitures->id_furniture = $furniture;
-                $furnitures->save();
+                $furniture_post->id_post = $id;
+                $furniture_post->id_furniture = $furniture;
+                $furniture_post->save();
             }
         }
         $get_image = $request->file('img');
@@ -350,20 +366,17 @@ class PostController extends Controller
                 $get_name_image = $img->getClientOriginalName();
                 // $name = $get_name_image;
                 $path = 'uploads/';
-                $name_image  = current(explode('.', $get_name_image));
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
                 $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
+                $imgPost->id_post = $id; // khóa ngoại
                 $imgPost->name_image = $new_image;
                 $imgPost->save();
             }
-            // return response()->json([
-            //     'img' => $name
-            // ]);
+         
         }
         return response()
             ->json([

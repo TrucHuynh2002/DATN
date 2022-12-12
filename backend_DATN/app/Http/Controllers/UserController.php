@@ -54,7 +54,15 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-
+    public function ImgUserAll()
+    {
+        $get_img = imgUserModel::all();
+        return response()
+            ->json([
+                'data' => $get_img,
+                'status' => true
+            ]);
+    }
     public function ImgUser(Request $request, $id)
     {
         $get_img = imgUserModel::where('id_user', '=', $id);
@@ -194,7 +202,7 @@ class UserController extends Controller
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'email' => 'required|',
+            'email' => 'required',
             'password' => 'required',
         ], [
             'email.required' => 'Không được bỏ trống',
@@ -212,7 +220,7 @@ class UserController extends Controller
             return response()
                 ->json([
                     'messages' => "Tài khoản hoặc mật khẩu không chính xác",
-                    'status' => false
+                    'status' => 1
                 ]);
         }
         $user_admin = User::where('email', $request->email)->where('role', '=', '2')->first();
@@ -273,7 +281,7 @@ class UserController extends Controller
             ]);
         };
     }
-   
+
     public function show_province_detail(Request $request, $id_user)
     {
         $data = DB::table('users')

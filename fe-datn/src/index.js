@@ -29,7 +29,10 @@ import DetailPost from './components/admin/post/DetailPost';
 import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
+import DetailBlog from './components/admin/Blog/DeatilBlog';
+
 import EditBBlog from './components/user/blog/EditBlog';
+
 
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
@@ -125,6 +128,8 @@ root.render(
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />
         <Route path="edit_blog/:id_blog" element={<EditBlog />} />
+        <Route path="detail_blog/:id_blog" element={<DetailBlog />} />
+
         {/* furniture */}
         <Route path="add_furniture" element={<AddFurniture />} />
         <Route path="edit_furniture/:id_furniture" element={<EditFurniture />} />

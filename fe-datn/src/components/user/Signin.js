@@ -93,7 +93,8 @@ function Signin() {
         // đường 
         const getDataStreet = async (id_district) => {
             var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=1&&id_district=id_province=${id_province}&&id_district=${id_district}`);
+            console.log(resss)
             setStreet(resss.data.data);
         }
 
@@ -200,7 +201,8 @@ function Signin() {
                                 <div className="notice warning_____">{alert.err_list.messages.address[0]}</div>} 
 
                                 <div className="d-grid gap-2">
-                                {alert.err_list.status == true && <div className="notice success_____">Đăng ký thành công</div>}
+                                {alert.err_list.status == true && 
+                                <div className="notice success_____">Đăng ký thành công</div>}
                                     <Button type="submit"> Đăng ký</Button>
                                 </div>
                                 <div className="d-grid gap-2">

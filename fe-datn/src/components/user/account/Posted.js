@@ -10,19 +10,21 @@ function Posted() {
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ postsPerPage, setPostsPerPage ] =useState(3);
-
+    const [InfoAccount, setInfoAccount] = useState([]);
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
     const [listImg, setListImg] = useState([]);
 
     useEffect(() => {
+        getDataUser();
         getData();
         getImg();
     },[]);
     const getImg = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
         setListImg(res.data.data);   
+
     };
     // danh sach Posted
     const getData = async () => {
@@ -34,28 +36,34 @@ function Posted() {
         await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
         getData();
       };
-
+      const getDataUser = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        setInfoAccount(res.data.data);
+    };
   return (
     <>
     <h1><b className="b_title">Tin đã đăng</b></h1>
     <hr></hr>
-    <div className='row'>
+    <div className='container'>
         {currentPosts.length > 0 ?
-        currentPosts.map((post, index) => {
+            currentPosts.map((post, index) => {
             return (    
             <div className='row' key={index}>
                 {listImg.map((a, index) => {
-                return a.id_post == post.id_post && (
-                    <div className='col-md-2 text-center' key={index}>
-                        <img src={a.link_img_user}
-                        alt='' className=" avt_img" />                        
-                    </div>
-                )})}
+                    return a.id_post == post.id_post && (
+                        <div className='col-md-2 text-center' key={index}>
+                            <img src={a.link_img_user}
+                            alt='' className=" avt_img" />                        
+                        </div>
+                );})}
                 <div className='col-md-10'>
                     <div className='account_content____'>
                         <h1 className="name_title">{post.post_name}</h1>
                         <h3 className="content___">{post.description_sort}</h3>
-                            <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' alt='' className="avtuser" /> 
+                        {InfoAccount.map((a, index) => {
+                                return a.id_user == post.id_user && (
+                                    <img src={a.link_img_user} alt='' className="avtuser" key={index} /> 
+                        );})}
                         <span> {post.full_name} | </span>
                         <span> {post.address}  | </span>
                         <span> {post.created_at}  | </span>

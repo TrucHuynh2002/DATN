@@ -2100,6 +2100,9 @@ ul.social_icon li a:hover {
     text-align: center;
     color: black;
     font-size: 24px;
+    padding: 0 0 10px 0;
+}.col-md-4.col-sm-6.searchroom{
+margin: 0 300px 0 375px;
 }
 .searchTrend_content____{
     background: white;

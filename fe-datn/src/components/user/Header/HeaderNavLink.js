@@ -236,7 +236,7 @@ function HeaderNavLink() {
                     style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} 
                     onClick={handleShow}
                 >
-                    Đăng bài
+                    ĐĂNG BÀI
                 </Button>
             </li>
             {/* start Đăng bài chủ trọ*/}
