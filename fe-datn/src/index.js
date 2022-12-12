@@ -31,7 +31,7 @@ import DetailPost from './components/admin/post/DetailPost';
 import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
-import DetailBlog from './components/admin/blog/DeatilBlog';
+import DetailBlog from './components/admin/Blog/DeatilBlog';
 
 import EditBBlog from './components/user/blog/EditBlog';
 

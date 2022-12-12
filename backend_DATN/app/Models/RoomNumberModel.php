@@ -15,8 +15,9 @@ class RoomNumberModel extends Model
     protected $fillable = [
         'id_post',
         'id_user',
-        'id_user_tow',
+        'id_user_two',
         'status',
-        'interaction'
+        'room_number',
+        
     ];
 }

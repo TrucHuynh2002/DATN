@@ -13,6 +13,7 @@ use App\Models\wardModel;
 use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
+use App\Models\RoomNumberModel;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -222,7 +223,8 @@ class PostController extends Controller
         $Post->id_ward = $request->id_ward;
         $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
-        $Post->quantity = $request->quantity;
+        
+            $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->meta_keywords = $request->meta_keywords;
@@ -234,6 +236,17 @@ class PostController extends Controller
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Post->save();
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
+
+        if($request->quantity){
+            for ($i=0; $i < $request->quality ; $i++) { 
+                RoomNumberModel::create([
+                    'id_post' => $Get_Post->id_post,
+                    'id_user' => $request->id_user,
+                    'room_number' => $i,
+                    'status' => 0
+                ]);
+            };
+        }
         if ($request->id_furniture) {
             $array_fur = explode(',', $request->id_furniture);
             foreach ($array_fur as $furniture) {
@@ -254,6 +267,7 @@ class PostController extends Controller
                 $img->move($path, $new_image);
                 $imgPost = new imgPost();
                 $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->name_image = $new_image;
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
