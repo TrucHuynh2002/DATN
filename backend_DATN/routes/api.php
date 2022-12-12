@@ -28,6 +28,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\img_QAController;
+use App\Http\Controllers\notyNotyQaController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\QAController;
 use App\Http\Controllers\RoomNumberController;
@@ -116,11 +117,16 @@ Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteIm
 // RoomNumber
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
 Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
+
+//noty_notyqa
+Route::get('notynotyqa/show', [notyNotyQaController::class, 'show']);
+Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
