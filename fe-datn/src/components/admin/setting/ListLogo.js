@@ -29,7 +29,11 @@ function ListLogo() {
         </thead>
         <tbody className="list-cate">                  
             <tr style={{'background': 'black'}}>
+              <td>
+                <div>
                 <img src={listLogo.logo} alt="images"  />
+                </div>
+              </td>
                 <td>
                     <Link to="setting/1" className="bx bxs-edit btn-edit btn btn-primary">
                     </Link>

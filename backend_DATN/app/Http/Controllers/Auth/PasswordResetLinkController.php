@@ -12,6 +12,7 @@ use Illuminate\Auth\Notifications\ResetPassword as NotificationsResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class PasswordResetLinkController extends Controller
@@ -38,10 +39,12 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
+        $validation = Validator::make($request->all(), [
+            'email' => 'required', 'email',
         ],
-        ['email.required' => 'Vui lòng nhập email']);
+        [
+            'email.required' => 'Vui lòng nhập email'
+        ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -55,6 +58,13 @@ class PasswordResetLinkController extends Controller
         //             ? back()->with('status', __($status))
         //             : back()->withInput($request->only('email'))
         //                     ->withErrors(['email' => __($status)]);
+        if ($validation->fails()) {
+            return response()
+                ->json([
+                    'messages' =>  $validation->messages(),
+                    'status' => false
+                ]);
+        }
         $checkEmail = User::where('email', '=', $request->email)->first();
         if($checkEmail){
             $token = Str::random(10);
@@ -69,15 +79,18 @@ class PasswordResetLinkController extends Controller
                 // 'created_at' => Carbon::now()
             ]);
             Mail::to($request->email)->send(new ResetPassAlert($checkEmail,$token));
-            return back()->with(['message' => 'Vui lòng kiểm tra email để đổi mật khẩu']);
+            return response()->json([
+                "status" => true,
+                "messages" => "Kiểm tra email để đổi mật khẩu"
+            ]);
         }
-        // else{
-        //     return response()->json([
-        //         "status" => false,
-        //         "messages" => "Email không tồn tại"
-        //     ]);
+        else{
+            return response()->json([
+                "status" => 1,
+                "messages" => "Email không tồn tại"
+            ]);
 
-        // }
+        }
         // kiem tra mail ton tai hay khong
         // neu co ton tai thi tao ra token cua email do trong password_reset
         // truyen token do vao form emaiil nguoi nhan

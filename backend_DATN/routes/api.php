@@ -28,8 +28,10 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\img_QAController;
+use App\Http\Controllers\notyNotyQaController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\QAController;
+use App\Http\Controllers\RoomNumberController;
 use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
@@ -111,9 +113,20 @@ Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
 Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
+
+// RoomNumber
+Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
+Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
+
+
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
+
+//noty_notyqa
+Route::get('notynotyqa/show', [notyNotyQaController::class, 'show']);
+Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
@@ -124,6 +137,7 @@ Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
+Route::get('imgPost/show_one', [imgPostController::class, 'show_one']);
 // Route::get('imgPost/show_tv', [imgPostController::class, 'show_tv']);
 Route::get('imgPost/show/{id}', [imgPostController::class, 'show_id']);
 Route::get('imgPost/show_detail/{id}', [imgPostController::class, 'show_img_detail']);
@@ -156,6 +170,7 @@ Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
  
+
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);
 Route::get('comment/post/show/{id_post}', [CommentController::class, 'Comment_SelectPost']);
@@ -174,6 +189,7 @@ Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
 Route::get('user/showAcount/{id}', [UserController::class, 'UserAcount']);
 Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
+Route::get('user/showimg', [UserController::class, 'ImgUserAll']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
@@ -204,7 +220,7 @@ Route::post('notifyComment/create', [NotifyController::class, 'NotifyAddComment'
 // Rating
 Route::get('rating/show', [RatingController::class, 'Rating_Selectall']);
 Route::get('rating/show/{id}', [RatingController::class, 'Rating_SelectUser']);
-Route::get('rating/show/post/{id}',[RatingController::class,'get_allStarPost']);
+Route::get('rating/show/post/{id}', [RatingController::class, 'get_allStarPost']);
 Route::post('rating/create', [RatingController::class, 'RatingAdd']);
 Route::put('rating/update/{id}', [RatingController::class, 'RatingEdit']);
 // Route::delete('rating/delete/{id}', [RatingController::class, 'RatingDelete']);

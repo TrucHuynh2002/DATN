@@ -22,12 +22,9 @@ function HeaderAdmin() {
           <div className="menu">
               <i className='bx bx-menu'></i>
           </div>
-          <a href="/">
+          <a href="/admin">
               <img src={listConfig.logo} alt="images" width="100%" />
           </a>
-          <div className="nav-top-logout">
-              <NavLink to="" className='logout'>Đăng xuất</NavLink>
-          </div>
         </div>   
     </>
   )

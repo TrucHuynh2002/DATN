@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'
 import moment from 'moment'
 
-function BlogDetail() {
+function DetailBlog() {
     const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [InfoAccount, setInfoAccount] = useState([]);
@@ -60,4 +60,4 @@ function BlogDetail() {
   )
 }
 
-export default BlogDetail
+export default DetailBlog

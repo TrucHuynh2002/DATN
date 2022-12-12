@@ -99,7 +99,6 @@ function EditPost() {
     const [loader,setLoader] = useState(0);
     
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages)
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
         console.log(id_img)
@@ -117,6 +116,7 @@ function EditPost() {
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
+    console.log(checkFur)
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
@@ -153,7 +153,7 @@ function EditPost() {
         else{
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
-            })           
+            })      
         }
        
     }
@@ -171,7 +171,7 @@ function EditPost() {
         e.preventDefault();
         console.log(editPost)
         let formData = new FormData();
-        for(let i = 0; i<uploadImages.length; i++) {
+         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
         }
         formData.append('post_name',editPost.post_name);
@@ -188,12 +188,17 @@ function EditPost() {
         formData.append('quantity', editPost.quantity);
         formData.append('room_price',  editPost.room_price);
         formData.append('water_price', editPost.water_price);
-        formData.append('id_furniture[]', Array(editPost.checkFur));
+        formData.append('id_street',editPost.id_street)
+        for(let i = 0; i<checkFur.length; i++){
+
+            formData.append('id_furniture[]',checkFur[i]);
+        }
         formData.append('id_province',editPost.id_province);
         formData.append('id_ward',editPost.id_ward);
         formData.append('id_district',editPost.id_district);
         
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
+        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -254,11 +259,11 @@ function EditPost() {
           Images.length > 0 &&
           Images.map((img,i) => {
           return  (
-              <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
+                <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
                   <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
                   <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
                   {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
-              </div> 
+                </div> 
             )
           })
       }                        
@@ -278,7 +283,7 @@ function EditPost() {
 
                             <CKEditor
                                 editor={ClassicEditor}
-                                data={editPost.description ? editPost.description : ""}
+                                data={editPost.description ? editPost.description : '' }
                                 onReady={(editor)=>{
                                     editor.editing.view.change((writer)=>{
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
@@ -303,7 +308,8 @@ function EditPost() {
                             <Form.Label>Giá nước</Form.Label>
                             <Form.Control type="number" name="water_price" className="" 
                             value={editPost.water_price && editPost.water_price}
-onChange = {(e) => handleChange(e)}/>
+                            onChange = {(e) => handleChange(e)}
+                            />
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.water_pirce[0]}</div>}
                         </Form.Group>                   
                     </Col>
@@ -321,13 +327,18 @@ onChange = {(e) => handleChange(e)}/>
                                 onChange = {(e) => handleProvince(e)}
                                 >
                                     <option>Tỉnh</option>
-                                    {listProvince.map((room, index) => {
+                                    {
+                                    
+                                    listProvince.map((room, index) => {
+                                        // editPost.id_province &&
+                                        //  room.id == editPost.id_province 
+                                        // &&
+                                        // getDataDistrict(({id_province : editPost.id_province}).undefined);
+
                                         return (
-                                            room.id == editPost.id_province
-                                            ?
-                                            <option selected key={index} value={room.id}>{room._name}</option>
-                                            :
-                                            <option key={index} value={room.id}>{room._name}</option>
+                                          
+                                            <option selected={room.id == editPost.id_province ? 'selected' : 'false'} key={index} value={room.id}>{room._name}</option>
+                                           
                                         );
                                     })}       
                                 </Form.Select>
@@ -401,13 +412,7 @@ onChange = {(e) => handleChange(e)}/>
                                     return (
                                         <div className="col-md-3" key={index}>
                                         {
-                                            furPost.map((fur,i)=> {
-                                                return fur.id_furniture == data.id_furniture 
-                                                ?
-                                                <Form.Check type="checkbox" checked name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
-                                                :
-                                                <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
-                                            })
+                                            <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                         }
                                            
                                         <Form.Label>{data.name}</Form.Label>
@@ -425,7 +430,7 @@ onChange = {(e) => handleChange(e)}/>
                                     return (
                                         room.id_room_type == editPost.id_roomType
                                         ?
-                                        <option checked key={index} value={room.id_room_type} >{room.name_room_type}</option>
+                                        <option selected key={index} value={room.id_room_type} >{room.name_room_type}</option>
                                         :
                                         <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
                                     );

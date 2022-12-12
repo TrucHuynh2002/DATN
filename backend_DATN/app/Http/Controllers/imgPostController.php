@@ -17,6 +17,14 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
+    public function show_one()
+    {
+        $data = DB::table('img_post')->first();
+        return response()
+            ->json([
+                'data' => $data
+            ]);
+    }
     // public function show_tv()
     // {
     //     $data = DB::table('img_post')
