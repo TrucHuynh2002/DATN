@@ -33,9 +33,9 @@ function RoomRelatePost({onClick})  {
     setListImg(res.data.data);   
 };
 const settings = {
-  dots: true,
+  dots: false,
   infinite: false,
-  speed: 500,
+  speed: 1000,
   slidesToShow: 4,
   slidesToScroll: 4,
   initialSlide: 0,
@@ -46,7 +46,7 @@ const settings = {
         slidesToShow: 3,
         slidesToScroll: 3,
         infinite: true,
-        dots: true
+        dots: false
       }
     },
     {
