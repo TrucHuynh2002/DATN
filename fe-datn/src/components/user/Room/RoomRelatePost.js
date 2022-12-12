@@ -2,15 +2,9 @@ import React, { useEffect, useState, Component } from 'react';
 // import Slider from "react-slick";
 import { Link, NavLink, useParams  } from 'react-router-dom';
 import axios from 'axios';
-<<<<<<< HEAD
-import Figure from 'react-bootstrap/Figure';
-
-function RoomRelatePost({onClick}) {
-=======
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
 function RoomRelatePost({onClick})  {
->>>>>>> 81234cea270985ba7aac50cdca390e0902ff850f
 
   var user = JSON.parse(localStorage.getItem("user"));
   const {id_post} = useParams();
@@ -83,36 +77,6 @@ const settings = {
                 </div>
               </div>
             </div>
-<<<<<<< HEAD
-            <div className="row">
-            {listPost.map((post, index) => {
-                return (     
-                  <div className="col-md-4 col-sm-6" key={index}>
-                      <div id="serv_hover" className="room">
-                          <div className="room_img">
-                          { listImg.id_post == post.id_post && (
-                              <Figure key={index}><img src={listImg.link_img_user} alt="#" /></Figure>
-                            )}
-
-                              {/* thả tym */}
-                              {/* {listHeart.map((heart, index) => { */}
-                              <div className="btn-heart" value={post.id_post}>
-                               
-                              </div>
-                                {/* })}  */}
-                          </div>
-                          <div className="bed_room">
-                              <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3>
-                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
-                              <p>{post.description_sort}</p>
-                          </div>
-                      </div>
-                  </div>
-                );
-            })}
-
-            </div>
-=======
             {/* <div className="row"> */}
     {/* <div className="slide_show"> */}
             {/* <Slider {...settings} > */}
@@ -138,7 +102,6 @@ const settings = {
           {/* );})}  */}
           {/* </Slider> */}
           {/* </div> */}
->>>>>>> 81234cea270985ba7aac50cdca390e0902ff850f
         </div>
   )
 }

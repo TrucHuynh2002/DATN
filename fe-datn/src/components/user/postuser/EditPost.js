@@ -123,8 +123,6 @@ function EditPost() {
         setfuriture(get_data.data.data)
     };
 
-<<<<<<< HEAD
-=======
     // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
   
@@ -216,7 +214,6 @@ function EditPost() {
         get_furnitures();
         getDataProvince();
     },[loader]);
->>>>>>> 81234cea270985ba7aac50cdca390e0902ff850f
 
   return (
     <div className="content">

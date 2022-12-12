@@ -76,7 +76,6 @@ function RoomDetail() {
   return (
         <div className="pd-wrap">
             {listPost.map((a, index) => {
-<<<<<<< HEAD
                 return (
                     <div className="pd-wrap">
                         {listPost.map((a, index) => {
@@ -101,35 +100,6 @@ function RoomDetail() {
                                                 })}
                                             </div>
                                         </div>
-=======
-                return(
-                    <div className="container" key={index}>
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="product-slider">
-                                {/* <div className="item">
-                                    <img className="img-fluid" src={listImg.length > 0 && listImg[0].link_img_user} alt="None_image" />
-                                </div>   */}
-
-                                {/* <div className='slider-image' style={{"display":"flex","alignItems":"center"}}> */}
-                                    {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    {/* <Carousel>
-                                    { listImg.map((img,i) => {
-                                       return (
-                                       <div className="item" key={i}>   
-                                            <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
-                                        </div>
-                                    );})}
-                                    </Carousel> */}
-                                {/* </div> */}
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="product-dtl">
-                                <div className="product-info">
-                                    <div className="product-name">
-                                        <h2>{a.post_name}</h2>
->>>>>>> 81234cea270985ba7aac50cdca390e0902ff850f
                                     </div>
                                     <div className="col-md-6">
                                         <div className="product-dtl">
