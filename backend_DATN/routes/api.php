@@ -118,8 +118,8 @@ Route::post('qa/created_at', [QAController::class, 'created_at']);
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
 Route::get('post/show_district/{id_province}', [PostController::class, 'show_district']);
-Route::get('post/show_ward/{id_province}', [PostController::class, 'show_ward']);
-Route::get('post/show_tree/{id_province}', [PostController::class, 'show_tree']);
+Route::get('post/show_ward', [PostController::class, 'show_ward']);
+Route::get('post/show_tree', [PostController::class, 'show_tree']);
 Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
