@@ -5,7 +5,7 @@ function NavAdmin() {
   return (
     <>
         <ul id="menu">
-          <li><NavLink to="/">
+          <li><NavLink to="/admin">
             <i className='bx bx-home'></i> Trang chủ</NavLink>
           </li>
           <li><NavLink to="list_category"><i className='bx bx-category-alt'></i> Danh mục 
@@ -70,7 +70,7 @@ function NavAdmin() {
               <li><NavLink to="listlogo" className='sub-menu'>Cấu hình chung</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to=""><i className='bx bx-log-out-circle'></i> Quay lại</NavLink></li>
+          <li><NavLink to="/"><i className='bx bx-log-out-circle'></i> Quay lại trang user</NavLink></li>
         </ul>
     </>
   )
