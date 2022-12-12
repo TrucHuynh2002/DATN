@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams  } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel';
 import Evaluate from '../Comment/Evaluate';
 import ContentComent from '../Comment/ContentComent';
 import RoomRelatePost from './RoomRelatePost';
@@ -17,6 +17,7 @@ function RoomDetail() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
+    const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
     const [loader,setLoader] = useState(0);
     useEffect(() => {
@@ -26,6 +27,7 @@ function RoomDetail() {
         province();
         district();
         ward();
+        street();
         Furniture();
         room();
     },[loader]);
@@ -64,6 +66,10 @@ function RoomDetail() {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
       }; 
+      const street = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
+          setListstreet(res.data.data);
+      }; 
       const room = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
         setListRoom(res.data.data);
@@ -87,14 +93,14 @@ function RoomDetail() {
 
                                 {/* <div className='slider-image' style={{"display":"flex","alignItems":"center"}}> */}
                                     {/* SAU NÀY PHẢI LÀM SLIDER */}
-                                    <Carousel>
+                                    {/* <Carousel>
                                     { listImg.map((img,i) => {
                                        return (
                                        <div className="item" key={i}>   
                                             <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
                                         </div>
                                     );})}
-                                    </Carousel>
+                                    </Carousel> */}
                                 {/* </div> */}
                             </div>
                         </div>
@@ -147,26 +153,33 @@ function RoomDetail() {
                                     <span style={{marginLeft:'3px'}}> {a.area}m<sup>2</sup></span>
                                 </div>
                                 <div className='content_detail_____'>
-                                    <p style={{marginLeft:'3px'}}>Địa chỉ :</p>        
+                                    <p>Địa chỉ : </p>        
                                 <span>
-                                <strong style={{marginRight:'2px'}}>Thành phố </strong>
-                                        {listprovince.map((pro_detail, index) => {
-                                            return (   
-                                            <strong style={{marginRight:'2px'}}  key={index}> {pro_detail._name}, </strong>                    
+                                <strong style={{marginRight:'2px'}}>{a.address}, </strong>
+                                <strong style={{marginRight:'2px'}}> Đường </strong>
+                                    {liststreet.map((street_detail, index) => {
+                                    return (   
+                                        <strong style={{marginRight:'2px'}} key={index}> {street_detail._name}, </strong>                        
                                         );
-                                        })}                   
-                                    <strong style={{marginRight:'2px'}}> Quận </strong> 
-                                        {listdistrict.map((dis_detail, index) => {
-                                            return (   
-                                                <strong style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </strong>            
-                                            );
-                                        })}                   
-                                    <strong style={{marginRight:'2px'}}> Xã </strong>
-                                        {listward.map((ward_detail, index) => {
+                                    })} 
+                                <strong style={{marginRight:'2px'}}> Xã </strong>
+                                    {listward.map((ward_detail, index) => {
+                                    return (   
+                                        <strong style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </strong>                        
+                                        );
+                                    })} 
+                                <strong style={{marginRight:'2px'}}> Quận </strong> 
+                                    {listdistrict.map((dis_detail, index) => {
                                         return (   
-                                            <strong style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </strong>                        
-                                            );
-                                        })} 
+                                            <strong style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </strong>            
+                                        );
+                                    })}   
+                                <strong style={{marginRight:'2px'}}>Thành phố </strong>
+                                    {listprovince.map((pro_detail, index) => {
+                                        return (   
+                                        <strong style={{marginRight:'2px'}}  key={index}> {pro_detail._name}. </strong>                    
+                                    );
+                                    })}                                   
                                 </span>
                                 </div>
                             </div>                        

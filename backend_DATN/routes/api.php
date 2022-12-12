@@ -124,7 +124,6 @@ Route::get('trendPost', [PostController::class, 'show_trend']);
 
 // imgPost
 Route::get('imgPost/show', [imgPostController::class, 'show']);
-// Route::get('imgPost/show_tv', [imgPostController::class, 'show_tv']);
 Route::get('imgPost/show/{id}', [imgPostController::class, 'show_id']);
 Route::get('imgPost/show_detail/{id}', [imgPostController::class, 'show_img_detail']);
 Route::post('imgPost/create', [imgPostController::class, 'created_at']);
@@ -182,7 +181,7 @@ Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 Route::get('user/show_province_detail/{id}', [UserController::class, 'show_province_detail']);
 Route::get('user/show_district_detail/{id}', [UserController::class, 'show_district_detail']);
 Route::get('user/show_ward_detail/{id}', [UserController::class, 'show_ward_detail']);
-
+Route::get('user/show_street_detail/{id}', [UserController::class, 'show_street_detail']);
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
@@ -192,7 +191,6 @@ Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
 Route::get('contact/show/{id}', [ContactController::class, 'Contact_SelectOne']);
 Route::post('contact/create', [ContactController::class, 'ContactAdd']);
 Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
-// Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 
 // noify
 Route::get('notify/show/{id}', [NotifyController::class, 'getNotify_Favorite']);

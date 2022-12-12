@@ -88,8 +88,7 @@ function EditPost() {
     //     } = editPost;
        // xu ly loi
     //    console.log(editPost)
-       const [furPost,setFurPost] = useState([])
-    //    console.log(furPost);
+       const [furPost,setFurPost] = useState([]);
        const [alert, setAlert] = useState({
         err_list: {
             messages: "",
@@ -99,20 +98,15 @@ function EditPost() {
     const [loader,setLoader] = useState(0);
     
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages)
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
-        console.log(id_img)
-        let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);
-        console.log(res.data)
-       
+        let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);      
         if(res.data.status == true) {
             setLoader(loader+1);
         }
     }
     // Xử lý input vlaue
-    const handleChange = (e) => {
-        
+    const handleChange = (e) => {       
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
     };
     // Lấy nội thất
@@ -124,26 +118,17 @@ function EditPost() {
     };
 
     // Lấy roomtype
-    const [listRoomType, setListRoomType] = useState([]);
-  
+    const [listRoomType, setListRoomType] = useState([]);  
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
-        // console.log(res)
         setListRoomType(res.data.data);
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            console.log(result.data)
-            setEditPost(
-               result.data.data
-            );
+            setEditPost(result.data.data);
             setFurPost(result.data.fur)
             setLinkImage(result.data.img);
-        };
-
-       
-
-    
+        };    
     const handle_idFuniture =  (e) => {      
         if(e.target.checked){
             setFur(pre => {
@@ -154,15 +139,13 @@ function EditPost() {
             setFur(pre => {
                 return [...pre.filter(check => check !== e.target.value) ]
             })           
-        }
-       
+        }      
     }
 
-    const handleChangeImages = (e) => {
-      
+    const handleChangeImages = (e) => {     
         let formData = new FormData();
         if(e.target.files){
-        const fileArray = Array.from(e.target.files).map((file) => {   URL.createObjectURL(file)});
+        const fileArray = Array.from(e.target.files).map((file) => { URL.createObjectURL(file)});
         setUploadImages(e.target.files)       
     }
     }
@@ -190,10 +173,11 @@ function EditPost() {
         formData.append('water_price', editPost.water_price);
         formData.append('id_furniture[]', Array(editPost.checkFur));
         formData.append('id_province',editPost.id_province);
-        formData.append('id_ward',editPost.id_ward);
         formData.append('id_district',editPost.id_district);
+        formData.append('id_ward',editPost.id_ward);
+        formData.append('id_street',editPost.id_street);
         
-        const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
+        const res = await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -240,32 +224,30 @@ function EditPost() {
                             {alert.err_list.status === false && 
                             <div className="notice warning_____">
                             {alert.err_list.messages.meta_title[0]}
-</div>}
+                            </div>}
                         </Form.Group>
                         <Form.Group className="mb-3 img">
                             <Form.Label>Hình ảnh</Form.Label>
                             <Form.Control type="file" name="img" multiple
                             onChange = {(e) => handleChangeImages(e)} />
-                        <div className="container containeredit">
-      
-      <div className="preview-images-zone row">
-      {
-    
-          Images.length > 0 &&
-          Images.map((img,i) => {
-          return  (
-              <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
-                  <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
-                  <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
-                  {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
-              </div> 
-            )
-          })
-      }                        
-       
-      </div>
-    </div>
-                        </Form.Group>
+                        <div className="container containeredit">      
+                            <div className="preview-images-zone row">
+                            {   
+                                Images.length > 0 &&
+                                Images.map((img,i) => {
+                                return  (
+                                    <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
+                                        <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
+                                        <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
+                                        {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
+                                    </div> 
+                                    )
+                                })
+                            }                        
+                        
+                            </div>
+                        </div>
+                    </Form.Group>
                         <Form.Group className="mb-3 description_sort">
                             <Form.Label>Nội dung ngắn</Form.Label>
                             <Form.Control type="text" name="description_sort" className=''
@@ -303,7 +285,7 @@ function EditPost() {
                             <Form.Label>Giá nước</Form.Label>
                             <Form.Control type="number" name="water_price" className="" 
                             value={editPost.water_price && editPost.water_price}
-onChange = {(e) => handleChange(e)}/>
+                            onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.water_pirce[0]}</div>}
                         </Form.Group>                   
                     </Col>
@@ -332,47 +314,61 @@ onChange = {(e) => handleChange(e)}/>
                                     })}       
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 id_district">
-                                <Form.Label>Quận/Huyện/TP</Form.Label>
-                                <Form.Select name="id_district"
-                                onChange = {(e) => handleDistrict(e)}
-                                >  
-                                <option>Quận/Huyện/TP</option>
-                                    {listDistrict.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id}>{room._name}</option>
-                                        );
-                                    })}       </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 id_ward">
-                                <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
-                                <Form.Select name="id_ward"
-                                onChange = {(e) => handleChange(e)}
-                                > 
-                                <option>Xã/Phường/Thị Trấn</option>
-                                    {listWard.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id} >{room._name}</option>
-                                        );
-                                    })}       </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
-                            </Form.Group>  
-                            <Form.Group className="mb-12 id_street">
-                                <Form.Label>Đường</Form.Label>
-                                <Form.Select name="id_street"
-                                onChange = {(e) => handleChange(e)}
-                                >
-<option>Đường</option>
-                                    {listStreet.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id} >{room._name}</option>
-                                        );
-                                    })}       
-                                </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                            </Form.Group>
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_district">
+                            <Form.Label>Quận/Huyện/TP</Form.Label>
+                            <Form.Select name="id_district"
+                            onChange = {(e) => handleDistrict(e)}
+                            >  
+                            <option>Quận/Huyện/TP</option>
+                                {listDistrict.map((room, index) => {
+                                    return (
+                                        room.id == editPost.id_district
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                        </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_ward">
+                            <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
+                            <Form.Select name="id_ward"
+                            onChange = {(e) => handleChange(e)}
+                            > 
+                            <option>Xã/Phường/Thị Trấn</option>
+                                {listWard.map((room, index) => {
+                                    return (
+                                        room.id == editPost.id_ward
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                        </Form.Group>  
+                        <Form.Group className="mb-12 id_street">
+                            <Form.Label>Đường</Form.Label>
+                            <Form.Select name="id_street"
+                            onChange = {(e) => handleChange(e)}
+                            >
+                                <option>Đường</option>
+                                {listStreet.map((room, index) => {
+                                    return (
+                                        room.id == editPost.id_street
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
+                        </Form.Group>
                         <Form.Group className="mb-3 address">
                             <Form.Label>Địa chỉ</Form.Label>
                             <Form.Control type="text" name="address" className=""
@@ -401,12 +397,12 @@ onChange = {(e) => handleChange(e)}/>
                                     return (
                                         <div className="col-md-3" key={index}>
                                         {
-                                            furPost.map((fur,i)=> {
+                                            furPost.map((fur,index)=> {
                                                 return fur.id_furniture == data.id_furniture 
                                                 ?
-                                                <Form.Check type="checkbox" checked name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
+                                                <Form.Check key={index} type="checkbox" checked name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                 :
-                                                <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
+                                                <Form.Check key={index} type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                             })
                                         }
                                            
@@ -425,9 +421,9 @@ onChange = {(e) => handleChange(e)}/>
                                     return (
                                         room.id_room_type == editPost.id_roomType
                                         ?
-                                        <option checked key={index} value={room.id_room_type} >{room.name_room_type}</option>
+                                        <option checked key={index} value={room.id_room_type}>{room.name_room_type}</option>
                                         :
-                                        <option key={index} value={room.id_room_type} >{room.name_room_type}</option>
+                                        <option key={index} value={room.id_room_type}>{room.name_room_type}</option>
                                     );
                                 })}                            
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.id_roomType[0]}</div>}
@@ -436,7 +432,7 @@ onChange = {(e) => handleChange(e)}/>
                         <Form.Group className="mb-3 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
                             <Form.Control type="text" name="meta_keywords" className='' 
-                            value={ editPost.meta_keywords}
+                            value={editPost.meta_keywords}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
                         </Form.Group>
