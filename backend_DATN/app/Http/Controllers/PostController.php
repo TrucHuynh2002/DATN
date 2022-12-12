@@ -361,21 +361,21 @@ class PostController extends Controller
         $get_image = $request->file('img');
         $name = '';
         if ($request->file('img')) {
-            // foreach ($get_image as $img) {
+            foreach ($get_image as $img) {
 
-            //     $get_name_image = $img->getClientOriginalName();
-            //     // $name = $get_name_image;
-            //     $path = 'uploads/';
-            //     $name_image = explode('.', $get_name_image);
-            //     $new_image = $name_image[0] . rand(0, 99);
-            //     $img->move($path, $new_image);
-            //     // $imgPost->img = $new_image;
-            //     $imgPost = new imgPost();
-            //     $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-            //     $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-            //     $imgPost->name_image = $new_image;
-            //     $imgPost->save();
-            // }
+                $get_name_image = $img->getClientOriginalName();
+                // $name = $get_name_image;
+                $path = 'uploads/';
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $img->move($path, $new_image);
+                // $imgPost->img = $new_image;
+                $imgPost = new imgPost();
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->id_post = $id; // khóa ngoại
+                $imgPost->name_image = $new_image;
+                $imgPost->save();
+            }
          
         }
         return response()
