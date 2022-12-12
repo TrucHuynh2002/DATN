@@ -66,11 +66,14 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::where('id_post','=', (int) $id)->get();
+        $image = imgPost::all();
+        $furniture_post = furniture_post::where('id_post','=',$id)->get();
         return response()
             ->json([
                 'data' => $data,
-                'img' => $image
+                'img' => $image,
+                'fur' => $furniture_post,
+                'id-img' => $id
             ]);
 
     }
@@ -353,10 +356,10 @@ class PostController extends Controller
                 $img->move($path, $new_image);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
-                $imgPosts = $imgPost::where('id_post', '=', $id)->first();
-                $imgPosts->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-                $imgPosts->id_post = $Get_Post->id_post; // khóa ngoại
-                $imgPosts->save();
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
+                $imgPost->name_image = $new_image;
+                $imgPost->save();
             }
             // return response()->json([
             //     'img' => $name
@@ -473,14 +476,14 @@ class PostController extends Controller
 
     public function Post_DeleteImage(Request $request,$id_img){
         $path = 'uploads/';
-        $image = imgPost::find($id_img);
+        $image = imgPost::find($id_img)->first();
         if(File::exists($path.$image->name_image)) {
             File::delete($path.$image->name_image);
         }
         $image = $image->delete();
         return response()->json([
             "status" => true,
-            'id_img' => $image
+            'img' => $image
         ]);
     }
 }
