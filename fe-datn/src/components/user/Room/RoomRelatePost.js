@@ -33,9 +33,9 @@ function RoomRelatePost({onClick}) {
     setListImg(res.data.data);   
 };
 const settings = {
-  dots: true,
+  dots: false,
   infinite: false,
-  speed: 500,
+  speed: 1000,
   slidesToShow: 4,
   slidesToScroll: 48,
   initialSlide: 0,
@@ -46,7 +46,7 @@ const settings = {
         slidesToShow: 3,
         slidesToScroll: 3,
         infinite: true,
-        dots: true
+        dots: false
       }
     },
     {
@@ -77,6 +77,7 @@ const settings = {
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
             {/* <div className="row"> */}
     {/* <div className="slide_show"> */}
             {/* <Slider {...settings} > */}
@@ -102,6 +103,36 @@ const settings = {
           {/* );})}  */}
           {/* </Slider> */}
           {/* </div> */}
+=======
+            <div className="row">
+            {listPost.map((post, index) => {
+                return (     
+                  <div className="col-md-4 col-sm-6" key={index}>
+                      <div id="serv_hover" className="room">
+                          <div className="room_img">
+                          { listImg.id_post == post.id_post && (
+                              <Figure key={index}><img src={listImg.link_img_user} alt="#" /></Figure>
+                            )}
+
+                              {/* thả tym */}
+                              {/* {listHeart.map((heart, index) => { */}
+                              <div className="btn-heart" value={post.id_post}>
+                               
+                              </div>
+                                {/* })}  */}
+                          </div>
+                          <div className="bed_room">
+                              <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3>
+                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
+                              <p>{post.description_sort}</p>
+                          </div>
+                      </div>
+                  </div>
+                );
+            })}
+
+            </div>
+>>>>>>> 8dc78518f3f1c457915694707906e1b7c05c95e6
         </div>
   )
 }

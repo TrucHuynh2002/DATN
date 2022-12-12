@@ -18,6 +18,7 @@ class RoomNumberModel extends Model
         'id_user_two',
         'status',
         'room_number',
+        
     ];
     const CREATED_AT = NULL;
     const UPDATED_AT = NULL;
