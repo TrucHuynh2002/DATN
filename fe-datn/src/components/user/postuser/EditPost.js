@@ -9,40 +9,56 @@ function EditPost() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
+    console.log(listWard)
     const [listStreet, setStreet] = useState([]);
     // tỉnh
+  
     const getDataProvince = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
         setListProvince(res.data.data);
+        
+       
+      
     }
     // huyện 
-    const getDataDistrict = async (id_province) => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+    const getDataDistrict = async (id_province = "") => {    
+        console.log(id_province)
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
         setListDistrict(ress.data.data);
-        setEditPost({...editPost, [editPost.id_province]: id_province})
+        // setEditPost({...editPost, [editPost.id_province]: id_province})
     }
     // xã
-    const getDataWard = async (id_district) => {
-        var id_province = addProvince.undefined;
+    const getDataWard = async (id_district = '', id_province = '') => {
+        console.log(id_district,id_province)
+        // var id_province = addProvince.undefined;
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        // const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward`);
+        console.log(resss.data);
         setListWard(resss.data.data);
-        setEditPost({...editPost, [editPost.id_district]: id_district})
+        // setEditPost({...editPost, [editPost.id_district]: id_district})
     }     
     // đường 
-    const getDataStreet = async (id_district) => {
-        var id_province = addProvince.undefined;
+    const getDataStreet = async (id_province = '', id_district = '') => {
+        // var id_province = addProvince.undefined;
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        console.log(resss)
+        // const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree`);
         setStreet(resss.data.data);
         
     }
-    const [addProvince, setProvince] = useState([]);
+    const [addProvince, setProvince] = useState('');
+    console.log(addProvince)
     const handleProvince = async (e) => {
-        setProvince({...addProvince,[e.id_province] : e.target.value});
-        getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+        setProvince(e.target.value);
+        getDataDistrict(e.target.value);
+        setEditPost({ ...editPost, [e.target.name]: e.target.value});
     }
     const handleDistrict = async (e) => {
-        getDataWard(({[e.id_district] : e.target.value}).undefined)
-        getDataStreet(({[e.id_district] : e.target.value}).undefined);
+        console.log(addProvince)
+        getDataWard(e.target.value,addProvince)
+        getDataStreet(addProvince,e.target.value);
+        setEditPost({ ...editPost, [e.target.name]: e.target.value});
+        
     }
     const [Images,setLinkImage] = useState([])
     const {id_post} = useParams();
@@ -64,6 +80,7 @@ function EditPost() {
         // id_user: 1,
         // id_roomType: "",
         // img: [],
+        description: ""
     });
 
     
@@ -100,7 +117,9 @@ function EditPost() {
     const [uploadImages, setUploadImages] = useState([]);
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
+        console.log(id_img);
         let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);      
+        console.log(res.data);
         if(res.data.status == true) {
             setLoader(loader+1);
         }
@@ -125,6 +144,7 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+            console.log(result)
             setEditPost(result.data.data);
             setFurPost(result.data.fur)
             setLinkImage(result.data.img);
@@ -156,7 +176,7 @@ function EditPost() {
         console.log(editPost)
         let formData = new FormData();
          for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('img[]',uploadImages[i])
+            formData.append('img[]',uploadImages[i].file)
         }
         formData.append('post_name',editPost.post_name);
         formData.append('address', editPost.address);
@@ -202,8 +222,25 @@ function EditPost() {
         loadFurn();
         getDataRoomType();
         get_furnitures();
+        // Lấy hết tỉnh
         getDataProvince();
+        // Lấy hết huyện
+        getDataDistrict();
+        // Xã
+        getDataWard();
+        // Đường
+        getDataStreet();
+  
     },[loader]);
+
+    // useEffect(() => {
+    //     if(listProvince.length > 0 && editPost.id_province){
+    //         listProvince.map((pro,index) => {
+    //             pro.id_province == editPost.id_province &&
+    //                 getDataDistrict(editPost.id_province)   
+    //         })
+    //     }
+    // },[editPost])
 
   return (
     <div className="content">
@@ -268,7 +305,7 @@ function EditPost() {
 
                             <CKEditor
                                 editor={ClassicEditor}
-                                data={editPost.description ? editPost.description : '' }
+                                data={editPost.description != '' ? editPost.description : '' }
                                 onReady={(editor)=>{
                                     editor.editing.view.change((writer)=>{
                                         writer.setStyle('height','100%',editor.editing.view.document.getRoot())
@@ -337,11 +374,15 @@ function EditPost() {
                             <option>Quận/Huyện/TP</option>
                                 {listDistrict.map((room, index) => {
                                     return (
-                                        room.id == editPost.id_district
-                                        ?
-                                        <option selected key={index} value={room.id}>{room._name}</option>
-                                        :
-                                        <option key={index} value={room.id}>{room._name}</option>
+                                    
+                                             editPost.id_province &&  room._province_id == editPost.id_province
+                                          
+                                            ?
+                                            <option selected  key={index} value={room.id}>{room._name}</option>
+                                            : 
+                                            <option  key={index} value={room.id}>{room._name}</option>
+                                        
+                                    
                                     );
                                 })}       
                         </Form.Select>
@@ -355,11 +396,16 @@ function EditPost() {
                             <option>Xã/Phường/Thị Trấn</option>
                                 {listWard.map((room, index) => {
                                     return (
-                                        room.id == editPost.id_ward
+                                        editPost.id_ward && editPost.id_ward
+                                          
                                         ?
+                                        // <option selected  key={index} value={room.id}>{room._name}</option>
                                         <option selected key={index} value={room.id}>{room._name}</option>
-                                        :
-                                        <option key={index} value={room.id}>{room._name}</option>
+                                        : 
+                                        <option  key={index} value={room.id}>{room._name}</option>
+                                    
+                                      
+                                        
                                     );
                                 })}       
                             </Form.Select>

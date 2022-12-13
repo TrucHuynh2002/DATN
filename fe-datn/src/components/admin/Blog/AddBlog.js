@@ -20,8 +20,8 @@ function AddBlog() {
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
     const handleChangeImages = (e) => {
-        // console.log(321);
-        // setUploadImages(e.target.files)
+        console.log(e.target.files);
+        setUploadImages(e.target.files)
     }
     // console.log(uploadImages);
 
@@ -32,7 +32,7 @@ function AddBlog() {
     
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
-        // console.log(123);
+        console.log(123);
     };
     
     const handleSubmit = async (e) => {

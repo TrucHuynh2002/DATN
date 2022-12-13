@@ -129,7 +129,9 @@ Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
-Route::get('post/show_district/{id_province}', [PostController::class, 'show_district']);
+// Route::get('post/show_district/{id_province}', [PostController::class, 'show_district']);
+Route::get('post/show_district', [PostController::class, 'show_districtAll']);
+
 Route::get('post/show_ward', [PostController::class, 'show_ward']);
 Route::get('post/show_tree', [PostController::class, 'show_tree']);
 Route::get('trendPost', [PostController::class, 'show_trend']);
