@@ -194,7 +194,6 @@ function RoomDetail() {
             </div>
             );
             })}
-             
             <Button className="btn btn-primary col-12" style={{marginTop:'50px'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
             {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
         </div>
