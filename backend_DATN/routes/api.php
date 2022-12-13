@@ -112,11 +112,12 @@ Route::get('post/show_district_detail/{id_post}', [PostController::class, 'show_
 Route::get('post/show_ward_detail/{id_post}', [PostController::class, 'show_ward_detail']);
 Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_street_detail']);
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
-Route::delete('post/image/delete/{id_img}',[PostController::class,'Post_DeleteImage']);
+Route::delete('post/image/delete/{id_img}', [PostController::class, 'Post_DeleteImage']);
 
 // RoomNumber
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
 Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 
 
@@ -169,7 +170,7 @@ Route::get('roomType/show/{id}', [RoomTypeController::class, 'show_id']);
 Route::post('roomType/create', [RoomTypeController::class, 'created_at']);
 Route::put('roomType/update/{id}', [RoomTypeController::class, 'update']);
 Route::delete('roomType/delete/{id}', [RoomTypeController::class, 'delete']);
- 
+
 
 // Comment
 Route::get('comment/show', [CommentController::class, 'Comment_SelectAll']);

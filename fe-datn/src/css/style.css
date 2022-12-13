@@ -2052,8 +2052,7 @@ ul.social_icon li a:hover {
 
 
 .content_profile{
-    /* padding: 10px 20px 20px 20px; */
-    max-height: 100%;
+    padding: 10px 20px 20px 20px;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
 }
@@ -2422,9 +2421,16 @@ margin: 0 300px 0 375px;
     
     text-align: right;
 }
+.room_number____>.roomNumber_link{
+    display:none;
+    margin:10px;
+}
 .room_number____>button{
     display:none;
     margin:10px;
+}
+.deatilRoomMagane{
+    
 }
 .color_empty_room {
     display: inline-block;

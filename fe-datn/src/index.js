@@ -81,7 +81,7 @@ import LayoutConfig from './components/admin/setting/LayoutConfig';
 import LayoutManage from './components/user/manage/LayoutManage';
 import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
-import Square from './components/user/Square';
+import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -99,6 +99,7 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail/:id_post" element={<RoomDetail />} />
+        <Route path="square/:id_post" element={<Square />} />
         <Route path="addpost" element={<AddPostUser /> } />
         <Route path="editpost/:id_post" element={<EditPostUser />} />
         <Route path="confirmpost" element={<ConfirmPost />} />
@@ -109,14 +110,13 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
-        <Route path="roomDetailManage" element={<DetailRoomManage />} />
+        <Route path="roomDetailManage/" element={<DetailRoomManage />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom/" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
-        <Route path="square" element={<Square />} />
         {/* quan ly phong */}
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />

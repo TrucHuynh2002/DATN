@@ -26,6 +26,16 @@ class RoomNumberController extends Controller
                 'status' => true
             ]);
     }
+    public function show_id(Request $request, $id)
+    {
+        // $data = RoomNumberModel::where('id_post', '=', $id)->get();
+        $data = RoomNumberModel::find($id);
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function update(Request $request, $id)
     {
         $data = RoomNumberModel::find($id);
