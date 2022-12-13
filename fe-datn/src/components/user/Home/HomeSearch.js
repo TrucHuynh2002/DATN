@@ -79,7 +79,7 @@ function HomeSearch() {
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className="col-11">
+                    <div className="col-md-11 col-sm-12">
                       <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                           {searching && (
                               <div className='show_search'>
@@ -92,14 +92,14 @@ function HomeSearch() {
                             )
                           }
                       </div>                     
-                      <div className="col-1">
+                      <div className="col-md-1 col-sm-12">
                         <button className="btn btn-outline-secondary">
                           <i className='bx bx-search' style={{color:"#0d3380"}}></i>
                         </button>
                       </div>
                     </div>
                     <div className='row fitele-search'>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                         <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Loại phòng</option>
                           {
@@ -109,7 +109,7 @@ function HomeSearch() {
                           }
                         </select>
                       </div>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                         <Form.Select name="id_provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
                           <option>Tỉnh</option>
                           {
@@ -120,7 +120,7 @@ function HomeSearch() {
                         
                         </Form.Select>
                       </div>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                               <Form.Select name="id_district" className="form-select online_book3"
                               onChange = {(e) => handleadd(e)}
                               >
@@ -132,21 +132,21 @@ function HomeSearch() {
                                   })}                            
                               </Form.Select>
                       </div>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                         <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Giá</option>
                           <option value={1}>Dưới 1 triệu</option>
                           <option value={2}>Từ 1 - 2 triệu</option>
                         </select>
                       </div>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                         <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Diện tích</option>
                           <option value="1">Dưới 20m</option>
                           <option value="2">Trên 20m</option>
                         </select>
                       </div>
-                      <div className="col-2">
+                      <div className="col-md-2 col-sm-12">
                           <button type="submit" className="search_room_btn">Lọc</button>
                       </div>
                     </div>
