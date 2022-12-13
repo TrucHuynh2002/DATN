@@ -119,7 +119,7 @@ function RoomND() {
         variant="warning" 
         style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
         onClick={handleShow} > Lọc
-        <i class="fa-solid fa-filter" 
+        <i className="fa-solid fa-filter" 
         style={{marginLeft: '7px'}} 
          ></i>
      </Button>
