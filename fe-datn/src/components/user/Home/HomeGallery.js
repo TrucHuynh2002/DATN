@@ -62,8 +62,8 @@ function HomeGallery() {
                     onClick={(e) =>getDataPostTrendShow(list.key_word) }
                     // onChange={(e) => getDataPostTrend(list.key_word)}
                     >
-                      <div className="col-1">{index+1}</div>
-                      <div className="col-8">
+                      <div className="col-md-1 col-sm-12">{index+1}</div>
+                      <div className="col-md-8 col-sm-12">
                         <div> {list.key_word}</div>
                         <div className="content____________">
                           <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend[index][0].id_post}`}>{ListDataPostTrend[index][0].post_name}
@@ -73,7 +73,7 @@ function HomeGallery() {
                             </span>
                         </div>
                     </div>
-                      <div className="col-2 view___">
+                      <div className="col-md-2 col-sm-12 view___">
                         <div>{list.view}</div>
                         <span >lượt tìm kiếm</span>
                       </div>
@@ -104,14 +104,6 @@ function HomeGallery() {
                                             </div>
                                         </div>
                             })
-                        // )
-                        // : 
-                        // (
-                        //       <div className="">
-                        //         <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' className=""></img>
-                        //                 <p>Không tìm thấy kết quả nào</p>
-                        //         </div>
-                        // )
         }
               </Modal.Body>
               <Modal.Footer>
