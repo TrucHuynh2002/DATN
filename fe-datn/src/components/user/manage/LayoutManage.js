@@ -1,8 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
 import ListManageRoom from './ListManageRoom';
-import TableManageRoom from './TableManageRoom';
-
 function LayoutManage() {
   return (
     <>
@@ -19,14 +16,7 @@ function LayoutManage() {
         </div>
         <div className="manage">
             <div className="container">
-                 <Row>
-                    <Col sm={4}>
-                        <ListManageRoom />
-                    </Col>
-                    <Col sm={8}>                       
-                        <TableManageRoom />
-                    </Col>
-                </Row>
+                <ListManageRoom  />
             </div>
         </div> 
     </>

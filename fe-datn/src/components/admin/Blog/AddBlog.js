@@ -4,7 +4,7 @@ import axios from 'axios';
 import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function AddBlog() {git 
+function AddBlog() {
     
     var user = JSON.parse(localStorage.getItem("user"));
     const [addBlog, setAddBlog] = useState({

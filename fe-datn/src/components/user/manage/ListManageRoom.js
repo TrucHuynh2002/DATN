@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+
 import Pagination from '../Pagination';
 
 function ListManageRoom() {
@@ -9,21 +10,15 @@ function ListManageRoom() {
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
-    const [ postsPerPage, setPostsPerPage ] =useState(3);
+    const [ postsPerPage, setPostsPerPage ] =useState(10);
 
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-    const [listImg, setListImg] = useState([]);
 
     useEffect(() => {
         getData();
-        getImg();
     },[]);
-    const getImg = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-        setListImg(res.data.data);   
-    };
     // danh sach Posted
     const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
@@ -35,8 +30,8 @@ function ListManageRoom() {
         getData();
       };
   return (
-    <>
-        <div className="manage">
+    <div className="row">
+        <div className="manage col-5">
             <div className="container">
                 <div className="content_profile">
                     <div className="list-post">
@@ -46,31 +41,10 @@ function ListManageRoom() {
                             {currentPosts.length > 0 ?
                             currentPosts.map((post, index) => {
                                 return (    
-                                <div className='row' key={index}>
-                                    {listImg.map((a, index) => {
-                                    return a.id_post == post.id_post && (
-                                        <div className='col-md-2 text-center' key={index}>
-                                            <img src={a.link_img_user}
-                                            alt='' className=" avt_img" />                        
-                                        </div>
-                                    )})}
-                                    <div className='col-md-10'>
-                                        <div className='account_content____'>
-                                            <h1 className="name_title">{post.post_name}</h1>
-                                            <h3 className="content___">{post.description_sort}</h3>
-                                                <img src='https://scontent.fvca1-4.fna.fbcdn.net/v/t39.30808-1/298208490_3105609269749725_6224150366325883573_n.jpg?stp=dst-jpg_p240x240&_nc_cat=109&ccb=1-7&_nc_sid=7206a8&_nc_ohc=Av3PaLuHHAYAX_rdVrc&_nc_ht=scontent.fvca1-4.fna&oh=00_AfD6d0g4yoyayKUl1yqmjJIw6in2lIQpqpKNlWOzpZmWxQ&oe=6389BCD6' alt='' className="avtuser" /> 
-                                            <span> {post.full_name} | </span>
-                                            <span> {post.address}  | </span>
-                                            <span> {post.created_at}  | </span>
-                                        </div>
-                                        {!user ? <div></div> :
-                                            user[0].id != post.id_user  ?  <div></div> :
-                                                <div className='button-fdp row'>
-                                                    <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
-                                                    <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
-                                                </div>
-                                            }
-                                        <hr></hr>                
+                                <div className='col-md-12' key={index}>
+                                    <div className='account_content____' >
+                                        <span>  {index+1} / </span>
+                                      <span>  {post.post_name}</span>
                                     </div>
                                 </div>
                             )})
@@ -89,7 +63,52 @@ function ListManageRoom() {
                 </div>
             </div>
         </div>
-    </>
+        <div className="manage col-7">
+            {/* <div className="container"> */}
+                <div className="content_profile">
+                    <div className="list-post">
+                        <div className='row'>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                        <th>4</th>
+                                        <th>5</th>
+                                        <th>6</th>
+                                        <th>7</th>
+                                        <th>8</th>
+                                        <th>9</th>
+                                        <th>10</th>
+                                    </tr>
+                                </thead>                           
+                                <tbody className="list-cate">                
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>  
+                                </tbody>
+                            </Table>
+                            <div className='color_room_manage'>
+                                <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
+                                <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
+                                <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
+            {/* </div> */}
+        </div>
+    </div>
   )
 }
 

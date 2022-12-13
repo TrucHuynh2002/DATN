@@ -114,7 +114,7 @@ root.render(
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
         {/* quan ly phong */}
-        <Route path="layoutmanage" element={<LayoutManage />} />
+        <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
       </Route>
