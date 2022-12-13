@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import PaginationBlog from '../PaginationBlog';
 import axios from 'axios';
@@ -58,7 +58,7 @@ function Bloged() {
                                 {!user ? "" :
                                     user[0].id != a.id_user  ?  "" :
                                         <div className='button-fdp row'>
-                                            <Link className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</Link>
+                                            <NavLink className='button-fix' to={`../editBlog/${a.id_blog}`} >Sửa</NavLink>
                                             <Button className='button-del' onClick={() => deleteBlog(a.id_blog)} >Xóa</Button>
                                         </div>
                                     }

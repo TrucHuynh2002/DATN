@@ -21,7 +21,7 @@ function Profile() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="title">
+                        <div className="title" value="{tilte}">
                             <h2 className="b_title">Thông tin cá nhân</h2>
                         </div>
                     </div>
