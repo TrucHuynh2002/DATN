@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Table } from 'react-bootstrap';
+import { Table, Button} from 'react-bootstrap';
 
 import Pagination from '../Pagination';
 
@@ -11,11 +11,12 @@ function ListManageRoom() {
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
     const [ postsPerPage, setPostsPerPage ] =useState(10);
-
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-
+    const [quantityPost, setQuantityPost] = useState([]);
+    const [buttonID, setButtonID] = useState([]);
+    const [check, setCheck] = useState(true);
     useEffect(() => {
         getData();
     },[]);
@@ -24,11 +25,23 @@ function ListManageRoom() {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
     setListPost(res.data.data);
     };
-    
-    const deletePost = async (id_post) => {
-        await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
-        getData();
-      };
+    const handleChange = async (id_post) => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`); 
+        setQuantityPost(res.data.data);
+    };
+    const handleClick = async (e,quality,id_number) => {
+        var buttton = document.querySelector('#room_number_button')
+        var room_number = document.querySelector(`[data-id="${id_number}"]`)
+        check ? room_number.style.background = 'red' : room_number.style.background = 'yellow' 
+        check ? buttton.style.display = 'initial' :  buttton.style.display = 'none' 
+        check ? setCheck(false) :  setCheck(true)
+        setButtonID({...buttonID,[e.id]:quality})
+
+    }
+    const handleClickUpdate = async () => {
+        const id = buttonID.undefined;
+        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id}?_method=PUT`);
+    };
   return (
     <div className="row">
         <div className="manage col-5">
@@ -41,7 +54,7 @@ function ListManageRoom() {
                             {currentPosts.length > 0 ?
                             currentPosts.map((post, index) => {
                                 return (    
-                                <div className='col-md-12' key={index}>
+                                <div className='col-md-12' key={index} onClick={(e) =>handleChange(post.id_post)}>
                                     <div className='account_content____' >
                                         <span>  {index+1} / </span>
                                       <span>  {post.post_name}</span>
@@ -68,42 +81,43 @@ function ListManageRoom() {
                 <div className="content_profile">
                     <div className="list-post">
                         <div className='row'>
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                        <th>7</th>
-                                        <th>8</th>
-                                        <th>9</th>
-                                        <th>10</th>
-                                    </tr>
-                                </thead>                           
-                                <tbody className="list-cate">                
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>  
-                                </tbody>
-                            </Table>
+                            {quantityPost.map((quantity,index)=>{
+                               return quantity.status == 1 
+                                    ?
+                                    (
+                                        <div className="circle circle-yellow text-center red_room_number" 
+                                        name="id_" key={index} 
+                                        data-id ={quantity.room_number}
+                                        onClick={(e) => handleClick(e,quantity.id,quantity.room_number)} >
+                                            A{quantity.room_number}
+                                        </div>
+                                    ) : 
+                                    quantity.status == 2 
+                                    ?
+                                    (
+                                        <div className="circle circle-blue text-center" key={index} >
+                                              A{quantity.room_number}
+                                        </div> 
+                                       
+                                    )
+                                    :
+                                    (
+                                        <div className="circle circle-white text-center" key={index} >
+                                             A{quantity.room_number}
+                                        </div> 
+                                    )
+                            }
+                            )}
+                         
                             <div className='color_room_manage'>
-                                <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
-                                <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
+                                <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
+                                <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
                                 <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
                             </div>
                         </div>                      
+                    </div>
+                    <div className="room_number____">
+                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật đã sở hửu</Button>
                     </div>
                 </div>
             {/* </div> */}
