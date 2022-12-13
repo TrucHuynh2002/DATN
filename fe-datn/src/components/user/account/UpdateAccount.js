@@ -4,6 +4,45 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function UpdateAccount() {
+    const [listProvince, setListProvince] = useState([]);
+    const [listDistrict, setListDistrict] = useState([]);
+    const [listWard, setListWard] = useState([]);
+    const [listStreet, setStreet] = useState([]);
+    // tỉnh
+    const getDataProvince = async () => {
+        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        setListProvince(res.data.data);
+    }
+    // huyện
+    const getDataDistrict = async (id_province) => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        setListDistrict(ress.data.data);
+    }
+    // xã
+    const getDataWard = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        setListWard(resss.data.data);
+    }     
+    // đường 
+    const getDataStreet = async (id_district) => {
+        var id_province = addProvince.undefined;
+        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        setStreet(resss.data.data);
+        
+    }
+    const [addProvince, setProvince] = useState([]);
+    const handleProvince = async (e) => {
+        setProvince({...addProvince,[e.id_province] : e.target.value});
+        getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+        setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
+    }
+    const handleDistrict = async (e) => {
+        getDataWard(({[e.id_district] : e.target.value}).undefined)
+        getDataStreet(({[e.id_district] : e.target.value}).undefined);
+        setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
+    }
+
     const {id_Account} = useParams();
     const [editAccount, setEditAccount] = useState({
        full_name:"",
@@ -38,6 +77,8 @@ function UpdateAccount() {
 
     useEffect(() => {
         loadCate();
+        getDataProvince();
+
     }, []);
 
     const loadCate = async () => {
@@ -60,6 +101,78 @@ function UpdateAccount() {
                     <Form.Control type="text" name="phone" value={phone} className='' onChange={(e) => handleChange(e)} />
                     {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.phone[0]}</div>}
                 </Form.Group>
+                <Form.Group className="mb-12 id_province">
+                                <Form.Label>Tỉnh</Form.Label>
+                                <Form.Select name="id_province"
+                                onChange = {(e) => handleProvince(e)}
+                                >
+                                    <option>Tỉnh</option>
+                                    {listProvince.map((room, index) => {
+                                        return (
+                                            room.id == editAccount.id_province
+                                            ?
+                                            <option selected key={index} value={room.id}>{room._name}</option>
+                                            :
+                                            <option key={index} value={room.id}>{room._name}</option>
+                                        );
+                                    })}       
+                                </Form.Select>
+                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_district">
+                            <Form.Label>Quận/Huyện/TP</Form.Label>
+                            <Form.Select name="id_district"
+                            onChange = {(e) => handleDistrict(e)}
+                            >  
+                            <option>Quận/Huyện/TP</option>
+                                {listDistrict.map((room, index) => {
+                                    return (
+                                        room.id == editAccount.id_district
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                        </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_ward">
+                            <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
+                            <Form.Select name="id_ward"
+                            onChange = {(e) => handleChange(e)}
+                            > 
+                            <option>Xã/Phường/Thị Trấn</option>
+                                {listWard.map((room, index) => {
+                                    return (
+                                        room.id == editAccount.id_ward
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                        </Form.Group>  
+                        <Form.Group className="mb-12 id_street">
+                            <Form.Label>Đường</Form.Label>
+                            <Form.Select name="id_street"
+                            onChange = {(e) => handleChange(e)}
+                            >
+                                <option>Đường</option>
+                                {listStreet.map((room, index) => {
+                                    return (
+                                        room.id == editAccount.id_street
+                                        ?
+                                        <option selected key={index} value={room.id}>{room._name}</option>
+                                        :
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
+                        </Form.Group>
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Địa chỉ</Form.Label>
                     <Form.Control type="text" name="address" value={address} className='' onChange={(e) => handleChange(e)} />

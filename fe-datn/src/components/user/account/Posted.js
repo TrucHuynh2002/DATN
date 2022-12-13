@@ -89,7 +89,7 @@ function Posted() {
         postsPerPage={postsPerPage} 
         setCurrentPage={setCurrentPage}
         currentPage={currentPage} />
-        </div>
+    </div>
     </>
   )
 }

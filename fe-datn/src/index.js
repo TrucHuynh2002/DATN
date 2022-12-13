@@ -7,7 +7,6 @@ import './css/style.css';
 import './css/responsive.css';
 import './css/blog.css';
 import './css/pagination.css';
-// import 'antd/dist/reset.css';
 
 // admin home
 import App from './components/admin/App';
@@ -22,7 +21,6 @@ import EditRoomType from './components/admin/roomtype/EditRoomType';
 import ListRoomType from './components/admin/roomtype/ListRoomType';
 
 // admin post
-// import AddPost from './components/admin/post/AddPost';
 import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
 import DetailPost from './components/admin/post/DetailPost';
@@ -72,7 +70,6 @@ import Loi from './components/loi_404';
 import SearchRoom from './components/user/SearchRoom';
 import QA from './components/user/QA';
 import Privacy from './components/user/PrivacyPolicy';
-
 // postuser
 import AddPostUser from './components/user/postuser/App';
 import EditPostUser from './components/user/postuser/EditPost';
@@ -81,6 +78,8 @@ import Profile from './components/user/account/Profile';
 import UpdateAccount from './components/user/account/UpdateAccount';
 import ConfirmAccount from './components/user/account/ConfirmAccount';
 import LayoutConfig from './components/admin/setting/LayoutConfig';
+import LayoutManage from './components/user/manage/LayoutManage';
+import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -107,13 +106,17 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
-         <Route path="roomDetailManage/:id_post" element={<DetailRoomManage />} />
+        <Route path="roomDetailManage/:id_post" element={<DetailRoomManage />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom/" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
+        {/* quan ly phong */}
+        <Route path="layoutmanage" element={<LayoutManage />} />
+        <Route path="listmanage" element={<ListManageRoom />} />
+        <Route path="tablemanage" element={<ListManageRoom />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -121,10 +124,8 @@ root.render(
         <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
-        {/* <Route path="add_post" element={<AddPost />} /> */}
         <Route path="edit_post/:id_post" element={<EditPost />} />
         <Route path="detail_post/:id_post" element={<DetailPost />} />
-        {/* <Route path="roomdetail/:id_post" element={<DetailPost />} /> */}
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />

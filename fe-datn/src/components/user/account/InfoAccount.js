@@ -11,6 +11,7 @@ function InfoAccount() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
+    const [liststreet, setListstreet] = useState([]);
     useEffect(() => {
         getData();
         province();
@@ -31,18 +32,26 @@ function InfoAccount() {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
         setInfoAccount(res.data.data);
     };
+    // tỉnh
     const province = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show_province_detail/${id_user}`);
           setListprovince(res.data.data);
-      }; 
+      };
+    // huyện 
       const district = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show_district_detail/${id_user}`);
           setListdistrict(res.data.data);
-      };   
+      };  
+    // xã
       const ward = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/user/show_ward_detail/${id_user}`);
           setListward(res.data.data);
       }; 
+    // đường
+      const strees = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_street_detail/${id_user}`);
+          setListstreet(res.data.data);
+      };
 
     // xu ly avata
     const [show, setShow] = useState(false);
@@ -131,25 +140,31 @@ function InfoAccount() {
                         <div className='col-md-6 info_content____'> 
                             <div>
                                 <span> Địa chỉ : </span>
-                                <span style={{marginRight:'2px'}}>Thành phố </span>
-                                {listprovince.map((pro_detail, index) => {
-                                    return (   
-                                    <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}, </span>                    
-                                );
-                                })} 
-                                <span style={{marginRight:'2px'}}> Quận </span> 
-                                {listdistrict.map((dis_detail, index) => {
-                                    return (   
-                                        <span style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </span>            
+                                <span>{info.address}, </span>
+                                <span style={{marginRight:'2px'}}> Xã </span>
+                                {liststreet.map((street_detail, index) => {
+                                return (   
+                                    <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
                                     );
-                                })} 
+                                })}
                                 <span style={{marginRight:'2px'}}> Xã </span>
                                 {listward.map((ward_detail, index) => {
                                 return (   
                                     <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
                                     );
                                 })}
-                                <span>{info.address}</span>
+                                <span style={{marginRight:'2px'}}> Quận </span> 
+                                {listdistrict.map((dis_detail, index) => {
+                                    return (   
+                                        <span style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </span>            
+                                    );
+                                })} 
+                                <span style={{marginRight:'2px'}}>Thành phố </span>
+                                {listprovince.map((pro_detail, index) => {
+                                    return (   
+                                    <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}. </span>                    
+                                );
+                                })}  
                             </div>
                             <div>
                                 <span> Ngày tham gia : </span>

@@ -17,6 +17,7 @@ function RoomDetail() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
+    const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
     const [loader,setLoader] = useState(0);
     useEffect(() => {
@@ -26,6 +27,7 @@ function RoomDetail() {
         province();
         district();
         ward();
+        street();
         Furniture();
         room();
     },[loader]);
@@ -63,6 +65,10 @@ function RoomDetail() {
       const ward = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
+      }; 
+      const street = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
+          setListstreet(res.data.data);
       }; 
       const room = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);

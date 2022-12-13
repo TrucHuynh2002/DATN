@@ -474,6 +474,18 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
+    public function show_street_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+            ->join('street', 'post.id_street', '=', 'street.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function show_room_type(Request $request, $id_post)
     {
         $data = DB::table('post')

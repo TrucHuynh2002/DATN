@@ -2060,9 +2060,10 @@ ul.social_icon li a:hover {
 .button-fix{
     background-color: blue;
     padding:5px;
+    margin-right: 10px;
     color: white;
     width: 150px;
-   border-radius: 7px;
+    border-radius: 7px;
  
 }
 .button-fdp{
@@ -2396,6 +2397,35 @@ margin: 0 300px 0 375px;
   .search_room {
     margin: 30px 10px 0px 10px;
   }
+
+.manage {
+    background: #fff;
+    margin-top: 30px;
+}
+
+.color_ownership_room {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 30px;
+    background-color: red;
+}
+
+.color_deposit_room {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 30px;
+    background-color: yellow;
+}
+
+.color_empty_room {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+}
+
   .img404{
     padding: 0px 0px 0px 440px;
   }.text404{
