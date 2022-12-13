@@ -61,7 +61,7 @@ function RoomDetail() {
                             <span>Dĩa, </span>  
                             <span>Toilet, </span>
                             <span>Quạt, </span>  
-                            <span>Máy lạnh </span>       </h1>                    
+                            <span>Máy lạnh </span></h1>                    
                             <hr />
                         </div>
                     </div>
