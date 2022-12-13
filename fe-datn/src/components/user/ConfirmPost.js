@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 function ConfirmPost() {
   return (
@@ -29,14 +29,6 @@ function ConfirmPost() {
                             <Button variant="primary" type="submit">
                                 Gửi
                             </Button>
-                            {/* <Form>
-                                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                                    <Form.Check type="checkbox" label="Tôi đồng ý" />
-                                </Form.Group>
-                                <Button variant="primary" type="submit">
-                                    Gửi
-                                </Button>
-                            </Form> */}
                         </div>
                     </div>
                 </div> 
