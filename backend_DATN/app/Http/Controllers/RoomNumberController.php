@@ -39,7 +39,7 @@ class RoomNumberController extends Controller
     public function update(Request $request, $id)
     {
         $data = RoomNumberModel::find($id);
-        $data->status = 2;
+        $data->status = $request->status;
         $data->save();
         return response()
             ->json([

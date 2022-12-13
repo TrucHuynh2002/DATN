@@ -15,7 +15,12 @@ function ListManageRoom() {
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
     const [quantityPost, setQuantityPost] = useState([]);
-    const [buttonID, setButtonID] = useState([]);
+    const [buttonID, setButtonID] = useState({
+        status:2,
+    });
+    const [alert, setAlert] = useState({
+        err_list: {},
+    });
     const [check, setCheck] = useState(true);
     useEffect(() => {
         getData();
@@ -40,7 +45,17 @@ function ListManageRoom() {
     }
     const handleClickUpdate = async () => {
         const id = buttonID.undefined;
-        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id}?_method=PUT`);
+        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id}?_method=PUT`,buttonID);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+        }
     };
   return (
     <div className="row">
@@ -117,7 +132,8 @@ function ListManageRoom() {
                         </div>                      
                     </div>
                     <div className="room_number____">
-                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật đã sở hửu</Button>
+                    {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
+                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hửu</Button>
                     </div>
                 </div>
             {/* </div> */}
