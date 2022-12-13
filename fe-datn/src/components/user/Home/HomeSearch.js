@@ -92,7 +92,7 @@ function HomeSearch() {
                             )
                           }
                       </div>                     
-                      <div className="col-1">
+                      <div className="btn-search col-1">
                         <button className="btn btn-outline-secondary">
                           <i className='bx bx-search' style={{color:"#0d3380"}}></i>
                         </button>
