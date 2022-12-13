@@ -83,7 +83,7 @@ import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
 import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
-
+import PriceRoom from './components/user/Room/PriceRoom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -111,6 +111,7 @@ root.render(
           <Route path=":id_user" element={<Profile />} />
         </Route>
         <Route path="roomDetailManage/" element={<DetailRoomManage />} />
+         <Route path="priceRoom/" element={<PriceRoom />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 

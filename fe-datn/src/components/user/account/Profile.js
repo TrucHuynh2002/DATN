@@ -21,12 +21,13 @@ function Profile() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        <div className="title" value="{tilte}">
+                        <div className="title" >
                             <h2 className="b_title">Thông tin cá nhân</h2>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
         <div className="contact">
             <div className="container">
@@ -37,6 +38,7 @@ function Profile() {
                 </div>
             </div>
         </div>
+        
     </>    
   )
 }
