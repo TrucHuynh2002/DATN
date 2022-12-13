@@ -111,7 +111,6 @@ function EditPost() {
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    console.log(checkFur)
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');

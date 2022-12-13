@@ -8,8 +8,8 @@ function RoomDetail() {
         <div className="row detail">
         <h1><b className="b_title roomdetailM">Thông tin chi tiết</b></h1>
         <hr />
-                <div className='row  '>
-                        <div className='col-md-2 text-center' ></div>
+                <div className='row'>
+                        <div className='col-md-2 text-center'></div>
                     <div className='col-md-10 roomdetailM2'>
                         <div className='account_content____'>
                             <h1 className="name_title">Căn Hộ Cao Cấp</h1>
@@ -18,8 +18,7 @@ function RoomDetail() {
                         </div>
                         
                         <div className='account_content____'>
-                            <h1 className="name_title2">Giá phòng: <span>1.000.000đ</span></h1>
-                                                      
+                            <h1 className="name_title2">Giá phòng: <span>1.000.000đ</span></h1>                                                     
                             <hr />
                         </div>
 
@@ -55,7 +54,7 @@ function RoomDetail() {
 
                         <div className='account_content____'>
                             <h1 className="name_title2">Nội thất: 
-                            <span> Bàn, </span>   
+                            <span> Bàn, </span>
                             <span>Ghế, </span>
                             <span>Chén, </span>      
                             <span>Dĩa, </span>  
