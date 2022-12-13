@@ -56,12 +56,12 @@ function HomeSearch() {
         }
           const [listDistrict, setListDistrict] = useState([]);
           const [listWard, setListWard] = useState([]);
-          const getDataDistrict = async (id_province) => {
-              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+          const getDataDistrict = async (id_province = '') => {
+              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
               setListDistrict(res.data.data);
           }
           const getDataWard = async (id_district) => {
-              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward/${id_district}`);
+              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?${id_district}`);
               setListWard(res.data.data);
           }     
           const [searching,setSearching] = useState(false);
