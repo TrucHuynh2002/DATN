@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::where('id_post','=','id');
+        $image = imgPost::where('id_post','=',$id)->get();
         $furniture_post = furniture_post::where('id_post','=',$id)->get();
         return response()
             ->json([
@@ -100,20 +100,39 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-    public function show_district(Request $request, $id_province)
+    public function show_district(Request $request)
     {
-        $data = districtModel::where('district._province_id', '=', $id_province)->get();
+        $data = districtModel::where('district._province_id', '=', $request->id_province)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true,
+                
+            ]);
+    }
+
+    public function show_districtAll(Request $request){
+        if($request->id_province){
+            $data = districtModel::where('_province_id', '=', $request->id_province)->get();
+        }else{
+        $data = districtModel::all();
+        }
         return response()
             ->json([
                 'data' => $data,
                 'status' => true
             ]);
     }
+
+
     public function show_ward(Request $request)
-    {
+    {   if($request->id_province && $request->id_district){
         $data = wardModel::where('_province_id', '=', $request->id_province)
             ->where('_district_id', '=', $request->id_district)
             ->get();
+        }else{
+        $data = wardModel::all();
+        }
         return response()
             ->json([
                 'data' => $data,
@@ -122,13 +141,18 @@ class PostController extends Controller
     }
     public function show_tree(Request $request)
     {
+        if($request->id_province && $request->id_district){
         $data = StreetModel::where('_province_id', '=', $request->id_province)
             ->where('_district_id', '=', $request->id_district)
             ->get();
+        }else{
+            $data = StreetModel::all();
+        }
         return response()
             ->json([
                 'data' => $data,
-                'status' => true
+                'status' => true,
+            
             ]);
     }
     public function showPost(Request $request, $id)
@@ -351,12 +375,15 @@ class PostController extends Controller
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             // $array_fur = explode(',', $request->id_furniture);
+
+            furniture_post::where('id_post','=',$id)->delete();
             foreach ($request->id_furniture as $furniture) {
                 $furniture_post = new furniture_post();
                 $furniture_post->id_post = $id;
                 $furniture_post->id_furniture = $furniture;
                 $furniture_post->save();
             }
+            
         }
         $get_image = $request->file('img');
         $name = '';
@@ -376,6 +403,12 @@ class PostController extends Controller
                 $imgPost->name_image = $new_image;
                 $imgPost->save();
             }
+
+            return response()
+                    ->json([
+                        'data' =>  $request->file('img'),
+                        'status' => true
+                ]);
          
         }
         return response()
@@ -449,6 +482,7 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_district_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
@@ -505,7 +539,7 @@ class PostController extends Controller
         if(File::exists($path.$image->name_image)) {
             File::delete($path.$image->name_image);
         }
-        $image = $image->delete();
+        imgPost::find($id_img)->delete();
         return response()->json([
             "status" => true,
             'img' => $image
