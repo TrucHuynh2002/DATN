@@ -101,7 +101,7 @@ function GalleryContent() {
         <Button variant="secondary" onClick={handleClose}>Đóng</Button> 
       </Modal.Footer>
     </Modal>
-  </div>
+    </div>
    
     </>
   )

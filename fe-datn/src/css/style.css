@@ -2052,8 +2052,7 @@ ul.social_icon li a:hover {
 
 
 .content_profile{
-    /* padding: 10px 20px 20px 20px; */
-    max-height: 100%;
+    padding: 10px 20px 20px 20px;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
 }
@@ -2408,7 +2407,7 @@ margin: 0 300px 0 375px;
     width: 10px;
     height: 10px;
     margin-left: 30px;
-    background-color: red;
+    background-color: rgb(207, 205, 205);
 }
 
 .color_deposit_room {
@@ -2418,14 +2417,46 @@ margin: 0 300px 0 375px;
     margin-left: 30px;
     background-color: yellow;
 }
-
+.room_number____{
+    
+    text-align: right;
+}
+.room_number____>.roomNumber_link{
+    display:none;
+    margin:10px;
+}
+.room_number____>button{
+    display:none;
+    margin:10px;
+}
+.deatilRoomMagane{
+    
+}
 .color_empty_room {
     display: inline-block;
     width: 10px;
     height: 10px;
+    margin-left: 30px;
     background-color: blue;
 }
-
+.circle {
+    width: 44px;
+    height: 44px;
+    margin: 10px;
+    border: 0.2px double;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.circle-white{
+    background: #e6dde663;
+}
+.circle-blue{ 
+    background: blue;
+}
+.circle-yellow{ 
+    background: yellow;
+}
   .img404{
     padding: 0px 0px 0px 440px;
   }.text404{
@@ -2458,3 +2489,54 @@ margin: 0 300px 0 375px;
     padding: 0 0 50px 40px;
     width: 1000px;
   }
+
+/* khoi o vuong */
+.square {
+    width:100%;
+    height: 100%;
+    
+}
+.block1 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    background-color: black;
+}
+.block2 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    background-color: black;
+}
+.block3 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    background-color: black;
+}
+.block4 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    background-color: black;
+}
+.block5 {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 3px;
+    background-color: black;
+}
+
+.confirm_post {
+    width: 50%;
+    height: 100%;
+    margin: 0px auto;
+    background-color:whitesmoke;
+    box-shadow: 0 2px 5px gainsboro;
+    padding: 10px;
+}

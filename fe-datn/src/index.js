@@ -81,6 +81,8 @@ import LayoutConfig from './components/admin/setting/LayoutConfig';
 import LayoutManage from './components/user/manage/LayoutManage';
 import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
+import Square from './components/user/Room/Square';
+import ConfirmPost from './components/user/ConfirmPost';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -97,8 +99,10 @@ root.render(
         <Route path="gallery" element={<Gallery />} />
         <Route path="room" element={<Room />} />
         <Route path="roomdetail/:id_post" element={<RoomDetail />} />
+        <Route path="square/:id_post" element={<Square />} />
         <Route path="addpost" element={<AddPostUser /> } />
         <Route path="editpost/:id_post" element={<EditPostUser />} />
+        <Route path="confirmpost" element={<ConfirmPost />} />
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
@@ -106,7 +110,7 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
-        <Route path="roomDetailManage/:id_post" element={<DetailRoomManage />} />
+        <Route path="roomDetailManage/" element={<DetailRoomManage />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
@@ -114,7 +118,7 @@ root.render(
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
         {/* quan ly phong */}
-        <Route path="layoutmanage" element={<LayoutManage />} />
+        <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
       </Route>

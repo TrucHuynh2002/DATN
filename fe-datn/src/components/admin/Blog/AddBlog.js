@@ -56,7 +56,6 @@ function AddBlog() {
                 err_list: res.data
             });
         }};
-
   return (
     <div className="content">
         <div className="add-post">

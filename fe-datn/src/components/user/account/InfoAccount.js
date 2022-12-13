@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
+import { NavLink, useParams } from 'react-router-dom';
 
 function InfoAccount() {
 
@@ -88,21 +88,21 @@ function InfoAccount() {
     });
 
     return (
-            <div>
+            <>
                 <h1><b className="b_title">Thông tin cá nhân</b></h1>
                 <hr></hr>
                 {InfoAccount.map((info, index) => {
                     return (
                         <div className='row' key={index}>
                         <div className='col-md-2 text-center div_imggggg'>
-                            <Link to="#">
+                           <NavLink to="#">
                             <img src={info.link_img_user} alt={info.id_img_user} className="avt_img"/>
                                 <div className="update_imggg">
-                                    <Link to="#" onClick={handleShow}>
+                                   <NavLink to="#" onClick={handleShow}>
                                         <span>Sửa</span>
-                                    </Link>  
+                                    </NavLink>  
                                 </div>  
-                            </Link>
+                            </NavLink>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Cập nhật ảnh đại diện</Modal.Title>
@@ -177,15 +177,15 @@ function InfoAccount() {
                  {!user ? <div></div> :
                         user[0].id != id_user  ?  <div></div> :
                             <div className='col-12'>
-                                <Link to={`../update_acc/${id_user}`}>
+                               <NavLink to={`../update_acc/${id_user}`}>
                                     <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
-                                </Link>
-                                <Link to={`../confirm_acc/${id_user}`}>
+                                </NavLink>
+                               <NavLink to={`../confirm_acc/${id_user}`}>
                                     <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
-                                </Link>
+                                </NavLink>
                             </div>
                            }
-            </div>
+            </>
       
   )
 }

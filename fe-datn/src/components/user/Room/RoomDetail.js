@@ -115,7 +115,7 @@ function RoomDetail() {
                     </div>
                     <div className="product-count">
                        <div>
-                            <Link to={`..//${id_post}`} className="round-black-btn">
+                            <Link to={`../square/${a.id_post}`} className="round-black-btn">
                                 Xem chi tiết số lượng phòng
                             </Link>
                        </div>
