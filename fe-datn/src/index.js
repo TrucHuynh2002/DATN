@@ -83,7 +83,7 @@ import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
 import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
-import LayoutBill from './components/user/Room/LayoutBill';
+import LayoutBill from './components/user/Bill/LayoutBill';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
