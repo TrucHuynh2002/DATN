@@ -71,8 +71,17 @@ function QA() {
     setLoader(loader + res.data.id.length);
   }
   const [show, setShow] = useState(false);
+  const [alertShow,setAlertShow] = useState(false);
+  const checkManage = async () => {
+    const get_user = JSON.parse(localStorage.getItem('user'));
+ 
+    get_user ? setAlertShow(true) : setAlertShow(false);
+  }
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true)
+    checkManage();
+  }
   return (
     <>
         <div className="back_re">
@@ -97,8 +106,11 @@ function QA() {
                   <Modal.Title>Bạn đang nghĩ gì</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
-                  <CKEditor
+                  {
+                    alertShow 
+                    ?
+                    <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
+                    <CKEditor
                                 editor={ClassicEditor}
                                 data={qa_content}
                                 onReady={(editor)=>{
@@ -111,11 +123,21 @@ function QA() {
                                     setAddQA({addQA, content:data});
                                 }}
                                 >
-                                </CKEditor>
+                    </CKEditor>
                     <Button variant="primary" name='' type="submit">
                       Đăng
                     </Button>                    
-                  </Form> 
+                    </Form> 
+                    :
+                    (
+                      <>
+                        <div style={{padding:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                          CLICK ĐĂNG NHẬP ĐỂ HỎI - ĐÁP
+                        </div>
+                      </>
+                    )
+                  }
+               
                 </Modal.Body>
                 {/* <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}> Đóng </Button>
