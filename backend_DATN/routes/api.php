@@ -234,6 +234,7 @@ Route::get('rating/average/{id_post}', [RatingController::class, 'Rating_Average
 Route::post('search', [search_trendsController::class, 'search_key_word']);
 Route::get('search', [SearchController::class, 'keyword_searching']);
 Route::get('trend', [search_trendsController::class, 'show']);
+Route::get('getKeyWord/{keyword}', [search_trendsController::class, 'show_keyword']);
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
