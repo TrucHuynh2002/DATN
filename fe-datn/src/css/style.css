@@ -2609,5 +2609,19 @@ margin:-10px 0 0 100px;
 
 .bill {
     align-items: center;
+}.gallerynb{
+    text-align: center;
+    
+}.row.gallerynb{
+    margin-bottom: 1em;
 }
-
+.col-md-4.dataline{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 500px;
+    height: 400px;
+}.glr{
+    font-weight: 600;
+    text-transform: uppercase;
+}

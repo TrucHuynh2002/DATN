@@ -3,8 +3,26 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
+import { Line, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 
+ChartJS.register(
+    LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
+);
 function ListManageRoom() {
+     // chartjs pie
+  const dataPie = {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [{
+      data: [2, 5, 10],
+      backgroundColor: [
+        'red',
+        'blue',
+        'yellow'
+      ]
+    }],
+  };
+  
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
@@ -192,12 +210,15 @@ function ListManageRoom() {
                                 <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
                                 <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
                             </div>
+           
                         </div>                      
-                    </div>
+                    </div>       
+                       
                     <div className="room_number____">
                     {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                         <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
                     </div>
+                    
                    <div className="row">
                         <div className="bill____ col-lg-6 col-sm-12">
                             <Button id="bill_button" className="btn btn-primary" onClick={handleShowAddBill}>
@@ -306,8 +327,14 @@ function ListManageRoom() {
                         </Modal>
                         {/* end edit bill */}
                    </div>
-                </div>             
+                </div>                       <div className='row dataline'>
+        
+        <div className='col-md-4 dataline'>
+          <Pie data={dataPie} />
         </div>
+      </div>       
+        </div>
+        
     </div>
   )
 }
