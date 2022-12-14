@@ -126,7 +126,7 @@ function ListManageRoom() {
                                     :
                                     (
                                         <div className="circle circle-white text-center" 
-                                        data-id ={quantity.room_number}
+                                        data-id={quantity.room_number}
                                         onClick={(e) => handleClickWhite(e,quantity.id,quantity.room_number)} 
                                         key={index} >
                                              A{quantity.room_number}
