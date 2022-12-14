@@ -12,7 +12,6 @@ function LayoutManage() {
           if(res.data.status === true){
             const user_data = res.data.data;
             if(user_data.role != 1){
-
               navigate('/Loi');
             }
           }
