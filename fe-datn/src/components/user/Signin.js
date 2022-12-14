@@ -16,18 +16,14 @@ function Signin() {
         id_street : "",
         role: 0,
     });
-
     const {full_name, password, email, phone, address, id_province, id_district, id_ward, id_street} = addUser;
-
     const handleChange = (e) => {
         setAddUser({ ...addUser, [e.target.name]: e.target.value});
     };
-
     // xu ly loi
     const [alert, setAlert] = useState({
         err_list: {},
     });
-
     const handleSumbit = async (e) => {
         e.preventDefault();
         const dataForm = new FormData();
@@ -52,7 +48,6 @@ function Signin() {
             });
         }
     };
-
     useEffect(() => {
         getDataProvince();
     },[]);
@@ -62,7 +57,6 @@ function Signin() {
         const [listWard, setListWard] = useState([]);
         const [listStreet, setStreet] = useState([]);
         const [addProvince, setProvince] = useState([]);
-
         const handleProvince = async (e) => {
             setAddUser({ ...addUser, [e.target.name]: e.target.value});
             setProvince({...addProvince,[e.id_province] : e.target.value});
@@ -73,7 +67,6 @@ function Signin() {
             getDataStreet(e.target.value);
             setAddUser({ ...addUser, [e.target.name]: e.target.value});
         }
-
         // tỉnh
         const getDataProvince = async () => {
             const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
@@ -94,9 +87,8 @@ function Signin() {
         const getDataStreet = async (id_district) => {
             var id_province = addProvince.undefined;
             const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=1&&id_district=id_province=${id_province}&&id_district=${id_district}`);
-            console.log(resss)
             setStreet(resss.data.data);
-        }
+        };
 
   return (
     <>

@@ -83,7 +83,8 @@ import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
 import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
-import PriceRoom from './components/user/Room/PriceRoom';
+import LayoutBill from './components/user/Bill/LayoutBill';
+import Rules from './components/user/Rules';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -110,18 +111,20 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
-        <Route path="roomDetailManage/" element={<DetailRoomManage />} />
-         <Route path="priceRoom/" element={<PriceRoom />} />
+        <Route path="roomDetailManage" element={<DetailRoomManage />} />
+        <Route path="layoutBill" element={<LayoutBill />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
-        <Route path="searchroom/" element={<SearchRoom />} /> 
+        <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
+        <Route path="rules" element={<Rules />} />
         {/* quan ly phong */}
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
+        <Route path="Loi" element={<Loi />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -168,7 +171,6 @@ root.render(
           <Route path="bannerConfig/editBanner/:id_banner_config" element={<EditBanner />} />        
         </Route>
       </Route>
-      <Route path="Loi" element={<Loi />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
