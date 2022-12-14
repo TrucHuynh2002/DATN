@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
@@ -11,18 +12,21 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoomTypeController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\HeartFeelingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\EmailBillController;
+use App\Http\Controllers\Auth\EmailBookRoom;
+use App\Http\Controllers\Auth\EmailBookRoomController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\comment_QAController;
+// use App\Http\Controllers\EmailBillController as ControllersEmailBillController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\NotifyController;
@@ -36,6 +40,7 @@ use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
+use App\Mail\BookRoomMailer;
 
 /*
 |--------------------------------------------------------------------------
@@ -241,11 +246,11 @@ Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
 Route::middleware('guest')->group(function () {
     Route::post('register', [RegisteredUserController::class, 'store']);
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
-
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
     Route::put('reset-password/{token}', [NewPasswordController::class, 'store'])->name('password.update');
+    
+    Route::post('bill-mail', [EmailBillController::class, 'store']);
+    Route::post('book-room', [EmailBookRoomController::class, 'store']);
 });
 
 Route::middleware('auth')->group(function () {

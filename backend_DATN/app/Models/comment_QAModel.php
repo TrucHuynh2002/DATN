@@ -14,6 +14,7 @@ class comment_QAModel extends Model
     protected $fillable = [
         'content',
         'id_user',
-        'id_qa'
+        'id_qa',
+        'parent_id'
     ];
 }
