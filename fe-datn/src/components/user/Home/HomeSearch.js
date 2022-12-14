@@ -70,16 +70,16 @@ function HomeSearch() {
           const [getimage,setgetImage] = useState([]);
           const getKeyword = async (keyword) => {
             const res = await axios.get(`http://127.0.0.1:8000/api/getKeyWord/${keyword}`);
-            console.log(res.data); 
+           
             setgetKeywords(res.data.data)
             setGetDataPostSearch(res.data.get_post)
-            console.log(getimage);
+
             setgetImage(res.data.image);
           }
           const handleChangeKeyWord = (e) => {
             setKeyword({ ...keyword,[e.target.name]:e.target.value});
             if(e.target.value.length > 0){
-// getKeyWord/{keyword}
+
               getKeyword(e.target.value)
               setSearching(true)
             }else{
@@ -109,11 +109,9 @@ function HomeSearch() {
                                    getDataPostSearch.map((post,index) => {
                                       return (
                                         <li key={index}>
-                                     
                                               <Link to="">{post.post_name}</Link>
                                               <div style={{display:"flex"}}>
                                                   {
-                                                  
                                                     getimage.length>0 && getimage.map((img,i) => {
                                                     return  (
                                                       img.id_post == post.id_post

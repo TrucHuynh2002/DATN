@@ -15,7 +15,6 @@ class BillController extends Controller
         return response()
             ->json([
                 'data' => $data,
-                'status' => true
             ]);
     }
     public function show_id(Request $request, $id)
@@ -23,11 +22,11 @@ class BillController extends Controller
         $data = DB::table('bill')
             ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
-            ->where('bill.id_roomNumber', '=', $id);
+            ->where('room_number.id', '=', $id)
+            ->get();
         return response()
             ->json([
                 'data' => $data,
-                'status' => true
             ]);
     }
     public function created_at(Request $request)
@@ -65,15 +64,13 @@ class BillController extends Controller
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
-            'water_money' => 'required',
-            'electricity_money' => 'required',
-            'all_money' => 'required',
-            'id_roomNumber' => 'required'
+            'water_money_edit' => 'required',
+            'electricity_money_edit' => 'required',
+            'all_money_edit' => 'required',
         ], [
-            'water_money.required' => 'Không được bỏ trống',
-            'electricity_money.required' => 'Không được bỏ trống',
-            'all_money.required' => 'Không được bỏ trống',
-            'id_roomNumber.required' => 'Không được bỏ trống',
+            'water_money_edit.required' => 'Không được bỏ trống',
+            'electricity_money_edit.required' => 'Không được bỏ trống',
+            'all_money_edit.required' => 'Không được bỏ trống',
         ]);
         if ($validation->fails()) {
             return response()
@@ -82,15 +79,15 @@ class BillController extends Controller
                     'status' => false
                 ]);
         }
-        $Bill = Bill::find($id);
-        $Bill->water_money = $request->water_money;
-        $Bill->electricity_money = $request->electricity_money;
-        $Bill->all_money = $request->all_money;
+        $Bill = Bill::where('id_roomNumber', '=', $request->id)->first();
+        $Bill->water_money = $request->water_money_edit;
+        $Bill->electricity_money = $request->electricity_money_edit;
+        $Bill->all_money = $request->all_money_edit;
         $Bill->save();
         return response()
             ->json([
                 'data' =>  $Bill,
-                'status' => true
+                'status' => true,
             ]);
     }
     public function delete(Request $request, $id)
