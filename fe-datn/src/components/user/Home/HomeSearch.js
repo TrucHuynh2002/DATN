@@ -60,13 +60,28 @@ function HomeSearch() {
               const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
               setListDistrict(res.data.data);
           }
-          const getDataWard = async (id_district) => {
+          const getDataWard = async (id_district1  = '') => {
               const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?${id_district}`);
               setListWard(res.data.data);
           }     
           const [searching,setSearching] = useState(false);
+          const [getKeywords,setgetKeywords] = useState([]);
+          const getKeyword = async (keyword) => {
+            const res = await axios.get(`http://127.0.0.1:8000/api/getKeyWord/${keyword}`);
+            console.log(res);
+            setgetKeywords(res.data.data)
+       
+          }
           const handleChangeKeyWord = (e) => {
-            setKeyword({ ...keyword,[e.target.name]:e.target.value})
+            setKeyword({ ...keyword,[e.target.name]:e.target.value});
+            if(e.target.value.length > 0){
+// getKeyWord/{keyword}
+              getKeyword(e.target.value)
+              setSearching(true)
+            }else{
+              setSearching(false)
+            }
+
           }
           const handleSubmitSearch = e => {
             e.preventDefault()
@@ -81,14 +96,28 @@ function HomeSearch() {
                   <div className="row">
                     <div className="col-md-11 col-sm-12">
                       <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                          {searching && (
+                          {searching &&  (
                               <div className='show_search'>
-                              <ul>
-                                <li>
-                                  <Link to="">Nhà trọ cần thơ</Link>
-                                </li>
-                              </ul>                            
-                            </div>    
+                                 <ul>
+                                {
+                                  getKeywords > 0 
+                                  ?
+                                  getKeywords.map((keyword,index) => {
+                                   
+                                    return (
+                                      <li key={index} >
+                                        <Link to="">{keyword.key_word}</Link>
+                                      </li>
+                                    )
+                                         
+                                  })
+                                  :
+                                  <li>
+                                    <Link to="">Có 0 kết quả tìm kiếm</Link>
+                                  </li>
+                                }
+                                   </ul>               
+                              </div>    
                             )
                           }
                       </div>                     
