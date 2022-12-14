@@ -2,7 +2,7 @@
 
 
 /*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,400,600,700,900&display=swap');
@@ -2537,4 +2537,20 @@ margin: 0 300px 0 375px;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
     padding: 10px;
+}.container.priceroom{
+padding-top: 50px;
+}.btn.btn-warning.priceall{
+margin: 10px 10px 0 10px;
+}
+.btn.btn-warning.prall{
+    margin: 10px 10px 0 10px;
+}
+.dropdown-menu.drop{
+margin:-10px 0 0 100px;
+}.title12{
+    text-align: center;
+}
+
+.bill {
+    align-items: center;
 }

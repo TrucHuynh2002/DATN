@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { Button } from 'react-bootstrap';
 
 function RoomDetail() {
     const queryString = window.location.search;
@@ -16,6 +17,9 @@ function RoomDetail() {
     const [listward, setListward] = useState([]);
     const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
+    const [buttonID, setButtonID] = useState({
+        status:1,
+    });
     const [quantityPost, setQuantityPost] = useState([]);
     useEffect(() => {
         getData();
@@ -26,9 +30,12 @@ function RoomDetail() {
         street();
         Furniture();
         room();
-        handleChange();
+        getRoomNumber();
     },[]);
-    const handleChange = async () => {
+    const [alert, setAlert] = useState({
+        err_list: {},
+    });
+    const getRoomNumber = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show/${id_roomNumber}`); 
         setQuantityPost(res.data.data);
     };
@@ -66,7 +73,21 @@ function RoomDetail() {
       const room = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
         setListRoom(res.data.data);
-      };  
+      }; 
+      const handleBookRoom =  async () => {
+        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id_roomNumber}?_method=PUT`, buttonID);
+        console.log(res);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+        }
+        else{           
+            setAlert({
+                err_list: res.data
+            });
+        }
+      }
     return (
     <>
          <div className="back_re">
@@ -80,7 +101,7 @@ function RoomDetail() {
                 </div>
             </div>
         </div>
-        <div className="container" style={{marginTop:'15px'}}>
+        <div className="container" style={{marginTop:'42px'}}>
         {listPost.map((a, index) => {
             return(
             <div className="row" key={index}>
@@ -157,21 +178,23 @@ function RoomDetail() {
                     </div>
                     <div className='account_content____'>
                         <h4 className="name_title2">Nội thất: 
-                        <div className="content_detail_____">
-                            {listFurniture.map((furn_detail, index) => {
-                                return (       
-                                <div className='furniture__' key={index}>                                               
-                                    <span  value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
-                                </div>         
-                                );
-                            })}  
-                        </div>
+                            <div className="content_detail_____">
+                                {listFurniture.map((furn_detail, index) => {
+                                    return (       
+                                    <div className='furniture__' key={index}>                                               
+                                        <span  value={furn_detail.id_furniture} className={furn_detail.icon}>   {furn_detail.name}</span> 
+                                    </div>         
+                                    );
+                                })}  
+                            </div>
                         </h4>                    
                     </div>
                 </div>
             </div>
             );
             })}
+            <Button className="btn btn-primary col-12" style={{marginTop:'50px'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
+            {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
         </div>
     </>
       )

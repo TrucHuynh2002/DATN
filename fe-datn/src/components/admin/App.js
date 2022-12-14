@@ -10,7 +10,7 @@ function App() {
   const navigate = useNavigate();
   const checkAdmin = async () => {
     const get_user = JSON.parse(localStorage.getItem('user'));
-      // console.log(get_user)
+      console.log(get_user)
     if(get_user){
       const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
       if(res.data.status === true){

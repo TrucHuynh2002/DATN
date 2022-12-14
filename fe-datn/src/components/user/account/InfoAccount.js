@@ -78,7 +78,7 @@ function InfoAccount() {
             
         }
     };
-
+  
     const now = new Date(InfoAccount.updated_at);
     const dateString = now.toLocaleDateString({
     weekday: "short",
@@ -89,15 +89,15 @@ function InfoAccount() {
 
     return (
             <>
-                <h1><b className="b_title">Thông tin cá nhân</b></h1>
+                <h1><b className='b_title'>Thông tin cá nhân</b></h1>
                 <hr></hr>
                 {InfoAccount.map((info, index) => {
                     return (
                         <div className='row' key={index}>
                         <div className='col-md-2 text-center div_imggggg'>
-                           <NavLink to="#">
-                            <img src={info.link_img_user} alt={info.id_img_user} className="avt_img"/>
-                                <div className="update_imggg">
+                           <NavLink to="#" >
+                            <img src={info.link_img_user} alt={info.id_img_user} className='avt_img'/>
+                                <div className='update_imggg'>
                                    <NavLink to="#" onClick={handleShow}>
                                         <span>Sửa</span>
                                     </NavLink>  
@@ -112,7 +112,7 @@ function InfoAccount() {
                                         <Form.Group className="mb-3" controlId="logo">
                                             <Form.Control type="file" name="avatar" className='' onChange={e => handleUpdateAvatar(e)}/>
                                         </Form.Group>
-                                        {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
+                                        {alert.err_list.status === true && <div className='notice success_____'>Cập nhật thành công</div>}
                                         <Button variant="primary" className='' name="" type="submit">Cập nhật</Button> 
                                     </Form>
                                 </Modal.Body>
@@ -124,21 +124,21 @@ function InfoAccount() {
                             </Modal>
                         </div>
                         <div className='col-md-4 info_content____'>
-                            <div>
+                            <>
                                 <span>Tên đăng nhập : </span>
                                 <span>{info.full_name}</span>
-                            </div>
-                            <div>
+                            </>
+                            <>
                                 <span>Email : </span>
                                 <span>{info.email}</span>
-                            </div>
-                            <div>
+                            </>
+                            <>
                                 <span>Phone : </span>
                                 <span>{info.phone}</span>
-                            </div>
+                            </>
                         </div>
                         <div className='col-md-6 info_content____'> 
-                            <div>
+                            <>
                                 <span> Địa chỉ : </span>
                                 <span>{info.address}, </span>
                                 <span style={{marginRight:'2px'}}> Xã </span>
@@ -165,23 +165,26 @@ function InfoAccount() {
                                     <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}. </span>                    
                                 );
                                 })}  
-                            </div>
-                            <div>
+                            </>
+                            <>
                                 <span> Ngày tham gia : </span>
                                 <span> {info.updated_at}</span> 
-                            </div>
+                            </>
                         </div>
                     </div>
                      );
                 })}
-                 {!user ? <div></div> :
-                        user[0].id != id_user  ?  <div></div> :
+                 {!user ? <></> :
+                        user[0].id != id_user  ?  <></> :
                             <div className='col-12'>
                                <NavLink to={`../update_acc/${id_user}`}>
-                                    <Button variant="outline-primary" name='' className="btn-edit">Cập nhật thông tin</Button>
+                                    <Button variant="outline-primary" name='' className='btn-edit'>Cập nhật thông tin</Button>
                                 </NavLink>
                                <NavLink to={`../confirm_acc/${id_user}`}>
-                                    <Button variant="outline-warning" name='' className="btn-edit">Đổi mật khẩu</Button>
+                                    <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
+                                </NavLink>
+                                    <NavLink to={`../layoutBill`}>
+                                    <Button variant="outline-warning" name='' className='btn-edit'>Phòng đang thuê</Button>
                                 </NavLink>
                             </div>
                            }

@@ -196,7 +196,7 @@ function EditPost() {
         }
     };
 
-    useEffect(() => {
+    const fetch_data = () => {
         loadFurn();
         getDataRoomType();
         get_furnitures();
@@ -209,6 +209,11 @@ function EditPost() {
         // Đường
         getDataStreet();
   
+    }
+    
+
+    useEffect(() => {
+      fetch_data();
     },[loader]);
 
   return (
