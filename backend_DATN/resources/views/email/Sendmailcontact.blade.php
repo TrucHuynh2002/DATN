@@ -11,9 +11,9 @@
            
         }
         .table{
-            background-color: aliceblue;
+            /* background-color: aliceblue;
             height: 600px;
-            width: 650px;
+            width: 650px; */
             padding: 12px 12px 12px 12px;
         }
         .header{
