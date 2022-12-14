@@ -1,6 +1,6 @@
-import React from 'react'
-import ChartBill from './ChartBill'
-import PriceRoom from './PriceRoom'
+import React from 'react';
+import ChartBill from './ChartBill';
+import PriceRoom from '../../user/Room/PriceRoom';
 
 function LayoutBill() {
   return (
