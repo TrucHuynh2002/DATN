@@ -201,55 +201,56 @@ function Evaluate() {
 
 
       {/* show đánh giá */}
-      <div className="star-rate">
-      {
-        getAllStar.map((rate,i) => {
-          return (
-            <>
-              <div key={i}>
-                <hr/>
-                <div className='Avtar'>
-                  <img />
-                </div>
-                <div className='infor'>
-                    <div className='infor_star'>
-                      {
-                          Array(5).fill()
-                          .map((_,index) => {
-                            return index+1 > rate.rate
-                            ? 
-                            index+0.5 > rate.rate
-                              ?
-                              (
-                                <span>   <i className="fa fa-star " key={index} /></span>
-                              )
-                              :
-                            
-                              (
-                                <i className="fa fa-star-half checked" key={index}/> 
-                              )
+      <div className="component-show-rate ">
+        <div className="content-left">
+          <div className="star-rate">
+            {
+              getAllStar.map((rate,i) => {
+                return (
+                  <>
+                    <div key={i}>
+                          <div className='Avtar'>
+                            <img />
+                          </div>
+                          <div className='star-rate'>
+                            {
+                                Array(5).fill()
+                                .map((_,index) => {
+                                  return index+1 > rate.rate
+                                  ? 
+                                  index+0.5 > rate.rate
+                                    ?
+                                    (
+                                    <i className="fa fa-star " key={index} />
+                                    )
+                                    :
+                                  
+                                    (
+                                      <i className="fa fa-star-half checked" key={index}/> 
+                                    )
 
-                            :
-                            (
-                              <span>  <i className="fa fa-star checked "  key={index}  /></span>                                            
+                                  :
+                                  (
+                                    <i className="fa fa-star checked"  key={index}  />
 
-                            )
-                          })
-                      }
-                    </div>
-                    <p>
-                      {rate.full_name}
-                    </p>
-                    <p>{rate.content}</p>
-                </div>
-
-              </div>
-            </>
-          )
-        })
-       
-      }
+                                  )
+                                })
+                            }
+                          </div>
+                          <p>
+                            {rate.full_name}
+                          </p>
+                          <p>{rate.content}</p>
+                      </div>
+                  </>
+                )
+              })
+            
+            }
       </div>
+</div>
+      </div>
+    
     </>
   )
 }

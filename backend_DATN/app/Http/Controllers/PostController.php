@@ -67,7 +67,7 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::all();
+        $image = imgPost::where('id_post','=','id');
         $furniture_post = furniture_post::where('id_post','=',$id)->get();
         return response()
             ->json([
@@ -238,13 +238,13 @@ class PostController extends Controller
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
 
         if($request->quantity){
-            for ($i=0; $i < $request->quality ; $i++) { 
-                RoomNumberModel::create([
-                    'id_post' => $Get_Post->id_post,
-                    'id_user' => $request->id_user,
-                    'room_number' => $i,
-                    'status' => 0
-                ]);
+            for ($i=1; $i <= $request->quantity ; $i++) { 
+                $roomNumber = new RoomNumberModel();
+                $roomNumber->id_user = $request->id_user;
+                $roomNumber->id_post = $Get_Post->id_post;
+                $roomNumber->room_number = $i;
+                $roomNumber->status = 0;
+                $roomNumber->save();
             };
         }
         if ($request->id_furniture) {
@@ -343,8 +343,11 @@ class PostController extends Controller
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->verification = 0;
+        $Post->id_roomType = $request->id_roomType;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_street = $request->id_street;
         $Post->save();
-        $Get_Post = Post::where('id_post', '=', $id)->first();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
             // $array_fur = explode(',', $request->id_furniture);
@@ -354,35 +357,25 @@ class PostController extends Controller
                 $furniture_post->id_furniture = $furniture;
                 $furniture_post->save();
             }
-
-            return response()->json([
-                'status' => true,
-                'data' => $request->id_furniture
-            ]);
         }
         $get_image = $request->file('img');
         $name = '';
         if ($request->file('img')) {
-            // foreach ($get_image as $img) {
+            foreach ($get_image as $img) {
 
-            //     $get_name_image = $img->getClientOriginalName();
-            //     // $name = $get_name_image;
-            //     $path = 'uploads/';
-            //     $name_image = explode('.', $get_name_image);
-            //     $new_image = $name_image[0] . rand(0, 99);
-            //     $img->move($path, $new_image);
-            //     // $imgPost->img = $new_image;
-            //     $imgPost = new imgPost();
-            //     $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-            //     $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
-            //     $imgPost->name_image = $new_image;
-            //     $imgPost->save();
-            // }
-            return response()
-            ->json([
-                'data' =>  $request->file('img'),
-                'status' => true
-            ]);
+                $get_name_image = $img->getClientOriginalName();
+                // $name = $get_name_image;
+                $path = 'uploads/';
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $img->move($path, $new_image);
+                // $imgPost->img = $new_image;
+                $imgPost = new imgPost();
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->id_post = $id; // khóa ngoại
+                $imgPost->name_image = $new_image;
+                $imgPost->save();
+            }
          
         }
         return response()
@@ -473,6 +466,18 @@ class PostController extends Controller
     {
         $data = DB::table('post')
             ->join('ward', 'post.id_ward', '=', 'ward.id')
+            ->where('post.id_post', '=', $id_post)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
+    public function show_street_detail(Request $request, $id_post)
+    {
+        $data = DB::table('post')
+            ->join('street', 'post.id_street', '=', 'street.id')
             ->where('post.id_post', '=', $id_post)
             ->get();
         return response()

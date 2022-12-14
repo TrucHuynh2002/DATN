@@ -319,4 +319,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+    public function show_street_detail(Request $request, $id_user)
+    {
+        $data = DB::table('users')
+            ->join('street', 'users.id_street', '=', 'street.id')
+            ->where('users.id_user', '=', $id_user)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
 }

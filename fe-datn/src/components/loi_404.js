@@ -8,7 +8,7 @@ function loi_404() {
    
 <div className='gobackbutton'>
 
-    <a class="goback" href="/">
+    <a className="goback" href="/">
     <i className="bi bi-arrow-left-short icongoback"></i>
       
       Trở về</a>

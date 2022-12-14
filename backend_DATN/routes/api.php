@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ConfigController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoomTypeController;
-use Illuminate\Http\Request;
 use App\Http\Controllers\HeartFeelingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -198,7 +198,7 @@ Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 Route::get('user/show_province_detail/{id}', [UserController::class, 'show_province_detail']);
 Route::get('user/show_district_detail/{id}', [UserController::class, 'show_district_detail']);
 Route::get('user/show_ward_detail/{id}', [UserController::class, 'show_ward_detail']);
-
+Route::get('user/show_street_detail/{id}', [UserController::class, 'show_street_detail']);
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
@@ -208,7 +208,6 @@ Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
 Route::get('contact/show/{id}', [ContactController::class, 'Contact_SelectOne']);
 Route::post('contact/create', [ContactController::class, 'ContactAdd']);
 Route::put('contact/update/{id}', [ContactController::class, 'ContactEdit']);
-// Route::delete('contact/delete/{id}', [ContactController::class, 'ContactDelete']);
 
 // noify
 Route::get('notify/show/{id}', [NotifyController::class, 'getNotify_Favorite']);
