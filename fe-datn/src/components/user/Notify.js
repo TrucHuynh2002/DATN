@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
@@ -6,10 +7,11 @@ function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
-    
+    const [listImg, setListImg] = useState([]);
     useEffect(() => {
         // getDatafavorite();
         getDataInteractive();
+        getImg();
     },[]);
      // danh sach notify
 //   const getDatafavorite = async () => {
@@ -30,16 +32,20 @@ function Notify() {
   const getDataInteractive = async () => {
     const id_user = user ? user[0].id : 0;
     if(id_user != 0){
-    const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-    console.log(res);
-          setListnotifyInteractive(res.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+        setListnotifyInteractive(res.data.data);
     }
-};
-// xoa notify interactive
-const deletenotifyInteractive = async (id_notify_interactive) => {
-    await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
-    getDataInteractive();
-};
+    };
+    // xoa notify interactive
+    const deletenotifyInteractive = async (id_notify_interactive) => {
+        await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
+        getDataInteractive();
+    };
+    const getImg = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        setListImg(res.data.data);   
+
+    };
   return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
@@ -63,16 +69,27 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
                 <div className="notifyInteractive">
                     {listnotifyInteractive.map((cate, index) => {
                             return (     
-                                <div className='row' key={index}>  
-                                    <div className="content_notifyInteractive_img col-2">
-                                        <img className="img-fluid" src={cate.id_img_user} alt="images" />
-                                    </div>
-                                    <div className="content_notifyInteractive col-10">
-                                        <span className="notify_name">{cate.full_name}</span> vừa 
-                                        <span className='notify_interaction'> {cate.interaction}</span>
-                                        <span> bài của bạn </span>      
-                                    </div>
-                                </div>  
+                               
+                                    <div className='row' key={index}>  
+                                      
+                                            {listImg.map((a, index) => {
+                                                return a.id_user == cate.id_user_tow && (
+                                                    <div className='content_notifyInteractive_img col-1' key={index}>
+                                                        <img src={a.link_img_user}
+                                                        alt='images' className="img-fluid" />                        
+                                                    </div>
+                                                );
+                                            })}
+                                            <div className="content_notifyInteractive col-10">
+                                                <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
+                                                    <span className="notify_name">{cate.full_name}</span> vừa 
+                                                    <span className='notify_interaction'> {cate.interaction}</span>
+                                                    <span> bài của bạn </span>  
+                                                </Link>   
+                                            </div>
+                                       
+                                    </div> 
+                                
                             );     
                         })} 
                 </div> 

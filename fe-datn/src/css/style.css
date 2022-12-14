@@ -399,8 +399,14 @@ button {
 .notifyInteractive>.row{
     padding-bottom: 10px;
 }
+.content_notifyInteractive_img{
+    margin-left: 10px;
+    padding: 0;
+}
 .content_notifyInteractive_img>img{
     border-radius:50%;
+    width: 100%;
+    height: 72%;
 }
 .notify_name{
     font-weight: bold;
