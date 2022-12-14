@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Table, Button} from 'react-bootstrap';
-
+import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
 
 function ListManageRoom() {
@@ -75,6 +74,47 @@ function ListManageRoom() {
         check ? button_edit.style.display = 'initial' :  button_edit.style.display = 'none' 
         check ? setCheck(false) :  setCheck(true)
     }
+    // show add bill
+    const [showAddBill, setShowAddBill] = useState(false);
+    const handleCloseAddBill = () => setShowAddBill(false);
+    const handleShowAddBill = () => setShowAddBill(true);
+    const [addBill, setAddBill] = useState({
+        water_money: "",
+        electricity_money: "",
+        all_money: "",
+        id_roomNumber: ""
+    });
+    const {water_money, electricity_money, all_money, id_roomNumber} = addBill;
+    // Xử lý input vlaue
+    const handleChangeAddbill = async (e) => {
+        setAddBill({ ...addBill, [e.target.name] : e.target.value});
+    }
+    const handleSumbitAddBill = async (e) => {
+        e.preventDefault();
+        let formData = new FormData();
+        formData.append('water_money', water_money);
+        formData.append('electricity_money', electricity_money);
+        formData.append('all_money', all_money);
+        formData.append('id_roomNumber', id_roomNumber);
+        const res =  await axios.post('', formData);
+        if(res.data.status === true){
+            setAlert({
+                err_list: res.data
+            });
+        }
+        else{
+            setAlert({
+                err_list: res
+            });
+        }
+    };
+
+
+    // show edit bill
+    const [showEditBill, setShowEditBill] = useState(false);
+    const handleCloseEditBill = () => setShowEditBill(false);
+    const handleShowEditBill = () => setShowEditBill(true);
+
   return (
     <div className="row">
         <div className="manage col-5">
@@ -160,18 +200,113 @@ function ListManageRoom() {
                     </div>
                    <div className="row">
                         <div className="bill____ col-lg-6 col-sm-12">
-                            <Button id="bill_button" className="btn btn-primary" >
+                            <Button id="bill_button" className="btn btn-primary" onClick={handleShowAddBill}>
                             Thêm hóa đơn
                             </Button>
                         </div>
+                        {/* start add bill */}
+                        <Modal show={showAddBill} onHide={handleCloseAddBill} onSubmit={(e) => handleSumbitAddBill(e)}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Thêm hóa đơn</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                    <Form.Group className="mb-12 post_name">
+                                        <Form.Label>Tên phòng</Form.Label>
+                                        <Form.Control type="text" name="post_name" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Người sở hữu</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Tiền điện/KWH</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Tiền phòng/m<sup>3</sup></Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Giá phòng</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 electricity_money">
+                                        <Form.Label>Tổng tiền điện</Form.Label>
+                                        <Form.Control type="text" name="electricity_money" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 water_money">
+                                        <Form.Label>Tổng tiền nước</Form.Label>
+                                        <Form.Control type="text" name="water_money" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 all_money">
+                                        <Form.Label>Tổng tiền phòng</Form.Label>
+                                        <Form.Control type="text" name="all_money" className=''/>
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="primary">
+                                Thêm
+                            </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        {/* end add bill */}
                         <div className="edit_bill____ col-lg-6 col-sm-12">
-                            <Button id="edit_bill_button" className="btn btn-primary" >
+                            <Button id="edit_bill_button" className="btn btn-primary" onClick={handleShowEditBill}>
                                 Cập nhật hóa đơn 
                             </Button>
                         </div>
-                       
+                       {/* start edit bill */}
+                       <Modal show={showEditBill} onHide={handleCloseEditBill}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Cập nhật hóa đơn</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                            <Form>
+                                    <Form.Group className="mb-12 post_name">
+                                        <Form.Label>Tên phòng</Form.Label>
+                                        <Form.Control type="text" name="post_name" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Người sở hữu</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Tiền điện/KWH</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Tiền phòng/m<sup>3</sup></Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12">
+                                        <Form.Label>Giá phòng</Form.Label>
+                                        <Form.Control type="text" name="" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 electricity_money">
+                                        <Form.Label>Tổng tiền điện</Form.Label>
+                                        <Form.Control type="text" name="electricity_money" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 water_money">
+                                        <Form.Label>Tổng tiền nước</Form.Label>
+                                        <Form.Control type="text" name="water_money" className=''/>
+                                    </Form.Group>
+                                    <Form.Group className="mb-12 all_money">
+                                        <Form.Label>Tổng tiền phòng</Form.Label>
+                                        <Form.Control type="text" name="all_money" className=''/>
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                            <Button variant="primary">
+                                Cập nhật
+                            </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        {/* end edit bill */}
                    </div>
-                </div>
+                </div>             
         </div>
     </div>
   )
