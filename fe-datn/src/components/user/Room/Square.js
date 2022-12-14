@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Table, Button} from 'react-bootstrap';
 
 function Square() {
     const navigate = useNavigate();
@@ -26,7 +25,6 @@ function Square() {
         check ? buttton.style.display = 'inline-block' :  buttton.style.display = 'none' 
         check ? setCheck(false) :  setCheck(true)
         setButtonID({...buttonID,[e.id]:quality})
-
     }
     const handleClickTo = async (e) => {
         const id = buttonID.undefined;

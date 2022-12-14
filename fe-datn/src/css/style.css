@@ -877,7 +877,6 @@ font-size: 45px;
     transform: scale(1.2);
 }
 
-
 /** end about section **/
 
 
@@ -2119,14 +2118,15 @@ ul.social_icon li a:hover {
 }
 
 .show_search{
-    width: 134%;
+    width: 100%;
     background-color: white;
     margin: -15px 0 20px;
-    /* position: absolute; */
+    position: absolute;
     overflow: auto;
     padding: 5px;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 1 !important;
 }
 .searchroom{
     text-align: center;
@@ -2182,7 +2182,7 @@ margin: 0 300px 0 375px;
     font-size:19px;
 }
 .content_detail_____>span{
-    font-size:18px
+    font-size:18px;
 }
 .furniture__{
     font-size: 20px;
@@ -2191,8 +2191,7 @@ margin: 0 300px 0 375px;
 .content___________{
     margin-top:10px
 }
-.content___________>p{
-    
+.content___________>p{  
     font-size:19px
 }
 .content_detail_____>span>strong{
@@ -2556,4 +2555,8 @@ margin: 10px 10px 0 10px;
 margin:-10px 0 0 100px;
 }.title12{
     text-align: center;
+}
+
+.bill {
+    align-items: center;
 }

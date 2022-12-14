@@ -26,13 +26,11 @@ function ForgotPassword() {
             setAlert({
                 err_list: res.data
             });          
-            // console.log(alert.err_list.messages.email);
         }
         else{           
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.email);
         }
     }
 

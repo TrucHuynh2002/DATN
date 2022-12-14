@@ -8,7 +8,6 @@ import Evaluate from '../Comment/Evaluate';
 import ContentComent from '../Comment/ContentComent';
 import RoomRelatePost from './RoomRelatePost';
 
-
 function RoomDetail() {
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
@@ -48,36 +47,40 @@ function RoomDetail() {
         setListImg(res.data.data);        
     };
     const updateView = async () => {
-        const update= await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
+        const update = await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
     };
     const Furniture = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
           setListFurniture(res.data.data);
-      };
-      const province = async () => {
+    };
+    // tinh
+    const province = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
           setListprovince(res.data.data);
-      }; 
-      const district = async () => {
+    }; 
+    // huyen
+    const district = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
           setListdistrict(res.data.data);
-      };   
-      const ward = async () => {
+    };  
+    // xa 
+    const ward = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
-      }; 
-      const street = async () => {
+    };
+    // duong 
+    const street = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
           setListstreet(res.data.data);
-      }; 
-      const room = async () => {
+    };
+    const room = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
         setListRoom(res.data.data);
-      };  
+    };  
 
     const handleLoaderPost = (e,loaders) => {
         setLoader(loader+1);
-    }
+    };
  
   return (
     <div className="pd-wrap">
@@ -155,26 +158,33 @@ function RoomDetail() {
                             <span style={{marginLeft:'3px'}}> {a.area}m<sup>2</sup></span>
                         </div>
                         <div className='content_detail_____'>
-                            <p style={{marginLeft:'3px'}}>Địa chỉ :</p>        
+                            <p>Địa chỉ : </p>        
                         <span>
-                        <strong style={{marginRight:'2px'}}>Thành phố </strong>
-                                {listprovince.map((pro_detail, index) => {
-                                    return (   
-                                    <strong style={{marginRight:'2px'}}  key={index}> {pro_detail._name}, </strong>                    
+                        <strong> {a.address} </strong>
+                        <strong> Đường </strong>
+                            {liststreet.map((street_detail, index) => {
+                            return (   
+                                <strong key={index}> {street_detail._name}, </strong>                        
                                 );
-                                })}                   
-                            <strong style={{marginRight:'2px'}}> Quận </strong> 
-                                {listdistrict.map((dis_detail, index) => {
-                                    return (   
-                                        <strong style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </strong>            
-                                    );
-                                })}                   
-                            <strong style={{marginRight:'2px'}}> Xã </strong>
-                                {listward.map((ward_detail, index) => {
+                            })}
+                        <strong> Xã </strong>
+                            {listward.map((ward_detail, index) => {
+                            return (   
+                                <strong key={index}> {ward_detail._name}, </strong>                        
+                                );
+                            })}                  
+                        <strong> Quận </strong> 
+                            {listdistrict.map((dis_detail, index) => {
                                 return (   
-                                    <strong style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </strong>                        
-                                    );
-                                })} 
+                                    <strong key={index}> {dis_detail._name}, </strong>            
+                                );
+                            })}  
+                            <strong> Thành phố </strong>
+                            {listprovince.map((pro_detail, index) => {
+                                return (   
+                                <strong key={index}> {pro_detail._name}.</strong>                    
+                            );
+                            })}                   
                         </span>
                         </div>
                     </div>                        

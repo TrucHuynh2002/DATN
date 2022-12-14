@@ -110,7 +110,6 @@ function ListManageRoom() {
             </div>
         </div>
         <div className="manage col-7">
-            {/* <div className="container"> */}
                 <div className="content_profile">
                     <div className="list-post">
                         <div className='row'>
@@ -157,7 +156,7 @@ function ListManageRoom() {
                     </div>
                     <div className="room_number____">
                     {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
-                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hửu</Button>
+                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
                     </div>
                    <div className="row">
                         <div className="bill____ col-lg-6 col-sm-12">
@@ -173,7 +172,6 @@ function ListManageRoom() {
                        
                    </div>
                 </div>
-            {/* </div> */}
         </div>
     </div>
   )
