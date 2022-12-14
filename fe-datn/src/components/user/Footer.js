@@ -50,7 +50,7 @@ function Footer() {
                     <Link to="../baomat">Bảo mật tài khoản</Link>
                   </li>
                   <li>
-                    <Link to="">Xác minh nhà trọ</Link>
+                    <Link to="../rules">Điều khoản sử dụng</Link>
                   </li>
                   <li>
                     <Link to="">Báo cáo sự cố</Link>
