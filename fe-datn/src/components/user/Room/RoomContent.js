@@ -113,6 +113,7 @@ function RoomND() {
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
+
   return (
   <div className="container">
       <Button   
@@ -217,11 +218,6 @@ function RoomND() {
                                 return a.id_post == post.id_post && (
                                   <figure key={index}><img src={a.link_img_user} alt="#" /></figure>
                                   )})}
-
-                                  {/* thả tym */}
-                                  {/* {listHeart.map((heart, index) => { */}
-                                  <div className="btn-heart" value={post.id_post}></div>
-                                    {/* })}  */}
                               </div>
                               <div className="bed_room">
                                   <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>

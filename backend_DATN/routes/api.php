@@ -67,8 +67,6 @@ Route::get('banner/show/{id}', [BannerController::class, 'get_Banner_id']);
 Route::put('banner/update/{id}', [BannerController::class, 'update_Banner']);
 Route::get('about/show', [ConfigController::class, 'get_About']);
 
-
-
 // category
 Route::get('/', [CategoryController::class, 'index']);
 Route::get('category/show', [CategoryController::class, 'show']);
