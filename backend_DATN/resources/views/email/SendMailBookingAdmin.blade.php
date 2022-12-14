@@ -11,9 +11,9 @@
            
         }
         .table{
-            background-color: aliceblue;
+            /* background-color: aliceblue;
             height: 600px;
-            width: 650px;
+            width: 650px; */
             padding: 12px 12px 12px 12px;
         }
         .header{
@@ -45,24 +45,21 @@
     </style>
 </head>
 <body>
-    <div style=" height: 400px;" class="table">
-    <div style="margin-bottom: 100px;" class="body">
+    <div class="table">
+    <div class="header">
+    <h1>CÓ NGƯỜI ĐẶT PHÒNG</h1>
+    <img src="{{asset('')}}" width="100px" height="100px">
+    </div>
+    <div class="body">
+        {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
+        <b>Hello, tên </b>
+        <p>Có người đặt phòng</p>
+        <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để đăng nhập vào tài khoản.</p>
         
-        <h2>ĐỔI MẬT KHẨU</h2>
-        <p>Hello, {{$user->full_name}}</p>
-        <p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu của bạn.</p>
-        {{-- <p>{{$token}}</p> --}}
-        {{-- <p>Nhập mã đặt lại mật khẩu tại đây:</p>
-        <p class="code">123456</p>
-        <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
-        <p>Đặt lại mật khẩu ngay tại đây:</p>
-        <a href="http://localhost:3000/resetpw/{{$token}}" style="padding: 17px;background-color: black; margin-left: 260px;" class="button">Đổi mật khẩu</a>
-        {{-- <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style=" padding: 17px;
-    background-color: aliceblue;margin-left: 260px;" class="button">Đổi mật khẩu</a> --}}
     </div>
     <div class="footer">
         <p>Thân,<br>
-            Nhà Tui</p>
+        Nhà Tui</p>
     </div>
     </div>
 </body>
