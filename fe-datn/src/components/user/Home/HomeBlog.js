@@ -10,7 +10,7 @@ function HomeBlog() {
     const [listBlog, setListBlog] = useState([]);
     // phan trang blog
     const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
-    const [ blogPerPage, setBlogPerPage ] =useState(9);
+    const [ blogPerPage, setBlogPerPage ] =useState(3);
     const lastPageIndexBlog = currentPageBlog * blogPerPage;
     const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
     const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
@@ -27,7 +27,7 @@ function HomeBlog() {
 
   return (
     <>
-              <div className="blog">
+        <div className="blog">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

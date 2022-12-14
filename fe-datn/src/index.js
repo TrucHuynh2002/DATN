@@ -123,6 +123,7 @@ root.render(
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
+        <Route path="Loi" element={<Loi />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}
@@ -169,7 +170,6 @@ root.render(
           <Route path="bannerConfig/editBanner/:id_banner_config" element={<EditBanner />} />        
         </Route>
       </Route>
-      <Route path="Loi" element={<Loi />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
