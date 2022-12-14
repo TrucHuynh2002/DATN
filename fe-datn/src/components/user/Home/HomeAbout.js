@@ -7,8 +7,8 @@ function HomeAbout() {
 
   return (
     <>
-        <div className="about">
-        <div className="container-fluid">
+      <div className="about">
+        <div className="container">
           <div className="row">
             <div className="col-5">
               <div className="titlepage">

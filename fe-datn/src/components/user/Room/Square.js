@@ -25,7 +25,6 @@ function Square() {
         check ? buttton.style.display = 'inline-block' :  buttton.style.display = 'none' 
         check ? setCheck(false) :  setCheck(true)
         setButtonID({...buttonID,[e.id]:quality})
-
     }
     const handleClickTo = async (e) => {
         const id = buttonID.undefined;

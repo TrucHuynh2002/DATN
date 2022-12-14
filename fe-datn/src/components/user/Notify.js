@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 
 function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -38,6 +38,7 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
     await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
     getDataInteractive();
 };
+
   return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
@@ -47,9 +48,6 @@ const deletenotifyInteractive = async (id_notify_interactive) => {
         <li className="nav-item" style={{fontSize: "44px",color: "#dbe0e4"}}>
             <p>|</p>
         </li>
-        {/* <li className="nav-item">
-            <a className="nav-link nav-item-link" tabIndex="-1" id="postSave-tab" data-toggle="tab" href="#postSave" role="tab" aria-controls="postSave" aria-selected="false">TIN ĐÃ LƯU</a>
-        </li> */}
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px"}}>
         <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">

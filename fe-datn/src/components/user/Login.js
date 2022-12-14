@@ -13,7 +13,6 @@ function Login() {
     });
     const handleSumbit = async (e) => {
         e.preventDefault();
-        // const item = { email,password };
         const dataForm = new FormData();
         dataForm.append('email',email);
         dataForm.append('password',password);
@@ -49,7 +48,6 @@ function Login() {
                 });
            }
         }else{
-            console.log(res.data);
             setAlert({
                 err_list: res.data
             });

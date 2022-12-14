@@ -21,10 +21,7 @@ function ResetPass() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        // console.log(password)
-        // console.log(resetPassword)
         const item = { password:password, token:token, password_confirm:password_confirm};
-        // if(password == resetPassword){
             const res = await axios.post(`http://127.0.0.1:8000/api/reset-password/${token}?_method=PUT`, item);
             console.log(res);
             if(res.data.status === true){
@@ -36,14 +33,8 @@ function ResetPass() {
                 setAlert({
                     err_list: res.data
                 });
-            }
-        // }else{
-        //     // setError('Nhập lại mật khẩu không khớp')
-        //     console.log('Nhập lại mật khẩu không khớp');
-        // }
-        
+            }       
     }
-
 
   return (
     <>
