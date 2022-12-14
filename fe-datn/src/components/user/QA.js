@@ -22,7 +22,37 @@ function QA() {
   });
   
   // Trả lời bình luận
+  const [contentUpdateCmt, setContentUpdateCmt] = useState('');
+  const [UpdateComment,setUpdateComment] = useState({
+    activeUpdateComment:false,
+    idUpdateCmt: ''
+  })
+  const {
+    activeUpdateComment,
+    idUpdateCmt
+  } = UpdateComment
 
+  const handleUpdateComment = async (e,id_cmt) => {
+    e.preventDefault();
+    let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
+    console.log(res.data);
+    setContentUpdateCmt(res.data.data.content);
+    setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
+
+    // activeUpdateComment 
+    // &&
+    // setUpdateComment({activeUpdateComment:false,idUpdateCmt:id_cmt})
+   
+  }
+
+  const handleUpdateContent = async (e,id_cmt) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',contentUpdateCmt);
+    let res = await  axios.post(`http://127.0.0.1:8000/api/comment_qa/update/${id_cmt}?_method=PUT`,formData)
+    setLoader(loader + 1)
+    setUpdateComment({...UpdateComment,activeUpdateComment:false})
+  }
   const [CommentReply,setCommentReply] = useState('');
   const {
     activeComment,
@@ -89,6 +119,13 @@ function QA() {
     // console.log(res);
     setLoader(loader + 1);
   }
+  const handleDeleteComment = async (e,id_cmt) => {
+    let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
+    if(res.data.status = true){
+      setLoader(loader + 1 );
+    }
+}
+
   const [show, setShow] = useState(false);
   const [alertShow,setAlertShow] = useState(false);
   const checkManage = async () => {
@@ -232,13 +269,43 @@ function QA() {
                                     </div>
                                   </div>
                                   <div className='qa_content' style={{marginTop: '15px'}}>
-                                    <p>{listComment.content}</p>
+                                  {activeUpdateComment && idUpdateCmt == listComment.id_comment_qa ? ( 
+                                            <div className="content_comment____form_input__">
+                                              <Form 
+                                                className="display_comment" 
+                                                onSubmit={e => handleUpdateContent(e,listComment.id_comment_qa)} 
+                                                encType="multipart/form-data"
+                                              >
+                                                <Form.Group className="col-9">
+                                                  <Form.Control 
+                                                    type="text" name="updatecmt" 
+                                                    onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
+                                                    value={contentUpdateCmt}  
+                                                  />
+                                                </Form.Group>
+                                                <Button className="col-3" type="submit">Cập nhật</Button>
+                                              </Form>
+                                            </div> 
+                                            ) : ( 
+                                            <p className='cmt_name1' key={index}>{listComment.content}</p>) 
+                                            }
                                   </div>
+
+                                 {
+                                  id_user == listComment.id_user 
+                                  &&
+                                  <>
+                                   <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> 
+                                  <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
+                                  </>
+                                 }
                             
                               <span 
                               onClick={() => {
                                 // setGetIdComment(comment.id_comment); 
-                              setReply({activeComment:true,id:listComment.id_comment_qa})}}
+                              setReply({
+                                activeComment:true,id:listComment.id_comment_qa
+                              })}}
                               className="feedback_comment_span"
                               >
                               <strong>Trả lời</strong>
@@ -283,7 +350,26 @@ function QA() {
                                             </div>
                                           </div>
                                           <div className='qa_content' style={{marginTop: '15px'}}>
-                                            <p>{child.content}</p>
+                                          {activeUpdateComment && idUpdateCmt == child.id_comment_qa ? ( 
+                                            <div className="content_comment____form_input__">
+                                              <Form 
+                                                className="display_comment" 
+                                                onSubmit={e => handleUpdateContent(e,child.id_comment_qa)} 
+                                                encType="multipart/form-data"
+                                              >
+                                                <Form.Group className="col-9">
+                                                  <Form.Control 
+                                                    type="text" name="updatecmt" 
+                                                    onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
+                                                    value={contentUpdateCmt}  
+                                                  />
+                                                </Form.Group>
+                                                <Button className="col-3" type="submit">Cập nhật</Button>
+                                              </Form>
+                                            </div> 
+                                            ) : ( 
+                                            <p className='cmt_name1' key={i}>{child.content}</p>) 
+                                            }
                                         </div>
                                         <span 
                                             onClick={() => {
@@ -311,8 +397,16 @@ function QA() {
                                                 </Form>
                                               </div> 
                                             } 
-                                          </span>   
-                                          
+                                          </span>  
+                                        {
+                                          id_user == child.id_user 
+                                          &&
+                                          <>
+                                             <span  onClick={(e) => handleDeleteComment(e,child.id_comment_qa)}>Xóa</span> 
+                                              <span onClick={(e) => handleUpdateComment(e,child.id_comment_qa)} >Cập nhật</span> 
+                                          </>
+                                        }
+                                          <hr/>
                                       </>
                                      
                                       )
