@@ -66,11 +66,15 @@ function HomeSearch() {
           }     
           const [searching,setSearching] = useState(false);
           const [getKeywords,setgetKeywords] = useState([]);
+          const [getDataPostSearch,setGetDataPostSearch] = useState([]);
+          const [getimage,setgetImage] = useState([]);
           const getKeyword = async (keyword) => {
             const res = await axios.get(`http://127.0.0.1:8000/api/getKeyWord/${keyword}`);
-            console.log(res);
+            console.log(res.data); 
             setgetKeywords(res.data.data)
-       
+            setGetDataPostSearch(res.data.get_post)
+            console.log(getimage);
+            setgetImage(res.data.image);
           }
           const handleChangeKeyWord = (e) => {
             setKeyword({ ...keyword,[e.target.name]:e.target.value});
@@ -99,24 +103,61 @@ function HomeSearch() {
                           {searching &&  (
                               <div className='show_search'>
                                  <ul>
-                                {
-                                  getKeywords > 0 
-                                  ?
-                                  getKeywords.map((keyword,index) => {
-                                   
-                                    return (
-                                      <li key={index} >
-                                        <Link to="">{keyword.key_word}</Link>
-                                      </li>
-                                    )
-                                         
-                                  })
-                                  :
-                                  <li>
-                                    <Link to="">Có 0 kết quả tìm kiếm</Link>
-                                  </li>
-                                }
-                                   </ul>               
+                                  {
+                                    getDataPostSearch.length > 0
+                                    &&
+                                   getDataPostSearch.map((post,index) => {
+                                      return (
+                                        <li key={index}>
+                                     
+                                              <Link to="">{post.post_name}</Link>
+                                              <div style={{display:"flex"}}>
+                                                  {
+                                                  
+                                                    getimage.length>0 && getimage.map((img,i) => {
+                                                    return  (
+                                                      img.id_post == post.id_post
+                                                      &&
+                                                      <>
+                                                      <img src={img.link_img_user} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
+                                                      </>
+                                                      
+                                                    )
+                                                    
+                                                  
+                                                    })
+                                                  }
+                                              </div>
+                                             
+                                          
+                                             
+
+                                     
+                                        </li>
+
+                                      )
+                                   })
+
+                                  }
+                            
+                                  {
+                                    getKeywords.length > 0 
+                                    ?
+                                    getKeywords.map((keyword,index) => {
+                                    
+                                      return (
+                                        <li key={index} >
+                                          <Link to="">{keyword.key_word}</Link>
+                                        </li>
+                                      )
+                                          
+                                    })
+                                    :
+                                    <li>
+                                      <Link to="">Có 0 kết quả tìm kiếm</Link>
+                                    </li>
+                                  }
+                                </ul>               
                               </div>    
                             )
                           }
