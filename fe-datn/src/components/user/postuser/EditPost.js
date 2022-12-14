@@ -142,7 +142,6 @@ function EditPost() {
         formData.append('id_district',editPost.id_district);
         formData.append('id_ward',editPost.id_ward);
         formData.append('id_street',editPost.id_street);
-        
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({

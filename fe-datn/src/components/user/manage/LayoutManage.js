@@ -2,7 +2,29 @@ import React, { useEffect } from 'react';
 import ListManageRoom from './ListManageRoom';
 import { Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Line, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
+
+ChartJS.register(
+    LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
+);
 function LayoutManage() {
+ 
+  
+  
+  // chartjs pie
+  const dataPie = {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [{
+      data: [2, 5, 10],
+      backgroundColor: [
+        'red',
+        'blue',
+        'yellow'
+      ]
+    }],
+  };
+  
     const navigate = useNavigate();
     const checkManage = async () => {
         const get_user = JSON.parse(localStorage.getItem('user'));
@@ -36,10 +58,14 @@ function LayoutManage() {
             </div>
         </div>
         <div className="manage">
+          
             <div className="container">
+              
                 <ListManageRoom  />
             </div>
+            
         </div> 
+        
     </>
   )
 }

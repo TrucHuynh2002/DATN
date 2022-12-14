@@ -41,6 +41,8 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
 use App\Mail\BookRoomMailer;
+use App\Http\Controllers\BillController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +122,7 @@ Route::delete('post/image/delete/{id_img}', [PostController::class, 'Post_Delete
 // RoomNumber
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
 Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_postID']);
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 
@@ -248,7 +251,7 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
     Route::put('reset-password/{token}', [NewPasswordController::class, 'store'])->name('password.update');
-    
+
     Route::post('bill-mail', [EmailBillController::class, 'store']);
     Route::post('book-room', [EmailBookRoomController::class, 'store']);
 });
@@ -284,3 +287,10 @@ Route::get('StatisticalSController/comment', [StatisticalSController::class, 'co
 Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
 Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
 Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);
+
+// Bill 
+Route::get('bill/show', [BillController::class, 'show']);
+Route::get('bill/show/{id}', [BillController::class, 'show_id']);
+Route::post('bill/create', [BillController::class, 'created_at']);
+Route::put('bill/update/{id}', [BillController::class, 'update']);
+Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
