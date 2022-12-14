@@ -124,21 +124,21 @@ function InfoAccount() {
                             </Modal>
                         </div>
                         <div className='col-md-4 info_content____'>
-                            <>
-                                <span>Tên đăng nhập : </span>
+                            <div>
+                                <span>Tên người dùng: </span>
                                 <span>{info.full_name}</span>
-                            </>
-                            <>
-                                <span>Email : </span>
+                            </div>
+                            <div>
+                                <span>Email: </span>
                                 <span>{info.email}</span>
-                            </>
-                            <>
-                                <span>Phone : </span>
+                            </div>
+                            <div>
+                                <span>Số điện thoại: </span>
                                 <span>{info.phone}</span>
-                            </>
+                            </div>
                         </div>
                         <div className='col-md-6 info_content____'> 
-                            <>
+                            <div>
                                 <span> Địa chỉ : </span>
                                 <span>{info.address}, </span>
                                 <span style={{marginRight:'2px'}}> Xã </span>
@@ -165,11 +165,11 @@ function InfoAccount() {
                                     <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}. </span>                    
                                 );
                                 })}  
-                            </>
-                            <>
+                            </div>
+                            <div>
                                 <span> Ngày tham gia : </span>
                                 <span> {info.updated_at}</span> 
-                            </>
+                            </div>
                         </div>
                     </div>
                      );
