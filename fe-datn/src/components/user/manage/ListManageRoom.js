@@ -70,7 +70,7 @@ function ListManageRoom() {
         var button_bill = document.querySelector('#bill_button')
         var button_edit = document.querySelector('#edit_bill_button')
         var room_number = document.querySelector(`[data-id="${id_number}"]`)
-        check ? room_number.style.background = 'red' : room_number.style.background = 'yellow' 
+        check ? room_number.style.background = 'red' : room_number.style.background = 'blue' 
         check ? button_bill.style.display = 'initial' :  button_bill.style.display = 'none' 
         check ? button_edit.style.display = 'initial' :  button_edit.style.display = 'none' 
         check ? setCheck(false) :  setCheck(true)
