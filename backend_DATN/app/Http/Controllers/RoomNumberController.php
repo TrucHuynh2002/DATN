@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
 
@@ -24,6 +25,19 @@ class RoomNumberController extends Controller
             ->json([
                 'data' => $data,
                 'status' => true
+            ]);
+    }
+    public function show_postID(Request $request, $id)
+    {
+        $data = DB::table('room_number')
+            // ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
+            ->join('post', 'post.id_post', '=', 'room_number.id_post')
+            ->where('room_number.id', '=', $id)
+            ->get();
+        return response()
+            ->json([
+                'data' => $data,
+
             ]);
     }
     public function show_id(Request $request, $id)
