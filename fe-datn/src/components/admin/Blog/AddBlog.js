@@ -20,8 +20,8 @@ function AddBlog() {
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
     const handleChangeImages = (e) => {
-        // console.log(321);
-        // setUploadImages(e.target.files)
+        console.log(e.target.files);
+        setUploadImages(e.target.files)
     }
     // console.log(uploadImages);
 
@@ -32,7 +32,7 @@ function AddBlog() {
     
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
-        // console.log(123);
+        console.log(123);
     };
     
     const handleSubmit = async (e) => {
@@ -44,7 +44,6 @@ function AddBlog() {
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", dataForm);
-        console.log(res);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -55,8 +54,8 @@ function AddBlog() {
             setAlert({
                 err_list: res.data
             });
-        }};
-
+        }
+    };
   return (
     <div className="content">
         <div className="add-post">
@@ -105,7 +104,7 @@ function AddBlog() {
                         <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
                     </Form.Group>
                   <div className="d-grid gap-2">
-                  {alert.err_list.status === true && <div className="noti">Thêm thành công</div>}
+                  {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                       <Button variant="primary" size="sm" name='' type="submit">
                           Thêm blog
                       </Button>                     

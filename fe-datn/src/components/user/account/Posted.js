@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { NavLink, useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 
 function Posted() {
@@ -71,7 +71,7 @@ function Posted() {
                     {!user ? <div></div> :
                          user[0].id != post.id_user  ?  <div></div> :
                             <div className='button-fdp row'>
-                                <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
+                                <NavLink to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</NavLink>
                                 <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
                            }

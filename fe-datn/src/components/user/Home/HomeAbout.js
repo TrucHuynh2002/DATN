@@ -10,7 +10,7 @@ function HomeAbout() {
         <div className="about">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-5">
+            <div className="col-md-5 col-sm-12">
               <div className="titlepage">
                 <h2>Giới thiệu</h2>
                 <p align="justify">
@@ -23,7 +23,7 @@ function HomeAbout() {
                 </Link>
               </div>
             </div>
-            <div className="col-7">
+            <div className="col-md-7 col-sm-12">
               <div className="about_img">
               <Figure> 
                   <img src={Slide1} width={700} height={500} alt="loading..." />

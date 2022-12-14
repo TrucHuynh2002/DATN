@@ -70,7 +70,7 @@ function Evaluate() {
         <div className="content-left col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
           <p>Đánh giá trung bình</p>
           <div className="avg-rate font-weight-bold">
-            <span>{Math.round(averageRate)}</span>
+            <span>{averageRate}</span>
             <span>/5</span>
           </div>
           <div className="star-rate">
