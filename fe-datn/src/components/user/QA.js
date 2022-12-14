@@ -8,11 +8,26 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function QA() {
   const user = JSON.parse(localStorage.getItem('user'));
+  
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [listComment, setListComment] = useState([]);
+  const [listChildComment, setListChildComment] = useState([]);
   const [loader,setLoader] = useState(0);
+  const [getIdComment,setGetIdComment] = useState(undefined);
+  const [Reply,setReply] = useState({
+    activeComment: false,
+    id:""
+  });
+  
+  // Trả lời bình luận
+
+  const [CommentReply,setCommentReply] = useState('');
+  const {
+    activeComment,
+    id
+  } = Reply
   const [Comment,setComment] = useState({
    qa_content:"",
   });
@@ -39,7 +54,10 @@ function QA() {
    // danh sách cmt
   const getComment = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
+    console.log(res.data)
     setListComment(res.data.data);  
+    setListChildComment(res.data.data_child);
+    // console.log(res.data.data_child)
 };
 
   const handleQA = async (e) => {
@@ -51,21 +69,25 @@ function QA() {
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
-    setComment({...Comment, [e.target.name]: e.target.value})
+    setComment({[e.target.name]: e.target.value})
+    console.log(Comment)
   }
-  const handleComment = async (e,id_qa) => {
+  const handleComment = async (e,id_qa,parent_id = '') => {
+    
     e.preventDefault();
+    console.log(id_qa)
     let formData = new FormData();
     formData.append('content',qa_content)
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
+    formData.append('parent_id',parent_id)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
-    if(res.data.status === true){
-      setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-    }
+    // if(res.data.status === true){
+    //   setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
+    //   const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+    // }
     // console.log(res);
-    setLoader(loader + res.data.id.length);
+    setLoader(loader + 1);
   }
   const [show, setShow] = useState(false);
   const [alertShow,setAlertShow] = useState(false);
@@ -78,6 +100,23 @@ function QA() {
   const handleShow = () => {
     setShow(true)
     checkManage();
+  }
+
+  const handleReplyComment = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('content',Comment)
+    formData.append('id_user',id_user)
+    formData.append('id_qa',id)
+    formData.append('parent_id',getIdComment)
+    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+      if(res.data.status == true ){
+        setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
+        const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+        setReply({...Reply,activeComment:false,id:""})
+
+      }
+      setLoader(loader + res.data.id.length);
   }
   return (
     <>
@@ -177,24 +216,115 @@ function QA() {
               {listComment.map((listComment, index) => {
                 return(
                     listQa.id_qa == listComment.id_qa && (
-                    <div className="qa_comment_feedback" key={index}>
-                        <div className='qa_avatar'>
-                          <img src={listComment.link_img_user}
-                          alt='' className="content_comment_img___" />
-                          <div>
-                            <div className="feedback_comment_time">
-                              <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listComment.full_name}</Link>
-                            </div>  
-                            <div className="feedback_comment_time">
-                              {moment(listComment.created_at).local().startOf('day').fromNow()}
-                            </div>
-                          </div>
-                        </div>
-                      <div className='qa_content' style={{marginTop: '15px'}}>
-                        <p>{listComment.content}</p>
-                      </div>
-                      <hr />
-                    </div>                 
+
+               
+                                <div className="qa_comment_feedback" key={index}>
+                                  <div className='qa_avatar'>
+                                    <img src={listComment.link_img_user}
+                                    alt='' className="content_comment_img___" />
+                                    <div>
+                                      <div className="feedback_comment_time">
+                                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listComment.full_name}</Link>
+                                      </div>  
+                                      <div className="feedback_comment_time">
+                                        {moment(listComment.created_at).local().startOf('day').fromNow()}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className='qa_content' style={{marginTop: '15px'}}>
+                                    <p>{listComment.content}</p>
+                                  </div>
+                            
+                              <span 
+                              onClick={() => {
+                                // setGetIdComment(comment.id_comment); 
+                              setReply({activeComment:true,id:listComment.id_comment_qa})}}
+                              className="feedback_comment_span"
+                              >
+                              <strong>Trả lời</strong>
+                              { activeComment && id == listComment.id_comment_qa &&
+                                <div className="content_comment____form_input__">
+                                  <Form className="display_comment" 
+                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                                  >
+                                    <Form.Group className="col-9">
+                                      <Form.Control 
+                                        style={{"padding":"24px 0 24px 12px"}}
+                                        type="text"
+                                        name="qa_content" 
+                                        className=''                                        
+                                        onChange = {(e) => handleChangeComment(e)}
+                                        placeholder="Trả lời bình luận"
+                                      />
+                                    </Form.Group>
+                                    <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                                  </Form>
+                                </div> 
+                              } 
+                              </span>   
+                              
+                              <hr />   
+                                
+                                   <div style={{marginLeft:"32px"}}>
+                                   {listChildComment.map((child,i) => {
+                                      return child.parent_id == listComment.id_comment_qa  && (
+                                       
+                                      <>
+                                         <div className='qa_avatar'>
+                                            <img src={child.link_img_user}
+                                            alt='' className="content_comment_img___" />
+                                            <div>
+                                              <div className="feedback_comment_time">
+                                                <Link to={`../profile/${child.id_user}`} className='qa_link'>{child.full_name}</Link>
+                                              </div>  
+                                              <div className="feedback_comment_time">
+                                                {moment(child.created_at).local().startOf('day').fromNow()}
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className='qa_content' style={{marginTop: '15px'}}>
+                                            <p>{child.content}</p>
+                                        </div>
+                                        <span 
+                                            onClick={() => {
+                                              // setGetIdComment(comment.id_comment); 
+                                            setReply({activeComment:true,id:child.id_comment_qa})}}
+                                            className="feedback_comment_span"
+                                            >
+                                            <strong>Trả lời</strong>
+                                            { activeComment && id == child.id_comment_qa &&
+                                              <div className="content_comment____form_input__">
+                                                <Form className="display_comment" 
+                                                onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                                                >
+                                                  <Form.Group className="col-9">
+                                                    <Form.Control 
+                                                      style={{"padding":"24px 0 24px 12px"}}
+                                                      type="text"
+                                                      name="qa_content" 
+                                                      className=''                                        
+                                                      onChange = {(e) => handleChangeComment(e)}
+                                                      placeholder="Trả lời bình luận"
+                                                    />
+                                                  </Form.Group>
+                                                  <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                                                </Form>
+                                              </div> 
+                                            } 
+                                          </span>   
+                                          
+                                      </>
+                                     
+                                      )
+                                   })
+                                   }
+                                    </div>
+                                
+                                </div>  
+                            
+                
+                        
+                         
                     )
               )
               })}
