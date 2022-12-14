@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Button, Form, Modal } from 'react-bootstrap';
 import axios from 'axios';
-import moment from 'moment'
-import { useParams } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
+import moment from 'moment';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -15,7 +13,6 @@ function QA() {
   const [listImg, setListImg] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [loader,setLoader] = useState(0);
-  // const [createComment,setCreateComment] = useState(0);
   const [Comment,setComment] = useState({
    qa_content:"",
   });
@@ -139,9 +136,6 @@ function QA() {
                   }
                
                 </Modal.Body>
-                {/* <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}> Đóng </Button>
-                </Modal.Footer> */}
               </Modal>
             </div>
             {listQa.map((listQa, index) => {
@@ -200,8 +194,7 @@ function QA() {
                         <p>{listComment.content}</p>
                       </div>
                       <hr />
-                    </div>
-                   
+                    </div>                 
                     )
               )
               })}

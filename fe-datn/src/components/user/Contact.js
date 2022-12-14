@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -27,7 +27,6 @@ function Contact() {
   const handleSumbit = async (e) => {
     e.preventDefault();
     const res = await axios.post('http://127.0.0.1:8000/api/contact/create', contact);
-    console.log(res);
     if(res.data.status === true){
         setAlert({
             err_list: res.data

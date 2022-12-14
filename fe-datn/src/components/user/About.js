@@ -3,11 +3,9 @@ import axios from 'axios';
 
 function About() {
 
-
   const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
-    getData()
-   
+    getData()  
   },[]);
   
   const getData= async () => {

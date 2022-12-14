@@ -15,46 +15,30 @@ function EditPost() {
   
     const getDataProvince = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
-        setListProvince(res.data.data);
-        
-       
-      
+        setListProvince(res.data.data);          
     }
     // huyện 
     const getDataDistrict = async (id_province = "") => {    
-        console.log(id_province)
         const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
         setListDistrict(ress.data.data);
-        // setEditPost({...editPost, [editPost.id_province]: id_province})
     }
     // xã
     const getDataWard = async (id_district = '', id_province = '') => {
-        console.log(id_district,id_province)
-        // var id_province = addProvince.undefined;
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
-        // const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward`);
-        console.log(resss.data);
         setListWard(resss.data.data);
-        // setEditPost({...editPost, [editPost.id_district]: id_district})
     }     
     // đường 
     const getDataStreet = async (id_province = '', id_district = '') => {
-        // var id_province = addProvince.undefined;
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-        console.log(resss)
-        // const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree`);
-        setStreet(resss.data.data);
-        
+        setStreet(resss.data.data);       
     }
     const [addProvince, setProvince] = useState('');
-    console.log(addProvince)
     const handleProvince = async (e) => {
         setProvince(e.target.value);
         getDataDistrict(e.target.value);
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
     }
     const handleDistrict = async (e) => {
-        console.log(addProvince)
         getDataWard(e.target.value,addProvince)
         getDataStreet(addProvince,e.target.value);
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
@@ -117,9 +101,7 @@ function EditPost() {
     const [uploadImages, setUploadImages] = useState([]);
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
-        console.log(id_img);
         let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);      
-        console.log(res.data);
         if(res.data.status == true) {
             setLoader(loader+1);
         }
@@ -130,7 +112,6 @@ function EditPost() {
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    console.log(checkFur)
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
@@ -145,7 +126,6 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            console.log(result.data)
             setEditPost(result.data.data);
             setFurPost(result.data.fur)
             setLinkImage(result.data.img);
@@ -174,7 +154,6 @@ function EditPost() {
   
     const handleSumbit = async (e) => {
         e.preventDefault();
-        console.log(editPost)
         let formData = new FormData();
          for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
@@ -204,15 +183,13 @@ function EditPost() {
         formData.append('id_street',editPost.id_street);
         
         const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
-        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
             setLoader(loader + 1)
         }
-        else{
-            console.log(res.data)           
+        else{        
             setAlert({
                 err_list: res
             });
@@ -238,15 +215,6 @@ function EditPost() {
     useEffect(() => {
       fetch_data();
     },[loader]);
-
-    // useEffect(() => {
-    //     if(listProvince.length > 0 && editPost.id_province){
-    //         listProvince.map((pro,index) => {
-    //             pro.id_province == editPost.id_province &&
-    //                 getDataDistrict(editPost.id_province)   
-    //         })
-    //     }
-    // },[editPost])
 
   return (
     <div className="content">
@@ -408,10 +376,7 @@ function EditPost() {
                                         // <option selected  key={index} value={room.id}>{room._name}</option>
                                         <option selected key={index} value={room.id}>{room._name}</option>
                                         : 
-                                        <option  key={index} value={room.id}>{room._name}</option>
-                                    
-                                      
-                                        
+                                        <option  key={index} value={room.id}>{room._name}</option>                                       
                                     );
                                 })}       
                             </Form.Select>

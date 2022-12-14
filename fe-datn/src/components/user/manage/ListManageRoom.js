@@ -43,6 +43,15 @@ function ListManageRoom() {
         setButtonID({...buttonID,[e.id]:quality})
 
     }
+    const handleClickWhite = async (e,quality,id_number) => {
+        var buttton = document.querySelector('#room_number_button')
+        var room_number = document.querySelector(`[data-id="${id_number}"]`)
+        check ? room_number.style.background = 'red' : room_number.style.background = '#e6dde663' 
+        check ? buttton.style.display = 'initial' :  buttton.style.display = 'none' 
+        check ? setCheck(false) :  setCheck(true)
+        setButtonID({...buttonID,[e.id]:quality})
+
+    }
     const handleClickUpdate = async () => {
         const id = buttonID.undefined;
         const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id}?_method=PUT`,buttonID);
@@ -92,7 +101,6 @@ function ListManageRoom() {
             </div>
         </div>
         <div className="manage col-7">
-            {/* <div className="container"> */}
                 <div className="content_profile">
                     <div className="list-post">
                         <div className='row'>
@@ -117,7 +125,10 @@ function ListManageRoom() {
                                     )
                                     :
                                     (
-                                        <div className="circle circle-white text-center" key={index} >
+                                        <div className="circle circle-white text-center" 
+                                        data-id ={quantity.room_number}
+                                        onClick={(e) => handleClickWhite(e,quantity.id,quantity.room_number)} 
+                                        key={index} >
                                              A{quantity.room_number}
                                         </div> 
                                     )
@@ -133,10 +144,9 @@ function ListManageRoom() {
                     </div>
                     <div className="room_number____">
                     {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
-                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hửu</Button>
+                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
                     </div>
                 </div>
-            {/* </div> */}
         </div>
     </div>
   )

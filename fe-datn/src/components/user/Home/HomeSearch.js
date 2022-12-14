@@ -94,7 +94,7 @@ function HomeSearch() {
 
   return (
     <>
-      <div className="book_room2">
+      <div className="book_room2" id="room">
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
