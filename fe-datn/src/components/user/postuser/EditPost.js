@@ -145,7 +145,7 @@ function EditPost() {
         };
         const loadFurn = async () => {
             const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-            console.log(result)
+            console.log(result.data)
             setEditPost(result.data.data);
             setFurPost(result.data.fur)
             setLinkImage(result.data.img);
@@ -177,7 +177,7 @@ function EditPost() {
         console.log(editPost)
         let formData = new FormData();
          for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('img[]',uploadImages[i].file)
+            formData.append('img[]',uploadImages[i])
         }
         formData.append('post_name',editPost.post_name);
         formData.append('address', editPost.address);

@@ -467,7 +467,7 @@ function HeaderNavLink() {
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
-                        <form  onSubmit={(e) => handleSLogout(e)}>
+                        <form  onSubmit={(e) => handleSLogout(e)}> 
                             <button className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} type="submit">Đăng xuất</button>
                         </form>                       
                     </div>
