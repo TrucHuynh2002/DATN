@@ -14,12 +14,12 @@ function UpdateAccount() {
         setListProvince(res.data.data);
     }
     // huyện
-    const getDataDistrict = async (id_province) => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+    const getDataDistrict = async (id_province = '') => {
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?${id_province}`);
         setListDistrict(ress.data.data);
     }
     // xã
-    const getDataWard = async (id_district) => {
+    const getDataWard = async (id_district = '') => {
         var id_province = addProvince.undefined;
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
