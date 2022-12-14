@@ -4,10 +4,23 @@ import { Link } from 'react-router-dom';
 
 function PrivacyPolicy() {
   return (
+    
     <div className='privacypolicy'>
-        <Link to="/">
+      <div className="back_re">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="title">
+                            <h2>Bảo mật tài khoản</h2>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/* <Link to="/">
         <img className="logo-privacy " src={logo} alt="#" width={400} height={150} />
-      </Link>
+      </Link> */}
         <p className="title-privacy">Nguyên tắc về quyền riêng tư của Tìm Trọ Nhà Tui</p>
         <p className="content-privacy">
           Tìm Trọ Nhà Tui được xây dựng để đưa mọi người có thể tìm kiếm phòng ở dễ dàng hơn.

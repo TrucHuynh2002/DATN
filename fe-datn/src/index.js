@@ -84,7 +84,7 @@ import DetailRoomManage from './components/user/Room/DetailRoomManage';
 import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
 import LayoutBill from './components/user/Bill/LayoutBill';
-
+import Rules from './components/user/Rules';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -119,6 +119,7 @@ root.render(
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="baomat" element={<Privacy />} />
+        <Route path="rules" element={<Rules />} />
         {/* quan ly phong */}
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />

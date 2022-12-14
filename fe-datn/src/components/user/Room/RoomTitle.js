@@ -1,5 +1,4 @@
 import React from 'react';
-
 function RoomTitle() {
   return (
         <div className="back_re">

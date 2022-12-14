@@ -2350,6 +2350,7 @@ margin: 0 300px 0 375px;
     text-align: center;
     font-size: 35px;
     font-weight: 500 ;
+    margin-top: 150px;
   }.content-privacy{
     text-align: center;
     padding: 30px 300px 0px 300px;
@@ -2365,6 +2366,7 @@ margin: 0 300px 0 375px;
     font-weight: normal;
   }.privacypolicy{
     color: black;
+
   }.userroomdetail{
     width: 50px;
     height: 50px;
@@ -2555,8 +2557,57 @@ margin: 10px 10px 0 10px;
 margin:-10px 0 0 100px;
 }.title12{
     text-align: center;
+
+}.privacytext{
+    text-align: center;
+    margin: 10px 150px 0 150px;
+}.privacytexth1{
+    text-align: center;
+    font-weight: 550;
+    font-size: 35px;
+}.titletype{
+    text-align: center;
+    text-transform: uppercase;
+}.type{
+    margin-top: 150px;
+}.rule{
+    text-align: center;
+    font-size: 26px;
+    margin-top: 100px;
+    font-weight: 550;
 }
+.ruletext{
+    color: black;
+   font-size: 20px;
+    margin: 10px 400px 0 400px; 
+}.ruletext2{
+    color: black;
+   font-size: 18px;
+    margin: 15px 400px 15px 400px; 
+}.ruletext3{
+    padding: 0 400px 0 400px;
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+}.ruletextextra{
+    color: black;
+   font-size: 16px;
+    margin: 10px 400px 10px 400px;  
+    font-weight: 400;
+}.btnrule{
+    position: absolute;
+   
+    right: 50%;
+    background-color:#00afff;
+    color: white;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}
+
 
 .bill {
     align-items: center;
 }
+
