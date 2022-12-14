@@ -156,7 +156,7 @@ function EditPost() {
         e.preventDefault();
         let formData = new FormData();
          for(let i = 0; i<uploadImages.length; i++) {
-            formData.append('img[]',uploadImages[i].file)
+            formData.append('img[]',uploadImages[i])
         }
         formData.append('post_name',editPost.post_name);
         formData.append('address', editPost.address);
@@ -376,10 +376,7 @@ function EditPost() {
                                         // <option selected  key={index} value={room.id}>{room._name}</option>
                                         <option selected key={index} value={room.id}>{room._name}</option>
                                         : 
-                                        <option  key={index} value={room.id}>{room._name}</option>
-                                    
-                                      
-                                        
+                                        <option  key={index} value={room.id}>{room._name}</option>                                       
                                     );
                                 })}       
                             </Form.Select>

@@ -36,10 +36,10 @@ function Login() {
                 });
                 localStorage.setItem("user", JSON.stringify(user));
                 let item = user.find(items => items.id == res.data.data.id_user);
-                if (item.role == 2) {
-                    navigate("/admin/");
+                if (item.role == 0 || item.role == 1) {
+                    navigate("../");
                 } else {
-                    navigate("/");
+                    navigate("/admin");
                 }
            }else{
                 

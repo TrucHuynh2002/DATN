@@ -67,8 +67,8 @@ class PostController extends Controller
     public function show_id(Request $request, $id)
     {
         $data = Post::find($id);
-        $image = imgPost::where('id_post','=',$id)->get();
-        $furniture_post = furniture_post::where('id_post','=',$id)->get();
+        $image = imgPost::where('id_post', '=', $id)->get();
+        $furniture_post = furniture_post::where('id_post', '=', $id)->get();
         return response()
             ->json([
                 'data' => $data,
@@ -76,7 +76,6 @@ class PostController extends Controller
                 'fur' => $furniture_post,
                 'id-img' => $id
             ]);
-
     }
     public function showUser(Request $request, $id)
     {
@@ -107,15 +106,16 @@ class PostController extends Controller
             ->json([
                 'data' => $data,
                 'status' => true,
-                
+
             ]);
     }
 
-    public function show_districtAll(Request $request){
-        if($request->id_province){
+    public function show_districtAll(Request $request)
+    {
+        if ($request->id_province) {
             $data = districtModel::where('_province_id', '=', $request->id_province)->get();
-        }else{
-        $data = districtModel::all();
+        } else {
+            $data = districtModel::all();
         }
         return response()
             ->json([
@@ -126,12 +126,13 @@ class PostController extends Controller
 
 
     public function show_ward(Request $request)
-    {   if($request->id_province && $request->id_district){
-        $data = wardModel::where('_province_id', '=', $request->id_province)
-            ->where('_district_id', '=', $request->id_district)
-            ->get();
-        }else{
-        $data = wardModel::all();
+    {
+        if ($request->id_province && $request->id_district) {
+            $data = wardModel::where('_province_id', '=', $request->id_province)
+                ->where('_district_id', '=', $request->id_district)
+                ->get();
+        } else {
+            $data = wardModel::all();
         }
         return response()
             ->json([
@@ -141,18 +142,18 @@ class PostController extends Controller
     }
     public function show_tree(Request $request)
     {
-        if($request->id_province && $request->id_district){
-        $data = StreetModel::where('_province_id', '=', $request->id_province)
-            ->where('_district_id', '=', $request->id_district)
-            ->get();
-        }else{
+        if ($request->id_province && $request->id_district) {
+            $data = StreetModel::where('_province_id', '=', $request->id_province)
+                ->where('_district_id', '=', $request->id_district)
+                ->get();
+        } else {
             $data = StreetModel::all();
         }
         return response()
             ->json([
                 'data' => $data,
                 'status' => true,
-            
+
             ]);
     }
     public function showPost(Request $request, $id)
@@ -247,8 +248,7 @@ class PostController extends Controller
         $Post->id_ward = $request->id_ward;
         $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
-        
-            $Post->quantity = $request->quantity;
+        $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
         $Post->meta_keywords = $request->meta_keywords;
@@ -261,8 +261,8 @@ class PostController extends Controller
         $Post->save();
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
 
-        if($request->quantity){
-            for ($i=1; $i <= $request->quantity ; $i++) { 
+        if ($request->quantity) {
+            for ($i = 1; $i <= $request->quantity; $i++) {
                 $roomNumber = new RoomNumberModel();
                 $roomNumber->id_user = $request->id_user;
                 $roomNumber->id_post = $Get_Post->id_post;
@@ -285,7 +285,7 @@ class PostController extends Controller
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
-               
+
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
@@ -295,8 +295,6 @@ class PostController extends Controller
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
-         
-            
         }
         return response()
             ->json([
@@ -376,14 +374,13 @@ class PostController extends Controller
         if ($request->id_furniture) {
             // $array_fur = explode(',', $request->id_furniture);
 
-            furniture_post::where('id_post','=',$id)->delete();
+            furniture_post::where('id_post', '=', $id)->delete();
             foreach ($request->id_furniture as $furniture) {
                 $furniture_post = new furniture_post();
                 $furniture_post->id_post = $id;
                 $furniture_post->id_furniture = $furniture;
                 $furniture_post->save();
             }
-            
         }
         $get_image = $request->file('img');
         $name = '';
@@ -405,17 +402,16 @@ class PostController extends Controller
             }
 
             return response()
-                    ->json([
-                        'data' =>  $request->file('img'),
-                        'status' => true
+                ->json([
+                    'data' =>  $request->file('img'),
+                    'status' => true
                 ]);
-         
         }
         return response()
             ->json([
                 'data' =>  $Post,
                 'status' => true
-        ]);
+            ]);
     }
     public function updateView(Request $request, $id)
     {
@@ -533,11 +529,12 @@ class PostController extends Controller
             ]);
     }
 
-    public function Post_DeleteImage(Request $request,$id_img){
+    public function Post_DeleteImage(Request $request, $id_img)
+    {
         $path = 'uploads/';
         $image = imgPost::find($id_img)->first();
-        if(File::exists($path.$image->name_image)) {
-            File::delete($path.$image->name_image);
+        if (File::exists($path . $image->name_image)) {
+            File::delete($path . $image->name_image);
         }
         imgPost::find($id_img)->delete();
         return response()->json([

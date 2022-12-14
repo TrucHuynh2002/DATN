@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 function ConfirmAccount() {
-    
+
   const {id_Account} = useParams();
   const [editPassword, setEditPassword] = useState({
     password:"",

@@ -40,6 +40,7 @@ class RoomNumberController extends Controller
     {
         $data = RoomNumberModel::find($id);
         $data->status = $request->status;
+        $data->id_user_two = $request->id_user_two;
         $data->save();
         return response()
             ->json([

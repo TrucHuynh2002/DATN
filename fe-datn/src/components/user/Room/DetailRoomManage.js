@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Button } from 'react-bootstrap';
 
 function RoomDetail() {
+    var user = JSON.parse(localStorage.getItem("user"));
     const queryString = window.location.search;
     const urlParam = new URLSearchParams(queryString);
     const id_post = urlParam.get('id_post');
@@ -19,6 +20,7 @@ function RoomDetail() {
     const [listRoom, setListRoom] = useState([]);
     const [buttonID, setButtonID] = useState({
         status:1,
+        id_user_two : user[0].id
     });
     const [quantityPost, setQuantityPost] = useState([]);
     useEffect(() => {
