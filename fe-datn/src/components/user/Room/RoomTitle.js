@@ -8,6 +8,7 @@ function RoomTitle() {
                     <div className="col-md-12">
                         <div className="title">
                             <h2>Tất cả phòng</h2>
+                            <link to='PriceRoom'>tôi nè</link>
                         </div>
                     </div>
                 </div>
