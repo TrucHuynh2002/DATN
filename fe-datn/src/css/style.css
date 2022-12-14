@@ -2424,14 +2424,13 @@ margin: 0 300px 0 375px;
     background-color: yellow;
 }
 .room_number____{
-    
     text-align: right;
 }
 .room_number____>.roomNumber_link{
     display:none;
     margin:10px;
 }
-.room_number____>button{
+.room_number____>button,.bill____>button,.edit_bill____>button{
     display:none;
     margin:10px;
 }

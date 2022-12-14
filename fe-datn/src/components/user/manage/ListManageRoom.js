@@ -66,6 +66,15 @@ function ListManageRoom() {
             });
         }
     };
+    const handleClickBlue = async (e,quality,id_number) =>{
+        var button_bill = document.querySelector('#bill_button')
+        var button_edit = document.querySelector('#edit_bill_button')
+        var room_number = document.querySelector(`[data-id="${id_number}"]`)
+        check ? room_number.style.background = 'red' : room_number.style.background = 'yellow' 
+        check ? button_bill.style.display = 'initial' :  button_bill.style.display = 'none' 
+        check ? button_edit.style.display = 'initial' :  button_edit.style.display = 'none' 
+        check ? setCheck(false) :  setCheck(true)
+    }
   return (
     <div className="row">
         <div className="manage col-5">
@@ -119,7 +128,10 @@ function ListManageRoom() {
                                     quantity.status == 2 
                                     ?
                                     (
-                                        <div className="circle circle-blue text-center" key={index} >
+                                        <div className="circle circle-blue text-center"
+                                        key={index} 
+                                        data-id ={quantity.room_number}
+                                        onClick={(e) => handleClickBlue(e,quantity.id,quantity.room_number)} > 
                                               A{quantity.room_number}
                                         </div> 
                                        
@@ -147,6 +159,19 @@ function ListManageRoom() {
                     {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
                         <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hửu</Button>
                     </div>
+                   <div className="row">
+                        <div className="bill____ col-lg-6 col-sm-12">
+                            <Button id="bill_button" className="btn btn-primary" >
+                            Thêm hóa đơn
+                            </Button>
+                        </div>
+                        <div className="edit_bill____ col-lg-6 col-sm-12">
+                            <Button id="edit_bill_button" className="btn btn-primary" >
+                                Cập nhật hóa đơn 
+                            </Button>
+                        </div>
+                       
+                   </div>
                 </div>
             {/* </div> */}
         </div>
