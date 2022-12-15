@@ -109,7 +109,7 @@ function HomeSearch() {
                                    getDataPostSearch.map((post,index) => {
                                       return (
                                         <li key={index}>
-                                              <Link to="">{post.post_name}</Link>
+                                              <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
                                               <div style={{display:"flex"}}>
                                                   {
                                                     getimage.length>0 && getimage.map((img,i) => {
@@ -118,19 +118,11 @@ function HomeSearch() {
                                                       &&
                                                       <>
                                                       <img src={img.link_img_user} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
-                                                      </>
-                                                      
-                                                    )
-                                                    
-                                                  
+                                                      </>                                                      
+                                                    )                                                
                                                     })
                                                   }
-                                              </div>
-                                             
-                                          
-                                             
-
-                                     
+                                              </div>                                    
                                         </li>
 
                                       )
@@ -144,11 +136,10 @@ function HomeSearch() {
                                     getKeywords.map((keyword,index) => {
                                     
                                       return (
-                                        <li key={index} >
-                                          <Link to="">{keyword.key_word}</Link>
+                                        <li key={index}>
+                                          <Link to="room">{keyword.key_word}</Link>
                                         </li>
-                                      )
-                                          
+                                      )                                          
                                     })
                                     :
                                     <li>

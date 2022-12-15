@@ -6,20 +6,18 @@ import Slide1 from '../../../images/banner2.jpg';
 function HomeGallery() {
   return (
     
-    <>    
-     
-      <div className="about">
-        
+    <>         
+      <div className="gallery">       
         <div className="container">
-
-          <div className="row gallerynb">
-            
-          
-            <div class="gallerynb">
-              <h2 className='glr'>Nổi Bật</h2>
-              </div> 
-            
-          <div className="col-7">
+        <div className="row">
+            <div className="col-12">
+              <div className="titlepage">
+                <h2>Nổi bật</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row">          
+          <div className="col-7 gallery_col">
             <div className="about_img">
               <Figure> 
                   <img src={Slide1} width={700} height={500} alt="loading..." />
@@ -27,10 +25,8 @@ function HomeGallery() {
             </div>
             </div>
             
-            <div className="col-5">
-              
-              <div className="titlepage">
-                
+            <div className="col-5">             
+              <div className="titlepage">               
                 <h3><b>Xu hướng tìm kiếm nổi bật 2022</b></h3>
                 <p align="justify">
                   Khám phá nội dung tìm kiếm nhà trọ cung cấp thông tin các nhà trọ giá rẻ.

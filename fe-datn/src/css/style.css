@@ -2463,14 +2463,20 @@ margin: 0 300px 0 375px;
 .circle-yellow{ 
     background: yellow;
 }
+.box_404 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .img404{
-    padding: 0px 0px 0px 300px;
+    padding: 0px 0px 0px 10px;
 }
   .text404{
     text-align: center;
 }
 .gobackbutton{
-    padding: 10px 0px 0px 600px;
+    padding: 10px 0px 0px 10px;
 }
 .goback {
     background-color: #00bed37c;
@@ -2609,11 +2615,6 @@ margin:-10px 0 0 100px;
 
 .bill {
     align-items: center;
-}.gallerynb{
-    text-align: center;
-    
-}.row.gallerynb{
-    margin-bottom: 1em;
 }
 .col-md-4.dataline{
     display: block;
@@ -2621,7 +2622,15 @@ margin:-10px 0 0 100px;
     margin-left: auto;
     width: 500px;
     height: 400px;
-}.glr{
-    font-weight: 600;
-    text-transform: uppercase;
+}
+.gallery_col {
+    padding-bottom: 20px;
+}
+.bill_deatail {
+    margin: 0px auto;
+    margin-top: 30px;
+}
+.bill_row {
+    padding-left: 160px;
+    justify-content: center;
 }

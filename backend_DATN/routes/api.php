@@ -295,6 +295,8 @@ Route::get('StatisticalSController/view', [StatisticalSController::class, 'count
 Route::get('bill/show', [BillController::class, 'show']);
 Route::get('bill/show/{id}', [BillController::class, 'show_id']);
 Route::get('bill/user/{id}',[BillController::class, 'getDataBillUser']);
+// Route::post('bill/user/{id}',[BillController::class, 'getDataBillUser']);
+Route::get('bill-detail/user/{id}',[BillController::class, 'getDataBillDetailUser']);
 Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);

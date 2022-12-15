@@ -6,6 +6,7 @@ use App\Mail\BillAlert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Bill as Bill;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -117,14 +118,40 @@ class BillController extends Controller
     }
 
     public function getDataBillUser(Request $request, $id){
+        
         $Bill = DB::table('bill')->join('room_number','bill.id_roomNumber','=','room_number.room_number')
-                    ->select('bill.water_money','bill.electricty_money','bill.all_money','bill.created_at')
-                    ->where('room_number.id_user_two','=',$id)
-                    ->get();
+                    // ->join('post','post.id_post','=','room_number.id_post')
+                    ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.created_at','bill.id')
+                    ->where('room_number.id_user_two','=',$id);
+        if($request->start_date){
+            $Bill = $Bill->where('bill.created_at','>=', [Carbon::createFromFormat('Y-m-d', $request->start_date)->startOfDay()->toDateTimeString()]);
+        }
+
+        if($request->end_date){
+            $Bill = $Bill->where('bill.created_at','<=', [Carbon::createFromFormat('Y-m-d', $request->end_date)->startOfDay()->toDateTimeString()]);
+
+        }
+                $Bill = $Bill->get();
                     return response()
                     ->json([
                         'data' =>  $Bill,
-                        'status' => true
+                        'status' => true,
+                        'start_date' => $request->start_date
                     ]);
+    }
+
+    public function getDataBillDetailUser(Request $request,$id){
+        $Bill = DB::table('bill')->join('room_number','bill.id_roomNumber','=','room_number.room_number')
+        ->join('post','post.id_post','=','room_number.id_post')
+        ->join('users','users.id_user','room_number.id_user_two')
+        ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.created_at','bill.id','post.post_name','users.full_name','room_number.room_number')
+        ->where('room_number.id_user_two','=',$request->id_user)
+        ->where('bill.id','=',$id)
+        ->first();
+        return response()
+        ->json([
+            'data' =>  $Bill,
+            'status' => true
+        ]);
     }
 }

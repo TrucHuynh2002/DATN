@@ -9,10 +9,8 @@ function EditPost() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
-    console.log(listWard)
     const [listStreet, setStreet] = useState([]);
-    // tỉnh
-  
+    // tỉnh  
     const getDataProvince = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
         setListProvince(res.data.data);          
@@ -39,7 +37,7 @@ function EditPost() {
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
     }
     const handleDistrict = async (e) => {
-        getDataWard(e.target.value,addProvince)
+        getDataWard(e.target.value,addProvince);
         getDataStreet(addProvince,e.target.value);
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
         
@@ -48,47 +46,8 @@ function EditPost() {
     const {id_post} = useParams();
     const user = JSON.parse(localStorage.getItem("user"));
     const [editPost, setEditPost] = useState({
-        // post_name: "",
-        // description_sort: "",
-        // description: "",
-        // area: "",
-        // room_price: "",
-        // water_price: "",
-        // electricity_price: "",
-        // address: "",
-        // quantity: "",
-        // id_furniture: [],
-        // meta_title: "",
-        // meta_description: "",
-        // meta_keywords: "",
-        // id_user: 1,
-        // id_roomType: "",
-        // img: [],
         description: ""
     });
-
-    
-
-    // const { 
-    //     post_name, 
-    //     description_sort,
-    //     description,
-    //     area,
-    //     room_price,
-    //     water_price,
-    //     electricity_price,
-    //     address,
-    //     quantity,
-    //     id_furniture,
-    //     meta_title,
-    //     meta_description,
-    //     meta_keywords,
-    //     id_user,
-    //     id_roomType,
-    //     img,
-    //     } = editPost;
-       // xu ly loi
-    //    console.log(editPost)
        const [furPost,setFurPost] = useState([]);
        const [alert, setAlert] = useState({
         err_list: {
@@ -206,8 +165,7 @@ function EditPost() {
         // Xã
         getDataWard();
         // Đường
-        getDataStreet();
-  
+        getDataStreet(); 
     }
     
 
@@ -346,16 +304,13 @@ function EditPost() {
                             >  
                             <option>Quận/Huyện/TP</option>
                                 {listDistrict.map((room, index) => {
-                                    return (
-                                    
+                                    return (                                    
                                              editPost.id_province &&  room._province_id == editPost.id_province
                                           
                                             ?
                                             <option selected  key={index} value={room.id}>{room._name}</option>
                                             : 
-                                            <option  key={index} value={room.id}>{room._name}</option>
-                                        
-                                    
+                                            <option  key={index} value={room.id}>{room._name}</option>                                   
                                     );
                                 })}       
                         </Form.Select>
