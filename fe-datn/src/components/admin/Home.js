@@ -80,7 +80,7 @@ const getRoomType = async () => {
 const dataLine = {
   labels: ["2022", "2020", "2021"],
   datasets: [{
-      data: [2, 3, 3.5, 5.5, 6, 7],
+      data: [2, 5.5, 7],
       backgroundColor: 'transparent',
       borderColor: 'red',
       pointBoderColor: 'transparent',
@@ -88,7 +88,6 @@ const dataLine = {
       tension: 0.5
   }]
 };
-
 const options = {
   plugins: {
       legend: false

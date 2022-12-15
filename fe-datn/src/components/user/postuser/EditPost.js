@@ -9,10 +9,8 @@ function EditPost() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
-    console.log(listWard)
     const [listStreet, setStreet] = useState([]);
-    // tỉnh
-  
+    // tỉnh  
     const getDataProvince = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
         setListProvince(res.data.data);          
@@ -39,7 +37,7 @@ function EditPost() {
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
     }
     const handleDistrict = async (e) => {
-        getDataWard(e.target.value,addProvince)
+        getDataWard(e.target.value,addProvince);
         getDataStreet(addProvince,e.target.value);
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
         
@@ -167,8 +165,7 @@ function EditPost() {
         // Xã
         getDataWard();
         // Đường
-        getDataStreet();
-  
+        getDataStreet(); 
     }
     
 
