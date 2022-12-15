@@ -193,6 +193,9 @@ Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']
 Route::get('comment_qa/show', [comment_QAController::class, 'show_all']);
 Route::get('comment_qa/show_qa', [comment_QAController::class, 'show_QA']);
 Route::post('comment_qa/create', [comment_QAController::class, 'Comment_QA_Add']);
+Route::get('comment_qa/show/{id}', [comment_QAController::class, 'Comment_QASelectOne']);
+Route::put('comment_qa/update/{id}', [comment_QAController::class, 'CommentEdit']);
+Route::delete('comment_qa/delete/{id}', [comment_QAController::class, 'CommentDelete']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
