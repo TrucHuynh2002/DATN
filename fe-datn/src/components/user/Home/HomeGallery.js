@@ -16,6 +16,7 @@ function HomeGallery() {
             
           
             <div class="gallerynb">
+              
               <h2 className='glr'>Nổi Bật</h2>
               </div> 
             
