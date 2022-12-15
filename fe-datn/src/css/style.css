@@ -2626,3 +2626,11 @@ margin:-10px 0 0 100px;
 .gallery_col {
     padding-bottom: 20px;
 }
+.bill_deatail {
+    margin: 0px auto;
+    margin-top: 30px;
+}
+.bill_row {
+    padding-left: 160px;
+    justify-content: center;
+}
