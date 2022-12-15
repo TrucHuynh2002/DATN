@@ -186,7 +186,9 @@ function ListManageRoom() {
         formData.append('all_money', listMomneyRoom);
         formData.append('id_roomNumber', roomNumber.undefined);
         const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
+        console.log(res.data);
         if(res.data.status === true){
+
             setAlert({
                 err_list: res.data
             });

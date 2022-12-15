@@ -112,7 +112,7 @@ root.render(
           <Route path=":id_user" element={<Profile />} />
         </Route>
         <Route path="roomDetailManage" element={<DetailRoomManage />} />
-        <Route path="layoutBill" element={<LayoutBill />} />
+        <Route path="layoutBill/:id_user" element={<LayoutBill />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 

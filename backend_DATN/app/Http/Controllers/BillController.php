@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BillAlert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Bill as Bill;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class BillController extends Controller
@@ -14,6 +16,7 @@ class BillController extends Controller
         $data = Bill::all();
         return response()
             ->json([
+                'status' => true,
                 'data' => $data,
             ]);
     }
@@ -26,6 +29,7 @@ class BillController extends Controller
             ->get();
         return response()
             ->json([
+                'status' => true,
                 'data' => $data,
             ]);
     }
@@ -55,9 +59,20 @@ class BillController extends Controller
         $Bill->all_money = $request->all_money;
         $Bill->id_roomNumber = $request->id_roomNumber;
         $Bill->save();
+
+        $data_bill = DB::table('bill')
+        ->join('room_number','bill.id_roomNumber','=','room_number.room_number')
+        ->join('users','users.id_user','=','room_number.id_user_two')
+        ->join('post','post.id_post','=','room_number.id_post')
+        ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.id_roomNumber','users.full_name','post.room_price','users.email')
+        ->first();
+        if($data_bill){
+
+            Mail::to($data_bill->email)->send(new BillAlert($data_bill));
+        }
         return response()
             ->json([
-                'data' =>  $Bill,
+                'data' =>  $data_bill,
                 'status' => true
             ]);
     }
@@ -99,5 +114,17 @@ class BillController extends Controller
                 'data' =>  $Bill,
                 'status' => true
             ]);
+    }
+
+    public function getDataBillUser(Request $request, $id){
+        $Bill = DB::table('bill')->join('room_number','bill.id_roomNumber','=','room_number.room_number')
+                    ->select('bill.water_money','bill.electricty_money','bill.all_money','bill.created_at')
+                    ->where('room_number.id_user_two','=',$id)
+                    ->get();
+                    return response()
+                    ->json([
+                        'data' =>  $Bill,
+                        'status' => true
+                    ]);
     }
 }

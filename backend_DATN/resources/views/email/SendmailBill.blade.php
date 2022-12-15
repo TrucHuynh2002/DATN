@@ -31,12 +31,12 @@
     </div>
     <div class="body">
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
-        <b>Hello, tên </b>
+        <b>Hello, tên {{$user->full_name}} </b>
         <p>Gửi hóa đơn tháng vừa rồi</p>
-        <p>Tiền điện: 521 - 501 = 20KW (80.000đ)</p>
-        <p>Tiền nước: 121 - 119 = 2m3 (20.000đ)</p>
-        <p>Tiền thuê: 1.000.000đ</p>
-        <p>Tổng: 1.100.000đ</p>
+        <p>Tiền điện: {{number_format($user->electricity_money)}}đ</p>
+        <p>Tiền nước: {{number_format($user->water_money)}}</p>
+        <p>Tiền thuê: {{number_format($user->room_price)}}đ</p>
+        <p>Tổng: {{number_format($user->all_money)}}đ</p>
         <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để đăng nhập vào tài khoản.</p>
         
     </div>

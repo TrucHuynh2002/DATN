@@ -20,7 +20,7 @@ function RoomDetail() {
     const [listRoom, setListRoom] = useState([]);
     const [buttonID, setButtonID] = useState({
         status:1,
-        id_user_two : user[0].id
+        id_user_two : user ?  user[0].id : ''
     });
     const [quantityPost, setQuantityPost] = useState([]);
     useEffect(() => {

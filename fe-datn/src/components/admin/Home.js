@@ -80,7 +80,7 @@ const getRoomType = async () => {
 const dataLine = {
   labels: ["2022", "2020", "2021"],
   datasets: [{
-      data: [2, 3, 3.5, 5.5, 6, 7],
+      data: [3,3,0,1,2,6],
       backgroundColor: 'transparent',
       borderColor: 'red',
       pointBoderColor: 'transparent',
@@ -102,7 +102,7 @@ const options = {
       y: {
           min: 1,
           max: 10,
-          tick: {
+          ticks: {
               stepSize: 2,
               callback: (value) => value + 'K'
           },

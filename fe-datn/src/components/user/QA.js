@@ -112,10 +112,13 @@ function QA() {
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
-    // if(res.data.status === true){
-    //   setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
-    //   const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-    // }
+    console.log(res);
+    if(res.data.status === true){
+      setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction:'bình luận'});
+      const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+    }
+    setReply({
+      activeComment:false})
     // console.log(res);
     setLoader(loader + 1);
   }

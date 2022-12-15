@@ -30,9 +30,17 @@ class NotifyController extends Controller
             ->take(10)
             ->orderBy('notify.id_notify', 'DESC')
             ->get();
+        $get_notify_bill  = DB::table('bill')
+            ->join('room_number','bill.id_roomNumber','=','room_number.room_number')
+            ->join('users','users.id_user','=','room_number.id_user_two')
+            ->select('users.full_name','bill.id','bill.created_at','room_number.id_user_two')
+            ->where('room_number.id_user_two','=',$id)
+            ->orderBy('bill.id','DESC')
+            ->get();
         return response()->json([
             'status' => true,
-            'data' => $get_notify_favorite
+            'data' => $get_notify_favorite,
+            'bill' => $get_notify_bill
         ]);
     }
     public function NotifyAddComment(Request $request)

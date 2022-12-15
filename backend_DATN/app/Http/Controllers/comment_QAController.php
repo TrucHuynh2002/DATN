@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\QAModel as qa;
+use App\Models\QAModel;
 use App\Models\comment_QAModel;
 use App\Models\User;
 use App\Models\imgUserModel;
+use App\Models\Post;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
@@ -68,11 +69,14 @@ class comment_QAController extends Controller
             $t->parent_id = $request->parent_id;
         }
         $t->save();
+
+        $get_idOwner = QAModel::find($request->id_qa);
         
         return response()->json([
             'message' => 'Bình luận thành công',
             'status' => true,
             'data' => $t,
+            'id_qa' => $get_idOwner
         ]);
     }
 
