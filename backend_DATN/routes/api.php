@@ -291,6 +291,10 @@ Route::get('StatisticalSController/user', [StatisticalSController::class, 'count
 Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
 Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);
 
+//view_index
+Route::get('view_index/update_view', [ViewController::class, 'updateViewIndex']);
+Route::get('view_index/show', [ViewController::class, 'show']);
+
 // Bill 
 Route::get('bill/show', [BillController::class, 'show']);
 Route::get('bill/show/{id}', [BillController::class, 'show_id']);

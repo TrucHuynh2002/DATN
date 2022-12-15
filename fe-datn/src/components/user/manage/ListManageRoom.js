@@ -10,19 +10,41 @@ ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
 );
 function ListManageRoom() {
-     // chartjs pie
-  const dataPie = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [{
-      data: [2, 5, 10],
-      backgroundColor: [
-        'red',
-        'blue',
-        'yellow'
-      ]
-    }],
-  };
-  
+    const dataLine = {
+        labels: ["2022", "2020", "2021"],
+        datasets: [{
+            data: [2, 3, 3.5, 5.5, 6, 7],
+            backgroundColor: 'transparent',
+            borderColor: 'red',
+            pointBoderColor: 'transparent',
+            pointBorderWidth: 4,
+            tension: 0.5
+        }]
+      };
+   
+      const options = {
+        plugins: {
+            legend: false
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                min: 1,
+                max: 10,
+                tick: {
+                    stepSize: 2,
+                    callback: (value) => value + 'K'
+                },
+                grid: {
+      
+                }
+            }
+        }
+      };
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
@@ -520,12 +542,15 @@ function ListManageRoom() {
                         </Modal>
                         {/* end edit bill */}
                    </div>
-                </div>                       <div className='row dataline'>
-        
-        <div className='col-md-4 dataline'>
-          <Pie data={dataPie} />
+                </div>   
+                                    
+
+                <div className='row'>
+        <div className='col-md-8 chartline'>
+          <Line data={dataLine} options={options}></Line>
         </div>
-      </div>       
+       
+      </div>
         </div>
         
     </div>
