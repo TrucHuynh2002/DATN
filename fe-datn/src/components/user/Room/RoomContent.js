@@ -84,18 +84,18 @@ function RoomND() {
       setListProvince(res.data.data);
   }
   // huyện 
-  const getDataDistrict = async (id_province = '') => {
+  const getDataDistrict = async (id_province) => {
       const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
       setListDistrict(res.data.data);
   }
   // xã
-  const getDataWard = async (id_district = '', id_province = '') => {
+  const getDataWard = async (id_district) => {
       var id_province = addProvince.undefined;
       const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
       setListWard(res.data.data);
   }     
   // đường 
-  const getDataStreet = async (id_province = '',id_district = '') => {
+  const getDataStreet = async (id_district) => {
       var id_province = addProvince.undefined;
       const res = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
       setStreet(res.data.data);

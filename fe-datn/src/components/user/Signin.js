@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+
 function Signin() {
 
     const [addUser, setAddUser] = useState({
@@ -69,24 +70,24 @@ function Signin() {
         }
         // tỉnh
         const getDataProvince = async () => {
-            const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+            const res = await axios.get('http://127.0.0.1:8000/api/province/show');
             setListProvince(res.data.data);
         }
         // huyện 
-        const getDataDistrict = async (id_province) => {
-            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        const getDataDistrict = async (id_province = '') => {
+            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
             setListDistrict(ress.data.data);
         }
         // xã
-        const getDataWard = async (id_district) => {
+        const getDataWard = async (id_district = '') => {
             var id_province = addProvince.undefined;
             const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
             setListWard(resss.data.data);
         }     
         // đường 
-        const getDataStreet = async (id_district) => {
+        const getDataStreet = async (id_district = '') => {
             var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=1&&id_district=id_province=${id_province}&&id_district=${id_district}`);
+            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
             setStreet(resss.data.data);
         };
 

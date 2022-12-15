@@ -85,6 +85,8 @@ import Square from './components/user/Room/Square';
 import ConfirmPost from './components/user/ConfirmPost';
 import LayoutBill from './components/user/Bill/LayoutBill';
 import Rules from './components/user/Rules';
+import BillDetail from './components/user/Bill/BillDetail';
+import PriceRoom from './components/user/Room/PriceRoom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -112,7 +114,9 @@ root.render(
           <Route path=":id_user" element={<Profile />} />
         </Route>
         <Route path="roomDetailManage" element={<DetailRoomManage />} />
-        <Route path="layoutBill" element={<LayoutBill />} />
+        {/* bill */}
+        <Route path="/layoutBill" element={<LayoutBill />} />
+        <Route path="billdetail" element={<BillDetail />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 

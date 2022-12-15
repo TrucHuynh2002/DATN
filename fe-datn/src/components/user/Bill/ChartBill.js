@@ -45,16 +45,16 @@ const dataLine = {
   return (
     <>
         <div className="manage col-6">
-                <div className="container">
-                    <div className="content_profile">
-                        <div className="list-post">
-                            <div className='row'>
-                                <Line data={dataLine} options={options}></Line>   
-                            </div>
+            <div className="container">
+                <div className="content_profile">
+                    <div className="list-post">
+                        <div className='row'>
+                            <Line data={dataLine} options={options}></Line>   
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </>
   )
 }

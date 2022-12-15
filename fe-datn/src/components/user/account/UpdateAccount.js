@@ -19,27 +19,25 @@ function UpdateAccount() {
         setListDistrict(ress.data.data);
     }
     // xã
-    const getDataWard = async (id_district = '') => {
-        var id_province = addProvince.undefined;
+    const getDataWard = async (id_district = '', id_province = '') => {
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
     // đường 
-    const getDataStreet = async (id_district) => {
-        var id_province = addProvince.undefined;
+    const getDataStreet = async (id_province = '', id_district = '') => {
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
         setStreet(resss.data.data);
         
     }
-    const [addProvince, setProvince] = useState([]);
+    const [addProvince, setProvince] = useState('');
     const handleProvince = async (e) => {
-        setProvince({...addProvince,[e.id_province] : e.target.value});
-        getDataDistrict(({[e.id_province] : e.target.value}).undefined);
+        setProvince(e.target.value);
+        getDataDistrict(e.target.value);
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
     }
     const handleDistrict = async (e) => {
-        getDataWard(({[e.id_district] : e.target.value}).undefined)
-        getDataStreet(({[e.id_district] : e.target.value}).undefined);
+        getDataWard(e.target.value,addProvince);
+        getDataStreet(addProvince,e.target.value);
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
     }
 
@@ -53,13 +51,11 @@ function UpdateAccount() {
     const [alert, setAlert] = useState({
         err_list: {},
     });
-
     const {full_name,phone,address} = editAccount;
-
+    // Xử lý input vlaue
     const handleChange = (e) => {
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
-    };
-   
+    };  
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await axios.put(`http://127.0.0.1:8000/api/user/update/${id_Account}`, editAccount);
@@ -77,8 +73,14 @@ function UpdateAccount() {
 
     useEffect(() => {
         loadCate();
-        getDataProvince();
-
+         // Lấy hết tỉnh
+         getDataProvince();
+         // Lấy hết huyện
+        getDataDistrict();
+        // Xã
+        getDataWard();
+        // Đường
+        getDataStreet();
     }, []);
 
     const loadCate = async () => {
