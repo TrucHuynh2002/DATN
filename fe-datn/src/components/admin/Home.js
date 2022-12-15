@@ -18,9 +18,11 @@ function Home() {
   const [listUser, setListUser] = useState([]);
   const [listContact, setListContact] = useState([]);
   const [listView, setListView] = useState([]);
+  const [listViewIndex, setListViewIndex] = useState([]);
 
   useEffect(() => {
     getView();
+    getViewIndex();
     getContact();
     getUser();
     getComment();
@@ -75,43 +77,40 @@ const getRoomType = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
  setListView(result.data.data);
  };
+ const getViewIndex = async () => {
+  const result = await axios.get("http://127.0.0.1:8000/api/view_index/show");
+ setListViewIndex(result.data.data);
+ };
 
 //  chartjs line
+// useEffect(() => {
+//   const FetchData = async () => {
+//     const {data} = await axios.get("http://127.0.0.1:8000/api/view_index/show")
+//     console.log(data);
+//     setChartLine({
+//       labels: data.data.map((item) => item.created_at),
+//       datasets: [
+//         {
+//           data: data.data.map(item => item.view_index),
+//           fill: true,
+//           borderColor: 'red',
+//           backgroundColor: 'transparent',
+//         }
+//       ]
+//     })
+//   }
+//   FetchData()
+// }, [])
 const dataLine = {
   labels: ["2022", "2020", "2021"],
   datasets: [{
       data: [2, 5.5, 7],
       backgroundColor: 'transparent',
       borderColor: 'red',
-      pointBoderColor: 'transparent',
       pointBorderWidth: 4,
       tension: 0.5
   }]
 };
-const options = {
-  plugins: {
-      legend: false
-  },
-  scales: {
-      x: {
-          grid: {
-              display: false
-          }
-      },
-      y: {
-          min: 1,
-          max: 10,
-          tick: {
-              stepSize: 2,
-              callback: (value) => value + 'K'
-          },
-          grid: {
-
-          }
-      }
-  }
-};
-
 // chartjs pie
 const dataPie = {
   labels: ["Red", "Blue", "Yellow"],
@@ -200,7 +199,7 @@ const dataPie = {
               <div className="postcard-content">
                 <span> Lượt truy cập</span>
                 <br />
-                <p className="chart">{listView.view_index}</p>
+                <p className="chart">{listView}</p>
               </div>
             </div>
           </div>            
@@ -209,7 +208,7 @@ const dataPie = {
       {/* biểu đồ */}
       <div className='row'>
         <div className='col-md-8'>
-          <Line data={dataLine} options={options}></Line>
+          <Line data={dataLine}></Line>
         </div>
         <div className='col-md-4'>
           <Pie data={dataPie} />
