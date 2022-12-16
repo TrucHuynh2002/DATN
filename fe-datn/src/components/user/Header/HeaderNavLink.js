@@ -8,10 +8,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
-    
+    const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
-        window.location.reload();
+        navigate(`../`);
     }
     // xu ly add post
     const [addPost, setAddPost] = useState({
@@ -110,12 +110,13 @@ function HeaderNavLink() {
     }
     // huyện 
     const getDataDistrict = async (id_province) => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
         setListDistrict(ress.data.data);
     }
     // xã
     const getDataWard = async (id_district) => {
         var id_province = addProvince.undefined;
+        
         const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
@@ -193,7 +194,7 @@ function HeaderNavLink() {
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const navigate = useNavigate();
+   
     const handleShow = async() => {
         if(user){
             const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+user[0].id);
