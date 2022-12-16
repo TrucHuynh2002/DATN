@@ -15,10 +15,7 @@ function Rules() {
                     </div>
                 </div>
             </div>
-
-   
         </div>
-
         <h2 className='rule'>Để tạo tài khoản Google, bạn cần phải đồng ý với điều khoản bên dưới.</h2>
             <h2 className="ruletext">Bên cạnh đó, khi bạn tạo tài khoản, chúng tôi sẽ xử lý thông tin của bạn theo cách đã mô 
                 tả trong Chính sách quyền riêng tư của chúng tôi, bao gồm các điểm chính sau:</h2>

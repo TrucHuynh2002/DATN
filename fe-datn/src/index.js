@@ -86,7 +86,6 @@ import ConfirmPost from './components/user/ConfirmPost';
 import LayoutBill from './components/user/Bill/LayoutBill';
 import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
-import PriceRoom from './components/user/Room/PriceRoom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

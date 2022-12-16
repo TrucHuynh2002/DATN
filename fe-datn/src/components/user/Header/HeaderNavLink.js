@@ -194,13 +194,21 @@ function HeaderNavLink() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
-    const handleShow = () => {
-        if(user ){
-            setShow(true);
-        }
-        else {
+    const handleShow = async() => {
+        if(user){
+            const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+user[0].id);
+            if(res.data.status === true){
+              const user_data = res.data.data;
+              if(user_data[0].role != 1 ){
+                navigate('/Loi');
+                // navigate('/');
+              }else{
+                setShow(true)
+              }
+            }
+          }else{
             navigate('/Loi');
-        }
+          }
     };
     
     // list category

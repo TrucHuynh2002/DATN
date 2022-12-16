@@ -33,7 +33,9 @@
     box-sizing: border-box !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-
+table{
+    border-collapse:collapse;
+}
 .container {
     max-width: 1170px;
 }
@@ -120,6 +122,9 @@ body {
     height: 90px !important;
 }
 
+.about1>.container-fluid>ul>li>img{
+    display: block;
+}
 
 
 
@@ -209,7 +214,7 @@ p {
     margin: 0px;
     font-weight: 500;
     font-size: 15px;
-    line-height: 24px;
+    line-height: 28px;
 }
 
 a {
@@ -380,7 +385,7 @@ button {
 
 .banner_main {
     position: relative;
-    margin-bottom: 200px;
+    margin-bottom: 150px;
 }
 
 .banner .carousel-indicators li {
@@ -459,12 +464,10 @@ button {
     background-color: white;
     padding: 15px;
     border-left: none solid 5px;
-    width: 100%;
+    left: 13%;
     position: absolute;
-    top: 130%;
-    /* margin-bottom: -350px; */
+    bottom: -14%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-left: -20px;
 }
 
 .book_room2 h1 {
@@ -539,9 +542,7 @@ gallery {
     padding-top: 60px;
 }
 
-.gallery .titlepage {
-    text-align: center;
-}
+
 
 .gallery .gallery_img {
     overflow: hidden;
@@ -967,7 +968,10 @@ height:50%;
 }
 
 .gallery .titlepage {
-    text-align: center;
+    text-align: left;
+}
+.gallery .titlepage>p{
+    margin:10px 0 ;
 }
 
 .gallery .gallery_img {
@@ -2124,6 +2128,7 @@ ul.social_icon li a:hover {
     position: absolute;
     overflow: auto;
     padding: 5px;
+    top: 154%;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1 !important;
@@ -2445,6 +2450,10 @@ margin: 0 300px 0 375px;
 #edit_list_manage{
     display:none;
     margin-top:10px;
+}
+.container_bill{
+    margin: 20px;
+    line-height: 41px;
 }
 .room_number____>.roomNumber_link{
     display:none;
