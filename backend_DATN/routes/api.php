@@ -207,6 +207,7 @@ Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
 Route::get('user/showimg', [UserController::class, 'ImgUserAll']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::put('user/updateStatus/{id}', [UserController::class, 'UserStatus']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
 Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);

@@ -149,6 +149,17 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+    public function UserStatus(Request $request, $id_user)
+    {
+        $t = User::find($id_user);
+        $t->role = 1;
+        $t->save();
+        return response()
+            ->json([
+                'data' => $t,
+                'status' => true
+            ]);
+    }
     public function UserDelete(Request $request, $id_user)
     {
         $t = User::find($id_user);

@@ -10,7 +10,6 @@ function LayoutUser() {
   },[])
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/view_index/update_view`);
-    console.log(res)
   };
   return (
     <>

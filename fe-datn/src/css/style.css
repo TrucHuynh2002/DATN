@@ -213,7 +213,16 @@ p {
     font-size: 15px;
     line-height: 28px;
 }
-
+.rules>h3{
+    font-weight: 500;
+    margin: 10px 5px 5px 5px;
+}
+.container>.btnrule{
+    margin:20px 0;
+}
+.ruletext{
+    font-size:20px
+}
 a {
     color: #222222;
     text-decoration: none;
@@ -2652,44 +2661,10 @@ margin:-10px 0 0 100px;
 .titletype{
     text-align: center;
     text-transform: uppercase;
-}.type{
+}
+.type{
     margin-top: 150px;
-}.rule{
-    text-align: center;
-    font-size: 26px;
-    margin-top: 100px;
-    font-weight: 550;
 }
-.ruletext{
-    color: black;
-   font-size: 20px;
-    margin: 10px 400px 0 400px; 
-}.ruletext2{
-    color: black;
-   font-size: 18px;
-    margin: 15px 400px 15px 400px; 
-}.ruletext3{
-    padding: 0 400px 0 400px;
-    color: black;
-    font-size: 16px;
-    font-weight: 400;
-}.ruletextextra{
-    color: black;
-   font-size: 16px;
-    margin: 10px 400px 10px 400px;  
-    font-weight: 400;
-}.btnrule{
-    position: absolute;
-   
-    right: 50%;
-    background-color:#00afff;
-    color: white;
-    width: 100px;
-    height: 40px;
-    text-align: center;
-    border-radius: 5px;
-}
-
 
 .bill {
     align-items: center;

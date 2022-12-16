@@ -110,28 +110,27 @@ function HeaderNavLink() {
     }
     // huyện 
     const getDataDistrict = async (id_province) => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
-        setListDistrict(ress.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+        setListDistrict(res.data.data);
     }
     // xã
     const getDataWard = async (id_district) => {
         var id_province = addProvince.undefined;
-        
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
-        setListWard(resss.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        setListWard(res.data.data);
     }     
     // đường 
     const getDataStreet = async (id_district) => {
         var id_province = addProvince.undefined;
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-        setStreet(resss.data.data);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        setStreet(res.data.data);
     }     
      // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
-        };
+    };
     const handle_idFuniture =  (e) => {     
         if(e.target.checked){
             setFur(pre => {
@@ -200,11 +199,13 @@ function HeaderNavLink() {
             const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+user[0].id);
             if(res.data.status === true){
               const user_data = res.data.data;
-              if(user_data[0].role != 1 ){
-                navigate('/Loi');
-                // navigate('/');
-              }else{
+              if(user_data[0].role == 1 ){
                 setShow(true)
+                // navigate('/');
+              }if(user_data[0].role == 0){
+                navigate('/rules');
+              }else{
+                navigate('/Loi');
               }
             }
           }else{
@@ -257,200 +258,200 @@ function HeaderNavLink() {
                 </Modal.Header>
                 <Modal.Body className="show-grid">
                     <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data" >
-                            <Form.Group className="mb-12 post_name">
-                                <Form.Label>Tên bài viết</Form.Label>
-                                <Form.Control type="text" name="post_name" className=''
-                                value={post_name}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
-                            </Form.Group> 
-                            <Form.Group className="mb-12 meta_title">
-                                <Form.Label>Tiêu đề bài viết</Form.Label>
-                                <Form.Control type="text" name="meta_title" className=''
-                                value={meta_title}
-                                onChange = {(e) => handleChange(e)} />
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 img">
-                                <Form.Label>Hình ảnh</Form.Label>
-                                <Form.Control type="file" name="img" multiple
-                                onChange = {(e) => handleChangeImages(e)} />
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description_sort">
-                                <Form.Label>Nội dung ngắn</Form.Label>
-                                <Form.Control type="text" name="description_sort" className=''
-                                value={description_sort}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 description">
-                                <Form.Label>Nội dung</Form.Label>
-                                <CKEditor
-                                editor={ClassicEditor}
-                                data={description}
-                                onReady={(editor)=>{
-                                    editor.editing.view.change((writer)=>{
-                                        writer.setStyle('height','100%',editor.editing.view.document.getRoot())
-                                    })
-                                }}
-                                onChange={(event,editor) => {
-                                    let data = editor.getData();
-                                    setAddPost({...addPost, description:data});
-                                }}
-                                >
-                                </CKEditor>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 room_price">
-                                <Form.Label>Giá phòng</Form.Label>
-                                <Form.Control type="number" name="room_price" className="" 
-                                value={room_price}
-                                onChange = {(e) => handleChange(e)} />
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 water_price">
-                                <Form.Label>Giá nước</Form.Label>
-                                <Form.Control type="number" name="water_price" className="" 
-                                value={water_price}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
-                            </Form.Group>     
-                            <Form.Group className="mb-12 electricity_price">
-                                <Form.Label>Giá điện</Form.Label>
-                                <Form.Control type="text" name="electricity_price" className=""
-                                value={electricity_price}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
-                            </Form.Group>                             
-                            <Form.Group className="mb-12 id_province">
-                                <Form.Label>Tỉnh</Form.Label>
-                                <Form.Select name="id_province"
-                                onChange = {(e) => handleProvince(e)}
-                                >
-                                    <option>Tỉnh</option>
-                                    {listProvince.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id} >{room._name}</option>
-                                        );
-                                    })}       
-                                </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 id_district">
-                                <Form.Label>Quận/Huyện/TP</Form.Label>
-                                <Form.Select name="id_district"
-                                onChange = {(e) => handleDistrict(e)}
-                                >  
-                                <option>Quận/Huyện/TP</option>
-                                    {listDistrict.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id}>{room._name}</option>
-                                        );
-                                    })}       </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 id_ward">
-                                <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
-                                <Form.Select name="id_ward"
-                                onChange = {(e) => handleChange(e)}
-                                > 
-                                <option>Xã/Phường/Thị Trấn</option>
-                                    {listWard.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id} >{room._name}</option>
-                                        );
-                                    })}       </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
-                            </Form.Group>  
-                            <Form.Group className="mb-12 id_street">
-                                <Form.Label>Đường</Form.Label>
-                                <Form.Select name="id_street"
-                                onChange = {(e) => handleChange(e)}
-                                > 
-                                <option>Đường</option>
-                                    {listStreet.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id} >{room._name}</option>
-                                        );
-                                    })}       
-                                </Form.Select>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 address">
-                                <Form.Label>Địa chỉ</Form.Label>
-                                <Form.Control type="text" name="address" className=""
-                                value={address}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
-                            </Form.Group>   
-                            <Form.Group className="mb-12 address">
-                                <Form.Label>Iframe map</Form.Label>
-                                <Form.Control type="text" name="ifarme" className=""
-                                value={ifarme}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 area">
-                                <Form.Label>Diện tích</Form.Label>
-                                <Form.Control type="text" name="area" className="" 
-                                value={area}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 quantity">
-                                <Form.Label>Số lượng</Form.Label>
-                                <Form.Control type="number" name="quantity" className=""
-                                value={quantity}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 formGridCheckbox">
-                                <Form.Label >Nội thất</Form.Label>
-                                <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
-                                    {furniture.map((data,index) => {
-                                        return (
-                                                <div className="col-2 row" key={index}>
-                                                 <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
-                                                    <Form.Label>{data.name}</Form.Label>
-                                                </div>
-                                                )
-                                    })}
-                                </div>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
-                            </Form.Group>   
-                            <Form.Group className="mb-12">
-                                <Form.Label>Loại phòng</Form.Label>
-                                <Form.Select name="id_roomType" 
-                                onChange = {(e) => handleChange(e)}>
-                                    <option value='' >Chọn</option>
-                                    {listRoomType.map((room, index) => {
-                                        return (
-                                            <option key={index} value={room.id_room_type}>{room.name_room_type}</option>
-                                        );
-                                    })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
-                                </Form.Select> 
-                            </Form.Group>
-                            <Form.Group className="mb-12 meta_keywords">
-                                <Form.Label>Từ khóa - Seo</Form.Label>
-                                <Form.Control type="text" name="meta_keywords" className='' 
-                                value={meta_keywords}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
-                            </Form.Group>
-                            <Form.Group className="mb-12 meta_description">
-                                <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
-                                <Form.Control as="textarea" name="meta_description" className="" rows={3} 
-                                value={meta_description}
-                                onChange = {(e) => handleChange(e)}/>
-                                {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                            </Form.Group>           
-                            <div className="d-grid gap-2" style={{margin: "20px 0"}}>
-                                <Button variant="primary" size="sm" name='' type="submit">
-                                    Thêm bài viết
-                                </Button>
-                                {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                        <Form.Group className="mb-12 post_name">
+                            <Form.Label>Tên bài viết</Form.Label>
+                            <Form.Control type="text" name="post_name" className=''
+                            value={post_name}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
+                        </Form.Group> 
+                        <Form.Group className="mb-12 meta_title">
+                            <Form.Label>Tiêu đề bài viết</Form.Label>
+                            <Form.Control type="text" name="meta_title" className=''
+                            value={meta_title}
+                            onChange = {(e) => handleChange(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 img">
+                            <Form.Label>Hình ảnh</Form.Label>
+                            <Form.Control type="file" name="img" multiple
+                            onChange = {(e) => handleChangeImages(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 description_sort">
+                            <Form.Label>Nội dung ngắn</Form.Label>
+                            <Form.Control type="text" name="description_sort" className=''
+                            value={description_sort}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description_sort[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 description">
+                            <Form.Label>Nội dung</Form.Label>
+                            <CKEditor
+                            editor={ClassicEditor}
+                            data={description}
+                            onReady={(editor)=>{
+                                editor.editing.view.change((writer)=>{
+                                    writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                })
+                            }}
+                            onChange={(event,editor) => {
+                                let data = editor.getData();
+                                setAddPost({...addPost, description:data});
+                            }}
+                            >
+                            </CKEditor>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.description[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 room_price">
+                            <Form.Label>Giá phòng</Form.Label>
+                            <Form.Control type="number" name="room_price" className="" 
+                            value={room_price}
+                            onChange = {(e) => handleChange(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.room_price[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 water_price">
+                            <Form.Label>Giá nước</Form.Label>
+                            <Form.Control type="number" name="water_price" className="" 
+                            value={water_price}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.water_pirce[0]}</span>}
+                        </Form.Group>     
+                        <Form.Group className="mb-12 electricity_price">
+                            <Form.Label>Giá điện</Form.Label>
+                            <Form.Control type="text" name="electricity_price" className=""
+                            value={electricity_price}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.electricity_price[0]}</span>}
+                        </Form.Group>                             
+                        <Form.Group className="mb-12 id_province">
+                            <Form.Label>Tỉnh</Form.Label>
+                            <Form.Select name="id_province"
+                            onChange = {(e) => handleProvince(e)}
+                            >
+                                <option>Tỉnh</option>
+                                {listProvince.map((room, index) => {
+                                    return (
+                                        <option key={index} value={room.id} >{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_district">
+                            <Form.Label>Quận/Huyện/TP</Form.Label>
+                            <Form.Select name="id_district"
+                            onChange = {(e) => handleDistrict(e)}
+                            >  
+                            <option>Quận/Huyện/TP</option>
+                                {listDistrict.map((room, index) => {
+                                    return (
+                                        <option key={index} value={room.id}>{room._name}</option>
+                                    );
+                                })}       </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 id_ward">
+                            <Form.Label>Xã/Phường/Thị Trấn</Form.Label>
+                            <Form.Select name="id_ward"
+                            onChange = {(e) => handleChange(e)}
+                            > 
+                            <option>Xã/Phường/Thị Trấn</option>
+                                {listWard.map((room, index) => {
+                                    return (
+                                        <option key={index} value={room.id} >{room._name}</option>
+                                    );
+                                })}       </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
+                        </Form.Group>  
+                        <Form.Group className="mb-12 id_street">
+                            <Form.Label>Đường</Form.Label>
+                            <Form.Select name="id_street"
+                            onChange = {(e) => handleChange(e)}
+                            > 
+                            <option>Đường</option>
+                                {listStreet.map((room, index) => {
+                                    return (
+                                        <option key={index} value={room.id} >{room._name}</option>
+                                    );
+                                })}       
+                            </Form.Select>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 address">
+                            <Form.Label>Địa chỉ</Form.Label>
+                            <Form.Control type="text" name="address" className=""
+                            value={address}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                        </Form.Group>   
+                        <Form.Group className="mb-12 address">
+                            <Form.Label>Iframe map</Form.Label>
+                            <Form.Control type="text" name="ifarme" className=""
+                            value={ifarme}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.address[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 area">
+                            <Form.Label>Diện tích</Form.Label>
+                            <Form.Control type="text" name="area" className="" 
+                            value={area}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.area[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 quantity">
+                            <Form.Label>Số lượng</Form.Label>
+                            <Form.Control type="number" name="quantity" className=""
+                            value={quantity}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.quantity[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 formGridCheckbox">
+                            <Form.Label >Nội thất</Form.Label>
+                            <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
+                                {furniture.map((data,index) => {
+                                    return (
+                                            <div className="col-2 row" key={index}>
+                                                <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
+                                                <Form.Label>{data.name}</Form.Label>
+                                            </div>
+                                            )
+                                })}
                             </div>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.furniture[0]}</span>}
+                        </Form.Group>   
+                        <Form.Group className="mb-12">
+                            <Form.Label>Loại phòng</Form.Label>
+                            <Form.Select name="id_roomType" 
+                            onChange = {(e) => handleChange(e)}>
+                                <option value='' >Chọn</option>
+                                {listRoomType.map((room, index) => {
+                                    return (
+                                        <option key={index} value={room.id_room_type}>{room.name_room_type}</option>
+                                    );
+                                })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
+                            </Form.Select> 
+                        </Form.Group>
+                        <Form.Group className="mb-12 meta_keywords">
+                            <Form.Label>Từ khóa - Seo</Form.Label>
+                            <Form.Control type="text" name="meta_keywords" className='' 
+                            value={meta_keywords}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 meta_description">
+                            <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
+                            <Form.Control as="textarea" name="meta_description" className="" rows={3} 
+                            value={meta_description}
+                            onChange = {(e) => handleChange(e)}/>
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
+                        </Form.Group>           
+                        <div className="d-grid gap-2" style={{margin: "20px 0"}}>
+                            <Button variant="primary" size="sm" name='' type="submit">
+                                Thêm bài viết
+                            </Button>
+                            {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                        </div>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
@@ -472,8 +473,7 @@ function HeaderNavLink() {
                     <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>{user[0].fullname}</button>
                     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
                     {
-                        user[0].role == 1
-                        &&
+                        user[0].role == 1 &&
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
