@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, ArcElement } from 'chart.js';
 import axios from 'axios';
+import moment from 'moment';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
@@ -51,7 +52,7 @@ function ChartBill() {
     },[])
    
 const dataLine = {
-    labels: PriceRoom.map((pr,i) =>  pr.created_at),
+    labels: PriceRoom.map((pr,i) =>  moment(pr.created_at).format('DD-MM-YYYY')),
     datasets: [{
         data:PriceRoom.map((pr,i) =>  pr.all_money),
         backgroundColor: 'transparent',

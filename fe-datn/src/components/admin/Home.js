@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
+import moment from 'moment';
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
@@ -19,10 +20,11 @@ function Home() {
   const [listContact, setListContact] = useState([]);
   const [listView, setListView] = useState([]);
   const [listViewIndex, setListViewIndex] = useState([]);
+  const [listViewPost, setListViewPost] = useState([]);
 
   useEffect(() => {
     getView();
-    getViewIndex();
+    // getViewIndex();
     getContact();
     getUser();
     getComment();
@@ -33,53 +35,77 @@ function Home() {
     getCategory();
   },[]);
 
+  useEffect(() => {
+    getViewIndex()
+
+    return () => {
+      getViewIndex()
+    }
+},[])
+
+  useEffect(() => {
+    getViewPost()
+
+    return () => {
+      getViewPost()
+    }
+  },[])
+
 // list Category
   const getCategory = async () => {
    const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/category");
 
   setListCategory(result.data.data);
   };
-// list Category
+// list RoomType
 const getRoomType = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
  setListRoomType(result.data.data);
  };
- // list Category
+ // list Post
  const getPost = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/post");
  setListPost(result.data.data);
  };
- // list Category
+ // list Blog
  const getBlog = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/blog");
  setListBlog(result.data.data);
  };
- // list Category
+ // list Funiture
  const getFurniture = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/furniture");
  setListFurniture(result.data.data);
  };
- // list Category
+ // list Comment
  const getComment = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/comment");
  setListComment(result.data.data);
  };
- // list Category
+ // list User
  const getUser = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/user");
  setListUser(result.data.data);
  };
+ // list Contact
  const getContact = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/contact");
  setListContact(result.data.data);
  };
+ // list View
  const getView = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
  setListView(result.data.data);
  };
+ // list ViewIndex
  const getViewIndex = async () => {
   const result = await axios.get("http://127.0.0.1:8000/api/view_index/show");
  setListViewIndex(result.data.data);
+ };
+ // list View Post top5
+ const getViewPost = async () => {
+  const result = await axios.get("http://127.0.0.1:8000/api/post/post_view_top5");
+ setListViewPost(result.data.data);
  };
 
 //  chartjs line
@@ -102,9 +128,9 @@ const getRoomType = async () => {
 //   FetchData()
 // }, [])
 const dataLine = {
-  labels: ["2022", "2020", "2021"],
+  labels: listViewIndex.map((pr,i) =>  moment(pr.updated_at).format('DD-MM-YYYY')),
   datasets: [{
-      data: [2, 5.5, 7],
+      data: listViewIndex.map((pr,i) =>  pr.view_index),
       backgroundColor: 'transparent',
       borderColor: 'red',
       pointBorderWidth: 4,
@@ -113,13 +139,15 @@ const dataLine = {
 };
 // chartjs pie
 const dataPie = {
-  labels: ["Red", "Blue", "Yellow"],
+  labels: listViewPost.map((pr,i) =>  pr.post_name),
   datasets: [{
-    data: [2, 5, 10],
+    data: listViewPost.map((pr,i) =>  pr.view),
     backgroundColor: [
       'red',
       'blue',
-      'yellow'
+      'yellow',
+      'black',
+      'violet'
     ]
   }],
 };

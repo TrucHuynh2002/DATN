@@ -19,7 +19,7 @@ class ViewController extends Controller
         // $update;
         
         $data = View::orderBy('id_view_index','DESC')->first();
-        dd($data->updated_at->day);
+        // dd($data->updated_at->day);
         if($data->updated_at->day == Carbon::now('Asia/Ho_Chi_Minh')->day){
             $data->view_index++;
             $data->save();
