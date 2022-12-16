@@ -242,7 +242,7 @@ function QA() {
                 </div>
                 {listComment.map((listComment, index) => {
                   return( listQa.id_qa == listComment.id_qa && (
-                    <div className="qa_comment_feedback" key={index}>
+                    <div className="container_qa" key={index}>
                       <div className='qa_avatar'>
                         <img src={listComment.link_img_user}
                         alt='' className="content_comment_img___" />
@@ -287,7 +287,7 @@ function QA() {
                       setReply({
                         activeComment:true,id:listComment.id_comment_qa
                       })}}
-                      className="feedback_comment_span"
+                      className="feedback_comment___"
                       >
                       <strong>Trả lời</strong>
                       { activeComment && id == listComment.id_comment_qa &&
@@ -328,7 +328,7 @@ function QA() {
                           </div>
                           <div className='qa_content' style={{marginTop: '15px'}}>
                             { activeUpdateComment && idUpdateCmt == child.id_comment_qa ? 
-                            ( 
+                              ( 
                               <div className="content_comment____form_input__">
                                 <Form 
                                   className="display_comment" 
@@ -353,7 +353,7 @@ function QA() {
                           <span 
                               onClick={() => {
                               setReply({activeComment:true,id:child.id_comment_qa})}}
-                              className="feedback_comment_span"
+                              className="feedback_comment___"
                               >
                               <strong>Trả lời</strong>
                               { activeComment && id == child.id_comment_qa &&

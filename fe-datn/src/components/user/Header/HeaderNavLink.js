@@ -197,15 +197,17 @@ function HeaderNavLink() {
     const handleShow = async() => {
         if(user){
             const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+user[0].id);
-            if(res.data.status === true){
+            if(res.data.status == true){
               const user_data = res.data.data;
               if(user_data[0].role == 1 ){
-                setShow(true)
-              }if(user_data[0].role == 0){
+                setShow(true);
+              }else if(user_data[0].role == 0){
                 navigate('/rules');
               }else{
                 navigate('/Loi');
               }
+            }else{
+                navigate('/Loi');
             }
           }else{
             navigate('/Loi');
@@ -241,7 +243,6 @@ function HeaderNavLink() {
             </li>
             <li className="nav-item">
                 {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
-                
                 <Button 
                     variant="warning" 
                     style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} 
