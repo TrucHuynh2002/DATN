@@ -2442,6 +2442,10 @@ margin: 0 300px 0 375px;
 .room_number____{
     text-align: right;
 }
+#edit_list_manage{
+    display:none;
+    margin-top:10px;
+}
 .room_number____>.roomNumber_link{
     display:none;
     margin:10px;

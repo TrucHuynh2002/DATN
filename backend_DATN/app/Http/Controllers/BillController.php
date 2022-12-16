@@ -21,6 +21,19 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+    public function show_id_bill(Request $request, $id)
+    {
+        $data = DB::table('bill')
+            ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
+            ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
+            ->where('bill.id_roomNumber', '=', $id)
+            ->get();
+        return response()
+            ->json([
+                'status' => true,
+                'data' => $data,
+            ]);
+    }
     public function show_id(Request $request, $id)
     {
         $data = DB::table('bill')
@@ -62,12 +75,12 @@ class BillController extends Controller
         $Bill->save();
 
         $data_bill = DB::table('bill')
-        ->join('room_number','bill.id_roomNumber','=','room_number.room_number')
-        ->join('users','users.id_user','=','room_number.id_user_two')
-        ->join('post','post.id_post','=','room_number.id_post')
-        ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.id_roomNumber','users.full_name','post.room_price','users.email')
-        ->first();
-        if($data_bill){
+            ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.room_number')
+            ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
+            ->join('post', 'post.id_post', '=', 'room_number.id_post')
+            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.id_roomNumber', 'users.full_name', 'post.room_price', 'users.email')
+            ->first();
+        if ($data_bill) {
 
             Mail::to($data_bill->email)->send(new BillAlert($data_bill));
         }
@@ -117,41 +130,42 @@ class BillController extends Controller
             ]);
     }
 
-    public function getDataBillUser(Request $request, $id){
-        
-        $Bill = DB::table('bill')->join('room_number','bill.id_roomNumber','=','room_number.room_number')
-                    // ->join('post','post.id_post','=','room_number.id_post')
-                    ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.created_at','bill.id')
-                    ->where('room_number.id_user_two','=',$id);
-        if($request->start_date){
-            $Bill = $Bill->where('bill.created_at','>=', [Carbon::createFromFormat('Y-m-d', $request->start_date)->startOfDay()->toDateTimeString()]);
+    public function getDataBillUser(Request $request, $id)
+    {
+
+        $Bill = DB::table('bill')->join('room_number', 'bill.id_roomNumber', '=', 'room_number.room_number')
+            // ->join('post','post.id_post','=','room_number.id_post')
+            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.created_at', 'bill.id')
+            ->where('room_number.id_user_two', '=', $id);
+        if ($request->start_date) {
+            $Bill = $Bill->where('bill.created_at', '>=', [Carbon::createFromFormat('Y-m-d', $request->start_date)->startOfDay()->toDateTimeString()]);
         }
 
-        if($request->end_date){
-            $Bill = $Bill->where('bill.created_at','<=', [Carbon::createFromFormat('Y-m-d', $request->end_date)->startOfDay()->toDateTimeString()]);
-
+        if ($request->end_date) {
+            $Bill = $Bill->where('bill.created_at', '<=', [Carbon::createFromFormat('Y-m-d', $request->end_date)->startOfDay()->toDateTimeString()]);
         }
-                $Bill = $Bill->get();
-                    return response()
-                    ->json([
-                        'data' =>  $Bill,
-                        'status' => true,
-                        'start_date' => $request->start_date
-                    ]);
+        $Bill = $Bill->get();
+        return response()
+            ->json([
+                'data' =>  $Bill,
+                'status' => true,
+                'start_date' => $request->start_date
+            ]);
     }
 
-    public function getDataBillDetailUser(Request $request,$id){
-        $Bill = DB::table('bill')->join('room_number','bill.id_roomNumber','=','room_number.room_number')
-        ->join('post','post.id_post','=','room_number.id_post')
-        ->join('users','users.id_user','room_number.id_user_two')
-        ->select('bill.water_money','bill.electricity_money','bill.all_money','bill.created_at','bill.id','post.post_name','users.full_name','room_number.room_number')
-        ->where('room_number.id_user_two','=',$request->id_user)
-        ->where('bill.id','=',$id)
-        ->first();
+    public function getDataBillDetailUser(Request $request, $id)
+    {
+        $Bill = DB::table('bill')->join('room_number', 'bill.id_roomNumber', '=', 'room_number.room_number')
+            ->join('post', 'post.id_post', '=', 'room_number.id_post')
+            ->join('users', 'users.id_user', 'room_number.id_user_two')
+            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.created_at', 'bill.id', 'post.post_name', 'users.full_name', 'room_number.room_number')
+            ->where('room_number.id_user_two', '=', $request->id_user)
+            ->where('bill.id', '=', $id)
+            ->first();
         return response()
-        ->json([
-            'data' =>  $Bill,
-            'status' => true
-        ]);
+            ->json([
+                'data' =>  $Bill,
+                'status' => true
+            ]);
     }
 }

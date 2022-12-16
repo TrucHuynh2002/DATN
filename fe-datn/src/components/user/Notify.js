@@ -40,7 +40,6 @@ function Notify() {
     const id_user = user ? user[0].id : 0;
     if(id_user != 0){
         const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-        console.log(res.data);
         setListnotifyInteractive(res.data.data);
         setListBillUser(res.data.bill);
     }

@@ -42,7 +42,6 @@ function LayoutManage() {
             </div>
         </div>
         <div className="manage">
-          
             <div className="container-fluid">           
               <ListManageRoom  />
             </div>            
