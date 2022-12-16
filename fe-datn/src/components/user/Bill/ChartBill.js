@@ -14,9 +14,8 @@ function ChartBill() {
     const [PriceRoom,setPriceRoom] = useState([])
     const [DateRoom,setDateRoom] = useState([])
     console.log(PriceRoom);
-    Array(5).map((_,index) => {
-        
-             setData({...data,['Tháng' + index]: index}) 
+    Array(5).map((_,index) => {       
+        setData({...data,['Tháng' + index]: index}) 
     })
 
     const getDataBill = async () => {

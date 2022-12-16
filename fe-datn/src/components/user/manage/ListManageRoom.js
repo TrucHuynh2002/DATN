@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
-import { Line, Pie } from 'react-chartjs-2';
+// import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
+import EditManage from './EditManage';
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
@@ -263,8 +264,8 @@ function ListManageRoom() {
 
   return (
     <div className="row">
-        <div className="manage col-5">
-            <div className="container">
+        <div className="manage col-md-3 col-sm-12">
+            <div className="container-fluid">
                 <div className="content_profile">
                     <div className="list-post">
                         <h1><b className="b_title">Tin đã đăng</b></h1>
@@ -295,265 +296,259 @@ function ListManageRoom() {
                 </div>
             </div>
         </div>
-        <div className="manage col-7">
-                <div className="content_profile">
-                    <div className="list-post">
-                        <div className='row'>
-                            {quantityPost.map((quantity,index)=>{
-                               return quantity.status == 1 
-                                    ?
-                                    (
-                                        <div className="circle circle-yellow text-center red_room_number" 
-                                        name="id_" key={index} 
-                                        data-id ={quantity.id}
-                                        onClick={(e) => handleClick(e,quantity.id)} >
+        <div className="manage col-md-9 col-sm-12">
+            <div className="content_profile">
+                <div className="list-post">
+                    <div className='row'>
+                        {quantityPost.map((quantity,index)=>{
+                            return quantity.status == 1 
+                                ?
+                                (
+                                    <div className="circle circle-yellow text-center red_room_number" 
+                                    name="id_" key={index} 
+                                    data-id ={quantity.id}
+                                    onClick={(e) => handleClick(e,quantity.id)} >
+                                        A{quantity.room_number}
+                                    </div>
+                                ) : 
+                                quantity.status == 2 
+                                ?
+                                (
+                                    <div className="circle circle-blue text-center"
+                                    key={index} 
+                                    data-id ={quantity.id}
+                                    onClick={(e) => handleClickBlue(e,quantity.id)} > 
                                             A{quantity.room_number}
-                                        </div>
-                                    ) : 
-                                    quantity.status == 2 
-                                    ?
-                                    (
-                                        <div className="circle circle-blue text-center"
-                                        key={index} 
-                                        data-id ={quantity.id}
-                                        onClick={(e) => handleClickBlue(e,quantity.id)} > 
-                                              A{quantity.room_number}
-                                        </div> 
-                                       
-                                    )
-                                    :
-                                    (
-                                        <div className="circle circle-white text-center" 
-                                        data-id={quantity.id}
-                                        onClick={(e) => handleClickWhite(e,quantity.id)} 
-                                        key={index} >
-                                             A{quantity.room_number}
-                                        </div> 
-                                    )
-                            }
-                            )}
-                            <div className='color_room_manage'>
-                                <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
-                                <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
-                                <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
-                            </div>
-           
-                        </div>                      
-                    </div>       
-                       
-                    <div className="room_number____">
-                    {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
-                        <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
-                    </div>
-                    
-                   <div className="row">
-                        <div className="bill____ col-lg-6 col-sm-12">
-                            <Button id="bill_button" className="btn btn-primary" 
-                            onClick={(e) =>handleShowAddBill()}>
-                            Thêm hóa đơn
-                            </Button>
-                        </div>
-                        {/* start add bill */}
-                        <Modal show={showAddBill} onHide={handleCloseAddBill} >
-                            <Modal.Header closeButton>
-                                <Modal.Title>Thêm hóa đơn</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form onSubmit={(e) => handleSumbitAddBill(e)}>
-                                    {listBill.map((bill,index) => {
-                                        return ( 
-                                            <div key={index}>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Tên phòng</Form.Label>
-                                                <Form.Control type="text" disable="true" value={bill.post_name}/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Người sở hữu</Form.Label>
-                                                <Form.Control type="text" disable="true" value={bill.id_user}/>
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Tiền điện/KWH</Form.Label>
-                                                <Form.Control type="text" disable="true" 
-                                                 name="electricity"
-                                                value={bill.electricity_price} 
-                                                
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
-                                                <Form.Control type="text" disable="true" 
-                                                name="water"
-                                                value={bill.water_price} 
-                                                 />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Giá phòng</Form.Label>
-                                                <Form.Control type="number" disable="true" 
-                                                value={bill.room_price}
-                                                 name="room_money"
-                                                 
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
-                                                <Form.Control type="number" 
-                                                name="water_month"
-                                                value={water_month}
-                                                placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
-                                                onChange = {(e) => handleChangeInputWater(e)}
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12">
-                                                <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
-                                                <Form.Control type="number" 
-                                                name="electricity_month"
-                                                value={electricity_month}
-                                                placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
-                                                onChange = {(e) => handleChangeInputElc(e)}
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12 water_money">
-                                                <Form.Label>Tổng tiền nước</Form.Label>
-                                                <Form.Control type="text" 
-                                                disable="true"
-                                                value={listMomneyWater}
-                                                name="water_money" 
-                                                />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12 electricity_money">
-                                                <Form.Label>Tổng tiền điện</Form.Label>
-                                                <Form.Control type="text" 
-                                                name="electricity_money"
-                                                disable="true" 
-                                                value={listMomneyElc}
-
-                                                 />
-                                            </Form.Group>
-                                            <Form.Group className="mb-12 all_money">
-                                                <Form.Label>Tổng tiền phòng</Form.Label>
-                                                <Form.Control 
-                                                name="all_money" 
-                                                disable="true" 
-                                                value={listMomneyRoom}
-                                                />
-                                            </Form.Group>
-                                        </div> );
-                                    })}
-                                    <Button type="submit">Thêm</Button>
-                                </Form>
-                            </Modal.Body>
-                        </Modal>
-                        {/* end add bill */}
-                        <div className="edit_bill____ col-lg-6 col-sm-12">
-                            <Button id="edit_bill_button" className="btn btn-primary" onClick={(e) => handleShowEditBill(e)}>
-                                Cập nhật hóa đơn 
-                            </Button>
-                        </div>
-                       {/* start edit bill */}
-                       <Modal show={showEditBill} onHide={handleCloseEditBill}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Cập nhật hóa đơn</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                    {listEditBill.map((bill,index) => {
-                                        return ( 
-                                            <>
-                                                <Form onSubmit={(e) => handleSumbitEditBill(e,bill.id)} key={index}>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Tên phòng</Form.Label>
-                                                        <Form.Control type="text" disable="true" value={bill.post_name}/>
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Người sở hữu</Form.Label>
-                                                        <Form.Control type="text" disable="true" value={bill.id_user}/>
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Tiền điện/KWH</Form.Label>
-                                                        <Form.Control type="text" disable="true" 
-                                                        name="electricity"
-                                                        value={bill.electricity_price} 
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
-                                                        <Form.Control type="text" disable="true" 
-                                                        name="water"
-                                                        value={bill.water_price} 
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Giá phòng</Form.Label>
-                                                        <Form.Control type="number" disable="true" 
-                                                        value={bill.room_price}
-                                                        name="room_money"
-                                                        
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
-                                                        <Form.Control type="number" 
-                                                        name="water_month_edit"
-                                                        value={water_month_edit}
-                                                        placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
-                                                        onChange = {(e) => handleChangeEditInputWater(e)}
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12">
-                                                        <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
-                                                        <Form.Control type="number" 
-                                                        name="electricity_month_edit"
-                                                        value={electricity_month_edit}
-                                                        placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
-                                                        onChange = {(e) => handleChangeEditInputElc(e)}
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12 water_money">
-                                                        <Form.Label>Tổng tiền nước</Form.Label>
-                                                        <Form.Control type="text" 
-                                                        disable="true"
-                                                        value={ listEditMomneyWater ? listEditMomneyWater : bill.water_money}
-                                                        name="water_money_edit" 
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12 electricity_money">
-                                                        <Form.Label>Tổng tiền điện</Form.Label>
-                                                        <Form.Control type="text" 
-                                                        name="electricity_money_edit"
-                                                        disable="true" 
-                                                        value={listEditMomneyElc ? listEditMomneyElc  : bill.electricity_money}
-
-                                                        />
-                                                    </Form.Group>
-                                                    <Form.Group className="mb-12 all_money">
-                                                        <Form.Label>Tổng tiền phòng</Form.Label>
-                                                        <Form.Control 
-                                                        name="all_money_edit" 
-                                                        disable="true" 
-                                                        value={listEditMomneyRoom ? listEditMomneyRoom  : bill.all_money}
-                                                        />
-                                                    </Form.Group>
-                                                    <Button type="submit">Cập nhật</Button>
-                                                </Form>
-                                            </> 
-                                        );
-                                    })}
-                                  
-                            </Modal.Body>
-                        </Modal>
-                        {/* end edit bill */}
-                   </div>
-                </div>   
+                                    </div> 
                                     
-
-                <div className='row'>
-        <div className='col-md-8 chartline'>
-          <Line data={dataLine} options={options}></Line>
-        </div>
-       
-      </div>
-        </div>
+                                )
+                                :
+                                (
+                                    <div className="circle circle-white text-center" 
+                                    data-id={quantity.id}
+                                    onClick={(e) => handleClickWhite(e,quantity.id)} 
+                                    key={index} >
+                                            A{quantity.room_number}
+                                    </div> 
+                                )
+                        }
+                        )}
+                        <div className='color_room_manage'>
+                            <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
+                            <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
+                            <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
+                        </div>
         
-    </div>
+                    </div>                      
+                </div>       
+                    
+                <div className="room_number____">
+                {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
+                    <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
+                </div>
+                
+                <div className="row">
+                    <div className="bill____ col-lg-6 col-sm-12">
+                        <Button id="bill_button" className="btn btn-primary" 
+                        onClick={(e) =>handleShowAddBill()}>
+                            Thêm hóa đơn
+                        </Button>
+                    <div className="edit_bill____ col-lg-6 col-sm-12">
+                        <Button id="edit_bill_button" className="btn btn-primary" onClick={(e) => handleShowEditBill(e)}>
+                            Cập nhật hóa đơn 
+                        </Button>
+                    </div>
+                    </div>
+                    {/* start add bill */}
+                    <Modal show={showAddBill} onHide={handleCloseAddBill} >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Thêm hóa đơn</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form onSubmit={(e) => handleSumbitAddBill(e)}>
+                                {listBill.map((bill,index) => {
+                                    return ( 
+                                        <div key={index}>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Tên phòng</Form.Label>
+                                            <Form.Control type="text" disable="true" value={bill.post_name}/>
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Người sở hữu</Form.Label>
+                                            <Form.Control type="text" disable="true" value={bill.id_user}/>
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Tiền điện/KWH</Form.Label>
+                                            <Form.Control type="text" disable="true" 
+                                                name="electricity"
+                                            value={bill.electricity_price} 
+                                            
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
+                                            <Form.Control type="text" disable="true" 
+                                            name="water"
+                                            value={bill.water_price} 
+                                                />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Giá phòng</Form.Label>
+                                            <Form.Control type="number" disable="true" 
+                                            value={bill.room_price}
+                                                name="room_money"
+                                                
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
+                                            <Form.Control type="number" 
+                                            name="water_month"
+                                            value={water_month}
+                                            placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
+                                            onChange = {(e) => handleChangeInputWater(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12">
+                                            <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
+                                            <Form.Control type="number" 
+                                            name="electricity_month"
+                                            value={electricity_month}
+                                            placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
+                                            onChange = {(e) => handleChangeInputElc(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12 water_money">
+                                            <Form.Label>Tổng tiền nước</Form.Label>
+                                            <Form.Control type="text" 
+                                            disable="true"
+                                            value={listMomneyWater}
+                                            name="water_money" 
+                                            />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12 electricity_money">
+                                            <Form.Label>Tổng tiền điện</Form.Label>
+                                            <Form.Control type="text" 
+                                            name="electricity_money"
+                                            disable="true" 
+                                            value={listMomneyElc}
+
+                                                />
+                                        </Form.Group>
+                                        <Form.Group className="mb-12 all_money">
+                                            <Form.Label>Tổng tiền phòng</Form.Label>
+                                            <Form.Control 
+                                            name="all_money" 
+                                            disable="true" 
+                                            value={listMomneyRoom}
+                                            />
+                                        </Form.Group>
+                                    </div> );
+                                })}
+                                <Button type="submit">Thêm</Button>
+                            </Form>
+                        </Modal.Body>
+                    </Modal>
+                    {/* end add bill */}
+                    {/* start edit bill */}
+                    <Modal show={showEditBill} onHide={handleCloseEditBill}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Cập nhật hóa đơn</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                                {listEditBill.map((bill,index) => {
+                                    return ( 
+                                        <>
+                                            <Form onSubmit={(e) => handleSumbitEditBill(e,bill.id)} key={index}>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Tên phòng</Form.Label>
+                                                    <Form.Control type="text" disable="true" value={bill.post_name}/>
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Người sở hữu</Form.Label>
+                                                    <Form.Control type="text" disable="true" value={bill.id_user}/>
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Tiền điện/KWH</Form.Label>
+                                                    <Form.Control type="text" disable="true" 
+                                                    name="electricity"
+                                                    value={bill.electricity_price} 
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
+                                                    <Form.Control type="text" disable="true" 
+                                                    name="water"
+                                                    value={bill.water_price} 
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Giá phòng</Form.Label>
+                                                    <Form.Control type="number" disable="true" 
+                                                    value={bill.room_price}
+                                                    name="room_money"
+                                                    
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
+                                                    <Form.Control type="number" 
+                                                    name="water_month_edit"
+                                                    value={water_month_edit}
+                                                    placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
+                                                    onChange = {(e) => handleChangeEditInputWater(e)}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12">
+                                                    <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
+                                                    <Form.Control type="number" 
+                                                    name="electricity_month_edit"
+                                                    value={electricity_month_edit}
+                                                    placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
+                                                    onChange = {(e) => handleChangeEditInputElc(e)}
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12 water_money">
+                                                    <Form.Label>Tổng tiền nước</Form.Label>
+                                                    <Form.Control type="text" 
+                                                    disable="true"
+                                                    value={ listEditMomneyWater ? listEditMomneyWater : bill.water_money}
+                                                    name="water_money_edit" 
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12 electricity_money">
+                                                    <Form.Label>Tổng tiền điện</Form.Label>
+                                                    <Form.Control type="text" 
+                                                    name="electricity_money_edit"
+                                                    disable="true" 
+                                                    value={listEditMomneyElc ? listEditMomneyElc  : bill.electricity_money}
+
+                                                    />
+                                                </Form.Group>
+                                                <Form.Group className="mb-12 all_money">
+                                                    <Form.Label>Tổng tiền phòng</Form.Label>
+                                                    <Form.Control 
+                                                    name="all_money_edit" 
+                                                    disable="true" 
+                                                    value={listEditMomneyRoom ? listEditMomneyRoom  : bill.all_money}
+                                                    />
+                                                </Form.Group>
+                                                <Button type="submit">Cập nhật</Button>
+                                            </Form>
+                                        </> 
+                                    );
+                                })}
+                                
+                        </Modal.Body>
+                    </Modal>
+                    {/* end edit bill */}
+                </div>
+            </div>  
+            <div className="content_profile">
+                <EditManage />                                   
+            </div>      
+        </div>      
+        </div>      
   )
 }
 
