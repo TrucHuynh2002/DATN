@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import ListManageRoom from './ListManageRoom';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function LayoutManage() {
- 
-  
-  
-  // chartjs pie
   
     const navigate = useNavigate();
     const checkManage = async () => {

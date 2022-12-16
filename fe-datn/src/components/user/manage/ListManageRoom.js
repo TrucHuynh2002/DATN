@@ -6,6 +6,7 @@ import Pagination from '../Pagination';
 // import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
+import CheckRoomManage from './CheckRoomManage';
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
@@ -428,8 +429,9 @@ function ListManageRoom() {
                 </div>
             </div>  
             <div className="content_profile" id="edit_list_manage">
-                <EditManage id_roomNumber={roomNumber.undefined} />                                   
-            </div>      
+                <EditManage id_roomNumber={roomNumber.undefined} />                                 
+            </div>
+            <CheckRoomManage />      
         </div>      
         </div>      
   )

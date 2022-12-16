@@ -1,8 +1,7 @@
-import React,  { useState,useEffect } from 'react'
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import React,  { useState,useEffect } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-
 
 function PriceRoom({data}) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -37,7 +36,12 @@ function PriceRoom({data}) {
             setLoadBill(res.data.data)
             data(id_user,start_date,end_date)
         }
-    }
+    };
+    // show trả phòng
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
   return (
     <>
         <div className="manage col-6">
@@ -45,6 +49,29 @@ function PriceRoom({data}) {
                 <div className="content_profile">
                     <div className="list-post">
                         <h1><b className="b_title">Hóa đơn</b></h1>
+                        {/* start trả phòng */}
+                        <Button onClick={handleShow} 
+                            variant="warning"
+                            type="submit"
+                            style={{color: 'black', fontWeight: 600, borderRadius: '5px'}}> Trả phòng
+                        </Button>
+                        <Modal show={show} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                            <Modal.Title>Xác nhận trả phòng</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <p>Bạn có chắc chắn muốn trả phòng ?</p>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary">
+                                    Trả phòng
+                                </Button>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                        {/* end trả phòng */}
                         <div className='row bill'>                         
                             <div className='col-lg-4 col-sm-12'>
                                 <span>Từ ngày </span><span>sss</span><span>đến</span><span>dd</span>
@@ -64,25 +91,22 @@ function PriceRoom({data}) {
                                             <input type="date" name="end_date" className='form-control'   onChange={e => handleChangeDate(e)}/>                 
                                         </div>
                                         <div className='col-lg-4 col-sm-12'>
-                                            <Button   
+                                            <Button  
                                                 variant="warning" 
                                                 type="submit"
                                                 style={{color: 'black', fontWeight: 600, borderRadius: '5px'}}> Lọc
                                                 <i className="fa-solid fa-filter" 
-                                                style={{marginLeft: '7px',width:"100%"}} 
+                                                style={{width:"100%"}}
                                                 ></i>
                                             </Button>          
                                         </div>
                                     </div>  
                                 </div>                             
-                            </form>      
-                                           
-                        </div> 
-                        
+                            </form>                                                
+                        </div>                         
                     </div>
 
-                    <div className="list-post">
-                       
+                    <div className="list-post">                      
                         <div className='row bill'>
                             <div className='col-lg-12 col-sm-12'>
                                 {
