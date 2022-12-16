@@ -156,7 +156,7 @@ function ListManageRoom() {
 
     const handleClickUpdate = async () => {
         const id = buttonID.undefined;
-        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id}?_method=PUT`,buttonID);
+        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_user/${id}?_method=PUT`,buttonID);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

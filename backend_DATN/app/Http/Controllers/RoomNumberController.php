@@ -59,7 +59,19 @@ class RoomNumberController extends Controller
         return response()
             ->json([
                 'data' => $data,
-                'status' => true
+                'status' => true,
+                'user' => $request->id_user_two,
+            ]);
+    }
+    public function update_user(Request $request, $id)
+    {
+        $data = RoomNumberModel::find($id);
+        $data->status = $request->status;
+        $data->save();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true,
             ]);
     }
 }

@@ -125,6 +125,7 @@ Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']
 Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_postID']);
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
+Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
 
 
 // Q&A
@@ -298,9 +299,9 @@ Route::get('view_index/show', [ViewController::class, 'show']);
 // Bill 
 Route::get('bill/show', [BillController::class, 'show']);
 Route::get('bill/show/{id}', [BillController::class, 'show_id']);
-Route::get('bill/user/{id}',[BillController::class, 'getDataBillUser']);
+Route::get('bill/user/{id}', [BillController::class, 'getDataBillUser']);
 // Route::post('bill/user/{id}',[BillController::class, 'getDataBillUser']);
-Route::get('bill-detail/user/{id}',[BillController::class, 'getDataBillDetailUser']);
+Route::get('bill-detail/user/{id}', [BillController::class, 'getDataBillDetailUser']);
 Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
