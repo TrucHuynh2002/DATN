@@ -35,7 +35,6 @@ function Home() {
 
   useEffect(() => {
     getViewIndex()
-
     return () => {
       getViewIndex()
     }
@@ -43,7 +42,6 @@ function Home() {
 
   useEffect(() => {
     getViewPost()
-
     return () => {
       getViewPost()
     }

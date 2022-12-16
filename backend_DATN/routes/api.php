@@ -301,6 +301,7 @@ Route::get('view_index/show', [ViewController::class, 'show']);
 Route::get('bill/show', [BillController::class, 'show']);
 Route::get('bill/show/{id}', [BillController::class, 'show_id']);
 Route::get('bill/show_id/{id}', [BillController::class, 'show_id_bill']);
+Route::get('bill/sum', [BillController::class, 'sum_bill']);
 Route::get('bill/user/{id}', [BillController::class, 'getDataBillUser']);
 // Route::post('bill/user/{id}',[BillController::class, 'getDataBillUser']);
 Route::get('bill-detail/user/{id}', [BillController::class, 'getDataBillDetailUser']);

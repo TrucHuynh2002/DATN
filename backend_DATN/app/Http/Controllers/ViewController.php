@@ -10,16 +10,7 @@ class ViewController extends Controller
 {
     public function updateViewIndex()
     {
-        // $a = View::all();
-        // foreach ($a as $val) {
-        //     $view = $val['view_index'];
-        // };
-        // return $view;
-        // $update = View::updated('view_index','=','view_index'+1);
-        // $update;
-        
         $data = View::orderBy('id_view_index','DESC')->first();
-        // dd($data->updated_at->day);
         if($data->updated_at->day == Carbon::now('Asia/Ho_Chi_Minh')->day){
             $data->view_index++;
             $data->save();
