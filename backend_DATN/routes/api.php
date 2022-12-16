@@ -135,8 +135,9 @@ Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //noty_notyqa
-Route::get('notynotyqa/show', [notyNotyQaController::class, 'show']);
-Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
+Route::get('noty_qa/show', [notyNotyQaController::class, 'show']);
+Route::post('noty_qa/create', [notyNotyQaController::class, 'AddComment']);
+Route::get('noty_qa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
