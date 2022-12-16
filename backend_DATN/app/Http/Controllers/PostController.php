@@ -162,6 +162,7 @@ class PostController extends Controller
             ->join('users', 'post.id_user', '=', 'users.id_user')
             ->where('post.id_post', '=', $id)
             ->orderBy('post.id_post', 'DESC')
+            ->select('post.id_post','users.id_user','post.post_name', 'post.description_sort', 'post.description', 'post.area', 'post.room_price', 'post.electricity_price', 'post.water_price', 'post.address', 'post.id_province', 'post.id_district', 'post.id_ward', 'post.id_street', 'post.ifarme', 'post.quantity', 'post.view', 'users.phone')
             ->get();
         return response()
             ->json([
