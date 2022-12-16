@@ -5,7 +5,8 @@ import axios from 'axios';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
-function ChartBill() {
+function ChartBill({dataChart}) {
+    console.log(dataChart);
     //  chartjs line
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
@@ -19,9 +20,14 @@ function ChartBill() {
     })
 
     const getDataBill = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        if(dataChart.length > 0){
+            setPriceRoom(dataChart)
+        }else{
+            const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
         
-        setPriceRoom(res.data.data)
+            setPriceRoom(res.data.data)
+        }
+    
         // console.log(res.data);
         // setPriceMonth(res.data.data)
         // res.data.data.map((price,index) => {
@@ -44,10 +50,10 @@ function ChartBill() {
     useEffect(() => {
         getDataBill()
 
-        return () => {
-            getDataBill()
-        }
-    },[])
+            // return () => {
+            //     getDataBill()
+            // }
+    },[dataChart])
    
 const dataLine = {
     labels: PriceRoom.map((pr,i) =>  pr.created_at),
