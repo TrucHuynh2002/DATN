@@ -7,8 +7,8 @@ function HomeSearch() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    getTypeRoom()
-    getProvinces()
+    getTypeRoom();
+    getProvinces();
   },[]);
     // SEARCHING
   const [keyword,setKeyword] = useState({

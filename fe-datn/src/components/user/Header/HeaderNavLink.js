@@ -219,7 +219,7 @@ function HeaderNavLink() {
            setListCategory(res.data.data);
     };
   return (
-    <div className="collapse navbar-collapse"  id="navbarExample04">
+    <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
             {listCategory.map((cate, index) => {
                 return (           
