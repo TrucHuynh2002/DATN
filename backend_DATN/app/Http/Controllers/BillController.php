@@ -92,6 +92,7 @@ class BillController extends Controller
             ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
             ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.id_roomNumber', 'users.full_name', 'post.room_price', 'users.email')
+            ->orderBy('bill.id','DESC')
             ->first();
         if ($data_bill) {
 

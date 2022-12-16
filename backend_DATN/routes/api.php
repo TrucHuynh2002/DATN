@@ -127,6 +127,7 @@ Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_post
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
+Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRoom']);
 
 
 // Q&A
