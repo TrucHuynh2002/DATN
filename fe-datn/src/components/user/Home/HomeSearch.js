@@ -70,10 +70,8 @@ function HomeSearch() {
           const [getimage,setgetImage] = useState([]);
           const getKeyword = async (keyword) => {
             const res = await axios.get(`http://127.0.0.1:8000/api/getKeyWord/${keyword}`);
-           
             setgetKeywords(res.data.data)
             setGetDataPostSearch(res.data.get_post)
-
             setgetImage(res.data.image);
           }
           const handleChangeKeyWord = (e) => {
@@ -94,7 +92,7 @@ function HomeSearch() {
 
   return (
     <>
-      <div className="book_room2" id="room">
+      <div className="container book_room2" id="room">
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
@@ -122,7 +120,8 @@ function HomeSearch() {
                                                     )                                                
                                                     })
                                                   }
-                                              </div>                                    
+                                              </div>    
+                                              <hr />                                
                                         </li>
 
                                       )
@@ -134,7 +133,6 @@ function HomeSearch() {
                                     getKeywords.length > 0 
                                     ?
                                     getKeywords.map((keyword,index) => {
-                                    
                                       return (
                                         <li key={index}>
                                           <Link to="room">{keyword.key_word}</Link>
@@ -143,7 +141,7 @@ function HomeSearch() {
                                     })
                                     :
                                     <li>
-                                      <Link to="">Có 0 kết quả tìm kiếm</Link>
+                                      <Link to="">Tìm kiếm với {getKeywords}</Link>
                                     </li>
                                   }
                                 </ul>               

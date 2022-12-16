@@ -6,6 +6,7 @@ import { Button } from 'react-bootstrap';
 
 function RoomDetail() {
     var user = JSON.parse(localStorage.getItem("user"));
+    const id_user = user ?  user[0].id : ''
     const queryString = window.location.search;
     const urlParam = new URLSearchParams(queryString);
     const id_post = urlParam.get('id_post');
@@ -18,6 +19,7 @@ function RoomDetail() {
     const [listward, setListward] = useState([]);
     const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
+    const [getDataUser, setGetDataUser] = useState([]);
     const [buttonID, setButtonID] = useState({
         status:1,
         id_user_two : user ?  user[0].id : ''
@@ -77,18 +79,26 @@ function RoomDetail() {
         setListRoom(res.data.data);
       }; 
       const handleBookRoom =  async () => {
-        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id_roomNumber}?_method=PUT`, buttonID);
-        console.log(res);
-        if(res.data.status === true){
+        const see = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_id_user_two/${id_user}`);
+        if(see.data.data.length <= 0) {
+            const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id_roomNumber}?_method=PUT`, buttonID);
+            if(res.data.status === true){
+                setAlert({
+                    err_list: res.data
+                });
+            }
+            else{           
+                setAlert({
+                    err_list: res.data
+                });
+            }
+        }else{
             setAlert({
-                err_list: res.data
-            });
+                err_list: see.data 
+            })
+            console.log(alert)
         }
-        else{           
-            setAlert({
-                err_list: res.data
-            });
-        }
+       
       }
     return (
     <>
@@ -196,7 +206,10 @@ function RoomDetail() {
             );
             })}
             <Button className="btn btn-primary col-12" style={{marginTop:'50px'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
+            { alert.err_list.status === false && <div className="notice warning_____">
+                Tài khoản đã đặt phòng vui lòng trả phòng để đặt phòng tiếp theo </div> }
             {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
+           
         </div>
     </>
       )

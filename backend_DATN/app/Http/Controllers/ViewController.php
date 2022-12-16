@@ -10,32 +10,29 @@ class ViewController extends Controller
 {
     public function updateViewIndex()
     {
-        $data = View::orderBy('id_view_index','DESC')->first();
-        if($data->updated_at->day == Carbon::now('Asia/Ho_Chi_Minh')->day){
+        $data = View::orderBy('id_view_index', 'DESC')->first();
+        $abc =  $data->created_at->toDateString();
+        $current2 = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+        if ($abc == $current2) {
             $data->view_index++;
             $data->save();
             return response()
-            ->json([
-                'data' =>  $data,
-                'status' => true
-            ]);
-        }else{
+                ->json([
+                    'data' =>  $data,
+                    'status' => true
+                ]);
+        } else {
             $data_new = new View();
             $data_new->view_index++;
+            $data_new->created_at = new Carbon();
             $data_new->save();
             return response()
-            ->json([
-                'messeges' =>  'ngày mới',
-                'data' =>  $data_new,
-                'status' => true
-            ]);
+                ->json([
+                    'messeges' =>  'ngày mới',
+                    'data' =>  $data_new,
+                    'status' => true,
+                ]);
         }
-
-        // $data = View::find(1);
-        // $data->view_index++;
-        // $data->save();
-        
-        
     }
     public function show()
     {

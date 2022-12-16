@@ -40,6 +40,16 @@ class RoomNumberController extends Controller
 
             ]);
     }
+    public function show_id_user_two(Request $request, $id)
+    {
+        // $data = RoomNumberModel::where('id_post', '=', $id)->get();
+        $data = RoomNumberModel::where('id_user_two', '=', $id)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => false,
+            ]);
+    }
     public function show_id(Request $request, $id)
     {
         // $data = RoomNumberModel::where('id_post', '=', $id)->get();
@@ -48,6 +58,19 @@ class RoomNumberController extends Controller
             ->json([
                 'data' => $data,
                 'status' => true
+            ]);
+    }
+
+    public function update_checkRoom(Request $request, $id)
+    {
+        $data = RoomNumberModel::where('id_user_two', '=', $id)->first();
+        $data->check_room = 1;
+        $data->save();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true,
+                'id' => $id
             ]);
     }
     public function update(Request $request, $id)

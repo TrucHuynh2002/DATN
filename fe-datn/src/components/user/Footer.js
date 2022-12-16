@@ -44,16 +44,13 @@ function Footer() {
                 <h3>Hỗ trợ khách hàng</h3>
                 <ul className="conta ">
                   <li>
-                    <Link to="">Trung tâm hỗ trợ</Link>
+                    <Link to="/contact">Trung tâm hỗ trợ</Link>
                   </li>
                   <li>
                     <Link to="../baomat">Bảo mật tài khoản</Link>
                   </li>
                   <li>
-                    <Link to="../rules">Điều khoản sử dụng</Link>
-                  </li>
-                  <li>
-                    <Link to="">Báo cáo sự cố</Link>
+                    <Link to="/contact">Báo cáo sự cố</Link>
                   </li>
                 </ul>
               </div>

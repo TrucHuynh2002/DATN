@@ -42,7 +42,6 @@ function BlogContent() {
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
-                      <span>Trúc Huỳnh</span>
                       <p>
                         {blog.description_sort}
                       </p>

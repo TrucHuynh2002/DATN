@@ -12,7 +12,7 @@ class notyNotyQaModel extends Model
     protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $fillable = [
-        'id_post',
+        'id_qa',
         'id_user',
         'id_user_two',
         'status',
