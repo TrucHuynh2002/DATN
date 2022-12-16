@@ -30,16 +30,16 @@ class comment_QAController extends Controller
             ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
             ->whereNull('comment_qa.parent_id')
             // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->orderBy('comment_qa.id_comment_qa','DESC')
+            ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->get();
         $data_child = DB::table('comment_qa')
-        ->join('users', 'comment_qa.id_user', '=', 'users.id_user')
-        ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
-        ->select('comment_qa.content','users.full_name','img_user.link_img_user','comment_qa.created_at','comment_qa.id_comment_qa','comment_qa.parent_id','comment_qa.id_user')
-        ->whereNot('comment_qa.parent_id','=',"NULL")
-        // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
-        ->orderBy('comment_qa.id_comment_qa','DESC')
-        ->get();
+            ->join('users', 'comment_qa.id_user', '=', 'users.id_user')
+            ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
+            ->select('comment_qa.content', 'users.full_name', 'img_user.link_img_user', 'comment_qa.created_at', 'comment_qa.id_comment_qa', 'comment_qa.parent_id', 'comment_qa.id_user')
+            ->whereNot('comment_qa.parent_id', '=', "NULL")
+            // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
+            ->orderBy('comment_qa.id_comment_qa', 'DESC')
+            ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -65,23 +65,26 @@ class comment_QAController extends Controller
         $t->content = $request->content;
         $t->id_user = $request->id_user;
         $t->id_qa = $request->id_qa;
-        if($request->parent_id){
+        if ($request->parent_id) {
             $t->parent_id = $request->parent_id;
         }
         $t->save();
-
-        $get_idOwner = QAModel::find($request->id_qa);
-        
+        $Comment_PostUser = DB::table('comment_qa')
+            ->join('qa', 'qa.id_qa', '=', 'comment_qa.id_qa')
+            ->select('comment_qa.id_user')
+            ->orderBy('comment_qa.id_comment_qa', 'DESC')
+            ->first();
         return response()->json([
             'message' => 'Bình luận thành công',
             'status' => true,
             'data' => $t,
-            'id_qa' => $get_idOwner
+            'id_qa' => $Comment_PostUser
         ]);
     }
 
-    public function Comment_QASelectOne(Request $request, $id_comment){
-        $content = comment_QAModel::where('id_comment_qa','=',$id_comment)->first();
+    public function Comment_QASelectOne(Request $request, $id_comment)
+    {
+        $content = comment_QAModel::where('id_comment_qa', '=', $id_comment)->first();
         return response()->json([
             'status' => true,
             'id' => $id_comment,
@@ -89,9 +92,10 @@ class comment_QAController extends Controller
         ]);
     }
 
-    public function CommentEdit(Request $request, $id_comment){
+    public function CommentEdit(Request $request, $id_comment)
+    {
         $up_content = comment_QAModel::find($id_comment);
-        if($up_content){
+        if ($up_content) {
             $up_content->content = $request->content;
             $up_content->save();
         }
@@ -102,7 +106,8 @@ class comment_QAController extends Controller
         ]);
     }
 
-    public function CommentDelete(Request $request, $id_comment){
+    public function CommentDelete(Request $request, $id_comment)
+    {
         $up_content = comment_QAModel::find($id_comment)->delete();
         return response()->json([
             'status' => true,

@@ -127,7 +127,11 @@ Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_post
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
+
+Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRoom']);
+
 Route::put('roomNumber/update_checkRoom/{id}', [RoomNumberController::class, 'update_checkRoom']);
+
 
 
 // Q&A
@@ -135,8 +139,9 @@ Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //noty_notyqa
-Route::get('notynotyqa/show', [notyNotyQaController::class, 'show']);
-Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
+Route::get('noty_qa/show', [notyNotyQaController::class, 'show']);
+Route::post('noty_qa/create', [notyNotyQaController::class, 'AddComment']);
+Route::get('noty_qa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
