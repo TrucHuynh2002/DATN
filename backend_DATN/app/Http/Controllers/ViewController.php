@@ -34,10 +34,6 @@ class ViewController extends Controller
                 ]);
         }
     }
-
-    // $data = View::find(1);
-    // $data->view_index++;
-    // $data->save();
     public function show()
     {
         $data = View::all();
