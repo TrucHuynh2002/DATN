@@ -43,13 +43,10 @@ function LayoutManage() {
         </div>
         <div className="manage">
           
-            <div className="container">
-              
-                <ListManageRoom  />
-            </div>
-            
-        </div> 
-        
+            <div className="container-fluid">           
+              <ListManageRoom  />
+            </div>            
+        </div>        
     </>
   )
 }

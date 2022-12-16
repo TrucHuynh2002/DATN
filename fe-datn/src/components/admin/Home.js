@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
@@ -83,24 +82,6 @@ const getRoomType = async () => {
  };
 
 //  chartjs line
-// useEffect(() => {
-//   const FetchData = async () => {
-//     const {data} = await axios.get("http://127.0.0.1:8000/api/view_index/show")
-//     console.log(data);
-//     setChartLine({
-//       labels: data.data.map((item) => item.created_at),
-//       datasets: [
-//         {
-//           data: data.data.map(item => item.view_index),
-//           fill: true,
-//           borderColor: 'red',
-//           backgroundColor: 'transparent',
-//         }
-//       ]
-//     })
-//   }
-//   FetchData()
-// }, [])
 const dataLine = {
   labels: ["2022", "2020", "2021"],
   datasets: [{
