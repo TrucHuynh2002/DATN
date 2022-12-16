@@ -542,4 +542,12 @@ class PostController extends Controller
             'img' => $image
         ]);
     }
+    public function Post_view_top5(Request $request)
+    {
+        $data = Post::orderBy('view','DESC')->take(5)->get();
+        return response()->json([
+            "status" => true,
+            'data' => $data
+        ]);
+    }
 }

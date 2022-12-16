@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 
-function PriceRoom() {
+function PriceRoom({data}) {
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
     const [loadBill,setLoadBill] = useState([])
@@ -35,6 +35,7 @@ function PriceRoom() {
         const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);
         if(res.data.status == true){
             setLoadBill(res.data.data)
+            data(id_user,start_date,end_date)
         }
     }
   return (

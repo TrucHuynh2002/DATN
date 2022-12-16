@@ -2,10 +2,12 @@ import React, { useState,useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, ArcElement } from 'chart.js';
 import axios from 'axios';
+import moment from 'moment';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
-function ChartBill() {
+function ChartBill({dataChart}) {
+    console.log(dataChart);
     //  chartjs line
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
@@ -19,9 +21,14 @@ function ChartBill() {
     })
 
     const getDataBill = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        if(dataChart.length > 0){
+            setPriceRoom(dataChart)
+        }else{
+            const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
         
-        setPriceRoom(res.data.data)
+            setPriceRoom(res.data.data)
+        }
+    
         // console.log(res.data);
         // setPriceMonth(res.data.data)
         // res.data.data.map((price,index) => {
@@ -44,13 +51,13 @@ function ChartBill() {
     useEffect(() => {
         getDataBill()
 
-        return () => {
-            getDataBill()
-        }
-    },[])
+            // return () => {
+            //     getDataBill()
+            // }
+    },[dataChart])
    
 const dataLine = {
-    labels: PriceRoom.map((pr,i) =>  pr.created_at),
+    labels: PriceRoom.map((pr,i) =>  moment(pr.created_at).format('DD-MM-YYYY')),
     datasets: [{
         data:PriceRoom.map((pr,i) =>  pr.all_money),
         backgroundColor: 'transparent',
