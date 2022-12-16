@@ -23,7 +23,6 @@ function Home() {
 
   useEffect(() => {
     getView();
-    // getViewIndex();
     getContact();
     getUser();
     getComment();

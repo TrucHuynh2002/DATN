@@ -129,16 +129,6 @@ function UpdateAccount() {
                                             <option key={index} value={room.id}>{room._name}</option>
                                         );
                                     })}       
-                                    {/* <option>Tỉnh</option>
-                                    {
-                                    
-                                    listProvince.map((room, index) => {
-                                        return (
-                                          
-                                            <option selected={room.id == editAccount.id_province ? 'selected' : 'false'} key={index} value={room.id}>{room._name}</option>
-                                           
-                                        );
-                                    })}   */}
                                 </Form.Select>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_province[0]}</span>}
                         </Form.Group>
@@ -148,7 +138,7 @@ function UpdateAccount() {
                             onChange = {(e) => handleDistrict(e)}
                             >  
                             <option>Quận/Huyện/TP</option>
-                                {/* {listDistrict.map((room, index) => {
+                                {listDistrict.map((room, index) => {
                                     return (
                                        editAccount.id_district && room.id == editAccount.id_district
                                         ?
@@ -156,18 +146,7 @@ function UpdateAccount() {
                                         :
                                         <option key={index} value={room.id}>{room._name}</option>
                                     );
-                                })}        */}
-                                <option>Quận/Huyện/TP</option>
-                                {listDistrict.map((room, index) => {
-                                    return (                                    
-                                        editAccount.id_province &&  room._province_id == editAccount.id_province
-                                          
-                                            ?
-                                            <option selected  key={index} value={room.id}>{room._name}</option>
-                                            : 
-                                            <option  key={index} value={room.id}>{room._name}</option>                                   
-                                    );
-                                })} 
+                                })}       
                         </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_district[0]}</span>}
                         </Form.Group>
@@ -186,18 +165,6 @@ function UpdateAccount() {
                                         <option key={index} value={room.id}>{room._name}</option>
                                     );
                                 })}       
-                                {/* <option>Xã/Phường/Thị Trấn</option>
-                                {listWard.map((room, index) => {
-                                    return (
-                                        editAccount.id_ward && editAccount.id_ward
-                                          
-                                        ?
-                                        // <option selected  key={index} value={room.id}>{room._name}</option>
-                                        <option selected key={index} value={room.id}>{room._name}</option>
-                                        : 
-                                        <option  key={index} value={room.id}>{room._name}</option>                                       
-                                    );
-                                })}   */}
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
@@ -206,16 +173,6 @@ function UpdateAccount() {
                             <Form.Select name="id_street"
                             onChange = {(e) => handleChange(e)}
                             >
-                                {/* <option>Đường</option>
-                                {listStreet.map((room, index) => {
-                                    return (
-                                        room.id == editAccount.id_street
-                                        ?
-                                        <option selected key={index} value={room.id}>{room._name}</option>
-                                        :
-                                        <option key={index} value={room.id}>{room._name}</option>
-                                    );
-                                })}        */}
                                 <option>Đường</option>
                                 {listStreet.map((room, index) => {
                                     return (
