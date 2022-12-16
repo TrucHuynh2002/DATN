@@ -12,7 +12,9 @@ function Rules() {
     const getDataRoomType = async () => {
         const res = await axios.put(`http://127.0.0.1:8000/api/user/updateStatus/${id_user}`);
         if(res.data.status === true){
-            // localstore.setItem('user',)
+            const John = [{"id":res.data.data.id_user,"phone":res.data.data.phone,"fullname":res.data.data.full_name,"email": res.data.data.email,"address":res.data.data.address,"role":"1"}];
+              const jsonObj = JSON.stringify(John);
+              localStorage.setItem("user", jsonObj);
             setAlert({
                 err_list: res.data
             });

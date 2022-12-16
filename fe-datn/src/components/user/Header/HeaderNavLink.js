@@ -201,7 +201,6 @@ function HeaderNavLink() {
               const user_data = res.data.data;
               if(user_data[0].role == 1 ){
                 setShow(true)
-                // navigate('/');
               }if(user_data[0].role == 0){
                 navigate('/rules');
               }else{
