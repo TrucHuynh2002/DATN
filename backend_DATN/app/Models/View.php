@@ -9,7 +9,7 @@ class View extends Model
 {
     protected $table = 'view_index';
     protected $primaryKey = 'id_view_index';
-    protected $timestamp = true;
+    // protected $timestamp = true;
     protected $fillable = [
         'view_index',
     ];
