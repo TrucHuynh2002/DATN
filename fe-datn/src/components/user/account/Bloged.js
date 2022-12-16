@@ -14,7 +14,6 @@ function Bloged() {
     const lastPageIndexBlog = currentPageBlog * blogPerPage;
     const firstPageIndexBlog = lastPageIndexBlog - blogPerPage;
     const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
-
     useEffect(() => {
         getData();
         getDataUser();

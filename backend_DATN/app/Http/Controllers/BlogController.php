@@ -66,28 +66,36 @@ class BlogController extends Controller
         $Blog = new Blog();
         $Blog->name_blog = $request->name_blog;
         $Blog->name_img_blog = $request->name_img_blog;
-        $Blog->meta_keywords = $request->meta_keywords;       
+        $Blog->meta_keywords = $request->meta_keywords;
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
         $Blog->view = 0;
         $Blog->id_user = $request->id_user;
         $get_image = $request->file('img_blog');
         if ($get_image) {
-            foreach($get_image as $img)
-            $get_name_image = $img->getClientOriginalName();
+
+
+            $get_name_image = $get_image->getClientOriginalName();
             $path = 'upload/blog';
             $name_image  = current(explode('.', $get_name_image));
             $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
             $get_image->move($path, $new_image);
             $link_img_blog = env('APP_URL') . '/uploads/blog/' . $new_image;
             $Blog->img_blog = $link_img_blog;
+            return response()
+                ->json([
+                    'data' =>  $request->file('img_blog'),
+                    'status' => true
+                ]);
         }
-        $Blog->save();
-        return response()
-            ->json([
-                'data' =>  $Blog,
-                'status' => true
-            ]);
+
+
+        // $Blog->save();
+        // return response()
+        //     ->json([
+        //         'data' =>  $Blog,
+        //         'status' => true
+        //     ]);
     }
 
     public function img_Blog(Request $request, $id)
@@ -180,5 +188,4 @@ class BlogController extends Controller
                 'status' => true
             ]);
     }
-
 }

@@ -106,7 +106,7 @@ const getRoomType = async () => {
 
 //  chartjs line
 const dataLine = {
-  labels: listViewIndex.map((pr,i) =>  moment(pr.updated_at).format('DD-MM-YYYY')),
+  labels: listViewIndex.map((pr,i) =>  moment(pr.created_at).format('DD-MM-YYYY')),
   datasets: [{
       data: listViewIndex.map((pr,i) =>  pr.view_index),
       backgroundColor: 'transparent',
