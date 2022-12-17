@@ -183,9 +183,10 @@ function InfoAccount() {
                                <NavLink to={`../confirm_acc/${id_user}`}>
                                     <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
                                 </NavLink>
-                                    <NavLink to={`../layoutBill/${id_user}`}>
+                            {user[0].role == 0 && 
+                                <NavLink to={`../layoutBill/${id_user}`}>
                                     <Button variant="outline-warning" name='' className='btn-edit'>Phòng đang thuê</Button>
-                                </NavLink>
+                                </NavLink> }
                             </div>
                            }
             </>

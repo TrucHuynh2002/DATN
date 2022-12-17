@@ -214,14 +214,11 @@ function RoomND() {
                       <div className="col-md-4 col-sm-6" key={index}>
                           <div id="serv_hover" className="room">
                               <div className="room_img">
-                              {listImg.map((a, index) => {
-                                return a.id_post == post.id_post && (
-                                  <figure key={index}><img src={a.link_img_user} alt="#" /></figure>
-                                  )})}
+                                  <figure><img src={post.link_img} alt={post.name_img} /></figure>
                               </div>
                               <div className="bed_room">
                                   <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                                  <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span>
+                                  <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
                                   <p>{post.description_sort}</p>
                               </div>
                           </div>

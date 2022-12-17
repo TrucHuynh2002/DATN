@@ -14,18 +14,18 @@ function Posted() {
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-    const [listImg, setListImg] = useState([]);
+    // const [listImg, setListImg] = useState([]);
 
     useEffect(() => {
         getDataUser();
         getData();
-        getImg();
+        // getImg();
     },[]);
-    const getImg = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-        setListImg(res.data.data);   
+    // const getImg = async () => {
+    //     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+    //     setListImg(res.data.data);   
 
-    };
+    // };
     // danh sach Posted
     const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
@@ -48,14 +48,11 @@ function Posted() {
         {currentPosts.length > 0 ?
             currentPosts.map((post, index) => {
             return (    
-            <div className='row' key={index}>
-                {listImg.map((a, index) => {
-                    return a.id_post == post.id_post && (
-                        <div className='col-md-2 text-center' key={index}>
-                            <img src={a.link_img_user}
-                            alt='' className=" avt_img" />                        
-                        </div>
-                );})}
+            <div className='row'>
+                <div className='col-md-2 text-center'>
+                    <img src={post.link_img}
+                    alt={post.name_img} className="avt_img" />                        
+                </div>
                 <div className='col-md-10'>
                     <div className='account_content____'>
                         <h1 className="name_title">{post.post_name}</h1>

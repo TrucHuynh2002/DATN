@@ -34,7 +34,6 @@ function Profile() {
                 <div className="content_profile">
                     <div className="list-post"> <InfoAccount /></div>
                     <div className="list-post"> <Posted /></div>
-                    {/* <div className="list-post"> <Bloged /></div> */}
                 </div>
             </div>
         </div>
