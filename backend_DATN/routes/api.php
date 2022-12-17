@@ -129,11 +129,10 @@ Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_post
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
-
 Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRoom']);
-
 Route::put('roomNumber/update_checkRoom/{id}', [RoomNumberController::class, 'update_checkRoom']);
-
+Route::get('roomNumber/show_roombookuser/{id}', [RoomNumberController::class, 'showRoomBookUser']);
+Route::post('roomNumber/cancel_roombookuser/{id}', [RoomNumberController::class, 'cancelRoomBookUser']);
 
 
 // Q&A

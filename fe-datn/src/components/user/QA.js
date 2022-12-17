@@ -6,6 +6,7 @@ import moment from 'moment';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+
 function QA() {
   const user = JSON.parse(localStorage.getItem('user'));
   
@@ -31,6 +32,8 @@ function QA() {
     activeUpdateComment,
     idUpdateCmt
   } = UpdateComment
+
+  const [index, setIndex] = useState(5);
 
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
@@ -88,7 +91,15 @@ function QA() {
     setListChildComment(res.data.data_child);
     // console.log(res.data.data_child)
 };
-
+// const loadMore = () => {
+//   setListComment(index + 5)
+//   console.log(index)
+//   if (index >= post.length) {
+//     setIsCompleted(true)
+//   } else {
+//     setIsCompleted(false)
+//   }
+// }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();

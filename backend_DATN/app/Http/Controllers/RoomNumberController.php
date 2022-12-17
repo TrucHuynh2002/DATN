@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookRoomAdmin;
+use App\Mail\BookRoomUser;
+// use App\Models\Bill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class RoomNumberController extends Controller
 {
@@ -80,6 +85,18 @@ class RoomNumberController extends Controller
         $data->id_user_two = $request->id_user_two;
         $data->save();
         
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
+        
+        $user = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->first();
+        // $checkEmail_admin = User::where('email', '=', $request->email)->first();
+        if($admin){
+            Mail::to($admin->mail)->send(new BookRoomAdmin($user,$admin));
+        }
+        if($user){
+            Mail::to($user->mail)->send(new BookRoomUser($user));
+        }
         return response()
             ->json([
                 'data' => $data,
@@ -127,6 +144,7 @@ class RoomNumberController extends Controller
         ]);
     }
 
+
     public function bookingRoom(Request $request, $id) {
         $data =  DB::table('room_number')
             ->join('post','room_number.id_post','=','post.id_post')
@@ -157,5 +175,65 @@ class RoomNumberController extends Controller
             'data' => $data,
             'status' => true,
         ]);   
+    }
+    public function showRoomBookUser(Request $request,$id_user){
+        if($id_user && $request->id_post){
+            if($request->id_post == null){
+                return response()
+                ->json([
+                    'data' => 'Lỗi',
+                    'status' => false,
+                ]);
+            }
+            else{
+                $data = RoomNumberModel::where('id_user_two','=',$id_user)
+                ->where('id_post','=',$request->id_post)
+                ->first();
+                return response()
+                ->json([
+                    'data' => $data,
+                    'status' => true,
+                ]);
+            }
+            
+        }else{
+            return response()
+            ->json([
+                'data' => 'Lỗi',
+                'status' => false,
+            ]);
+        }
+    }
+    public function cancelRoomBookUser(Request $request,$id_user){
+        if($id_user && $request->id_post && $request->room_number){
+            if($request->id_post == null || $request->room_number == null){
+                return response()
+                ->json([
+                    'data' => 'Chưa có dữ liệu',
+                    'status' => false,
+                ]);
+            }else{
+                $data = RoomNumberModel::where('id_user_two','=',$id_user)
+                ->where('id_post','=',$request->id_post)
+                ->where('room_number','=',$request->room_number)
+                ->where('status','=',1)
+                ->first();
+                $data->id_user_two = null;
+                $data->status = 0;
+                $data->save();
+                return response()
+                ->json([
+                    'messeges' => 'hủy đặt phòng thành công',
+                    'status' => true,
+                ]);
+            }  
+        }else{
+            return response()
+            ->json([
+                'data' => 'Lỗi',
+                'status' => false,
+            ]);
+        }
+        
     }
 }

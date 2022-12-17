@@ -8,11 +8,11 @@ import axios from 'axios';
 
 function RoomRelatePost({onClick}) {
   const [listPost, setListPost] = useState([]);
-  const [listImg, setListImg] = useState([]);
+  // const [listImg, setListImg] = useState([]);
   // danh sach post
   useEffect(() => {
     getData();
-    getImg();
+    // getImg();
   },[]);
 
   const [alert, setAlert] = useState({
@@ -22,10 +22,10 @@ function RoomRelatePost({onClick}) {
     const res = await axios.get("http://127.0.0.1:8000/api/post/show");
     setListPost(res.data.data);
   };
-  const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    setListImg(res.data.data);   
-};
+//   const getImg = async () => {
+//     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+//     setListImg(res.data.data);   
+// };
 var settings = {
   dots: true,
   infinite: false,
@@ -77,10 +77,7 @@ var settings = {
              return (   
                <div className="content_Relate" style={{padding: '0 10px'}} key={index}> 
                    <div className="room_img img_room_lq" > 
-                   {listImg.map((a, index) => { 
-                     return a.id_post == post.id_post && ( 
-                       <img style={{padding: '5px 0'}} key={index} src={a.link_img_user} alt="#" /> 
-                      )})} 
+                       <img style={{padding: '5px 0'}} src={post.link_img} alt={post.name_img} /> 
                    </div> 
                    <div className="bed_room"> 
                        <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3> 

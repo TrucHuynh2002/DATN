@@ -52,9 +52,9 @@
     </div>
     <div class="body">
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
-        <b>Hello, tên </b>
-        <p>Đặt phòng thành công</p>
-        <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để đăng nhập vào tài khoản.</p>
+        <b>Hello, tên {user->full_name}</b>
+        <p>Bạn vừa đặt phòng thành công tại website nhatui.com</p>
+        <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để xem thông tin đặt phòng.</p>
         
     </div>
     <div class="footer">

@@ -7,7 +7,7 @@ import Figure from 'react-bootstrap/Figure';
 function HomePost() {
 
   const [listPost, setListPost] = useState([]);
-  const [listImg, setListImg] = useState([]);
+  // const [listImg, setListImg] = useState([]);
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
@@ -17,7 +17,7 @@ function HomePost() {
 
 useEffect(() => {
     getData()
-    getImg()
+    // getImg()
   },[]);
   // danh sách post
   const getData = async () => {
@@ -25,10 +25,10 @@ useEffect(() => {
     setListPost(res.data.data);
    };
    //danh sach img
-  const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    setListImg(res.data.data);  
-  };
+  // const getImg = async () => {
+  //   const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+  //   setListImg(res.data.data);  
+  // };
   
   return (
     <>
@@ -48,11 +48,7 @@ useEffect(() => {
                 <div className="col-md-4 col-sm-12" key={index}>
                     <div id="serv_hover" className="room">
                       <div className="room_img">
-                        {listImg.map((a, index) => {
-                          return a.id_post == post.id_post && (
-                              <Figure key={index}><img src={a.link_img_user} alt="#" /></Figure>
-                            )
-                          })}
+                          <Figure><img src={post.link_img} alt={post.name_img} /></Figure>
                       </div>
                       <div className="bed_room">
                         <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>

@@ -11,16 +11,16 @@ class BookRoomAdmin extends Mailable
 {
     use Queueable, SerializesModels;
     private $user;
-    // private $token;
+    private $admin;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user,$admin)
     {
         $this->user = $user;
-        // $this->token = $token;
+        $this->admin = $admin;
     }
 
     /**
@@ -30,6 +30,6 @@ class BookRoomAdmin extends Mailable
      */
     public function build()
     {
-        return $this->subject('Có người đặt phòng')->view('email.SendMailBookingAdmin')->with(['user' => $this->user]);
+        return $this->subject('Có người đặt phòng')->view('email.SendMailBookingAdmin')->with(['user' => $this->user,'admin'=>$this->admin]);
     }
 }

@@ -93,7 +93,7 @@ function RoomDetail() {
                         <div className='slider-image'>
                             {/* SAU NÀY PHẢI LÀM SLIDER */}
                            <Carousel>
-                            { listImg.map((img,i) => {
+                            {listImg.map((img,i) => {
                             return (
                             <div className="item" key={i}>   
                                     <img className="img-fluid" src={img.link_img_user} alt="abcd"  />
