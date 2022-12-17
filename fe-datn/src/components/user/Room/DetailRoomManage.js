@@ -22,7 +22,8 @@ function RoomDetail() {
     const [getDataUser, setGetDataUser] = useState([]);
     const [buttonID, setButtonID] = useState({
         status:1,
-        id_user_two : user ?  user[0].id : ''
+        id_user_two : user ?  user[0].id : '',
+        idPost: id_post ? id_post : '' 
     });
     const [quantityPost, setQuantityPost] = useState([]);
     useEffect(() => {
@@ -80,9 +81,12 @@ function RoomDetail() {
       }; 
       const handleBookRoom =  async () => {
         const see = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_id_user_two/${id_user}`);
+        console.log(see.data)
         if(see.data.data.length <= 0) {
             const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id_roomNumber}?_method=PUT`, buttonID);
+            console.log(res.data)
             if(res.data.status === true){
+                console.log(res.data)
                 setAlert({
                     err_list: res.data
                 });

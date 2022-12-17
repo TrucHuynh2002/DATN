@@ -15,11 +15,13 @@ function Notify() {
         // getDatafavorite();
         getDataInteractive();
         getImg();
+        getDataBill()
 
         return () => {
             getDataInteractive();
             getImg();
             getDataQa();
+            getDataBill()
         }
     },[]);
      // danh sach notify
@@ -55,13 +57,13 @@ function Notify() {
     }
 };
     // Noti Bill
-    // const getDataBill = async () => {
-    //     let id_user = user ? user[0].id : '';
-    //     if(id_user != 0){
-    //         const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-    //         setListnotifyInteractive(res.data.data);
-    //     }
-    // }
+    const getDataBill = async () => {
+        let id_user = user ? user[0].id : '';
+        if(id_user != 0){
+            const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+            setListnotifyInteractive(res.data.data);
+        }
+    }
     // xoa notify interactive
     const deletenotifyInteractive = async (id_notify_interactive) => {
         await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
