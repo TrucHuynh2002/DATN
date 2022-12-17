@@ -115,7 +115,7 @@ function HomeSearch() {
                                                       img.id_post == post.id_post
                                                       &&
                                                       <>
-                                                      <img src={img.link_img_user} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
+                                                      <img src={img.link_img} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
                                                       </>                                                      
                                                     )                                                
                                                     })
