@@ -2,6 +2,8 @@ import React,  { useState,useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { Link,useParams } from 'react-router-dom';
 import axios from 'axios';
+import ListUpdateRoom from './ListUpdateRoom';
+import ListDeleteRoom from './ListDeleteRoom';
 
 function PriceRoom({data}) {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -44,28 +46,11 @@ function PriceRoom({data}) {
     const handleShow = () => setShow(true);
 
   return (
-    <div className="manage col-6">
-        <Button className="col-3" onClick={handleShow} 
-            variant="warning"
-            type="submit"
-            style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '10px 0px 20px 50px'}}> Trả phòng
-        </Button>
-        {/* start trả phòng */}
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-            <Modal.Title>Xác nhận trả phòng</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <p>Bạn có chắc chắn muốn trả phòng ?</p>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Trả phòng
-                </Button>
-            </Modal.Footer>
-        </Modal>
-        {/* end trả phòng */}
+    <>
+    <div className="manage col-7">
         <div className="container">
+            <ListUpdateRoom />
+            <ListDeleteRoom />
             <div className="content_profile">
                 <div className="row" style={{alignItems: 'center'}}>
                     <div className="col-3">
@@ -132,6 +117,7 @@ function PriceRoom({data}) {
             </div>
         </div>
     </div>
+    </>
   )
 }
 
