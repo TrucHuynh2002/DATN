@@ -122,4 +122,64 @@ class RoomNumberController extends Controller
             'status' => true,
         ]);
     }
+    public function showRoomBookUser(Request $request,$id_user){
+        if($id_user && $request->id_post){
+            if($request->id_post == null){
+                return response()
+                ->json([
+                    'data' => 'Lỗi',
+                    'status' => false,
+                ]);
+            }
+            else{
+                $data = RoomNumberModel::where('id_user_two','=',$id_user)
+                ->where('id_post','=',$request->id_post)
+                ->first();
+                return response()
+                ->json([
+                    'data' => $data,
+                    'status' => true,
+                ]);
+            }
+            
+        }else{
+            return response()
+            ->json([
+                'data' => 'Lỗi',
+                'status' => false,
+            ]);
+        }
+    }
+    public function cancelRoomBookUser(Request $request,$id_user){
+        if($id_user && $request->id_post && $request->room_number){
+            if($request->id_post == null || $request->room_number == null){
+                return response()
+                ->json([
+                    'data' => 'Chưa có dữ liệu',
+                    'status' => false,
+                ]);
+            }else{
+                $data = RoomNumberModel::where('id_user_two','=',$id_user)
+                ->where('id_post','=',$request->id_post)
+                ->where('room_number','=',$request->room_number)
+                ->where('status','=',1)
+                ->first();
+                $data->id_user_two = null;
+                $data->status = 0;
+                $data->save();
+                return response()
+                ->json([
+                    'messeges' => 'hủy đặt phòng thành công',
+                    'status' => true,
+                ]);
+            }  
+        }else{
+            return response()
+            ->json([
+                'data' => 'Lỗi',
+                'status' => false,
+            ]);
+        }
+        
+    }
 }

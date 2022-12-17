@@ -91,15 +91,15 @@ function QA() {
     setListChildComment(res.data.data_child);
     // console.log(res.data.data_child)
 };
-const loadMore = () => {
-  setListComment(index + 5)
-  console.log(index)
-  if (index >= post.length) {
-    setIsCompleted(true)
-  } else {
-    setIsCompleted(false)
-  }
-}
+// const loadMore = () => {
+//   setListComment(index + 5)
+//   console.log(index)
+//   if (index >= post.length) {
+//     setIsCompleted(true)
+//   } else {
+//     setIsCompleted(false)
+//   }
+// }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
