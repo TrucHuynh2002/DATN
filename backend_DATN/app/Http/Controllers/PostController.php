@@ -259,9 +259,19 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $Post->save();
+        $get_image = $request->file('img');
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
 
+        $get_name_image = $get_image[0]->getClientOriginalName();
+        $path = 'uploads/';
+        $name_image = explode('.', $get_name_image);
+        $new_image = $name_image[0] . rand(0, 99);
+        $get_image->move($path, $new_image);
+        $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+        $Post->name_img = $new_image;
+        $Post->save();
+        
+            
         if ($request->quantity) {
             for ($i = 1; $i <= $request->quantity; $i++) {
                 $roomNumber = new RoomNumberModel();
@@ -281,12 +291,11 @@ class PostController extends Controller
                 $furniture_post->save();
             }
         }
-        $get_image = $request->file('img');
+        
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
-
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
@@ -296,7 +305,9 @@ class PostController extends Controller
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
+            
         }
+        
         return response()
             ->json([
                 'data' =>  $Post,
@@ -349,27 +360,61 @@ class PostController extends Controller
         // }
         $Post = Post::find($id);
         // cập nhật theo id_post
+        // $Post->post_name = $request->post_name;
+        // $Post->quantity = $request->quantity;
+        // $Post->area = $request->area;
+        // $Post->room_price = $request->room_price;
+        // $Post->electricity_price = $request->electricity_price;
+        // $Post->water_price = $request->water_price;
+        // $Post->address = $request->address;
+        // $Post->id_province = $request->id_province;
+        // $Post->id_district = $request->id_district;
+        // $Post->id_ward = $request->id_ward;
+        // $Post->ifarme = $request->ifarme;
+        // $Post->description = $request->description;
+        // $Post->description_sort = $request->description_sort;
+        // $Post->meta_keywords = $request->meta_keywords;
+        // $Post->meta_title = $request->meta_title;
+        // $Post->meta_description = $request->meta_description;
+        // $Post->verification = 0;
+        // $Post->id_roomType = $request->id_roomType;
+        // $Post->id_province = $request->id_province;
+        // $Post->id_district = $request->id_district;
+        // $Post->id_street = $request->id_street;
+        // $Post->save();
         $Post->post_name = $request->post_name;
-        $Post->quantity = $request->quantity;
+        $Post->description_sort = $request->description_sort;
+        $Post->description = $request->description;
         $Post->area = $request->area;
         $Post->room_price = $request->room_price;
-        $Post->electricity_price = $request->electricity_price;
         $Post->water_price = $request->water_price;
+        $Post->electricity_price = $request->electricity_price;
         $Post->address = $request->address;
         $Post->id_province = $request->id_province;
         $Post->id_district = $request->id_district;
         $Post->id_ward = $request->id_ward;
+        $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
-        $Post->description = $request->description;
-        $Post->description_sort = $request->description_sort;
-        $Post->meta_keywords = $request->meta_keywords;
+        $Post->quantity = $request->quantity;
         $Post->meta_title = $request->meta_title;
         $Post->meta_description = $request->meta_description;
-        $Post->verification = 0;
-        $Post->id_roomType = $request->id_roomType;
-        $Post->id_province = $request->id_province;
-        $Post->id_district = $request->id_district;
-        $Post->id_street = $request->id_street;
+        $Post->meta_keywords = $request->meta_keywords;
+        $Post->verification = 1;
+        $Post->status = 1;
+        $Post->delete = 0;
+        $Post->view = 0;
+        $Post->id_user = $request->id_user; // khóa ngoại
+        $Post->id_roomType = $request->id_roomType; // khóa ngoại
+        $get_image = $request->file('img');
+        $Get_Post = Post::orderby('id_post', 'DESC')->first();
+
+        $get_name_image = $get_image[0]->getClientOriginalName();
+        $path = 'uploads/';
+        $name_image = explode('.', $get_name_image);
+        $new_image = $name_image[0] . rand(0, 99);
+        $get_image->move($path, $new_image);
+        $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+        $Post->name_img = $new_image;
         $Post->save();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {

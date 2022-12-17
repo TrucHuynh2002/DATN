@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookRoomAdmin;
+use App\Mail\BookRoomUser;
+// use App\Models\Bill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class RoomNumberController extends Controller
 {
@@ -80,6 +85,18 @@ class RoomNumberController extends Controller
         $data->id_user_two = $request->id_user_two;
         $data->save();
         
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
+        
+        $user = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->first();
+        // $checkEmail_admin = User::where('email', '=', $request->email)->first();
+        if($admin){
+            Mail::to($admin->mail)->send(new BookRoomAdmin($user,$admin));
+        }
+        if($user){
+            Mail::to($user->mail)->send(new BookRoomUser($user));
+        }
         return response()
             ->json([
                 'data' => $data,

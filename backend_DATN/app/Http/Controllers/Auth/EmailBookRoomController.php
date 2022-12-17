@@ -20,18 +20,18 @@ class EmailBookRoomController extends Controller{
                 "messages" => "Có người đặt phòng"
             ]);
         }
-        // $checkEmail_user = User::where('email', '=', $request->email)->first();
-        // if($checkEmail_user){
-        //     Mail::to($request->email)->send(new BookRoomUser($checkEmail_user));
-        //     return response()->json([
-        //         "status" => true,
-        //         "messages" => "Đặt phòng thành công"
-        //     ]);
-        // }else{
-        //     return response()->json([
-        //         "status" => false,
-        //         "messages" => "Đặt phòng thất bại"
-        //     ]);
-        // }
+        $checkEmail_user = User::where('email', '=', $request->email)->first();
+        if($checkEmail_user){
+            Mail::to($request->email)->send(new BookRoomUser($checkEmail_user));
+            return response()->json([
+                "status" => true,
+                "messages" => "Đặt phòng thành công"
+            ]);
+        }else{
+            return response()->json([
+                "status" => false,
+                "messages" => "Đặt phòng thất bại"
+            ]);
+        }
     }
 }
