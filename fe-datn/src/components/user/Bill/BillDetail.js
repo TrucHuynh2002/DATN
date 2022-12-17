@@ -30,9 +30,9 @@ function BillDetail() {
         </div>
         <div className='row'>
             <div className="container content_profile">
-                <div className="list-post">
+                <div className="list-post" style={{fontSize: "24px"}}>
                     <h4>Tên người thuê phòng : {loadBill.full_name}</h4>
-                    <h4>Số phòng : A  {loadBill.room_number}</h4>
+                    <h4>Số phòng : A{loadBill.room_number}</h4>
                     <h4>Tổng giá phòng :  
                         {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(loadBill.all_money)}
                     </h4>

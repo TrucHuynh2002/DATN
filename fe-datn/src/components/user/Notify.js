@@ -10,17 +10,21 @@ function Notify() {
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     const [listnotifyQa, setListnotifyQa] = useState([]);
     const [listBillUser,setListBillUser] = useState([]);
+    console.log(listBillUser)
     const [listImg, setListImg] = useState([]);
     useEffect(() => {
         // getDatafavorite();
         getDataInteractive();
         getImg();
+        getNotifyInteractive()
         getDataBill()
+        getDataQa(); 
 
         return () => {
             getDataInteractive();
             getImg();
             getDataQa();
+            getNotifyInteractive()
             getDataBill()
         }
     },[]);
@@ -45,7 +49,7 @@ function Notify() {
         if(id_user){
             const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
             setListnotifyInteractive(res.data.data);
-            setListBillUser(res.data.bill);
+           
         }
     };
     // danh sach notify comment
@@ -56,11 +60,12 @@ function Notify() {
         setListnotifyQa(res.data.data);
     }
 };
-    // Noti Bill
-    const getDataBill = async () => {
+    // Noti notifyInteractive
+    const getNotifyInteractive = async () => {
         let id_user = user ? user[0].id : '';
         if(id_user != 0){
             const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+            console.log(res.data.data)
             setListnotifyInteractive(res.data.data);
         }
     }
@@ -74,6 +79,16 @@ function Notify() {
         setListImg(res.data.data);   
 
     };
+
+    // Noti Bill
+    const getDataBill = async () => {
+        const id_user = user ? user[0].id : '';
+        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        console.log(res.data)
+        if(res.data.status == true){
+            setListBillUser(res.data.data);
+        }   
+    }
   return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
@@ -131,6 +146,24 @@ function Notify() {
                                             <span className='notify_interaction'> {cate.interaction}</span>
                                             <span> bài của bạn </span>  
                                         </Link>   
+                                    </div>
+                                </div> 
+                            );
+                        })} 
+                    </div> 
+                    <div className="notifyInteractive">
+                        <h3 style={{textAlign: "center"}}>Hóa đơn</h3>
+                        {listBillUser.length > 0 && listBillUser.map((cate, index) => {
+                            return (     
+                                <div className='row' key={index}>  
+                                 
+                                    <div className="content_notifyInteractive col-10">
+                                        <Link to={`../billdetail/${cate.id}`} style={{textTransform: 'none'}}>
+                                            <span className="notify_name">Bạn vừa nhận được hóa đơn tiền phòng</span> 
+                                            <span className='notify_interaction'> {cate.created_at}</span>
+                                            
+                                        </Link>   
+                                        <hr/>
                                     </div>
                                 </div> 
                             );
