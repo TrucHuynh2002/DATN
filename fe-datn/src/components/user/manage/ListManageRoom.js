@@ -69,9 +69,7 @@ function ListManageRoom() {
    
     const {electricity_month ,water_month } = Input;
   
-    const [buttonID, setButtonID] = useState({
-        status:2,
-    });
+    const [buttonID, setButtonID] = useState();
     const [alert, setAlert] = useState({
         err_list: {},
     });
@@ -90,7 +88,7 @@ function ListManageRoom() {
     },[]);
 
      // Xử lý input vlaue
-     const handleChangeAddbill = async (e) => {
+    const handleChangeAddbill = async (e) => {
         setAddBill({ ...addBill, [e.target.name] : e.target.value});
     }
     // lấy giá trị input 
@@ -112,12 +110,28 @@ function ListManageRoom() {
     };
 
     const handleChange = async (e,id_post) => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`); 
+        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`);
+        console.log(res.data.data) 
         setQuantityPost(res.data.data);
     };
     const [yellow,setYellow] = useState(false)
     const [blue,setBlue] = useState(false)
     const [white,setWhite] = useState(false)
+    const [active,setActive] = useState({
+        id_rooms:"",
+        status: "",
+        checked:false
+    })
+    const {
+        id_rooms,
+        status,
+        checked,
+        id_user_two,
+        id_post
+    } = active
+    const [alertError,setAlertError] = useState('')
+    console.log(active)
+
     const handleClickBlue = async (e,quality) =>{
         // setQuantityButtonAll(false)
         // setQuantityButton()
@@ -156,9 +170,64 @@ function ListManageRoom() {
         check ? setButtonID({[e.id]:quality}) : setButtonID('')
     }
 
-    const handleClickUpdate = async () => {
-        const id = buttonID.undefined;
-        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_user/${id}?_method=PUT`,buttonID);
+    const handleClickRoom = (e,id_room,typeRoom,id_user_two= '',id_post = '') => {
+        // status === typeRoom
+        // ?
+        // setActive({...active,[id_room]: quality })
+        // :
+        // active.length <= 0 && setActive([...active,{id_rooms:id_room, status: typeRoom}])
+        // active.length > 0 && active.map((arr,i) => {
+            
+        //     if(arr.status == typeRoom){
+        //         console.log(arr.id_rooms,id_room)
+        //         if(arr.id_rooms != id_room){
+        //             // return setActive([...active,{id_room:id_room, status: typeRoom}])
+                    
+                    
+        //             setActive([...active,{id_rooms:id_room, status: typeRoom}])
+        //             console.log('khác nè')
+                
+        //         }else{
+        //             console.log('giống quà')
+        //         }
+        //     }
+        //     else if(arr.status != typeRoom){
+        //        console.log('Ôi khác room bạn ơi!')
+        //        setActive([{id_rooms:id_room, status: typeRoom}])
+        //     }           
+        // })
+
+        
+        // active.length > 0 && active.map((arr,i) => {
+        //    return  arr.id_room == id_room 
+        //     ?
+        //     '223'
+        //     :
+        //      ''
+        // })
+        // console.log(id_room)
+        setActive({id_rooms:id_room, status: typeRoom,checked:true,id_user_two: id_user_two,id_post: id_post})        
+    }
+
+    // Trả phòng
+    const handleCheckOut = async (e) => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_rooms}`);
+        console.log(res.data)
+        if(res.data.status == true){
+            handleChange(e,id_post)
+        }
+console.log(id_post)
+        // setActive({id_rooms:"", status: 0,checked:true,id_user_two: '',id_post: ''})       
+    }
+
+    // Bỏ chọn
+    
+    const CancelSelect = (e) => {
+        setActive({id_rooms:"", status: "",checked:false})
+    }
+
+    const handleClickUpdate = async (e) => {
+        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_user/${id_rooms}?id_user_two=${id_user_two}&&_method=PUT`,);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -176,10 +245,11 @@ function ListManageRoom() {
     // show add bill
     const [showAddBill, setShowAddBill] = useState(false);
     const handleCloseAddBill = () => setShowAddBill(false);
-    const handleShowAddBill = async () => {
+    const handleShowAddBill = async (e) => {
         setShowAddBill(true)
-        const id = roomNumber.undefined;
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_post/${id}`);
+       
+        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_post/${id_rooms}`);
+        
         setBill(res.data.data);
         if(res.data.status === true){
             setAlert({
@@ -199,8 +269,9 @@ function ListManageRoom() {
         formData.append('water_money', listMomneyWater);
         formData.append('electricity_money', listMomneyElc);
         formData.append('all_money', listMomneyRoom);
-        formData.append('id_roomNumber', roomNumber.undefined);
+        formData.append('id_roomNumber', id_post);
         const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
+        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -217,7 +288,7 @@ function ListManageRoom() {
 
   return (
     <div className="row">
-        <div className="manage col-md-3 col-sm-12">
+        <div className="manage col-md-6 col-lg-4 col-sm-12">
             <div className="container-fluid">
                 <div className="content_profile">
                     <div className="list-post">
@@ -249,69 +320,87 @@ function ListManageRoom() {
                 </div>
             </div>
         </div>
-        <div className="manage col-md-9 col-sm-12">
+        <div className="manage col-md-8 col-sm-12">
             <div className="content_profile">
                 <div className="list-post">
                     <div className='row'>
                         {quantityPost.map((quantity,index)=>{
 
-                            return quantity.status == 1 
-                            ?
-                            (
-                                quantity.status == 1 && yellow
-                                ?
-                                <></>
-                                :
-                                (
+                            if(quantity.status == 1 ) {
+                              return  (
+                          
+                                
                                     <>
-                                        <div className="circle circle-yellow text-center red_room_number" 
-                                        name="id_" key={index} 
-                                        data-id ={quantity.id}
-                                        onClick={(e) => handleClickYellow(e,quantity.id)} >
-                                            A{quantity.room_number}
+                                        <div className={`circle circle-yellow text-center red_room_number ${quantity.id == id_rooms && 'red'} `}
+                                            style={{background:quantity.id == id_rooms ? "red" : ''}}
+                                            name="id_" key={index} 
+                                            data-id ={quantity.id}
+                                            onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two)} >
+                                                A{quantity.room_number}
+                                               
                                         </div>
-                                        <div className="circle circle-yellow text-center red_room_number" 
-                                        name="id_" key={index} 
+                                     
+
+                                    </>
+                                
+                                ) 
+                            }else if( quantity.status == 2 ){
+                                return  (
+                                    <>
+                                     <div className={`circle circle-blue text-center `}
+                                        style={{background:quantity.id == id_rooms ? "red" : ''}}
+                                        key={index} 
                                         data-id ={quantity.id}
-                                        >
+                                        onClick={e => handleClickRoom(e,quantity.id,quantity.status,'',quantity.id_post)} 
+                                    > 
                                             A{quantity.room_number}
-                                        </div>
+                                            
+                                    </div> 
+                                    
+                                  
+                                      
+                                    
                                     </>
                                 )
-                            ) 
-                            : 
-                            quantity.status == 2 
-                            ?
-                            (
-                                <div className="circle circle-blue text-center"
-                                    key={index} 
-                                    data-id ={quantity.id}
-                                    onClick={e => handleClickBlue(e,quantity.id)} 
-                                > 
-                                        A{quantity.room_number}
-                                </div> 
-                            )
-                            :
-                            (
-                               <>
-                                <div 
-                                className="circle circle-white text-center" 
-                                data-id={quantity.id}
-                                onClick={(e) => handleClickWhite(e,quantity.id)} 
-                                key={index} >
-                                        A{quantity.room_number}
-                                </div> 
-                                <div className="circle circle-white text-center" 
-                                data-id={quantity.id}
-                               
-                                key={index} >
-                                        A{quantity.room_number}
-                                </div> 
-                               </>
-                            )
+                            }else{
+                              return     (
+                                    <>
+                                     <div 
+                                     className={`circle circle-white text-center ${quantity.id == id_rooms && 'red'} ` }
+                                     style={{background:quantity.id == id_rooms ? "red" : ''}}
+                                     data-id={quantity.id}
+                                     onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} 
+                                     key={index} >
+                                             A{quantity.room_number}
+                                            
+                                     </div> 
+                                    
+                                      
+
+                                    </>
+                                 )
+                            }
+                         
                         }
                         )}
-                        <div className='color_room_manage'>
+
+                        {
+                            checked  &&
+                            <div>
+                                <span style={{padding: "6px",border:"1px solid red",cursor:"pointer"}} onClick={e => CancelSelect(e)} >Hủy bỏ chọn</span>
+                            </div>
+                        }
+
+                       { status == 2 && (<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px",marginTop:"12px"}}>
+                            <div style={{border:"1px solid red",padding:"4px 6px",cursor:"pointer"}} onClick={e => handleShowAddBill(e)}>
+                                    Thêm hóa đơn
+                            </div>
+                            <div onClick={e => handleCheckOut(e)} style={{border:"1px solid red",padding:"4px 6px",cursor:"pointer"}}>
+                                    Đã trả phòng
+                            </div>
+                        </div>)}
+                       
+                        <div className='color_room_manage' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                             <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
                             <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
                             <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
@@ -322,7 +411,24 @@ function ListManageRoom() {
                     
                 <div className="room_number____">
                 {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
-                    <Button id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate()} >Cập nhật phòng đã sở hữu</Button>
+              
+                {
+                    status == 0
+                    &&
+                    <>
+                    <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                    </>
+
+                }    
+                {
+                    status == 1
+                    &&
+                    <>
+                    <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                    </>
+
+                }    
+               
                 </div>
                 
                 <div className="row">

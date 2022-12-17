@@ -1,7 +1,8 @@
 import React,  { useState,useEffect } from 'react'
 import ChartBill from './ChartBill';
-import PriceRoom from '../../user/Room/PriceRoom';
+import PriceRoom from './PriceRoom';
 import axios from 'axios';
+
 const user = JSON.parse(localStorage.getItem("user"));
 // if(!user){
 //     window.location="https://localhost:3000/Loi";

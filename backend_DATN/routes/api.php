@@ -62,7 +62,6 @@ use App\Http\Controllers\BillController;
 // Route::post('config/', [ConfigController::class, 'create_Config']);
 // TEST CK
 Route::post('uploads/', [UploadCkeditController::class, 'upload_CK']);
-
 Route::put('config/update/logo/{id}', [ConfigController::class, 'Logo']);
 Route::get('config', [ConfigController::class, 'get_Config']);
 Route::put('config/update', [ConfigController::class, 'update_Config']);
@@ -123,10 +122,16 @@ Route::get('post/post_view_top5', [PostController::class, 'Post_view_top5']);
 // RoomNumber
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
 Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
+Route::get('roomNumber/show_id_user_two/{id}', [RoomNumberController::class, 'show_id_user_two']);
 Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_postID']);
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
+
+Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRoom']);
+
+Route::put('roomNumber/update_checkRoom/{id}', [RoomNumberController::class, 'update_checkRoom']);
+
 
 
 // Q&A
@@ -134,8 +139,9 @@ Route::get('qa/show', [QAController::class, 'show']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //noty_notyqa
-Route::get('notynotyqa/show', [notyNotyQaController::class, 'show']);
-Route::get('notynotyqa/show/{id}', [notyNotyQaController::class, 'show_one']);
+Route::get('noty_qa/show', [notyNotyQaController::class, 'show']);
+Route::post('noty_qa/create', [notyNotyQaController::class, 'AddComment']);
+Route::get('noty_qa/show/{id}', [notyNotyQaController::class, 'show_one']);
 
 //address
 Route::get('post/show_province', [PostController::class, 'show_province']);
@@ -206,6 +212,7 @@ Route::get('user/showimg/{id}', [UserController::class, 'ImgUser']);
 Route::get('user/showimg', [UserController::class, 'ImgUserAll']);
 Route::post('user/create', [UserController::class, 'UserAdd']);
 Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
+Route::put('user/updateStatus/{id}', [UserController::class, 'UserStatus']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
 Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);

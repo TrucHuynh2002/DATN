@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import InfoAccount from './InfoAccount'
 import Posted from './Posted';
-import Bloged from './Bloged';
+// import Bloged from './Bloged';
 
 function Profile() {
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ function Profile() {
                 <div className="content_profile">
                     <div className="list-post"> <InfoAccount /></div>
                     <div className="list-post"> <Posted /></div>
-                    <div className="list-post"> <Bloged /></div>
+                    {/* <div className="list-post"> <Bloged /></div> */}
                 </div>
             </div>
         </div>

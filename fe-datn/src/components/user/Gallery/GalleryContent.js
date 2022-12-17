@@ -8,7 +8,6 @@ import moment from 'moment';
 function GalleryContent() {
   useEffect(() => {
     getData();
-    // getDataPostTrend();
   },[]);
   const [ListSearchTrend, setListSearchTrend] = useState([]);
   const [ListDataPostTrend, setDataPostTrend] = useState([]);
@@ -18,11 +17,7 @@ function GalleryContent() {
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
   };
-  // const getDataPostTrend = async (keyword) => {
-  //   console.log(keyword)
-  //   // const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
-  //   // setDataPostTrend(res.data.data);
-  // };
+  
   const getDataPostTrendShow = async (keyword) => {
     let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}`);
     setDataPostTrendShow(res.data.data);
@@ -43,7 +38,6 @@ function GalleryContent() {
             type="button"
             className="row searchTrend"  
             onClick={(e) =>getDataPostTrendShow(list.key_word) }
-            // onChange={(e) => getDataPostTrend(list.key_word)}
             >
               <div className="col-1">{index+1}</div>
               <div className="col-8">

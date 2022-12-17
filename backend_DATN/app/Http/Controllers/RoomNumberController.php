@@ -40,6 +40,16 @@ class RoomNumberController extends Controller
 
             ]);
     }
+    public function show_id_user_two(Request $request, $id)
+    {
+        // $data = RoomNumberModel::where('id_post', '=', $id)->get();
+        $data = RoomNumberModel::where('id_user_two', '=', $id)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => false,
+            ]);
+    }
     public function show_id(Request $request, $id)
     {
         // $data = RoomNumberModel::where('id_post', '=', $id)->get();
@@ -48,6 +58,19 @@ class RoomNumberController extends Controller
             ->json([
                 'data' => $data,
                 'status' => true
+            ]);
+    }
+
+    public function update_checkRoom(Request $request, $id)
+    {
+        $data = RoomNumberModel::where('id_user_two', '=', $id)->first();
+        $data->check_room = 1;
+        $data->save();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true,
+                'id' => $id
             ]);
     }
     public function update(Request $request, $id)
@@ -66,12 +89,37 @@ class RoomNumberController extends Controller
     public function update_user(Request $request, $id)
     {
         $data = RoomNumberModel::find($id);
-        $data->status = $request->status;
+        if($data){
+        $data->status = 2;
+        $data->id_user_two = $request->id_user_two;
         $data->save();
         return response()
             ->json([
                 'data' => $data,
                 'status' => true,
             ]);
+        }
+        return response()
+        ->json([
+            'mess' => "Phòng này không tồn tài",
+            'status' => true,
+        ]);
+    }
+
+    // Trả phòng
+
+    public function checkOutRoom(Request $request,$id){
+        $data = RoomNumberModel::find($id);
+        if($data){
+            $data->status = 0;
+            $data->id_user_two = null;
+            $data->save();
+        }
+        return response()
+        ->json([
+            'mess' => "Trả phòng thành công",
+            'data' => $data,
+            'status' => true,
+        ]);
     }
 }

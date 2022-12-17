@@ -343,7 +343,11 @@ table, th, td{
 }
 table{
     border-collapse:collapse;
+    text-align: left;
     table-layout: fixed;
+}
+table>tbody>tr>td{
+    word-wrap:break-word;
 }
 .content_h1_admin{
     text-align: center;

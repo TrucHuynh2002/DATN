@@ -19,6 +19,7 @@ function AddBlog() {
     // console.log(123);
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
+    console.log(uploadImages[0])
     const handleChangeImages = (e) => {
         console.log(e.target.files);
         setUploadImages(e.target.files)
@@ -37,13 +38,15 @@ function AddBlog() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(uploadImages)
         let dataForm = new FormData();
-        dataForm.append('img_blog[]',uploadImages[0])
+        dataForm.append('img_blog',uploadImages[0])
         dataForm.append('name_blog',name_blog);
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", dataForm);
+        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -69,7 +72,7 @@ function AddBlog() {
                     </Form.Group>
                    <Form.Group className="mb-3" controlId="img_blog">
                         <Form.Label>Hình ảnh</Form.Label>
-                        <Form.Control type="file" name="img_blog_add" onChange={(e) => handleChangeImages(e)} />
+                        <Form.Control type="file" name="img_blog_add" onChange={(e) => setUploadImages(e.target.files)} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="meta_keywords">
                         <Form.Label>Từ khóa</Form.Label>
@@ -104,10 +107,8 @@ function AddBlog() {
                         <div className="notice warning_____">{alert.err_list.messages.description[0]}</div>}
                     </Form.Group>
                   <div className="d-grid gap-2">
-                  {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
-                      <Button variant="primary" size="sm" name='' type="submit">
-                          Thêm blog
-                      </Button>                     
+                    {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
+                    <Button variant="primary" size="sm" name='' type="submit">Thêm blog</Button>                     
                   </div>
                 </Form>     
             </div>

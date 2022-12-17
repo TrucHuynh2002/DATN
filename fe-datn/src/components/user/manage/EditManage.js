@@ -1,7 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { Button, Table,Modal, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function EditManage({id_roomNumber}) {

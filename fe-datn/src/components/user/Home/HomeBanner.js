@@ -63,14 +63,13 @@ function Baner() {
                   </div>
                 </form>
               </div>
-
-              {/* search */}
-              <HomeSearch />
-              {/* end search */}
             </div>
           </div>
         </div>
       </div>
+        {/* search */}
+        <HomeSearch />
+              {/* end search */}
     </section>
   )
 }
