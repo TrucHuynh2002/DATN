@@ -88,7 +88,7 @@ class BillController extends Controller
         $Bill->save();
 
         $data_bill = DB::table('bill')
-            ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.room_number')
+            ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
             ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
             ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.id_roomNumber', 'users.full_name', 'post.room_price', 'users.email')
@@ -101,6 +101,7 @@ class BillController extends Controller
         return response()
             ->json([
                 'data' =>  $data_bill,
+                'bill' => $Bill,
                 'status' => true
             ]);
     }
@@ -162,7 +163,8 @@ class BillController extends Controller
             ->json([
                 'data' =>  $Bill,
                 'status' => true,
-                'start_date' => $request->start_date
+                'start_date' => $request->start_date,
+                'id' => $id
             ]);
     }
 
