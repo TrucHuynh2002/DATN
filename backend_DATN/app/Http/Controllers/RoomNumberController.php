@@ -79,11 +79,12 @@ class RoomNumberController extends Controller
         $data->status = $request->status;
         $data->id_user_two = $request->id_user_two;
         $data->save();
+        
         return response()
             ->json([
                 'data' => $data,
                 'status' => true,
-                'user' => $request->id_user_two,
+            
             ]);
     }
     public function update_user(Request $request, $id)
@@ -91,13 +92,16 @@ class RoomNumberController extends Controller
         $data = RoomNumberModel::find($id);
         if($data){
         $data->status = 2;
+        if($request->id_user_two != 'null'){
         $data->id_user_two = $request->id_user_two;
+        }
         $data->save();
         return response()
             ->json([
                 'data' => $data,
                 'status' => true,
-            ]);
+                'id_post' => $request->idPost
+            ]); 
         }
         return response()
         ->json([

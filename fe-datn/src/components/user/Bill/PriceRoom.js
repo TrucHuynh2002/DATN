@@ -20,6 +20,7 @@ function PriceRoom({data}) {
     }
     const getDataBill = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        console.log(res.data)
         setLoadBill(res.data.data)
     }
     useEffect(() => {

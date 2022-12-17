@@ -120,7 +120,9 @@ function ListManageRoom() {
     const [active,setActive] = useState({
         id_rooms:"",
         status: "",
-        checked:false
+        checked:false,
+        id_user_two: "",
+        id_post: ""
     })
     const {
         id_rooms,
@@ -215,6 +217,7 @@ function ListManageRoom() {
         console.log(res.data)
         if(res.data.status == true){
             handleChange(e,id_post)
+            setActive({id_rooms:id_rooms, status: 0,checked:true,id_user_two: '',id_post: ''})    
         }
 console.log(id_post)
         // setActive({id_rooms:"", status: 0,checked:true,id_user_two: '',id_post: ''})       
@@ -229,6 +232,7 @@ console.log(id_post)
     const handleClickUpdate = async (e) => {
         const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_user/${id_rooms}?id_user_two=${id_user_two}&&_method=PUT`,);
         if(res.data.status === true){
+            handleChange(e,id_post)    
             setAlert({
                 err_list: res.data
             });
@@ -269,7 +273,7 @@ console.log(id_post)
         formData.append('water_money', listMomneyWater);
         formData.append('electricity_money', listMomneyElc);
         formData.append('all_money', listMomneyRoom);
-        formData.append('id_roomNumber', id_post);
+        formData.append('id_roomNumber', id_rooms);
         const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
         console.log(res.data)
         if(res.data.status === true){
@@ -335,7 +339,7 @@ console.log(id_post)
                                             style={{background:quantity.id == id_rooms ? "red" : ''}}
                                             name="id_" key={index} 
                                             data-id ={quantity.id}
-                                            onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two)} >
+                                            onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} >
                                                 A{quantity.room_number}
                                                
                                         </div>
@@ -526,7 +530,20 @@ console.log(id_post)
                                         </Form.Group>
                                     </div> );
                                 })}
-                                <Button type="submit">Thêm</Button>
+                                <Form.Group>
+                                <hr />
+                                 <Button type="submit">Thêm</Button>
+                                </Form.Group>
+                                <Form.Group>
+                                    {
+                                        alert.err_list.status == true 
+                                        &&
+                                        <div className='text-success'>
+                                            Thêm hóa đơn thành công
+                                        </div>
+
+                                    } 
+                                </Form.Group>
                             </Form>
                         </Modal.Body>
                     </Modal>
