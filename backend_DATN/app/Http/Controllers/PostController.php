@@ -259,16 +259,17 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $get_image = $request->file('img');
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
-
-        $get_name_image = $get_image[0]->getClientOriginalName();
-        $path = 'uploads/';
-        $name_image = explode('.', $get_name_image);
-        $new_image = $name_image[0] . rand(0, 99);
-        $get_image->move($path, $new_image);
-        $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-        $Post->name_img = $new_image;
+        $get_image = $request->file('img');
+        if ($request->file('img')) {
+            $get_name_image = $get_image[0]->getClientOriginalName();
+            $path = 'uploads/';
+            $name_image = explode('.', $get_name_image);
+            $new_image = $name_image[0] . rand(0, 99);
+            // $get_image->move($path, $new_image);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+            $Post->name_img = $new_image;
+        }
         $Post->save();
         
             
@@ -405,16 +406,17 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $get_image = $request->file('img');
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
-
-        $get_name_image = $get_image[0]->getClientOriginalName();
-        $path = 'uploads/';
-        $name_image = explode('.', $get_name_image);
-        $new_image = $name_image[0] . rand(0, 99);
-        $get_image->move($path, $new_image);
-        $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-        $Post->name_img = $new_image;
+        $get_image = $request->file('img');
+        if ($request->file('img')) {
+            $get_name_image = $get_image[0]->getClientOriginalName();
+            $path = 'uploads/';
+            $name_image = explode('.', $get_name_image);
+            $new_image = $name_image[0] . rand(0, 99);
+            // $get_image->move($path, $new_image);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+            $Post->name_img = $new_image;
+        }
         $Post->save();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
         if ($request->id_furniture) {
