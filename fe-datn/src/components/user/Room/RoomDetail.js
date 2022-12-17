@@ -90,7 +90,7 @@ function RoomDetail() {
             <div className="row">
                 <div className="col-md-6">
                     <div className="product-slider">
-                        <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
+                        <div className='slider-image'>
                             {/* SAU NÀY PHẢI LÀM SLIDER */}
                            <Carousel>
                             { listImg.map((img,i) => {
