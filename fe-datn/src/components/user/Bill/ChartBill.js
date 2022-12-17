@@ -94,7 +94,7 @@ const dataLine = {
 
   return (
     <>
-        <div className="manage col-6">
+        <div className="manage col-5">
             <div className="container">
                 <div className="content_profile">
                     <div className="list-post">
