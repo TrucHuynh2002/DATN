@@ -1,11 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 function ListDeleteRoom() {
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const {id_user} = useParams();
+    const [idRoomCancel,setIdRoomCancel] = useState('');
+    const [alertCancel,setAlertCancel] = useState(false)
+    console.log(idRoomCancel)
+    const handleClose = () => {
+        setShow(false);
+        setAlertCancel(false)
+    }
+    const handleShow = (e,id_room,id_user_two) => {
+        setShow(true)
+        setIdRoomCancel(id_user_two)
+    };
+    const handleCancelRoom = async (e) => {
+        let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
+        console.log(res.data)
+        if(res.data.status == true){
+            // setShow(false)
+            setAlertCancel(true)
+        }
+    } 
+    const [dataBookingRoom,setDataBookingRoom] = useState([]);
+    console.log(dataBookingRoom)
 
+    const getDataBookingRoom = async (e) => {
+        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/get-booking-room/${id_user}`)
+    
+        setDataBookingRoom(res.data.data)
+    }
+    useEffect(() => {
+        getDataBookingRoom()
+        return () => {
+            getDataBookingRoom()
+        }
+    },[])
   return (
     <>
     <div className="container content_profile">
@@ -16,29 +48,42 @@ function ListDeleteRoom() {
             </div>
         <Table bordered>
             <thead>
+        
             <tr>
                 <th>#</th>
-                <th>Tên người thuê</th>
+                <th>Họ tên</th>
                 <th>Số phòng</th>
-                <th>Tổng tiền phòng</th>
-                <th>Tổng tiền nước</th>
-                <th>Tổng tiền điện</th>
+                <th>Tiền điện</th>
+                <th>Tiền nước</th>
+                <th>Tiền Phòng</th>
                 <th></th>
             </tr>
             </thead>
                 
-            <tbody className="list-cate">                   
-                <tr>
-                    <td>1</td>
-                    <td>Nhóm</td>
-                    <td>A7</td>
-                    <td>1.000.000 đ</td>
-                    <td>20.000 đ</td>                        
-                    <td>300.000 đ</td>
-                    <td>                          
-                    <Button variant="outline-primary" name='' className="" onClick={handleShow}>Trả phòng</Button>                                       
-                    </td>
-                </tr>  
+            <tbody className="list-cate">      
+            {
+                dataBookingRoom.length > 0 
+                &&
+                dataBookingRoom.map((data,index) => {
+                        return (
+                            <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{data.full_name}</td>
+                                    <td>A{data.room_number}</td>
+                                    <td>{data.electricity_price} đ</td>
+                                    <td>{data.water_price} đ</td>                        
+                                    <td>{data.room_price} đ</td>
+                                    <td>                          
+                                    <Button variant="outline-primary" name='' className="" onClick={e => handleShow(e,data.id,data.id_user_two)}>Trả phòng</Button>                                       
+                                    </td>
+                            </tr>  
+                        )
+                            
+                        
+                })
+             
+            }             
+               
             </tbody>
         </Table>
         {/* start trả phòng */}
@@ -50,10 +95,27 @@ function ListDeleteRoom() {
                 <p>Bạn có chắc chắn muốn trả phòng ?</p>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Trả phòng
-                </Button>
+           
+                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                    <div style={{paddingRight:"12px"}}>
+
+                            {
+                            alertCancel && <div className='text-success'>
+                            Đã gửi yêu cầu thành công
+                        </div>
+
+                    } 
+                    </div>
+                   <div>
+                   <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
+                        Trả phòng
+                    </Button>
+                   </div>
+                </div>
+              
+              
             </Modal.Footer>
+          
         </Modal>
         {/* end trả phòng */}
         </div>
