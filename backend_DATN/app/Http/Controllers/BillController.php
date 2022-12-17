@@ -34,6 +34,15 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+    public function sum_bill(Request $request)
+    {
+        $data = Bill::groupBy('id_roomNumber')->sum('all_money');
+        return response()
+            ->json([
+                'status' => true,
+                'data' => $data,
+            ]);
+    }
     public function show_id(Request $request, $id)
     {
         $data = DB::table('bill')
