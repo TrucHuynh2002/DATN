@@ -474,7 +474,10 @@ function HeaderNavLink() {
                     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
                     {
                         user[0].role == 1 &&
+                        (<>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
+                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutSendNoti/${user[0].id}`}>Gửi yêu cầu</Link>
+                        </>)
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>
                         <form  onSubmit={(e) => handleSLogout(e)}> 
