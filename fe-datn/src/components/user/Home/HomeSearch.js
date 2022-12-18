@@ -109,7 +109,7 @@ function HomeSearch() {
                                         <li key={index}>
                                               <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
                                               <div style={{display:"flex"}}>
-                                                <img src={post.link_img} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
+                                                <img src={post.link_img} alt={post.post_name} style={{marginRight: "12px", width:"120px", height:"120px"}} />
                                               </div>    
                                               <hr />                                
                                         </li>
@@ -121,7 +121,7 @@ function HomeSearch() {
                             
                                   {
                                     getKeywords.length > 0 
-                                    ?
+                                    &&
                                     getKeywords.map((keyword,index) => {
                                       return (
                                         <li key={index}>
@@ -129,11 +129,12 @@ function HomeSearch() {
                                         </li>
                                       )                                          
                                     })
-                                    :
-                                    <li>
-                                      <Link to="">Tìm kiếm với {getKeywords}</Link>
-                                    </li>
+    
+                                   
                                   }
+                                   <li>
+                                      <Link to={`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`}>Tìm kiếm với {keywords}</Link>
+                                    </li>
                                 </ul>               
                               </div>    
                             )

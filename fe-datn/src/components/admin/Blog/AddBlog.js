@@ -14,7 +14,7 @@ function AddBlog() {
         name_img_blog:"",
         description_sort:"",
         description:"",
-        id_user:user[0].id
+        id_user: user ?  user[0].id :  ''
     });
     // console.log(123);
     // xu ly hinh anh
@@ -29,7 +29,7 @@ function AddBlog() {
     const [alert, setAlert] = useState({
         err_list: {},
     });
-    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description } = addBlog;
+    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description,id_user } = addBlog;
     
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
@@ -45,6 +45,7 @@ function AddBlog() {
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
+        dataForm.append('id_user',id_user)
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", dataForm);
         console.log(res.data)
         if(res.data.status === true){

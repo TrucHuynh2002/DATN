@@ -134,10 +134,14 @@ Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRo
 Route::put('roomNumber/update_checkRoom/{id}', [RoomNumberController::class, 'update_checkRoom']);
 Route::get('roomNumber/show_roombookuser/{id}', [RoomNumberController::class, 'showRoomBookUser']);
 Route::post('roomNumber/cancel_roombookuser/{id}', [RoomNumberController::class, 'cancelRoomBookUser']);
+Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showSendNoti']);
+Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
+Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
 
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
+Route::get('qa/show_detail/{id}', [QAController::class, 'show_detail']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //noty_notyqa
@@ -206,6 +210,7 @@ Route::post('comment_qa/create', [comment_QAController::class, 'Comment_QA_Add']
 Route::get('comment_qa/show/{id}', [comment_QAController::class, 'Comment_QASelectOne']);
 Route::put('comment_qa/update/{id}', [comment_QAController::class, 'CommentEdit']);
 Route::delete('comment_qa/delete/{id}', [comment_QAController::class, 'CommentDelete']);
+Route::get('comment/qa-comment-owner/{id_user}', [comment_QAController::class, 'getAllCommentPostUserOwner']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);

@@ -25,6 +25,15 @@ class QAController extends Controller
                 'data' => $data
             ]);
     }
+    public function show_detail(Request $request,$id_qa)
+    {
+        $data = QAModel::where('id_qa','=',$id_qa)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function created_at(Request $request)
     {
         // $validation = Validator::make($request->all(), [
@@ -80,4 +89,25 @@ class QAController extends Controller
                 'status' => true,
             ]);
     }
+
+    public function getAllCommentPostUserOwner(Request $request,$id_user){
+        $get_inforOwnerParent = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
+            ->join('users','users.id_user','=','comment_qa.id_user')
+            ->where('qa.id_user','=',$id_user)
+            ->where('parent_id','=',NULL)
+            ->get();
+        $get_inforOwnerChild = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
+            ->join('users','users.id_user','=','comment_qa.id_user')
+            ->where('qa.id_user','=',$id_user)
+            ->whereNot('parent_id','=',NULL)
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'dataParent' => $get_inforOwnerParent,
+            'dataChild' => $get_inforOwnerChild
+        ]);
+    }
+
+    
 }

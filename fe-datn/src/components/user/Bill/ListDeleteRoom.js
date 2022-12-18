@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 function ListDeleteRoom() {
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [idRoomCancel,setIdRoomCancel] = useState('');
     const [alertCancel,setAlertCancel] = useState(false)
-    console.log(idRoomCancel)
     const handleClose = () => {
         setShow(false);
         setAlertCancel(false)
@@ -18,15 +18,13 @@ function ListDeleteRoom() {
     };
     const handleCancelRoom = async (e) => {
         let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
-        console.log(res.data)
         if(res.data.status == true){
             // setShow(false)
+           
             setAlertCancel(true)
         }
     } 
     const [dataBookingRoom,setDataBookingRoom] = useState([]);
-    console.log(dataBookingRoom)
-
     const getDataBookingRoom = async (e) => {
         let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/get-booking-room/${id_user}`)
     
@@ -38,6 +36,7 @@ function ListDeleteRoom() {
             getDataBookingRoom()
         }
     },[])
+
   return (
     <>
     <div className="container content_profile">
@@ -78,12 +77,7 @@ function ListDeleteRoom() {
                                     </td>
                             </tr>  
                         )
-                            
-                        
-                })
-             
-            }             
-               
+                        })}                           
             </tbody>
         </Table>
         {/* start trả phòng */}

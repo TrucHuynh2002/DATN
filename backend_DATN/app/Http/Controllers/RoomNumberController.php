@@ -204,6 +204,41 @@ class RoomNumberController extends Controller
             ]);
         }
     }
+    public function showSendNoti(Request $request,$id_user){
+                $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+                ->where('room_number.id_user','=',$id_user)
+                ->where('room_number.check_room','=','1')
+                ->get();
+                return response()
+                ->json([
+                    'data' => $data,
+                    'status' => true,
+                ]);
+           
+    }
+    public function cancelSendNoti(Request $request,$id_roomnumber){
+        $data = RoomNumberModel::find($id_roomnumber);
+        $data->check_room = null;
+        $data->id_user_two = null;
+        $data->save();
+        return response()
+        ->json([
+            'data' => $data,
+            'status' => true,
+        ]);
+   
+    }
+    public function deleteSendNoti(Request $request,$id_roomnumber){
+        $data = RoomNumberModel::find($id_roomnumber);
+        $data->check_room = null;
+        $data->save();
+        return response()
+        ->json([
+            'data' => $data,
+            'status' => true,
+        ]);
+
+    }
     public function cancelRoomBookUser(Request $request,$id_user){
         if($id_user && $request->id_post && $request->room_number){
             if($request->id_post == null || $request->room_number == null){
@@ -223,7 +258,7 @@ class RoomNumberController extends Controller
                 $data->save();
                 return response()
                 ->json([
-                    'messeges' => 'hủy đặt phòng thành công',
+                    'messeges' => 'Hủy đặt phòng thành công',
                     'status' => true,
                 ]);
             }  

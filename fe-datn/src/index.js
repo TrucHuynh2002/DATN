@@ -86,6 +86,8 @@ import ConfirmPost from './components/user/ConfirmPost';
 import LayoutBill from './components/user/Bill/LayoutBill';
 import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
+import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
+import QADetail from './components/user/QADetail';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -121,6 +123,7 @@ root.render(
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
+        <Route path="qaDetail/:id_qa" element={<QADetail />} />
         <Route path="baomat" element={<Privacy />} />
         <Route path="rules" element={<Rules />} />
         {/* quan ly phong */}
@@ -128,6 +131,9 @@ root.render(
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
         <Route path="Loi" element={<Loi />} />
+        {/* gui yeu cau thong bao phong */}
+        <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />
+
       </Route>
 
       {/* chuyển hướng admin tổng */}
