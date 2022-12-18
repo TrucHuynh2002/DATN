@@ -36,12 +36,12 @@ class notyNotyQaController extends Controller
     public function AddComment(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            'id_user_tow' => 'required',
+            // 'id_user_tow' => 'required',
             'interaction' => 'required',
             'id_user' => 'required',
             'id_qa' => 'required',
         ], [
-            'id_user_tow.required' => 'Không được bỏ trống',
+            // 'id_user_tow.required' => 'Không được bỏ trống',
             'interaction.required' => 'Không được bỏ trống',
             'id_user.required' => 'Không được bỏ trống',
             'id_qa.required' => 'Không được bỏ trống',
@@ -55,7 +55,12 @@ class notyNotyQaController extends Controller
                 ]);
         }
         $t = new notyNotyQaModel();
-        $t->id_user_tow = $request->id_user_tow;
+        if($request->id_user_tow){
+
+            $t->id_user_tow = $request->id_user_tow;
+        }else{
+            $t->id_user_tow = NULL;
+        }
         $t->status = 1;
         $t->interaction = $request->interaction;
         $t->id_user = $request->id_user;

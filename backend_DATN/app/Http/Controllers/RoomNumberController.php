@@ -188,7 +188,7 @@ class RoomNumberController extends Controller
             else{
                 $data = RoomNumberModel::where('id_user_two','=',$id_user)
                 ->where('id_post','=',$request->id_post)
-                ->get();
+                ->first();
                 return response()
                 ->json([
                     'data' => $data,
