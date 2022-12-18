@@ -84,7 +84,7 @@ class comment_QAController extends Controller
 
     public function Comment_QASelectOne(Request $request, $id_comment)
     {
-        $content = comment_QAModel::where('id_comment_qa', '=', $id_comment)->first();
+        $content = comment_QAModel::where('id_comment_qa', '=', $id_comment)->get();
         return response()->json([
             'status' => true,
             'id' => $id_comment,

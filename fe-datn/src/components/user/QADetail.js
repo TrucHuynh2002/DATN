@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import moment from 'moment';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-function QA() {
-  const user = JSON.parse(localStorage.getItem('user')); 
+function QADetail() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const {id_qa} = useParams();
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -79,7 +80,7 @@ function QA() {
 
    // danh sach 
    const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/qa/show');
+    const res = await axios.get(`http://127.0.0.1:8000/api/qa/show_detail/${id_qa}`);
     setListQa(res.data.data);
    };
    
@@ -162,42 +163,6 @@ function QA() {
       </div>
       <div className="our_room">
         <div className="container">
-          <div className='qa_input'>
-            <Button variant="secondary" className='btn_qa' onClick={handleShow}>
-              Bạn đang nghĩ gì thế?
-            </Button>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Bạn đang nghĩ gì</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                { alertShow ?
-                  <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
-                    <CKEditor
-                      editor={ClassicEditor}
-                      data={qa_content}
-                      onReady={(editor)=>{
-                          editor.editing.view.change((writer)=>{
-                              writer.setStyle('height','100%',editor.editing.view.document.getRoot())
-                          })
-                      }}
-                      onChange={(event,editor) => {
-                          let data = editor.getData();
-                          setAddQA({addQA, content:data});
-                      }}
-                    />
-                    <Button variant="primary" name='' type="submit"> Đăng </Button>                    
-                  </Form> 
-                  :
-                  (
-                    <div style={{padding:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                      CLICK ĐĂNG NHẬP ĐỂ HỎI - ĐÁP
-                    </div>
-                  )
-                }
-              </Modal.Body>
-            </Modal>
-          </div>
           {listQa.map((listQa, index) => {
             return (
               <div className="qa" key={index}>
@@ -209,7 +174,7 @@ function QA() {
                         <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
                       </div>
                       <div className="feedback_comment_time"> 
-                      <Link to={`../qaDetail/${listQa.id_qa}`}>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
+                        {moment(listQa.created_at).local().startOf('day').fromNow()}
                       </div>
                     </div> 
                 </div>
@@ -399,4 +364,4 @@ function QA() {
     </>
   )
 }
-export default QA
+export default QADetail

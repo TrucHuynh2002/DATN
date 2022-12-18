@@ -141,6 +141,7 @@ Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'del
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
+Route::get('qa/show_detail/{id}', [QAController::class, 'show_detail']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
 
 //noty_notyqa

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import RoomNew from '../../images/phong1.png';
 
 function Search() {
     const queryString = window.location.search;
@@ -52,10 +51,7 @@ function Search() {
                         return  <div className="col-md-4 col-sm-6" key={index}>
                                     <div id="serv_hover" className="room">
                                         <div className="room_img">
-                                            <figure><img src={RoomNew} alt="#" /></figure>
-                                            <div className="heart">
-                                            <i className='bx bxs-heart'></i>
-                                            </div>
+                                            <figure><img src={room.link_img} alt={room.name_img} /></figure>
                                         </div>
                                         <div className="bed_room">
                                             <h3><Link to={`../roomdetail/${room.id_post}`}>{room.post_name}</Link></h3>
