@@ -121,7 +121,7 @@ function HomeSearch() {
                             
                                   {
                                     getKeywords.length > 0 
-                                    ?
+                                    &&
                                     getKeywords.map((keyword,index) => {
                                       return (
                                         <li key={index}>
@@ -129,11 +129,12 @@ function HomeSearch() {
                                         </li>
                                       )                                          
                                     })
-                                    :
-                                    <li>
-                                      <Link to="">Tìm kiếm với {getKeywords}</Link>
-                                    </li>
+    
+                                   
                                   }
+                                   <li>
+                                      <Link to={`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`}>Tìm kiếm với {keywords}</Link>
+                                    </li>
                                 </ul>               
                               </div>    
                             )

@@ -117,7 +117,8 @@ class comment_QAController extends Controller
     }
 
     public function getAllCommentPostUserOwner(Request $request,$id_user){
-        $get_inforOwnerParent = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
+        $get_inforOwnerParent = DB::table('comment_qa')
+            ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->join('users','users.id_user','=','comment_qa.id_user')
             ->where('qa.id_user','=',$id_user)
             ->where('parent_id','=',NULL)
