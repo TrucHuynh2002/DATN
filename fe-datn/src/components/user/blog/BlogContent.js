@@ -32,13 +32,9 @@ function BlogContent() {
                 <div className="col-md-4" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
-                      <figure>
+                      <figure style={{width:"100%",height:"300px"}}>
                         <img src={Slide3} alt="#" />
                       </figure>
-                      {/* thả tym */}
-                      <div className="heart">
-                        {/* <HeartRoom /> */}
-                      </div>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
