@@ -109,7 +109,7 @@ function HomeSearch() {
                                         <li key={index}>
                                               <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
                                               <div style={{display:"flex"}}>
-                                                <img src={post.link_img} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
+                                                <img src={post.link_img} alt={post.post_name} style={{marginRight: "12px", width:"120px", height:"120px"}} />
                                               </div>    
                                               <hr />                                
                                         </li>
