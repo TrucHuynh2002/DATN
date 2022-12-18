@@ -19,6 +19,7 @@ function Notify() {
         getNotifyInteractive()
         getDataBill()
         getDataQa(); 
+        getDataCommentPostOwner()
 
         return () => {
             getDataInteractive();
@@ -26,6 +27,7 @@ function Notify() {
             getDataQa();
             getNotifyInteractive()
             getDataBill()
+            getDataCommentPostOwner()
         }
     },[]);
      // danh sach notify
@@ -37,6 +39,23 @@ function Notify() {
 //         setListnotifyfavorite(ress.data.data);
 //     }
 //   };
+
+// NOTIFY QA
+const [commentPostOwnerParent,setCommentPostOwnerParent] = useState([]);
+const [commentPostOwnerChild,setCommentPostOwnerChild] = useState([]);
+const getDataCommentPostOwner = async () => {
+    const id_user = user ? user[0].id : 0;
+    if(id_user){
+        const res = await axios.get(`http://127.0.0.1:8000/api/comment/qa-comment-owner/${id_user}`);
+        // setListnotifyInteractive(res.data.data);
+        console.log(res.data)
+        if(res.data.status){
+            setCommentPostOwnerParent(res.data.dataParent);
+            setCommentPostOwnerChild(res.data.dataChild);
+        }
+       
+    }
+};
 
   // xoa notify
   const deletenotify = async (id_notify_favorite) => {

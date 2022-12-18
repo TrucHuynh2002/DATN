@@ -82,20 +82,15 @@ class BlogController extends Controller
             $get_image->move($path, $new_image);
             $link_img_blog = env('APP_URL') . '/uploads/blog/' . $new_image;
             $Blog->img_blog = $link_img_blog;
-            return response()
-                ->json([
-                    'data' =>  $request->file('img_blog'),
-                    'status' => true
-                ]);
         }
 
 
-        // $Blog->save();
-        // return response()
-        //     ->json([
-        //         'data' =>  $Blog,
-        //         'status' => true
-        //     ]);
+        $Blog->save();
+        return response()
+            ->json([
+                'data' =>  $Blog,
+                'status' => true
+            ]);
     }
 
     public function img_Blog(Request $request, $id)
