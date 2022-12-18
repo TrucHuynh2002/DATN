@@ -142,7 +142,7 @@ class CommentController extends Controller
     public function Comment_SelectOne(Request $request, $id_comment)
     {
         $Title = "Danh sách các hỗ trợ";
-        $Comment_SelectOne = DB::table('comment')->where('id_comment','=',$id_comment)->first();
+        $Comment_SelectOne = DB::table('comment')->where('id_comment','=',$id_comment)->get();
         return response()
             ->json([
                 'data' => $Comment_SelectOne,

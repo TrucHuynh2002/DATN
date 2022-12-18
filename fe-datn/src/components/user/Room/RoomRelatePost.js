@@ -77,7 +77,7 @@ var settings = {
              return (   
                <div className="content_Relate" style={{padding: '0 10px'}} key={index}> 
                    <div className="room_img img_room_lq" > 
-                       <img style={{padding: '5px 0'}} src={post.link_img} alt={post.name_img} /> 
+                       <img style={{padding: '5px 0', width:"100%",height:"300px"}} src={post.link_img} alt={post.name_img} /> 
                    </div> 
                    <div className="bed_room"> 
                        <h3><NavLink to={`../roomdetail/${post.id_post}`} onClick={(e) => onClick(e,post.id_post)}>{post.post_name}</NavLink></h3> 

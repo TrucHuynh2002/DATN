@@ -25,6 +25,15 @@ class QAController extends Controller
                 'data' => $data
             ]);
     }
+    public function show_detail(Request $request,$id_qa)
+    {
+        $data = QAModel::where('id_qa','=',$id_qa)->get();
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function created_at(Request $request)
     {
         // $validation = Validator::make($request->all(), [
