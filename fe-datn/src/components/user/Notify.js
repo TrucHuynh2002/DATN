@@ -6,6 +6,8 @@ import axios from 'axios';
 
 function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
+    const id_userRole = user ? user[0].role : 0;
+    const id_user = user ? user[0].id : 0;
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     const [listnotifyQa, setListnotifyQa] = useState([]);
@@ -147,6 +149,64 @@ const getDataCommentPostOwner = async () => {
                             );     
                         })} 
                     </div> 
+                    
+                        
+                            {/* <div className="notifyInteractive">
+                                {commentPostOwnerParent.map((cate, index) => {
+                                    return commentPostOwnerParent.map((childCmt,i) => {
+                                        return childCmt.parent_id == cate.id_comment_qa
+                                        ?
+                                        <div className='row' key={index}>  
+                                        
+                                                {listImg.map((a, index) => {
+                                                return a.id_user == childCmt.id_user && (
+                                                    <div className='content_notifyInteractive_img col-1' key={index}>
+                                                        <img src={a.link_img_user}
+                                                        alt='images' className="img-fluid" />                        
+                                                    </div>
+                                                );
+                                            })}
+                                        
+                                        
+                                            <div className="content_notifyInteractive col-10">
+                                                <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
+                                                    <span className="notify_name">{childCmt.full_name}</span> vừa 
+                                                    <span className='notify_interaction'> trả lời bình luận</span>
+                                                    <span> bài của bạn </span>  
+                                                </Link>   
+                                            </div>
+                                        </div> 
+                                       
+                                       :
+                                       (     
+                                        <div className='row' key={index}>  
+                                             {listImg.map((a, index) => {
+                                                return a.id_user == cate.id_user && (
+                                                    <div className='content_notifyInteractive_img col-1' key={index}>
+                                                        <img src={a.link_img_user}
+                                                        alt='images' className="img-fluid" />                        
+                                                    </div>
+                                                );
+                                            })}
+                                      
+                                      
+                                            <div className="content_notifyInteractive col-10">
+                                                <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
+                                                    <span className="notify_name">{cate.full_name}</span> vừa 
+                                                    <span className='notify_interaction'> Bình luận</span>
+                                                    <span> bài của bạn </span>  
+                                                </Link>   
+                                            </div>
+                                        </div> 
+                                        );     
+                                    })
+                                    // &&
+                                       
+                                })} 
+                            </div>  */}
+                        
+                    
+                  
                     <div className="notifyInteractive">
                         {listnotifyQa.map((cate, index) => {
                             return (     
