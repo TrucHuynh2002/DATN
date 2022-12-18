@@ -19,6 +19,11 @@ class EmailAlertCheckOutController extends Controller{
                 "status" => true,
                 "messages" => "Thông báo trả phòng thành công"
             ]);
+        }else{
+            return response()->json([
+                "status" => false,
+                "messages" => "Lỗi không có khách hàng"
+            ]);
         }
     }
     public function unsuccess(Request $request){
@@ -29,6 +34,11 @@ class EmailAlertCheckOutController extends Controller{
             return response()->json([
                 "status" => true,
                 "messages" => "Thông báo trả phòng không thành công"
+            ]);
+        }else{
+            return response()->json([
+                "status" => false,
+                "messages" => "Lỗi không có khách hàng"
             ]);
         }
     }
