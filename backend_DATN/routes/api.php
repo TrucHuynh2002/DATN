@@ -15,12 +15,14 @@ use App\Http\Controllers\RoomTypeController;
 use App\Http\Controllers\HeartFeelingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Auth\EmailAlertCheckOutController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\EmailBillController;
 use App\Http\Controllers\Auth\EmailBookRoom;
 use App\Http\Controllers\Auth\EmailBookRoomController;
+use App\Http\Controllers\Auth\EmailCheckOutController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -40,7 +42,6 @@ use App\Http\Controllers\search_trendsController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
-use App\Mail\BookRoomMailer;
 use App\Http\Controllers\BillController;
 
 
@@ -267,6 +268,9 @@ Route::middleware('guest')->group(function () {
 
     Route::post('bill-mail', [EmailBillController::class, 'store']);
     Route::post('book-room', [EmailBookRoomController::class, 'store']);
+    Route::post('check-out', [EmailCheckOutController::class, 'store']);
+    Route::post('check-out-success', [EmailAlertCheckOutController::class, 'success']);
+    Route::post('check-out-unsuccess', [EmailAlertCheckOutController::class, 'unsuccess']);
 });
 
 Route::middleware('auth')->group(function () {
