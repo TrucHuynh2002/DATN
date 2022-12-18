@@ -109,17 +109,7 @@ function HomeSearch() {
                                         <li key={index}>
                                               <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
                                               <div style={{display:"flex"}}>
-                                                  {
-                                                    getimage.length>0 && getimage.map((img,i) => {
-                                                    return  (
-                                                      img.id_post == post.id_post
-                                                      &&
-                                                      <>
-                                                      <img src={img.link_img} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
-                                                      </>                                                      
-                                                    )                                                
-                                                    })
-                                                  }
+                                                <img src={post.link_img} alt={post.post_name} width={120} height={120} style={{marginRight: "12px"}} />
                                               </div>    
                                               <hr />                                
                                         </li>

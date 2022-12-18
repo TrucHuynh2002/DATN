@@ -17,6 +17,17 @@
     .about_img {
         margin-right: 0px;
     }
+
+    .nav-link{
+        font-size: 14px !important;
+    }
+    .book_room2{
+        left: 50% !important;
+        transform:  translate(-50%,0) !important;
+    }
+    .gallery {
+        height: 450px !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -38,6 +49,36 @@
     .book_btn {
         padding: 5px 0;
     }
+    ul.link_menu {
+        margin-bottom: 20px;
+    }
+
+    .book_room2{
+        left: 50% !important;
+        transform:  translate(-50%,0) !important;
+    }
+    .gallery {
+        height: 450px !important;
+    }
+
+    .search_room_btn{
+        width: 107px;
+        
+    }
+
+    .about {
+        display: none;
+    }
+
+    .gallery {
+        display: none;
+    }
+
+    .footer .row h3 {
+        font-size: 17px;
+    }
+  
+  
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -93,9 +134,7 @@
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
-    .d_none {
-        display: none;
-    }
+  
 }
 
 @media (max-width: 575px) {

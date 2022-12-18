@@ -143,6 +143,39 @@ class RoomNumberController extends Controller
             'status' => true,
         ]);
     }
+
+
+    public function bookingRoom(Request $request, $id) {
+        $data =  DB::table('room_number')
+            ->join('post','room_number.id_post','=','post.id_post')
+            ->join('users','users.id_user','=','room_number.id_user')
+            ->where('room_number.id_user_two','=',$id)
+            ->where('room_number.status','=',1)
+            ->orderBy('room_number.id','DESC')
+            ->get();
+            return response()
+            ->json([
+                'mess' => "Thông tin phòng đang đặt",
+                'data' => $data,
+                'status' => true,
+            ]);    
+    }
+
+    public function getBookingRoom(Request $request, $id){
+        $data =  DB::table('room_number')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->join('users','users.id_user','=','room_number.id_user_two')
+        ->where('room_number.id_user_two','=',$id)
+        ->where('room_number.status','=',2)
+        ->orderBy('room_number.id','DESC')
+        ->get();
+        return response()
+        ->json([
+            'mess' => "Thông tin phòng đang đặt",
+            'data' => $data,
+            'status' => true,
+        ]);   
+    }
     public function showRoomBookUser(Request $request,$id_user){
         if($id_user && $request->id_post){
             if($request->id_post == null){

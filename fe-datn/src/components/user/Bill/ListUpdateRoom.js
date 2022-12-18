@@ -1,38 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 function ListUpdateRoom() {
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const {id_user} = useParams();
+    const [dataBookingRoom,setDataBookingRoom] = useState([]);
+    console.log(dataBookingRoom)
+    // const handleClose = () => setShow(false);
+    // const handleShow = () => setShow(true);
+    const getDataBookingRoom = async (e) => {
+        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/booking_room/${id_user}`)
+        console.log(res.data.data)
+        setDataBookingRoom(res.data.data)
+    }
+    const CancelBookingRoom = async (e,id_room) => {
+        
+        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_room}`)
+        console.log(res.data)
+        if(res.data.status == true){
+            getDataBookingRoom();
+        }
+    }
+    useEffect(() => {
+        getDataBookingRoom()
+    },[])
   return (
     <>
         <div className="container content_profile">
         <div className="row">
             <div className="col-md-12">
-                <h1><b className="b_title">Danh sách phòng đặt cọc</b></h1>
+                <h1><b className="b_title">Danh sách phòng đang đặt</b></h1>
             </div>
             <div className="list-post">
             <Table bordered>
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Tên người đặt cọc</th>
+                        <th>Tên phòng</th>
                         <th>Số phòng</th>
+                        <th>Chủ phòng</th>
                         <th></th>
                     </tr>
                     </thead>
                 
-                    <tbody className="list-cate">                   
-                        <tr>
-                            <td>1</td>
-                            <td>Nhóm</td>
-                            <td>A7</td>
-                            <td>                          
-                                <Button variant="outline-danger" name='' className="" onClick={handleShow}>Hủy bỏ</Button>                                        
-                            </td>
+                    <tbody className="list-cate">    
+                    {
+                        dataBookingRoom.length > 0 
+                        ? dataBookingRoom.map((data,index) => {
+                           return (
+                                <tr key={index}>
+                                    <td>{index}</td>
+                                    <td>{data.post_name}</td>
+                                    <td>A{data.room_number}</td>
+                                    <td>{data.full_name}</td>
+                                    <td>                          
+                                        <Button variant="outline-danger" name='' className="" onClick={e => CancelBookingRoom(e,data.id)}>Hủy bỏ</Button>                                        
+                                    </td>
+                                </tr>  
+                           )
+                        })
+                        :
+                        <tr align="center">
+                            <td colSpan={5}>Trống</td>
                         </tr>  
+                    }               
+                       
                     </tbody>
                     </Table>
             </div>

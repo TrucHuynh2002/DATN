@@ -123,6 +123,8 @@ Route::get('post/post_view_top5', [PostController::class, 'Post_view_top5']);
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
 Route::get('roomNumber/show_one/{id}', [RoomNumberController::class, 'show_one']);
 Route::get('roomNumber/show_id_user_two/{id}', [RoomNumberController::class, 'show_id_user_two']);
+Route::get('roomNumber/booking_room/{id}', [RoomNumberController::class, 'bookingRoom']);
+Route::get('roomNumber/get-booking-room/{id}', [RoomNumberController::class, 'getBookingRoom']);
 Route::get('roomNumber/show_post/{id}', [RoomNumberController::class, 'show_postID']);
 Route::get('roomNumber/show/{id}', [RoomNumberController::class, 'show_id']);
 Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
