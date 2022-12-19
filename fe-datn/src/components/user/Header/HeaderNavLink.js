@@ -84,11 +84,10 @@ function HeaderNavLink() {
         getDataStreet(({[e.id_district] : e.target.value}).undefined);
         setAddPost({ ...addPost, [e.target.name] : e.target.value});
     }
-    // Lấy nội thất
-    const [checkFur, setFur] = useState([]);
-    const [furniture, setFuriture] = useState([]);
+     
     const get_furnitures = async () => {
-        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        // Lấy nội thất
+        var get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
         setFuriture(get_data.data.data)
     };
     useEffect(() => {
@@ -97,12 +96,14 @@ function HeaderNavLink() {
         get_furnitures();
         getData();
     },[]);
-
-
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
     const [listStreet, setStreet] = useState([]);
+    const [checkFur, setFur] = useState([]);
+    const [furniture, setFuriture] = useState([]);
+    const [listRoomType, setListRoomType] = useState([]);
+    const [listCategory, setListCategory] = useState([]);
     // tỉnh
     const getDataProvince = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
@@ -126,7 +127,7 @@ function HeaderNavLink() {
         setStreet(res.data.data);
     }     
      // Lấy roomtype
-    const [listRoomType, setListRoomType] = useState([]);
+    
     const getDataRoomType = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
         setListRoomType(res.data.data);
@@ -215,7 +216,7 @@ function HeaderNavLink() {
     };
     
     // list category
-    const [listCategory, setListCategory] = useState([]);
+    
     const getData = async () => {
         const res = await axios.get('http://127.0.0.1:8000/api/category/show');
            setListCategory(res.data.data);

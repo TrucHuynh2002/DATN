@@ -14,14 +14,12 @@ function GalleryContent() {
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
-    // console.log(res.data)
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
   };
   
   const getDataPostTrendShow = async (keyword) => {
     let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}`);
-    console.log(res.data.data)
     setDataPostTrendShow(res.data.data);
     setShow(true);
     

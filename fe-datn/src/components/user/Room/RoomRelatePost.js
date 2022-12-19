@@ -8,11 +8,8 @@ import axios from 'axios';
 
 function RoomRelatePost({onClick}) {
   const [listPost, setListPost] = useState([]);
-  // const [listImg, setListImg] = useState([]);
-  // danh sach post
   useEffect(() => {
     getData();
-    // getImg();
   },[]);
 
   const [alert, setAlert] = useState({
@@ -22,10 +19,6 @@ function RoomRelatePost({onClick}) {
     const res = await axios.get("http://127.0.0.1:8000/api/post/show");
     setListPost(res.data.data);
   };
-//   const getImg = async () => {
-//     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-//     setListImg(res.data.data);   
-// };
 var settings = {
   dots: true,
   infinite: false,

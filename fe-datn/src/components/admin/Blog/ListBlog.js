@@ -59,7 +59,7 @@ function ListBlog() {
                         <td>{blog.description_sort}</td>                        
                         <td>
                           <div>
-                          <img src={blog.img_blog} alt="#" />
+                            <img src={blog.img_blog} alt={blog.name_img_blog} />
                           </div>
                         </td>
                         <td>                

@@ -14,8 +14,8 @@ function HomeAbout() {
               <div className="titlepage">
                 <h2>Giới thiệu</h2>
                 <p align="justify">
-                  Tìm trọ Nhà Tui cung cấp thông tin các nhà trọ giá rẻ tại Cần Thơ, nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại địa bàn Thành Phố Cần Thơ.
-                  Nhà trọ tại giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
+                  Tìm trọ NHATUI cung cấp thông tin các nhà trọ giá rẻ khắp các tỉnh thành. Nhà trọ dành cho mọi tầng lớp sinh viên, từ bình dân giá rẻ cho tới các nhà trọ cao cấp tại các tỉnh thành.
+                  Nhà trọ giá rẻ luôn được quan tâm chú ý vì giá cả phải chăng phù hợp với sinh viên và người đi làm xa nhà. Để tìm được một nhà trọ ưng ý thì phải mất rất nhiều công sức.
                   Vì vậy NHATUI luôn mang đến cho các bạn thông tin những nhà trọ giá rẻ nhất hoàn toàn miễn phí. 
                 </p>
                 <Link className="read_more" to="about">

@@ -8,6 +8,8 @@ function Evaluate() {
   const [listPost, setListPost] = useState([]);
   const [averageRate,setAverageRate] = useState(1);
   const [dataAverageRate,setDataAverageRate] = useState([]);
+  const [getAllStar,setGetAllStar] = useState([])
+  const [total,setTotal] = useState(0);
   const [reviewStar,setReviewStar]= useState({
     five_star: 0,
     four_star: 0,
@@ -24,44 +26,29 @@ function Evaluate() {
     one_star,
     count
   } = reviewStar
-
-
-  // danh sach post
+  
   const getData = async () => {
-  const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
-  setListPost(res.data.data);
-  };
-  // Getting Star
-  const getAverageRate = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
-    setAverageRate(res.data.ratingNumber)
-    setDataAverageRate(res.data.data);
-    setReviewStar({...reviewStar,
-      five_star: res.data.review_star.five_star,four_star: res.data.review_star.four_star,
-      three_star: res.data.review_star.three_star,
-      two_star: res.data.review_star.two_star,one_star: res.data.review_star.one_star, 
-      count: res.data.review_star.count  
-    })
-  }
-
-  // Get all Star Post
-  const [getAllStar,setGetAllStar] = useState([])
-  const getAllStarPost = async () =>{
-    let res = await axios.get(`http://127.0.0.1:8000/api/rating/show/post/${id_post}`)
-    if(res.data.status == true){
-      setGetAllStar(res.data.data);
+    // danh sach post
+    const Post = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+      setListPost(Post.data.data);
+    // Get all Star Post
+    let AllStarPost = await axios.get(`http://127.0.0.1:8000/api/rating/show/post/${id_post}`)
+    if(AllStarPost.data.status == true){
+      setGetAllStar(AllStarPost.data.data);
     }
-  }
-
-  const HandleProgessBar = () => {
-      // const Pr_fiveStar = document.querySelector('progress-bar-1').css('width',76);
-  }
-  const [total,setTotal] = useState(0);
+    // Getting Star
+    const AverageRate = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
+    setAverageRate(AverageRate.data.ratingNumber)
+    setDataAverageRate(AverageRate.data.data);
+    setReviewStar({...reviewStar,
+      five_star: AverageRate.data.review_star.five_star,four_star: AverageRate.data.review_star.four_star,
+      three_star: AverageRate.data.review_star.three_star,
+      two_star: AverageRate.data.review_star.two_star,one_star: AverageRate.data.review_star.one_star, 
+      count: AverageRate.data.review_star.count  
+    })
+  };
   useEffect(() => {
     getData();
-    getAverageRate();
-    HandleProgessBar();
-    getAllStarPost()
 },[]);
 
   return (
@@ -89,11 +76,6 @@ function Evaluate() {
                     )
               })
             }
-          
-            {/* <i className="fa fa-star checked" />
-            <i className="fa fa-star checked" />
-            <i className="fa fa-star checked" />
-            <i className="fa fa-star-half checked" /> */}
           </div>
           <p className="review m-0">
             (<span>{dataAverageRate.length}</span> nhận xét)

@@ -81,12 +81,9 @@ function RoomDetail() {
       }; 
       const handleBookRoom =  async () => {
         const see = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_id_user_two/${id_user}`);
-        console.log(see.data)
         if(see.data.data.length <= 0) {
             const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update/${id_roomNumber}?_method=PUT`, buttonID);
-            console.log(res.data)
             if(res.data.status === true){
-                console.log(res.data)
                 setAlert({
                     err_list: res.data
                 });
@@ -100,7 +97,6 @@ function RoomDetail() {
             setAlert({
                 err_list: see.data 
             })
-            console.log(alert)
         }
        
       }
@@ -217,14 +213,12 @@ function RoomDetail() {
             );
             })}
             <Button className="btn btn-primary col-12" style={{marginTop:'50px'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
-            { alert.err_list.status === false && <div className="notice warning_____">
-                Tài khoản đã đặt phòng vui lòng trả phòng để đặt phòng tiếp theo </div> }
             {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
-           
+            { alert.err_list.status === false && <div className="notice warning_____">
+                Tài khoản đã đặt phòng vui lòng trả phòng để đặt phòng tiếp theo </div> }          
         </div>
     </>
       )
-
 }
 
 export default RoomDetail
