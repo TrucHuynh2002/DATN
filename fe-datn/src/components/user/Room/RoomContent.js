@@ -202,7 +202,7 @@ function RoomND() {
                       <div className="col-md-4 col-sm-6" key={index}>
                           <div id="serv_hover" className="room">
                               <div className="room_img">
-                                  <figure style={{width:"100%",height:"300px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+                                  <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
                               </div>
                               <div className="bed_room">
                                   <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>

@@ -33,12 +33,10 @@ function EditBlog() {
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         const res = await axios.put(`http://127.0.0.1:8000/api/blog/update/${id_blog}`, editBlog);
-        console.log(res);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
         }
         else{           
             setAlert({
@@ -91,7 +89,6 @@ function EditBlog() {
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditBlog({ ...editBlog, description : data});
-                                    console.log(description);
                                 }}
                                 >
                         </CKEditor>

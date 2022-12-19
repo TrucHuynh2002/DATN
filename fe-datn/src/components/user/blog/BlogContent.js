@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Slide3 from '../../../images/sl03.png';
 import Pagination from '../Pagination';
 
 function BlogContent() {
@@ -29,18 +28,16 @@ function BlogContent() {
           <div className="row">
             {currentPosts.map((blog, index) => {
               return (
-                <div className="col-md-4" key={index}>
+                <div className="col-md-4 col-sm-12" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
-                      <figure style={{width:"100%",height:"300px"}}>
+                      <figure style={{width:"100%",height:"260px"}}>
                       <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </figure>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
-                      <p>
-                        {blog.description_sort}
-                      </p>
+                      <p>{blog.description_sort}</p>
                     </div>
                   </div>
                 </div>

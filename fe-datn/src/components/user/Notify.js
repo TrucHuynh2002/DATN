@@ -6,110 +6,65 @@ import axios from 'axios';
 
 function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
-    const id_userRole = user ? user[0].role : 0;
+    // const id_userRole = user ? user[0].role : 0;
     const id_user = user ? user[0].id : 0;
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     const [listnotifyQa, setListnotifyQa] = useState([]);
     const [listBillUser,setListBillUser] = useState([]);
-    console.log(listBillUser)
     const [listImg, setListImg] = useState([]);
     useEffect(() => {
-        // getDatafavorite();
-        getDataInteractive();
-        getImg();
-        getNotifyInteractive()
-        getDataBill()
-        getDataQa(); 
-        getDataCommentPostOwner()
-
+        getData(); 
         return () => {
-            getDataInteractive();
-            getImg();
-            getDataQa();
-            getNotifyInteractive()
-            getDataBill()
-            getDataCommentPostOwner()
+            getData();
         }
     },[]);
-     // danh sach notify
-//   const getDatafavorite = async () => {
-//     const id_user = user ? user[0].id : 0;
-//     if(id_user != 0){
-//         const ress = await axios.get(`http://127.0.0.1:8000/api/favorite/show/${id_user}`);
-        
-//         setListnotifyfavorite(ress.data.data);
-//     }
-//   };
 
-// NOTIFY QA
-const [commentPostOwnerParent,setCommentPostOwnerParent] = useState([]);
-const [commentPostOwnerChild,setCommentPostOwnerChild] = useState([]);
-const getDataCommentPostOwner = async () => {
-    const id_user = user ? user[0].id : 0;
-    if(id_user){
-        const res = await axios.get(`http://127.0.0.1:8000/api/comment/qa-comment-owner/${id_user}`);
-        // setListnotifyInteractive(res.data.data);
-        if(res.data.status){
-            setCommentPostOwnerParent(res.data.dataParent);
-            setCommentPostOwnerChild(res.data.dataChild);
-        }
-       
-    }
-};
 
-  // xoa notify
-  const deletenotify = async (id_notify_favorite) => {
-    await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_favorite}`);
-    // getDatafavorite();
-  };
-  // danh sach notify comment
-  const getDataInteractive = async () => {
-        const id_user = user ? user[0].id : 0;
-        if(id_user){
-            const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-            setListnotifyInteractive(res.data.data);
-           
-        }
+        // NOTIFY QA
+    const [commentPostOwnerParent,setCommentPostOwnerParent] = useState([]);
+    const [commentPostOwnerChild,setCommentPostOwnerChild] = useState([]);
+
+    // xoa notify
+    const deletenotify = async (id_notify_favorite) => {
+        await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_favorite}`);
+    
     };
+
     // danh sach notify comment
-  const getDataQa = async () => {
-    const id_user = user ? user[0].id : 0;
-    if(id_user){
-        const res = await axios.get(`http://127.0.0.1:8000/api/noty_qa/show/${id_user}`);
-        setListnotifyQa(res.data.data);
-    }
-};
-    // Noti notifyInteractive
-    const getNotifyInteractive = async () => {
-        let id_user = user ? user[0].id : '';
+    const getData = async () => {
+        if(id_user){
+            const res = await axios.get(`http://127.0.0.1:8000/api/noty_qa/show/${id_user}`);
+            setListnotifyQa(res.data.data);
+            const notifyInteractive = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+            setListnotifyInteractive(notifyInteractive.data.data);
+            const ress = await axios.get(`http://127.0.0.1:8000/api/comment/qa-comment-owner/${id_user}`);
+            // setListnotifyInteractive(res.data.data);
+            if(ress.data.status){
+                setCommentPostOwnerParent(res.data.dataParent);
+                setCommentPostOwnerChild(res.data.dataChild);
+            }
+        }
+      // Noti notifyInteractive
         if(id_user != 0){
             const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
-            console.log(res.data.data)
             setListnotifyInteractive(res.data.data);
         }
-    }
+        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        setListImg(res.data.data); 
+        // Noti Bill
+        const BillUser = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        if(BillUser.data.status == true){
+            setListBillUser(BillUser.data.data);
+        }     
+    };
     // xoa notify interactive
     const deletenotifyInteractive = async (id_notify_interactive) => {
         await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
-        getDataInteractive();
+        getData();
     };
-    const getImg = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
-        setListImg(res.data.data);   
-
-    };
-
-    // Noti Bill
-    const getDataBill = async () => {
-        const id_user = user ? user[0].id : '';
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
-        console.log(res.data)
-        if(res.data.status == true){
-            setListBillUser(res.data.data);
-        }   
-    }
-  return (
+        
+    return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
         <li className="nav-item">
@@ -123,7 +78,7 @@ const getDataCommentPostOwner = async () => {
                     <div>Vui lòng đăng nhập để xem thông báo.</div>
                 </div>
                 : 
-               (
+                (
                 <>
                     <div className="notifyInteractive">
                         {listnotifyInteractive.map((cate, index) => {
@@ -175,11 +130,11 @@ const getDataCommentPostOwner = async () => {
                                                 </Link>   
                                             </div>
                                         </div> 
-                                       
-                                       :
-                                       (     
+                                        
+                                        :
+                                        (     
                                         <div className='row' key={index}>  
-                                             {listImg.map((a, index) => {
+                                                {listImg.map((a, index) => {
                                                 return a.id_user == cate.id_user && (
                                                     <div className='content_notifyInteractive_img col-1' key={index}>
                                                         <img src={a.link_img_user}
@@ -187,8 +142,8 @@ const getDataCommentPostOwner = async () => {
                                                     </div>
                                                 );
                                             })}
-                                      
-                                      
+                                        
+                                        
                                             <div className="content_notifyInteractive col-10">
                                                 <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
                                                     <span className="notify_name">{cate.full_name}</span> vừa 
@@ -200,12 +155,12 @@ const getDataCommentPostOwner = async () => {
                                         );     
                                     })
                                     // &&
-                                       
+                                        
                                 })} 
                             </div>  */}
                         
                     
-                  
+                    
                     <div className="notifyInteractive">
                         {listnotifyQa.map((cate, index) => {
                             return (     
@@ -234,7 +189,7 @@ const getDataCommentPostOwner = async () => {
                         {listBillUser.length > 0 && listBillUser.map((cate, index) => {
                             return (     
                                 <div className='row' key={index}>  
-                                 
+                                    
                                     <div className="content_notifyInteractive col-10">
                                         <Link to={`../billdetail/${cate.id}`} style={{textTransform: 'none'}}>
                                             <span className="notify_name">Bạn vừa nhận được hóa đơn tiền phòng</span> 
@@ -248,12 +203,12 @@ const getDataCommentPostOwner = async () => {
                         })} 
                     </div> 
                 </>
-               )
+                )
             }
         </div>
     </div> 
-</div>
-  )
+    </div>
+    )
 }
 
 export default Notify

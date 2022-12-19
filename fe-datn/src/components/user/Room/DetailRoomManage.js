@@ -118,7 +118,7 @@ function RoomDetail() {
             return(
             <div className="row" key={index}>
                 <div className="product-slider col-md-5">
-                    <div className='slider-image' style={{"display":"flex","alignItems":"center"}}>
+                    <div className='slider-image'>
                         <Carousel>
                             { listImg.map((img,i) => {
                             return (

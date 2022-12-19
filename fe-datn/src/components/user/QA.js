@@ -6,7 +6,7 @@ import moment from 'moment';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 function QA() {
-  
+
   const user = JSON.parse(localStorage.getItem('user')); 
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
@@ -68,22 +68,18 @@ function QA() {
   const [addQA,setAddQA] = useState("");
   useEffect(() => {
     getData();
-    getComment();
   },[loader]);
 
    // danh sach 
    const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/qa/show');
-    setListQa(res.data.data);
-   };
-   
-   // danh sách cmt
-  const getComment = async () => {
+    const Qa = await axios.get('http://127.0.0.1:8000/api/qa/show');
+    setListQa(Qa.data.data);
     const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
-    // console.log(res.data.data_child)
-};
+   };
+   
+  
 // const loadMore = () => {
 //   setListComment(index + 5)
 //   console.log(index)
@@ -304,8 +300,8 @@ function QA() {
                       <div style={{marginLeft:"32px"}}>
                       {listChildComment.map((child,i) => {
                         return child.parent_id == listComment.id_comment_qa  && (
-                        <>
-                          <div className='qa_avatar'>
+                        <div key={i}>
+                          <div className='qa_avatar' >
                             <img src={child.link_img_user} alt='' className="content_comment_img___" />
                             <div>
                               <div className="feedback_comment_time">
@@ -317,7 +313,7 @@ function QA() {
                             </div>
                           </div>
                           <div className="display_comment dispaly_qa_comment">
-                          <div className='qa_content qa_content content_comment____' style={{marginTop: '15px'}}>
+                            <div className='qa_content qa_content content_comment____' style={{marginTop: '15px'}}>
                             { activeUpdateComment && idUpdateCmt == child.id_comment_qa ? 
                               ( 
                               <div className="content_comment____form_input__">
@@ -340,8 +336,8 @@ function QA() {
                               : 
                               ( <p className='cmt_name1' key={i}>{child.content}</p> ) 
                             }
-                          </div>
-                          <div className="content_comment_chammmm"> ...
+                            </div>
+                            <div className="content_comment_chammmm"> ...
                             {
                               id_user == child.id_user  && 
                               <div className="content_comment_editAndDelete">
@@ -349,7 +345,7 @@ function QA() {
                                   <span onClick={(e) => handleUpdateComment(e,child.id_comment_qa)} >Cập nhật</span> 
                               </div>
                             }
-                          </div>
+                            </div>
                           </div>
                           <span 
                               onClick={() => {
@@ -378,7 +374,7 @@ function QA() {
                               } 
                             </span>  
                             <hr/>
-                        </>
+                        </div>
                         )})}
                       </div>
                     </div>  

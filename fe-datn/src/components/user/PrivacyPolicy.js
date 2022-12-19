@@ -15,7 +15,6 @@ function PrivacyPolicy() {
                     <div className="col-md-12">
                         <div className="title">
                             <h2>Bảo mật tài khoản</h2>
-                           
                         </div>
                     </div>
                 </div>
