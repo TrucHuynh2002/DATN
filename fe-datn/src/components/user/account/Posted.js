@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 
 function Posted() {
@@ -37,7 +37,7 @@ function Posted() {
         {currentPosts.length > 0 ?
             currentPosts.map((post, index) => {
             return (    
-            <div className='row'>
+            <div className='row' key={index}>
                 <div className='col-md-2 text-center'>
                     <img src={post.link_img}
                     alt={post.name_img} className="avt_img" />                        
@@ -57,7 +57,7 @@ function Posted() {
                     {!user ? <div></div> :
                          user[0].id != post.id_user  ?  <div></div> :
                             <div className='button-fdp row'>
-                                <NavLink to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</NavLink>
+                                <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
                                 <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
                            }
