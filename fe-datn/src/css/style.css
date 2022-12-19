@@ -2714,4 +2714,64 @@ margin-top: 30px;
    margin: 10px 100px 10px 100px;
 }.col-4.rowbot{
     margin-top: 50px;
+<<<<<<< HEAD
+}.layoutnotice{
+    text-align: left;
+}.dtp.btn.btn-primary{
+    float: left;
+    margin: 10px 15px 0 0 ;
+=======
+}
+
+.chart_sales {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(169, 167, 167, 0.201);
+}
+.doanh_thu {
+    margin-right: 50px;
+    width: 25%;
+    background-color:beige;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+.phong_trong {
+    margin-right: 50px;
+    width: 25%;
+    background-color:beige;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+.phong_coc {
+    margin-right: 50px;
+    width: 25%;
+    background-color:beige;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+.phong_dang_o {
+    margin-right: 50px;
+    width: 25%;
+    background-color:beige;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    font-size: 20px;
+    text-align: center;
+}
+.search_chart {
+    margin: 20px 0 20px 0;
+}
+.search_input {
+    margin-left: 10px;
+>>>>>>> 8eecf84c937a141adf6763fcd46cbd2f51fa4b34
 }
