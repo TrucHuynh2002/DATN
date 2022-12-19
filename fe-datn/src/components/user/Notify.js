@@ -50,7 +50,6 @@ const getDataCommentPostOwner = async () => {
     if(id_user){
         const res = await axios.get(`http://127.0.0.1:8000/api/comment/qa-comment-owner/${id_user}`);
         // setListnotifyInteractive(res.data.data);
-        console.log(res.data)
         if(res.data.status){
             setCommentPostOwnerParent(res.data.dataParent);
             setCommentPostOwnerChild(res.data.dataChild);

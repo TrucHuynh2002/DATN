@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
-import Slide3 from '../../../images/sl03.png';
 import PaginationBlog from '../PaginationBlog';
 
 function HomeBlog() {
@@ -43,7 +42,7 @@ function HomeBlog() {
                   <div className="blog_box">
                     <div className="blog_img">
                       <Figure style={{width:"100%",height:"300px"}}>
-                        <img src={Slide3} alt="#" style={{width:"100%", height:"100%"}} />
+                        <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </Figure>
                     </div>
                     <div className="blog_room">

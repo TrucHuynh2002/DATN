@@ -18,9 +18,7 @@ function ListDeleteRoom() {
     };
     const handleCancelRoom = async (e) => {
         let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
-        if(res.data.status == true){
-            // setShow(false)
-           
+        if(res.data.status == true){          
             setAlertCancel(true)
         }
     } 

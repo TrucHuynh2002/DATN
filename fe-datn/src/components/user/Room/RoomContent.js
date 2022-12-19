@@ -15,7 +15,6 @@ function RoomND() {
   // danh sach post
   useEffect(() => {
     getData();
-    getImg();
   },[]);
 
   const [alert, setAlert] = useState({
@@ -23,19 +22,17 @@ function RoomND() {
   });  
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   setListPost(res.data.data);    
+    setListPost(res.data.data);   
+   const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+      setListImg(getImg.data.data); 
+    let getTypeRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+      setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
+        // tỉnh
+    const getDataProvince = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+      setListProvince(getDataProvince.data.data);
   };
-  const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-      setListImg(res.data.data);   
-  };
-
   // search
   const navigate = useNavigate();
-  useEffect(() => {
-    getTypeRoom()
-    getDataProvince();
-  },[]);
     // SEARCHING
   const [keyword,setKeyword] = useState({
     keywords: "",
@@ -50,10 +47,6 @@ function RoomND() {
     typeRooms:[]
   });
   const {typeRooms} = getDataSearch
-  const getTypeRoom = async () => {
-    let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-    setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
-  }
     const {
       keywords,
       province,
@@ -78,11 +71,6 @@ function RoomND() {
     getDataStreet(({[e.id_district] : e.target.value}).undefined)
     setKeyword({ ...keyword,[e.target.name]:e.target.value})
 }
-  // tỉnh
-  const getDataProvince = async () => {
-      const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
-      setListProvince(res.data.data);
-  }
   // huyện 
   const getDataDistrict = async (id_province) => {
       const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);

@@ -28,32 +28,9 @@ function ChartBill({dataChart}) {
         
             setPriceRoom(res.data.data)
         }
-    
-        // console.log(res.data);
-        // setPriceMonth(res.data.data)
-        // res.data.data.map((price,index) => {
-        //     setPriceRoom(prev => {
-        //         return     [...prev,price.all_money]
-        //     })
-        // })
-        // setDateRoom(res.data.data)
-        // res.data.data.map((price,index) => {
-        //     setPriceRoom(prev => {
-        //         return     [...prev,price.created_at]
-        //     })
-        // })
     }
-
-
-
-
-
     useEffect(() => {
         getDataBill()
-
-            // return () => {
-            //     getDataBill()
-            // }
     },[dataChart])
    
 const dataLine = {

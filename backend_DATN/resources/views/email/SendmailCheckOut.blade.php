@@ -32,7 +32,7 @@
     <div class="body">
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
         <b>Hello, tên {{$admin->full_name}} </b>
-        <p>Khách hàng tên ... vừa gửi yêu cầu trả phòng số {{$admin->room_number}}</p>
+        <p>Vừa gửi yêu cầu trả phòng số {{$admin->room_number}}</p>
         <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để xem chi tiết</p>
         
     </div>

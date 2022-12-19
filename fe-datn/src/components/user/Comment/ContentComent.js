@@ -25,7 +25,6 @@ function ContentComent() {
   });
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
-  // console.log(getIdComment);
   const [Reply,setReply] = useState({
     activeComment: false,
     id:""
@@ -75,7 +74,6 @@ function ContentComent() {
     // formData.append('parent_id',getIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     if(res.data.status == true ){
-      // console.log(res.data.id[0].id_user)
       setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
       const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
     }

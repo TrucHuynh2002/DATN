@@ -31,7 +31,7 @@ function GalleryContent() {
     <>
     <div className="gallery">
       <div className="container">
-        {ListSearchTrend.map((list,index) => {
+        {ListSearchTrend.length > 0 && ListSearchTrend.map((list,index) => {
           return (
           <div
           key={index}
@@ -43,10 +43,10 @@ function GalleryContent() {
               <div className="col-8">
                 <div> {list.key_word}</div>
                 <div className="content____________">
-                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend[index][0].id_post}`}>{ListDataPostTrend[index][0].post_name}
+                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].id_post}`}>{ListDataPostTrend[0].post_name}
                   </Link>
                   <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
-                  {moment(ListDataPostTrend[index][0].created_at).local().startOf('day').fromNow()}
+                  {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0].created_at).local().startOf('day').fromNow()}
                     </span>
                 </div>
              </div>
@@ -67,7 +67,9 @@ function GalleryContent() {
       </Modal.Header>
       <Modal.Body>
             {/* {ListDataPostTrendShow.status == true && ListDataPostTrendShow.length >= 1 ? ( */}
-                   {ListDataPostTrendShow.map((room,index) => {
+                   {ListDataPostTrendShow.length > 0 
+                   ?
+                     ListDataPostTrendShow.map((room,index) => {
                         return    <div className='searchTrend_content____' key={index}>   
                                     <div className="room">
                                         <div className="bed_room">
@@ -81,6 +83,10 @@ function GalleryContent() {
                                     </div>
                                 </div>
                     })
+                    :
+                    <div style={{textAlign:"center"}}>
+                      Không có kết quả tìm kiếm
+                    </div>
                 // )
                 // : 
                 // (
