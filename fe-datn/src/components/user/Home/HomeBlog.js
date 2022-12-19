@@ -41,7 +41,7 @@ function HomeBlog() {
                 <div className="col-md-4 col-sm-12" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
-                      <Figure style={{width:"100%",height:"300px"}}>
+                      <Figure style={{width:"100%",height:"260px"}}>
                         <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </Figure>
                     </div>
