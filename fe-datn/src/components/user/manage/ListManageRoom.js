@@ -6,6 +6,7 @@ import Pagination from '../Pagination';
 // import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
+import ChartManage from './ChartManage';
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
@@ -111,7 +112,7 @@ function ListManageRoom() {
 
     const handleChange = async (e,id_post) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`);
-        console.log(res.data.data) 
+     
         setQuantityPost(res.data.data);
     };
     const [yellow,setYellow] = useState(false)
@@ -132,7 +133,7 @@ function ListManageRoom() {
         id_post
     } = active
     const [alertError,setAlertError] = useState('')
-    console.log(active)
+   
 
     const handleClickBlue = async (e,quality) =>{
         // setQuantityButtonAll(false)
@@ -328,9 +329,7 @@ function ListManageRoom() {
                         {quantityPost.map((quantity,index)=>{
 
                             if(quantity.status == 1 ) {
-                              return  (
-                          
-                                
+                              return  (                                
                                     <>
                                         <div className={`circle circle-yellow text-center red_room_number ${quantity.id == id_rooms && 'red'} `}
                                             style={{background:quantity.id == id_rooms ? "red" : ''}}
@@ -340,10 +339,7 @@ function ListManageRoom() {
                                                 A{quantity.room_number}
                                                
                                         </div>
-                                     
-
-                                    </>
-                                
+                                    </>                                
                                 ) 
                             }else if( quantity.status == 2 ){
                                 return  (
@@ -354,13 +350,8 @@ function ListManageRoom() {
                                         data-id ={quantity.id}
                                         onClick={e => handleClickRoom(e,quantity.id,quantity.status,'',quantity.id_post)} 
                                     > 
-                                            A{quantity.room_number}
-                                            
-                                    </div> 
-                                    
-                                  
-                                      
-                                    
+                                            A{quantity.room_number}                                           
+                                    </div>                                    
                                     </>
                                 )
                             }else{
@@ -549,7 +540,9 @@ function ListManageRoom() {
             </div>  
             <div className="content_profile" id="edit_list_manage">
                 <EditManage id_roomNumber={roomNumber.undefined} />                                   
-            </div>      
+            </div>  
+            <hr></hr>
+            <ChartManage />    
         </div>      
         </div>      
   )

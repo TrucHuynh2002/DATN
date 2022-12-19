@@ -11,7 +11,7 @@ function HomeGallery() {
         <div className="container">
         <div className="row">
             <div className="col-12">
-              <div className="titlepage">
+              <div className="titlepage text-center">
                 <h2>Nổi bật</h2>
               </div>
             </div>
