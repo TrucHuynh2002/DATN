@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Bill as Bill;
 use Carbon\Carbon;
+use Exception;
+use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -179,5 +181,27 @@ class BillController extends Controller
                 'status' => true,
                 // 'user' => $request->id_user
             ]);
+    }
+
+    public function testSms(Request $request){
+        
+        // $basic  = new \Vonage\Client\Credentials\Basic("827cc1e4", "Ga9ATDrgfCfaZzUZ");
+        // $client = new \Vonage\Client($basic);
+        $recive_number = "+84869790865";
+        $messages = "DSA";
+        try {
+            $account_sid = env('TWILIO_SID');
+            $auth_token = env('TWILIO_TOKEN');
+            $twilio_number = env('TWILIO_FROM');
+            $client = new Client($account_sid,$auth_token);
+            $client->messages->create($recive_number,[
+                'from' => $twilio_number,
+                'body' => $messages
+            ]);
+            return 'Thành công';
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
     }
 }
