@@ -16,15 +16,15 @@ function AddBlog() {
         description:"",
         id_user: user ?  user[0].id :  ''
     });
-    // console.log(123);
+   
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages[0])
+   
     const handleChangeImages = (e) => {
-        console.log(e.target.files);
+   
         setUploadImages(e.target.files)
     }
-    // console.log(uploadImages);
+   
 
     const [alert, setAlert] = useState({
         err_list: {},
@@ -33,12 +33,12 @@ function AddBlog() {
     
     const handleChange = (e) => {
         setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
-        console.log(123);
+     
     };
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(uploadImages)
+      
         let dataForm = new FormData();
         dataForm.append('img_blog',uploadImages[0])
         dataForm.append('name_blog',name_blog);
@@ -47,12 +47,12 @@ function AddBlog() {
         dataForm.append('description',description);
         dataForm.append('id_user',id_user)
         const res = await axios.post("http://127.0.0.1:8000/api/blog/create", dataForm);
-        console.log(res.data)
+        
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list)
+            
         }
         else{           
             setAlert({
@@ -100,7 +100,7 @@ function AddBlog() {
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setAddBlog({ ...addBlog, description : data});
-                                    console.log(description);
+                            
                                 }}
                                 >
                         </CKEditor>

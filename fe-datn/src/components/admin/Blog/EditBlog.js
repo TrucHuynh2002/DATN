@@ -103,7 +103,6 @@ function EditBlog() {
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditBlog({ ...editBlog, description : data});
-                                    console.log(description);
                                 }}
                                 >
                         </CKEditor>

@@ -47,7 +47,6 @@ function EditPost() {
         img,
         } = editPost;
        // xu ly loi
-       console.log(editPost)
        const [alert, setAlert] = useState({
         err_list: {
             messages: "",
@@ -62,7 +61,7 @@ function EditPost() {
     };
     // Lấy nội thất
     const [checkFur, setFur] = useState([]);
-    console.log(checkFur);
+   
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
         var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
@@ -70,6 +69,8 @@ function EditPost() {
     };
     useEffect(() => {
         get_furnitures();
+        getDataRoomType();
+            loadFurn();
     },[]);
 
     // Lấy roomtype
@@ -84,10 +85,7 @@ function EditPost() {
             setEditPost(result.data.data);
         };
 
-        useEffect(() => {
-            getDataRoomType();
-            loadFurn();
-        },[]);
+      
 
     
     const handle_idFuniture =  (e) => {      
@@ -142,7 +140,6 @@ function EditPost() {
             });
         }
         else{
-            console.log(res.data)           
             setAlert({
                 err_list: res
             });
@@ -207,7 +204,6 @@ function EditPost() {
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditPost({ ...editPost, description : data});
-                                    console.log(description);
                                 }}
                                 >
                         </CKEditor>

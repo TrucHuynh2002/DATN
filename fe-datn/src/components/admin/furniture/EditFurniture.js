@@ -32,7 +32,6 @@ function EditFurniture() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
         }
         else{           
             setAlert({

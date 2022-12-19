@@ -19,7 +19,6 @@ function DetailBlog() {
     };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
-        console.log(update)
     }
     const getDataUser = async () => {
       const res = await axios.get(`http://127.0.0.1:8000/api/user/show`);
