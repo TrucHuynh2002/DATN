@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
 // import { Line, Pie } from 'react-chartjs-2';
-import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
 
 ChartJS.register(
@@ -392,13 +392,13 @@ function ListManageRoom() {
                             </div>
                         }
 
-                       { status == 2 && (<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"12px",marginTop:"12px"}}>
-                            <div style={{border:"1px solid red",padding:"4px 6px",cursor:"pointer"}} onClick={e => handleShowAddBill(e)}>
+                       { status == 2 && (<div>
+                            <Button className='dtp' onClick={e => handleShowAddBill(e)}>
                                     Thêm hóa đơn
-                            </div>
-                            <div onClick={e => handleCheckOut(e)} style={{border:"1px solid red",padding:"4px 6px",cursor:"pointer"}}>
+                            </Button>
+                            <Button className='dtp' onClick={e => handleCheckOut(e)}>
                                     Đã trả phòng
-                            </div>
+                            </Button>
                         </div>)}
                        
                         <div className='color_room_manage' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -411,7 +411,7 @@ function ListManageRoom() {
                 </div>       
                     
                 <div className="room_number____">
-                {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}
+                {alert.err_list.status === true && <div className="notice success_____"><p className='layoutnotice'>Cập nhật thành công</p></div>}
               
                 {
                     status == 0

@@ -2714,4 +2714,9 @@ margin-top: 30px;
    margin: 10px 100px 10px 100px;
 }.col-4.rowbot{
     margin-top: 50px;
+}.layoutnotice{
+    text-align: left;
+}.dtp.btn.btn-primary{
+    float: left;
+    margin: 10px 15px 0 0 ;
 }
