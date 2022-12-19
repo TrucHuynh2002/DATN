@@ -14,32 +14,21 @@ function Posted() {
     const lastPageIndex = currentPage * postsPerPage;
     const firstPageIndex = lastPageIndex - postsPerPage;
     const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-    // const [listImg, setListImg] = useState([]);
-
     useEffect(() => {
-        getDataUser();
         getData();
-        // getImg();
     },[]);
-    // const getImg = async () => {
-    //     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-    //     setListImg(res.data.data);   
-
-    // };
     // danh sach Posted
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
-    setListPost(res.data.data);
-    };
-    
+        const Post = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
+            setListPost(Post.data.data);
+        const Account = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+            setInfoAccount(Account.data.data);
+    };   
     const deletePost = async (id_post) => {
         await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
         getData();
       };
-      const getDataUser = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
-        setInfoAccount(res.data.data);
-    };
+
   return (
     <>
     <h1><b className="b_title">Tin đã đăng</b></h1>

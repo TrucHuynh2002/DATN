@@ -1,6 +1,6 @@
 import React,  { useState,useEffect } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { Link,useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ListUpdateRoom from './ListUpdateRoom';
 import ListDeleteRoom from './ListDeleteRoom';
@@ -22,7 +22,6 @@ function PriceRoom({data}) {
     }
     const getDataBill = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
-        console.log(res.data)
         setLoadBill(res.data.data)
     }
     useEffect(() => {
@@ -41,7 +40,6 @@ function PriceRoom({data}) {
     const handleClose = async() => {
         setShow(false) 
         const res = await axios.put(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${id_user}`);
-        console.log(res)
     }
     const handleShow = () => setShow(true);
 

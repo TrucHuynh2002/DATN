@@ -38,7 +38,6 @@ function QADetail() {
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
     let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
-    console.log(res.data);
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 

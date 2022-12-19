@@ -214,12 +214,10 @@ function ListManageRoom() {
     // Trả phòng
     const handleCheckOut = async (e) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_rooms}`);
-        console.log(res.data)
         if(res.data.status == true){
             handleChange(e,id_post)
             setActive({id_rooms:id_rooms, status: 0,checked:true,id_user_two: '',id_post: ''})    
         }
-console.log(id_post)
         // setActive({id_rooms:"", status: 0,checked:true,id_user_two: '',id_post: ''})       
     }
 
@@ -275,7 +273,6 @@ console.log(id_post)
         formData.append('all_money', listMomneyRoom);
         formData.append('id_roomNumber', id_rooms);
         const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
-        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -391,7 +388,7 @@ console.log(id_post)
                         {
                             checked  &&
                             <div>
-                                <span style={{padding: "6px",border:"1px solid red",cursor:"pointer"}} onClick={e => CancelSelect(e)} >Hủy bỏ chọn</span>
+                                <Button variant="danger" onClick={e => CancelSelect(e)}>Hủy bỏ chọn</Button>
                             </div>
                         }
 

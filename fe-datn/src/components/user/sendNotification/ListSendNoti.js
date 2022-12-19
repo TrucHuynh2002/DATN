@@ -33,7 +33,6 @@ function ListSendNoti() {
         }
     }
 
-
   return (
     <>
         <Table bordered>

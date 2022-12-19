@@ -33,7 +33,7 @@ function BlogContent() {
                   <div className="blog_box">
                     <div className="blog_img">
                       <figure style={{width:"100%",height:"300px"}}>
-                        <img src={Slide3} alt="#" />
+                      <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </figure>
                     </div>
                     <div className="blog_room">

@@ -36,7 +36,6 @@ function QA() {
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
     let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
-    console.log(res.data);
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
@@ -114,10 +113,8 @@ function QA() {
     formData.append('parent_id',parent_id)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     if(res.data.status == true){
-      console.log(res.data.id_qa.id_user)
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
       const ress = await axios.post(`http://127.0.0.1:8000/api/noty_qa/create`, addNotify);
-      console.log(ress)
     }
     setReply({
       activeComment:false

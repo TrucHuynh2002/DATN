@@ -14,11 +14,7 @@ function InfoAccount() {
     const [liststreet, setListstreet] = useState([]);
     useEffect(() => {
         getData();
-        province();
-        district();
-        ward();
     },[]);
-
     // xu ly loi
     const [alert, setAlert] = useState({
         err_list: {
@@ -26,33 +22,24 @@ function InfoAccount() {
             status: ""
         },
     });
-
-    // danh sach Account
+    
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
-        setInfoAccount(res.data.data);
+        // danh sach Account
+        const Account = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
+            setInfoAccount(Account.data.data);
+        // tỉnh
+        const province = await axios.get(`http://127.0.0.1:8000/api/user/show_province_detail/${id_user}`);
+          setListprovince(province.data.data);
+        // huyện
+        const district = await axios.get(`http://127.0.0.1:8000/api/user/show_district_detail/${id_user}`);
+          setListdistrict(district.data.data);
+        // xã
+        const ward = await axios.get(`http://127.0.0.1:8000/api/user/show_ward_detail/${id_user}`);
+          setListward(ward.data.data);
+        // đường
+        const strees = await axios.get(`http://127.0.0.1:8000/api/user/show_street_detail/${id_user}`);
+          setListstreet(strees.data.data);
     };
-    // tỉnh
-    const province = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_province_detail/${id_user}`);
-          setListprovince(res.data.data);
-      };
-    // huyện 
-      const district = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_district_detail/${id_user}`);
-          setListdistrict(res.data.data);
-      };  
-    // xã
-      const ward = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_ward_detail/${id_user}`);
-          setListward(res.data.data);
-      }; 
-    // đường
-      const strees = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/show_street_detail/${id_user}`);
-          setListstreet(res.data.data);
-      };
-
     // xu ly avata
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

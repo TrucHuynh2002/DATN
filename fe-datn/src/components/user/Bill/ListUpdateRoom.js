@@ -7,18 +7,12 @@ function ListUpdateRoom() {
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [dataBookingRoom,setDataBookingRoom] = useState([]);
-    console.log(dataBookingRoom)
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
     const getDataBookingRoom = async (e) => {
         let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/booking_room/${id_user}`)
-        console.log(res.data.data)
         setDataBookingRoom(res.data.data)
     }
-    const CancelBookingRoom = async (e,id_room) => {
-        
+    const CancelBookingRoom = async (e,id_room) => {        
         let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_room}`)
-        console.log(res.data)
         if(res.data.status == true){
             getDataBookingRoom();
         }

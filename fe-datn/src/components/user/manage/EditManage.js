@@ -6,7 +6,6 @@ function EditManage({id_roomNumber}) {
     console.log(id_roomNumber)
     useEffect(() => {
       if (id_roomNumber){
-        console.log('svsd');
          getData() };
     },[]);
     const [alert, setAlert] = useState({
@@ -38,7 +37,6 @@ function EditManage({id_roomNumber}) {
     const [showBill, setShowBill] = useState([]);
     const getData = async (e) =>{
         const id = id_roomNumber
-        console.log(id)
         const res = await axios.get(`http://127.0.0.1:8000/api/bill/show_id/${id}`); 
         setShowBill(res.data.data);
           if(res.data.status === true){
