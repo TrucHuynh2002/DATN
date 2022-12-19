@@ -112,7 +112,7 @@ function ListManageRoom() {
 
     const handleChange = async (e,id_post) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`);
-        console.log(res.data.data) 
+     
         setQuantityPost(res.data.data);
     };
     const [yellow,setYellow] = useState(false)
@@ -133,7 +133,7 @@ function ListManageRoom() {
         id_post
     } = active
     const [alertError,setAlertError] = useState('')
-    console.log(active)
+   
 
     const handleClickBlue = async (e,quality) =>{
         // setQuantityButtonAll(false)

@@ -7,15 +7,12 @@ ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
 function ChartBill({dataChart}) {
-    // console.log(dataChart);
-    //  chartjs line
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
     const [data,setData] = useState({});
     const [PriceMonth,setPriceMonth] = useState([]);
     const [PriceRoom,setPriceRoom] = useState([])
     const [DateRoom,setDateRoom] = useState([])
-    // console.log(PriceRoom);
     Array(5).map((_,index) => {       
         setData({...data,['Tháng' + index]: index}) 
     })
