@@ -5,9 +5,8 @@ import axios from 'axios';
 import moment from 'moment';
 import {CKEditor} from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
-
 function QA() {
+  
   const user = JSON.parse(localStorage.getItem('user')); 
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
@@ -41,10 +40,6 @@ function QA() {
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
-    // activeUpdateComment 
-    // &&
-    // setUpdateComment({activeUpdateComment:false,idUpdateCmt:id_cmt})
-   
   }
 
   const handleUpdateContent = async (e,id_cmt) => {
