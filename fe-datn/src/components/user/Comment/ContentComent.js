@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import moment from 'moment'
-import axios, { AxiosHeaders } from 'axios';
+import { useParams } from 'react-router-dom';
 
 function ContentComent() {
   const user = JSON.parse(localStorage.getItem('user'));

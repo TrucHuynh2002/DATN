@@ -1,7 +1,6 @@
-import React from 'react'
-import { Button, Form } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 function Setting() {
 
   const [listConfig, setListConfig] = useState([]);

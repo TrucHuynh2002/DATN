@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Pagination = ({totalPost, postsPerPage,currentPage, setCurrentPage}) => {
     let pages =[];

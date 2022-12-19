@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
-import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 function AddBlog() {
     var user = JSON.parse(localStorage.getItem("user"));

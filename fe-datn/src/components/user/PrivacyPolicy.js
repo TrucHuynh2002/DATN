@@ -1,9 +1,4 @@
-import React from 'react'
-import logo from '../../images/logo.png';
-import { Link } from 'react-router-dom';
-import sumenh from '../../images/sumenh.png'
-import tamnhin from '../../images/tamnhin.jpg'
-import tantam from '../../images/tantam.png'
+import React from 'react';
 function PrivacyPolicy() {
 
   return (

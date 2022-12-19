@@ -1,9 +1,9 @@
-import React,  { useState,useEffect } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import ListUpdateRoom from './ListUpdateRoom';
 import ListDeleteRoom from './ListDeleteRoom';
+import ListUpdateRoom from './ListUpdateRoom';
 
 function PriceRoom({data}) {
     var user = JSON.parse(localStorage.getItem("user"));

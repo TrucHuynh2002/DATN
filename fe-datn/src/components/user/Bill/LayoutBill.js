@@ -1,7 +1,7 @@
-import React,  { useState,useEffect } from 'react'
+import axios from 'axios';
+import React, { useState } from 'react';
 import ChartBill from './ChartBill';
 import PriceRoom from './PriceRoom';
-import axios from 'axios';
 
 const user = JSON.parse(localStorage.getItem("user"));
 

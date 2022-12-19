@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Modal from 'react-bootstrap/Modal';
-import { Button } from 'react-bootstrap';
 import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 
 function GalleryContent() {
   useEffect(() => {

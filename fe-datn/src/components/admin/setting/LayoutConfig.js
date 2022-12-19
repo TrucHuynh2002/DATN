@@ -1,5 +1,5 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap';
+import React from 'react';
+import { Col, Row } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import NavConfig from './NavConfig';
 

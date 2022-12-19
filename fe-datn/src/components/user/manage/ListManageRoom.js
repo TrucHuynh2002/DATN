@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Modal, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 // import { Line, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
+import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import EditManage from './EditManage';
 
 ChartJS.register(

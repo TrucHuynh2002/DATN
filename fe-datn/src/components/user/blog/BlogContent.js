@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Slide3 from '../../../images/sl03.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
 
 function BlogContent() {

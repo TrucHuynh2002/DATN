@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
-import InfoAccount from './InfoAccount'
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import InfoAccount from './InfoAccount';
 import Posted from './Posted';
 // import Bloged from './Bloged';
 

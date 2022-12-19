@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function EditBlog() {
     
