@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Figure from 'react-bootstrap/Figure';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
-import Figure from 'react-bootstrap/Figure';
 
 function HomePost() {
 

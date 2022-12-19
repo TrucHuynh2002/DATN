@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import HeaderNavLink from './HeaderNavLink';
 
 function Header_menu() {

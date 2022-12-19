@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { Outlet, useNavigate } from 'react-router-dom';
-import NavAdmin from './NavAdmin';
-import HeaderAdmin from './HeaderAdmin';
 import FooterAdmin from './FooterAdmin';
-import axios from 'axios';
+import HeaderAdmin from './HeaderAdmin';
+import NavAdmin from './NavAdmin';
 
 function App() {
   const navigate = useNavigate();

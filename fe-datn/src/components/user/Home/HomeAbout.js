@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Figure from 'react-bootstrap/Figure';
+import { Link } from 'react-router-dom';
 import Slide1 from '../../../images/sl01.png';
 
 function HomeAbout() {

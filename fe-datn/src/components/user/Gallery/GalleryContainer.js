@@ -1,6 +1,6 @@
 import React from 'react';
-import GalleryTitle from './GalleryTitle';
 import GalleryContent from './GalleryContent';
+import GalleryTitle from './GalleryTitle';
 
 function GalleryContainer() {
   return (

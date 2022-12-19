@@ -1,10 +1,8 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
-import axios from 'axios';
-import {CKEditor} from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 function FooterConfig() {
 
   // const {id_config} = useParams();

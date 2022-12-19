@@ -1,8 +1,7 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
+import axios from 'axios';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'
-import moment from 'moment'
 
 function DetailBlog() {
     const {id_blog} = useParams();
@@ -19,7 +18,6 @@ function DetailBlog() {
     };
     const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
-        console.log(update)
     }
     const getDataUser = async () => {
       const res = await axios.get(`http://127.0.0.1:8000/api/user/show`);

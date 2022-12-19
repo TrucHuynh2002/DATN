@@ -1,6 +1,6 @@
 import React from 'react';
-import BlogTitle from './BlogTitle';
 import BlogContent from './BlogContent';
+import BlogTitle from './BlogTitle';
 
 function BlogContainer() {
   return (

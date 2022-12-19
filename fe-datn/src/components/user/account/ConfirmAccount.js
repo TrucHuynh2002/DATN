@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function ConfirmAccount() {
 

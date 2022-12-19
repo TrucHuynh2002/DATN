@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import PaginationBlog from '../PaginationBlog';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { NavLink, useParams } from 'react-router-dom';
+import PaginationBlog from '../PaginationBlog';
 
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));

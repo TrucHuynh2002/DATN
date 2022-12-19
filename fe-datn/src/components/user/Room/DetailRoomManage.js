@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function RoomDetail() {
     var user = JSON.parse(localStorage.getItem("user"));
