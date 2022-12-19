@@ -30,7 +30,7 @@ function ListLogo() {
             <tr style={{'background': 'black'}}>
               <td>
                 <div>
-                <img src={listLogo.logo} alt="images"  />
+                  <img src={listLogo.logo} alt="images"  />
                 </div>
               </td>
                 <td>

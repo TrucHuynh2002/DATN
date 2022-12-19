@@ -76,6 +76,16 @@ function EditBlog() {
                     <Form.Group className="mb-3" controlId="img_blog">
                         <Form.Label>Hình ảnh</Form.Label>
                         <Form.Control type="file" name="img_blog" onChange={(e) => handleChangeImages(e)} multiple/>
+                        {
+                            img_blog 
+                            ? 
+                            <div> 
+                                <img src={img_blog} style={{margin:'18px 0'}} alt={name_blog} width={120} height={120} />
+                            </div>
+                            :
+                            <div> <img src={img_blog} alt="images" width={120} height={120} /> </div>
+                            
+                        }
                         {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>}
                     </Form.Group>         
                     <Form.Group className="mb-3" controlId="meta_keywords">
