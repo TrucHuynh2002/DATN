@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Figure from 'react-bootstrap/Figure';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
-import Figure from 'react-bootstrap/Figure';
 
 function HomePost() {
 
   const [listPost, setListPost] = useState([]);
-  // const [listImg, setListImg] = useState([]);
   // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
@@ -17,18 +16,12 @@ function HomePost() {
 
 useEffect(() => {
     getData()
-    // getImg()
   },[]);
   // danh sách post
   const getData = async () => {
     const res = await axios.get('http://127.0.0.1:8000/api/post/show');
     setListPost(res.data.data);
    };
-   //danh sach img
-  // const getImg = async () => {
-  //   const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-  //   setListImg(res.data.data);  
-  // };
   
   return (
     <>

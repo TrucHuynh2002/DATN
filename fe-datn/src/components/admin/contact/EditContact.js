@@ -1,8 +1,7 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function EditContact() {
 
@@ -36,7 +35,6 @@ function EditContact() {
           setAlert({
               err_list: res.data
           });
-          console.log(alert.err_list)
       }
       else{           
           setAlert({

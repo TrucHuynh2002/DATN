@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Mail\BookRoomAdmin;
 use App\Mail\BookRoomUser;
+use App\Mail\CheckOut;
+use App\Mail\CheckOutAlertSuccess;
+use App\Mail\CheckOutAlertUnSuccess;
 // use App\Models\Bill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -68,9 +71,13 @@ class RoomNumberController extends Controller
 
     public function update_checkRoom(Request $request, $id)
     {
-        $data = RoomNumberModel::where('id_user_two', '=', $id)->first();
+        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->where('id_user_two', '=', $id)->first();
         $data->check_room = 1;
         $data->save();
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
+        if($admin){
+            Mail::to($admin->email)->send(new CheckOut($data,$admin));   
+        }
         return response()
             ->json([
                 'data' => $data,
@@ -92,10 +99,10 @@ class RoomNumberController extends Controller
         ->first();
         // $checkEmail_admin = User::where('email', '=', $request->email)->first();
         if($admin){
-            Mail::to($admin->mail)->send(new BookRoomAdmin($user,$admin));
+            Mail::to($admin->email)->send(new BookRoomAdmin($user,$admin));
         }
         if($user){
-            Mail::to($user->mail)->send(new BookRoomUser($user));
+            Mail::to($user->email)->send(new BookRoomUser($user));
         }
         return response()
             ->json([
@@ -217,10 +224,13 @@ class RoomNumberController extends Controller
            
     }
     public function cancelSendNoti(Request $request,$id_roomnumber){
-        $data = RoomNumberModel::find($id_roomnumber);
+        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber);
         $data->check_room = null;
         $data->id_user_two = null;
         $data->save();
+        if($data){
+            Mail::to($data->email)->send(new CheckOutAlertSuccess($data));
+        }
         return response()
         ->json([
             'data' => $data,
@@ -229,9 +239,12 @@ class RoomNumberController extends Controller
    
     }
     public function deleteSendNoti(Request $request,$id_roomnumber){
-        $data = RoomNumberModel::find($id_roomnumber);
+        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber);
         $data->check_room = null;
         $data->save();
+        if($data){
+            Mail::to($data->email)->send(new CheckOutAlertUnSuccess($data));
+        }
         return response()
         ->json([
             'data' => $data,

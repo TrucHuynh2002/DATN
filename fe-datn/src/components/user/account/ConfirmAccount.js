@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function ConfirmAccount() {
 
@@ -10,15 +10,13 @@ function ConfirmAccount() {
     password:"",
     password_new:"",
     password_neww:"",
- });
-
+    });
  const [alert, setAlert] = useState({
      err_list: {},
  });
-
  const {password, password_new, password_neww } = editPassword;
  const handleChange = (e) => {
-     setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
+    setEditPassword({ ...editPassword, [e.target.name]: e.target.value });
  };
  const handleSubmit = async (e) => {
   e.preventDefault();

@@ -1,7 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 function Comment() {
  
@@ -29,7 +29,6 @@ function Comment() {
   const handleSumbit = async (e) => {
     e.preventDefault();
     const res = await axios.post(`http://127.0.0.1:8000/api/rating/create`, addComment);
-    // console.log(res.data)
       if(res.data.status === true){
         const {id_user_tow} = addNotify;
         setNotify({...addNotify , id_user_tow : res.data.data});
@@ -118,11 +117,18 @@ function Comment() {
             : <Form>
                 <Form.Group className="form-group">
                   <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
-                  <Form.Control name="email" className="form-control form-control-sm" placeholder="Vui lòng đăng nhập đê bình luận" disabled />
+                  <Form.Control name="email" className="form-control form-control-sm" placeholder="Vui lòng đăng nhập đê bình luận" disabled="true" />
                 </Form.Group>
                 <Form.Group className="form-group">
                   <Form.Label htmlFor="txtReview">3. Viết nhận xét của bạn vào bên dưới:</Form.Label>
-                  <textarea name="content" className="form-control" rows={3} placeholder="Vui lòng đăng nhập đê bình luận" value={addComment.content} disabled onChange={(e) => handleChange(e)} />
+                  <textarea 
+                    name="content" 
+                    className="form-control" 
+                    rows={3} placeholder="Vui lòng đăng nhập đê bình luận" 
+                    value={addComment.content} 
+                    disabled="true" 
+                    onChange={(e) => handleChange(e)} 
+                  />
                 </Form.Group>
               </Form> }
         </div>

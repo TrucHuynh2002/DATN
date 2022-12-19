@@ -1,8 +1,7 @@
-import React from 'react'
-import { Link,useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react';
-import moment from 'moment';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 function BillDetail() {
     let { id_bill } = useParams();
     const user = JSON.parse(localStorage.getItem("user"));

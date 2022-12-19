@@ -1,8 +1,7 @@
-import React from 'react'
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 
 function EditFurniture() {
 
@@ -32,7 +31,6 @@ function EditFurniture() {
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
         }
         else{           
             setAlert({

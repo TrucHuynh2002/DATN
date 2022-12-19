@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Table,Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal, Table } from 'react-bootstrap';
 
 function EditManage({id_roomNumber}) {
-    console.log(id_roomNumber)
     useEffect(() => {
       if (id_roomNumber){
-        console.log('svsd');
          getData() };
     },[]);
     const [alert, setAlert] = useState({
@@ -38,7 +36,6 @@ function EditManage({id_roomNumber}) {
     const [showBill, setShowBill] = useState([]);
     const getData = async (e) =>{
         const id = id_roomNumber
-        console.log(id)
         const res = await axios.get(`http://127.0.0.1:8000/api/bill/show_id/${id}`); 
         setShowBill(res.data.data);
           if(res.data.status === true){
@@ -77,7 +74,6 @@ function EditManage({id_roomNumber}) {
     formData.append('electricity_money_edit', listEditMomneyElc);
     formData.append('all_money_edit', listEditMomneyRoom);
     const res = await axios.post(`http://127.0.0.1:8000/api/bill/update/${id}?_method=PUT`,formData);
-    console.log(res)
     if(res.data.status === true){
         setAlert({
             err_list: res.data

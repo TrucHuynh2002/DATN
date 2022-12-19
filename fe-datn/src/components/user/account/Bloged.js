@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import PaginationBlog from '../PaginationBlog';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { NavLink, useParams } from 'react-router-dom';
+import PaginationBlog from '../PaginationBlog';
 
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -16,22 +16,18 @@ function Bloged() {
     const currentBlog = listBlog.slice(firstPageIndexBlog, lastPageIndexBlog);
     useEffect(() => {
         getData();
-        getDataUser();
     },[]);
-
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
-    setListBlog(res.data.data);
+        const Blog = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
+            setListBlog(Blog.data.data);
+        const Account = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+            setInfoAccount(Account.data.data);
     };
-
     const deleteBlog = async (id_blog) => {
         await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
         getData();
     };
-    const getDataUser = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
-        setInfoAccount(res.data.data);
-    };
+
   return (
     <div >
         <h1><b className="b_title">Bài viết đã đăng</b></h1>

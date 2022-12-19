@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import AddPosst from './AddPost';
 
 function App() {

@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 
 
 function RoomRelatePost({onClick}) {
   const [listPost, setListPost] = useState([]);
-  // const [listImg, setListImg] = useState([]);
-  // danh sach post
   useEffect(() => {
     getData();
-    // getImg();
   },[]);
 
   const [alert, setAlert] = useState({
@@ -22,10 +19,6 @@ function RoomRelatePost({onClick}) {
     const res = await axios.get("http://127.0.0.1:8000/api/post/show");
     setListPost(res.data.data);
   };
-//   const getImg = async () => {
-//     const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-//     setListImg(res.data.data);   
-// };
 var settings = {
   dots: true,
   infinite: false,

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import moment from 'moment';
-import {CKEditor} from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
 
 
 function QADetail() {
@@ -38,7 +36,6 @@ function QADetail() {
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
     let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
-    console.log(res.data);
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 

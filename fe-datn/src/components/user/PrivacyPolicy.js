@@ -1,9 +1,4 @@
-import React from 'react'
-import logo from '../../images/logo.png';
-import { Link } from 'react-router-dom';
-import sumenh from '../../images/sumenh.png'
-import tamnhin from '../../images/tamnhin.jpg'
-import tantam from '../../images/tantam.png'
+import React from 'react';
 function PrivacyPolicy() {
 
   return (
@@ -15,7 +10,6 @@ function PrivacyPolicy() {
                     <div className="col-md-12">
                         <div className="title">
                             <h2>Bảo mật tài khoản</h2>
-                           
                         </div>
                     </div>
                 </div>

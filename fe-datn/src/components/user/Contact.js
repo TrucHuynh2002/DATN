@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
 
 function Contact() {
 
@@ -31,7 +31,6 @@ function Contact() {
         setAlert({
             err_list: res.data
         });
-        console.log(alert.err_list)
     }
     else{           
         setAlert({

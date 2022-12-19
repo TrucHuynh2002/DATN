@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Modal, Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 // import { Line, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
+import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import EditManage from './EditManage';
 
 ChartJS.register(
@@ -111,7 +111,7 @@ function ListManageRoom() {
 
     const handleChange = async (e,id_post) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`);
-        console.log(res.data.data) 
+     
         setQuantityPost(res.data.data);
     };
     const [yellow,setYellow] = useState(false)
@@ -132,7 +132,7 @@ function ListManageRoom() {
         id_post
     } = active
     const [alertError,setAlertError] = useState('')
-    console.log(active)
+   
 
     const handleClickBlue = async (e,quality) =>{
         // setQuantityButtonAll(false)
@@ -214,12 +214,10 @@ function ListManageRoom() {
     // Trả phòng
     const handleCheckOut = async (e) => {
         const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_rooms}`);
-        console.log(res.data)
         if(res.data.status == true){
             handleChange(e,id_post)
             setActive({id_rooms:id_rooms, status: 0,checked:true,id_user_two: '',id_post: ''})    
         }
-console.log(id_post)
         // setActive({id_rooms:"", status: 0,checked:true,id_user_two: '',id_post: ''})       
     }
 
@@ -275,7 +273,6 @@ console.log(id_post)
         formData.append('all_money', listMomneyRoom);
         formData.append('id_roomNumber', id_rooms);
         const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
-        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -391,7 +388,7 @@ console.log(id_post)
                         {
                             checked  &&
                             <div>
-                                <span style={{padding: "6px",border:"1px solid red",cursor:"pointer"}} onClick={e => CancelSelect(e)} >Hủy bỏ chọn</span>
+                                <Button variant="danger" onClick={e => CancelSelect(e)}>Hủy bỏ chọn</Button>
                             </div>
                         }
 

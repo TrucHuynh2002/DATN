@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 
 function AddRoomType() {
 
@@ -23,18 +23,18 @@ function AddRoomType() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.post('http://127.0.0.1:8000/api/roomType/create', addRoomType);
-        console.log(res);
+       
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-            console.log(alert.err_list)
+         
         }
         else{           
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name[0])
+          
         }
         // navigate("../lis t_furniture");
     };

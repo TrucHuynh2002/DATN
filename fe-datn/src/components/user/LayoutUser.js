@@ -1,8 +1,8 @@
-import {React,useEffect} from 'react';
-import { Outlet } from 'react-router-dom';
-import Footer from './Footer';
-import Header from '../user/Header/Header';
 import axios from 'axios';
+import { React, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from '../user/Header/Header';
+import Footer from './Footer';
 
 function LayoutUser() {
   useEffect(() => {

@@ -1,30 +1,22 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function BlogDetail() {
     const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [InfoAccount, setInfoAccount] = useState([]);
     useEffect(() => {
-      getDataUser();
-        updateView();
         getData();        
     },[]);
     const getData = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
         setListBlog(res.data.data);
-    };
-    const updateView = async () => {
         const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
-        console.log(update)
-    }
-    const getDataUser = async () => {
-      const res = await axios.get(`http://127.0.0.1:8000/api/user/show`);
-      setInfoAccount(res.data.data);
-  };
+        const Info = await axios.get(`http://127.0.0.1:8000/api/user/show`);
+        setInfoAccount(Info.data.data);
+    };
   return (
     <>
       <div className="container">
@@ -50,11 +42,7 @@ function BlogDetail() {
             {listBlog.description_sort}
           </p>
         </div>
-        <div className="description">
-            <div>
-            <div dangerouslySetInnerHTML={{__html: listBlog.description}} /> 
-            </div>
-             </div>
+        <div className="description" dangerouslySetInnerHTML={{__html: listBlog.description}} />
       </div>
     </>
   )

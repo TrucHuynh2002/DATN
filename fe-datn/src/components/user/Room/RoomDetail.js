@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams  } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { Carousel } from 'react-responsive-carousel';
-import Evaluate from '../Comment/Evaluate';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Link, useParams } from 'react-router-dom';
 import ContentComent from '../Comment/ContentComent';
+import Evaluate from '../Comment/Evaluate';
 import RoomRelatePost from './RoomRelatePost';
 
 function RoomDetail() {
@@ -22,13 +22,10 @@ function RoomDetail() {
     useEffect(() => {
         updateView();
         getData();
-        getImg();
         province();
         district();
         ward();
         street();
-        Furniture();
-        room();
     },[loader]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -40,18 +37,16 @@ function RoomDetail() {
     // danh sach post
     const getData = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
-        setListPost(res.data.data);
-    };
-    const getImg = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
-        setListImg(res.data.data);        
+            setListPost(res.data.data);
+        const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
+            setListImg(getImg.data.data);
+        const Furniture = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
+            setListFurniture(Furniture.data.data);
+        const room = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
+            setListRoom(room.data.data);
     };
     const updateView = async () => {
         const update = await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
-    };
-    const Furniture = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
-          setListFurniture(res.data.data);
     };
     // tinh
     const province = async () => {
@@ -73,11 +68,6 @@ function RoomDetail() {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
           setListstreet(res.data.data);
     };
-    const room = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
-        setListRoom(res.data.data);
-    };  
-
     const handleLoaderPost = (e,loaders) => {
         setLoader(loader+1);
     };

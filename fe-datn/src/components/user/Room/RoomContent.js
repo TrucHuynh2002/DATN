@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Button, Form, Modal } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
 
 function RoomND() {
@@ -15,7 +15,6 @@ function RoomND() {
   // danh sach post
   useEffect(() => {
     getData();
-    getImg();
   },[]);
 
   const [alert, setAlert] = useState({
@@ -23,19 +22,17 @@ function RoomND() {
   });  
   const getData = async () => {
    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
-   setListPost(res.data.data);    
+    setListPost(res.data.data);   
+   const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+      setListImg(getImg.data.data); 
+    let getTypeRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+      setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
+        // tỉnh
+    const getDataProvince = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+      setListProvince(getDataProvince.data.data);
   };
-  const getImg = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
-      setListImg(res.data.data);   
-  };
-
   // search
   const navigate = useNavigate();
-  useEffect(() => {
-    getTypeRoom()
-    getDataProvince();
-  },[]);
     // SEARCHING
   const [keyword,setKeyword] = useState({
     keywords: "",
@@ -50,10 +47,6 @@ function RoomND() {
     typeRooms:[]
   });
   const {typeRooms} = getDataSearch
-  const getTypeRoom = async () => {
-    let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
-    setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
-  }
     const {
       keywords,
       province,
@@ -78,11 +71,6 @@ function RoomND() {
     getDataStreet(({[e.id_district] : e.target.value}).undefined)
     setKeyword({ ...keyword,[e.target.name]:e.target.value})
 }
-  // tỉnh
-  const getDataProvince = async () => {
-      const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
-      setListProvince(res.data.data);
-  }
   // huyện 
   const getDataDistrict = async (id_province) => {
       const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
@@ -214,7 +202,7 @@ function RoomND() {
                       <div className="col-md-4 col-sm-6" key={index}>
                           <div id="serv_hover" className="room">
                               <div className="room_img">
-                                  <figure style={{width:"100%",height:"300px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+                                  <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
                               </div>
                               <div className="bed_room">
                                   <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>

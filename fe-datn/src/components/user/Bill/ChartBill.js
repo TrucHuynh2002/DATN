@@ -1,21 +1,18 @@
-import React, { useState,useEffect } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, ArcElement } from 'chart.js';
 import axios from 'axios';
+import { ArcElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement } from 'chart.js';
 import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
 function ChartBill({dataChart}) {
-    // console.log(dataChart);
-    //  chartjs line
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
     const [data,setData] = useState({});
     const [PriceMonth,setPriceMonth] = useState([]);
     const [PriceRoom,setPriceRoom] = useState([])
     const [DateRoom,setDateRoom] = useState([])
-    // console.log(PriceRoom);
     Array(5).map((_,index) => {       
         setData({...data,['Tháng' + index]: index}) 
     })
@@ -28,32 +25,9 @@ function ChartBill({dataChart}) {
         
             setPriceRoom(res.data.data)
         }
-    
-        // console.log(res.data);
-        // setPriceMonth(res.data.data)
-        // res.data.data.map((price,index) => {
-        //     setPriceRoom(prev => {
-        //         return     [...prev,price.all_money]
-        //     })
-        // })
-        // setDateRoom(res.data.data)
-        // res.data.data.map((price,index) => {
-        //     setPriceRoom(prev => {
-        //         return     [...prev,price.created_at]
-        //     })
-        // })
     }
-
-
-
-
-
     useEffect(() => {
         getDataBill()
-
-            // return () => {
-            //     getDataBill()
-            // }
     },[dataChart])
    
 const dataLine = {

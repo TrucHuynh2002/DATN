@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Modal from 'react-bootstrap/Modal';
-import { Button } from 'react-bootstrap';
 import moment from 'moment';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 
 function GalleryContent() {
   useEffect(() => {
@@ -14,14 +14,12 @@ function GalleryContent() {
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
-    // console.log(res.data)
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
   };
   
   const getDataPostTrendShow = async (keyword) => {
     let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}`);
-    console.log(res.data.data)
     setDataPostTrendShow(res.data.data);
     setShow(true);
     

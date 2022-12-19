@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import { Button, Form, Modal, Table } from 'react-bootstrap';
 
 function ListBill() {
 

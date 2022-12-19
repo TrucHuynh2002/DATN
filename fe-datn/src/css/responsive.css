@@ -114,11 +114,14 @@
         padding: 0 0px 31px 16px;
         align-items: baseline;
         position: absolute;
-        width: 285%;
-        left: 100%;
-        top: -56%;
+        width: 100%;
+        top: 59%;
+        right: -43%;
         margin-right: 20px;
         z-index: 999;
+    }
+    .navbar-nav .dropdown-menu{
+        position: absolute;
     }
     .btn-group{margin-top:20px}
     .navigation.navbar-dark .navbar-nav .nav-link {
