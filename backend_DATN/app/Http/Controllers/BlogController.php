@@ -153,9 +153,6 @@ class BlogController extends Controller
         $Blog->id_user = $request->id_user;
         $get_image = $request->file('img_blog');
         if ($get_image) {
-
-           
-
             $get_name_image = $get_image->getClientOriginalName();
             $path = 'uploads/blog';
             if(File::exists($path.'/'.$Blog->name_img_blog)){
@@ -171,7 +168,7 @@ class BlogController extends Controller
         $Blog->save();
         return response()
             ->json([
-                'data' =>  $Blog,
+                'data' => $request->file('img_blog'),
                 'status' => true
             ]);
     }

@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom';
 function EditBlog() {
     
     const {id_blog} = useParams();
+    const user = JSON.parse(localStorage.getItem('user'));
+    const id_user = user[0].id
     const [editBlog, setEditBlog] = useState({
         name_blog:"",
         img_blog:[],
@@ -18,9 +20,7 @@ function EditBlog() {
     });
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
-    const handleChangeImages = (e) => {
-        setUploadImages(e.target.files)
-    }
+    console.log(uploadImages[0])
 
     const [alert, setAlert] = useState({
         err_list: {},
@@ -35,12 +35,14 @@ function EditBlog() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const dataForm = new FormData();
-        dataForm.append('img_blog[]',uploadImages[0])
+        dataForm.append('img_blog',uploadImages[0])
         dataForm.append('name_blog',name_blog);
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
-        const res = await axios.put(`http://127.0.0.1:8000/api/blog/update/${id_blog}`, editBlog);
+        dataForm.append('id_user',id_user);
+        const res = await axios.post(`http://127.0.0.1:8000/api/blog/update/${id_blog}?_method=PUT`, dataForm);
+        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -66,7 +68,7 @@ function EditBlog() {
     <div className="content">
         <div className="add-post">
             <h1 className="content_h1_admin">Cập nhật blog</h1>
-                <Form onSubmit={(e) => handleSumbit(e)}>
+                <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                     <Form.Group className="mb-3" controlId="name_blog">
                         <Form.Label>Tên blog</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={name_blog} name="name_blog"  />
@@ -75,7 +77,7 @@ function EditBlog() {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="img_blog">
                         <Form.Label>Hình ảnh</Form.Label>
-                        <Form.Control type="file" name="img_blog" onChange={(e) => handleChangeImages(e)} multiple/>
+                        <Form.Control type="file" name="img_blog" onChange={(e) =>  setUploadImages(e.target.files)}/>
                         {
                             img_blog 
                             ? 
