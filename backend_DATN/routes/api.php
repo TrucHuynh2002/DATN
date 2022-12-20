@@ -328,3 +328,5 @@ Route::get('bill-detail/user/{id}', [BillController::class, 'getDataBillDetailUs
 Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
+
+Route::post('test-sms',[BillController::class,'testSms']);
