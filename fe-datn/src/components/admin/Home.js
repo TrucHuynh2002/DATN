@@ -161,7 +161,7 @@ const dataPie = {
       <div className='row'>
         <div className='col-md-8 col-lg-8 col-sm-12'>
           <Line data={dataLine} />
-          <div className="name_bieudo"><h5><span>BIểu đồ :</span> Thống kê lượt xem theo tháng của trang web</h5></div>
+          <div className="name_bieudo"><h5><span>Biểu đồ :</span> Thống kê lượt xem theo tháng của trang web</h5></div>
         </div>
         <div className='col-md-4 col-lg-4 col-sm-12'>
           <Pie data={dataPie} />

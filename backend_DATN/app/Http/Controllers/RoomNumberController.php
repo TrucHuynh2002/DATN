@@ -129,7 +129,7 @@ class RoomNumberController extends Controller
         }
         return response()
         ->json([
-            'mess' => "Phòng này không tồn tài",
+            'mess' => "Phòng này không tồn tại",
             'status' => true,
         ]);
     }

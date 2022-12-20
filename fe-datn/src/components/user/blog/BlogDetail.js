@@ -17,6 +17,7 @@ function BlogDetail() {
         const Info = await axios.get(`http://127.0.0.1:8000/api/user/show`);
         setInfoAccount(Info.data.data);
     };
+    
   return (
     <>
       <div className="container">

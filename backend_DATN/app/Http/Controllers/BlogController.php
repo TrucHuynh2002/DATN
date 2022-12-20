@@ -76,7 +76,7 @@ class BlogController extends Controller
 
 
             $get_name_image = $get_image->getClientOriginalName();
-            $path = 'upload/blog';
+            $path = 'uploads/blog';
             $name_image  = current(explode('.', $get_name_image));
             $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
             $get_image->move($path, $new_image);

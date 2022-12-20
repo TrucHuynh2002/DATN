@@ -6,9 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-
 function QA() {
-
   const user = JSON.parse(localStorage.getItem('user')); 
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
@@ -150,8 +148,8 @@ function QA() {
               </div>
           </div>
       </div>
-      <div className="our_room">
-        <div className="container">
+      <div className="our_room row">
+        <div className="container col-lg-6 col-md-12 col-xs-12">
           <div className='qa_input'>
             <Button variant="secondary" className='btn_qa' onClick={handleShow}>
               Bạn đang nghĩ gì thế?

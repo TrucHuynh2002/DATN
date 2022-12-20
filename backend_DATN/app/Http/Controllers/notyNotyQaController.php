@@ -73,7 +73,5 @@ class notyNotyQaController extends Controller
             ]);
     }
 
-    public function getQACommentPost(Request $request){
-        
-    }
+   
 }

@@ -309,6 +309,9 @@ Route::get('StatisticalSController/comment', [StatisticalSController::class, 'co
 Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
 Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
 Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);
+Route::get('StatisticalSController/emptyRoom/{id}', [StatisticalSController::class, 'count_EmptyRoom']);
+Route::get('StatisticalSController/depositRoom/{id}', [StatisticalSController::class, 'count_DepositRoom']);
+Route::get('StatisticalSController/ownershipRoom/{id}', [StatisticalSController::class, 'count_OwnershipRoom']);
 
 //view_index
 Route::get('view_index/update_view', [ViewController::class, 'updateViewIndex']);
@@ -325,3 +328,5 @@ Route::get('bill-detail/user/{id}', [BillController::class, 'getDataBillDetailUs
 Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
+
+Route::post('test-sms',[BillController::class,'testSms']);

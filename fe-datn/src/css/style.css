@@ -245,7 +245,7 @@ a,
 
 img {
     max-width: 100%;
-    height: auto;
+    height: 100%;
 }
 
  :focus {
@@ -473,10 +473,16 @@ button {
     background-color: white;
     padding: 15px;
     border-left: none solid 5px;
-    left: 13%;
+ 
+    left: 50% !important;
+    transform:  translate(-50%,0) !important;
     position: absolute;
     bottom: -14%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 
+        left: 50% !important;
+        transform:  translate(-50%,0) !important;
+
 }
 
 .book_room2 h1 {
@@ -917,6 +923,7 @@ label{
 
 .our_room .room .room_img {
     overflow: hidden;
+    height: 220px;
 }
 
 .our_room .room .room_img figure {
@@ -2718,46 +2725,37 @@ margin-top: 30px;
 
 .chart_sales {
     display: flex;
-    width: 100%;
     border-bottom: 1px solid rgba(169, 167, 167, 0.201);
 }
 .doanh_thu {
-    margin-right: 50px;
-    width: 25%;
     background-color:beige;
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 16px;
     font-size: 20px;
     text-align: center;
 }
-.phong_trong {
-    margin-right: 50px;
-    width: 25%;
+.phong_trong {  
     background-color:beige;
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 16px;
     font-size: 20px;
     text-align: center;
 }
-.phong_coc {
-    margin-right: 50px;
-    width: 25%;
+.phong_coc {   
     background-color:beige;
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 16px;
     font-size: 20px;
     text-align: center;
 }
-.phong_dang_o {
-    margin-right: 50px;
-    width: 25%;
+.phong_dang_o {    
     background-color:beige;
     border-radius: 10px;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 16px;
     font-size: 20px;
     text-align: center;
 }
