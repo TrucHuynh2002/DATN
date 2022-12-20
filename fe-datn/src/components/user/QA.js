@@ -197,9 +197,18 @@ function QA() {
                         <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
                       </div>
                       <div className="feedback_comment_time"> 
-                      <Link to={`../qaDetail/${listQa.id_qa}`}>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
+                      <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
                       </div>
                     </div> 
+                    <div className="content_comment_chammmm"> ...
+                      <div className="content_comment_editAndDelete">
+                        <span>Xóa</span> <br />
+                        <span>Cập nhật</span>  
+                      </div>
+                    </div>
+                    {/* <div className='btn_qaDelete'>
+                      <Button variant="danger">X</Button>
+                    </div> */}
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
@@ -301,7 +310,7 @@ function QA() {
                       {listChildComment.map((child,i) => {
                         return child.parent_id == listComment.id_comment_qa  && (
                         <div key={i}>
-                          <div className='qa_avatar' >
+                          <div className='qa_avatar'>
                             <img src={child.link_img_user} alt='' className="content_comment_img___" />
                             <div>
                               <div className="feedback_comment_time">
@@ -310,7 +319,7 @@ function QA() {
                               <div className="feedback_comment_time">
                                 {moment(child.created_at).local().startOf('day').fromNow()}
                               </div>
-                            </div>
+                            </div>                            
                           </div>
                           <div className="display_comment dispaly_qa_comment">
                             <div className='qa_content qa_content content_comment____' style={{marginTop: '15px'}}>

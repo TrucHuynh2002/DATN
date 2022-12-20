@@ -173,7 +173,7 @@ function QADetail() {
                       <div className="feedback_comment_time"> 
                         {moment(listQa.created_at).local().startOf('day').fromNow()}
                       </div>
-                    </div> 
+                    </div>
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
@@ -233,7 +233,7 @@ function QADetail() {
                         }
                         </div>
                         <div className="content_comment_chammmm"> ...
-                          { id_user == listComment.id_user &&
+                          {id_user == listComment.id_user &&
                             <div className="content_comment_editAndDelete">
                               <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> <br />
                               <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
