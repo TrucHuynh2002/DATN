@@ -31,7 +31,7 @@ function Setting() {
         });
     }
 };
-
+ // list banner
 useEffect(() => {
   getData();
 },[]);
@@ -48,6 +48,14 @@ useEffect(() => {
       <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
         <Form.Group className="mb-3" controlId="logo">
           <Form.Control type="file" name="logo" onChange={(e) => handleChangeImages(e)}/>
+          {
+           listConfig.logo
+           ? 
+          <img src={listConfig.logo} style={{margin:'18px 0',background: 'black'}} alt={listConfig.name_logo} width={120} height={120} />
+           :
+           <img src={listConfig} alt="images" width={120} height={120} />
+          
+        }
           {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.logo[0]}</div>}
         </Form.Group>
         {/* Thông báo */}

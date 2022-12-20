@@ -41,7 +41,7 @@ useEffect(() => {
                 <div className="col-md-4 col-sm-12" key={index}>
                     <div id="serv_hover" className="room">
                       <div className="room_img" >
-                          <Figure style={{width:"100%",height:"300px"}}><img src={post.link_img} alt={post.name_img} /></Figure>
+                          <Figure style={{width:"100%",height:"260px"}}><img src={post.link_img} alt={post.name_img} /></Figure>
                       </div>
                       <div className="bed_room">
                         <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>

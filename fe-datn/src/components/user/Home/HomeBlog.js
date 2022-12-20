@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import PaginationBlog from '../PaginationBlog';
 
 function HomeBlog() {
-
     const [listBlog, setListBlog] = useState([]);
     // phan trang blog
     const [ currentPageBlog, setCurrentPageBlog ] = useState(1);
@@ -41,13 +40,12 @@ function HomeBlog() {
                 <div className="col-md-4 col-sm-12" key={index}>
                   <div className="blog_box">
                     <div className="blog_img">
-                      <Figure style={{width:"100%",height:"300px"}}>
+                      <Figure style={{width:"100%",height:"260px"}}>
                         <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </Figure>
                     </div>
                     <div className="blog_room">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
-                      <span>Trúc Huỳnh</span>
                       <p>
                         {blog.description_sort}
                       </p>

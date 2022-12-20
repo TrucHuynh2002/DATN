@@ -18,9 +18,6 @@ function HeaderAdmin() {
   return (
     <>
         <div className="nav-top">
-          <div className="menu">
-              <i className='bx bx-menu'></i>
-          </div>
           <a href="/admin">
               <img src={listConfig.logo} alt="images" width="100%" />
           </a>

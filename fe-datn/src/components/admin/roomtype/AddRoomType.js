@@ -4,7 +4,6 @@ import { Button, Form } from 'react-bootstrap';
 
 function AddRoomType() {
 
-    // const navigate = useNavigate();
     const [addRoomType, setAddRoomType] = useState({
         name_room_type: "",
     });
@@ -23,20 +22,16 @@ function AddRoomType() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const res = await axios.post('http://127.0.0.1:8000/api/roomType/create', addRoomType);
-       
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
             });
-         
         }
-        else{           
+        else {           
             setAlert({
                 err_list: res.data
             });
-          
         }
-        // navigate("../lis t_furniture");
     };
 
   return (
@@ -52,9 +47,8 @@ function AddRoomType() {
                     value={name_room_type}
                     className=''
                     onChange={(e) => handleChange(e)}/>
-                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name[0]}</div>}
+                    {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.name_room_type[0]}</div>}
                 </Form.Group>
-                
                 <div className="d-grid gap-2">
                     {alert.err_list.status === true && <div className="notice success_____">Thêm thành công</div>}
                     <Button variant="primary" size="sm" name='' type="submit">

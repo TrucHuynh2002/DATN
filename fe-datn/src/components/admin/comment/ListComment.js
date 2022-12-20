@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 
@@ -43,6 +43,7 @@ function ListComment() {
             <th>Tên người dùng</th>
             <th>Nội dung</th>
             <th>Ngày bình luận</th>
+            <th></th>
           </tr>
         </thead>
         <tbody className='list_cmt'>
@@ -53,12 +54,9 @@ function ListComment() {
                 <td>{cmt.id_user}</td>
                 <td>{cmt.content}</td>
                 <td>{cmt.created_at}</td>
-                {/* <td>{cmt.status}</td>
                 <td>
-                  <Link to="#">
-                    <Button variant="outline-success" name='' className="btn-edit">Phê duyệt</Button>
-                  </Link>
-                </td> */}
+                  <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteCmt(cmt.id_comment)}></Button>
+                </td>
               </tr>
             );
           })}
