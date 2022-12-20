@@ -80,6 +80,10 @@
     .manage {
         width: 100%;
     }
+
+    .rs_screen{
+        display: block !important;
+    }
   
 }
 
