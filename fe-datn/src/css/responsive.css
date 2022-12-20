@@ -84,6 +84,26 @@
     .rs_screen{
         display: block !important;
     }
+
+    .our_room .room{
+        display: flex;
+    }
+
+    .our_room .room .room_img{
+        height: 100% !important;
+    }
+
+     .our_room .room .row_img>figure{
+        height: unset;
+
+     }
+
+     /* FOOTER */
+     .ft{
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center;
+     }
   
 }
 

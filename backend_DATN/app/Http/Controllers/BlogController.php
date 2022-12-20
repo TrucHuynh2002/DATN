@@ -151,10 +151,24 @@ class BlogController extends Controller
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
         $Blog->id_user = $request->id_user;
+        $get_image = $request->file('img_blog');
+        if ($get_image) {
+            $get_name_image = $get_image->getClientOriginalName();
+            $path = 'uploads/blog';
+            if(File::exists($path.'/'.$Blog->name_img_blog)){
+                File::delete($path.'/'.$Blog->name_img_blog);
+            }
+            $name_image  = current(explode('.', $get_name_image));
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
+            $link_img_blog = env('APP_URL') . '/uploads/blog/' . $new_image;
+            $Blog->img_blog = $link_img_blog;
+            $Blog->name_img_blog = $new_image;
+        }
         $Blog->save();
         return response()
             ->json([
-                'data' =>  $Blog,
+                'data' => $request->file('img_blog'),
                 'status' => true
             ]);
     }

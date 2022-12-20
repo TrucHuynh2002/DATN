@@ -14,12 +14,14 @@ function GalleryContent() {
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
     const res = await axios.get(`http://127.0.0.1:8000/api/trendPost`);
+    console.log(res.data)
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
   };
   
   const getDataPostTrendShow = async (keyword) => {
     let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}`);
+    console.log(res.data)
     setDataPostTrendShow(res.data.data);
     setShow(true);
     
@@ -43,10 +45,10 @@ function GalleryContent() {
               <div className="col-8">
                 <div> {list.key_word}</div>
                 <div className="content____________">
-                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].id_post}`}>{ListDataPostTrend[0].post_name}
+                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].length > 0 &&  ListDataPostTrend[0][0].id_post}`}>{ListDataPostTrend[0][0].post_name}
                   </Link>
                   <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
-                  {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0].created_at).local().startOf('day').fromNow()}
+                  {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0][0].created_at).local().startOf('day').fromNow()}
                     </span>
                 </div>
              </div>

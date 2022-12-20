@@ -128,13 +128,21 @@ function InfoAccount() {
                     <div>
                         <span> Địa chỉ : </span>
                         <span>{info.address}, </span>
+<<<<<<< HEAD
                         
+=======
+                        <span style={{marginRight:'2px'}}> Đường </span>
+>>>>>>> 8161de0bd7eadcad679d714beacde47a6fa05da2
                         {liststreet.map((street_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
                             );
                         })}
+<<<<<<< HEAD
                        
+=======
+                        <span style={{marginRight:'2px'}}> Phường </span>
+>>>>>>> 8161de0bd7eadcad679d714beacde47a6fa05da2
                         {listward.map((ward_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
