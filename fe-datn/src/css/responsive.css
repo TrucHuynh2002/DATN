@@ -77,7 +77,9 @@
     .footer .row h3 {
         font-size: 17px;
     }
-  
+    .manage {
+        width: 100%;
+    }
   
 }
 

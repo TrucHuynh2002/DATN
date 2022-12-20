@@ -364,15 +364,11 @@ function ListManageRoom() {
                                      onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} 
                                      key={index} >
                                              A{quantity.room_number}
-                                            
+                                           
                                      </div> 
-                                    
-                                      
-
                                     </>
                                  )
-                            }
-                         
+                            }                        
                         }
                         )}
 

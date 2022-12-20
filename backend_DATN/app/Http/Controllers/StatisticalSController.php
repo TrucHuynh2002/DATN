@@ -9,6 +9,7 @@ use App\Models\Furniture as Furniture;
 use App\Models\CommentModel as CommentModel;
 use App\Models\User;
 use App\Models\ContactModel;
+use App\Models\RoomNumberModel;
 use App\Models\View;
 
 use Illuminate\Http\Request;
@@ -90,12 +91,50 @@ class StatisticalSController extends Controller
     }
     public function count_view(Request $request)
     {
-        // $count_view = View::find(1);
         $count_view = View::all()->count();
         return response()
             ->json([
                 'data' => $count_view,
                 'status' => true
             ]);
+    }
+     // phong trong
+    public function count_EmptyRoom(Request $request, $id)
+    {
+        $count_EmptyRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+            ->join('users','post.id_user','users.id_user')
+            ->where('post.id_user','=',$id)
+            ->where('room_number.status','=',0)->count();
+        return response()
+            ->json([
+                'data' => $count_EmptyRoom,
+                'status' => true               
+        ]);
+    }
+    // phong dat coc
+    public function count_DepositRoom(Request $request, $id)
+    {
+        $count_DepositRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+        ->join('users','post.id_user','users.id_user')
+        ->where('post.id_user','=',$id)
+        ->where('room_number.status','=',1)->count();
+        return response()
+            ->json([
+                'data' => $count_DepositRoom,
+                'status' => true
+        ]);
+    }
+    // phong so huu
+    public function count_OwnershipRoom(Request $request, $id)
+    {
+        $count_OwnershipRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+        ->join('users','post.id_user','users.id_user')
+        ->where('post.id_user','=',$id)
+        ->where('room_number.status','=',2)->count();
+        return response()
+            ->json([
+                'data' => $count_OwnershipRoom,
+                'status' => true
+        ]);
     }
 }
