@@ -8,7 +8,8 @@ function NavAdmin() {
           <li><NavLink to="/admin">
             <i className='bx bx-home'></i> Trang chủ</NavLink>
           </li>
-          <li><NavLink to="list_category"><i className='bx bx-category-alt'></i> Danh mục 
+          <li><NavLink to="list_category">
+              <i className='bx bx-category-alt'></i> Danh mục 
               <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             

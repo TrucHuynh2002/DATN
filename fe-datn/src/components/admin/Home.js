@@ -21,87 +21,34 @@ function Home() {
   const [listViewPost, setListViewPost] = useState([]);
 
   useEffect(() => {
-    getView();
-    getContact();
-    getUser();
-    getComment();
-    getFurniture();
-    getBlog();
-    getPost();
-    getRoomType();
-    getCategory();
+    getData();
   },[]);
 
-  useEffect(() => {
-    getViewIndex()
-    return () => {
-      getViewIndex()
-    }
-},[])
-
-  useEffect(() => {
-    getViewPost()
-    return () => {
-      getViewPost()
-    }
-  },[])
-
 // list Category
-  const getCategory = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/category");
-
-  setListCategory(result.data.data);
+  const getData = async () => {
+    const Category = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/category");
+    setListCategory(Category.data.data);
+    const RoomType = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
+    setListRoomType(RoomType.data.data);
+    const Post = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/post");
+    setListPost(Post.data.data);
+    const Blog = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/blog");
+    setListBlog(Blog.data.data);
+    const Furniture = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/furniture");
+    setListFurniture(Furniture.data.data);
+    const Comment = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/comment");
+    setListComment(Comment.data.data);
+    const User = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/user");
+    setListUser(User.data.data);
+    const Contact = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/contact");
+    setListContact(Contact.data.data);
+    const View = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
+    setListView(View.data.data);
+    const ViewIndex = await axios.get("http://127.0.0.1:8000/api/view_index/show");
+    setListViewIndex(ViewIndex.data.data);
+    const ViewPost = await axios.get("http://127.0.0.1:8000/api/post/post_view_top5");
+    setListViewPost(ViewPost.data.data);
   };
-// list RoomType
-const getRoomType = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
- setListRoomType(result.data.data);
- };
- // list Post
- const getPost = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/post");
- setListPost(result.data.data);
- };
- // list Blog
- const getBlog = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/blog");
- setListBlog(result.data.data);
- };
- // list Funiture
- const getFurniture = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/furniture");
- setListFurniture(result.data.data);
- };
- // list Comment
- const getComment = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/comment");
- setListComment(result.data.data);
- };
- // list User
- const getUser = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/user");
- setListUser(result.data.data);
- };
- // list Contact
- const getContact = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/contact");
- setListContact(result.data.data);
- };
- // list View
- const getView = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
- setListView(result.data.data);
- };
- // list ViewIndex
- const getViewIndex = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/view_index/show");
- setListViewIndex(result.data.data);
- };
- // list View Post top5
- const getViewPost = async () => {
-  const result = await axios.get("http://127.0.0.1:8000/api/post/post_view_top5");
- setListViewPost(result.data.data);
- };
 
 //  chartjs line
 const dataLine = {
@@ -132,8 +79,8 @@ const dataPie = {
   return (
     <>      
       <div className="content">
-          <div className="row content-row">
-            <div className="col col-admin category">
+          <div className="row content-row ">
+            <div className=" col-admin category">
               <i className="bx bx-category-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Danh mục</span>
@@ -141,7 +88,7 @@ const dataPie = {
                 <p className="chart">{listCategory}</p>
               </div>
             </div>
-            <div className="col col-admin roomtype">
+            <div className=" col-admin roomtype">
               <i className="bx bx-category-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Loại phòng</span>
@@ -149,7 +96,7 @@ const dataPie = {
                 <p className="chart">{listRoomType}</p>
               </div>
             </div>  
-            <div className="col col-admin postcard">
+            <div className="col-admin postcard">
               <i className="bx bx-copy-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Bản tin</span>
@@ -157,7 +104,7 @@ const dataPie = {
                 <p className="chart">{listPost}</p>
               </div>
             </div>
-            <div className="col col-admin post">
+            <div className="col-admin post">
               <i className="bx bx-edit-alt postcard-i"></i>
               <div className="postcard-content">
                 <span> Bài blog</span>
@@ -165,9 +112,7 @@ const dataPie = {
                 <p className="chart">{listBlog}</p>
               </div>
             </div>
-          </div>
-          <div className="row content-row">
-            <div className="col col-admin interior">
+            <div className="col-admin interior">
               <i className="bx bx-arch postcard-i"></i>
               <div className="postcard-content">
                 <span> Nội thất</span>
@@ -175,7 +120,10 @@ const dataPie = {
                 <p className="chart">{listFurniture}</p>
               </div>
             </div>
-            <div className="col col-admin comment">
+            </div>
+            <div className="row content-row ">
+          
+            <div className="col-admin comment">
               <i className="bx bx-message-dots postcard-i"></i>
               <div className="postcard-content">
                 <span> Bình luận</span>
@@ -183,7 +131,7 @@ const dataPie = {
                 <p className="chart">{listComment}</p>
               </div>
             </div>
-            <div className="col col-admin user">
+            <div className="col-admin user">
               <i className="bx bx-user postcard-i"></i>
               <div className="postcard-content">
                 <span> Người dùng</span>
@@ -191,7 +139,7 @@ const dataPie = {
                 <p className="chart">{listUser}</p>
               </div>
             </div>
-            <div className="col col-admin contactlist">
+            <div className="col-admin contactlist">
               <i className="bx bx-user postcard-i"></i>
               <div className="postcard-content">
                 <span> Liên hệ</span>
@@ -199,7 +147,7 @@ const dataPie = {
                 <p className="chart">{listContact}</p>
               </div>
             </div>
-            <div className="col col-admin contactlist">
+            <div className="col-admin contactlist">
               <i className="bx bx-user postcard-i"></i>
               <div className="postcard-content">
                 <span> Lượt truy cập</span>
@@ -209,14 +157,15 @@ const dataPie = {
             </div>
           </div>            
       </div>
-
       {/* biểu đồ */}
       <div className='row'>
-        <div className='col-md-8'>
-          <Line data={dataLine}></Line>
+        <div className='col-md-8 col-lg-8 col-sm-12'>
+          <Line data={dataLine} />
+          <div className="name_bieudo"><h5><span>BIểu đồ :</span> Thống kê lượt xem theo tháng của trang web</h5></div>
         </div>
-        <div className='col-md-4'>
+        <div className='col-md-4 col-lg-4 col-sm-12'>
           <Pie data={dataPie} />
+          <div className="name_bieudo"><h5><span>Biểu đồ : </span>Thống kê top 5 bài Post cao nhất của trang web</h5></div>
         </div>
       </div>
 

@@ -64,6 +64,7 @@ ul#menu>li {
 
 ul#menu{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 ul#menu, ul#menu ul#sub {
@@ -153,28 +154,46 @@ a{
     padding: 5px;
     text-transform: none ;
 }
-
+table>tbody>tr>td{
+    font-size: 17px;
+    font-style: inherit;
+}
+table>thead>tr>th{
+    font-size: 20px;
+}
 a:hover{
     text-decoration: none ;
     font-weight: 700 ;
     color: #5AB9A8 ;
 }
-
+.name_bieudo{
+    display:flex;
+    justify-content: center;
+    margin: 20px;
+}
+.name_bieudo>h5{
+    color: black;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+}
+.name_bieudo>h5>span{
+    color:black
+}
 .content{
-    padding: 70px 20px 20px 20px;
+    padding: 10px;
     max-height: 100%;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
 }
-
-.col-admin{
-    margin: 20px;
-    height: 100px;
+.content-row{
+    padding : 10px;
+    justify-content:center;
 }
-
 .col-admin{
-    margin: 20px;
+    margin: 5px;
     height: 100px;
+    width:200px;
 }
 
 .postcard{   
@@ -188,9 +207,9 @@ a:hover{
     box-shadow: 0 2px 5px black;
 }
 
-.postcard-content{
+/* .postcard-content{
     margin-left: 36px;
-}
+} */
 
 .chart{  
     height: 20px;

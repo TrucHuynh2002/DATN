@@ -25,11 +25,8 @@ function EditBanner() {
   const handleSumbit = async (e) => {
     e.preventDefault();
     let formData = new FormData();
-  
     formData.append('banner[]',uploadImages[0])
-        
     const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}?_method=PUT`, formData);
-    
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -45,8 +42,8 @@ function EditBanner() {
 
   // list banner
   const getData = async () => {
-   const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
-  setListBanner(result.data.data);
+    const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
+    setListBanner(result.data.data);
   };
 
   return (
@@ -55,11 +52,11 @@ function EditBanner() {
       <Form.Group className="mb-3" controlId="slide">
         <Form.Control type="file" name="banner" onChange={(e) => handleChangeImages(e)}/>
         {
-           listBanner.link_img_banner
-            ? 
-          <img src={listBanner.link_img_banner} alt={listBanner.name_banner} width={120} height={120} />
+           listBanner.link_img_banner 
+           ? 
+         <div> <img src={listBanner.link_img_banner} style={{margin:'18px 0'}} alt={listBanner.name_banner} width={120} height={120} /></div>
            :
-           <img src={listBanner} alt="images" width={120} height={120} />
+          <div> <img src={listBanner} alt="images" width={120} height={120} /></div>
           
         }
       </Form.Group>

@@ -37,7 +37,7 @@ function BannerConfig() {
             return (
               <tr key={index}>
                 <td>{index+1}</td>
-                <img src={banner.link_img_banner} alt={banner.name_banner} />
+              <td>  <div><img src={banner.link_img_banner} alt={banner.name_banner} /></div></td>
                 <td>
                     <Link to={`editBanner/${banner.id_banner_config}`} className="bx bxs-edit btn-edit btn btn-primary">
                     </Link>
