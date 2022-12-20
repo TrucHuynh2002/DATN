@@ -128,25 +128,25 @@ function InfoAccount() {
                     <div>
                         <span> Địa chỉ : </span>
                         <span>{info.address}, </span>
-                        <span style={{marginRight:'2px'}}> Xã </span>
+                        
                         {liststreet.map((street_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
                             );
                         })}
-                        <span style={{marginRight:'2px'}}> Xã </span>
+                       
                         {listward.map((ward_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
                             );
                         })}
-                        <span style={{marginRight:'2px'}}> Quận </span> 
+                      
                         {listdistrict.map((dis_detail, index) => {
                             return (   
                                 <span style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </span>            
                             );
                         })} 
-                        <span style={{marginRight:'2px'}}>Thành phố </span>
+                       
                         {listprovince.map((pro_detail, index) => {
                             return (   
                             <span style={{marginRight:'2px'}}  key={index}> {pro_detail._name}. </span>                    
