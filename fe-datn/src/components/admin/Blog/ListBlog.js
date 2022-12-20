@@ -55,7 +55,7 @@ function ListBlog() {
                         <td>{index+1}</td>
                         <td>{blog.name_blog}</td>
                         <td>{blog.meta_keywords}</td>
-                        <td>{blog.description_sort}</td>                        
+                        <td className='blog_descriptionSort'>{blog.description_sort}</td>                        
                         <td>
                           <div>
                             <img src={blog.img_blog} alt={blog.name_img_blog} />
