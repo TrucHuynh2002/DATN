@@ -2714,13 +2714,6 @@ margin-top: 30px;
    margin: 10px 100px 10px 100px;
 }.col-4.rowbot{
     margin-top: 50px;
-<<<<<<< HEAD
-}.layoutnotice{
-    text-align: left;
-}.dtp.btn.btn-primary{
-    float: left;
-    margin: 10px 15px 0 0 ;
-=======
 }
 
 .chart_sales {
@@ -2773,5 +2766,4 @@ margin-top: 30px;
 }
 .search_input {
     margin-left: 10px;
->>>>>>> 8eecf84c937a141adf6763fcd46cbd2f51fa4b34
 }
