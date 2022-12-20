@@ -11,6 +11,7 @@ use Exception;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use telesign\sdk\messaging\MessagingClient;
 
 class BillController extends Controller
 {
@@ -189,19 +190,48 @@ class BillController extends Controller
         // $client = new \Vonage\Client($basic);
         $recive_number = "+84869790865";
         $messages = "DSA";
-        try {
+        
             $account_sid = env('TWILIO_SID');
             $auth_token = env('TWILIO_TOKEN');
             $twilio_number = env('TWILIO_FROM');
-            $client = new Client($account_sid,$auth_token);
-            $client->messages->create($recive_number,[
-                'from' => $twilio_number,
-                'body' => $messages
-            ]);
-            return 'Thành công';
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+            $basic  = new \Vonage\Client\Credentials\Basic("827cc1e4", "Ga9ATDrgfCfaZzUZ");
+            $client = new \Vonage\Client($basic);
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS("+840706686188", 'NHATUI.COM', 'A text message sent using the Nexmo SMS API')
+            );
+            
+            $message = $response->current();
+            
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully: +840869790865\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
+            
+            // 840907673005
+            $sid    = "AC2bbe01cf715ced370554c626f8790fe9"; 
+            $token  = "055ead70cc7151c81128204710a140f1"; 
+            $twilio = new Client($sid, $token); 
+             
+            // $message = $twilio->messages 
+            //                   ->create("+84869790865", // to 
+            //                            array( 
+            //                                "from" => "+16696000887",       
+            //                                "body" => "HELLO BRO" 
+            //                            ) 
+            //                   );
+$twilio = new Client($sid, $token);
 
+$validation_request = $twilio->validationRequests
+                             ->create("+14158675310", // phoneNumber
+                                      ["friendlyName" => "My Home Phone Number"]
+                             );
+
+print($validation_request->friendlyName);
+
+            return response()->json([
+                'message' => $validation_request
+            ]);
+             
     }
 }

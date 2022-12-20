@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/vonage-notification-channel": "^3.0",
+        "telesign/telesign": "^3.0",
         "twilio/sdk": "^6.44",
         "vonage/client": "^3.0"
     },

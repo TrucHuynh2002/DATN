@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "103320550d157a461175f1a31722a6c5",
+    "content-hash": "cb0c837a5066aa414898aac68650fe40",
     "packages": [
         {
             "name": "brick/math",
@@ -5619,6 +5619,69 @@
                 }
             ],
             "time": "2022-10-07T08:02:12+00:00"
+        },
+        {
+            "name": "telesign/telesign",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TeleSign/php_telesign.git",
+                "reference": "902559d2f49a00b910fdc6ff61c0e23821e87309"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TeleSign/php_telesign/zipball/902559d2f49a00b910fdc6ff61c0e23821e87309",
+                "reference": "902559d2f49a00b910fdc6ff61c0e23821e87309",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^7.2.5 || ^8.0",
+                "psr/http-message": "^1.0",
+                "ramsey/uuid": "^4"
+            },
+            "require-dev": {
+                "composer/semver": "^3",
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/util.php",
+                    "src/version/version.php"
+                ],
+                "psr-4": {
+                    "telesign\\sdk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TeleSign Corp.",
+                    "email": "support@telesign.com",
+                    "homepage": "https://www.telesign.com"
+                }
+            ],
+            "description": "TeleSign SDK",
+            "homepage": "https://github.com/telesign/php_telesign",
+            "keywords": [
+                "Authentication",
+                "identity",
+                "messaging",
+                "mobile",
+                "sms",
+                "telesign",
+                "voice"
+            ],
+            "support": {
+                "issues": "https://github.com/TeleSign/php_telesign/issues",
+                "source": "https://github.com/TeleSign/php_telesign/tree/v3.0.0"
+            },
+            "time": "2021-06-07T23:53:58+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
