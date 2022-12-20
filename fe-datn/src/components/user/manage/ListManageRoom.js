@@ -86,6 +86,8 @@ function ListManageRoom() {
    
     useEffect(() => {
         getData();
+        // getBillTotalMonth()
+    
     },[]);
 
      // Xử lý input vlaue
@@ -285,6 +287,11 @@ function ListManageRoom() {
             });
         }
     };
+
+    // const getBillTotalMonth = () => {
+    //     const res = axios.get(`http://127.0.0.1:8000/api/bill/month-owner/${id_user}`);
+    //     console.log(res.data)
+    // }
     
   
 

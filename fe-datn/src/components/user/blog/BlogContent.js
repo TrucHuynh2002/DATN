@@ -29,14 +29,14 @@ function BlogContent() {
           <div className="row">
             {currentPosts.map((blog, index) => {
               return (
-                <div className="col-md-4 col-sm-12" key={index}>
+                <div className="col-lg-4 col-md-12 col-sm-12" key={index}>
                   <div className="blog_box">
-                    <div className="blog_img">
-                      <figure style={{width:"100%",height:"260px"}}>
+                    <div className="blog_img col-lg-12 col-md-4 col-sm-3">
+                      <figure>
                       <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </figure>
                     </div>
-                    <div className="blog_room">
+                    <div className="blog_room col-lg-12 col-md-8 col-sm-9">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
                       <p>{blog.description_sort}</p>
                     </div>

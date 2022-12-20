@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Rate from './Rate';
 
-function Evaluate() {
+function Evaluate({loader}) {
   const {id_post} = useParams();
   const [listPost, setListPost] = useState([]);
   const [averageRate,setAverageRate] = useState(1);
@@ -49,7 +49,7 @@ function Evaluate() {
   };
   useEffect(() => {
     getData();
-},[]);
+},[loader]);
 
   return (
     <>
@@ -178,7 +178,7 @@ function Evaluate() {
         </div>
       </div>
       <div className="collapse-show-rate collapse row" id="collapseExample">
-        <Rate />
+        <Rate data={loader} />
       </div>
 
 
