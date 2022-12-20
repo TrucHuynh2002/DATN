@@ -2765,3 +2765,10 @@ margin-top: 30px;
 .search_input {
     margin-left: 10px;
 }
+.blog_descriptionSort {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;    
+}
