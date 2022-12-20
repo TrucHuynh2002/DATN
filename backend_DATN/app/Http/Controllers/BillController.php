@@ -234,4 +234,23 @@ print($validation_request->friendlyName);
             ]);
              
     }
+
+    public function getOwnerTotalBillMonth(Request $request,$id_user) {
+        $get_bill = DB::table('bill')->join('room_number','room_number.id','bill.id_roomNumber')
+                                    ->join('post','post.id_post','room_number.id_post')
+                                    ->where('post.id_user','=',$id_user)
+                                    ->orderBy('bill.id','DESC')
+                                    ->get();
+        $total = 0;
+        if($get_bill){
+            foreach($get_bill as $bill){
+                $total += $bill->all_money;
+            }
+        };
+
+        return response()->json([
+            'status' => true,
+            'total_month' => $total
+        ]);
+    }
 }

@@ -149,7 +149,7 @@ function QA() {
           </div>
       </div>
       <div className="our_room row">
-        <div className="container col-lg-6 col-md-12 col-xs-12">
+        <div className="container col-lg-10 col-md-12 col-xs-12">
           <div className='qa_input'>
             <Button variant="secondary" className='btn_qa' onClick={handleShow}>
               Bạn đang nghĩ gì thế?

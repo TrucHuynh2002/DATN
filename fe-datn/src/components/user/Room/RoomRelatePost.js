@@ -10,7 +10,7 @@ function RoomRelatePost({onClick}) {
   const [listPost, setListPost] = useState([]);
   useEffect(() => {
     getData();
-  },[]);
+  },[onclick]);
 
   const [alert, setAlert] = useState({
     err_list: {},

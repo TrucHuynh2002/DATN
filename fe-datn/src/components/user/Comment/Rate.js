@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
-function Comment() {
+function Comment({data}) {
  
   const user = JSON.parse(localStorage.getItem("user"));
   const id = useParams();

@@ -1127,8 +1127,12 @@ height:50%;
     align-items: baseline;
     font-size: 25px;
 }
+.view___ {
+    text-align:center;
+}
 .view___>span{
     font-size: 16px;
+  
 }
 .gap-2>.button{
     padding: 7px;
@@ -2172,7 +2176,7 @@ margin: 0 300px 0 375px;
 
 .qa {
     width: 70%;
-    height: 100%;
+    
     margin: 0px auto;
     padding: 20px;
     border-radius: 10px;

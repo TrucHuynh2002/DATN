@@ -55,7 +55,7 @@ function PriceRoom({data}) {
                         <h1><b className="b_title">Hóa đơn</b></h1>
                     </div>
                     <div className="col-3">
-                        <span>Từ ngày </span><span>sss</span><span>đến</span><span>dd</span>
+                      
                     </div>
                 </div>
                 <div className="list-post"> 
@@ -109,6 +109,13 @@ function PriceRoom({data}) {
                                         <hr/>
                                     </div>
                                 )})}
+                            {
+                                loadBill.length <= 0
+                                &&
+                                <div className='billDetailItem container_bill' style={{textAlign:"center"}}>
+                                    <h3>Tháng này bạn chưa có hóa đơn</h3>
+                                </div>
+                            }
                         </div>
                     </div> 
                 </div>

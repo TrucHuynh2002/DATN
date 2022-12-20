@@ -31,15 +31,16 @@ const getData = async () => {
   // phong trong
   const EmptyRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/emptyRoom/${id_user}`);
   setListEmptyRoom(EmptyRoom.data.data);
-  getData();
+ 
   // phong dat coc
   const DepositRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/depositRoom/${id_user}`);
   setListDepositRoom(DepositRoom.data.data);
-  getData();
+
   // phong so huu
   const OwnershipRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/ownershipRoom/${id_user}`);
   setListOwnershipRoom(OwnershipRoom.data.data);
-  getData();
+
+
 }
 
     

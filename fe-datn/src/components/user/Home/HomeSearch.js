@@ -79,7 +79,7 @@ function HomeSearch() {
             if(e.target.value.length > 0){
 
               getKeyword(e.target.value)
-              setSearching(true)
+              // setSearching(true)
             }else{
               setSearching(false)
             }
