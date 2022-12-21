@@ -43,7 +43,8 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
 use App\Http\Controllers\BillController;
-
+use App\Models\SavingRoomController;
+use App\Models\SavingRoomModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -326,5 +327,8 @@ Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
 Route::get('bill/month-owner/{id_user}',[BillController::class,'getOwnerTotalBillMonth']);
-
+// TEST SMS
 Route::post('test-sms',[BillController::class,'testSms']);
+
+// CHECK OLD USER ROOM  TO RATE
+Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwnerRoom']);

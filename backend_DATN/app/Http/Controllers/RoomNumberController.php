@@ -11,6 +11,7 @@ use App\Mail\CheckOutAlertUnSuccess;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
+use App\Models\SavingRoomModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -117,7 +118,12 @@ class RoomNumberController extends Controller
         if($data){
         $data->status = 2;
         if($request->id_user_two != 'null'){
-        $data->id_user_two = $request->id_user_two;
+            $data->id_user_two = $request->id_user_two;
+            $saveRoom = new SavingRoomModel();
+            $saveRoom->id_room = $id;
+            $saveRoom->id_user = $request->id_user_two;
+            $saveRoom->save();
+            
         }
         $data->save();
         return response()
