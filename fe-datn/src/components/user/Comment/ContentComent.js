@@ -161,7 +161,7 @@ return (
                             onChange={(e) => handleChangeContent(e)}  
                             value={contentUpdateCmt}  />
                           </Form.Group>
-                          <Button  className="col-1 button_input_submit btn btn-primary" type="submit">Cập nhật</Button>
+                          <Button  className="button_input_submit btn btn-primary" type="submit">Cập nhật</Button>
                         </Form>
                       </div>
                       ) : ( <p className=''>{comment.content}</p>) 
@@ -172,14 +172,14 @@ return (
                     { id_user == comment.id_user &&
                       <div className="content_comment_editAndDelete">
                         <span onClick={(e) => handleDeleteComment(e,comment.id_comment)} >Xóa</span>  <br />
-                        <span onClick={(e) => handleUpdateComment(e,comment.id_comment)} >Chỉnh sữa</span>
+                        <span onClick={(e) => handleUpdateComment(e,comment.id_comment)} >Chỉnh sửa</span>
                       </div>
                     }
                   </div>
                 </div>
               </div>
               <div className="btn_feedback_comment">
-                <div className="display_comment" >
+                <div className="display_comment">
                   <span 
                     onClick={() => {setGetIdComment(comment.id_comment); 
                     setReply({...Reply,activeComment:true,id:comment.id_comment})}} 
@@ -243,7 +243,7 @@ return (
                       { id_user == cmt.id_user &&
                         <div className="content_comment_editAndDelete">
                           <span onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</span> <br />
-                          <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Chỉnh sữa</span> 
+                          <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Chỉnh sửa</span> 
                         </div>
                       }
                     </div>

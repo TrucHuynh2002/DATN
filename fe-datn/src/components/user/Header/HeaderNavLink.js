@@ -412,8 +412,8 @@ function HeaderNavLink() {
                             <div className='row ' style={{marginLeft:"10px",alginItem:"center",fontSize:"15px"}}>
                                 {furniture.map((data,index) => {
                                     return (
-                                            <div className="col-2 row" key={index}>
-                                                <Form.Check  type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
+                                            <div className="col-2" key={index}>
+                                                <Form.Check type="checkbox" name="id_furniture" value={data.id_furniture} onChange = {(e) => handle_idFuniture(e)} />
                                                 <Form.Label>{data.name}</Form.Label>
                                             </div>
                                             )

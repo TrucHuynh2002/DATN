@@ -25,10 +25,10 @@ function ListPost() {
   };
 
   // xoa post
-  const deletePost = async (id_post) => {
-    await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
-    getData();
-  };
+  // const deletePost = async (id_post) => {
+  //   await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
+  //   getData();
+  // };
 
   return (
     <div className="content">
@@ -41,7 +41,7 @@ function ListPost() {
                 <th>ID</th>
                 <th>Tên bài viết</th>
                 <th>Trạng thái</th>
-                <th></th>
+                {/* <th></th> */}
             </tr>
             </thead>
             <tbody>
@@ -57,8 +57,8 @@ function ListPost() {
                           </td>
                           <td>
                             <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
-                            <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
-                            <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button>
+                            {/* <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
+                            <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button> */}
                           </td>
                     </tr>
                     );

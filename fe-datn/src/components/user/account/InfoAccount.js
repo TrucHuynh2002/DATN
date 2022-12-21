@@ -128,13 +128,13 @@ function InfoAccount() {
                     <div>
                         <span> Địa chỉ : </span>
                         <span>{info.address}, </span>
-                        <span style={{marginRight:'2px'}}> Đường </span>
+                        
                         {liststreet.map((street_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
                             );
                         })}
-                        <span style={{marginRight:'2px'}}> Phường </span>
+                       
                         {listward.map((ward_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
@@ -177,7 +177,7 @@ function InfoAccount() {
                     {user[0].role == 2 &&
                         <NavLink to={`../admin`}>
                             <Button variant="outline-primary" name='' className='btn-edit'>Quản trị Admin</Button>
-                        </NavLink> 
+                        </NavLink>
                     }
                 </div>
             }
