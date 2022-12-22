@@ -310,6 +310,11 @@ Route::get('StatisticalSController/comment', [StatisticalSController::class, 'co
 Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
 Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
 Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);
+Route::get('StatisticalSController/emptyRoom/{id}', [StatisticalSController::class, 'count_EmptyRoom']);
+Route::get('StatisticalSController/depositRoom/{id}', [StatisticalSController::class, 'count_DepositRoom']);
+Route::get('StatisticalSController/ownershipRoom/{id}', [StatisticalSController::class, 'count_OwnershipRoom']);
+Route::get('StatisticalSController/revenueRoom/{id}', [StatisticalSController::class, 'count_RevenueRoom']);
+Route::get('StatisticalSController/monthRoom/{id}', [StatisticalSController::class, 'count_MonthRoom']);
 
 //view_index
 Route::get('view_index/update_view', [ViewController::class, 'updateViewIndex']);

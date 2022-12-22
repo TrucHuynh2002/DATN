@@ -9,21 +9,14 @@ ChartJS.register(
 
 function ChartManage() {
   //  chartjs line
-const dataLine = {
-  labels: [2022.2021],
-  datasets: [{
-      data: [12, 34],
-      backgroundColor: 'transparent',
-      borderColor: 'red',
-      pointBorderWidth: 4,
-      tension: 0.5
-  }]
-};
+
 var user = JSON.parse(localStorage.getItem("user"));
 const id_user = user[0].id;
+const [listRevenueRoom, setListRevenueRoom] = useState([]);
 const [listEmptyRoom, setListEmptyRoom] = useState([]);
 const [listDepositRoom, setListDepositRoom] = useState([]);
 const [listOwnershipRoom, setListOwnershipRoom] = useState([]);
+const [listMonthRoom,setListMonthRoom] = useState([])
 useEffect(() => {
   getData();
 },[]);
@@ -40,9 +33,25 @@ const getData = async () => {
   const OwnershipRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/ownershipRoom/${id_user}`);
   setListOwnershipRoom(OwnershipRoom.data.data);
 
+  // doanh thu
+  const RevenueRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/revenueRoom/${id_user}`);
+  setListRevenueRoom(RevenueRoom.data.data);
+
+  // doanh thu
+  const MonthRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/monthRoom/${id_user}`);
+  setListMonthRoom(MonthRoom.data.data);
 
 }
-
+const dataLine = {
+  labels: listMonthRoom.map((pr,i) =>  moment(pr.created_at).format('DD-MM-YYYY')),
+  datasets: [{
+      data: listMonthRoom.map((pr,i) =>  pr.all_money),
+      backgroundColor: 'transparent',
+      borderColor: 'red',
+      pointBorderWidth: 4,
+      tension: 0.5
+  }]
+};
     
   return (
     <>
@@ -54,9 +63,8 @@ const getData = async () => {
               <div className=' chart_salesItem col-lg-3 col-md-6 col-xs-12'>
                 <div className=' doanh_thu'>
                       <p>Doanh thu</p>
-                      <span>100.000.000 đ</span>
+                      <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(listRevenueRoom)}</span>
                 </div>
-               
               </div>
               <div className='chart_salesItem col-lg-3 col-md-6 col-xs-12'>
                 <div className=' phong_trong'>
