@@ -14,6 +14,7 @@ class GoogleController extends Controller
         
             $url = Socialite::driver('google')->stateless()->redirect()->getTargetUrl();
             return response()->json([
+                'status' => true,
                 'url' => $url,
             ]);
          
