@@ -93,6 +93,11 @@ function Login() {
                                 </div>
                             </div> 
                         </form>
+                        <div className='btn btn-primary'>
+                        <button className="button">
+                                <Link onClick={console.log(456)}>Quên mật khẩu?</Link>
+                            </button>
+                        </div>
                         <div className="d-grid gap-2">
                             <button className="button">
                                 <Link to="../forgotpw">Quên mật khẩu?</Link>
