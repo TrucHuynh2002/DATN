@@ -11,7 +11,8 @@ use App\Models\User;
 use App\Models\ContactModel;
 use App\Models\RoomNumberModel;
 use App\Models\View;
-
+use App\Models\Bill;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -91,12 +92,63 @@ class StatisticalSController extends Controller
     }
     public function count_view(Request $request)
     {
-        $count_view = View::all()->count();
+        $count_view = View::all()->sum('view_index');
         return response()
             ->json([
                 'data' => $count_view,
                 'status' => true
             ]);
+    }
+
+    public function count_MonthRoom(Request $request, $id)
+    {
+        // $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+        //     ->join('users','post.id_user','users.id_user')
+        //     ->where('post.id_user','=',$id)
+        //     ->where('room_number.status','=',2)->sum('post.room_price');
+        
+        $count_MonthRoom = Bill::join('room_number','bill.id_roomNumber','room_number.id')
+            ->join('post','post.id_post','=','room_number.id_post')
+            ->join('users','post.id_user','users.id_user')->select('bill.created_at','bill.all_money')
+            ->where('post.id_user','=',$id)
+            ->where('room_number.status','=',2)
+            // ->where('bill.created_at' ,'=', Carbon::now('Asia/Ho_Chi_Minh')->format('y'))
+            ->get();
+            // $data = Bill::find(1);
+            // $month = $sum_RevenueRoom->created_at->month;
+        //     if($request->filter){
+        //         if($request->filter == 1){
+        //             $get_monthNow = Carbon::now('Asia/Ho_Chi_Minh')->format('y');
+        //         }
+        //     }
+        // $get_monthNow = Carbon::now('Asia/Ho_Chi_Minh')->format('y');
+        // $count_MonthRoom->created_at->format('m-y');
+        return response()
+            ->json([
+                'data' => $count_MonthRoom,
+                // 'now' => $count_MonthRoom->created_at->format('m-y'),
+                'status' => true               
+        ]);
+    }
+    // doanh thu
+    public function count_RevenueRoom(Request $request, $id)
+    {
+        // $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+        //     ->join('users','post.id_user','users.id_user')
+        //     ->where('post.id_user','=',$id)
+        //     ->where('room_number.status','=',2)->sum('post.room_price');
+        
+        $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
+            ->join('users','post.id_user','users.id_user')
+            ->join('bill','room_number.id','bill.id_roomNumber')
+            ->where('post.id_user','=',$id)
+            ->where('room_number.status','=',2)
+            ->sum('bill.all_money');
+        return response()
+            ->json([
+                'data' => $sum_RevenueRoom,
+                'status' => true               
+        ]);
     }
      // phong trong
     public function count_EmptyRoom(Request $request, $id)
