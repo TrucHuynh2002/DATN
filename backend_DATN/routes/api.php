@@ -43,7 +43,11 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
 use App\Http\Controllers\BillController;
-
+use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\GoogleController;
+use App\Models\SavingRoomController;
+use App\Models\SavingRoomModel;
+use Laravel\Socialite\Two\FacebookProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -310,6 +314,11 @@ Route::get('StatisticalSController/comment', [StatisticalSController::class, 'co
 Route::get('StatisticalSController/user', [StatisticalSController::class, 'count_user']);
 Route::get('StatisticalSController/contact', [StatisticalSController::class, 'count_contact']);
 Route::get('StatisticalSController/view', [StatisticalSController::class, 'count_view']);
+Route::get('StatisticalSController/emptyRoom/{id}', [StatisticalSController::class, 'count_EmptyRoom']);
+Route::get('StatisticalSController/depositRoom/{id}', [StatisticalSController::class, 'count_DepositRoom']);
+Route::get('StatisticalSController/ownershipRoom/{id}', [StatisticalSController::class, 'count_OwnershipRoom']);
+Route::get('StatisticalSController/revenueRoom/{id}', [StatisticalSController::class, 'count_RevenueRoom']);
+Route::get('StatisticalSController/monthRoom/{id}', [StatisticalSController::class, 'count_MonthRoom']);
 
 //view_index
 Route::get('view_index/update_view', [ViewController::class, 'updateViewIndex']);
@@ -327,5 +336,18 @@ Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
 Route::get('bill/month-owner/{id_user}',[BillController::class,'getOwnerTotalBillMonth']);
-
+// TEST SMS
 Route::post('test-sms',[BillController::class,'testSms']);
+
+// CHECK OLD USER ROOM  TO RATE
+Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwnerRoom']);
+
+// GOOGLE
+// Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
+// Route::post('auth/google/callback', [GoogleController::class, 'loginCallback']);
+
+Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl']);
+Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
+// FACEBOOK
+Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
+Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);

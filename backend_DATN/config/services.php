@@ -108,6 +108,18 @@ return [
             'name' =>  env('VONAGE_APP_NAME', 'Laravel'),
             'version' => env('VONAGE_APP_VERSION', '1.1.2'),
         ],
-    ]
+     
+       
+    ],
+    'google' => [
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT')
+    ],
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
+        'redirect' => env('FACEBOOK_APP_CALLBACK_URL'),
+    ],
 
 ];

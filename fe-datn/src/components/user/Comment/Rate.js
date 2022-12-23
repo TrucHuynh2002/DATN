@@ -26,22 +26,35 @@ function Comment({data}) {
   const handleChange = (e) => {
     setAddComment({ ...addComment, [e.target.name]: e.target.value});
     };
+    const [checkUser,setCheckUser] = useState(false);
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.post(`http://127.0.0.1:8000/api/rating/create`, addComment);
-      if(res.data.status === true){
-        const {id_user_tow} = addNotify;
-        setNotify({...addNotify , id_user_tow : res.data.data});
-        const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
-        setAlert({
-          err_list: res.data
+    const check = await axios.get(`http://127.0.0.1:8000/api/check-old-user/${id_user}`);
+    console.log(check.data)
+      if(check.data.data != null){
+        const res = await axios.post(`http://127.0.0.1:8000/api/rating/create`, addComment);
+        if(res.data.status){
+          const {id_user_tow} = addNotify;
+          setNotify({...addNotify , id_user_tow : res.data.data});
+          const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+          setAlert({
+            err_list: res.data
+            });
+        }else{           
+          setAlert({
+            err_list: res.data
           });
-      }else{           
-        setAlert({
-          err_list: res.data
-        });
+        }
+      }else{
+        setCheckUser(true);
       }
-    };
+       
+
+        }
+       
+    
+  
+    
   const [alert, setAlert] = useState({
       err_list: {},
   });
@@ -113,7 +126,14 @@ function Comment({data}) {
               <button type="submit" className="btn btn-warning">
                 Gửi nhận xét
               </button>
+                <div>
+                  {checkUser && <span className='text-warning' >Bạn chưa từng ở phòng nào nên chưa thể đánh giá</span>}
+                </div>
+              <Form.Group>
+              
+              </Form.Group>
             </Form>
+
             : <Form>
                 <Form.Group className="form-group">
                   <Form.Label htmlFor="txtTitle">2.Email</Form.Label>
