@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { url } from '../url';
 
 function Login() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Login() {
         const dataForm = new FormData();
         dataForm.append('email',email);
         dataForm.append('password',password);
-        const res = await axios.post("http://127.0.0.1:8000/api/user/login", dataForm);
+        const res = await axios.post(`${url}/user/login`, dataForm);
         if(res.data.status === true){
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
@@ -54,7 +55,7 @@ function Login() {
     }
     // GOOGLE
     // const handleGoogle = async (e) => {
-    //     const google = await axios.get("http://127.0.0.1:8000/api/auth/google");
+    //     const google = await axios.get(`${url}/auth/google`);
     //     if(google.status === true){
 
     //     }

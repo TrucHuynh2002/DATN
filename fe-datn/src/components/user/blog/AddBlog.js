@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { url } from '../../url';
 
 function AddBlog() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -32,7 +32,7 @@ function AddBlog() {
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
-        const res = await axios.post("http://127.0.0.1:8000/api/blog/create", addBlog);
+        const res = await axios.post(`${url}/blog/create`, addBlog);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

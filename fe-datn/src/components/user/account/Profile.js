@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import InfoAccount from './InfoAccount';
 import Posted from './Posted';
-// import Bloged from './Bloged';
 
 function Profile() {
     const navigate = useNavigate();

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function BillDetail() {
     let { id_bill } = useParams();
@@ -8,7 +9,7 @@ function BillDetail() {
     const id_user = user ?  user[0].id : '';
     const [loadBill,setLoadBill] = useState([])
     const getDataBill = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill-detail/user/${id_bill}?id_user=${id_user}`);
+        const res = await axios.get(`${url}/bill-detail/user/${id_bill}?id_user=${id_user}`);
         setLoadBill(res.data.data)
     }
     useEffect(() => {

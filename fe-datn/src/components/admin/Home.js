@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { url } from '../url';
 import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import { Line, Pie } from 'react-chartjs-2';
 ChartJS.register(
@@ -26,27 +27,27 @@ function Home() {
 
 // list Category
   const getData = async () => {
-    const Category = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/category");
+    const Category = await axios.get(`${url}/StatisticalSController/category`);
     setListCategory(Category.data.data);
-    const RoomType = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/roomType");
+    const RoomType = await axios.get(`${url}/StatisticalSController/roomType`);
     setListRoomType(RoomType.data.data);
-    const Post = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/post");
+    const Post = await axios.get(`${url}/StatisticalSController/post`);
     setListPost(Post.data.data);
-    const Blog = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/blog");
+    const Blog = await axios.get(`${url}/StatisticalSController/blog`);
     setListBlog(Blog.data.data);
-    const Furniture = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/furniture");
+    const Furniture = await axios.get(`${url}/StatisticalSController/furniture`);
     setListFurniture(Furniture.data.data);
-    const Comment = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/comment");
+    const Comment = await axios.get(`${url}/StatisticalSController/comment`);
     setListComment(Comment.data.data);
-    const User = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/user");
+    const User = await axios.get(`${url}/StatisticalSController/user`);
     setListUser(User.data.data);
-    const Contact = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/contact");
+    const Contact = await axios.get(`${url}/StatisticalSController/contact`);
     setListContact(Contact.data.data);
-    const View = await axios.get("http://127.0.0.1:8000/api/StatisticalSController/view");
+    const View = await axios.get(`${url}/StatisticalSController/view`);
     setListView(View.data.data);
-    const ViewIndex = await axios.get("http://127.0.0.1:8000/api/view_index/show");
+    const ViewIndex = await axios.get(`${url}/view_index/show`);
     setListViewIndex(ViewIndex.data.data);
-    const ViewPost = await axios.get("http://127.0.0.1:8000/api/post/post_view_top5");
+    const ViewPost = await axios.get(`${url}/post/post_view_top5`);
     setListViewPost(ViewPost.data.data);
   };
 

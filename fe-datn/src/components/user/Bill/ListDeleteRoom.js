@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function ListDeleteRoom() {
     const [show, setShow] = useState(false);
@@ -17,15 +18,14 @@ function ListDeleteRoom() {
         setIdRoomCancel(id_user_two)
     };
     const handleCancelRoom = async (e) => {
-        let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
+        let res = await axios.post(`${url}/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
         if(res.data.status == true){          
             setAlertCancel(true)
         }
     } 
     const [dataBookingRoom,setDataBookingRoom] = useState([]);
     const getDataBookingRoom = async (e) => {
-        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/get-booking-room/${id_user}`)
-    
+        let res= await axios.get(`${url}/roomNumber/get-booking-room/${id_user}`)   
         setDataBookingRoom(res.data.data)
     }
     useEffect(() => {

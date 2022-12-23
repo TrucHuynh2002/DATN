@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
 
 function AddPost() {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -81,7 +82,7 @@ function AddPost() {
     const [checkFur, setFur] = useState([]);
     const [furniture, setFuriture] = useState([]);
     const get_furnitures = async () => {
-        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        var  get_data = await axios.get(`${url}/furniture/show`);
         setFuriture(get_data.data.data)
     };
     useEffect(() => {
@@ -97,30 +98,30 @@ function AddPost() {
     const [listStreet, setStreet] = useState([]);
     // tỉnh
     const getDataProvince = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        const res = await axios.get(`${url}/post/show_province`);
         setListProvince(res.data.data);
     }
     // huyện 
     const getDataDistrict = async (id_province) => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district/${id_province}`);
+        const ress = await axios.get(`${url}/post/show_district/${id_province}`);
         setListDistrict(ress.data.data);
     }
     // xã
     const getDataWard = async (id_district) => {
         var id_province = addProvince.undefined;
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
     // đường 
     const getDataStreet = async (id_district) => {
         var id_province = addProvince.undefined;
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
         setStreet(resss.data.data);
     }     
      // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);
     const getDataRoomType = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+        const res = await axios.get(`${url}/roomType/show`);
         setListRoomType(res.data.data);
         };
     const handle_idFuniture =  (e) => {     
@@ -170,7 +171,7 @@ function AddPost() {
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
-        const res =  await axios.post('http://127.0.0.1:8000/api/post/create', formData);
+        const res =  await axios.post(`${url}/post/create`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

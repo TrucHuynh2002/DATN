@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditBanner() {
 
@@ -26,7 +27,7 @@ function EditBanner() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('banner[]',uploadImages[0])
-    const res = await axios.post(`http://127.0.0.1:8000/api/banner/update/${id_banner_config}?_method=PUT`, formData);
+    const res = await axios.post(`${url}/banner/update/${id_banner_config}?_method=PUT`, formData);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -42,7 +43,7 @@ function EditBanner() {
 
   // list banner
   const getData = async () => {
-    const result = await axios.get(`http://127.0.0.1:8000/api/banner/show/${id_banner_config}`);
+    const result = await axios.get(`${url}/banner/show/${id_banner_config}`);
     setListBanner(result.data.data);
   };
 

@@ -7,6 +7,7 @@ import { Link, useParams } from 'react-router-dom';
 import ContentComent from '../Comment/ContentComent';
 import Evaluate from '../Comment/Evaluate';
 import RoomRelatePost from './RoomRelatePost';
+import { url } from '../../url';
 
 function RoomDetail() {
     const {id_post} = useParams();
@@ -36,36 +37,36 @@ function RoomDetail() {
     };
     // danh sach post
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
+        const res = await axios.get(`${url}/post/showPost/${id_post}`);
             setListPost(res.data.data);
-        const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
+        const getImg = await axios.get(`${url}/imgPost/show_detail/${id_post}`);
             setListImg(getImg.data.data);
-        const Furniture = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
+        const Furniture = await axios.get(`${url}/post/furniture/${id_post}`);  
             setListFurniture(Furniture.data.data);
-        const room = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
+        const room = await axios.get(`${url}/post/show_roomtype/${id_post}`);
             setListRoom(room.data.data);
     };
     const updateView = async () => {
-        const update = await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
+        const update = await axios.put(`${url}/post/updateView/${id_post}`);
     };
     // tinh
     const province = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
+        const res = await axios.get(`${url}/post/show_province_detail/${id_post}`);
           setListprovince(res.data.data);
     }; 
     // huyen
     const district = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
+        const res = await axios.get(`${url}/post/show_district_detail/${id_post}`);
           setListdistrict(res.data.data);
     };  
     // xa 
     const ward = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
+        const res = await axios.get(`${url}/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
     };
     // duong 
     const street = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
+        const res = await axios.get(`${url}/post/show_street_detail/${id_post}`);
           setListstreet(res.data.data);
     };
     const handleLoaderPost = (e,loaders) => {

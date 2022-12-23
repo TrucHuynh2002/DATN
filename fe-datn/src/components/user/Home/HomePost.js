@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Figure from 'react-bootstrap/Figure';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
+import { url } from '../../url';
 
 function HomePost() {
 
@@ -19,7 +20,7 @@ useEffect(() => {
   },[]);
   // danh sách post
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+    const res = await axios.get(`${url}/post/show`);
     setListPost(res.data.data);
    };
   

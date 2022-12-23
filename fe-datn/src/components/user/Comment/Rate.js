@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function Comment({data}) {
  
@@ -29,14 +30,13 @@ function Comment({data}) {
     const [checkUser,setCheckUser] = useState(false);
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const check = await axios.get(`http://127.0.0.1:8000/api/check-old-user/${id_user}`);
-    console.log(check.data)
+    const check = await axios.get(`${url}/check-old-user/${id_user}`);
       if(check.data.data != null){
-        const res = await axios.post(`http://127.0.0.1:8000/api/rating/create`, addComment);
+        const res = await axios.post(`${url}/rating/create`, addComment);
         if(res.data.status){
           const {id_user_tow} = addNotify;
           setNotify({...addNotify , id_user_tow : res.data.data});
-          const resss = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+          const resss = await axios.post(`${url}/notifyComment/create`, addNotify);
           setAlert({
             err_list: res.data
             });

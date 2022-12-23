@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Figure from 'react-bootstrap/Figure';
 import { Link } from 'react-router-dom';
 import PaginationBlog from '../PaginationBlog';
+import { url } from '../../url';
 
 function HomeBlog() {
     const [listBlog, setListBlog] = useState([]);
@@ -19,7 +20,7 @@ function HomeBlog() {
   
     // danh sach Blog
     const getDataBlog = async () => {
-     const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
+     const res = await axios.get(`${url}/blog/show`);
         setListBlog(res.data.data);
     };
 

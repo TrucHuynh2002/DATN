@@ -1,27 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import {url} from '../url';
 
 function ForgotPassword() {
-
     const [email, setForgotEmail] = useState("");
-
     // xu ly loi
     const [alert, setAlert] = useState({
         err_list: {},
     });
-
     useEffect(() => {
 
     }, []);
-
     const handleSumbit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('email',email);
         const item = {email};
-        const res = await axios.post("http://127.0.0.1:8000/api/forgot-password", formData);
-        
+        const res = await axios.post(`${url}/forgot-password`, formData);        
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

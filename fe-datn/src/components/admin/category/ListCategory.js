@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListCategory() {
 
@@ -23,13 +24,13 @@ function ListCategory() {
 
   // danh sach category
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/category/show');
+   const res = await axios.get(`${url}/category/show`);
       setListCategory(res.data.data);
   };
 
   // xoa category
   const deleteCategory = async (id_category) => {
-    await axios.delete(`http://127.0.0.1:8000/api/category/delete/${id_category}`);
+    await axios.delete(`${url}/category/delete/${id_category}`);
     getData();
   };
 

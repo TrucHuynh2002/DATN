@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditBlog() {
     
@@ -32,7 +33,7 @@ function EditBlog() {
         dataForm.append('meta_keywords',meta_keywords);
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
-        const res = await axios.put(`http://127.0.0.1:8000/api/blog/update/${id_blog}`, editBlog);
+        const res = await axios.put(`${url}/blog/update/${id_blog}`, editBlog);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -42,7 +43,6 @@ function EditBlog() {
             setAlert({
                 err_list: res.data
             });
-            // console.log(alert.err_list.messages.name_blog[0])
         }
         };
 
@@ -51,7 +51,7 @@ function EditBlog() {
         }, []);
 
         const loadCate = async () => {
-            const result = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
+            const result = await axios.get(`${url}/blog/show/${id_blog}`);
             setEditBlog(result.data.data);
         }; 
 

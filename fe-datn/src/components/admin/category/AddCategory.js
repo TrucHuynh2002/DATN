@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
 
 function AddCategory() {
 
@@ -17,7 +18,7 @@ function AddCategory() {
     };
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const res = await axios.post("http://127.0.0.1:8000/api/category/create", addCategory);
+        const res = await axios.post(`${url}/category/create`, addCategory);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

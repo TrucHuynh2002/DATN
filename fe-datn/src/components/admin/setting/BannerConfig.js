@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { url } from '../../url';
 
 function BannerConfig() {
 
@@ -17,7 +18,7 @@ function BannerConfig() {
   
     // list banner
     const getDataBanner = async () => {
-     const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+     const result = await axios.get(`${url}/banner/show`);
      setListBanner(result.data.data);
     };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 import { ArcElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 ChartJS.register(
@@ -22,23 +23,23 @@ useEffect(() => {
 },[]);
 const getData = async () => {
   // phong trong
-  const EmptyRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/emptyRoom/${id_user}`);
+  const EmptyRoom = await axios.get(`${url}/StatisticalSController/emptyRoom/${id_user}`);
   setListEmptyRoom(EmptyRoom.data.data);
  
   // phong dat coc
-  const DepositRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/depositRoom/${id_user}`);
+  const DepositRoom = await axios.get(`${url}/StatisticalSController/depositRoom/${id_user}`);
   setListDepositRoom(DepositRoom.data.data);
 
   // phong so huu
-  const OwnershipRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/ownershipRoom/${id_user}`);
+  const OwnershipRoom = await axios.get(`${url}/StatisticalSController/ownershipRoom/${id_user}`);
   setListOwnershipRoom(OwnershipRoom.data.data);
 
   // doanh thu
-  const RevenueRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/revenueRoom/${id_user}`);
+  const RevenueRoom = await axios.get(`${url}/StatisticalSController/revenueRoom/${id_user}`);
   setListRevenueRoom(RevenueRoom.data.data);
 
   // doanh thu
-  const MonthRoom = await axios.get(`http://127.0.0.1:8000/api/StatisticalSController/monthRoom/${id_user}`);
+  const MonthRoom = await axios.get(`${url}/StatisticalSController/monthRoom/${id_user}`);
   setListMonthRoom(MonthRoom.data.data);
 
 }

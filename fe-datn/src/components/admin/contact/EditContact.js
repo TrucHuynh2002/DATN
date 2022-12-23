@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditContact() {
 
@@ -30,7 +31,7 @@ function EditContact() {
       e.preventDefault();
       const dataForm = new FormData();
         dataForm.append('reply',reply);
-      const res = await axios.put(`http://127.0.0.1:8000/api/contact/update/${id_contact}`, editContact);
+      const res = await axios.put(`${url}/contact/update/${id_contact}`, editContact);
       if(res.data.status === true){
           setAlert({
               err_list: res.data
@@ -48,7 +49,7 @@ function EditContact() {
   }, []);
 
   const loadCate = async () => {
-      const result = await axios.get(`http://127.0.0.1:8000/api/contact/show/${id_contact}`);
+      const result = await axios.get(`${url}/contact/show/${id_contact}`);
       setEditContact(result.data.data);
   };
 
