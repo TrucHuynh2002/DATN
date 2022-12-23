@@ -4,7 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function QA() {
   const user = JSON.parse(localStorage.getItem('user')); 
@@ -209,7 +209,6 @@ function QA() {
                     <div className="content_comment_chammmm"> ...
                       <div className="content_comment_editAndDelete">
                         <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span> <br />
-                        {/* <span>Cập nhật</span>   */}
                       </div>
                     </div>
                 </div>

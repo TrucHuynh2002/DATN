@@ -2784,10 +2784,10 @@ margin-top: 30px;
     background: #4C69BA;
     color: white; 
 }
-.button_facebook>a {
+.button_facebook>i {
     color: white;
     line-height: 2;
-    margin-left: 10px;
+    padding-right: 10px;
 }
 .button_google {
     padding: 7px;
@@ -2795,8 +2795,8 @@ margin-top: 30px;
     background: #DD4B39;
     color: white; 
 }
-.button_google>a {
+.button_google>i {
     color: white;
     line-height: 2;
-    margin-left: 10px;
+    margin-right: 10px;
 }
