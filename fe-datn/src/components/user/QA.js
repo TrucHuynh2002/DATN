@@ -117,12 +117,18 @@ function QA() {
     })
     setLoader(loader + 1);
   }
+  // xoa cmtQa
   const handleDeleteComment = async (e,id_cmt) => {
     let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
     if(res.data.status = true){
       setLoader(loader + 1 );
     }
-}
+  }
+  // xoa qa
+  const deleteQa = async (id_qa) => {
+    await axios.delete(`http://127.0.0.1:8000/api/qa/deleteQa/${id_qa}`);
+    getData();
+  };
 
   const [show, setShow] = useState(false);
   const [alertShow,setAlertShow] = useState(false);
@@ -202,13 +208,10 @@ function QA() {
                     </div> 
                     <div className="content_comment_chammmm"> ...
                       <div className="content_comment_editAndDelete">
-                        <span>Xóa</span> <br />
-                        <span>Cập nhật</span>  
+                        <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span> <br />
+                        {/* <span>Cập nhật</span>   */}
                       </div>
                     </div>
-                    {/* <div className='btn_qaDelete'>
-                      <Button variant="danger">X</Button>
-                    </div> */}
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   

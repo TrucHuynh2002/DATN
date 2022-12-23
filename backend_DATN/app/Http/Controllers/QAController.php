@@ -89,6 +89,16 @@ class QAController extends Controller
                 'status' => true,
             ]);
     }
+    public function deleteQa(Request $request, $id)
+    {
+        $qaDelete = QAModel::find($id);
+        $qaDelete->delete();
+        return response()
+            ->json([
+                'data' =>  $qaDelete,
+                'status' => true
+            ]);
+    }
 
     public function getAllCommentPostUserOwner(Request $request,$id_user){
         $get_inforOwnerParent = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
