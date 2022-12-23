@@ -55,7 +55,7 @@ class CommentPostNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            
         ];
     }
 }
