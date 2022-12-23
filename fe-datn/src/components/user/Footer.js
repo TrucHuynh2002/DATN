@@ -58,12 +58,12 @@ function Footer() {
                 <ul className="social_icon">
                   <li>
                     <Link to="">
-                      <i className="fa fa-facebook " aria-hidden="true" />
+                      <i className="fa fa-facebook" aria-hidden="true" />
                     </Link>
                   </li>
                   <li>
                     <Link to="">
-                      <i className="fa fa-twitter " aria-hidden="true" />
+                      <i className="fa fa-twitter" aria-hidden="true" />
                     </Link>
                   </li>
                   <li>

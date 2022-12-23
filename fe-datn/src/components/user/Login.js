@@ -93,6 +93,18 @@ function Login() {
                                 </div>
                             </div> 
                         </form>
+                        <div className='row'>
+                            <div className='col-md-6'>
+                                <button className='fa fa-facebook button_facebook'>
+                                    <Link to=""> Đăng nhập với Facebook</Link>
+                                </button>
+                            </div>
+                            <div className='col-md-6'>
+                                <button className='fa fa-google button_google'>
+                                    <Link to="">Đăng nhập với Google</Link>
+                                </button>
+                            </div>
+                        </div>
                         <div className="d-grid gap-2">
                             <button className="button">
                                 <Link to="../forgotpw">Quên mật khẩu?</Link>

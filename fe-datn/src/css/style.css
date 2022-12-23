@@ -2778,3 +2778,25 @@ margin-top: 30px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;    
 }
+.button_facebook {
+    padding: 7px;
+    margin: 11px 5px;
+    background: #4C69BA;
+    color: white; 
+}
+.button_facebook>a {
+    color: white;
+    line-height: 2;
+    margin-left: 10px;
+}
+.button_google {
+    padding: 7px;
+    margin: 11px 5px;
+    background: #DD4B39;
+    color: white; 
+}
+.button_google>a {
+    color: white;
+    line-height: 2;
+    margin-left: 10px;
+}
