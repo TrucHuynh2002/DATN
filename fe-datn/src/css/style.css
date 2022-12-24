@@ -2804,3 +2804,40 @@ margin-top: 30px;
     line-height: 2;
     margin-right: 10px;
 }
+
+.textNoti{
+    padding:10px 6px;
+    border-radius:4px;
+    line-height: 26px;
+    margin-bottom: 12px;
+}
+
+.textNotiMaskRead {
+    background-color: #C0C0C0;
+}
+
+.textNoti:hover{
+    background-color: #C0C0C0;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.bell {
+    position: relative;
+}
+
+.bell .count-bell-unread{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #dc3545;
+    color: #fff;
+    font-weight: 500;
+    line-height: 15px;
+    font-size: 10px;
+    text-align: center;
+
+}
