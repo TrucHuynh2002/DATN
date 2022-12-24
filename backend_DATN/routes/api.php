@@ -358,3 +358,4 @@ Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
 Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);
 
 Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
+Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
