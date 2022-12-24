@@ -108,13 +108,14 @@ function QADetail() {
   const handleChangeComment = (e) => {
     setComment({[e.target.name]: e.target.value})
   }
-  const handleComment = async (e,id_qa,parent_id = '') => {
+  const handleComment = async (e,id_qa,parent_id = '',childIdComment) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',qa_content)
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
+    formData.append('child_idComment',childIdComment)
     const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     if(res.data.status == true){
       console.log(res.data.id_qa.id_user)
@@ -253,7 +254,7 @@ function QADetail() {
                       { activeComment && id == listComment.id_comment_qa &&
                         <div className="content_comment____form_input__">
                           <Form className="display_comment" 
-                          onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                          onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,listComment.id_comment_qa)}
                           >
                             <Form.Group className="col-9">
                               <Form.Control 
@@ -330,7 +331,7 @@ function QADetail() {
                               { activeComment && id == child.id_comment_qa &&
                                 <div className="content_comment____form_input__">
                                   <Form className="display_comment" 
-                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,child.id_comment_qa)}
                                   >
                                     <Form.Group className="col-9">
                                       <Form.Control 

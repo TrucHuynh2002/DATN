@@ -45,6 +45,7 @@ use App\Http\Controllers\UploadCkeditController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\NotificationController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
 use Laravel\Socialite\Two\FacebookProvider;
@@ -350,3 +351,5 @@ Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 // FACEBOOK
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
 Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);
+
+Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);

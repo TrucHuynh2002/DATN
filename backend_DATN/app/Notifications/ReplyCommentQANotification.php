@@ -7,23 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentPostNotification extends Notification
+class ReplyCommentQANotification extends Notification
 {
     use Queueable;
     public $subject;
     public $in_object;
-    public $post;
+    public $qa;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($subject,$post)
+    public function __construct($subject,$qa,$replyComment)
     {
         $this->subject = $subject;
-        // $this->in_object = $replyComment;
-        $this->post = $post;
+        $this->in_object = $replyComment;
+        $this->qa = $qa;
     }
+    
 
     /**
      * Get the notification's delivery channels.
@@ -42,13 +43,13 @@ class CommentPostNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
 
     /**
      * Get the array representation of the notification.
@@ -60,8 +61,8 @@ class CommentPostNotification extends Notification
     {
         return [
             'Comment' => $this->subject,
-            // 'replyCmt' => $this->in_object,
-            'post' => $this->post
+            'replyCmt' => $this->in_object,
+            'qa' => $this->qa
         ];
     }
 }

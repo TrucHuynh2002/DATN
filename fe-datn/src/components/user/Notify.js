@@ -14,8 +14,10 @@ function Notify() {
     const [listImg, setListImg] = useState([]);
     useEffect(() => {
         getData(); 
+     
         return () => {
             getData();
+      
         }
     },[]);
 
@@ -55,13 +57,23 @@ function Notify() {
         const BillUser = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
         if(BillUser.data.status == true){
             setListBillUser(BillUser.data.data);
-        }     
+        }
+        getNotify()     
     };
     // xoa notify interactive
     const deletenotifyInteractive = async (id_notify_interactive) => {
         await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
         getData();
     };
+
+    const [Notification, setNotification] = useState([]);
+    console.log(Notification)
+
+    const getNotify = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
+        // console.log(res.data.data[0].data.Comment)
+        setNotification(res.data.data)
+    }
         
     return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
@@ -80,109 +92,90 @@ function Notify() {
                 (
                 <>
                     <div className="notifyInteractive">
-                        {listnotifyInteractive.map((cate, index) => {
-                            return (     
-                                <div className='row' key={index}>  
-                                    {listImg.map((a, index) => {
-                                        return a.id_user == cate.id_user_tow && (
-                                            <div className='content_notifyInteractive_img col-1' key={index}>
-                                                <img src={a.link_img_user}
-                                                alt='images' className="img-fluid" />                        
-                                            </div>
-                                        );
-                                    })}
-                                    <div className="content_notifyInteractive col-10">
-                                        <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
-                                            <span className="notify_name">{cate.full_name}</span> vừa 
-                                            <span className='notify_interaction'> {cate.interaction}</span>
-                                            <span> bài của bạn </span>  
-                                        </Link>   
-                                    </div>
-                                </div> 
-                            );     
-                        })} 
+                        {
+                            Notification.length > 0 && Notification.map((noti,index) => {
+                                // if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
+                                //     if(noti.data.Comment.id_user != id_user){
+                                //         if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
+                                //             return <div>{noti.data.Comment.full_name} Vừa phản hồi bình luận của chính anh ấy</div>
+                                //         }
+                                      
+                                //         else{
+                                //             return <div>{noti.data.Comment.full_name} Vừa phản hồi bình luận của của {noti.data.replyCmt.full_name} trên bài viết {noti.data.post.post_name} của bạn</div>
+                                //         }
+                                //     }
+                                // }
+                                // if(noti.type == "App\\Notifications\\ReplyCommentPostNotification"){
+                                //     if(noti.data.Comment.id_user != id_user){
+                                //         return <div>{noti.data.Comment.full_name} vừa trả lời bình luận của {noti.data.replyCmt.full_name} trên bài viết {noti.data.post_name} của bạn</div>
+                                //     }
+                                // }
+
+                                if(noti.type == "App\\Notifications\\CommentPostNotification"){
+                                    if(noti.data.Comment.id_user == id_user){
+                                        return ''
+                                    }else{
+                                        return <div><strong>{noti.data.Comment.full_name}</strong> Vừa bình luận phòng trọ <strong> {noti.data.post.post_name}</strong> của bạn </div>
+                                    }
+                                }
+
+                                if(noti.type == "App\\Notifications\\ReplyCommentPostNotification"){
+                                    if(noti.data.Comment.id_user != id_user){
+                                        if(noti.data.replyCmt.id_user == id_user){
+                                            return  <div>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn tại bài viết {noti.data.post.post_name} </div>
+                                        }
+                                        else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
+                                            return  <div>{noti.data.Comment.full_name} Vừa trả lời bình luận của chính mình tại bài viết {noti.data.post.post_name} </div>
+                                        }
+                                        else{
+                                            return  <div>{noti.data.Comment.full_name} Vừa trả lời bình luận {noti.data.replyCmt.full_name}  bài viết {noti.data.post.post_name} của bạn </div>
+                                        }
+                                       
+                                    }
+                                }
+                                if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
+                                    
+                                        if(noti.data.Comment.id_user != id_user){
+                                            return   <div>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn tại bài viết {noti.data.post.post_name} </div>
+                                        }
+                                }
+
+                                if(noti.type == "App\\Notifications\\CommentQANotification"){
+                                    if(noti.data.Comment.id_user != id_user){
+                                        return <div>{noti.data.Comment.full_name} Vừa bình luận bài viết trên Hỏi - Đáp  của bạn </div>
+                                    }
+                                }
+
+                                if(noti.type == "App\\Notifications\\ReplyCommentQANotification"){
+                                    if(noti.data.replyCmt.id_user == id_user){
+                                        return  <div>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn trên Hỏi - Đáp </div>
+                                    }
+                                    if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
+                                        return  <div><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên <strong>Hỏi - Đáp</strong> của bạn. </div>
+                                    }
+                                    
+                                    if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
+                                        return  <div>{noti.data.Comment.full_name} Vừa trả lời bình luận {noti.data.replyCmt.full_name}  bài viết của bạn trên <strong>Hỏi - Đáp</strong> </div>
+                                    }    
+
+                                    
+                                }
+
+                                if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
+                                    
+                                    if(noti.data.replyCmt.id_user == id_user){
+                                        return   <div>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn tại bài viết Hỏi - Đáp </div>
+                                    }
+                                }
+
+
+                            
+
+
+                            })
+                        }
                     </div> 
-                    
-                        
-                            {/* <div className="notifyInteractive">
-                                {commentPostOwnerParent.map((cate, index) => {
-                                    return commentPostOwnerParent.map((childCmt,i) => {
-                                        return childCmt.parent_id == cate.id_comment_qa
-                                        ?
-                                        <div className='row' key={index}>  
-                                        
-                                                {listImg.map((a, index) => {
-                                                return a.id_user == childCmt.id_user && (
-                                                    <div className='content_notifyInteractive_img col-1' key={index}>
-                                                        <img src={a.link_img_user}
-                                                        alt='images' className="img-fluid" />                        
-                                                    </div>
-                                                );
-                                            })}
-                                        
-                                        
-                                            <div className="content_notifyInteractive col-10">
-                                                <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
-                                                    <span className="notify_name">{childCmt.full_name}</span> vừa 
-                                                    <span className='notify_interaction'> trả lời bình luận</span>
-                                                    <span> bài của bạn </span>  
-                                                </Link>   
-                                            </div>
-                                        </div> 
-                                        
-                                        :
-                                        (     
-                                        <div className='row' key={index}>  
-                                                {listImg.map((a, index) => {
-                                                return a.id_user == cate.id_user && (
-                                                    <div className='content_notifyInteractive_img col-1' key={index}>
-                                                        <img src={a.link_img_user}
-                                                        alt='images' className="img-fluid" />                        
-                                                    </div>
-                                                );
-                                            })}
-                                        
-                                        
-                                            <div className="content_notifyInteractive col-10">
-                                                <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
-                                                    <span className="notify_name">{cate.full_name}</span> vừa 
-                                                    <span className='notify_interaction'> Bình luận</span>
-                                                    <span> bài của bạn </span>  
-                                                </Link>   
-                                            </div>
-                                        </div> 
-                                        );     
-                                    })
-                                    // &&
-                                        
-                                })} 
-                            </div>  */}
-                        
-                    
-                    
-                    <div className="notifyInteractive">
-                        {listnotifyQa.map((cate, index) => {
-                            return (     
-                                <div className='row' key={index}>  
-                                    {listImg.map((a, index) => {
-                                        return a.id_user == cate.id_user_tow && (
-                                            <div className='content_notifyInteractive_img col-1' key={index}>
-                                                <img src={a.link_img_user}
-                                                alt='images' className="img-fluid" />                        
-                                            </div>
-                                        );
-                                    })}
-                                    <div className="content_notifyInteractive col-10">
-                                        <Link to={`/roomdetail/${cate.id_post}`} style={{textTransform: 'none'}}>
-                                            <span className="notify_name">{cate.full_name}</span> vừa 
-                                            <span className='notify_interaction'> {cate.interaction}</span>
-                                            <span> bài của bạn </span>  
-                                        </Link>   
-                                    </div>
-                                </div> 
-                            );
-                        })} 
-                    </div> 
+
                     <div className="notifyInteractive">
                         <h3 style={{textAlign: "center"}}>Hóa đơn</h3>
                         {listBillUser.length > 0 && listBillUser.map((cate, index) => {
