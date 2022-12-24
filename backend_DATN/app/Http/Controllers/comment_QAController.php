@@ -135,4 +135,12 @@ class comment_QAController extends Controller
             'dataChild' => $get_inforOwnerChild
         ]);
     }
+    public function Count_Comment(Request $request, $id_qa){
+        $Count_Comment = comment_QAModel::where('id_qa','=',$id_qa)->where('parent_id','=',null)->count();
+        return response()
+            ->json([
+                'data' => $Count_Comment,
+                'status' => true
+            ]);
+    }
 }
