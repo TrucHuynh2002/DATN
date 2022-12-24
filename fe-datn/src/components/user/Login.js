@@ -54,12 +54,20 @@ function Login() {
         }
     }
     // GOOGLE
-    // const handleGoogle = async (e) => {
-    //     const google = await axios.get(`${url}/auth/google`);
-    //     if(google.status === true){
-
-    //     }
-    // }
+    const handleGoogle = async (e) => {
+        const google = await axios.get(`${url}/auth/google`);
+        if(google.data.status === true){
+            navigate(`../${google.data.url}`);
+        }
+    }
+    // FACEBOOK
+    const handleFacebook = async (e) => {
+        const facebook = await axios.get(`${url}/facebook`);
+        console.log(facebook.data.url);
+        if(facebook.data.status === true){
+            navigate(`../${facebook.data.url}`);
+        }
+    }
    
     return (
     <>
@@ -110,13 +118,13 @@ function Login() {
                         </div>  
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button className='button_facebook'>
+                                <button className='button_facebook' onClick={(e) => handleFacebook(e)}>
                                     <i className='fa fa-facebook'></i>
                                     Đăng nhập với Facebook
                                 </button>
                             </div>
                             <div className='col-md-6'>
-                                <button className='button_google'>
+                                <button className='button_google' onClick={(e) => handleGoogle(e)}>
                                     <i className='fa fa-google'></i>
                                     Đăng nhập với Google
                                 </button>

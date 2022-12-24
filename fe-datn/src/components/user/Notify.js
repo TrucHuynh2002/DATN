@@ -67,6 +67,7 @@ function Notify() {
 
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
+        console.log(res.data);
         setNotification(res.data.data)
         setNotificationUnread(res.data.notificationUnread)
     }
@@ -162,6 +163,13 @@ function Notify() {
                                     if(noti.data.replyCmt.id_user == id_user){
                                         return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>Hỏi - Đáp</strong> </div>
                                     }
+                                }
+
+                                if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
+
+                                        return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                            <strong>{noti.data.subject.full_name}</strong> Vừa yêu cầu trả phòng phòng số {noti.data.roomnumber.room_number} tại bài viết {noti.data.roomnumber.post_name} 
+                                            </div>
                                 }
 
 

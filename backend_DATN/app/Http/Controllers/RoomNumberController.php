@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
 use App\Models\SavingRoomModel;
 use App\Models\User;
+use App\Notifications\UpdateRoomNumber;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Mail;
 
 class RoomNumberController extends Controller
@@ -79,6 +81,18 @@ class RoomNumberController extends Controller
         if($admin){
             Mail::to($admin->email)->send(new CheckOut($data,$admin));   
         }
+        $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->select('room_number.id_user_two','users.full_name')
+        ->first();
+        // Lấy thông tin người trả phòng
+
+        $User = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
+        ->first();
+        // Lấy thông tin người chủ phòng
+        $ownerUserId = User::find($User->id_user);
+        Notification::send($ownerUserId,new UpdateRoomNumber($User_two,$User));
         return response()
             ->json([
                 'data' => $data,
