@@ -2803,6 +2803,10 @@ margin-top: 30px;
     color: white;
     line-height: 2;
     margin-right: 10px;
+<<<<<<< HEAD
+
+}
+=======
 }
 
 .textNoti{
@@ -2840,6 +2844,7 @@ margin-top: 30px;
     font-size: 10px;
     text-align: center;
 }
+
 
 .btn-handle-booking-room{
     display: flex;
