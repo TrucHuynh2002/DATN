@@ -2841,3 +2841,16 @@ margin-top: 30px;
     text-align: center;
 }
 
+.btn-handle-booking-room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-handle-accept-booking-room,.btn-handle-cancel-booking-room{
+    padding: 0 12px;
+}
+
+.listBookingRoom {
+    margin-bottom: 12px;
+}

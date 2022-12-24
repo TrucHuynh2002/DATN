@@ -67,8 +67,18 @@ function Notify() {
 
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
+        console.log(res.data)
         setNotification(res.data.data)
         setNotificationUnread(res.data.notificationUnread)
+    }
+    const [handleBooking,setHandleBooking] = useState(false);
+    const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
+        console.log(id_notification)
+        // let formData = new FormData();
+        // formData.append('id_user_two',id_userBooking)
+        // formData.append('id_notification',id_notification)
+        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}`);
+        setHandleBooking(true)
     }
         
     return (
@@ -164,6 +174,40 @@ function Notify() {
                                     }
                                 }
 
+                                if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
+                                    if(noti.data.ownerPost.id_user == id_user &&  noti.read_at == null){
+                                        return      <div className='listBookingRoom'>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.ownerBookingRoom.full_name}</strong> Vừa đặt phòng <strong>A0{noti.data.ownerPost.room_number}</strong> tại <strong>{noti.data.ownerPost.post_name}</strong> của bạn </div>
+                                                       
+                                                        {
+                                                        noti.read_at == null
+                                                         &&
+                                                          handleBooking == false
+                                                          &&
+                                                          <div className='btn-handle-booking-room'>
+                                                          <div className='btn-handle-accept-booking-room'>
+                                                              <div className='btn btn-outline-primary' onClick={e => handleBookingRoom(e,noti.data.ownerPost.id,noti.data.ownerBookingRoom.id_user,noti.id)}>Chấp nhận</div>
+                                                          </div>
+                                                          <div className='btn-handle-cancel-booking-room'>
+                                                              <div className='btn btn-outline-danger'>Từ chối</div>
+                                                          </div>
+                                                        </div> 
+                                                        }   
+                                                           
+                                                           
+                                                           {
+                                                             handleBooking &&
+                                                            <div className='text-muted'>
+                                                             Lựa chọn thành công
+                                                            </div>
+                                                           }
+                                                        
+                                                       
+                                                    </div>
+                                    }
+                                   
+                                }
+
 
                             
 
@@ -180,8 +224,8 @@ function Notify() {
                                     
                                     <div className="content_notifyInteractive col-10">
                                         <Link to={`../billdetail/${cate.id}`} style={{textTransform: 'none'}}>
-                                            <span className="notify_name">Bạn vừa nhận được hóa đơn tiền phòng</span> 
-                                            <span className='notify_interaction'> {cate.created_at}</span>
+                                            <button className="notify_name">Bạn vừa nhận được hóa đơn tiền phòng</button> 
+                                            <button className='notify_interaction'> {cate.created_at}</button>
                                             
                                         </Link>   
                                         <hr/>
