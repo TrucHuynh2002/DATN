@@ -8,6 +8,7 @@ import { url } from '../url';
 function QADetail() {
   const user = JSON.parse(localStorage.getItem('user'));
   const {id_qa} = useParams();
+  const [VisableCmt, setVisableCmt] = useState(10); //loader cmt number
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -142,6 +143,11 @@ function QADetail() {
     setShow(true)
     checkManage();
   }
+  //loader cmt number
+  const loadmoreCmt = () => {
+    setVisableCmt(VisableCmt + 10);
+   getComment();
+}
   return (
     <>
       <div className="back_re">
@@ -165,14 +171,13 @@ function QADetail() {
                       alt='' className="img" />
                     <div className="qa_div_userAndDay">
                       <div className="feedback_comment_time">
-                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
+                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name }</Link>
                       </div>
                       <div className="feedback_comment_time"> 
                         {moment(listQa.created_at).local().startOf('day').fromNow()}
                       </div>
                     </div>
                 </div>
-                <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
                 <hr />
                 <div className='qa_cmt'>
@@ -192,7 +197,7 @@ function QADetail() {
                   <span>Xem {listComment.length} bình luận trong bài </span>
                   <i className="fa-regular fa-comment"></i>
                 </div>
-                {listComment.map((listComment, index) => {
+                {listComment.slice(0,VisableCmt).map((listComment, index) => {
                   return( listQa.id_qa == listComment.id_qa && (
                     <div className="container_qa" key={index}>
                       <div className='qa_avatar'>
@@ -351,6 +356,9 @@ function QADetail() {
                     </div>  
                   ))}
                 )}
+                {VisableCmt < listComment.length &&
+                <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
+                }
               </div>
             );})}
         </div>

@@ -27,7 +27,9 @@ class QAController extends Controller
     }
     public function show_detail(Request $request,$id_qa)
     {
-        $data = QAModel::where('id_qa','=',$id_qa)->get();
+        $data = QAModel::join('users', 'qa.id_user', '=', 'users.id_user')
+        ->join('img_user', 'img_user.id_user', '=', 'qa.id_user')
+        ->where('id_qa','=',$id_qa)->get();
         return response()
             ->json([
                 'data' => $data,

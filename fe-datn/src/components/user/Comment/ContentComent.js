@@ -24,6 +24,7 @@ function ContentComent() {
     id_user: user ? user[0].id : "",
     id_post: id_post,
   });
+  const [VisableCmt, setVisableCmt] = useState(1); //loader cmt number
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
   const [Reply,setReply] = useState({
@@ -117,7 +118,11 @@ function ContentComent() {
     activeUpdateComment,
     idUpdateCmt
   } = UpdateComment
-
+  //loader cmt number
+  const loadmoreCmt = () => {
+    setVisableCmt(VisableCmt + 10);
+    getData();
+  }
 return (
  <>
   <div className="input_comment">
@@ -139,7 +144,7 @@ return (
     </div>
   </div>
   <hr />
-  {Comment_parent.map((comment, index) => {
+  {Comment_parent.slice(0,VisableCmt).map((comment, index) => {
     return <>
         <div className="container_comment" key={index}>
            {/* <div key={index}> */}
@@ -285,6 +290,9 @@ return (
         </div>
     </> 
     })}
+    {VisableCmt < listComment.length &&
+    <p onClick={(e) => loadmoreCmt(e)}>Xem thêm bình luận</p>
+    }
  </>
 )
 }
