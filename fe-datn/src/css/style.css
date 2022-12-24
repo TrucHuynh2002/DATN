@@ -2839,5 +2839,8 @@ margin-top: 30px;
     line-height: 15px;
     font-size: 10px;
     text-align: center;
-
+}
+.link_noti {
+    text-transform: none;
+    font-weight: 400;
 }

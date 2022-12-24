@@ -88,6 +88,7 @@ import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
 import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
 import QADetail from './components/user/QADetail';
+import CheckRoomManage from './components/user/manage/CheckRoomManage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -131,6 +132,7 @@ root.render(
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
+        <Route path="checkroom" element={<CheckRoomManage />} />
         <Route path="Loi" element={<Loi />} />
         {/* gui yeu cau thong bao phong */}
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />

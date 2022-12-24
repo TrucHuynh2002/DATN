@@ -84,18 +84,9 @@ function QA() {
     
    };
    const countcmt = async (e,id_qa) => {
-    const countcmt = await axios.get(`http://127.0.0.1:8000/api/comment_qa/count/${id_qa}`);
+    const countcmt = await axios.get(`${url}/comment_qa/count/${id_qa}`);
       setListCountComment(countcmt.data.data)
    }
-// const loadMore = () => {
-//   setListComment(index + 5)
-//   console.log(index)
-//   if (index >= post.length) {
-//     setIsCompleted(true)
-//   } else {
-//     setIsCompleted(false)
-//   }
-// }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
