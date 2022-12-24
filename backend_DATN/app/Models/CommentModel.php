@@ -20,4 +20,8 @@ class CommentModel extends Model
         'id_user',
         'id_post'
     ];
+    // public function notify($instance)
+    // {
+        
+    // }
 }
