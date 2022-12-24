@@ -9,7 +9,9 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
-    const id_users = user ? user[0].id : '';
+    // console.log(user)
+    const id_users = user ? user[0].id_user : '';
+    
     const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
@@ -228,7 +230,9 @@ function HeaderNavLink() {
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
         // setNotification(res.data.data)
-        setNotificationUnread(res.data.notificationUnread)
+        if(res.data.status){
+              setNotificationUnread(res.data.notificationUnread)
+        }
     }
 
     // const handleMarKAsRead = async (e) => {

@@ -88,6 +88,8 @@ import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
 import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
 import QADetail from './components/user/QADetail';
+import LoginGoogle from './components/user/socialite/LoginGoogle';
+import LoginFacebook from './components/user/socialite/LoginFacebook';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -133,7 +135,8 @@ root.render(
         <Route path="Loi" element={<Loi />} />
         {/* gui yeu cau thong bao phong */}
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />
-
+        <Route path="auth/google"  element={<LoginGoogle />} />
+        <Route path="facebook"  element={<LoginFacebook />} />
       </Route>
 
       {/* chuyển hướng admin tổng */}

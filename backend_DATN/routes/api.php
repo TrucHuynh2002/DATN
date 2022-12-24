@@ -354,7 +354,7 @@ Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwne
 // Route::post('auth/google/callback', [GoogleController::class, 'loginCallback']);
 
 // GOOGLE
-Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl']);
+Route::get('auth/google/url', [GoogleController::class, 'getGoogleSignInUrl']);
 Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 // FACEBOOK
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);

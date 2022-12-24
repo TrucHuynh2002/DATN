@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { url } from '../url';
 
 function Login() {
@@ -54,12 +54,27 @@ function Login() {
         }
     }
     // GOOGLE
-    // const handleGoogle = async (e) => {
-    //     const google = await axios.get(`${url}/auth/google`);
-    //     if(google.status === true){
+    const [loginGoogle, setLoginGoogle] = useState('');
+    const handleLoginGoogle = async (e) => {
+        const google = await axios.get(`${url}/auth/google/url`);
+        // console.log(google.data)
+        if(google.data.status === true){
+            setLoginGoogle(google.data.url)
+        }
+        // console.log(123)
+    }
+    const [loginFacebook, setLoginFacebook] = useState('');
+    const handleLoginFacebook = async (e) => {
+        const facebook = await axios.get(`${url}/facebook`);
+        if(facebook.data.status === true){
+            setLoginFacebook(facebook.data.url)
+        }
+    }
 
-    //     }
-    // }
+    useEffect(() => {
+        handleLoginGoogle()
+        handleLoginFacebook()
+    },[])
    
     return (
     <>
@@ -110,16 +125,16 @@ function Login() {
                         </div>  
                         <div className='row'>
                             <div className='col-md-6'>
-                                <button className='button_facebook'>
+                                <a href={loginFacebook} className='button_facebook'>
                                     <i className='fa fa-facebook'></i>
                                     Đăng nhập với Facebook
-                                </button>
+                                </a>
                             </div>
                             <div className='col-md-6'>
-                                <button className='button_google'>
+                                <a href={loginGoogle} className='button_google'>
                                     <i className='fa fa-google'></i>
                                     Đăng nhập với Google
-                                </button>
+                                </a>
                             </div>
                         </div>  
                     </div>

@@ -68,8 +68,10 @@ function Notify() {
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
         console.log(res.data)
-        setNotification(res.data.data)
-        setNotificationUnread(res.data.notificationUnread)
+        if(res.data.status){
+            setNotification(res.data.data)
+            setNotificationUnread(res.data.notificationUnread)
+        }
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
