@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
 use App\Models\SavingRoomModel;
 use App\Models\User;
+use App\Notifications\NotificationOwnerBookingRoom;
 use App\Notifications\NotificationOwnerPost;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
@@ -319,6 +320,11 @@ class RoomNumberController extends Controller
 
     public  function updateRoomNumber(Request $request, $id_roomNumber){
         $roomNumber = RoomNumberModel::find($id_roomNumber);
+        $get_OwnerBookingRoom = User::find($roomNumber->id_user_two);
+        $get_OwnerPost = DB::table('room_number')->join('post','post.id_post','=','room_number.id_post')
+            ->where('room_number.id','=',$id_roomNumber)
+            ->first();
+        Notification::send($get_OwnerBookingRoom, new NotificationOwnerBookingRoom($get_OwnerBookingRoom,$get_OwnerPost,2));
         $roomNumber->status = 2;
         $roomNumber->check_room = null;
         $roomNumber->save();
@@ -326,6 +332,27 @@ class RoomNumberController extends Controller
                   $notiMaskasRead = NotificationModel::find($request->id_notification);
                     $notiMaskasRead->read_at = Carbon::now();
                     $notiMaskasRead->save();
+        }
+
+
+
+    }
+
+    public function CancelBookingRoom(Request $request, $id_roomNumber){
+        $roomNumber = RoomNumberModel::find($id_roomNumber);
+        $get_OwnerBookingRoom = User::find($roomNumber->id_user_two);
+        $get_OwnerPost = DB::table('room_number')->join('post','post.id_post','=','room_number_id_post')
+            ->where('room_number.id','=',$id_roomNumber)
+            ->first();
+        Notification::send($get_OwnerBookingRoom, new NotificationOwnerBookingRoom($get_OwnerBookingRoom,$get_OwnerPost,0));
+        $roomNumber->status = 0;
+        $roomNumber->check_room = null;
+        $roomNumber->id_user_two = null;
+        $roomNumber->save();
+        if($request->id_notification){
+            $notiMaskasRead = NotificationModel::find($request->id_notification);
+            $notiMaskasRead->read_at = Carbon::now();
+            $notiMaskasRead->save();
         }
     }
 }

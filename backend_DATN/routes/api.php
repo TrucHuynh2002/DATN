@@ -145,6 +145,7 @@ Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'can
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
 
 Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
+Route::get('roomNumber/cancel-booking-room/{id_roomNumber}',[RoomNumberController::class, 'CancelBookingRoom']);
 
 
 // Q&A
