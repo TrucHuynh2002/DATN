@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
 import PaginationBlog from '../PaginationBlog';
+import { url } from '../../url';
 
 function Bloged() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -18,13 +19,13 @@ function Bloged() {
         getData();
     },[]);
     const getData = async () => {
-        const Blog = await axios.get(`http://127.0.0.1:8000/api/blog/showUser/${id_user}`);
+        const Blog = await axios.get(`${url}/blog/showUser/${id_user}`);
             setListBlog(Blog.data.data);
-        const Account = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        const Account = await axios.get(`${url}/user/showimg`);
             setInfoAccount(Account.data.data);
     };
     const deleteBlog = async (id_blog) => {
-        await axios.delete(`http://127.0.0.1:8000/api/blog/delete/${id_blog}`);
+        await axios.delete(`${url}/blog/delete/${id_blog}`);
         getData();
     };
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { url } from '../url';
 
 function Login() {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Login() {
         const dataForm = new FormData();
         dataForm.append('email',email);
         dataForm.append('password',password);
-        const res = await axios.post("http://127.0.0.1:8000/api/user/login", dataForm);
+        const res = await axios.post(`${url}/user/login`, dataForm);
         if(res.data.status === true){
            var user = JSON.parse(localStorage.getItem('user'));
            if(user === null){
@@ -29,8 +30,7 @@ function Login() {
                     email:res.data.data.email,
                     address:res.data.data.address,
                     role:res.data.data.role,
-                })
-                
+                })             
                 setAlert({
                     err_list: res.data
                 });
@@ -53,6 +53,13 @@ function Login() {
             });
         }
     }
+    // GOOGLE
+    // const handleGoogle = async (e) => {
+    //     const google = await axios.get(`${url}/auth/google`);
+    //     if(google.status === true){
+
+    //     }
+    // }
    
     return (
     <>
@@ -100,7 +107,21 @@ function Login() {
                             <button className="button">
                                 <Link  to="../signin">Bạn chưa có tài khoản ? Đăng ký ngay</Link>
                             </button>
-                        </div>    
+                        </div>  
+                        <div className='row'>
+                            <div className='col-md-6'>
+                                <button className='button_facebook'>
+                                    <i className='fa fa-facebook'></i>
+                                    Đăng nhập với Facebook
+                                </button>
+                            </div>
+                            <div className='col-md-6'>
+                                <button className='button_google'>
+                                    <i className='fa fa-google'></i>
+                                    Đăng nhập với Google
+                                </button>
+                            </div>
+                        </div>  
                     </div>
                     <div className="col-md-6">
                         <img src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg" className="img-fluid" alt='images'/>

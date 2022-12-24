@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListPost() {
 
@@ -20,13 +21,13 @@ function ListPost() {
 
   // danh sach post
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+   const res = await axios.get(`${url}/post/show`);
    setListPost(res.data.data);
   };
 
   // xoa post
   // const deletePost = async (id_post) => {
-  //   await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
+  //   await axios.delete(`${url}/post/delete/${id_post}`);
   //   getData();
   // };
 

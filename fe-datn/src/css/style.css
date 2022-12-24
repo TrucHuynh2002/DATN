@@ -2778,7 +2778,31 @@ margin-top: 30px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;    
 }
+<<<<<<< HEAD
 .loadCmt:hover{
     cursor: pointer;
     text-decoration-line: underline;
+=======
+.button_facebook {
+    padding: 7px;
+    margin: 11px 5px;
+    background: #4C69BA;
+    color: white; 
+}
+.button_facebook>i {
+    color: white;
+    line-height: 2;
+    padding-right: 10px;
+}
+.button_google {
+    padding: 7px;
+    margin: 11px 5px;
+    background: #DD4B39;
+    color: white; 
+}
+.button_google>i {
+    color: white;
+    line-height: 2;
+    margin-right: 10px;
+>>>>>>> 64c9b04c6080be516aa41711006eec166ececac7
 }

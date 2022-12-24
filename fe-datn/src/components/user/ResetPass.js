@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../url';
 
 function ResetPass() {
 
@@ -22,7 +23,7 @@ function ResetPass() {
     const handleSumbit = async (e) => {
         e.preventDefault();
         const item = { password:password, token:token, password_confirm:password_confirm};
-            const res = await axios.post(`http://127.0.0.1:8000/api/reset-password/${token}?_method=PUT`, item);
+            const res = await axios.post(`${url}/reset-password/${token}?_method=PUT`, item);
             if(res.data.status === true){
                 setAlert({
                     err_list: res.data

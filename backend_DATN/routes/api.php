@@ -43,8 +43,11 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\StatisticalSController;
 use App\Http\Controllers\UploadCkeditController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\GoogleController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
+use Laravel\Socialite\Two\FacebookProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +147,7 @@ Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'del
 Route::get('qa/show', [QAController::class, 'show']);
 Route::get('qa/show_detail/{id}', [QAController::class, 'show_detail']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
+Route::delete('qa/deleteQa/{id}', [QAController::class, 'deleteQa']);
 
 //noty_notyqa
 Route::get('noty_qa/show', [notyNotyQaController::class, 'show']);
@@ -339,3 +343,14 @@ Route::post('test-sms',[BillController::class,'testSms']);
 
 // CHECK OLD USER ROOM  TO RATE
 Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwnerRoom']);
+
+// GOOGLE
+// Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
+// Route::post('auth/google/callback', [GoogleController::class, 'loginCallback']);
+
+// GOOGLE
+Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl']);
+Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
+// FACEBOOK
+Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
+Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);

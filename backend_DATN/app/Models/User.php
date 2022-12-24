@@ -33,7 +33,9 @@ class User extends Authenticatable
         'role',
         'id_img_user',
         'email_verified_at',
-        'remember_token'
+        'remember_token',
+        'google_id',
+        'facebook_id'
         // 'created_at'
     ];
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListComment() {
 
@@ -21,13 +22,13 @@ function ListComment() {
 
   // danh sách comment
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/comment/show');
+    const res = await axios.get(`${url}/comment/show`);
        setListCmt(res.data.data);
    };
 
     // xoa comment
     const deleteCmt = async (id_comment) => {
-    await axios.delete(`http://127.0.0.1:8000/api/comment/delete/${id_comment}`);
+    await axios.delete(`${url}/comment/delete/${id_comment}`);
     getData();
   };
 

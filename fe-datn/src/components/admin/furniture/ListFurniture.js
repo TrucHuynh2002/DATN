@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListFurniture() {
 
@@ -20,13 +21,13 @@ function ListFurniture() {
 
   // danh sach furniture
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/furniture/show');  
+    const res = await axios.get(`${url}/furniture/show`);  
       setListFurniture(res.data.data);
   };
 
   // xoa
   const deleteFurniture = async (id_furniture) => {
-    await axios.delete(`http://127.0.0.1:8000/api/furniture/delete/${id_furniture}`);
+    await axios.delete(`${url}/furniture/delete/${id_furniture}`);
     getData();
   };
 

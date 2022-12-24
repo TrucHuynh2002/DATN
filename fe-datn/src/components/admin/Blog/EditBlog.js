@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditBlog() {
     
@@ -41,7 +42,7 @@ function EditBlog() {
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         dataForm.append('id_user',id_user);
-        const res = await axios.post(`http://127.0.0.1:8000/api/blog/update/${id_blog}?_method=PUT`, dataForm);
+        const res = await axios.post(`${url}/blog/update/${id_blog}?_method=PUT`, dataForm);
         console.log(res.data)
         if(res.data.status === true){
             setAlert({
@@ -60,7 +61,7 @@ function EditBlog() {
         }, []);
 
         const loadCate = async () => {
-            const result = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
+            const result = await axios.get(`${url}/blog/show/${id_blog}`);
             setEditBlog(result.data.data);
         }; 
 

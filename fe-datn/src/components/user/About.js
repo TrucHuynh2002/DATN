@@ -1,5 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import {url} from '../url';
 
 function About() {
 
@@ -9,7 +10,7 @@ function About() {
   },[]);
   
   const getData= async () => {
-    const result = await axios.get("http://127.0.0.1:8000/api/config");
+    const result = await axios.get(`${url}/config`);
     setListAbout(result.data.data);
    };
 

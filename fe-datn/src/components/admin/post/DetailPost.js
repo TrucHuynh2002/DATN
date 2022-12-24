@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function DetailPost() {
 
@@ -15,11 +16,11 @@ function DetailPost() {
 
     // danh sach post
     const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+    const res = await axios.get(`${url}/post/show/${id_post}`);
     setListPost(res.data.data);
     };
     const getImg = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
+        const res = await axios.get(`${url}/imgPost/show_detail/${id_post}`);
         setListImg(res.data.data);        
     };
 

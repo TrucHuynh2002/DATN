@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function InfoAccount() {
 
@@ -25,19 +26,19 @@ function InfoAccount() {
     
     const getData = async () => {
         // danh sach Account
-        const Account = await axios.get(`http://127.0.0.1:8000/api/user/show/${id_user}`);
+        const Account = await axios.get(`${url}/user/show/${id_user}`);
             setInfoAccount(Account.data.data);
         // tỉnh
-        const province = await axios.get(`http://127.0.0.1:8000/api/user/show_province_detail/${id_user}`);
+        const province = await axios.get(`${url}/user/show_province_detail/${id_user}`);
           setListprovince(province.data.data);
         // huyện
-        const district = await axios.get(`http://127.0.0.1:8000/api/user/show_district_detail/${id_user}`);
+        const district = await axios.get(`${url}/user/show_district_detail/${id_user}`);
           setListdistrict(district.data.data);
         // xã
-        const ward = await axios.get(`http://127.0.0.1:8000/api/user/show_ward_detail/${id_user}`);
+        const ward = await axios.get(`${url}/user/show_ward_detail/${id_user}`);
           setListward(ward.data.data);
         // đường
-        const strees = await axios.get(`http://127.0.0.1:8000/api/user/show_street_detail/${id_user}`);
+        const strees = await axios.get(`${url}/user/show_street_detail/${id_user}`);
           setListstreet(strees.data.data);
     };
     // xu ly avata
@@ -52,7 +53,7 @@ function InfoAccount() {
         e.preventDefault();
         let formData = new FormData();
         formData.append('avatar[]', uploadImages[0]);
-        const res =  await axios.post(`http://127.0.0.1:8000/api/user/avatar/${id_user}?_method=PUT`, formData);
+        const res =  await axios.post(`${url}/user/avatar/${id_user}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

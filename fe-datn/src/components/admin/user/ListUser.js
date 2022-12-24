@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListUser() {
 
@@ -21,13 +22,13 @@ function ListUser() {
 
   // danh sach user
   const getData = async () => {
-  const res = await axios.get('http://127.0.0.1:8000/api/user/show');
+  const res = await axios.get(`${url}/user/show`);
   setListUser(res.data.data);
   };
 
   // xoa user
   const deleteUser = async (id_user) => {
-    await axios.delete(`http://127.0.0.1:8000/api/user/delete/${id_user}`);
+    await axios.delete(`${url}/user/delete/${id_user}`);
     getData();
   };
 

@@ -2,12 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import HomeSearch from './HomeSearch';
+import { url } from '../../url';
 
 function Baner() {
 
   const [listBanner, setListBanner] = useState([]);
   const getDataBanner = async () => {
-      const result = await axios.get("http://127.0.0.1:8000/api/banner/show");
+      const result = await axios.get(`${url}/banner/show`);
       setListBanner(result.data.data);
    };
   useEffect(() => {

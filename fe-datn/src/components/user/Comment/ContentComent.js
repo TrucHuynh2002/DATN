@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function ContentComent() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -39,7 +40,7 @@ function ContentComent() {
   const [contentUpdateCmt, setContentUpdateCmt] = useState('');
   // danh sach Comment
   const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment/post/show/${id_post}`);
+    const res = await axios.get(`${url}/comment/post/show/${id_post}`);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
   };
 
@@ -57,10 +58,10 @@ function ContentComent() {
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    const res = await axios.post(`${url}/comment/create`,formData);
       if(res.data.status == true ){
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
-        const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+        const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
         setReply({...Reply,activeComment:false,id:""})
 
       }
@@ -73,16 +74,16 @@ function ContentComent() {
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     // formData.append('parent_id',getIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
+    const res = await axios.post(`${url}/comment/create`,formData);
     if(res.data.status == true ){
       setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/notifyComment/create`, addNotify);
+      const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
     }
     setLoader(loader + res.data.id.length);
   }
  
   const handleDeleteComment = async (e,id_cmt) => {
-      let res = await axios.post(`http://127.0.0.1:8000/api/comment/delete/${id_cmt}?_method=DELETE`);
+      let res = await axios.post(`${url}/comment/delete/${id_cmt}?_method=DELETE`);
       if(res.data.status = true){
         setLoader(loader + 1 );
       }
@@ -95,7 +96,7 @@ function ContentComent() {
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
-    let res = await  axios.get(`http://127.0.0.1:8000/api/comment/show/${id_cmt}`)
+    let res = await  axios.get(`${url}/comment/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);
   
   }
@@ -104,7 +105,7 @@ function ContentComent() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
-    let res = await  axios.post(`http://127.0.0.1:8000/api/comment/update/${id_cmt}?_method=PUT`,formData)
+    let res = await  axios.post(`${url}/comment/update/${id_cmt}?_method=PUT`,formData)
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }

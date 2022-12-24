@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function ConfirmAccount() {
 
@@ -20,7 +21,7 @@ function ConfirmAccount() {
  };
  const handleSubmit = async (e) => {
   e.preventDefault();
-  const res = await axios.put(`http://127.0.0.1:8000/api/user/updatepassword/${id_Account}`, editPassword);
+  const res = await axios.put(`${url}/user/updatepassword/${id_Account}`, editPassword);
   if(res.data.status === true){
       setAlert({
           err_list: res.data

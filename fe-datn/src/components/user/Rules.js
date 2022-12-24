@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { url } from '../url';
 
 function Rules() {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -9,7 +10,7 @@ function Rules() {
         err_list: {},
     });
     const getDataRoomType = async () => {
-        const res = await axios.put(`http://127.0.0.1:8000/api/user/updateStatus/${id_user}`);
+        const res = await axios.put(`${url}/user/updateStatus/${id_user}`);
         if(res.data.status === true){
             const John = [{"id":res.data.data.id_user,"phone":res.data.data.phone,"fullname":res.data.data.full_name,"email": res.data.data.email,"address":res.data.data.address,"role":"1"}];
               const jsonObj = JSON.stringify(John);

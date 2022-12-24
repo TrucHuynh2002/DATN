@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function Square() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Square() {
     // danh sach 
 
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`); 
+        const res = await axios.get(`${url}/roomNumber/show_one/${id_post}`); 
         setQuantityPost(res.data.data);
     };
     const handleClick = async (e,quality,id_number) => {

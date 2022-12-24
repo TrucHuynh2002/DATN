@@ -3,7 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-
+import { url } from '../url';
 
 function QADetail() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -36,7 +36,7 @@ function QADetail() {
 
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
-    let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
+    let res = await  axios.get(`${url}/comment_qa/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
@@ -50,7 +50,7 @@ function QADetail() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
-    let res = await  axios.post(`http://127.0.0.1:8000/api/comment_qa/update/${id_cmt}?_method=PUT`,formData)
+    let res = await  axios.post(`${url}/comment_qa/update/${id_cmt}?_method=PUT`,formData)
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }
@@ -78,16 +78,15 @@ function QADetail() {
 
    // danh sach 
    const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/qa/show_detail/${id_qa}`);
+    const res = await axios.get(`${url}/qa/show_detail/${id_qa}`);
     setListQa(res.data.data);
    };
    
    // danh sách cmt
   const getComment = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
+    const res = await axios.get(`${url}/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
-    // console.log(res.data.data_child)
 };
 // const loadMore = () => {
 //   setListComment(index + 5)
@@ -103,7 +102,7 @@ function QADetail() {
     let formData = new FormData();
     formData.append('content',addQA.content)
     formData.append('id_user',id_user)
-    const res = await axios.post(`http://127.0.0.1:8000/api/qa/created_at`,formData);
+    const res = await axios.post(`${url}/qa/created_at`,formData);
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
@@ -116,12 +115,10 @@ function QADetail() {
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
-      console.log(res.data.id_qa.id_user)
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/noty_qa/create`, addNotify);
-      console.log(ress)
+      const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
     }
     setReply({
       activeComment:false
@@ -129,7 +126,7 @@ function QADetail() {
     setLoader(loader + 1);
   }
   const handleDeleteComment = async (e,id_cmt) => {
-    let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
+    let res = await axios.post(`${url}/comment_qa/delete/${id_cmt}?_method=DELETE`);
     if(res.data.status = true){
       setLoader(loader + 1 );
     }

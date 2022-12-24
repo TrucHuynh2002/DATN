@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ListDeleteRoom from './ListDeleteRoom';
 import ListUpdateRoom from './ListUpdateRoom';
+import { url } from '../../url';
 
 function PriceRoom({data}) {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -21,7 +22,7 @@ function PriceRoom({data}) {
         setgetDate({...getDate,[e.target.name]:e.target.value})
     }
     const getDataBill = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        const res = await axios.get(`${url}/bill/user/${id_user}`);
         setLoadBill(res.data.data)
     }
     useEffect(() => {
@@ -29,7 +30,7 @@ function PriceRoom({data}) {
     },[])
     const handleFilterDate = async (e) => {
         e.preventDefault();
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);
+        const res = await axios.get(`${url}/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);
         if(res.data.status == true){
             setLoadBill(res.data.data)
             data(id_user,start_date,end_date)
@@ -39,7 +40,7 @@ function PriceRoom({data}) {
     const [show, setShow] = useState(false);
     const handleClose = async() => {
         setShow(false) 
-        const res = await axios.put(`http://127.0.0.1:8000/api/roomNumber/update_checkRoom/${id_user}`);
+        const res = await axios.put(`${url}/roomNumber/update_checkRoom/${id_user}`);
     }
     const handleShow = () => setShow(true);
 

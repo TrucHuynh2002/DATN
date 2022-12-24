@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditCategory() {
 
@@ -23,7 +24,7 @@ function EditCategory() {
    
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const res = await axios.put(`http://127.0.0.1:8000/api/category/update/${id_category}`, editCategory);
+        const res = await axios.put(`${url}/category/update/${id_category}`, editCategory);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -41,7 +42,7 @@ function EditCategory() {
     }, []);
 
     const loadCate = async () => {
-        const result = await axios.get(`http://127.0.0.1:8000/api/category/show/${id_category}`);
+        const result = await axios.get(`${url}/category/show/${id_category}`);
         setEditCategory(result.data.data);
     };
 

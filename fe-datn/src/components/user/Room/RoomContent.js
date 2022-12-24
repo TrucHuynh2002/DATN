@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
+import { url } from '../../url';
 
 function RoomND() {
   const [listPost, setListPost] = useState([]);
@@ -21,14 +22,14 @@ function RoomND() {
     err_list: {},
   });  
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/post/show');
+   const res = await axios.get(`${url}/post/show`);
     setListPost(res.data.data);   
-   const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show`);
+   const getImg = await axios.get(`${url}/imgPost/show`);
       setListImg(getImg.data.data); 
-    let getTypeRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+    let getTypeRoom = await axios.get(`${url}/roomType/show`);
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
         // tỉnh
-    const getDataProvince = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+    const getDataProvince = await axios.get(`${url}/post/show_province`);
       setListProvince(getDataProvince.data.data);
   };
   // search
@@ -73,19 +74,19 @@ function RoomND() {
 }
   // huyện 
   const getDataDistrict = async (id_province) => {
-      const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+      const res = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
       setListDistrict(res.data.data);
   }
   // xã
   const getDataWard = async (id_district) => {
       var id_province = addProvince.undefined;
-      const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+      const res = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
       setListWard(res.data.data);
   }     
   // đường 
   const getDataStreet = async (id_district) => {
       var id_province = addProvince.undefined;
-      const res = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+      const res = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
       setStreet(res.data.data);
   }     
   const [searching,setSearching] = useState(false);

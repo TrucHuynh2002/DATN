@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
+
 function Setting() {
 
   const [listConfig, setListConfig] = useState([]);
@@ -19,7 +21,7 @@ function Setting() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('logo[]',uploadImages[0])   
-    const res = await axios.post(`http://127.0.0.1:8000/api/config/update/logo/1?_method=PUT`, formData);
+    const res = await axios.post(`${url}/config/update/logo/1?_method=PUT`, formData);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -38,7 +40,7 @@ useEffect(() => {
 
   // list config
   const getData = async () => {
-   const result = await axios.get("http://127.0.0.1:8000/api/config");
+   const result = await axios.get(`${url}/config`);
     setListConfig(result.data.data);
   };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
+import { url } from '../url';
 
 function Notify() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -18,26 +19,21 @@ function Notify() {
             getData();
         }
     },[]);
-
-
         // NOTIFY QA
     const [commentPostOwnerParent,setCommentPostOwnerParent] = useState([]);
     const [commentPostOwnerChild,setCommentPostOwnerChild] = useState([]);
-
     // xoa notify
     const deletenotify = async (id_notify_favorite) => {
-        await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_favorite}`);
-    
+        await axios.delete(`${url}/notify/delete/${id_notify_favorite}`);   
     };
-
     // danh sach notify comment
     const getData = async () => {
         if(id_user){
-            const res = await axios.get(`http://127.0.0.1:8000/api/noty_qa/show/${id_user}`);
+            const res = await axios.get(`${url}/noty_qa/show/${id_user}`);
             setListnotifyQa(res.data.data);
-            const notifyInteractive = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+            const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);
             setListnotifyInteractive(notifyInteractive.data.data);
-            const ress = await axios.get(`http://127.0.0.1:8000/api/comment/qa-comment-owner/${id_user}`);
+            const ress = await axios.get(`${url}/comment/qa-comment-owner/${id_user}`);
             // setListnotifyInteractive(res.data.data);
             if(ress.data.status){
                 setCommentPostOwnerParent(res.data.dataParent);
@@ -46,20 +42,20 @@ function Notify() {
         }
       // Noti notifyInteractive
         if(id_user != 0){
-            const res = await axios.get(`http://127.0.0.1:8000/api/notify_interactive/show/${id_user}`);
+            const res = await axios.get(`${url}/notify_interactive/show/${id_user}`);
             setListnotifyInteractive(res.data.data);
         }
-        const res = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        const res = await axios.get(`${url}/user/showimg`);
         setListImg(res.data.data); 
         // Noti Bill
-        const BillUser = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+        const BillUser = await axios.get(`${url}/bill/user/${id_user}`);
         if(BillUser.data.status == true){
             setListBillUser(BillUser.data.data);
         }     
     };
     // xoa notify interactive
     const deletenotifyInteractive = async (id_notify_interactive) => {
-        await axios.delete(`http://127.0.0.1:8000/api/notify/delete/${id_notify_interactive}`);
+        await axios.delete(`${url}/notify/delete/${id_notify_interactive}`);
         getData();
     };
         

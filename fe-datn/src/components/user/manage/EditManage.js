@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal, Table } from 'react-bootstrap';
+import { url } from '../../url';
 
 function EditManage({id_roomNumber}) {
     useEffect(() => {
@@ -36,7 +37,7 @@ function EditManage({id_roomNumber}) {
     const [showBill, setShowBill] = useState([]);
     const getData = async (e) =>{
         const id = id_roomNumber
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/show_id/${id}`); 
+        const res = await axios.get(`${url}/bill/show_id/${id}`); 
         setShowBill(res.data.data);
           if(res.data.status === true){
               setAlert({
@@ -54,7 +55,7 @@ function EditManage({id_roomNumber}) {
   const handleCloseEditBill = () => setShowEditBill(false);
   const handleShowEditBill = async (e,id) => {
       setShowEditBill(true)
-      const res = await axios.get(`http://127.0.0.1:8000/api/bill/show/${id}`); 
+      const res = await axios.get(`${url}/bill/show/${id}`); 
       setEditBill(res.data.data);
       if(res.data.status === true){
           setAlert({
@@ -73,7 +74,7 @@ function EditManage({id_roomNumber}) {
     formData.append('water_money_edit', listEditMomneyWater);
     formData.append('electricity_money_edit', listEditMomneyElc);
     formData.append('all_money_edit', listEditMomneyRoom);
-    const res = await axios.post(`http://127.0.0.1:8000/api/bill/update/${id}?_method=PUT`,formData);
+    const res = await axios.post(`${url}/bill/update/${id}?_method=PUT`,formData);
     if(res.data.status === true){
         setAlert({
             err_list: res.data

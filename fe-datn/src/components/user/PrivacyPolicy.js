@@ -1,8 +1,7 @@
 import React from 'react';
-function PrivacyPolicy() {
 
-  return (
-    
+function PrivacyPolicy() {
+  return (  
     <div className='privacypolicy'>
       <div className="back_re">
             <div className="container">
@@ -15,9 +14,6 @@ function PrivacyPolicy() {
                 </div>
             </div>
         </div>
-        {/* <Link to="/">
-        <img className="logo-privacy " src={logo} alt="#" width={400} height={150} />
-      </Link> */}
         <p className="title-privacy">Nguyên tắc về quyền riêng tư của Tìm Trọ Nhà Tui</p>
         <p className="content-privacy">
           Tìm Trọ Nhà Tui được xây dựng để đưa mọi người có thể tìm kiếm phòng ở dễ dàng hơn.
@@ -77,11 +73,8 @@ function PrivacyPolicy() {
          nghiệm bảo mật dữ liệu với sản phẩm. Chúng tôi cũng tìm hiểu ý kiến về các chính sách cũng như cách xử lý dữ liệu của
           các nhà quản lý, nhà lập pháp và chuyên gia
           về quyền riêng tư từ khắp nơi trên thế giới.
-</p>
-      
-      
-      </div>
-      
+</p>     
+      </div>     
   )
 }
 

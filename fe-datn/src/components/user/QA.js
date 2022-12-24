@@ -5,6 +5,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { url } from '../url';
 
 function QA() {
   const user = JSON.parse(localStorage.getItem('user')); 
@@ -38,7 +39,7 @@ function QA() {
 
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
-    let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
+    let res = await  axios.get(`${url}/comment_qa/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
@@ -48,7 +49,7 @@ function QA() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
-    let res = await  axios.post(`http://127.0.0.1:8000/api/comment_qa/update/${id_cmt}?_method=PUT`,formData)
+    let res = await  axios.post(`${url}/comment_qa/update/${id_cmt}?_method=PUT`,formData)
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }
@@ -75,9 +76,9 @@ function QA() {
 
    // danh sach 
    const getData = async () => {
-    const Qa = await axios.get('http://127.0.0.1:8000/api/qa/show');
+    const Qa = await axios.get(`${url}/qa/show`);
     setListQa(Qa.data.data);
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
+    const res = await axios.get(`${url}/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
     
@@ -100,7 +101,7 @@ function QA() {
     let formData = new FormData();
     formData.append('content',addQA.content)
     formData.append('id_user',id_user)
-    const res = await axios.post(`http://127.0.0.1:8000/api/qa/created_at`,formData);
+    const res = await axios.post(`${url}/qa/created_at`,formData);
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
@@ -113,22 +114,28 @@ function QA() {
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/noty_qa/create`, addNotify);
+      const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
     }
     setReply({
       activeComment:false
     })
     setLoader(loader + 1);
   }
+  // xoa cmtQa
   const handleDeleteComment = async (e,id_cmt) => {
-    let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
+    let res = await axios.post(`${url}/comment_qa/delete/${id_cmt}?_method=DELETE`);
     if(res.data.status = true){
       setLoader(loader + 1 );
     }
-}
+  }
+  // xoa qa
+  const deleteQa = async (id_qa) => {
+    await axios.delete(`${url}/qa/deleteQa/${id_qa}`);
+    getData();
+  };
 
   const [show, setShow] = useState(false);
   const [alertShow,setAlertShow] = useState(false);
@@ -216,13 +223,9 @@ function QA() {
                     </div> 
                     <div className="content_comment_chammmm"> ...
                       <div className="content_comment_editAndDelete">
-                        <span>Xóa</span> <br />
-                        <span>Cập nhật</span>  
+                        <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span> <br />
                       </div>
                     </div>
-                    {/* <div className='btn_qaDelete'>
-                      <Button variant="danger">X</Button>
-                    </div> */}
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   

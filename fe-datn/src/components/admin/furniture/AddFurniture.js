@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
 
 function AddFurniture() {
 
@@ -24,7 +25,7 @@ function AddFurniture() {
         const dataForm = new FormData();
         dataForm.append('name',name);
         dataForm.append('icon',icon);
-        const res = await axios.post('http://127.0.0.1:8000/api/furniture/create', addFurniture);
+        const res = await axios.post(`${url}/furniture/create`, addFurniture);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

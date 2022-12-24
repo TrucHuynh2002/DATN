@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import ChartBill from './ChartBill';
 import PriceRoom from './PriceRoom';
+import { url } from '../../url';
 
 const user = JSON.parse(localStorage.getItem("user"));
 
 function LayoutBill() {
     const [dataChart,setDataChart] = useState([]);   
     const handleFilterDate = async (id_user,start_date, end_date) => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);
+        const res = await axios.get(`${url}/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);
         if(res.data.status == true){
             setDataChart(res.data.data)
         }   

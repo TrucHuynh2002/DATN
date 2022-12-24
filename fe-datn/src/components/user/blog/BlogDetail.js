@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function BlogDetail() {
     const {id_blog} = useParams();
@@ -11,10 +12,10 @@ function BlogDetail() {
         getData();        
     },[]);
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/blog/show/${id_blog}`);
+        const res = await axios.get(`${url}/blog/show/${id_blog}`);
         setListBlog(res.data.data);
-        const update= await axios.put(`http://127.0.0.1:8000/api/blog/updateView/${id_blog}`);
-        const Info = await axios.get(`http://127.0.0.1:8000/api/user/show`);
+        const update= await axios.put(`${url}/blog/updateView/${id_blog}`);
+        const Info = await axios.get(`${url}/user/show`);
         setInfoAccount(Info.data.data);
     };
     

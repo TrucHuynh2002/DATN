@@ -3,6 +3,7 @@ import { ArcElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, 
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import { url } from '../../url';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
@@ -21,7 +22,7 @@ function ChartBill({dataChart}) {
         if(dataChart.length > 0){
             setPriceRoom(dataChart)
         }else{
-            const res = await axios.get(`http://127.0.0.1:8000/api/bill/user/${id_user}`);
+            const res = await axios.get(`${url}/bill/user/${id_user}`);
         
             setPriceRoom(res.data.data)
         }

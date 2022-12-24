@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
-
+import { url } from '../../url';
 
 function ListRoomType() {
 
@@ -23,13 +23,13 @@ function ListRoomType() {
 
   // danh sach roomtype
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+   const res = await axios.get(`${url}/roomType/show`);
    setListRoomType(res.data.data);
   };
 
   // xoa category
   const deleteRoomType = async (id_room_type) => {
-    await axios.delete(`http://127.0.0.1:8000/api/roomType/delete/${id_room_type}`);
+    await axios.delete(`${url}/roomType/delete/${id_room_type}`);
     getData();
   };
 
