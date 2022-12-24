@@ -80,6 +80,11 @@ function Notify() {
         let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}`);
         setHandleBooking(true)
     }
+
+    const handleCancelBookingRoom = async (e,id_roomNumber,id_notification) => {
+        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/cancel-booking-room/${id_roomNumber}?id_notification=${id_notification}`);
+        setHandleBooking(true)
+    }
         
     return (
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
@@ -189,7 +194,7 @@ function Notify() {
                                                               <div className='btn btn-outline-primary' onClick={e => handleBookingRoom(e,noti.data.ownerPost.id,noti.data.ownerBookingRoom.id_user,noti.id)}>Chấp nhận</div>
                                                           </div>
                                                           <div className='btn-handle-cancel-booking-room'>
-                                                              <div className='btn btn-outline-danger'>Từ chối</div>
+                                                              <div className='btn btn-outline-danger' onClick={e => handleCancelBookingRoom(e,noti.data.ownerPost.id,noti.id)}>Từ chối</div>
                                                           </div>
                                                         </div> 
                                                         }   
