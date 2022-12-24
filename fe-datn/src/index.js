@@ -88,6 +88,7 @@ import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
 import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
 import QADetail from './components/user/QADetail';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

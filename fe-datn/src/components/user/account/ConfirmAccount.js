@@ -62,7 +62,7 @@ function ConfirmAccount() {
             </div>
         </Form>
     </div>
-</div>
+    </div>
   )
 }
 
