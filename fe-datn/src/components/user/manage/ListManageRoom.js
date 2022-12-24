@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
-// import { Line, Pie } from 'react-chartjs-2';
+import { url } from '../../url';
+import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
 import ChartManage from './ChartManage';
@@ -108,12 +109,12 @@ function ListManageRoom() {
 
     // danh sach user
     const getData = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
+        const res = await axios.get(`${url}/post/showUser/${id_user}`); 
         setListPost(res.data.data);
     };
 
     const handleChange = async (e,id_post) => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_one/${id_post}`);
+        const res = await axios.get(`${url}/roomNumber/show_one/${id_post}`);
      
         setQuantityPost(res.data.data);
     };
@@ -216,7 +217,7 @@ function ListManageRoom() {
 
     // Trả phòng
     const handleCheckOut = async (e) => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_rooms}`);
+        const res = await axios.get(`${url}/roomNumber/checkout/${id_rooms}`);
         if(res.data.status == true){
             handleChange(e,id_post)
             setActive({id_rooms:id_rooms, status: 0,checked:true,id_user_two: '',id_post: ''})    
@@ -231,7 +232,7 @@ function ListManageRoom() {
     }
 
     const handleClickUpdate = async (e) => {
-        const res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/update_user/${id_rooms}?id_user_two=${id_user_two}&&_method=PUT`,);
+        const res = await axios.post(`${url}/roomNumber/update_user/${id_rooms}?id_user_two=${id_user_two}&&_method=PUT`,);
         if(res.data.status === true){
             handleChange(e,id_post)    
             setAlert({
@@ -253,7 +254,7 @@ function ListManageRoom() {
     const handleShowAddBill = async (e) => {
         setShowAddBill(true)
        
-        const res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_post/${id_rooms}`);
+        const res = await axios.get(`${url}/roomNumber/show_post/${id_rooms}`);
         
         setBill(res.data.data);
         if(res.data.status === true){
@@ -275,7 +276,7 @@ function ListManageRoom() {
         formData.append('electricity_money', listMomneyElc);
         formData.append('all_money', listMomneyRoom);
         formData.append('id_roomNumber', id_rooms);
-        const res =  await axios.post('http://127.0.0.1:8000/api/bill/create', formData);
+        const res =  await axios.post(`${url}/bill/create`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -289,7 +290,7 @@ function ListManageRoom() {
     };
 
     // const getBillTotalMonth = () => {
-    //     const res = axios.get(`http://127.0.0.1:8000/api/bill/month-owner/${id_user}`);
+    //     const res = axios.get(`${url}/bill/month-owner/${id_user}`);
     //     console.log(res.data)
     // }
     

@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditPost() {
 
@@ -64,7 +65,7 @@ function EditPost() {
    
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
-        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        var  get_data = await axios.get(`${url}/furniture/show`);
         setfuriture(get_data.data.data)
     };
     useEffect(() => {
@@ -77,11 +78,11 @@ function EditPost() {
     const [listRoomType, setListRoomType] = useState([]);
   
     const getDataRoomType = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+        const res = await axios.get(`${url}/roomType/show`);
         setListRoomType(res.data.data);
         };
         const loadFurn = async () => {
-            const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+            const result = await axios.get(`${url}/post/show/${id_post}`);
             setEditPost(result.data.data);
         };
 
@@ -133,7 +134,7 @@ function EditPost() {
         formData.append('water_price', water_price);
         formData.append('id_furniture', Array(checkFur));
         
-        const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
+        const res =  await axios.post(`${url}/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

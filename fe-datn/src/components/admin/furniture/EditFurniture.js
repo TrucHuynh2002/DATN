@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditFurniture() {
 
@@ -26,7 +27,7 @@ function EditFurniture() {
         const dataForm = new FormData();
         dataForm.append('name',name);
         dataForm.append('icon',icon);
-        const res = await axios.put(`http://127.0.0.1:8000/api/furniture/update/${id_furniture}`, editFurniture);
+        const res = await axios.put(`${url}/furniture/update/${id_furniture}`, editFurniture);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -44,7 +45,7 @@ function EditFurniture() {
     }, []);
 
     const loadFurn = async () => {
-        const result = await axios.get(`http://127.0.0.1:8000/api/furniture/show/${id_furniture}`);
+        const result = await axios.get(`${url}/furniture/show/${id_furniture}`);
         setEditFurniture(result.data.data);
     };
 

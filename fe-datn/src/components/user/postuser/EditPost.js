@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditPost() {
     const [listProvince, setListProvince] = useState([]);
@@ -12,22 +13,22 @@ function EditPost() {
     const [listStreet, setStreet] = useState([]);
     // tỉnh  
     const getDataProvince = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        const res = await axios.get(`${url}/post/show_province`);
         setListProvince(res.data.data);          
     }
     // huyện 
     const getDataDistrict = async (id_province = "") => {    
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+        const ress = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
         setListDistrict(ress.data.data);
     }
     // xã
     const getDataWard = async (id_district = '', id_province = '') => {
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
     // đường 
     const getDataStreet = async (id_province = '', id_district = '') => {
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
         setStreet(resss.data.data);       
     }
     const [addProvince, setProvince] = useState('');
@@ -60,7 +61,7 @@ function EditPost() {
     const [uploadImages, setUploadImages] = useState([]);
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
-        let res = await axios.delete(`http://127.0.0.1:8000/api/post/image/delete/${id_img}`);      
+        let res = await axios.delete(`${url}/post/image/delete/${id_img}`);      
         if(res.data.status == true) {
             setLoader(loader+1);
         }
@@ -73,18 +74,18 @@ function EditPost() {
     const [checkFur, setFur] = useState([]);
     const [furniture, setfuriture] = useState([]);
     const get_furnitures = async () => {
-        var  get_data = await axios.get('http://127.0.0.1:8000/api/furniture/show');
+        var  get_data = await axios.get(`${url}/furniture/show`);
         setfuriture(get_data.data.data)
     };
 
     // Lấy roomtype
     const [listRoomType, setListRoomType] = useState([]);  
     const getDataRoomType = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/roomType/show');
+        const res = await axios.get(`${url}/roomType/show`);
         setListRoomType(res.data.data);
         };
         const loadFurn = async () => {
-            const result = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+            const result = await axios.get(`${url}/post/show/${id_post}`);
             setEditPost(result.data.data);
             setFurPost(result.data.fur)
             setLinkImage(result.data.img);
@@ -140,7 +141,7 @@ function EditPost() {
         formData.append('id_district',editPost.id_district);
         formData.append('id_ward',editPost.id_ward);
         formData.append('id_street',editPost.id_street);
-        const res =  await axios.post(`http://127.0.0.1:8000/api/post/update/${id_post}?_method=PUT`, formData);
+        const res =  await axios.post(`${url}/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

@@ -3,11 +3,12 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
-
+import { url } from '../url';
 
 function QADetail() {
   const user = JSON.parse(localStorage.getItem('user'));
   const {id_qa} = useParams();
+  const [VisableCmt, setVisableCmt] = useState(10); //loader cmt number
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -35,7 +36,7 @@ function QADetail() {
 
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
-    let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
+    let res = await  axios.get(`${url}/comment_qa/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
@@ -49,7 +50,7 @@ function QADetail() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
-    let res = await  axios.post(`http://127.0.0.1:8000/api/comment_qa/update/${id_cmt}?_method=PUT`,formData)
+    let res = await  axios.post(`${url}/comment_qa/update/${id_cmt}?_method=PUT`,formData)
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }
@@ -77,16 +78,15 @@ function QADetail() {
 
    // danh sach 
    const getData = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/qa/show_detail/${id_qa}`);
+    const res = await axios.get(`${url}/qa/show_detail/${id_qa}`);
     setListQa(res.data.data);
    };
    
    // danh sách cmt
   const getComment = async () => {
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
+    const res = await axios.get(`${url}/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
-    // console.log(res.data.data_child)
 };
 // const loadMore = () => {
 //   setListComment(index + 5)
@@ -102,7 +102,7 @@ function QADetail() {
     let formData = new FormData();
     formData.append('content',addQA.content)
     formData.append('id_user',id_user)
-    const res = await axios.post(`http://127.0.0.1:8000/api/qa/created_at`,formData);
+    const res = await axios.post(`${url}/qa/created_at`,formData);
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
@@ -116,12 +116,11 @@ function QADetail() {
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
     formData.append('child_idComment',childIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
-      console.log(res.data.id_qa.id_user)
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/noty_qa/create`, addNotify);
-      console.log(ress)
+      const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
     }
     setReply({
       activeComment:false
@@ -129,7 +128,7 @@ function QADetail() {
     setLoader(loader + 1);
   }
   const handleDeleteComment = async (e,id_cmt) => {
-    let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
+    let res = await axios.post(`${url}/comment_qa/delete/${id_cmt}?_method=DELETE`);
     if(res.data.status = true){
       setLoader(loader + 1 );
     }
@@ -146,6 +145,11 @@ function QADetail() {
     setShow(true)
     checkManage();
   }
+  //loader cmt number
+  const loadmoreCmt = () => {
+    setVisableCmt(VisableCmt + 10);
+   getComment();
+}
   return (
     <>
       <div className="back_re">
@@ -169,14 +173,13 @@ function QADetail() {
                       alt='' className="img" />
                     <div className="qa_div_userAndDay">
                       <div className="feedback_comment_time">
-                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
+                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name }</Link>
                       </div>
                       <div className="feedback_comment_time"> 
                         {moment(listQa.created_at).local().startOf('day').fromNow()}
                       </div>
                     </div>
                 </div>
-                <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
                 <hr />
                 <div className='qa_cmt'>
@@ -196,7 +199,7 @@ function QADetail() {
                   <span>Xem {listComment.length} bình luận trong bài </span>
                   <i className="fa-regular fa-comment"></i>
                 </div>
-                {listComment.map((listComment, index) => {
+                {listComment.slice(0,VisableCmt).map((listComment, index) => {
                   return( listQa.id_qa == listComment.id_qa && (
                     <div className="container_qa" key={index}>
                       <div className='qa_avatar'>
@@ -355,6 +358,9 @@ function QADetail() {
                     </div>  
                   ))}
                 )}
+                {VisableCmt < listComment.length &&
+                <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
+                }
               </div>
             );})}
         </div>

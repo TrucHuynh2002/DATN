@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
 
 function AddRoomType() {
 
@@ -21,7 +22,7 @@ function AddRoomType() {
 
     const handleSumbit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://127.0.0.1:8000/api/roomType/create', addRoomType);
+        const res = await axios.post(`${url}/roomType/create`, addRoomType);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

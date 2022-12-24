@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { url } from '../url';
 
 function Footer() {
   const [listConfig, setListConfig] = useState([]);
@@ -9,7 +10,7 @@ function Footer() {
   },[]);
   // danh sach category
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/config');
+   const res = await axios.get(`${url}/config`);
     setListConfig(res.data.data);
   };
 
@@ -58,12 +59,12 @@ function Footer() {
                 <ul className="social_icon">
                   <li>
                     <Link to="">
-                      <i className="fa fa-facebook " aria-hidden="true" />
+                      <i className="fa fa-facebook" aria-hidden="true" />
                     </Link>
                   </li>
                   <li>
                     <Link to="">
-                      <i className="fa fa-twitter " aria-hidden="true" />
+                      <i className="fa fa-twitter" aria-hidden="true" />
                     </Link>
                   </li>
                   <li>

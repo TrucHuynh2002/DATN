@@ -229,7 +229,12 @@ class CommentController extends Controller
             ]);
     }
 
-    public function ReplyComment(Request $request, $id_post){
-
+    public function Count_Comment(Request $request, $id_post){
+        $Count_Comment = CommentModel::where('id_post','=',$id_post);
+        return response()
+            ->json([
+                'data' => $Count_Comment,
+                'status' => true
+            ]);
     }
 }

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function ListSendNoti() {
     // show detail sendnoti
@@ -11,7 +12,7 @@ function ListSendNoti() {
     const {id_user} = useParams();
     const [dataSendNoti, setDataSendNoti] = useState([]);
     const getDataSendNoti = async (e) => {
-        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/show_sendnoti/${id_user}`)   
+        let res= await axios.get(`${url}/roomNumber/show_sendnoti/${id_user}`)   
         setDataSendNoti(res.data.data)
     }
     useEffect(() => {
@@ -21,13 +22,13 @@ function ListSendNoti() {
         }
     },[])
     const handleCancelSendNoti = async (e, id_room_number) => {
-        let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/cancelSendNoti/${id_room_number}`)
+        let res = await axios.post(`${url}/roomNumber/cancelSendNoti/${id_room_number}`)
         if(res.data.status){
             getDataSendNoti()
         }
     }
     const handleDeletelSendNoti = async (e, id_room_number) => {
-        let res = await axios.post(`http://127.0.0.1:8000/api/roomNumber/deleteSendNoti/${id_room_number}`)
+        let res = await axios.post(`${url}/roomNumber/deleteSendNoti/${id_room_number}`)
         if(res.data.status){
             getDataSendNoti()
         }

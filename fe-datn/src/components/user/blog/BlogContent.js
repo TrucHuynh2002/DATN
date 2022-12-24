@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
+import { url } from '../../url';
 
 function BlogContent() {
   
@@ -18,8 +19,7 @@ function BlogContent() {
 
   // danh sach Blog
   const getData = async () => {
-   const res = await axios.get('http://127.0.0.1:8000/api/blog/show');
-
+   const res = await axios.get(`${url}/blog/show`);
       setListBlog(res.data.data);
   };
 

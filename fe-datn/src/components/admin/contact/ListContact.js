@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
+import { url } from '../../url';
 
 function ListContact() {
 
@@ -20,7 +21,7 @@ function ListContact() {
 
   // danh sach contact
   const getData = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/contact/show');
+    const res = await axios.get(`${url}/contact/show`);
       setListContact(res.data.data);
   };
 

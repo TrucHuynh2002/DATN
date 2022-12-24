@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { url } from '../url';
 
 function Contact() {
 
@@ -26,7 +27,7 @@ function Contact() {
 
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://127.0.0.1:8000/api/contact/create', contact);
+    const res = await axios.post(`${url}/contact/create`, contact);
     if(res.data.status === true){
         setAlert({
             err_list: res.data

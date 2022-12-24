@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function EditRoomtype() {
 
@@ -24,7 +25,7 @@ function EditRoomtype() {
 
   const handleSumbit = async (e) => {
       e.preventDefault();
-      const res = await axios.put(`http://127.0.0.1:8000/api/roomType/update/${id_room_type}`, editRoomType);
+      const res = await axios.put(`${url}/roomType/update/${id_room_type}`, editRoomType);
     //   console.log(res);
       if(res.data.status === true){
           setAlert({
@@ -45,7 +46,7 @@ function EditRoomtype() {
 }, []);
 
   const loadRoom = async () => {
-      const result = await axios.get(`http://127.0.0.1:8000/api/roomType/show/${id_room_type}`);
+      const result = await axios.get(`${url}/roomType/show/${id_room_type}`);
       // console.log(result)
       setEditRoomType(result.data.data);
   };

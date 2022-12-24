@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
 
 function AddBlog() {
     
@@ -46,7 +47,7 @@ function AddBlog() {
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         dataForm.append('id_user',id_user)
-        const res = await axios.post("http://127.0.0.1:8000/api/blog/create", dataForm);
+        const res = await axios.post(`${url}/blog/create`, dataForm);
         
         if(res.data.status === true){
             setAlert({

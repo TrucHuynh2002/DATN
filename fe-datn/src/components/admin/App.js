@@ -5,13 +5,14 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import FooterAdmin from './FooterAdmin';
 import HeaderAdmin from './HeaderAdmin';
 import NavAdmin from './NavAdmin';
+import { url } from '../url';
 
 function App() {
   const navigate = useNavigate();
   const checkAdmin = async () => {
     const get_user = JSON.parse(localStorage.getItem('user'));
     if(get_user){
-      const res = await axios.get("http://127.0.0.1:8000/api/user/show/"+get_user[0].id);
+      const res = await axios.get(`${url}/user/show/`+get_user[0].id);
       if(res.data.status === true){
         const user_data = res.data.data;
         if(user_data[0].role != 2){

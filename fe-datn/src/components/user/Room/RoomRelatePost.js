@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import { url } from '../../url';
 
 
 function RoomRelatePost({onClick}) {
@@ -16,7 +17,7 @@ function RoomRelatePost({onClick}) {
     err_list: {},
   });  
   const getData = async () => {
-    const res = await axios.get("http://127.0.0.1:8000/api/post/show");
+    const res = await axios.get(`${url}/post/show`);
     setListPost(res.data.data);
   };
 var settings = {

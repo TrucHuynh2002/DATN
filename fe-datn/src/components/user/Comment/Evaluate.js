@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Rate from './Rate';
+import { url } from '../../url';
 
 function Evaluate({loader}) {
   const {id_post} = useParams();
@@ -29,15 +30,15 @@ function Evaluate({loader}) {
   
   const getData = async () => {
     // danh sach post
-    const Post = await axios.get(`http://127.0.0.1:8000/api/post/show/${id_post}`);
+    const Post = await axios.get(`${url}/post/show/${id_post}`);
       setListPost(Post.data.data);
     // Get all Star Post
-    let AllStarPost = await axios.get(`http://127.0.0.1:8000/api/rating/show/post/${id_post}`)
+    let AllStarPost = await axios.get(`${url}/rating/show/post/${id_post}`)
     if(AllStarPost.data.status == true){
       setGetAllStar(AllStarPost.data.data);
     }
     // Getting Star
-    const AverageRate = await axios.get(`http://127.0.0.1:8000/api/rating/average/${id_post}`);
+    const AverageRate = await axios.get(`${url}/rating/average/${id_post}`);
     setAverageRate(AverageRate.data.ratingNumber)
     setDataAverageRate(AverageRate.data.data);
     setReviewStar({...reviewStar,

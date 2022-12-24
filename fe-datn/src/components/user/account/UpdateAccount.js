@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function UpdateAccount() {
     const [listProvince, setListProvince] = useState([]);
@@ -10,22 +11,22 @@ function UpdateAccount() {
     const [listStreet, setStreet] = useState([]);
     // tỉnh
     const getDataProvince = async () => {
-        const res = await axios.get('http://127.0.0.1:8000/api/post/show_province');
+        const res = await axios.get(`${url}/post/show_province`);
         setListProvince(res.data.data);
     }
     // huyện
     const getDataDistrict = async (id_province = "") => {
-        const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+        const ress = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
         setListDistrict(ress.data.data);
     }
     // xã
     const getDataWard = async (id_district = '', id_province = '') => {
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
     // đường 
     const getDataStreet = async (id_province = '', id_district = '') => {
-        const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
         setStreet(resss.data.data);
         
     }
@@ -66,7 +67,7 @@ function UpdateAccount() {
         formData.append('id_district',editAccount.id_district);
         formData.append('id_ward',editAccount.id_ward);
         formData.append('id_street',editAccount.id_street);
-        const res = await axios.put(`http://127.0.0.1:8000/api/user/update/${id_Account}`, editAccount);
+        const res = await axios.put(`${url}/user/update/${id_Account}`, editAccount);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -95,7 +96,7 @@ function UpdateAccount() {
     }, []);
 
     const loadCate = async () => {
-        const result = await axios.get(`http://127.0.0.1:8000/api/user/showAcount/${id_Account}`);
+        const result = await axios.get(`${url}/user/showAcount/${id_Account}`);
         setEditAccount(result.data.data);
     };
 

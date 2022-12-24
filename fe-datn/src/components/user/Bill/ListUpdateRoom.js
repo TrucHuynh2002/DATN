@@ -2,17 +2,18 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { url } from '../../url';
 
 function ListUpdateRoom() {
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [dataBookingRoom,setDataBookingRoom] = useState([]);
     const getDataBookingRoom = async (e) => {
-        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/booking_room/${id_user}`)
+        let res= await axios.get(`${url}/roomNumber/booking_room/${id_user}`)
         setDataBookingRoom(res.data.data)
     }
     const CancelBookingRoom = async (e,id_room) => {        
-        let res= await axios.get(`http://127.0.0.1:8000/api/roomNumber/checkout/${id_room}`)
+        let res= await axios.get(`${url}/roomNumber/checkout/${id_room}`)
         if(res.data.status == true){
             getDataBookingRoom();
         }

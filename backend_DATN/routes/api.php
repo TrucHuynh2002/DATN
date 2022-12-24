@@ -148,6 +148,7 @@ Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'del
 Route::get('qa/show', [QAController::class, 'show']);
 Route::get('qa/show_detail/{id}', [QAController::class, 'show_detail']);
 Route::post('qa/created_at', [QAController::class, 'created_at']);
+Route::delete('qa/deleteQa/{id}', [QAController::class, 'deleteQa']);
 
 //noty_notyqa
 Route::get('noty_qa/show', [notyNotyQaController::class, 'show']);
@@ -207,6 +208,7 @@ Route::get('comment/showUserDes', [CommentController::class, 'CommentDes']);
 Route::post('comment/create', [CommentController::class, 'CommentAdd']);
 Route::put('comment/update/{id}', [CommentController::class, 'CommentEdit']);
 Route::delete('comment/delete/{id}', [CommentController::class, 'CommentDelete']);
+Route::get('comment/count/{id}', [CommentController::class, 'Count_Comment']);
 
 // CommentQa
 Route::get('comment_qa/show', [comment_QAController::class, 'show_all']);
@@ -216,6 +218,7 @@ Route::get('comment_qa/show/{id}', [comment_QAController::class, 'Comment_QASele
 Route::put('comment_qa/update/{id}', [comment_QAController::class, 'CommentEdit']);
 Route::delete('comment_qa/delete/{id}', [comment_QAController::class, 'CommentDelete']);
 Route::get('comment/qa-comment-owner/{id_user}', [comment_QAController::class, 'getAllCommentPostUserOwner']);
+Route::get('comment_qa/count/{id}', [Comment_QAController::class, 'Count_Comment']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
@@ -346,6 +349,7 @@ Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwne
 // Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
 // Route::post('auth/google/callback', [GoogleController::class, 'loginCallback']);
 
+// GOOGLE
 Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl']);
 Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 // FACEBOOK

@@ -3,6 +3,8 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { url } from '../../url';
+
 function FooterConfig() {
 
   // const {id_config} = useParams();
@@ -32,7 +34,7 @@ function FooterConfig() {
         dataForm.append('email',email);
         dataForm.append('sdt',sdt);
         dataForm.append('introduce',introduce);
-    const res = await axios.put("http://127.0.0.1:8000/api/config/update", editConfig);
+    const res = await axios.put(`${url}/config/update`, editConfig);
     if(res.data.status === true){
         setAlert({
             err_list: res.data
@@ -50,7 +52,7 @@ function FooterConfig() {
   }, []);
 
   const loadConfig = async () => {
-      const result = await axios.get(`http://127.0.0.1:8000/api/config`);
+      const result = await axios.get(`${url}/config`);
       setEditConfig(result.data.data);
   };
 

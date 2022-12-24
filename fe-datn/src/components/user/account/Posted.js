@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
+import { url } from '../../url';
 
 function Posted() {
     var user = JSON.parse(localStorage.getItem("user"));
@@ -19,13 +20,13 @@ function Posted() {
     },[]);
     // danh sach Posted
     const getData = async () => {
-        const Post = await axios.get(`http://127.0.0.1:8000/api/post/showUser/${id_user}`); 
+        const Post = await axios.get(`${url}/post/showUser/${id_user}`); 
             setListPost(Post.data.data);
-        const Account = await axios.get(`http://127.0.0.1:8000/api/user/showimg`);
+        const Account = await axios.get(`${url}/user/showimg`);
             setInfoAccount(Account.data.data);
     };   
     const deletePost = async (id_post) => {
-        await axios.delete(`http://127.0.0.1:8000/api/post/delete/${id_post}`);
+        await axios.delete(`${url}/post/delete/${id_post}`);
         getData();
       };
 

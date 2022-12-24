@@ -5,12 +5,16 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { url } from '../url';
 
 function QA() {
   const user = JSON.parse(localStorage.getItem('user')); 
+  // const visableCmt = 3; 
+  const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
+  const [listCountComment, setListCountComment] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [listChildComment, setListChildComment] = useState([]);
   const [loader,setLoader] = useState(0);
@@ -35,7 +39,7 @@ function QA() {
 
   const handleUpdateComment = async (e,id_cmt) => {
     e.preventDefault();
-    let res = await  axios.get(`http://127.0.0.1:8000/api/comment_qa/show/${id_cmt}`)
+    let res = await  axios.get(`${url}/comment_qa/show/${id_cmt}`)
     setContentUpdateCmt(res.data.data.content);
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
 
@@ -45,7 +49,7 @@ function QA() {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',contentUpdateCmt);
-    let res = await  axios.post(`http://127.0.0.1:8000/api/comment_qa/update/${id_cmt}?_method=PUT`,formData)
+    let res = await  axios.post(`${url}/comment_qa/update/${id_cmt}?_method=PUT`,formData)
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }
@@ -72,14 +76,17 @@ function QA() {
 
    // danh sach 
    const getData = async () => {
-    const Qa = await axios.get('http://127.0.0.1:8000/api/qa/show');
+    const Qa = await axios.get(`${url}/qa/show`);
     setListQa(Qa.data.data);
-    const res = await axios.get(`http://127.0.0.1:8000/api/comment_qa/show_qa`);
+    const res = await axios.get(`${url}/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
+    
    };
-   
-  
+   const countcmt = async (e,id_qa) => {
+    const countcmt = await axios.get(`http://127.0.0.1:8000/api/comment_qa/count/${id_qa}`);
+      setListCountComment(countcmt.data.data)
+   }
 // const loadMore = () => {
 //   setListComment(index + 5)
 //   console.log(index)
@@ -94,7 +101,7 @@ function QA() {
     let formData = new FormData();
     formData.append('content',addQA.content)
     formData.append('id_user',id_user)
-    const res = await axios.post(`http://127.0.0.1:8000/api/qa/created_at`,formData);
+    const res = await axios.post(`${url}/qa/created_at`,formData);
     setLoader(res.data.length++);
   }
   const handleChangeComment = (e) => {
@@ -108,22 +115,29 @@ function QA() {
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
     formData.append('child_idComment',childIdComment)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
+    const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
-      const ress = await axios.post(`http://127.0.0.1:8000/api/noty_qa/create`, addNotify);
+      const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
     }
     setReply({
       activeComment:false
     })
     setLoader(loader + 1);
   }
+  // xoa cmtQa
   const handleDeleteComment = async (e,id_cmt) => {
-    let res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/delete/${id_cmt}?_method=DELETE`);
+    let res = await axios.post(`${url}/comment_qa/delete/${id_cmt}?_method=DELETE`);
     if(res.data.status = true){
       setLoader(loader + 1 );
     }
-}
+  }
+  // xoa qa
+  const deleteQa = async (id_qa) => {
+    await axios.delete(`${url}/qa/deleteQa/${id_qa}`);
+    getData();
+  };
 
   const [show, setShow] = useState(false);
   const [alertShow,setAlertShow] = useState(false);
@@ -136,6 +150,14 @@ function QA() {
     setShow(true)
     checkManage();
   }
+  const loadmoreCmt = () => {
+        setVisableCmt(VisableCmt + 3);
+       getData();
+  }
+  const [countCommentQA, setCountCommentQA] = useState({
+    id_qa : '',
+    count:0
+  })
   return (
     <>
       <div className="back_re">
@@ -203,13 +225,9 @@ function QA() {
                     </div> 
                     <div className="content_comment_chammmm"> ...
                       <div className="content_comment_editAndDelete">
-                        <span>Xóa</span> <br />
-                        <span>Cập nhật</span>  
+                        <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span> <br />
                       </div>
                     </div>
-                    {/* <div className='btn_qaDelete'>
-                      <Button variant="danger">X</Button>
-                    </div> */}
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
@@ -228,10 +246,21 @@ function QA() {
                   </Form>    
                 </div>
                 <div style={{margin:' 26px 10px 0'}}>
+                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
                   <span>Xem {listComment.length} bình luận trong bài </span>
+                  {/* {
+                    countCommentQA.id_qa == listQa.id_qa ? countCommentQA.id_qa
+                  } */}
                   <i className="fa-regular fa-comment"></i>
                 </div>
-                {listComment.map((listComment, index) => {
+                {listComment.slice(0,VisableCmt).map((listComment, index) => {
+                    // if(listComment.id_qa == listQa.id_qa){
+                    //   setCountCommentQA({
+                    //     ...countCommentQA,
+                    //     [countCommentQA.id_qa]: listQa.id_qa,
+                    //    [ countCommentQA.count]:  countCommentQA.count + 1
+                    //   })
+                    // }
                   return( listQa.id_qa == listComment.id_qa && (
                     <div className="container_qa" key={index}>
                       <div className='qa_avatar'>
@@ -387,11 +416,15 @@ function QA() {
                         </div>
                         )})}
                       </div>
-                    </div>  
+                    </div>
                   ))}
                 )}
+                {VisableCmt < listComment.length &&
+                <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
+                 } 
               </div>
             );})}
+            
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { url } from '../url';
 
 function Search() {
     const queryString = window.location.search;
@@ -20,8 +21,8 @@ function Search() {
     const [aData,setData] = useState([])
     const getPostSearch = async () => {
         let a = addTrendSearch;
-        let ress = await axios.post('http://127.0.0.1:8000/api/search', addTrendSearch);
-        let res = await axios.get(`http://127.0.0.1:8000/api/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
+        let ress = await axios.post(`${url}/search`, addTrendSearch);
+        let res = await axios.get(`${url}/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
       }
     useEffect(() => {

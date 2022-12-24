@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { url } from '../../url';
 
 function HomeSearch() {
 
@@ -26,7 +27,7 @@ function HomeSearch() {
   const {typeRooms} = getDataSearch
   const [getProvince,setProvince] = useState([]);
   const getTypeRoom = async () => {
-    let dataRoom = await axios.get("http://127.0.0.1:8000/api/roomType/show");
+    let dataRoom = await axios.get(`${url}/roomType/show`);
     setGetDataSearch({...getDataSearch,typeRooms:dataRoom.data.data})
   }
       const {
@@ -39,7 +40,7 @@ function HomeSearch() {
         typeRoom
       } = keyword
       const getProvinces = async () => {
-        let dataRooms = await axios.get("http://127.0.0.1:8000/api/province/show");
+        let dataRooms = await axios.get(`${url}/province/show`);
             setProvince(dataRooms.data.data)
           }
           const handledistrice = async (e) => {
@@ -57,11 +58,11 @@ function HomeSearch() {
           const [listDistrict, setListDistrict] = useState([]);
           const [listWard, setListWard] = useState([]);
           const getDataDistrict = async (id_province = '') => {
-              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+              const res = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
               setListDistrict(res.data.data);
           }
           const getDataWard = async (id_district1  = '') => {
-              const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?${id_district}`);
+              const res = await axios.get(`${url}/post/show_ward?${id_district}`);
               setListWard(res.data.data);
           }     
           const [searching,setSearching] = useState(false);
@@ -69,7 +70,7 @@ function HomeSearch() {
           const [getDataPostSearch,setGetDataPostSearch] = useState([]);
           const [getimage,setgetImage] = useState([]);
           const getKeyword = async (keyword) => {
-            const res = await axios.get(`http://127.0.0.1:8000/api/getKeyWord/${keyword}`);
+            const res = await axios.get(`${url}/getKeyWord/${keyword}`);
             setgetKeywords(res.data.data)
             setGetDataPostSearch(res.data.get_post)
             setgetImage(res.data.image);

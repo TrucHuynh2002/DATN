@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { url } from '../url';
 
 function Signin() {
 
@@ -37,7 +38,7 @@ function Signin() {
         dataForm.append('id_district', id_district);
         dataForm.append('id_ward', id_ward);
         dataForm.append('id_street', id_street);
-        const res = await axios.post("http://127.0.0.1:8000/api/user/create", addUser);
+        const res = await axios.post(`${url}/user/create`, addUser);
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
@@ -70,24 +71,24 @@ function Signin() {
         }
         // tỉnh
         const getDataProvince = async () => {
-            const res = await axios.get('http://127.0.0.1:8000/api/province/show');
+            const res = await axios.get(`${url}/province/show`);
             setListProvince(res.data.data);
         }
         // huyện 
         const getDataDistrict = async (id_province = '') => {
-            const ress = await axios.get(`http://127.0.0.1:8000/api/post/show_district?id_province=${id_province}`);
+            const ress = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
             setListDistrict(ress.data.data);
         }
         // xã
         const getDataWard = async (id_district = '') => {
             var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+            const resss = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
             setListWard(resss.data.data);
         }     
         // đường 
         const getDataStreet = async (id_district = '') => {
             var id_province = addProvince.undefined;
-            const resss = await axios.get(`http://127.0.0.1:8000/api/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+            const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
             setStreet(resss.data.data);
         };
 
