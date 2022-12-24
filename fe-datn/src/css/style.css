@@ -2803,7 +2803,10 @@ margin-top: 30px;
     color: white;
     line-height: 2;
     margin-right: 10px;
+
+
 }
+
 
 .textNoti{
     padding:10px 6px;
@@ -2843,4 +2846,20 @@ margin-top: 30px;
 .link_noti {
     text-transform: none;
     font-weight: 400;
+}
+.btn-handle-booking-room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-handle-accept-booking-room,.btn-handle-cancel-booking-room{
+    padding: 0 12px;
+}
+
+.listBookingRoom {
+    margin-bottom: 12px;
+}
+.checkroom {
+    display: flex;
 }

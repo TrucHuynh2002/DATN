@@ -10,6 +10,7 @@ class NotificationModel extends Model
     use HasFactory;
     protected $table = 'notifications';
     protected $fillable = [
+        'read_at',
         'type',
         'notifiable_type',
         'data'

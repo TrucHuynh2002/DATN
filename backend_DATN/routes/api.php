@@ -124,6 +124,7 @@ Route::get('post/show_street_detail/{id_post}', [PostController::class, 'show_st
 Route::get('post/show_roomtype/{id_post}', [PostController::class, 'show_room_type']);
 Route::delete('post/image/delete/{id_img}', [PostController::class, 'Post_DeleteImage']);
 Route::get('post/post_view_top5', [PostController::class, 'Post_view_top5']);
+Route::get('post/show_count_roomNumber/{id_post}', [PostController::class, 'Post_count_roomNumber']);
 
 // RoomNumber
 Route::get('roomNumber/show', [RoomNumberController::class, 'show']);
@@ -142,6 +143,8 @@ Route::post('roomNumber/cancel_roombookuser/{id}', [RoomNumberController::class,
 Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showSendNoti']);
 Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
+
+Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
 
 
 // Q&A

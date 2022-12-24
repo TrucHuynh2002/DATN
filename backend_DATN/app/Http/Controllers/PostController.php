@@ -598,4 +598,14 @@ class PostController extends Controller
             'data' => $data
         ]);
     }
+    public function Post_count_roomNumber(Request $request, $id)
+    {
+        $data = RoomNumberModel::where('id_post', '=', $id)->where('status','=',0)->get();
+        // $data = RoomNumberModel::find($id);
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
 }
