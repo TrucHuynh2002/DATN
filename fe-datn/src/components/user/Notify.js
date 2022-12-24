@@ -67,13 +67,11 @@ function Notify() {
 
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
-        console.log(res.data)
         setNotification(res.data.data)
         setNotificationUnread(res.data.notificationUnread)
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
-        console.log(id_notification)
         // let formData = new FormData();
         // formData.append('id_user_two',id_userBooking)
         // formData.append('id_notification',id_notification)
@@ -130,27 +128,26 @@ function Notify() {
                                     if(noti.data.Comment.id_user == id_user){
                                         return ''
                                     }else{
-                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa bình luận phòng trọ <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong> {noti.data.post.post_name}</strong></Link> của bạn </div>
+                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa bình luận phòng trọ <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong> {noti.data.post.post_name}</strong></Link> của bạn </div>
                                     }
                                 }
-
                                 if(noti.type == "App\\Notifications\\ReplyCommentPostNotification"){
                                     if(noti.data.Comment.id_user != id_user){
                                         if(noti.data.replyCmt.id_user == id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                         else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của chính mình tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của chính mình tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                         else{
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.replyCmt.full_name}</strong></Link>  bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link> của bạn </div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.replyCmt.full_name}</strong></Link>  bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link> của bạn </div>
                                         }                                      
                                     }
                                 }
                                 if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
                                     
                                         if(noti.data.Comment.id_user != id_user){
-                                            return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                 }
 
@@ -197,14 +194,12 @@ function Notify() {
                                                           </div>
                                                         </div> 
                                                         }   
-                                                           
-                                                           
-                                                           {
-                                                             handleBooking &&
-                                                            <div className='text-muted'>
-                                                             Lựa chọn thành công
-                                                            </div>
-                                                           }
+                                                        {
+                                                            handleBooking &&
+                                                        <div className='text-muted'>
+                                                            Lựa chọn thành công
+                                                        </div>
+                                                        }
                                                         
                                                        
                                                     </div>
