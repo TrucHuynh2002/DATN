@@ -2778,7 +2778,6 @@ margin-top: 30px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;    
 }
-
 .loadCmt:hover{
     cursor: pointer;
     text-decoration-line: underline;

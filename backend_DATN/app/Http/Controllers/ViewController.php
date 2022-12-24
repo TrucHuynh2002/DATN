@@ -24,7 +24,7 @@ class ViewController extends Controller
         } else {
             $data_new = new View();
             $data_new->view_index++;
-            $data_new->created_at = new Carbon();
+            $data_new->created_at = Carbon::now('Asia/Ho_Chi_Minh');
             $data_new->save();
             return response()
                 ->json([
