@@ -143,6 +143,8 @@ Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showS
 Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
 
+Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
+
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
