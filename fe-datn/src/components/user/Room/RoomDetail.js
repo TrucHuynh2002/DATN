@@ -151,20 +151,17 @@ function RoomDetail() {
                         <div className='content_detail_____'>
                             <p>Địa chỉ : </p>        
                         <span>
-                        <strong> {a.address} </strong>
-                        <strong> Đường </strong>
+                        <strong> {a.address},</strong>
                             {liststreet.map((street_detail, index) => {
                             return (   
                                 <strong key={index}> {street_detail._name}, </strong>                        
                                 );
                             })}
-                        <strong> Xã </strong>
                             {listward.map((ward_detail, index) => {
                             return (   
                                 <strong key={index}> {ward_detail._name}, </strong>                        
                                 );
                             })}                  
-                        <strong> Quận </strong> 
                             {listdistrict.map((dis_detail, index) => {
                                 return (   
                                     <strong key={index}> {dis_detail._name}, </strong>            

@@ -78,7 +78,7 @@ function Notify() {
             <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
         </li>
     </ul>
-    <div className="tab-content" id="myTabContent" style={{ marginTop:"10px"}}>
+    <div className="tab-content" id="myTabContent" style={{ marginTop:"10px", height:"300px", overflow:"hidden", overflowY:"scroll"}}>
         <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
             {!localStorage.getItem('user') ?
                 <div className="">
@@ -152,26 +152,17 @@ function Notify() {
                                     
                                     if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                         return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận <strong>{noti.data.replyCmt.full_name}</strong>  bài viết của bạn trên <strong>Hỏi - Đáp</strong> </div>
-                                    }    
-
-                                    
+                                    }                                       
                                 }
-
                                 if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
                                     
                                     if(noti.data.replyCmt.id_user == id_user){
                                         return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>Hỏi - Đáp</strong> </div>
                                     }
                                 }
-
-
-                            
-
-
                             })
                         }
                     </div> 
-
                     <div className="notifyInteractive">
                         <h3 style={{textAlign: "center"}}>Hóa đơn</h3>
                         {listBillUser.length > 0 && listBillUser.map((cate, index) => {

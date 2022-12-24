@@ -169,20 +169,17 @@ function RoomDetail() {
                     </div>  
                     <div className='account_content____'>
                         <h4 className="name_title2" style={{fontWeight: '300'}}> Địa chỉ: 
-                            <strong> {a.address} </strong>
-                            <strong> Đường </strong>
+                            <strong> {a.address}, </strong>
                             {liststreet.map((street_detail, index) => {
                             return (   
                                 <strong key={index}> {street_detail._name}, </strong>                        
                                 );
                             })} 
-                            <strong style={{marginRight:'2px'}}> Xã </strong>
                                 {listward.map((ward_detail, index) => {
                                 return (   
                                     <strong style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </strong>                        
                                     );
                                 })}                   
-                            <strong style={{marginRight:'2px'}}> Quận </strong> 
                                 {listdistrict.map((dis_detail, index) => {
                                     return (   
                                         <strong style={{marginRight:'2px'}} key={index}> {dis_detail._name}, </strong>            
