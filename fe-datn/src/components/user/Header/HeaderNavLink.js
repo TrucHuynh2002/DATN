@@ -9,6 +9,7 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
+    const id_users = user ? user[0].id : '';
     const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
@@ -96,6 +97,7 @@ function HeaderNavLink() {
         getDataRoomType();
         get_furnitures();
         getData();
+        getNotify();
     },[]);
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
@@ -222,6 +224,12 @@ function HeaderNavLink() {
         const res = await axios.get(`${url}/category/show`);
            setListCategory(res.data.data);
     };
+    const [notificationUnread,setNotificationUnread] = useState([])
+    const getNotify = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
+        // setNotification(res.data.data)
+        setNotificationUnread(res.data.notificationUnread)
+    }
     
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -238,8 +246,11 @@ function HeaderNavLink() {
             <li className="nav-item">
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-                        style={{color: 'black', fontSize:'1.8em',border: 'none'}} >
-                        <i className='bx bx-bell'></i>
+                        style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
+                        <i className='bx bx-bell' style={{color:"red"}}></i>
+                        <div className='count-bell-unread'>
+                            {notificationUnread.length}
+                        </div>
                     </div>
                    <Notify />
                 </div>
