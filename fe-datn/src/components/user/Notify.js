@@ -111,20 +111,20 @@ function Notify() {
                                     if(noti.data.Comment.id_user == id_user){
                                         return ''
                                     }else{
-                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa bình luận phòng trọ <strong> {noti.data.post.post_name}</strong> của bạn </div>
+                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa bình luận phòng trọ <strong> {noti.data.post.post_name}</strong> của bạn </div>
                                     }
                                 }
 
                                 if(noti.type == "App\\Notifications\\ReplyCommentPostNotification"){
                                     if(noti.data.Comment.id_user != id_user){
                                         if(noti.data.replyCmt.id_user == id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>{noti.data.post.post_name}</strong> </div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>{noti.data.post.post_name}</strong> </div>
                                         }
                                         else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của chính mình tại bài viết <strong>{noti.data.post.post_name}</strong> </div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của chính mình tại bài viết <strong>{noti.data.post.post_name}</strong> </div>
                                         }
                                         else{
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận <strong>{noti.data.replyCmt.full_name}</strong>  bài viết <strong>{noti.data.post.post_name}</strong> của bạn </div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận <strong>{noti.data.replyCmt.full_name}</strong>  bài viết <strong>{noti.data.post.post_name}</strong> của bạn </div>
                                         }
                                        
                                     }
@@ -132,26 +132,26 @@ function Notify() {
                                 if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
                                     
                                         if(noti.data.Comment.id_user != id_user){
-                                            return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn tại bài viết {noti.data.post.post_name} </div>
+                                            return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>{noti.data.Comment.full_name} Vừa trả lời bình luận của bạn tại bài viết {noti.data.post.post_name} </div>
                                         }
                                 }
 
                                 if(noti.type == "App\\Notifications\\CommentQANotification"){
                                     if(noti.data.Comment.id_user != id_user){
-                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa bình luận bài viết trên <strong>Hỏi - Đáp</strong>  của bạn </div>
+                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa bình luận bài viết trên <strong>Hỏi - Đáp</strong>  của bạn </div>
                                     }
                                 }
 
                                 if(noti.type == "App\\Notifications\\ReplyCommentQANotification"){
                                     if(noti.data.replyCmt.id_user == id_user){
-                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn trên <strong> Hỏi - Đáp </strong></div>
+                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn trên <strong> Hỏi - Đáp </strong></div>
                                     }
                                     if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
-                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên <strong>Hỏi - Đáp</strong> của bạn. </div>
+                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên <strong>Hỏi - Đáp</strong> của bạn. </div>
                                     }
                                     
                                     if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
-                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận <strong>{noti.data.replyCmt.full_name}</strong>  bài viết của bạn trên <strong>Hỏi - Đáp</strong> </div>
+                                        return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận <strong>{noti.data.replyCmt.full_name}</strong>  bài viết của bạn trên <strong>Hỏi - Đáp</strong> </div>
                                     }    
 
                                     
@@ -160,7 +160,7 @@ function Notify() {
                                 if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
                                     
                                     if(noti.data.replyCmt.id_user == id_user){
-                                        return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>Hỏi - Đáp</strong> </div>
+                                        return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.Comment.full_name}</strong> Vừa trả lời bình luận của bạn tại bài viết <strong>Hỏi - Đáp</strong> </div>
                                     }
                                 }
 

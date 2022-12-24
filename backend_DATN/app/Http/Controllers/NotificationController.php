@@ -24,4 +24,9 @@ class NotificationController extends Controller
             'status' => true
         ]);
     }
+
+    public function maskAsReads(Request $request,$id_user){
+        $get_data = User::find($id_user);
+        $get_data->unreadNotifications->markAsRead();
+    }
 }

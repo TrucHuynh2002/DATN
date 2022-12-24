@@ -230,6 +230,11 @@ function HeaderNavLink() {
         // setNotification(res.data.data)
         setNotificationUnread(res.data.notificationUnread)
     }
+
+    const handleMarKAsRead = async (e) => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
+        getNotify();
+    }
     
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -247,10 +252,15 @@ function HeaderNavLink() {
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
-                        <i className='bx bx-bell' style={{color:"red"}}></i>
-                        <div className='count-bell-unread'>
-                            {notificationUnread.length}
-                        </div>
+                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} onClick={e => handleMarKAsRead(e)}></i>
+                        {
+                            notificationUnread.length > 0
+                            &&
+                            <div className='count-bell-unread'>
+                                {notificationUnread.length}
+                            </div>
+                        }
+                     
                     </div>
                    <Notify />
                 </div>
