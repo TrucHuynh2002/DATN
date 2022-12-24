@@ -11,7 +11,6 @@ function LayoutUser() {
   },[])
   const getData = async () => {
     const res = await axios.get(`${url}/view_index/update_view`);
-    console.log(res.data)
   };
   return (
     <>

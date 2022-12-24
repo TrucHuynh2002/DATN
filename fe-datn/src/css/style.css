@@ -2843,8 +2843,10 @@ margin-top: 30px;
     font-size: 10px;
     text-align: center;
 }
-
-
+.link_noti {
+    text-transform: none;
+    font-weight: 400;
+}
 .btn-handle-booking-room{
     display: flex;
     justify-content: center;
@@ -2857,4 +2859,7 @@ margin-top: 30px;
 
 .listBookingRoom {
     margin-bottom: 12px;
+}
+.checkroom {
+    display: flex;
 }
