@@ -58,12 +58,9 @@ function ContentComent() {
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
-<<<<<<< HEAD
     formData.append('id_Replycomment',idReplyCmt)
-    const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
-=======
+    // const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     const res = await axios.post(`${url}/comment/create`,formData);
->>>>>>> b575106716f893fc5e16cfb5336df662cbdcfe71
       if(res.data.status == true ){
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
         const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
