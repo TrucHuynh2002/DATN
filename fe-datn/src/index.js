@@ -88,13 +88,10 @@ import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
 import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
 import QADetail from './components/user/QADetail';
-<<<<<<< HEAD
 import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
-=======
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
 
->>>>>>> 0e3ca96b4490209f25a2f2aa071ea405e766742d
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -137,7 +134,7 @@ root.render(
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
-        <Route path="checkroom" element={<CheckRoomManage />} />
+        <Route path="checkroom/:id_roomNumber" element={<CheckRoomManage />} />
         <Route path="Loi" element={<Loi />} />
         {/* gui yeu cau thong bao phong */}
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />
