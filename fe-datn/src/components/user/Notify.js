@@ -319,6 +319,57 @@ function Notify({onClick}) {
                                                     )
                                                 }                                  
                                             }
+                                            if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
+                                                return   (
+                                                    <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                            <strong>{noti.data.subject.full_name}</strong> Vừa yêu cầu trả phòng phòng số 
+                                                            <strong>{noti.data.roomnumber.room_number}</strong> tại bài viết 
+                                                            <strong>{noti.data.roomnumber.post_name}</strong>
+                                                        </div>
+                                                    </Link>
+                                                )
+                                        }
+        
+                                            if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
+                                                return  (
+                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                            Yêu cầu trả phòng của bạn không thành công
+                                                        </div>
+                                                    </Link>
+                                                )
+                                            }
+            
+                                            if(noti.type == "App\\Notifications\\ReplyUpdateRoomCancel"){
+                                                return  (
+                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                            Yêu cầu trả phòng của bạn thành công
+                                                        </div>
+                                                    </Link>
+                                                )
+                                            }
+            
+                                            if(noti.type == "App\\Notifications\\BillNotification"){
+                                                return (
+                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        Bạn vừa nhận được hóa đơn tháng 
+                                                        <strong>{moment(noti.data.bill.created_at).local().format('MM')}</strong>
+                                                    </div>
+                                                )
+                                            }
+                                            if(noti.type == "App\\Notifications\\RatePostNotification"){
+                                                return   (
+                                                    <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                            <strong>{noti.data.user_two.full_name}</strong> 
+                                                            Vừa đánh giá bài viết 
+                                                            <strong>{noti.data.user.post_name} </strong>
+                                                        </div>
+                                                    </Link>
+                                                )
+                                            }
                                             if(noti.type == "App\\Notifications\\NotificationOwnerBookingRoom"){
                                                 if(noti.data.ownerBookingRoom.id_user != id_user){
                                                     if(noti.data.status ==  '2') {
