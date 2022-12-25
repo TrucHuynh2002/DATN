@@ -186,13 +186,20 @@ function HomeSearch() {
                           <option>Giá</option>
                           <option value={1}>Dưới 1 triệu</option>
                           <option value={2}>Từ 1 - 2 triệu</option>
+                          <option value={3}>Từ 2 - 3 triệu</option>
+                          <option value={4}>Từ 3 - 5 triệu</option>
+                          <option value={5}>Từ 5 - 7 triệu</option>
+                          <option value={6}>Từ 7 - 10 triệu</option>
+                          <option value={7}>Trên 10 triệu</option>
                         </select>
                       </div>
                       <div className="col-md-2 col-sm-12">
                         <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Diện tích</option>
                           <option value="1">Dưới 20m</option>
-                          <option value="2">Trên 20m</option>
+                          <option value="2">Từ 20 - 30m</option>
+                          <option value="3">Từ 30 - 50m</option>
+                          <option value="4">Trên 50m</option>
                         </select>
                       </div>
                       <div className="col-md-2 col-sm-12">
