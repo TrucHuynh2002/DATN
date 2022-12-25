@@ -90,7 +90,6 @@ function QADetail() {
 };
 // const loadMore = () => {
 //   setListComment(index + 5)
-//   console.log(index)
 //   if (index >= post.length) {
 //     setIsCompleted(true)
 //   } else {

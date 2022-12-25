@@ -91,6 +91,36 @@ function ListManageRoom() {
     const [alertError,setAlertError] = useState('')
 
     const handleClickRoom = (e,id_room,typeRoom,id_user_two= '',id_post = '') => {
+        // status === typeRoom
+        // ?
+        // setActive({...active,[id_room]: quality })
+        // :
+        // active.length <= 0 && setActive([...active,{id_rooms:id_room, status: typeRoom}])
+        // active.length > 0 && active.map((arr,i) => {
+            
+        //     if(arr.status == typeRoom){
+        //         if(arr.id_rooms != id_room){
+        //             // return setActive([...active,{id_room:id_room, status: typeRoom}])
+                    
+                    
+        //             setActive([...active,{id_rooms:id_room, status: typeRoom}])
+                
+        //         }else{
+        //         }
+        //     }
+        //     else if(arr.status != typeRoom){
+        //        setActive([{id_rooms:id_room, status: typeRoom}])
+        //     }           
+        // })
+
+        
+        // active.length > 0 && active.map((arr,i) => {
+        //    return  arr.id_room == id_room 
+        //     ?
+        //     '223'
+        //     :
+        //      ''
+        // })
         setActive({id_rooms:id_room, status: typeRoom,checked:true,id_user_two: id_user_two,id_post: id_post})        
     }
 
@@ -293,9 +323,8 @@ function ListManageRoom() {
                 </div>
                 <div className="row">
                     <div className="bill____ col-lg-6 col-sm-12">
-                        <Button 
-                        id="bill_button" 
-                        className="btn btn-primary" 
+                        <Button id="bill_button" 
+                        className="btn btn-primary"
                         onClick={(e) =>handleShowAddBill()}
                         >
                             Thêm hóa đơn

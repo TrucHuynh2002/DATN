@@ -57,11 +57,11 @@ function Login() {
     const [loginGoogle, setLoginGoogle] = useState('');
     const handleLoginGoogle = async (e) => {
         const google = await axios.get(`${url}/auth/google/url`);
-        // console.log(google.data)
+
         if(google.data.status === true){
             setLoginGoogle(google.data.url)
         }
-        // console.log(123)
+
     }
     const [loginFacebook, setLoginFacebook] = useState('');
     const handleLoginFacebook = async (e) => {

@@ -6,7 +6,6 @@ import { url } from '../../url';
 
 function EditRoomtype() {
 
-  // const navigate = useNavigate();
   const {id_room_type} = useParams();
   const [editRoomType, setEditRoomType] = useState({
     name_room_type: "",
@@ -26,19 +25,16 @@ function EditRoomtype() {
   const handleSumbit = async (e) => {
       e.preventDefault();
       const res = await axios.put(`${url}/roomType/update/${id_room_type}`, editRoomType);
-    //   console.log(res);
       if(res.data.status === true){
           setAlert({
               err_list: res.data
           });
-          console.log(alert.err_list)
       }
       else{           
           setAlert({
               err_list: res.data
           });
       }
-      // navigate("../list_furniture");
   };
 
   useEffect(() => {
@@ -47,7 +43,6 @@ function EditRoomtype() {
 
   const loadRoom = async () => {
       const result = await axios.get(`${url}/roomType/show/${id_room_type}`);
-      // console.log(result)
       setEditRoomType(result.data.data);
   };
 

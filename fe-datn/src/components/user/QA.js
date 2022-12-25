@@ -214,11 +214,13 @@ function QA() {
                       <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
                       </div>
                     </div> 
-                    <div className="content_comment_chammmm"> ...
-                      <div className="content_comment_editAndDelete">
-                        <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span> <br />
-                      </div>
-                    </div>
+                      {id_user == listQa.id_user &&
+                        <div className="content_comment_chammmm_delete"> ...
+                            <div className="content_comment_Delete">
+                              <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span>
+                            </div>
+                        </div>
+                      }
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
@@ -288,14 +290,14 @@ function QA() {
                           ) : ( <p className='cmt_name1' key={index}>{listComment.content}</p> ) 
                         }
                         </div>
-                        <div className="content_comment_chammmm"> ...
                           { id_user == listComment.id_user &&
-                            <div className="content_comment_editAndDelete">
-                              <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> <br />
-                              <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
+                            <div className="content_comment_chammmm"> ...
+                                <div className="content_comment_editAndDelete">
+                                  <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> <br />
+                                  <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
+                                </div>
                             </div>
                           }
-                        </div>
                      </div>
                       
                       <span 

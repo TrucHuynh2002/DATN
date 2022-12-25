@@ -69,6 +69,8 @@ function Notify({onClick}) {
             setNotification(res.data.data)
             setNotificationUnread(res.data.notificationUnread)
         }
+        setNotification(res.data.data)
+        setNotificationUnread(res.data.notificationUnread)
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
@@ -115,7 +117,7 @@ function Notify({onClick}) {
                                                     return ''
                                                 }else{
                                                     return (
-                                                        <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                        <div key={index} className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                             <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                 <strong>{noti.data.Comment.full_name}</strong>
                                                             </Link> Vừa bình luận phòng trọ 
@@ -333,7 +335,7 @@ function Notify({onClick}) {
         
                                             if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                                 return  (
-                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <Link to={`../layoutBill/${id_user}`}className='link_noti'onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                             Yêu cầu trả phòng của bạn không thành công
                                                         </div>
