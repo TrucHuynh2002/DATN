@@ -54,10 +54,12 @@ class RatingController extends Controller
         $User =  RatingModel::join('post','post_rate.id_post','=','post.id_post')
         ->join('users','post.id_user','=','users.id_user')
         ->select('post.post_name','users.id_user','post.id_post')
+        ->orderBy('post_rate.id_post_rate','DESC')
         ->first();
+
         $User_two = RatingModel::join('users','post_rate.id_user','=','users.id_user')
         ->select('users.full_name','post_rate.id_post')
-        // ->where('post_rate.id_user','=','users.id_user')
+        ->orderBy('post_rate.id_post_rate','DESC')
         ->first();
         $ownerUserId = User::find($User->id_user);
         Notification::send($ownerUserId,new RatePostNotification($User_two,$User));

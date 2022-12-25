@@ -145,7 +145,7 @@ class RoomNumberController extends Controller
             if($request->id_user_two != 'null'){
                 $data->id_user_two = $request->id_user_two;
                 $saveRoom = new SavingRoomModel();
-                $saveRoom->id_room = $id;
+                $saveRoom->id_room = $data->id_post;
                 $saveRoom->id_user = $request->id_user_two;
                 $saveRoom->save();
             }
@@ -276,12 +276,14 @@ class RoomNumberController extends Controller
         $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
         ->join('img_user','users.id_user','=','img_user.id_user')
         ->select('room_number.id_user_two','users.full_name','img_user.link_img_user')
+        // ->where('room_number.id','=',$id)
         ->first();
         
         // Lấy thông tin người chủ phòng
         $User = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
         ->join('post','room_number.id_post','=','post.id_post')
         ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
+        // ->where('room_number.id','=',$id)
         ->first();
         $ownerUserId = User::find($User->id_user);
         Notification::send($ownerUserId,new UpdateRoomNumber($User_two,$User));
@@ -386,6 +388,12 @@ class RoomNumberController extends Controller
         Notification::send($get_OwnerBookingRoom, new NotificationOwnerBookingRoom($get_OwnerBookingRoom,$get_OwnerPost,'2'));
         $roomNumber->status = 2;
         $roomNumber->check_room = null;
+        if($request->id_user_two != 'null'){
+            $saveRoom = new SavingRoomModel();
+            $saveRoom->id_room = $get_OwnerPost->id_post;
+            $saveRoom->id_user = $request->id_user_two;
+            $saveRoom->save();
+        }
         $roomNumber->save();
         if($request->id_notification){
                   $notiMaskasRead = NotificationModel::find($request->id_notification);
