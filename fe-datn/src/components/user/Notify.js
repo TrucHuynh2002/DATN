@@ -77,7 +77,7 @@ function Notify({onClick}) {
         // let formData = new FormData();
         // formData.append('id_user_two',id_userBooking)
         // formData.append('id_notification',id_notification)
-        let res = await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}`);
+        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}&&id_user_two=${id_userBooking}`);
         setHandleBooking(true)
     }
 
@@ -136,7 +136,7 @@ function Notify({onClick}) {
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết 
                                                                 <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                    <strong>{noti.data.post.post_name}</strong>
+                                                                    <strong> {noti.data.post.post_name} </strong>
                                                                 </Link>
                                                             </div>
                                                         )
@@ -148,7 +148,7 @@ function Notify({onClick}) {
                                                                     <strong>{noti.data.Comment.full_name}</strong>
                                                                 </Link> Vừa trả lời bình luận của chính mình tại bài viết 
                                                                 <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                    <strong>{noti.data.post.post_name}</strong>
+                                                                    <strong> {noti.data.post.post_name}</strong>
                                                                 </Link>
                                                             </div>
                                                         )
@@ -160,10 +160,10 @@ function Notify({onClick}) {
                                                                 <strong>{noti.data.Comment.full_name}</strong>
                                                                 </Link> Vừa trả lời bình luận 
                                                                 <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'>
-                                                                    <strong>{noti.data.replyCmt.full_name}</strong>
+                                                                    <strong> {noti.data.replyCmt.full_name}</strong>
                                                                 </Link>  bài viết 
                                                                 <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                    <strong>{noti.data.post.post_name}</strong>
+                                                                    <strong> {noti.data.post.post_name}</strong>
                                                                 </Link> của bạn 
                                                             </div>
                                                         )
@@ -180,7 +180,7 @@ function Notify({onClick}) {
                                                                     <strong>{noti.data.Comment.full_name}</strong>
                                                                 </Link> Vừa trả lời bình luận của bạn tại bài viết 
                                                                 <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                    <strong>{noti.data.post.post_name}</strong>
+                                                                    <strong> {noti.data.post.post_name}</strong>
                                                                 </Link>
                                                             </div>
                                                         )
@@ -325,9 +325,9 @@ function Notify({onClick}) {
                                                 return   (
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                            <strong>{noti.data.subject.full_name}</strong> Vừa yêu cầu trả phòng phòng số 
-                                                            <strong>{noti.data.roomnumber.room_number}</strong> tại bài viết 
-                                                            <strong>{noti.data.roomnumber.post_name}</strong>
+                                                            <strong>{noti.data.subject.full_name} </strong> Vừa yêu cầu trả phòng phòng số 
+                                                            <strong> {noti.data.roomnumber.room_number} </strong> tại bài viết 
+                                                            <strong> {noti.data.roomnumber.post_name}</strong>
                                                         </div>
                                                     </Link>
                                                 )
@@ -365,9 +365,9 @@ function Notify({onClick}) {
                                                 return   (
                                                     <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
-                                                            <strong>{noti.data.user_two.full_name}</strong> 
+                                                            <strong>{noti.data.user_two.full_name} </strong> 
                                                             Vừa đánh giá bài viết 
-                                                            <strong>{noti.data.user.post_name} </strong>
+                                                            <strong> {noti.data.user.post_name} </strong>
                                                         </div>
                                                     </Link>
                                                 )

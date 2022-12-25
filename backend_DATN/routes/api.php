@@ -46,6 +46,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SavingRoomController as ControllersSavingRoomController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
 use Laravel\Socialite\Two\FacebookProvider;
@@ -349,7 +350,8 @@ Route::get('bill/month-owner/{id_user}', [BillController::class, 'getOwnerTotalB
 Route::post('test-sms', [BillController::class, 'testSms']);
 
 // CHECK OLD USER ROOM  TO RATE
-Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
+Route::get('check-old-user/{id_user}',[ControllersSavingRoomController::class,'checkOldOwnerRoom']);
+// Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
 
 // GOOGLE
 // Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);

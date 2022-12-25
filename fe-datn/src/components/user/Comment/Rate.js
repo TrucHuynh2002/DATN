@@ -30,8 +30,9 @@ function Comment({data}) {
     const [checkUser,setCheckUser] = useState(false);
   const handleSumbit = async (e) => {
     e.preventDefault();
-    const check = await axios.get(`${url}/check-old-user/${id_user}`);
-      if(check.data.data != null){
+    const check = await axios.get(`${url}/check-old-user/${id_user}?id_room=${id_post}`);
+    console.log(check.data)
+      if(check.data.status){
         const res = await axios.post(`${url}/rating/create`, addComment);
         if(res.data.status){
           const {id_user_tow} = addNotify;
@@ -45,16 +46,11 @@ function Comment({data}) {
             err_list: res.data
           });
         }
-      }else{
+      }
+      else{
         setCheckUser(true);
       }
-       
-
-        }
-       
-    
-  
-    
+  }
   const [alert, setAlert] = useState({
       err_list: {},
   });
