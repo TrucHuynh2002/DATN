@@ -167,7 +167,7 @@ function ListManageRoom() {
     
   return (
     <div className="row">
-        <div className="manage col-md-6 col-lg-6 col-sm-12">
+        <div className="manage col-md-7 col-lg-7 col-sm-12">
             <div className="container-fluid">
                 <div className="content_profile">
                     <div className="list-post">
@@ -206,7 +206,7 @@ function ListManageRoom() {
             </div>
             <ChartManage />    
         </div>
-        <div className="manage col-md-6 col-lg-6 col-sm-12">
+        <div className="manage col-md-5 col-lg-5 col-sm-12">
             <div className="content_profile">
                 <div className="list-post">
                     <div className='row'>
