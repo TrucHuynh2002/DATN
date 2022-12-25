@@ -10,8 +10,6 @@ function LoginGoogle() {
     const [loginGoogle, setLoginGoogle] = useState('');
     const handleLoginGoogle = async (e) => {
         const google = await axios.get(`${url}/auth/google/callback${window.location.search}`);
-        
-        console.log(google.data)
         if(google.data.status === true){
             var user = JSON.parse(localStorage.getItem('user'));
             if(user == null){
@@ -35,10 +33,7 @@ function LoginGoogle() {
                 navigate("/admin");
             }
         }
-        // console.log(123)
     }
-
-    console.log(window.location.search)
   return (
     <div>Loading</div>
   )

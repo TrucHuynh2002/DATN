@@ -104,12 +104,12 @@ function RoomDetail() {
                                 <h2>{a.post_name}</h2>
                             </div>
                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
+                            {listCount.length > 0 && 
+                                <div className="product-price-discount">Số phòng còn trống: {listCount.length}</div>
+                            }
                             {listCount.length <= 0 && 
-                            <div className="product-price-discount">Hết phòng</div>
-                                }
-                                {listCount.length > 0 && 
-                            <div className="product-price-discount">Số phòng còn trống: {listCount.length}</div>
-                                }
+                                <div className="product-price-discount">Hết phòng</div>
+                            }
                             <div>
                                 <p>{a.description_sort}</p>
                             </div>
@@ -141,7 +141,7 @@ function RoomDetail() {
                     <div className="product-count-help" >
                         <div>
                             <i className='bx bx-support'></i>
-                            <label>Cần sự trợ giúp</label>
+                            <Link to='../contact' className='support_link'><label>Cần sự trợ giúp</label></Link>
                         </div>
                         <div>
                             <i className='bx bx-error'></i>

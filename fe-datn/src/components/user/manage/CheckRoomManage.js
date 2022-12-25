@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from 'react';
-import { Button, Table } from 'react-bootstrap';
 import axios from 'axios';
 import { url } from '../../url';
 import { useParams,useNavigate } from 'react-router-dom';
@@ -8,7 +7,6 @@ function CheckRoomManage() {
     const {id_roomNumber} = useParams();
     const navigate = useNavigate();
     const user = JSON.parse( localStorage.getItem('user'));
-    console.log(user[0].role)
     if(!user || user[0].role == 0 || user[0].role == 2){
         navigate('../')
     }
@@ -18,18 +16,14 @@ function CheckRoomManage() {
     }
 
     const [data,setData] = useState({});
-    // console.log(data.OnwerBookingRoom.link_img_user)
 const getDataRoomBooking = async () => {
     const res = await axios.get(`${url}/roomNumber/check-room-number/${id_roomNumber}`);
-    console.log(res.data);
     setData(res.data)
 }
 
 // const [alertBookingRoom,setAlertBookingRoom] = useState(0);
 const handleBookingRoom = async () => {
-    console.log(123)
     // let res =  await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}`);
-    // console.log(res.data)
 }
 
 useEffect(() => {

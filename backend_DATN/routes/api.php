@@ -146,9 +146,9 @@ Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showS
 Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
 
-Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
-Route::get('roomNumber/cancel-booking-room/{id_roomNumber}',[RoomNumberController::class, 'CancelBookingRoom']);
-Route::get('roomNumber/check-room-number/{id}',[RoomNumberController::class, 'checkRoomNumber']);
+Route::get('roomNumber/updateRoomNumber/{id_roomNumber}', [RoomNumberController::class, 'updateRoomNumber']);
+Route::get('roomNumber/cancel-booking-room/{id_roomNumber}', [RoomNumberController::class, 'CancelBookingRoom']);
+Route::get('roomNumber/check-room-number/{id}', [RoomNumberController::class, 'checkRoomNumber']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
@@ -336,8 +336,8 @@ Route::get('view_index/show', [ViewController::class, 'show']);
 
 // Bill 
 Route::get('bill/show', [BillController::class, 'show']);
-Route::get('bill/show/{id}', [BillController::class, 'show_id']);
-Route::get('bill/show_id/{id}', [BillController::class, 'show_id_bill']);
+Route::get('bill/show_id_roomNumber/{id}', [BillController::class, 'show_id_roomNumber']);
+Route::get('bill/show_id_bill/{id}', [BillController::class, 'show_id_bill']);
 Route::get('bill/sum', [BillController::class, 'sum_bill']);
 Route::get('bill/user/{id}', [BillController::class, 'getDataBillUser']);
 // Route::post('bill/user/{id}',[BillController::class, 'getDataBillUser']);
@@ -345,12 +345,16 @@ Route::get('bill-detail/user/{id}', [BillController::class, 'getDataBillDetailUs
 Route::post('bill/create', [BillController::class, 'created_at']);
 Route::put('bill/update/{id}', [BillController::class, 'update']);
 Route::delete('bill/delete/{id}', [BillController::class, 'delete']);
-Route::get('bill/month-owner/{id_user}',[BillController::class,'getOwnerTotalBillMonth']);
+Route::get('bill/month-owner/{id_user}', [BillController::class, 'getOwnerTotalBillMonth']);
 // TEST SMS
-Route::post('test-sms',[BillController::class,'testSms']);
+Route::post('test-sms', [BillController::class, 'testSms']);
 
 // CHECK OLD USER ROOM  TO RATE
+<<<<<<< HEAD
 Route::get('check-old-user/{id_user}',[ControllersSavingRoomController::class,'checkOldOwnerRoom']);
+=======
+Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
+>>>>>>> e47b3785a7f9848a44b964cbe3d721fb1df57218
 
 // GOOGLE
 // Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
@@ -363,6 +367,6 @@ Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
 Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);
 
-Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
-Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
-Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);
+Route::get('notify/{id_user}', [NotificationController::class, 'getNotification']);
+Route::get('notify/mask-as-read/{id_user}', [NotificationController::class, 'maskAsReads']);
+Route::get('notify/mask-as-read-id-noti/{id_notification}', [NotificationController::class, 'maskAsReadsId']);

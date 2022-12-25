@@ -91,6 +91,7 @@ import QADetail from './components/user/QADetail';
 import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
+import ConfirmPass from './components/user/account/ConfirmPass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -125,6 +126,7 @@ root.render(
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
+        <Route path="confirmpass/:id_Account" element={<ConfirmPass />} />
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="qaDetail/:id_qa" element={<QADetail />} />
