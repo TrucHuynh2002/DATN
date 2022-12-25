@@ -36,84 +36,81 @@ function ListDeleteRoom() {
     },[])
 
   return (
-    <>
+   
     <div className="container content_profile">
+         <div className="col-md-12">
+            <h1><b className="b_title">Danh sách phòng đang ở</b></h1>
+        </div>
         <div className="list-post">
-        <div className="row">
-            <div className="col-md-12">
-                <h1><b className="b_title">Danh sách phòng đang ở</b></h1>
-            </div>
-        <Table bordered>
-            <thead>
-        
-            <tr>
-                <th>#</th>
-                <th>Họ tên</th>
-                <th>Số phòng</th>
-                <th>Tiền điện</th>
-                <th>Tiền nước</th>
-                <th>Tiền Phòng</th>
-                <th></th>
-            </tr>
-            </thead>
+            <div className="row">
+                <Table bordered>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Họ tên</th>
+                            <th>Số phòng</th>
+                            <th>Tiền điện</th>
+                            <th>Tiền nước</th>
+                            <th>Tiền Phòng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody className="list-cate">      
+                    {
+                        dataBookingRoom.length > 0 
+                        &&
+                        dataBookingRoom.map((data,index) => {
+                                return (
+                                    <tr key={index}>
+                                            <td>{index}</td>
+                                            <td>{data.full_name}</td>
+                                            <td>A{data.room_number}</td>
+                                            <td>{data.electricity_price} đ</td>
+                                            <td>{data.water_price} đ</td>                        
+                                            <td>{data.room_price} đ</td>
+                                            <td>                          
+                                            <Button variant="outline-primary" name='' className="" onClick={e => handleShow(e,data.id,data.id_user_two)}>Trả phòng</Button>                                       
+                                            </td>
+                                    </tr>  
+                                )
+                                })}                           
+                    </tbody>
+                </Table>
+                {/* start trả phòng */}
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Xác nhận trả phòng</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>Bạn có chắc chắn muốn trả phòng ?</p>
+                    </Modal.Body>
+                    <Modal.Footer>
                 
-            <tbody className="list-cate">      
-            {
-                dataBookingRoom.length > 0 
-                &&
-                dataBookingRoom.map((data,index) => {
-                        return (
-                            <tr key={index}>
-                                    <td>{index}</td>
-                                    <td>{data.full_name}</td>
-                                    <td>A{data.room_number}</td>
-                                    <td>{data.electricity_price} đ</td>
-                                    <td>{data.water_price} đ</td>                        
-                                    <td>{data.room_price} đ</td>
-                                    <td>                          
-                                    <Button variant="outline-primary" name='' className="" onClick={e => handleShow(e,data.id,data.id_user_two)}>Trả phòng</Button>                                       
-                                    </td>
-                            </tr>  
-                        )
-                        })}                           
-            </tbody>
-        </Table>
-        {/* start trả phòng */}
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-            <Modal.Title>Xác nhận trả phòng</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <p>Bạn có chắc chắn muốn trả phòng ?</p>
-            </Modal.Body>
-            <Modal.Footer>
-           
-                <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                    <div style={{paddingRight:"12px"}}>
+                        <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                            <div style={{paddingRight:"12px"}}>
 
-                            {
-                            alertCancel && <div className='text-success'>
-                            Đã gửi yêu cầu thành công
+                                    {
+                                    alertCancel && <div className='text-success'>
+                                    Đã gửi yêu cầu thành công
+                                </div>
+
+                            } 
+                            </div>
+                        <div>
+                        <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
+                                Trả phòng
+                            </Button>
                         </div>
-
-                    } 
-                    </div>
-                   <div>
-                   <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
-                        Trả phòng
-                    </Button>
-                   </div>
-                </div>
-              
-              
-            </Modal.Footer>
-          
-        </Modal>
-        {/* end trả phòng */}
+                        </div>
+                    
+                    
+                    </Modal.Footer>
+                
+                </Modal>
+                {/* end trả phòng */}
+            </div>
         </div>
     </div>
-    </div>
-</>
   )
 }
 
