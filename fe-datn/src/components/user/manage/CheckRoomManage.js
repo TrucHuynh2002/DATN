@@ -23,10 +23,6 @@ const getDataRoomBooking = async () => {
 
 // const [alertBookingRoom,setAlertBookingRoom] = useState(0);
 const handleBookingRoom = async () => {
-<<<<<<< HEAD
-=======
-    
->>>>>>> 573b06608f5ed2aeb4e1b6cc71ed64f692996a6a
     // let res =  await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}`);
 }
 

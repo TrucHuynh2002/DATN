@@ -91,7 +91,6 @@ function ListManageRoom() {
     const [alertError,setAlertError] = useState('')
 
     const handleClickRoom = (e,id_room,typeRoom,id_user_two= '',id_post = '') => {
-<<<<<<< HEAD
         // status === typeRoom
         // ?
         // setActive({...active,[id_room]: quality })
@@ -122,8 +121,6 @@ function ListManageRoom() {
         //     :
         //      ''
         // })
-=======
->>>>>>> 573b06608f5ed2aeb4e1b6cc71ed64f692996a6a
         setActive({id_rooms:id_room, status: typeRoom,checked:true,id_user_two: id_user_two,id_post: id_post})        
     }
 
@@ -326,14 +323,8 @@ function ListManageRoom() {
                 </div>
                 <div className="row">
                     <div className="bill____ col-lg-6 col-sm-12">
-<<<<<<< HEAD
                         <Button id="bill_button" 
                         className="btn btn-primary"
-=======
-                        <Button 
-                        id="bill_button" 
-                        className="btn btn-primary" 
->>>>>>> 573b06608f5ed2aeb4e1b6cc71ed64f692996a6a
                         onClick={(e) =>handleShowAddBill()}
                         >
                             Thêm hóa đơn
