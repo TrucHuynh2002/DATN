@@ -7,22 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ReplyUpdateRoomDelete extends Notification
+class RatePostNotification extends Notification
 {
     use Queueable;
-    // public $post;
+    public $User;
     // public $in_object;
-    // public $User_two;
+    public $User_two;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($User_two,$User)
     {
-        // $this->post = $post;
-        // $this->in_object = $replyComment;
-        // $this->User_two = $User_two;
+        $this->User_two = $User_two;
+        $this->User = $User;
+        // $this->RoomNumber = $RoomNumber;
     }
 
     /**
@@ -59,10 +59,10 @@ class ReplyUpdateRoomDelete extends Notification
     public function toArray($notifiable)
     {
         return [
-            // 'post' => $this->post,
-            // 'user' => $this->User,
+            'user_two' => $this->User_two,
+            'user' => $this->User,
             // 'replyCmt' => $this->in_object,
-            // 'user_two' => $this->User_two
+            // 'roomnumber' => $this->RoomNumber
         ];
     }
 }

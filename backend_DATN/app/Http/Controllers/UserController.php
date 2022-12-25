@@ -210,6 +210,36 @@ class UserController extends Controller
                 ]);
         }
     }
+    public function PasswordEditSocial(Request $request, $id_user)
+    {
+        $t = User::find($id_user);
+        // $pass_old = Hash::make($request->password);
+        if ($t) {
+                if ($request->password_new == $request->password_neww) {
+                    $t->password = Hash::make($request->password_new);
+                    $t->save();
+                    return response()
+                        ->json([
+                            'messess' => 'Đổi mật khẩu thành công',
+                            'data' => $t,
+                            'status' => true
+                        ]);
+                } else {
+                    return response()
+                        ->json([
+                            'messess' => 'Nhập lại mật khẩu không khớp',
+                            // 'data' => t,
+                            'status' => false
+                        ]);
+                }
+        } else {
+            return response()
+                ->json([
+                    'messess' => 'Không tìm thấy tài khoản của bạn',
+                    'status' => false
+                ]);
+        }
+    }
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [

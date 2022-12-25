@@ -29,6 +29,7 @@ function ListSendNoti() {
     }
     const handleDeletelSendNoti = async (e, id_room_number) => {
         let res = await axios.post(`${url}/roomNumber/deleteSendNoti/${id_room_number}`)
+        console.log(res.data);
         if(res.data.status){
             getDataSendNoti()
         }

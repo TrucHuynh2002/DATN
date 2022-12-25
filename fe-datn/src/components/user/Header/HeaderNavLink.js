@@ -9,13 +9,15 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
+    // console.log(user)
     const id_users = user ? user[0].id : '';
+    
     const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         navigate(`../`);
     }
-    // xu ly add post
+    // xu ly add post     
     const [addPost, setAddPost] = useState({
         post_name: "",
         phone: "",
@@ -197,7 +199,7 @@ function HeaderNavLink() {
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-   
+    
     const handleShow = async() => {
         if(user){
             const res = await axios.get(`${url}/user/show/`+user[0].id);
@@ -228,13 +230,21 @@ function HeaderNavLink() {
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
         // setNotification(res.data.data)
-        setNotificationUnread(res.data.notificationUnread)
+        if(res.data.status == true){
+              setNotificationUnread(res.data.notificationUnread)
+        }
     }
 
     // const handleMarKAsRead = async (e) => {
     //     // const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
     //     getNotify();
     // }
+
+    const [loader,setLoader] = useState(0);
+    const handleClickNoti = async (e) => {
+        setLoader(loader+1)
+        getNotify()
+    }
     
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -262,7 +272,7 @@ function HeaderNavLink() {
                         }
                      
                     </div>
-                   <Notify />
+                   <Notify  onClick={e => handleClickNoti(e)}/>
                 </div>
             </li>
             <li className="nav-item">

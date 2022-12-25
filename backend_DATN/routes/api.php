@@ -147,7 +147,7 @@ Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'del
 
 Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
 Route::get('roomNumber/cancel-booking-room/{id_roomNumber}',[RoomNumberController::class, 'CancelBookingRoom']);
-
+Route::get('roomNumber/check-room-number/{id}',[RoomNumberController::class, 'checkRoomNumber']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
@@ -235,6 +235,7 @@ Route::put('user/update/{id}', [UserController::class, 'UserEdit']);
 Route::put('user/updateStatus/{id}', [UserController::class, 'UserStatus']);
 Route::put('user/avatar/{id_user}', [UserController::class, 'userUpdateImg']);
 Route::put('user/updatepassword/{id}', [UserController::class, 'PasswordEdit']);
+Route::put('user/updatepasswordsocial/{id}', [UserController::class, 'PasswordEditSocial']);
 Route::delete('user/delete/{id}', [UserController::class, 'UserDelete']);
 Route::get('user/show_province_detail/{id}', [UserController::class, 'show_province_detail']);
 Route::get('user/show_district_detail/{id}', [UserController::class, 'show_district_detail']);
@@ -355,7 +356,7 @@ Route::get('check-old-user/{id_user}',[SavingRoomController::class,'checkOldOwne
 // Route::post('auth/google/callback', [GoogleController::class, 'loginCallback']);
 
 // GOOGLE
-Route::get('auth/google', [GoogleController::class, 'getGoogleSignInUrl']);
+Route::get('auth/google/url', [GoogleController::class, 'getGoogleSignInUrl']);
 Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 // FACEBOOK
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
@@ -363,3 +364,4 @@ Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallba
 
 Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
 Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
+Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);
