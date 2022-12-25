@@ -39,7 +39,7 @@ function EditManage({id_roomNumber}) {
     const [showUser, setShowUser] = useState([]);
     const getData = async (e) =>{
         const user = await axios.get(`${url}/user/show`);  
-        const res = await axios.get(`${url}/bill/show_id/${id_roomNumber}`); 
+        const res = await axios.get(`${url}/bill/show_id_roomNumber/${id_roomNumber}`); 
         setShowBill(res.data.data);
         setShowUser(user.data.data)
           if(res.data.status === true){
@@ -57,19 +57,20 @@ function EditManage({id_roomNumber}) {
   const [showEditBill, setShowEditBill] = useState(false);
   const handleCloseEditBill = () => setShowEditBill(false);
   const handleShowEditBill = async (e,id) => {
-      setShowEditBill(true)
-      const res = await axios.get(`${url}/bill/show/${id}`); 
+      const res = await axios.get(`${url}/bill/show_id_bill/${id}`); 
       setEditBill(res.data.data);
       if(res.data.status === true){
           setAlert({
               err_list: res.data
           });
+          setShowEditBill(true)
       }
       else{           
           setAlert({
               err_list: res.data
           });
       }
+
   }
   const handleSumbitEditBill = async(e,id) => {
     e.preventDefault();
@@ -104,7 +105,7 @@ function EditManage({id_roomNumber}) {
                             {showBill.map((list,index) =>{
                                 showUser.map((user,index) => {
                                     return list.id_user_two == user.id_user &&
-                                            <th>Người sở hữu</th>
+                                            <th key={index}>Người sở hữu</th>
                                     })
                             })}
                             <th>Tiền điện</th>

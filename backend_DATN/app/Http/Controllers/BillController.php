@@ -27,11 +27,11 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
-    public function show_id_bill(Request $request, $id)
+    public function show_id_roomNumber(Request $request, $id)
     {
         $data = DB::table('bill')
             ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
-            // ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
+            ->select('bill.id', 'bill.electricity_money', 'bill.all_money', 'bill.water_money', 'bill.created_at', 'bill.updated_at')
             ->where('bill.id_roomNumber', '=', $id)
             ->get();
         return response()
@@ -49,11 +49,11 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
-    public function show_id(Request $request, $id)
+    public function show_id_bill(Request $request, $id)
     {
         $data = Bill::join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
-            ->where('bill.id_roomNumber', '=', $id)
+            ->where('bill.id', '=', $id)
             ->get();
         return response()
             ->json([
@@ -99,12 +99,12 @@ class BillController extends Controller
             Mail::to($data_bill->email)->send(new BillAlert($data_bill));
         }
 
-        $user_bill = Bill::join('room_number','bill.id_roomNumber','room_number.id')
+        $user_bill = Bill::join('room_number', 'bill.id_roomNumber', 'room_number.id')
             ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
-            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money','room_number.id_user_two', 'bill.id_roomNumber', 'users.full_name', 'users.email','bill.created_at')
+            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'room_number.id_user_two', 'bill.id_roomNumber', 'users.full_name', 'users.email', 'bill.created_at')
             ->first();
         $ownerUserId = User::find($user_bill->id_user_two);
-        Notification::send($ownerUserId,new BillNotification($user_bill));
+        Notification::send($ownerUserId, new BillNotification($user_bill));
         return response()
             ->json([
                 'data' =>  $data_bill,
