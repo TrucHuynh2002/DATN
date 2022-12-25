@@ -12,6 +12,7 @@ function GalleryContent() {
   },[]);
   const [ListSearchTrend, setListSearchTrend] = useState([]);
   const [ListDataPostTrend, setDataPostTrend] = useState([]);
+  console.log(ListDataPostTrend)
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
     const res = await axios.get(`${url}/trendPost`);
@@ -41,19 +42,19 @@ function GalleryContent() {
             onClick={(e) =>getDataPostTrendShow(list.key_word) }
             >
               <div className="col-1">{index+1}</div>
-              <div className="col-8">
+              <div className="col-6">
                 <div> {list.key_word}</div>
                 <div className="content____________">
-                  <Link 
+                  {/* <Link 
                     className="link-info Link_________" 
                     to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].length > 0 &&  ListDataPostTrend[0][0].id_post}`}>{ListDataPostTrend[0][0].post_name}
-                  </Link>
-                  <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
+                  </Link> */}
+                  {/* <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
                   {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0][0].created_at).local().startOf('day').fromNow()}
-                    </span>
+                    </span> */}
                 </div>
              </div>
-              <div className="col-2 view___">
+              <div className="col-4 view___">
                 <div>{list.view}</div>
                 <span >lượt tìm kiếm</span>
               </div>
