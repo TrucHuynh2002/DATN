@@ -146,7 +146,7 @@ Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'del
 
 Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
 Route::get('roomNumber/cancel-booking-room/{id_roomNumber}',[RoomNumberController::class, 'CancelBookingRoom']);
-
+Route::get('roomNumber/check-room-number/{id}',[RoomNumberController::class, 'checkRoomNumber']);
 
 // Q&A
 Route::get('qa/show', [QAController::class, 'show']);
@@ -362,3 +362,4 @@ Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallba
 
 Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
 Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
+Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);

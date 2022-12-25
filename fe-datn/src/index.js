@@ -136,7 +136,7 @@ root.render(
         <Route path="layoutManage/:id_user" element={<LayoutManage />} />
         <Route path="listmanage" element={<ListManageRoom />} />
         <Route path="tablemanage" element={<ListManageRoom />} />
-        <Route path="checkroom" element={<CheckRoomManage />} />
+        <Route path="checkroom/:id_roomNumber" element={<CheckRoomManage />} />
         <Route path="Loi" element={<Loi />} />
         {/* gui yeu cau thong bao phong */}
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />

@@ -4,10 +4,11 @@ import moment from 'moment';
 import axios from 'axios';
 import { url } from '../url';
 
-function Notify() {
+function Notify({onClick}) {
     var user = JSON.parse(localStorage.getItem("user"));
     // const id_userRole = user ? user[0].role : 0;
     const id_user = user ? user[0].id : 0;
+    // console.log(id_user)
     const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     const [listnotifyQa, setListnotifyQa] = useState([]);
@@ -67,12 +68,19 @@ function Notify() {
 
     const getNotify = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
+<<<<<<< HEAD
+=======
+        console.log(res.data)
+>>>>>>> 39a8e910e73cf10805015fe35e5f0dc07bc800eb
         if(res.data.status){
             setNotification(res.data.data)
             setNotificationUnread(res.data.notificationUnread)
         }
+<<<<<<< HEAD
         setNotification(res.data.data)
         setNotificationUnread(res.data.notificationUnread)
+=======
+>>>>>>> 39a8e910e73cf10805015fe35e5f0dc07bc800eb
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
@@ -86,6 +94,16 @@ function Notify() {
     const handleCancelBookingRoom = async (e,id_roomNumber,id_notification) => {
         let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/cancel-booking-room/${id_roomNumber}?id_notification=${id_notification}`);
         setHandleBooking(true)
+    }
+
+    const handleMaskRead = async (e,id_notification) => {
+        let res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read-id-noti/${id_notification}`);
+        console.log(res.data);
+        if(res.data.status == true){
+
+            getNotify()  
+            onClick()   
+        }
     }
         
     return (
@@ -182,7 +200,11 @@ function Notify() {
                                 if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
                                     if(noti.data.ownerPost.id_user == id_user &&  noti.read_at == null){
                                         return      <div className='listBookingRoom'>
+                                                        
+                                                        
+                                                        <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><strong>{noti.data.ownerBookingRoom.full_name}</strong> Vừa đặt phòng <strong>A0{noti.data.ownerPost.room_number}</strong> tại <strong>{noti.data.ownerPost.post_name}</strong> của bạn </div>
+                                                        </Link>
                                                        
                                                         {
                                                         noti.read_at == null
@@ -208,6 +230,17 @@ function Notify() {
                                                        
                                                     </div>
                                     }                                  
+                                }
+
+                                if(noti.type == "App\\Notifications\\NotificationOwnerBookingRoom"){
+                                    if(noti.data.ownerBookingRoom.id_user != id_user){
+                                        if(noti.data.status ==  '2') {
+                                            return <div onClick={e => handleMaskRead(e,noti.id)} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>Chúc mừng bạn đã đặt phòng thành công phồng số <strong>A0{noti.data.ownerBookingRoom.room_number}</strong> tại bài viết <strong>{noti.data.ownerBookingRoom.post_name}</strong> </div>
+                                        }
+                                        if(noti.data.status ==  '0' ) {
+                                            return <div onClick={e => handleMaskRead(e,noti.id)} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>Đặt phòng <strong>A0{noti.data.ownerBookingRoom.room_number}</strong> tại bài viết <strong>{noti.data.ownerBookingRoom.post_name}</strong> thất bại </div>
+                                        }
+                                    }
                                 }
                             })
                         }
