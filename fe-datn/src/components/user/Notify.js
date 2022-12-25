@@ -102,7 +102,13 @@ function Notify({onClick}) {
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
         <li className="nav-item">
-            <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
+            <span className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </span>
+        </li>
+        <li className="nav-item">
+            <span className="nav-link nav-item-link " tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">HÓA ĐƠN</span>
+        </li>
+        <li className="nav-item">
+            <span className="nav-link nav-item-link " tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </span>
         </li>
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px", height:"300px", overflow:"hidden", overflowY:"scroll"}}>
