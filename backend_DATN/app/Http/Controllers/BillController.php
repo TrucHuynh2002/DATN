@@ -28,7 +28,7 @@ class BillController extends Controller
     {
         $data = DB::table('bill')
             ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
-            ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
+            // ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
             ->where('bill.id_roomNumber', '=', $id)
             ->get();
         return response()
@@ -48,10 +48,9 @@ class BillController extends Controller
     }
     public function show_id(Request $request, $id)
     {
-        $data = DB::table('bill')
-            ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
+        $data = Bill::join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
-            ->where('room_number.id', '=', $id)
+            ->where('bill.id_roomNumber', '=', $id)
             ->get();
         return response()
             ->json([
@@ -91,7 +90,7 @@ class BillController extends Controller
             ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
             ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money', 'bill.id_roomNumber', 'users.full_name', 'post.room_price', 'users.email')
-            ->orderBy('bill.id','DESC')
+            ->orderBy('bill.id', 'DESC')
             ->first();
         if ($data_bill) {
 
@@ -184,66 +183,68 @@ class BillController extends Controller
             ]);
     }
 
-    public function testSms(Request $request){
-        
+    public function testSms(Request $request)
+    {
+
         // $basic  = new \Vonage\Client\Credentials\Basic("827cc1e4", "Ga9ATDrgfCfaZzUZ");
         // $client = new \Vonage\Client($basic);
         $recive_number = "+84869790865";
         $messages = "DSA";
-        
-            $account_sid = env('TWILIO_SID');
-            $auth_token = env('TWILIO_TOKEN');
-            $twilio_number = env('TWILIO_FROM');
-            $basic  = new \Vonage\Client\Credentials\Basic("827cc1e4", "Ga9ATDrgfCfaZzUZ");
-            $client = new \Vonage\Client($basic);
-            $response = $client->sms()->send(
-                new \Vonage\SMS\Message\SMS("+840706686188", 'NHATUI.COM', 'A text message sent using the Nexmo SMS API')
+
+        $account_sid = env('TWILIO_SID');
+        $auth_token = env('TWILIO_TOKEN');
+        $twilio_number = env('TWILIO_FROM');
+        $basic  = new \Vonage\Client\Credentials\Basic("827cc1e4", "Ga9ATDrgfCfaZzUZ");
+        $client = new \Vonage\Client($basic);
+        $response = $client->sms()->send(
+            new \Vonage\SMS\Message\SMS("+840706686188", 'NHATUI.COM', 'A text message sent using the Nexmo SMS API')
+        );
+
+        $message = $response->current();
+
+        if ($message->getStatus() == 0) {
+            echo "The message was sent successfully: +840869790865\n";
+        } else {
+            echo "The message failed with status: " . $message->getStatus() . "\n";
+        }
+
+        // 840907673005
+        $sid    = "AC2bbe01cf715ced370554c626f8790fe9";
+        $token  = "055ead70cc7151c81128204710a140f1";
+        $twilio = new Client($sid, $token);
+
+        // $message = $twilio->messages 
+        //                   ->create("+84869790865", // to 
+        //                            array( 
+        //                                "from" => "+16696000887",       
+        //                                "body" => "HELLO BRO" 
+        //                            ) 
+        //                   );
+        $twilio = new Client($sid, $token);
+
+        $validation_request = $twilio->validationRequests
+            ->create(
+                "+14158675310", // phoneNumber
+                ["friendlyName" => "My Home Phone Number"]
             );
-            
-            $message = $response->current();
-            
-            if ($message->getStatus() == 0) {
-                echo "The message was sent successfully: +840869790865\n";
-            } else {
-                echo "The message failed with status: " . $message->getStatus() . "\n";
-            }
-            
-            // 840907673005
-            $sid    = "AC2bbe01cf715ced370554c626f8790fe9"; 
-            $token  = "055ead70cc7151c81128204710a140f1"; 
-            $twilio = new Client($sid, $token); 
-             
-            // $message = $twilio->messages 
-            //                   ->create("+84869790865", // to 
-            //                            array( 
-            //                                "from" => "+16696000887",       
-            //                                "body" => "HELLO BRO" 
-            //                            ) 
-            //                   );
-$twilio = new Client($sid, $token);
 
-$validation_request = $twilio->validationRequests
-                             ->create("+14158675310", // phoneNumber
-                                      ["friendlyName" => "My Home Phone Number"]
-                             );
+        print($validation_request->friendlyName);
 
-print($validation_request->friendlyName);
-
-            return response()->json([
-                'message' => $validation_request
-            ]);
-             
+        return response()->json([
+            'message' => $validation_request
+        ]);
     }
 
-    public function getOwnerTotalBillMonth(Request $request,$id_user) {
-        $get_bill = DB::table('bill')->join('room_number','room_number.id','bill.id_roomNumber')
-                                    ->join('post','post.id_post','room_number.id_post')
-                                    ->where('post.id_user','=',$id_user)
-                                    ->orderBy('bill.id','DESC')
-                                    ->get();
+    public function getOwnerTotalBillMonth(Request $request, $id_user)
+    {
+        $get_bill = DB::table('bill')->join('room_number', 'room_number.id', 'bill.id_roomNumber')
+            ->join('post', 'post.id_post', 'room_number.id_post')
+            ->where('post.id_user', '=', $id_user)
+            ->orderBy('bill.id', 'DESC')
+            ->get();
         $total = 0;
-        if($get_bill){
-            foreach($get_bill as $bill){
+        if ($get_bill) {
+            foreach ($get_bill as $bill) {
                 $total += $bill->all_money;
             }
         };
