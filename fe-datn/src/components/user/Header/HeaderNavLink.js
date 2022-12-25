@@ -231,10 +231,10 @@ function HeaderNavLink() {
         setNotificationUnread(res.data.notificationUnread)
     }
 
-    const handleMarKAsRead = async (e) => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
-        getNotify();
-    }
+    // const handleMarKAsRead = async (e) => {
+    //     // const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
+    //     getNotify();
+    // }
     
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -252,7 +252,7 @@ function HeaderNavLink() {
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
-                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} onClick={e => handleMarKAsRead(e)}></i>
+                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>
                         {
                             notificationUnread.length > 0
                             &&
@@ -501,6 +501,7 @@ function HeaderNavLink() {
                         (<>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutSendNoti/${user[0].id}`}>Gửi yêu cầu</Link>
+                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={``}>Thẻ ngân hàng</Link>
                         </>)
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>

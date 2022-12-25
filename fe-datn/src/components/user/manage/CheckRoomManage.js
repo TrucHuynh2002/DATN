@@ -1,35 +1,46 @@
 import React from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 function CheckRoomManage() {
+    
+
   return (
-    <div className="list-post" >                
-        <div className="row">
-            <div className="col-md-12">
-                <h3 className="b_title">Danh sách trả phòng</h3>
+    <>
+        <div className="back_re">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="title">
+                            <h2 className="b_title">Cập nhật phòng đặt cọc</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <Table bordered>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Người sở hữu</th>
-                        <th>Số phòng</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody className="list-cate">       
-                    <tr>
-                        <td>1</td>
-                        <td>Nhóm</td>
-                        <td>7</td>
-                        <td>
-                            <Button variant="outline-primary" name='' className="">Xác nhận</Button>
-                        </td>
-                    </tr>              
-                </tbody>
-            </Table>
         </div>
-    </div> 
+        <div className='manage row'>
+            <div className="container content_profile">
+                <div className="list-post checkroom">
+                    <div className='col-md-6'>
+                        <h1>Thông tin người thuê phòng</h1>
+                        <h3>Tên người thuê phòng : Nhóm 1</h3>
+                        <h3>Số điện thoại : 0907673005</h3>
+                        <h3>Email :  nhom1gmail.com</h3>
+                        <h3>Địa chỉ :  Ninh Kiều, Cần Thơ</h3>
+                    </div>                  
+                    <div className='col-md-6'>
+                        <h1>Thông tin phòng trọ</h1>
+                        <h3>Tên chủ phòng : Nhóm</h3>
+                        <h3>Tên phòng : phòng trọ cần thơ</h3>
+                        <h3>Số phòng : A7</h3>
+                        <h3>Tiền phòng : 1.000.000 đ</h3>
+                        <h3>Tiền nước : 4.000 đ</h3>
+                        <h3>Tiền điện : 4.000 đ</h3>
+                    </div>                   
+                </div>
+                <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary">Cập nhật</Button>
+            </div>
+        </div>
+    </>
   )
 }
 

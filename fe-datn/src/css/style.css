@@ -2804,6 +2804,7 @@ margin-top: 30px;
     line-height: 2;
     margin-right: 10px;
 
+
 }
 
 
@@ -2842,4 +2843,23 @@ margin-top: 30px;
     font-size: 10px;
     text-align: center;
 }
+.link_noti {
+    text-transform: none;
+    font-weight: 400;
+}
+.btn-handle-booking-room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.btn-handle-accept-booking-room,.btn-handle-cancel-booking-room{
+    padding: 0 12px;
+}
+
+.listBookingRoom {
+    margin-bottom: 12px;
+}
+.checkroom {
+    display: flex;
+}

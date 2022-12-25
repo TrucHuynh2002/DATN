@@ -138,11 +138,15 @@ Route::put('roomNumber/update/{id}', [RoomNumberController::class, 'update']);
 Route::put('roomNumber/update_user/{id}', [RoomNumberController::class, 'update_user']);
 Route::get('roomNumber/checkout/{id}', [RoomNumberController::class, 'checkOutRoom']);
 Route::put('roomNumber/update_checkRoom/{id}', [RoomNumberController::class, 'update_checkRoom']);
+Route::get('roomNumber/detail_checkRoom/{id}', [RoomNumberController::class, 'detail_checkRoom']);
 Route::get('roomNumber/show_roombookuser/{id}', [RoomNumberController::class, 'showRoomBookUser']);
 Route::post('roomNumber/cancel_roombookuser/{id}', [RoomNumberController::class, 'cancelRoomBookUser']);
 Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showSendNoti']);
 Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
+
+Route::get('roomNumber/updateRoomNumber/{id_roomNumber}',[RoomNumberController::class, 'updateRoomNumber']);
+Route::get('roomNumber/cancel-booking-room/{id_roomNumber}',[RoomNumberController::class, 'CancelBookingRoom']);
 
 
 // Q&A
