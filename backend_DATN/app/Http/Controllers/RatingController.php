@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\CommentModel;
 use App\Models\RatingModel;
+use App\Models\User;
+use App\Notifications\RatePostNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class RatingController extends Controller
@@ -48,15 +51,21 @@ class RatingController extends Controller
             $rate->id_user = $request->id_user;
             $rate->save();
         }
-        $user = DB::table('post_rate')->join('post','post.id_post','post_rate.id_post')
-                                        ->select('post.id_user')
-                                        ->orderBy('post_rate.id_post_rate','DESC')
-                                        ->first();
+        $User =  RatingModel::join('post','post_rate.id_post','=','post.id_post')
+        ->join('users','post.id_user','=','users.id_user')
+        ->select('post.post_name','users.id_user','post.id_post')
+        ->first();
+        $User_two = RatingModel::join('users','post_rate.id_user','=','users.id_user')
+        ->select('users.full_name','post_rate.id_post')
+        // ->where('post_rate.id_user','=','users.id_user')
+        ->first();
+        $ownerUserId = User::find($User->id_user);
+        Notification::send($ownerUserId,new RatePostNotification($User_two,$User));
         return response()
             ->json([
                 'message' => 'Cám ơn bạn đã đánh giá!',
                 'status' => true,
-                'data' => $user->id_user
+                // 'data' => $user->id_user
             ]);
     }
     public function RatingEdit(Request $request, $id_post_rate)
@@ -66,6 +75,7 @@ class RatingController extends Controller
         $t->id_post = $request->id_post;
         $t->id_comment = $request->id_comment;
         $t->save();
+        
         return response()
             ->json([
                 'data' => $t,

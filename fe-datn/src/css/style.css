@@ -1974,10 +1974,12 @@ ul.social_icon li a:hover {
 
 .product-info-tabs .nav-tabs {
     border-bottom: 2px solid #d8d8d8;
+   
 }
 
 .product-info-tabs .nav-tabs .nav-item {
     margin-bottom: 0;
+ 
 }
 
 .product-info-tabs .nav-tabs .nav-link {
@@ -2884,4 +2886,11 @@ margin-top: 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+
+.list-notify {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
