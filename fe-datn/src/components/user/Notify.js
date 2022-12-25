@@ -64,7 +64,7 @@ function Notify({onClick}) {
     const [notificationUnread,setNotificationUnread] = useState([]);
 
     const getNotify = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_user}`)
+        const res = await axios.get(`${url}/notify/${id_user}`)
         if(res.data.status){
             setNotification(res.data.data)
             setNotificationUnread(res.data.notificationUnread)
@@ -77,17 +77,17 @@ function Notify({onClick}) {
         // let formData = new FormData();
         // formData.append('id_user_two',id_userBooking)
         // formData.append('id_notification',id_notification)
-        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}`);
+        let res = await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}`);
         setHandleBooking(true)
     }
 
     const handleCancelBookingRoom = async (e,id_roomNumber,id_notification) => {
-        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/cancel-booking-room/${id_roomNumber}?id_notification=${id_notification}`);
+        let res = await axios.get(`${url}/roomNumber/cancel-booking-room/${id_roomNumber}?id_notification=${id_notification}`);
         setHandleBooking(true)
     }
 
     const handleMaskRead = async (e,id_notification) => {
-        let res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read-id-noti/${id_notification}`);
+        let res = await axios.get(`${url}/notify/mask-as-read-id-noti/${id_notification}`);
         if(res.data.status == true){
             getNotify()  
             onClick()   
