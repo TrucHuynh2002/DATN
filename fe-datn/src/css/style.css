@@ -35,6 +35,16 @@
 }
 table{
     border-collapse:collapse;
+   
+}
+.add_unf_bill{
+    margin-top:20px ;
+}
+.add_unf_bill>.dtp{
+margin-right:10px
+}
+table>thead>tr{
+    align-items: baseline;
 }
 .container {
     max-width: 1170px;
@@ -2737,12 +2747,20 @@ margin:-10px 0 0 100px;
     width: 100%;
  
 
-}.sumenh{
+}
+.sumenh{
 margin-top: 30px;
-}.container.ctngtcl{
+}
+.color_room_manage{
+    display:"flex";
+    justify-content:"center";
+    align-items:"center";
+}
+.container.ctngtcl{
     width: 1170px;
     margin-top: 170px;
-}.gtcl{
+}
+.gtcl{
     padding-bottom: 50px;
     font-weight: 500;
     font-size: 30px;

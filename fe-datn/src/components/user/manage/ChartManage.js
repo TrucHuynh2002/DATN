@@ -59,16 +59,16 @@ const dataLine = {
       <div className="content_profile">
         <div className="list-post">
           <div className='row'>
-            <h1>Thống kê doanh số hàng tháng</h1>
+            <h1><b className="b_title">Thống kê doanh số hàng tháng</b></h1>
             <div className='chart_sales row'>
-              <div className=' chart_salesItem col-lg-3 col-md-6 col-xs-12'>
-                <div className=' doanh_thu'>
+              <div className='chart_salesItem col-lg-3 col-md-6 col-xs-12'>
+                <div className='doanh_thu'>
                       <p>Doanh thu</p>
                       <span>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(listRevenueRoom)}</span>
                 </div>
               </div>
               <div className='chart_salesItem col-lg-3 col-md-6 col-xs-12'>
-                <div className=' phong_trong'>
+                <div className='phong_trong'>
                     <p>Phòng trống</p>
                     <span>{listEmptyRoom}</span>
                 </div>
@@ -78,7 +78,6 @@ const dataLine = {
                   <p>Phòng đặt cọc</p>
                   <span>{listDepositRoom}</span>
                 </div>
-                
               </div>
               <div className=' chart_salesItem col-lg-3 col-md-6 col-xs-12'>
                 <div className='phong_dang_o'>
