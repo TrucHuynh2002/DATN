@@ -9,12 +9,15 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
+    // console.log(user)
+    const id_users = user ? user[0].id : '';
+    
     const navigate = useNavigate();
     const handleSLogout = async (e) => {
         localStorage.removeItem("user");
         navigate(`../`);
     }
-    // xu ly add post
+    // xu ly add post     
     const [addPost, setAddPost] = useState({
         post_name: "",
         phone: "",
@@ -96,6 +99,7 @@ function HeaderNavLink() {
         getDataRoomType();
         get_furnitures();
         getData();
+        getNotify();
     },[]);
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
@@ -195,7 +199,7 @@ function HeaderNavLink() {
     // modal post
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-   
+    
     const handleShow = async() => {
         if(user){
             const res = await axios.get(`${url}/user/show/`+user[0].id);
@@ -222,6 +226,25 @@ function HeaderNavLink() {
         const res = await axios.get(`${url}/category/show`);
            setListCategory(res.data.data);
     };
+    const [notificationUnread,setNotificationUnread] = useState([])
+    const getNotify = async () => {
+        const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
+        // setNotification(res.data.data)
+        if(res.data.status == true){
+              setNotificationUnread(res.data.notificationUnread)
+        }
+    }
+
+    // const handleMarKAsRead = async (e) => {
+    //     // const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
+    //     getNotify();
+    // }
+
+    const [loader,setLoader] = useState(0);
+    const handleClickNoti = async (e) => {
+        setLoader(loader+1)
+        getNotify()
+    }
     
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -238,10 +261,18 @@ function HeaderNavLink() {
             <li className="nav-item">
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-                        style={{color: 'black', fontSize:'1.8em',border: 'none'}} >
-                        <i className='bx bx-bell'></i>
+                        style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
+                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>
+                        {
+                            notificationUnread.length > 0
+                            &&
+                            <div className='count-bell-unread'>
+                                {notificationUnread.length}
+                            </div>
+                        }
+                     
                     </div>
-                   <Notify />
+                   <Notify  onClick={e => handleClickNoti(e)}/>
                 </div>
             </li>
             <li className="nav-item">
@@ -480,6 +511,7 @@ function HeaderNavLink() {
                         (<>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutSendNoti/${user[0].id}`}>Gửi yêu cầu</Link>
+                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={``}>Thẻ ngân hàng</Link>
                         </>)
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>

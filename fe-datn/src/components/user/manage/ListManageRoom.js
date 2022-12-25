@@ -288,14 +288,7 @@ function ListManageRoom() {
             });
         }
     };
-
-    // const getBillTotalMonth = () => {
-    //     const res = axios.get(`${url}/bill/month-owner/${id_user}`);
-    //     console.log(res.data)
-    // }
     
-  
-
   return (
     <div className="row">
         <div className="manage col-md-6 col-lg-4 col-sm-12">

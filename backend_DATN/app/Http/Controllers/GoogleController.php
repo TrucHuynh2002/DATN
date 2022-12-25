@@ -46,7 +46,7 @@ class GoogleController extends Controller
             );
             return response()->json([
                 'status' => true,
-                'data' => $googleUser,
+                'data' => $user,
             ]);
         
     }

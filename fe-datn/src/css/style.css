@@ -2778,6 +2778,10 @@ margin-top: 30px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;    
 }
+.loadCmt:hover{
+    cursor: pointer;
+    text-decoration-line: underline;
+}
 .button_facebook {
     padding: 7px;
     margin: 11px 5px;
@@ -2799,4 +2803,67 @@ margin-top: 30px;
     color: white;
     line-height: 2;
     margin-right: 10px;
+
+
+}
+
+
+.textNoti{
+    padding:10px 6px;
+    border-radius:4px;
+    line-height: 26px;
+    margin-bottom: 12px;
+}
+
+.textNotiMaskRead {
+    background-color: #C0C0C0;
+}
+
+.textNoti:hover{
+    background-color: #C0C0C0;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.bell {
+    position: relative;
+}
+
+.bell .count-bell-unread{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #dc3545;
+    color: #fff;
+    font-weight: 500;
+    line-height: 15px;
+    font-size: 10px;
+    text-align: center;
+}
+.link_noti {
+    text-transform: none;
+    font-weight: 400;
+}
+.btn-handle-booking-room{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-handle-accept-booking-room,.btn-handle-cancel-booking-room{
+    padding: 0 12px;
+}
+
+.listBookingRoom {
+    margin-bottom: 12px;
+}
+.checkroom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

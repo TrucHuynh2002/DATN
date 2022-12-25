@@ -155,7 +155,7 @@ class StatisticalSController extends Controller
     {
         $count_EmptyRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
             ->join('users','post.id_user','users.id_user')
-            ->where('post.id_user','=',$id)
+            ->where('room_number.id_user','=',$id)
             ->where('room_number.status','=',0)->count();
         return response()
             ->json([
@@ -181,7 +181,7 @@ class StatisticalSController extends Controller
     {
         $count_OwnershipRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
         ->join('users','post.id_user','users.id_user')
-        ->where('post.id_user','=',$id)
+        ->where('room_number.id_user','=',$id)
         ->where('room_number.status','=',2)->count();
         return response()
             ->json([

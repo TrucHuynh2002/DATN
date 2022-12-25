@@ -174,7 +174,7 @@ function InfoAccount() {
                         <NavLink to={`../layoutBill/${id_user}`}>
                             <Button variant="outline-warning" name='' className='btn-edit'>Phòng đang thuê</Button>
                         </NavLink>
-                    }
+                    } 
                     {user[0].role == 2 &&
                         <NavLink to={`../admin`}>
                             <Button variant="outline-primary" name='' className='btn-edit'>Quản trị Admin</Button>

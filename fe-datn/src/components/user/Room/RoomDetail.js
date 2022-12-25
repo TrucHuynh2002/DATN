@@ -11,6 +11,7 @@ import { url } from '../../url';
 
 function RoomDetail() {
     const {id_post} = useParams();
+    const [listCount, setListCount] = useState([]);
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
     const [listFurniture, setListFurniture] = useState([]);
@@ -45,6 +46,8 @@ function RoomDetail() {
             setListFurniture(Furniture.data.data);
         const room = await axios.get(`${url}/post/show_roomtype/${id_post}`);
             setListRoom(room.data.data);
+        const count = await axios.get(`${url}/post/show_count_roomNumber/${id_post}`);
+            setListCount(count.data.data);
     };
     const updateView = async () => {
         const update = await axios.put(`${url}/post/updateView/${id_post}`);
@@ -101,7 +104,12 @@ function RoomDetail() {
                                 <h2>{a.post_name}</h2>
                             </div>
                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
-                            <div className="product-price-discount">Số Lượng : {a.quantity}</div>
+                            {listCount.length <= 0 && 
+                            <div className="product-price-discount">Hết phòng</div>
+                                }
+                                {listCount.length > 0 && 
+                            <div className="product-price-discount">Số phòng còn trống: {listCount.length}</div>
+                                }
                             <div>
                                 <p>{a.description_sort}</p>
                             </div>
@@ -109,9 +117,16 @@ function RoomDetail() {
                     </div>
                     <div className="product-count">
                        <div>
+                       {listCount.length > 0 && 
                             <Link to={`../square/${a.id_post}`} className="round-black-btn">
                                 Xem chi tiết số lượng phòng
                             </Link>
+                        }
+                        {listCount.length <= 0 && 
+                            <Link to="#" className="round-black-btn">
+                                Hết phòng
+                            </Link>
+                        }
                        </div>
                        <div>
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
@@ -151,20 +166,17 @@ function RoomDetail() {
                         <div className='content_detail_____'>
                             <p>Địa chỉ : </p>        
                         <span>
-                        <strong> {a.address} </strong>
-                        <strong> Đường </strong>
+                        <strong> {a.address},</strong>
                             {liststreet.map((street_detail, index) => {
                             return (   
                                 <strong key={index}> {street_detail._name}, </strong>                        
                                 );
                             })}
-                        <strong> Xã </strong>
                             {listward.map((ward_detail, index) => {
                             return (   
                                 <strong key={index}> {ward_detail._name}, </strong>                        
                                 );
                             })}                  
-                        <strong> Quận </strong> 
                             {listdistrict.map((dis_detail, index) => {
                                 return (   
                                     <strong key={index}> {dis_detail._name}, </strong>            

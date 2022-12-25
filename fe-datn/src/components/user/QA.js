@@ -9,9 +9,12 @@ import { url } from '../url';
 
 function QA() {
   const user = JSON.parse(localStorage.getItem('user')); 
+  // const visableCmt = 3; 
+  const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
+  const [listCountComment, setListCountComment] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [listChildComment, setListChildComment] = useState([]);
   const [loader,setLoader] = useState(0);
@@ -78,18 +81,12 @@ function QA() {
     const res = await axios.get(`${url}/comment_qa/show_qa`);
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
+    
    };
-   
-  
-// const loadMore = () => {
-//   setListComment(index + 5)
-//   console.log(index)
-//   if (index >= post.length) {
-//     setIsCompleted(true)
-//   } else {
-//     setIsCompleted(false)
-//   }
-// }
+   const countcmt = async (e,id_qa) => {
+    const countcmt = await axios.get(`${url}/comment_qa/count/${id_qa}`);
+      setListCountComment(countcmt.data.data)
+   }
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -101,13 +98,15 @@ function QA() {
   const handleChangeComment = (e) => {
     setComment({[e.target.name]: e.target.value})
   }
-  const handleComment = async (e,id_qa,parent_id = '') => {
+  const handleComment = async (e,id_qa,parent_id = '',childIdComment) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',qa_content)
     formData.append('id_user',id_user)
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
+    formData.append('child_idComment',childIdComment)
+    // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
@@ -142,6 +141,14 @@ function QA() {
     setShow(true)
     checkManage();
   }
+  const loadmoreCmt = () => {
+        setVisableCmt(VisableCmt + 3);
+       getData();
+  }
+  const [countCommentQA, setCountCommentQA] = useState({
+    id_qa : '',
+    count:0
+  })
   return (
     <>
       <div className="back_re">
@@ -230,10 +237,21 @@ function QA() {
                   </Form>    
                 </div>
                 <div style={{margin:' 26px 10px 0'}}>
+                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
                   <span>Xem {listComment.length} bình luận trong bài </span>
+                  {/* {
+                    countCommentQA.id_qa == listQa.id_qa ? countCommentQA.id_qa
+                  } */}
                   <i className="fa-regular fa-comment"></i>
                 </div>
-                {listComment.map((listComment, index) => {
+                {listComment.slice(0,VisableCmt).map((listComment, index) => {
+                    // if(listComment.id_qa == listQa.id_qa){
+                    //   setCountCommentQA({
+                    //     ...countCommentQA,
+                    //     [countCommentQA.id_qa]: listQa.id_qa,
+                    //    [ countCommentQA.count]:  countCommentQA.count + 1
+                    //   })
+                    // }
                   return( listQa.id_qa == listComment.id_qa && (
                     <div className="container_qa" key={index}>
                       <div className='qa_avatar'>
@@ -291,7 +309,7 @@ function QA() {
                       { activeComment && id == listComment.id_comment_qa &&
                         <div className="content_comment____form_input__">
                           <Form className="display_comment" 
-                          onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                          onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,listComment.id_comment_qa)}
                           >
                             <Form.Group className="col-9">
                               <Form.Control 
@@ -368,7 +386,7 @@ function QA() {
                               { activeComment && id == child.id_comment_qa &&
                                 <div className="content_comment____form_input__">
                                   <Form className="display_comment" 
-                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa)}
+                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,child.id_comment_qa)}
                                   >
                                     <Form.Group className="col-9">
                                       <Form.Control 
@@ -389,11 +407,15 @@ function QA() {
                         </div>
                         )})}
                       </div>
-                    </div>  
+                    </div>
                   ))}
                 )}
+                {VisableCmt < listComment.length &&
+                <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
+                 } 
               </div>
             );})}
+            
         </div>
       </div>
     </>

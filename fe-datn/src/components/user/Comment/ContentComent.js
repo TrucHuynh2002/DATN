@@ -24,6 +24,7 @@ function ContentComent() {
     id_user: user ? user[0].id : "",
     id_post: id_post,
   });
+  const [VisableCmt, setVisableCmt] = useState(1); //loader cmt number
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
   const [Reply,setReply] = useState({
@@ -50,13 +51,15 @@ function ContentComent() {
   const handleChangeComment = (e) => {
     setComment(e.target.value)
   }
-  const handleReplyComment = async (e) => {
+  const handleReplyComment = async (e,idReplyCmt) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('content',Comment)
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
+    formData.append('id_Replycomment',idReplyCmt)
+    // const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     const res = await axios.post(`${url}/comment/create`,formData);
       if(res.data.status == true ){
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
@@ -117,7 +120,11 @@ function ContentComent() {
     activeUpdateComment,
     idUpdateCmt
   } = UpdateComment
-
+  //loader cmt number
+  const loadmoreCmt = () => {
+    setVisableCmt(VisableCmt + 10);
+    getData();
+  }
 return (
  <>
   <div className="input_comment">
@@ -139,7 +146,7 @@ return (
     </div>
   </div>
   <hr />
-  {Comment_parent.map((comment, index) => {
+  {Comment_parent.slice(0,VisableCmt).map((comment, index) => {
     return <>
         <div className="container_comment" key={index}>
            {/* <div key={index}> */}
@@ -193,7 +200,7 @@ return (
                 </div>
                 { activeComment && id == comment.id_comment &&
                   <div className="content_comment____form_input__">
-                    <Form className="display_comment" onSubmit={e => handleReplyComment(e)}>
+                    <Form className="display_comment" onSubmit={e => handleReplyComment(e,comment.id_comment)}>
                       <Form.Group className="col-9">
                         <Form.Control 
                         style={{"padding":"24px 0 24px 12px"}}
@@ -263,7 +270,7 @@ return (
                   </div>
                   { activeComment && id == cmt.id_comment &&
                   <div className="content_comment____form_input__">
-                    <Form className="display_comment" onSubmit={e => handleReplyComment(e)}>
+                    <Form className="display_comment" onSubmit={e => handleReplyComment(e,cmt.id_comment)}>
                       <Form.Group className="col-9">
                         <Form.Control 
                           style={{"padding":"24px 0 24px 12px"}}
@@ -285,6 +292,9 @@ return (
         </div>
     </> 
     })}
+    {VisableCmt < listComment.length &&
+    <p onClick={(e) => loadmoreCmt(e)}>Xem thêm bình luận</p>
+    }
  </>
 )
 }

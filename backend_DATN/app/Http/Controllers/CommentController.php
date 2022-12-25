@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\CommentModel as CommentModel;
 use App\Models\RatingModel;
+use App\Models\User;
+use App\Notifications\CommentPostNotification;
+use App\Notifications\ReplyCommentPostNotification;
+use App\Notifications\ReplyParentCommentNotification;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -39,6 +46,7 @@ class CommentController extends Controller
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
         $t->save();
+
         $Comment_PostUser = DB::table('comment')
             ->join('post', 'comment.id_post', '=', 'post.id_post')
             ->select('post.id_user')
@@ -53,6 +61,42 @@ class CommentController extends Controller
             $rate->content = $request->content;
             $rate->save();
         } 
+
+        // NOTIFY
+        $getUserComment = DB::table('comment')->join('users','comment.id_user','=','users.id_user')
+                        ->join('img_user','users.id_user','=','img_user.id_user')
+                        ->select('comment.id_user','users.full_name','img_user.link_img_user')
+                        ->orderBy('comment.id_comment','DESC')
+                        ->first();  
+        $getPostComment = DB::table('comment')->join('post','comment.id_post','=','post.id_post')
+                        ->join('users','post.id_user','=','users.id_user')
+                        ->select('post.id_post','post.post_name','users.id_user','post.id_user as OwnerPost')
+                        ->orderBy('comment.id_comment','DESC')
+                        ->first();
+       
+       
+        if($request->parent_id){
+            $getOwnerCommentPost = DB::table('comment')->join('users','users.id_user','=','comment.id_user')
+            ->join('img_user','users.id_user','img_user.id_user')
+            ->select('users.id_user','users.full_name')
+            ->where('comment.id_comment','=',$request->id_Replycomment)
+            ->first();
+            $getParentComment = DB::table('comment')
+            ->join('users','comment.id_user','=','users.id_user')
+            ->select('users.full_name','users.id_user')
+            ->where('comment.id_comment','=',$request->id_Replycomment)
+            ->first();
+            $user = User::find($getPostComment->OwnerPost);
+            $userParentComment = User::find($getOwnerCommentPost->id_user);
+            FacadesNotification::send($user,new ReplyCommentPostNotification($getUserComment,$getPostComment,$getParentComment));
+            FacadesNotification::send($userParentComment,new ReplyParentCommentNotification($getUserComment,$getPostComment,$getParentComment));
+        }
+        else{
+            $user = User::find($getPostComment->OwnerPost);
+            FacadesNotification::send($user,new CommentPostNotification($getUserComment,$getPostComment));
+        }
+
+      
         return response()->json([
             'message' => 'Cám ơn bạn đã đánh giá!',
             'status' => true,
@@ -185,7 +229,12 @@ class CommentController extends Controller
             ]);
     }
 
-    public function ReplyComment(Request $request, $id_post){
-
+    public function Count_Comment(Request $request, $id_post){
+        $Count_Comment = CommentModel::where('id_post','=',$id_post);
+        return response()
+            ->json([
+                'data' => $Count_Comment,
+                'status' => true
+            ]);
     }
 }
