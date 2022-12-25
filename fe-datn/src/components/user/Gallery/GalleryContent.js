@@ -35,7 +35,7 @@ function GalleryContent() {
         {ListSearchTrend.length > 0 && ListSearchTrend.map((list,index) => {
           return (
           <div
-          key={index}
+            key={index}
             type="button"
             className="row searchTrend"  
             onClick={(e) =>getDataPostTrendShow(list.key_word) }
@@ -44,7 +44,9 @@ function GalleryContent() {
               <div className="col-8">
                 <div> {list.key_word}</div>
                 <div className="content____________">
-                  <Link className="link-info Link_________" to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].length > 0 &&  ListDataPostTrend[0][0].id_post}`}>{ListDataPostTrend[0][0].post_name}
+                  <Link 
+                    className="link-info Link_________" 
+                    to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].length > 0 &&  ListDataPostTrend[0][0].id_post}`}>{ListDataPostTrend[index][index].post_name}
                   </Link>
                   <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
                   {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0][0].created_at).local().startOf('day').fromNow()}
