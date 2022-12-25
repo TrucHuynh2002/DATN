@@ -350,11 +350,8 @@ Route::get('bill/month-owner/{id_user}', [BillController::class, 'getOwnerTotalB
 Route::post('test-sms', [BillController::class, 'testSms']);
 
 // CHECK OLD USER ROOM  TO RATE
-<<<<<<< HEAD
 Route::get('check-old-user/{id_user}',[ControllersSavingRoomController::class,'checkOldOwnerRoom']);
-=======
-Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
->>>>>>> e47b3785a7f9848a44b964cbe3d721fb1df57218
+// Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
 
 // GOOGLE
 // Route::get('auth/google/get-google-sign-in-url', [GoogleController::class, 'getGoogleSignInUrl']);
