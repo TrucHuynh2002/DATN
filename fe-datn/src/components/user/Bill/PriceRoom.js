@@ -43,7 +43,6 @@ function PriceRoom({data}) {
         const res = await axios.put(`${url}/roomNumber/update_checkRoom/${id_user}`);
     }
     const handleShow = () => setShow(true);
-
   return (
     <>
     <div className="manage col-7">
