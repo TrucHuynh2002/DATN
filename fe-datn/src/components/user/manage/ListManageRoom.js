@@ -185,20 +185,16 @@ function ListManageRoom() {
         // active.length > 0 && active.map((arr,i) => {
             
         //     if(arr.status == typeRoom){
-        //         console.log(arr.id_rooms,id_room)
         //         if(arr.id_rooms != id_room){
         //             // return setActive([...active,{id_room:id_room, status: typeRoom}])
                     
                     
         //             setActive([...active,{id_rooms:id_room, status: typeRoom}])
-        //             console.log('khác nè')
                 
         //         }else{
-        //             console.log('giống quà')
         //         }
         //     }
         //     else if(arr.status != typeRoom){
-        //        console.log('Ôi khác room bạn ơi!')
         //        setActive([{id_rooms:id_room, status: typeRoom}])
         //     }           
         // })
@@ -211,7 +207,6 @@ function ListManageRoom() {
         //     :
         //      ''
         // })
-        // console.log(id_room)
         setActive({id_rooms:id_room, status: typeRoom,checked:true,id_user_two: id_user_two,id_post: id_post})        
     }
 
@@ -423,7 +418,7 @@ function ListManageRoom() {
                 <div className="row">
                     <div className="bill____ col-lg-6 col-sm-12">
                         <Button id="bill_button" 
-                        className="btn btn-primary" 
+                        className="btn btn-primary"
                         onClick={(e) =>handleShowAddBill()}
                         >
                             Thêm hóa đơn

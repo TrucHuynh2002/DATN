@@ -8,6 +8,7 @@ import { url } from '../../url';
 function RoomND() {
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
+  const [listFur, setListFur] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
   const lastPageIndex = currentPage * postsPerPage;
@@ -26,6 +27,8 @@ function RoomND() {
     setListPost(res.data.data);   
    const getImg = await axios.get(`${url}/imgPost/show`);
       setListImg(getImg.data.data); 
+    const getFur = await axios.get(`${url}/furniture/show`);
+      setListFur(getFur.data.data); 
     let getTypeRoom = await axios.get(`${url}/roomType/show`);
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
         // tỉnh
@@ -42,7 +45,8 @@ function RoomND() {
     ward: "",
     price:"",
     area:"",
-    typeRoom:""
+    typeRoom:"",
+    fur:""
   })
   const [getDataSearch,setGetDataSearch] = useState({
     typeRooms:[]
@@ -55,7 +59,8 @@ function RoomND() {
       ward,
       price,
       area,
-      typeRoom
+      typeRoom,
+      fur
     } = keyword
     const [addProvince , setProvince] = useState([]);
     const [listProvince, setListProvince] = useState([]);
@@ -96,7 +101,7 @@ function RoomND() {
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
+    navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}&fur=${fur}`);
   }
    // modal post
    const [show, setShow] = useState(false);
@@ -124,6 +129,16 @@ function RoomND() {
               {
                 typeRooms.map((r,i) => {
                   return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+                })
+              }
+            </Form.Select>
+          </div>
+          <div className="modal_show">
+            <Form.Select className="form-select online_book3" name="fur" onChange={(e) => handleChangeKeyWord(e)}>
+              <option>Nội thất</option>
+              {
+                listFur.map((f,i) => {
+                  return <option key={i} value={f.id_furniture}>{f.name}</option>
                 })
               }
             </Form.Select>

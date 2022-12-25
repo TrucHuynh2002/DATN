@@ -9,7 +9,6 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
-    // console.log(user)
     const id_users = user ? user[0].id : '';
     
     const navigate = useNavigate();

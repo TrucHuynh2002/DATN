@@ -683,7 +683,7 @@ label{
 }
 .book_room {
     padding: 20px;
-    border-left: none solid 5px;
+    /* border-left: none solid 5px; */
     padding-top: -200px;
 }
 .dccuthe{
@@ -2157,7 +2157,7 @@ ul.social_icon li a:hover {
     text-align: center;
     color: black;
     font-size: 24px;
-    padding: 0 0 10px 0;
+    padding: 0 0 50px 0;
 }.col-md-4.col-sm-6.searchroom{
 margin: 0 300px 0 375px;
 }
@@ -2253,11 +2253,37 @@ margin: 0 300px 0 375px;
 .dispaly_qa_comment{
     align-items: unset;
 }
+/* sua, xoa */
 .content_comment_chammmm{
     position: relative;
 }
 .content_comment_chammmm:hover>.content_comment_editAndDelete{
     display: block;
+}
+/* xoa */
+.content_comment_chammmm_delete{
+    position: relative;
+    padding-left: 500px;
+}
+.content_comment_chammmm_delete:hover>.content_comment_Delete{
+    display: block;  
+}
+.content_comment_Delete{
+    position: absolute;
+    display: none;
+    left: 480px;
+    top: 23px;
+    width: 76px;
+    height: 37px;
+    text-align: left;
+    border-radius: 14px;
+    background: #2d2d2dde;
+    padding: 0px 7px;
+    font-size: 10px;
+}
+.content_comment_Delete>span{
+    color: white;
+    font-weight: bold;
 }
 .chammmmmm{ 
     padding: 8px;
@@ -2290,16 +2316,18 @@ margin: 0 300px 0 375px;
     color: white;
     font-weight: bold;
 }
-.content_comment_editAndDelete{
+.content_comment_editAndDelete {
     position: absolute;
     display: none;
-    left: -40px;
-    top: 18px;
-    width: 128px;
+    left: -3px;
+    top: 23px;
+    width: 76px;
+    height: 37px;
     text-align: left;
     border-radius: 14px;
     background: #2d2d2dde;
-    padding: 10px;
+    padding: 0px 7px;
+    font-size: 10px;
 }
 .content_comment_img_user>p{
     padding-left: 17px;
@@ -2496,9 +2524,6 @@ margin: 0 300px 0 375px;
 .room_number____>button,.bill____>button,.edit_bill____>button{
     display:none;
     margin:10px;
-}
-.deatilRoomMagane{
-    
 }
 .color_empty_room {
     display: inline-block;
@@ -2845,7 +2870,6 @@ margin-top: 30px;
 }
 .link_noti {
     text-transform: none;
-    font-weight: 400;
 }
 .btn-handle-booking-room{
     display: flex;
@@ -2866,4 +2890,13 @@ margin-top: 30px;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.support_link {
+    text-transform: none;
+    color: rgb(202,202,195);
+    font-weight: 0;
+}
+.support_link:hover{
+    font-weight: 0;
+    color: rgb(255,199,13);
 }

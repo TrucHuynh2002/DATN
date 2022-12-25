@@ -96,7 +96,6 @@ function FooterConfig() {
                                 onChange={(event,editor)=> {
                                     const data=editor.getData()
                                     setEditConfig({ ...editConfig, introduce : data});
-                                    // console.log(description);
                                 }}
                                 >
                         </CKEditor>
