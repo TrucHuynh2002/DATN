@@ -88,13 +88,11 @@ import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
 import LayoutSendNoti from './components/user/sendNotification/LayoutSendNoti';
 import QADetail from './components/user/QADetail';
-<<<<<<< HEAD
 import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
-=======
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
+import ConfirmPass from './components/user/account/ConfirmPass';
 
->>>>>>> 0e3ca96b4490209f25a2f2aa071ea405e766742d
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -128,6 +126,7 @@ root.render(
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
+        <Route path="confirmpass/:id_Account" element={<ConfirmPass />} />
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="qaDetail/:id_qa" element={<QADetail />} />
