@@ -6,10 +6,13 @@ use App\Mail\BillAlert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Bill as Bill;
+use App\Models\User;
+use App\Notifications\BillNotification;
 use Carbon\Carbon;
 use Exception;
 use Twilio\Rest\Client;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use telesign\sdk\messaging\MessagingClient;
 
@@ -94,9 +97,15 @@ class BillController extends Controller
             ->orderBy('bill.id','DESC')
             ->first();
         if ($data_bill) {
-
             Mail::to($data_bill->email)->send(new BillAlert($data_bill));
         }
+
+        $user_bill = Bill::join('room_number','bill.id_roomNumber','room_number.id')
+            ->join('users', 'users.id_user', '=', 'room_number.id_user_two')
+            ->select('bill.water_money', 'bill.electricity_money', 'bill.all_money','room_number.id_user_two', 'bill.id_roomNumber', 'users.full_name', 'users.email','bill.created_at')
+            ->first();
+        $ownerUserId = User::find($user_bill->id_user_two);
+        Notification::send($ownerUserId,new BillNotification($user_bill));
         return response()
             ->json([
                 'data' =>  $data_bill,

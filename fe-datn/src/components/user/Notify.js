@@ -100,7 +100,13 @@ function Notify({onClick}) {
     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
     <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
         <li className="nav-item">
-            <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
+            <span className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </span>
+        </li>
+        <li className="nav-item">
+            <span className="nav-link nav-item-link " tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">HÓA ĐƠN</span>
+        </li>
+        <li className="nav-item">
+            <span className="nav-link nav-item-link " tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </span>
         </li>
     </ul>
     <div className="tab-content" id="myTabContent" style={{ marginTop:"10px", height:"300px", overflow:"hidden", overflowY:"scroll"}}>
@@ -119,26 +125,26 @@ function Notify({onClick}) {
                                     if(noti.data.Comment.id_user == id_user){
                                         return ''
                                     }else{
-                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa bình luận phòng trọ <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong> {noti.data.post.post_name}</strong></Link> của bạn </div>
+                                        return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa bình luận phòng trọ <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong> {noti.data.post.post_name}</strong></Link> của bạn </div>
                                     }
                                 }
                                 if(noti.type == "App\\Notifications\\ReplyCommentPostNotification"){
                                     if(noti.data.Comment.id_user != id_user){
                                         if(noti.data.replyCmt.id_user == id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                         else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của chính mình tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của chính mình tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                         else{
-                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.replyCmt.full_name}</strong></Link>  bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link> của bạn </div>
+                                            return  <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'><strong>{noti.data.replyCmt.full_name}</strong></Link>  bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link> của bạn </div>
                                         }                                      
                                     }
                                 }
                                 if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
                                     
                                         if(noti.data.Comment.id_user != id_user){
-                                            return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
+                                            return <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'><strong>{noti.data.post.post_name}</strong></Link></div>
                                         }
                                 }
                                 if(noti.type == "App\\Notifications\\CommentQANotification"){
@@ -165,6 +171,39 @@ function Notify({onClick}) {
                                         return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}><Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'><strong>{noti.data.Comment.full_name}</strong></Link> Vừa trả lời bình luận của bạn tại bài viết <Link to={`../hoidap/${noti.data.qa.id_qa}`} className='link_noti'><strong>Hỏi - Đáp</strong></Link></div>
                                     }
                                 }
+
+                                if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
+
+                                        return   <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}><div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                            <strong>{noti.data.subject.full_name}</strong> Vừa yêu cầu trả phòng phòng số <strong>{noti.data.roomnumber.room_number}</strong> tại bài viết <strong>{noti.data.roomnumber.post_name}</strong>
+                                            </div></Link>
+                                }
+
+                                if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
+                                    return   <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}><div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                        Yêu cầu trả phòng của bạn không thành công
+                                        </div></Link>
+                                }
+
+                                if(noti.type == "App\\Notifications\\ReplyUpdateRoomCancel"){
+                                    return   <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}><div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                        Yêu cầu trả phòng của bạn thành công
+                                        </div></Link>
+                                }
+
+                                if(noti.type == "App\\Notifications\\BillNotification"){
+                                    return   <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                        Bạn vừa nhận được hóa đơn tháng <strong>{moment(noti.data.bill.created_at).local().format('MM')}</strong>
+                                        </div>
+                                }
+                                if(noti.type == "App\\Notifications\\RatePostNotification"){
+                                    return   <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}><div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                        <strong>{noti.data.user_two.full_name}</strong> Vừa đánh giá bài viết <strong>{noti.data.user.post_name} </strong>
+                                        </div></Link>
+                                }
+                            
+
+
                                 if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
                                     if(noti.data.ownerPost.id_user == id_user &&  noti.read_at == null){
                                         return      <div className='listBookingRoom'>

@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class NotificationController extends Controller
 {
     public function getNotification(Request $request,$id_user){
-
         $get_data = User::find($id_user)->Notifications;
         $get_notificationsUnread = User::find($id_user)->unreadNotifications;
         // $get_data = $get_data->unreadNotifications;

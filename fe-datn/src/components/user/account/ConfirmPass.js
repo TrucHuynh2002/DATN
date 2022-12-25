@@ -19,7 +19,7 @@ function ConfirmPass() {
  };
  const handleSubmit = async (e) => {
   e.preventDefault();
-  const res = await axios.put(`${url}/user/updatepassword/${id_Account}`, editPassword);
+  const res = await axios.put(`${url}/user/updatepasswordsocial/${id_Account}`, editPassword);
   if(res.data.status === true){
       setAlert({
           err_list: res.data

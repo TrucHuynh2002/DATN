@@ -14,8 +14,11 @@ use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
 use App\Models\SavingRoomModel;
 use App\Models\User;
+use App\Notifications\UpdateRoomNumber;
 use App\Notifications\NotificationOwnerBookingRoom;
 use App\Notifications\NotificationOwnerPost;
+use App\Notifications\ReplyUpdateRoomCancel;
+use App\Notifications\ReplyUpdateRoomDelete;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -76,20 +79,23 @@ class RoomNumberController extends Controller
             ]);
     }
 
-    public function update_checkRoom(Request $request, $id)
+    
+    public function detail_checkRoom(Request $request, $id_roomNumber)
     {
-        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->where('id_user_two', '=', $id)->first();
-        $data->check_room = 1;
-        $data->save();
-        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
-        if($admin){
-            Mail::to($admin->email)->send(new CheckOut($data,$admin));   
-        }
+        $user = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->select('post.room_price','post.electricity_price','post.water_price','room_number.room_number','post.post_name','users.full_name','users.email','users.phone')
+        ->where('id', '=', $id_roomNumber)
+        ->first();
+        $user_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->select('users.full_name','users.email','users.phone')
+        ->where('id', '=', $id_roomNumber)
+        ->first();
         return response()
             ->json([
-                'data' => $data,
+                'user' => $user,
+                'user_two' => $user_two,
                 'status' => true,
-                'id' => $id
             ]);
     }
     // Đặt phòng
@@ -257,14 +263,51 @@ class RoomNumberController extends Controller
                 ]);
            
     }
+    public function update_checkRoom(Request $request, $id)
+    {
+        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->where('id_user_two', '=', $id)->first();
+        $data->check_room = 1;
+        $data->save();
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
+        if($admin){
+            Mail::to($admin->email)->send(new CheckOut($data,$admin));   
+        }
+        // Lấy thông tin người trả phòng
+        $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->join('img_user','users.id_user','=','img_user.id_user')
+        ->select('room_number.id_user_two','users.full_name','img_user.link_img_user')
+        ->first();
+        
+        // Lấy thông tin người chủ phòng
+        $User = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
+        ->join('post','room_number.id_post','=','post.id_post')
+        ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
+        ->first();
+        $ownerUserId = User::find($User->id_user);
+        Notification::send($ownerUserId,new UpdateRoomNumber($User_two,$User));
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true,
+                'id' => $id
+            ]);
+    }
     public function cancelSendNoti(Request $request,$id_roomnumber){
         $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber);
         $data->check_room = null;
+        $data->status = 0;
         $data->id_user_two = null;
         $data->save();
         if($data){
             Mail::to($data->email)->send(new CheckOutAlertSuccess($data));
         }
+        // Lấy thông tin người trả phòng
+        $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->select('room_number.id_user_two','users.full_name')
+        ->where('room_number.id','=',$id_roomnumber)
+        ->first();
+        $ownerUserId = User::find($User_two->id_user_two);
+        Notification::send($ownerUserId,new ReplyUpdateRoomCancel());
         return response()
         ->json([
             'data' => $data,
@@ -279,11 +322,26 @@ class RoomNumberController extends Controller
         if($data){
             Mail::to($data->email)->send(new CheckOutAlertUnSuccess($data));
         }
+        // Lấy thông tin người trả phòng
+        $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
+        ->select('room_number.id_user_two','users.full_name')
+        ->where('room_number.id','=',$id_roomnumber)
+        ->first();
+        
+        //Lấy thông tin người chủ phòng
+        // $post = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
+        // ->join('post','room_number.id_post','=','post.id_post')
+        // ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
+        // ->where('room_number.id','=',$id_roomnumber)
+        // ->first();
+        $ownerUserId = User::find($User_two->id_user_two);
+        Notification::send($ownerUserId,new ReplyUpdateRoomDelete());
         return response()
-        ->json([
-            'data' => $data,
-            'status' => true,
-        ]);
+            ->json([
+                'data' => $data,
+                'status' => true,
+                'id' => $id_roomnumber
+            ]);
 
     }
     public function cancelRoomBookUser(Request $request,$id_user){
