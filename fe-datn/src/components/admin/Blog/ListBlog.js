@@ -56,59 +56,25 @@ function ListBlog() {
           const handleSubmitSearch = (e) => {
             e.preventDefault()
           }
-
   return (
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách Blog</h1>
               {/* start search */}
-              <form onSubmit={(e) => handleSubmitSearch(e)}>
+              <div className ="row">
+                <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
                 <div className='row'>
-                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                    {searching &&  (
-                              <div className='show_search'>
-                                 <ul>
-                                  {
-                                    getDataPostSearch.length > 0
-                                    &&
-                                   getDataPostSearch.map((post,index) => {
-                                      return (
-                                        <li key={index}>
-                                              <Link to={`../blogdetail/${post.id_blog}`}>{post.name_blog}</Link>                              
-                                        </li>
-
-                                      )
-                                   })
-
-                                  }
-                            
-                                  {
-                                    getKeywords.length > 0 
-                                    &&
-                                    getKeywords.map((keyword,index) => {
-                                      return (
-                                        <li key={index}>
-                                          <Link to="room">{keyword.key_word}</Link>
-                                        </li>
-                                      )                                          
-                                    })                                  
-                                  }
-                                    {/* <li>
-                                      <Link to={`searchroom?keyword=${keywords}`}>Tìm kiếm với {keywords}</Link>
-                                    </li> */}
-                                </ul>               
-                              </div>    
-                            )
-                          }
-                    <div className="btn-search col-1">
-                      <button className="btn btn-outline-secondary">
-                        <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-                      </button>
-                    </div>
-                </div>
-              </form>
-              {/* end search */}
-              <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
+                      <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                      <div className="btn-search col-1">
+                        <button className="btn btn-outline-secondary">
+                          <i className='bx bx-search' style={{color:"#0d3380"}}></i>
+                        </button>
+                      </div>
+                  </div>
+                {/* end search */}
+            
+              </div>
+               
               <Table bordered>
                 <thead>
                 <tr>
