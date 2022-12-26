@@ -40,11 +40,9 @@ function ListRoomType() {
               {/* start search */}
               <div className ="header__nav_admin">
                 <Link to="../add_roomtype" className="btn btn-primary form-add">Thêm loại phòng</Link>
-                <div className='row '>
-                    <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-                    // onChange={(e) => handleChangeKeyWord(e)} 
-                    />
-                </div>
+                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
+                // onChange={(e) => handleChangeKeyWord(e)} 
+                />
               </div>
               {/* end search */}
              

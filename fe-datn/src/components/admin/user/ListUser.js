@@ -37,11 +37,9 @@ function ListUser() {
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách người dùng</h1>
       <div className ="header__nav_admin">
-        <div className='row '>
-            <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
             // onChange={(e) => handleChangeKeyWord(e)} 
-            />
-        </div>
+        />
       </div>
       <Table bordered>
         <thead>

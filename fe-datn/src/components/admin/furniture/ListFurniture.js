@@ -37,11 +37,9 @@ function ListFurniture() {
       <h1 className="content_h1_admin">Danh sách nội thất</h1>
       <div className ="header__nav_admin">
         <Link to="../add_furniture" className="btn btn-primary form-add">Thêm nội thất</Link>
-        <div className='row '>
-            <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-            // onChange={(e) => handleChangeKeyWord(e)} 
-            />
-        </div>
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
+        // onChange={(e) => handleChangeKeyWord(e)} 
+        />
       </div>
      
       <Table bordered>

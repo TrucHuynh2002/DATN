@@ -39,9 +39,7 @@ function ListBlog() {
               {/* start search */}
               <div className ="header__nav_admin">
                 <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
-                <div className='row '>
-                    <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                </div>
+                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                 {/* end search */}
                
               </div>
