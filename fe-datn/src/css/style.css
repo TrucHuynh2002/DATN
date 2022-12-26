@@ -2860,14 +2860,14 @@ margin-top: 30px;
 
 
 .textNoti{
-    padding:10px 6px;
-    border-radius:4px;
+    padding: 7px;
+    border-radius: 4px;
     line-height: 26px;
-    margin-bottom: 12px;
 }
 
 .textNotiMaskRead {
-    background-color: #C0C0C0;
+    text-transform: lowercase;
+    word-break: break-word;
 }
 
 .textNoti:hover{
@@ -2896,6 +2896,12 @@ margin-top: 30px;
 }
 .link_noti {
     text-transform: none;
+   
+    display:contents;
+    font-weight: normal;
+}
+.link_noti>span{
+    margin-right:6px;
 }
 .btn-handle-booking-room{
     display: flex;
