@@ -77,7 +77,7 @@ function Notify({onClick}) {
         // let formData = new FormData();
         // formData.append('id_user_two',id_userBooking)
         // formData.append('id_notification',id_notification)
-        let res = await axios.get(`http://127.0.0.1:8000/api/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}&&id_user_two=${id_userBooking}`);
+        let res = await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}&&id_user_two=${id_userBooking}`);
         setHandleBooking(true)
     }
 
@@ -120,14 +120,20 @@ function Notify({onClick}) {
                                                 return ''
                                             }else{
                                                 return (
-                                                    <div key={index} className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                    <div className="row row_noty" key={index} >
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div  className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft col-9 col-9'  : 'textNoti col-9' } >
                                                         <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa bình luận phòng trọ 
                                                         <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
                                                             <span> {noti.data.post.post_name}</span>
                                                         </Link> của bạn 
+                                                        </div>
                                                     </div>
+                                                    
                                                 )
                                             }
                                         }
@@ -135,70 +141,93 @@ function Notify({onClick}) {
                                             if(noti.data.Comment.id_user != id_user){
                                                 if(noti.data.replyCmt.id_user == id_user){
                                                     return  (
-                                                        <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} >
-                                                            <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                                <span>{noti.data.Comment.full_name}</span></Link> Vừa trả lời bình luận của bạn tại bài viết 
-                                                            <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                <span> {noti.data.post.post_name} </span>
-                                                            </Link>
+                                                        <div className="row row_noty" key={index} >
+                                                            <div className="col-3 col_3_img">
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} >
+                                                                <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
+                                                                    <span>{noti.data.Comment.full_name}</span></Link> Vừa trả lời bình luận của bạn tại bài viết 
+                                                                <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
+                                                                    <span> {noti.data.post.post_name} </span>
+                                                                </Link>
+                                                            </div>
                                                         </div>
                                                     )
                                                 }
                                                 else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
                                                     return (
-                                                        <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                            <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                                <span>{noti.data.Comment.full_name}</span>
-                                                            </Link>  
-                                                            <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                <span> {noti.data.post.post_name}</span>
-                                                            </Link>
+                                                        <div className="row row_noty" key={index} >
+                                                            <div className="col-3 col_3_img">
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
+                                                                    <span>{noti.data.Comment.full_name}</span>
+                                                                </Link>  
+                                                                <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
+                                                                    <span> {noti.data.post.post_name}</span>
+                                                                </Link>
+                                                            </div>
                                                         </div>
                                                     )
                                                 }
                                                 else{
-                                                    return  (
-                                                        <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                            <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                            </Link> Vừa trả lời bình luận 
-                                                            <Link to={`../profile/${noti.data.replyCmt.id_user}`} className='link_noti'>
-                                                                <span> {noti.data.replyCmt.full_name}</span>
-                                                            </Link>  bài viết 
-                                                            <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                <span> {noti.data.post.post_name}</span>
-                                                            </Link> của bạn 
+                                                    return (
+                                                        <div className="row row_noty" key={index} >
+                                                            <div className="col-3 col_3_img">
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                                </Link> Vừa trả lời bình luận 
+                                                                <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'>
+                                                                    <span> {noti.data.replyCmt.full_name}</span>
+                                                                </Link>  bài viết 
+                                                                <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
+                                                                    <span> {noti.data.post.post_name}</span>
+                                                                </Link> của bạn 
+                                                            </div>
                                                         </div>
                                                     )
                                                 }                                      
                                             }
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
-
-                                                if(noti.data.Comment.id_user != id_user)
-                                                {
+                                                if(noti.data.Comment.id_user != id_user) {
                                                     return (
-                                                        <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                            <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                                <span>{noti.data.Comment.full_name}</span>
-                                                            </Link> Vừa trả lời bình luận của bạn tại bài viết 
-                                                            <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                <span> {noti.data.post.post_name}</span>
-                                                            </Link>
-                                                        </div>
+                                                        <div className="row row_noty"  key={index}>
+                                                            <div className="col-3 col_3_img">
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
+                                                                    <span>{noti.data.Comment.full_name}</span>
+                                                                </Link> Vừa trả lời bình luận của bạn tại bài viết 
+                                                                <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
+                                                                    <span> {noti.data.post.post_name}</span>
+                                                                </Link>
+                                                            </div>
+                                                        </div>  
                                                     )
                                                 }
                                         }
                                         if(noti.type == "App\\Notifications\\CommentQANotification"){
                                             if(noti.data.Comment.id_user != id_user){
                                                 return (
-                                                    <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                        </Link> Vừa bình luận bài viết trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <span>Hỏi - Đáp</span>
-                                                        </Link> của bạn 
+                                                    <div className="row row_noty" key={index}>
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                            </Link> Vừa bình luận bài viết trên 
+                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                                <span> Hỏi - Đáp</span>
+                                                            </Link> của bạn 
+                                                        </div>
                                                     </div>
                                                 )
                                             }
@@ -206,13 +235,18 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyCommentQANotification"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return  (
-                                                    <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                        </Link> Vừa trả lời bình luận của bạn trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <span> Hỏi - Đáp </span>
-                                                        </Link>
+                                                    <div className="row row_noty" key={index}>
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                            </Link> Vừa trả lời bình luận của bạn trên 
+                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                                <span> Hỏi - Đáp </span>
+                                                            </Link>
+                                                        </div>
                                                     </div>
                                                 )
                                             }
@@ -268,13 +302,18 @@ function Notify({onClick}) {
                                             if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                             if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                        </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <span>Hỏi - Đáp</span>
-                                                        </Link> của bạn.
+                                                    <div className="row row_noty" key={index}>
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti col-9'}>
+                                                            <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                            </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
+                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                                <span> Hỏi - Đáp</span>
+                                                            </Link> của bạn.
+                                                        </div>
                                                     </div>
                                                 )
                                             }
@@ -282,57 +321,62 @@ function Notify({onClick}) {
                                             
                                             if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div key={index}
-                                                    className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}
-                                                    >
-                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                        </Link> Vừa trả lời bình luận 
-                                                        <Link 
-                                                            to={`../profile/${noti.data.replyCmt.id_user}`} 
-                                                            className='link_noti'
-                                                        >
-                                                            <span>{noti.data.replyCmt.full_name}</span>
-                                                        </Link>  bài viết của bạn trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'> 
-                                                            <span>Hỏi - Đáp</span>
-                                                        </Link>
+                                                    <div className="row row_noty" key={index}>
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : ''} >
+                                                            <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                            </Link> Vừa trả lời bình luận 
+                                                            <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                                <span>{noti.data.replyCmt.full_name}</span>
+                                                            </Link>  bài viết của bạn trên 
+                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                                <span> Hỏi - Đáp</span>
+                                                            </Link> 
+                                                        </div>
                                                     </div>
                                                 )
                                             }                                       
                                             return  (
-                                                <div key={index}
-                                                className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}
-                                                >
-                                                    <Link 
-                                                    to={`../profile/${noti.data.Comment.id_user}`} 
-                                                    className='link_noti'>
-                                                        <span>{noti.data.Comment.full_name}</span>
-                                                    </Link> Vừa trả lời bình luận 
-                                                    <Link 
-                                                    to={`../profile/${noti.data.replyCmt.id_user}`} 
-                                                    className='link_noti'>
-                                                        <span>{noti.data.replyCmt.full_name}</span>
-                                                    </Link> bài viết của bạn trên 
-                                                    <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                        <span>Hỏi - Đáp</span>
-                                                    </Link>
+                                                <div className="row row_noty" key={index}>
+                                                    <div className="col-3 col_3_img">
+                                                        <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    </div>
+                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti col-9'}
+                                                    >
+                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                            <span>{noti.data.Comment.full_name}</span>
+                                                        </Link> Vừa trả lời bình luận 
+                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                            <span>{noti.data.replyCmt.full_name}</span>
+                                                        </Link> bài viết của bạn trên 
+                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                            <span> Hỏi - Đáp</span>
+                                                        </Link>
+                                                    </div>
                                                 </div>
                                             )
                                         }    
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return   (
-                                                    <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link 
-                                                        to={`../profile/${noti.data.Comment.id_user}`} 
-                                                        className='link_noti'>
-                                                            <span>{noti.data.Comment.full_name}</span>
-                                                        </Link> 
-                                                        Vừa trả lời bình luận của bạn tại bài viết 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <span>Hỏi - Đáp</span>
-                                                        </Link>
+                                                    <div className="row row_noty" key={index}>
+                                                        <div className="col-3 col_3_img">
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <Link 
+                                                            to={`../profile/${noti.data.qa.id_user}`} 
+                                                            className='link_noti'>
+                                                                <span>{noti.data.Comment.full_name}</span>
+                                                            </Link> 
+                                                            Vừa trả lời bình luận của bạn tại bài viết 
+                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                                <span> Hỏi - Đáp</span>
+                                                            </Link>
+                                                        </div>
                                                     </div>
                                                 )
                                             }
@@ -340,100 +384,118 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
                                             if(noti.data.ownerPost.id_user == id_user &&  noti.read_at == null){
                                                 return(
-                                                    <div key={index} className='listBookingRoom'>
-                                                        <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                            <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                                <span>{noti.data.ownerBookingRoom.full_name}</span> Vừa đặt phòng <span>A0{noti.data.ownerPost.room_number}</span> tại 
-                                                                <span>{noti.data.ownerPost.post_name}</span> của bạn 
-                                                            </div>
-                                                        </Link>
-                                                        { noti.read_at == null && handleBooking == false &&
-                                                            <div className='btn-handle-booking-room'>
-                                                                <div className='btn-handle-accept-booking-room'>
-                                                                    <div 
-                                                                    className='btn btn-outline-primary' 
-                                                                    onClick={e => handleBookingRoom(e,noti.data.ownerPost.id,noti.data.ownerBookingRoom.id_user,noti.id)} >
-                                                                        Chấp nhận
-                                                                    </div>
+                                                    <div className="row row_noty" key={index}>
+                                                        <div  className='listBookingRoom'>
+                                                            <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
+                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                    <span>{noti.data.ownerBookingRoom.full_name}</span> Vừa đặt phòng <span>A0{noti.data.ownerPost.room_number}</span> tại 
+                                                                    <span>{noti.data.ownerPost.post_name}</span> của bạn 
                                                                 </div>
-                                                                <div className='btn-handle-cancel-booking-room'>
-                                                                    <div 
-                                                                    className='btn btn-outline-danger' 
-                                                                    onClick={e => handleCancelBookingRoom(e,noti.data.ownerPost.id,noti.id)}>
-                                                                        Từ chối
+                                                            </Link>
+                                                            { noti.read_at == null && handleBooking == false &&
+                                                                <div className='btn-handle-booking-room'>
+                                                                    <div className='btn-handle-accept-booking-room'>
+                                                                        <div 
+                                                                        className='btn btn-outline-primary' 
+                                                                        onClick={e => handleBookingRoom(e,noti.data.ownerPost.id,noti.data.ownerBookingRoom.id_user,noti.id)} >
+                                                                            Chấp nhận
+                                                                        </div>
                                                                     </div>
+                                                                    <div className='btn-handle-cancel-booking-room'>
+                                                                        <div 
+                                                                        className='btn btn-outline-danger' 
+                                                                        onClick={e => handleCancelBookingRoom(e,noti.data.ownerPost.id,noti.id)}>
+                                                                            Từ chối
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            }   
+                                                            { handleBooking &&
+                                                                <div className='text-muted'>
+                                                                    Lựa chọn thành công
                                                                 </div>
-                                                            </div> 
-                                                        }   
-                                                        { handleBooking &&
-                                                            <div className='text-muted'>
-                                                                Lựa chọn thành công
-                                                            </div>
-                                                        }
+                                                            }
+                                                        </div>
                                                     </div>
                                                 )
                                             }                                  
                                         }
                                         if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
                                             return   (
-                                                <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <span>{noti.data.subject.full_name} </span> Vừa yêu cầu trả phòng phòng số 
-                                                        <span> {noti.data.roomnumber.room_number} </span> tại bài viết 
-                                                        <span> {noti.data.roomnumber.post_name}</span>
-                                                    </div>
-                                                </Link>
+                                                <div className="row row_noty" key={index}>
+                                                    <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' 
+                                                    onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' : 'textNoti'}>
+                                                            <span>{noti.data.subject.full_name} </span> Vừa yêu cầu trả phòng phòng số 
+                                                            <span> {noti.data.roomnumber.room_number} </span> tại bài viết 
+                                                            <span> {noti.data.roomnumber.post_name}</span>
+                                                        </div>
+                                                    </Link>
+                                                </div>
                                             )
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                             return  (
-                                                <Link to={`../layoutBill/${id_user}`}className='link_noti'onClick={e => handleMaskRead(e,noti.id)}>
-                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        Yêu cầu trả phòng của bạn không thành công
-                                                    </div>
-                                                </Link>
+                                                <div className="row row_noty" key={index}>
+                                                    <Link to={`../layoutBill/${id_user}`}className='link_noti'onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            Yêu cầu trả phòng của bạn không thành công
+                                                        </div>
+                                                    </Link>
+                                                </div>
                                             )
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyUpdateRoomCancel"){
                                             return  (
-                                                <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
-                                                        Yêu cầu trả phòng của bạn thành công
-                                                    </div>
-                                                </Link>
+                                                <div className="row row_noty" key={index}>
+                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                            Yêu cầu trả phòng của bạn thành công
+                                                        </div>
+                                                    </Link>
+                                                </div>
                                             )
                                         }
                                         if(noti.type == "App\\Notifications\\RatePostNotification"){
                                             return   (
-                                                <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <span>{noti.data.user_two.full_name} </span> 
-                                                        Vừa đánh giá bài viết 
-                                                        <span> {noti.data.user.post_name} </span>
+                                                <div className="row row_noty" key={index}>
+                                                    <div className="col-3 col_3_img">
+                                                        <img src={noti.data.user.link_img_user} alt='' className="img" />
                                                     </div>
-                                                </Link>
+                                                    <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                            <span>{noti.data.user_two.full_name} </span> 
+                                                            Vừa đánh giá bài viết 
+                                                            <span> {noti.data.user.post_name} </span>
+                                                        </div>
+                                                    </Link>
+                                                </div>
                                             )
                                         }
                                         if(noti.type == "App\\Notifications\\NotificationOwnerBookingRoom"){
                                             if(noti.data.ownerBookingRoom.id_user != id_user){
                                                 if(noti.data.status ==  '2') {
                                                     return (
-                                                        <div key={index}
-                                                            onClick={e => handleMaskRead(e,noti.id)} 
-                                                            className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                                Chúc mừng bạn đã đặt phòng thành công phồng số 
-                                                            <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết 
-                                                            <span>{noti.data.ownerBookingRoom.post_name}</span> 
+                                                        <div className="row row_noty" key={index}>
+                                                            <div 
+                                                                onClick={e => handleMaskRead(e,noti.id)} 
+                                                                className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                    Chúc mừng bạn đã đặt phòng thành công phồng số 
+                                                                <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết 
+                                                                <span>{noti.data.ownerBookingRoom.post_name}</span> 
+                                                            </div>
                                                         </div>
                                                     )
                                                 }
                                                 if(noti.data.status ==  '0' ) {
                                                     return (
-                                                        <div key={index}
-                                                        onClick={e => handleMaskRead(e,noti.id)} 
-                                                        className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}
-                                                        > Đặt phòng 
-                                                            <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết <span>{noti.data.ownerBookingRoom.post_name}</span> thất bại 
+                                                        <div className="row row_noty" key={index}>
+                                                            <div 
+                                                            onClick={e => handleMaskRead(e,noti.id)} 
+                                                            className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}
+                                                            > Đặt phòng 
+                                                                <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết <span>{noti.data.ownerBookingRoom.post_name}</span> thất bại 
+                                                            </div>
                                                         </div>
                                                     )
                                                 }
@@ -441,7 +503,7 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\BillNotification"){
                                             return (
-                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
                                                     Bạn vừa nhận được hóa đơn tháng 
                                                     <span>{moment(noti.data.bill.created_at).local().format('MM')}</span>
                                                 </div>
@@ -463,7 +525,7 @@ function Notify({onClick}) {
                         <div className="notifyInteractive">
                             {listBillUser.length > 0 && listBillUser.map((cate, index) => {
                                 return (     
-                                    <div className='row' key={index}>                                   
+                                    <div className='row row_noty' key={index}>                                   
                                         <div className="content_notifyInteractive col-12">
                                             <Link to={`../billdetail/${cate.id}`} style={{textTransform: 'none'}}>
                                                 <button className="notify_name">Bạn nhận được hóa đơn tiền phòng vào lúc</button> 

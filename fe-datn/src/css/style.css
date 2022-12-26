@@ -2968,17 +2968,26 @@ margin-top: 30px;
     font-weight: 0;
     color: rgb(255,199,13);
 }
-.timkiem{
-    width: 100%;
-    height: 40px;
-    border: 1px solid #bebebe;
-    border-radius: 10px;
-    padding: 7px ;
+.search_blog{
+    width: 280px;
+    margin: 0 0 20px 10px;
 }
-.timkiem2{
-    width: 100%;
-    height: 40px;
-    border: 1px solid #bebebe;
-    border-radius: 10px;
-    padding: 7px ;
+
+.row_noty{
+    
+    justify-content: center;
+    align-items: center;
+}
+.col_3_imggg{
+    width: 80px;
+    height: 80px;
+}
+.col_3_imggg>img{
+    border-radius: 7px;
+}
+.product-name>h2{
+    text-transform: uppercase;
+}
+.formGridCheckbox>.row>.col-2>.form-label{
+    line-height: 6px;
 }

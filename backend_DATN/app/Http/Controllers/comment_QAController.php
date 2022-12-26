@@ -79,38 +79,36 @@ class comment_QAController extends Controller
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->first();
         // Lấy thông tin chủ bài viết QA
-        $QAOwner = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->join('users','users.id_user','=','qa.id_user')
-            ->select('qa.id_qa','qa.content','qa.id_user','users.full_name')
-            ->orderBy('comment_qa.id_comment_qa','DESC')
+        $QAOwner = DB::table('comment_qa')->join('qa', 'comment_qa.id_qa', '=', 'qa.id_qa')
+            ->join('users', 'users.id_user', '=', 'qa.id_user')
+            ->select('qa.id_qa', 'qa.content', 'qa.id_user', 'users.full_name')
+            ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->first();
         // Lấy thông tin người Comment
         $CommentQA = DB::table('comment_qa')
-        ->join('users','users.id_user','=','comment_qa.id_user')
-        ->select('comment_qa.content','comment_qa.id_user','users.full_name')
-        ->orderBy('comment_qa.id_comment_qa','DESC')
-        ->first();
+            ->join('users', 'users.id_user', '=', 'comment_qa.id_user')
+            ->join('img_user', 'img_user.id_user', '=', 'users.id_user')
+            ->select('comment_qa.content', 'comment_qa.id_user', 'users.full_name', 'img_user.link_img_user')
+            ->orderBy('comment_qa.id_comment_qa', 'DESC')
+            ->first();
         $ownerQaId = User::find($QAOwner->id_user);
-        
-        if($request->parent_id){
+
+        if ($request->parent_id) {
             // Lấy thông tin người vừa trả lời bình luận
             $ReplyCommentQA = DB::table('comment_qa')
-            ->join('users','users.id_user','=','comment_qa.id_user')
-            ->select('comment_qa.content','users.id_user','users.full_name','comment_qa.id_qa')
-            ->where('comment_qa.id_comment_qa','=',$request->child_idComment)
-            ->first();
+                ->join('users', 'users.id_user', '=', 'comment_qa.id_user')
+                ->select('comment_qa.content', 'users.id_user', 'users.full_name', 'comment_qa.id_qa', 'users.link_img_user')
+                ->where('comment_qa.id_comment_qa', '=', $request->child_idComment)
+                ->first();
             $ParentCommentQa = User::find($ReplyCommentQA->id_user);
-            if($request->id_qa != $ReplyCommentQA->id_qa){
+            if ($request->id_qa != $ReplyCommentQA->id_qa) {
                 // Notification::send($ParentCommentQa,new ReplyParentCommentQA($CommentQA,$QAOwner,$ReplyCommentQA));
-                Notification::send($ownerQaId,new ReplyCommentQANotification($CommentQA,$QAOwner,$ReplyCommentQA));
-            }else{
-                Notification::send($ParentCommentQa,new ReplyParentCommentQA($CommentQA,$QAOwner,$ReplyCommentQA));
-                
+                Notification::send($ownerQaId, new ReplyCommentQANotification($CommentQA, $QAOwner, $ReplyCommentQA));
+            } else {
+                Notification::send($ParentCommentQa, new ReplyParentCommentQA($CommentQA, $QAOwner, $ReplyCommentQA));
             }
-           
-
-        }else{
-            Notification::send($ownerQaId,new CommentQANotification($CommentQA,$QAOwner));
+        } else {
+            Notification::send($ownerQaId, new CommentQANotification($CommentQA, $QAOwner));
         }
         return response()->json([
             'message' => 'Bình luận thành công',
@@ -155,17 +153,18 @@ class comment_QAController extends Controller
         ]);
     }
 
-    public function getAllCommentPostUserOwner(Request $request,$id_user){
+    public function getAllCommentPostUserOwner(Request $request, $id_user)
+    {
         $get_inforOwnerParent = DB::table('comment_qa')
-            ->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->join('users','users.id_user','=','comment_qa.id_user')
-            ->where('qa.id_user','=',$id_user)
-            ->where('parent_id','=',NULL)
+            ->join('qa', 'comment_qa.id_qa', '=', 'qa.id_qa')
+            ->join('users', 'users.id_user', '=', 'comment_qa.id_user')
+            ->where('qa.id_user', '=', $id_user)
+            ->where('parent_id', '=', NULL)
             ->get();
-        $get_inforOwnerChild = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->join('users','users.id_user','=','comment_qa.id_user')
-            ->where('qa.id_user','=',$id_user)
-            ->whereNot('parent_id','=',NULL)
+        $get_inforOwnerChild = DB::table('comment_qa')->join('qa', 'comment_qa.id_qa', '=', 'qa.id_qa')
+            ->join('users', 'users.id_user', '=', 'comment_qa.id_user')
+            ->where('qa.id_user', '=', $id_user)
+            ->whereNot('parent_id', '=', NULL)
             ->get();
 
         return response()->json([
@@ -174,8 +173,9 @@ class comment_QAController extends Controller
             'dataChild' => $get_inforOwnerChild
         ]);
     }
-    public function Count_Comment(Request $request, $id_qa){
-        $Count_Comment = comment_QAModel::where('id_qa','=',$id_qa)->where('parent_id','=',null)->count();
+    public function Count_Comment(Request $request, $id_qa)
+    {
+        $Count_Comment = comment_QAModel::where('id_qa', '=', $id_qa)->where('parent_id', '=', null)->count();
         return response()
             ->json([
                 'data' => $Count_Comment,

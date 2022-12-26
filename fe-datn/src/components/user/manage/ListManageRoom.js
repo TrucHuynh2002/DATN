@@ -278,17 +278,20 @@ function ListManageRoom() {
                     
                 <div className="room_number____">
                     {alert.err_list.status === true && <div className="notice success_____"><p className='layoutnotice'>Cập nhật thành công</p></div>}
-                    {
+                    {active ?
                         status === 0 &&
                         <>
                         <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
+                        : ""
                     }    
                     {
+                        active ?
                         status === 1 &&
                         <>
                         <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
+                        : ""
                     }    
                 </div>
                 <div className="row">
