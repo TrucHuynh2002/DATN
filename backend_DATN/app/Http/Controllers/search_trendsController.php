@@ -42,21 +42,18 @@ class search_trendsController extends Controller
             ]);
     }
 
-    public function show_keyword(Request $request, $keyword){
-        $keywords = search_trendsModel::where('key_word','like','%'.$keyword.'%')->get();
-        
-        $get_post = PostModel::where('post_name','like','%'.$keyword.'%')->get();
-
+    public function show_keyword(Request $request, $keyword)
+    {
+        $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
+        $get_post = PostModel::where('post_name', 'like', '%' . $keyword . '%')->get();
         $get_image = imgPost::all();
-        
         return response()
-        ->json([
-            'data' => $keywords,
-            'get_post' => $get_post,
-            'status' => true,
-            'keyword' => $keyword,
-            'image' => $get_image
-        ]);
-
+            ->json([
+                'data' => $keywords,
+                'get_post' => $get_post,
+                'status' => true,
+                'keyword' => $keyword,
+                'image' => $get_image
+            ]);
     }
 }
