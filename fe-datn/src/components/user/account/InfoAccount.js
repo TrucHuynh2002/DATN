@@ -168,11 +168,11 @@ function InfoAccount() {
                         <Button variant="outline-primary" name='' className='btn-edit'>Cập nhật thông tin</Button>
                     </NavLink>
                     {/* doi pass facebook, google */}
-                    {user[0].password == '' && 
+                    {/* {user[0].password == '' && 
                         <NavLink to={`../confirmpass/${id_user}`}>
                             <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
                         </NavLink>
-                    }
+                    } */}
                     <NavLink to={`../confirm_acc/${id_user}`}>
                         <Button variant="outline-info" name='' className='btn-edit'>Đổi mật khẩu</Button>
                     </NavLink>
