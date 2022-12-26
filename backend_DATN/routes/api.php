@@ -276,6 +276,15 @@ Route::get('search', [SearchController::class, 'keyword_searching']);
 Route::get('trend', [search_trendsController::class, 'show']);
 Route::get('getKeyWord/{keyword}', [search_trendsController::class, 'show_keyword']);
 
+// search admin
+Route::get('getkeywordcategory/{keyword}', [search_trendsController::class, 'show_keyword_catelory']);
+Route::get('getkeywordroomtype/{keyword}', [search_trendsController::class, 'show_keyword_roomType']);
+Route::get('getkeywordpost/{keyword}', [search_trendsController::class, 'show_keyword_post']);
+Route::get('getkeywordblog/{keyword}', [search_trendsController::class, 'show_keyword_blog']);
+Route::get('getkeywordfurniture/{keyword}', [search_trendsController::class, 'show_keyword_furniture']);
+Route::get('getkeywordcomment/{keyword}', [search_trendsController::class, 'show_keyword_comment']);
+Route::get('getkeyworduser/{keyword}', [search_trendsController::class, 'show_keyword_user']);
+
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
 
