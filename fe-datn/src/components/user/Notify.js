@@ -162,7 +162,7 @@ function Notify({onClick}) {
                                                             <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận 
-                                                            <Link to={`../profile/${noti.data.post.id_user}`} className='link_noti'>
+                                                            <Link to={`../profile/${noti.data.replyCmt.id_user}`} className='link_noti'>
                                                                 <span> {noti.data.replyCmt.full_name}</span>
                                                             </Link>  bài viết 
                                                             <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
@@ -193,7 +193,7 @@ function Notify({onClick}) {
                                             if(noti.data.Comment.id_user != id_user){
                                                 return (
                                                     <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa bình luận bài viết trên 
                                                         <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
@@ -207,7 +207,7 @@ function Notify({onClick}) {
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return  (
                                                     <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa trả lời bình luận của bạn trên 
                                                         <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
@@ -219,7 +219,7 @@ function Notify({onClick}) {
                                             if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
                                                     <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
-                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
                                                         <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
@@ -234,18 +234,18 @@ function Notify({onClick}) {
                                                     <div key={index}
                                                     className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : ''}
                                                     >
-                                                        <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
+                                                        <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa trả lời bình luận 
                                                         <Link 
-                                                            to={`../profile/${noti.data.qa.id_user}`} 
+                                                            to={`../profile/${noti.data.replyCmt.id_user}`} 
                                                             className='link_noti'
                                                         >
                                                             <span>{noti.data.replyCmt.full_name}</span>
                                                         </Link>  bài viết của bạn trên 
                                                         <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
                                                             <span>Hỏi - Đáp</span>
-                                                        </Link> 
+                                                        </Link>
                                                     </div>
                                                 )
                                             }                                       
@@ -254,12 +254,12 @@ function Notify({onClick}) {
                                                 className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}
                                                 >
                                                     <Link 
-                                                    to={`../profile/${noti.data.qa.id_user}`} 
+                                                    to={`../profile/${noti.data.Comment.id_user}`} 
                                                     className='link_noti'>
                                                         <span>{noti.data.Comment.full_name}</span>
                                                     </Link> Vừa trả lời bình luận 
                                                     <Link 
-                                                    to={`../profile/${noti.data.qa.id_user}`} 
+                                                    to={`../profile/${noti.data.replyCmt.id_user}`} 
                                                     className='link_noti'>
                                                         <span>{noti.data.replyCmt.full_name}</span>
                                                     </Link> bài viết của bạn trên 
@@ -274,7 +274,7 @@ function Notify({onClick}) {
                                                 return   (
                                                     <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                         <Link 
-                                                        to={`../profile/${noti.data.qa.id_user}`} 
+                                                        to={`../profile/${noti.data.Comment.id_user}`} 
                                                         className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> 
