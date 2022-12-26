@@ -452,6 +452,9 @@ button {
     height: 680px;
 }
 
+
+
+
 .second-slide {
     width: 100%;
     height: 680px;
@@ -561,11 +564,41 @@ button {
     margin: 25px 0;
     position: relative;
 }
+.book_now2 .online_book4 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book5 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book6 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book7 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+    
+}
 .fitele-search{
     align-items:baseline;
 }
-gallery {
+.gallery {
     padding-top: 60px;
+    padding-bottom: 60px;   
 }
 
 
@@ -772,7 +805,7 @@ label{
     font-weight: 600;
     padding: 7px 0;
     width: 120px;
-    margin-top: 20px;
+    
 }
 
 .search_room_btn:hover {
@@ -2934,7 +2967,17 @@ margin-top: 30px;
     font-weight: 0;
     color: rgb(255,199,13);
 }
-.search_blog{
-    width: 280px;
-    margin: 0 0 20px 10px;
+.timkiem{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bebebe;
+    border-radius: 10px;
+    padding: 7px ;
+}
+.timkiem2{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #bebebe;
+    border-radius: 10px;
+    padding: 7px ;
 }
