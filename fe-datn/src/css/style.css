@@ -2936,3 +2936,16 @@ margin-top: 30px;
     width: 280px;
     margin: 0 0 20px 10px;
 }
+
+.row_noty{
+    
+    justify-content: center;
+    align-items: center;
+}
+.col_3_imggg{
+    width: 80px;
+    height: 80px;
+}
+.col_3_imggg>img{
+    border-radius: 7px;
+}
