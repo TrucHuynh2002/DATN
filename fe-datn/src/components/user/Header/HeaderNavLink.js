@@ -248,6 +248,7 @@ function HeaderNavLink() {
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
+       
             {listCategory.map((cate, index) => {
                 return (           
                     <li className="nav-item" key={index}>
@@ -256,8 +257,8 @@ function HeaderNavLink() {
                         </Link>
                     </li>            
                 );
-            })}     
-            <li className="nav-item">
+            })} 
+         <li className="nav-item">
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
@@ -277,6 +278,7 @@ function HeaderNavLink() {
             <li className="nav-item">
                 {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
                 <Button 
+                className='dangbai'
                     variant="warning" 
                     style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}} 
                     onClick={handleShow}
@@ -494,6 +496,7 @@ function HeaderNavLink() {
             {/* end Đăng bài */}
             <li className="nav-item">
                 {!localStorage.getItem('user') ?
+                
                 <div className="btn-group">
                     <button type="button" className="btn btn-warning " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{color: 'black', fontWeight: 600, backgroundColor: '#ffc70d',borderRadius: '5px'}}>TÀI KHOẢN</button>
                     <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
@@ -519,6 +522,13 @@ function HeaderNavLink() {
                     </div>
                 </div> }
             </li>
+            
+            <form className="book_now2" >
+                  <div className="row timkiemrow">
+                      <input className="timkiem2" placeholder="Tìm kiếm" type="text" name="keywords"  />
+         </div> 
+    </form>    
+            
         </ul>
     </div>
   )

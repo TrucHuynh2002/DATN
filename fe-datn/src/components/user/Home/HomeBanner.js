@@ -37,7 +37,7 @@ function Baner() {
           <div className="row">
             <div className="col-12">
               <div className="book_room">
-                <h1>Nhatui.com</h1>
+                <h1 className='tieudenhatui'>Nhatui.com</h1>
                 <form className="book_now">
                   <div className="row">
                     <div className="col-12">

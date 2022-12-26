@@ -98,7 +98,7 @@ function HomeSearch() {
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
                     <div className="col-md-11 col-sm-12">
-                      <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                      <input className="timkiem" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                           {searching &&  (
                               <div className='show_search'>
                                  <ul>
@@ -159,7 +159,7 @@ function HomeSearch() {
                         </select>
                       </div>
                       <div className="col-md-2 col-sm-12">
-                        <Form.Select name="id_provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
+                        <Form.Select name="id_provinces" className="form-select online_book4"  onChange = {(e) => handledistrice(e)}>
                           <option>Tỉnh</option>
                           {
                             getProvince.map((p,i) => {
@@ -170,7 +170,7 @@ function HomeSearch() {
                         </Form.Select>
                       </div>
                       <div className="col-md-2 col-sm-12">
-                              <Form.Select name="id_district" className="form-select online_book3"
+                              <Form.Select name="id_district" className="form-select online_book5"
                               onChange = {(e) => handleadd(e)}
                               >
                                   <option>Quận/Huyện</option>
@@ -182,7 +182,7 @@ function HomeSearch() {
                               </Form.Select>
                       </div>
                       <div className="col-md-2 col-sm-12">
-                        <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
+                        <select className="form-select online_book6" name="price" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Giá</option>
                           <option value={1}>Dưới 1 triệu</option>
                           <option value={2}>Từ 1 - 2 triệu</option>
@@ -194,7 +194,7 @@ function HomeSearch() {
                         </select>
                       </div>
                       <div className="col-md-2 col-sm-12">
-                        <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
+                        <select className="form-select online_book7" name="area" onChange={(e) => handleChangeKeyWord(e)}>
                           <option>Diện tích</option>
                           <option value="1">Dưới 20m</option>
                           <option value="2">Từ 20 - 30m</option>
@@ -202,9 +202,9 @@ function HomeSearch() {
                           <option value="4">Trên 50m</option>
                         </select>
                       </div>
-                      <div className="col-md-2 col-sm-12">
+                      
                           <button type="submit" className="search_room_btn">Lọc</button>
-                      </div>
+                     
                     </div>
                 </form>
       </div>

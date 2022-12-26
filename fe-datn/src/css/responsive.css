@@ -5,7 +5,12 @@
 
 /*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
 
-@media (min-width: 1200px) and (max-width: 1342px) {}
+@media (min-width: 1200px) and (max-width: 1600px) {
+    .timkiem2{
+        display: none;
+    }
+   
+}
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .book_room h1 {
@@ -27,6 +32,9 @@
     }
     .gallery {
         height: 450px !important;
+    }
+    .timkiem2{
+        display: none;
     }
 }
 
@@ -121,7 +129,6 @@
      .blog_box .blog_img > figure > img {
         object-fit: cover;
      }
-  
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -180,10 +187,17 @@
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
     }
+    .timkiem2{
+        display: none;
+    }
+   
   
 }
 
 @media (max-width: 575px) {
+    .book_room2{
+        display: none;
+    }
     .logo {
         text-align: center !important;
         /* padding-bottom: 6px; */
@@ -258,4 +272,77 @@
     .d_none {
         display: none;
     }
+    .book_now2 .online_book3 {
+        width: 40%;
+        margin-left: 5%;
+         
+     }
+     .book_now2 .online_book4 {
+        width: 40%;
+        margin-left: 55%;
+        margin-top: -21%;
+         
+     }
+     .book_now2 .online_book5 {
+        width: 40%;
+        margin-top: -3%;
+        margin-left: 5%;
+
+         
+     }
+     .book_now2 .online_book6 {
+        width: 40%;
+        margin-left: 55%;
+        margin-top: -21%;
+         
+     }
+    .book_now2 .online_book7 {
+       width: 40%;
+       margin-top: -3%;
+       margin-left: 5%;
+        
+    }
+    .search_room_btn{
+        width: 40%;
+        margin-left: 55%;
+        margin-top: -18%;
+        width: 37%;
+        border-radius: 5px;
+
+    }
+    .timkiem{
+        width: 80%;
+    }
+    .timkiem2{
+        width: 36px;
+        margin-left: -1%;
+    }
+    .timkiemrow{
+        padding-top: 20px;
+    }
+    .btn-search{
+        margin-left: 80%;
+        margin-top: -10.5%;
+    }
+    .first-slide {
+        width: 100%;
+        height: 100px;
+       
+    }
+    
+    .second-slide {
+        width: 100%;
+        
+        height: 100px;
+    }
+    
+    .third-slide {
+        width: 100%;
+        
+        height: 100px;
+    }
+    
+    
 }
+
+
