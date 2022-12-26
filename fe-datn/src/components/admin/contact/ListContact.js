@@ -20,18 +20,21 @@ function ListContact() {
   },[]);
 
   // danh sach contact
-  const getData = async () => {
-    const res = await axios.get(`${url}/contact/show`);
+  const getData = async (keywordss = '') => {
+    const res = await axios.get(`${url}/contact/show?keyword=${keywordss}`);
       setListContact(res.data.data);
   };
+   // search
+   const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách liên hệ</h1>
       <div className ="header__nav_admin">
-        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-        // onChange={(e) => handleChangeKeyWord(e)} 
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
         />
       </div>
       <Table bordered>

@@ -21,8 +21,8 @@ function ListUser() {
   },[]);
 
   // danh sach user
-  const getData = async () => {
-  const res = await axios.get(`${url}/user/show`);
+  const getData = async (keywordss = '') => {
+  const res = await axios.get(`${url}/user/show?keyword=${keywordss}`);
   setListUser(res.data.data);
   };
 
@@ -31,14 +31,17 @@ function ListUser() {
     await axios.delete(`${url}/user/delete/${id_user}`);
     getData();
   };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách người dùng</h1>
       <div className ="header__nav_admin">
-        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-            // onChange={(e) => handleChangeKeyWord(e)} 
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
         />
       </div>
       <Table bordered>
@@ -49,7 +52,6 @@ function ListUser() {
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Email</th>
-
           </tr>
         </thead>
         <tbody>
@@ -62,13 +64,8 @@ function ListUser() {
               <td>{user.address}</td>
               <td>{user.email}</td>
               <td>
-                {/* <Link to="123">
-                  <Button variant="outline-primary" name="" className="bx bxs-edit btn-edit"></Button>
-                </Link> */}
-                {/* <Link to="#"> */}
                 <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => 
                   deleteUser(user.id_user)}></Button>
-                {/* </Link> */}
               </td>
             </tr>
             );

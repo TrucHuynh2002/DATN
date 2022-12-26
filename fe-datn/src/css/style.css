@@ -279,7 +279,7 @@ img {
 }
 
 .form-control:focus {
-    border-color: #ffffff !important;
+    /* border-color: #ffffff !important; */
     box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
 }
 

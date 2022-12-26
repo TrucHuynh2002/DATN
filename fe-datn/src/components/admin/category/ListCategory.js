@@ -26,11 +26,11 @@ function ListCategory() {
   const deleteCategory = async (id_category) => {
     await axios.delete(`${url}/category/delete/${id_category}`);
     getData();
-  };// search
+  };
+  // search
   const handleChangeKeyWord = (e) => {
     getData(e.target.value)
   }
-
 
   return (
     <div className="content">

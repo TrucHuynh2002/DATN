@@ -22,8 +22,8 @@ function ListRoomType() {
   },[]);
 
   // danh sach roomtype
-  const getData = async () => {
-   const res = await axios.get(`${url}/roomType/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/roomType/show?keyword=${keywordss}`);
    setListRoomType(res.data.data);
   };
 
@@ -32,6 +32,10 @@ function ListRoomType() {
     await axios.delete(`${url}/roomType/delete/${id_room_type}`);
     getData();
   };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
@@ -40,8 +44,7 @@ function ListRoomType() {
               {/* start search */}
               <div className ="header__nav_admin">
                 <Link to="../add_roomtype" className="btn btn-primary form-add">Thêm loại phòng</Link>
-                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-                // onChange={(e) => handleChangeKeyWord(e)} 
+                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
                 />
               </div>
               {/* end search */}

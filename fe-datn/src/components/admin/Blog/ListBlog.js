@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 
 function ListBlog() {
-  const navigate = useNavigate();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

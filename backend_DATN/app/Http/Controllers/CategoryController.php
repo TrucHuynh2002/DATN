@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        $data = Category::all();
+        if($request->keyword && $request->keyword != ''){
+            $data = Category::where('name_category','like','%'.$request->keyword.'%')->get();
+        }else{
+            $data = Category::all();
+        }
+        
         return response()
             ->json([
                 'data' => $data

@@ -21,8 +21,8 @@ function ListComment() {
   },[]);
 
   // danh sách comment
-  const getData = async () => {
-    const res = await axios.get(`${url}/comment/show`);
+  const getData = async (keywordss = '') => {
+    const res = await axios.get(`${url}/comment/show?keyword=${keywordss}`);
        setListCmt(res.data.data);
    };
 
@@ -31,7 +31,10 @@ function ListComment() {
     await axios.delete(`${url}/comment/delete/${id_comment}`);
     getData();
   };
-
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
@@ -39,8 +42,7 @@ function ListComment() {
       <h1 className="content_h1_admin">Danh sách bình luận</h1>
       {/* start search */}
       <div className ="header__nav_admin">
-        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-        // onChange={(e) => handleChangeKeyWord(e)} 
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
         />
       </div>
       {/* end search */}

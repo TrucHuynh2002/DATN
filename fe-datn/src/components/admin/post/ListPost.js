@@ -20,18 +20,21 @@ function ListPost() {
   },[]);
 
   // danh sach post
-  const getData = async () => {
-   const res = await axios.get(`${url}/post/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/post/show?keyword=${keywordss}`);
    setListPost(res.data.data);
   };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
         <div className="add-post">
             <h1 className="content_h1_admin">Danh sách bài viết</h1>
             <div className ="header__nav_admin">
-              <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
-              // onChange={(e) => handleChangeKeyWord(e)} 
+              <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
               />
             </div>
             <Table bordered>
@@ -56,8 +59,6 @@ function ListPost() {
                           </td>
                           <td>
                             <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
-                            {/* <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
-                            <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button> */}
                           </td>
                     </tr>
                     );
