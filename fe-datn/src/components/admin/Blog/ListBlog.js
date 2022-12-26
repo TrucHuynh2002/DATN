@@ -1,41 +1,110 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 
 function ListBlog() {
-
+  const navigate = useNavigate();
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(10);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
-  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
- 
+  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex); 
   useEffect(() => {
     getData();
   },[]);
-
   // danh sach Blog
   const getData = async () => {
    const res = await axios.get(`${url}/blog/show`);
       setListBlog(res.data.data);
   };
-
   // xoa Blog
   const deleteBlog = async (id_blog) => {
     await axios.delete(`${url}/blog/delete/${id_blog}`);
     getData();
   };
+  // search
+  const [keyword,setKeyword] = useState({
+    keywords: ""
+  })
+  const {
+    keywords,
+  } = keyword
+  const [searching,setSearching] = useState(false);
+          const [getKeywords,setgetKeywords] = useState([]);
+          const [getDataPostSearch,setGetDataPostSearch] = useState([]);
+          const getKeyword = async (keyword) => {
+            const res = await axios.get(`${url}/getkeywordblog/${keyword}`);
+            setgetKeywords(res.data.data)
+            setGetDataPostSearch(res.data.get_blog)
+          }
+          const handleChangeKeyWord = (e) => {
+            setKeyword({ ...keyword,[e.target.name]:e.target.value});
+            if(e.target.value.length > 0){
+              getKeyword(e.target.value)
+            }else{
+              setSearching(false)
+            }
+          }
+          const handleSubmitSearch = (e) => {
+            e.preventDefault()
+          }
 
   return (
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách Blog</h1>
+              {/* start search */}
+              <form onSubmit={(e) => handleSubmitSearch(e)}>
+                <div className='row'>
+                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                    {searching &&  (
+                              <div className='show_search'>
+                                 <ul>
+                                  {
+                                    getDataPostSearch.length > 0
+                                    &&
+                                   getDataPostSearch.map((post,index) => {
+                                      return (
+                                        <li key={index}>
+                                              <Link to={`../blogdetail/${post.id_blog}`}>{post.name_blog}</Link>                              
+                                        </li>
+
+                                      )
+                                   })
+
+                                  }
+                            
+                                  {
+                                    getKeywords.length > 0 
+                                    &&
+                                    getKeywords.map((keyword,index) => {
+                                      return (
+                                        <li key={index}>
+                                          <Link to="room">{keyword.key_word}</Link>
+                                        </li>
+                                      )                                          
+                                    })                                  
+                                  }
+                                    <li>
+                                      <Link to={`searchroom?keyword=${keywords}`}>Tìm kiếm với {keywords}</Link>
+                                    </li>
+                                </ul>               
+                              </div>    
+                            )
+                          }
+                    <div className="btn-search col-1">
+                      <button className="btn btn-outline-secondary">
+                        <i className='bx bx-search' style={{color:"#0d3380"}}></i>
+                      </button>
+                    </div>
+                </div>
+              </form>
+              {/* end search */}
               <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
               <Table bordered>
                 <thead>

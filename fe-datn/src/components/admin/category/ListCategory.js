@@ -38,6 +38,18 @@ function ListCategory() {
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách danh mục</h1>
+              {/* start search */}
+              <form>
+                <div className='row'>
+                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="" />
+                    <div className="btn-search col-1">
+                      <button className="btn btn-outline-secondary">
+                        <i className='bx bx-search' style={{color:"#0d3380"}}></i>
+                      </button>
+                    </div>
+                </div>
+              </form>
+              {/* end search */}
               <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
               <Table bordered>
                 <thead>
