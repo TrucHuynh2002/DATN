@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends Controller
 {
     public function show(Request $request)
-    {
-      
+    {     
         if($request->keyword && $request->keyword!= '')
         {
             $data = Blog::where('name_blog','like','%'.$request->keyword.'%')->get();

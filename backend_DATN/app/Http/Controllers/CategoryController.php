@@ -15,8 +15,6 @@ class CategoryController extends Controller
             ->json([
                 'data' => $data
             ]);
-        // return $data;
-        // echo "chào ";
     }
     public function show_id(Request $request, $id)
     {

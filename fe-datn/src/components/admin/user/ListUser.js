@@ -21,8 +21,8 @@ function ListUser() {
   },[]);
 
   // danh sach user
-  const getData = async () => {
-  const res = await axios.get(`${url}/user/show`);
+  const getData = async (keywordss = '') => {
+  const res = await axios.get(`${url}/user/show?keyword=${keywordss}`);
   setListUser(res.data.data);
   };
 
@@ -31,22 +31,19 @@ function ListUser() {
     await axios.delete(`${url}/user/delete/${id_user}`);
     getData();
   };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách người dùng</h1>
       {/* start search */}
-      <form>
         <div className='row'>
-            <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="" />
-            <div className="btn-search col-1">
-              <button className="btn btn-outline-secondary">
-                <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-              </button>
-            </div>
+            <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
         </div>
-      </form>
       {/* end search */}
       <Table bordered>
         <thead>
