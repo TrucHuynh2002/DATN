@@ -27,13 +27,13 @@
     <div class="table">
     <div class="header">
     <h1>TRẢ PHÒNG THÀNH CÔNG</h1>
-    <img src="{{asset('')}}" width="100px" height="100px">
+    {{-- <img src="{{asset('uploads/logo/logo.png')}}" width="100px" height="100px"> --}}
     </div>
     <div class="body">
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
-        <b>Hello, tên {{$user->full_name}} </b>
+        <b>Hello, bạn {{$user->full_name}} </b>
         <p>Bạn vừa gửi yêu cầu trả phòng thành công</p>
-        <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để xem chi tiết</p>
+        <p>Nhấp <a href="https://timtrosinhvien.com/login">vào đây</a> để xem chi tiết</p>
         
     </div>
     <div class="footer">
