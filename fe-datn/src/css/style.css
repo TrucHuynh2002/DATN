@@ -596,8 +596,9 @@ button {
 .fitele-search{
     align-items:baseline;
 }
-gallery {
+.gallery {
     padding-top: 60px;
+    padding-bottom: 60px;   
 }
 
 
