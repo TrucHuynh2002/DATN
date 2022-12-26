@@ -94,7 +94,7 @@ import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import vnpay from './components/user/pay/vnpay';
 
 import ConfirmPass from './components/user/account/ConfirmPass';
-import Payment from './components/user/bill/Payment';
+import Payment from './components/user/Bill/Payment';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -133,7 +133,6 @@ root.render(
         <Route path="confirmpass/:id_Account" element={<ConfirmPass />} />
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
-        <Route path="payment" element={<Payment />} />
         <Route path="qaDetail/:id_qa" element={<QADetail />} />
         <Route path="baomat" element={<Privacy />} />
         <Route path="rules" element={<Rules />} />
