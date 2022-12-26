@@ -6,51 +6,42 @@ import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 
 function ListCategory() {
-
   const id_category = useParams();
-
   // phan trang
   const [listCategory, setListCategory] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
-  const currentPosts = listCategory.slice(firstPageIndex, lastPageIndex);
- 
+  const currentPosts = listCategory.slice(firstPageIndex, lastPageIndex); 
   useEffect(() => {
     getData();
   },[]);
-
   // danh sach category
-  const getData = async () => {
-   const res = await axios.get(`${url}/category/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/category/show?keyword=${keywordss}`);
       setListCategory(res.data.data);
   };
-
   // xoa category
   const deleteCategory = async (id_category) => {
     await axios.delete(`${url}/category/delete/${id_category}`);
     getData();
-  };
+  };// search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
+
 
   return (
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách danh mục</h1>
-              {/* start search */}
-              <form>
-                <div className='row'>
-                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="" />
-                    <div className="btn-search col-1">
-                      <button className="btn btn-outline-secondary">
-                        <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-                      </button>
-                    </div>
+              <div className ="header__nav_admin">
+                <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
+                <div className='row '>
+                    <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                 </div>
-              </form>
-              {/* end search */}
-              <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
+              </div>
               <Table bordered>
                 <thead>
                 <tr>

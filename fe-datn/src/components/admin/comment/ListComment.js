@@ -38,16 +38,13 @@ function ListComment() {
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách bình luận</h1>
       {/* start search */}
-      <form>
-        <div className='row'>
-            <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="" />
-            <div className="btn-search col-1">
-              <button className="btn btn-outline-secondary">
-                <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-              </button>
-            </div>
+      <div className ="header__nav_admin">
+        <div className='row '>
+            <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" 
+            // onChange={(e) => handleChangeKeyWord(e)} 
+            />
         </div>
-      </form>
+      </div>
       {/* end search */}
       <Table bordered>
         <thead>

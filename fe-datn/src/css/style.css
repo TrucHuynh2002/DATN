@@ -2823,6 +2823,11 @@ margin-top: 30px;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;    
 }
+.header__nav_admin{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
 .loadCmt:hover{
     cursor: pointer;
     text-decoration-line: underline;
