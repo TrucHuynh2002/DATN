@@ -46,6 +46,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PayOnlineController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
 use Laravel\Socialite\Two\FacebookProvider;
@@ -363,3 +364,7 @@ Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallba
 Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
 Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
 Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);
+
+// VNPAY
+
+Route::get('vnpay',[PayOnlineController::class,'create']);

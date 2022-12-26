@@ -91,6 +91,7 @@ import QADetail from './components/user/QADetail';
 import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
+import vnpay from './components/user/pay/vnpay';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -140,6 +141,9 @@ root.render(
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />
         <Route path="auth/google"  element={<LoginGoogle />} />
         <Route path="facebook"  element={<LoginFacebook />} />
+
+        {/* PAY ONLIEN */}
+        <Route path="return-vnpay" element={vnpay} />
       </Route>
 
       {/* chuyển hướng admin tổng */}
