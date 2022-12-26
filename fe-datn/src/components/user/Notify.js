@@ -215,7 +215,6 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\CommentQANotification"){
                                             if(noti.data.Comment.id_user != id_user){
-                                                console.log(noti)
                                                 return (
                                                     <div className="row row_noty" key={index}>
                                                         <div className="col-3 col_3_img">

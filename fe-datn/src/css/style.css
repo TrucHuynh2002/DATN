@@ -2987,3 +2987,6 @@ margin-top: 30px;
 .product-name>h2{
     text-transform: uppercase;
 }
+.formGridCheckbox>.row>.col-2>.form-label{
+    line-height: 6px;
+}
