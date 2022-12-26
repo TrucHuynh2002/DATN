@@ -192,10 +192,7 @@ function Notify({onClick}) {
                                                         <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <strong>{noti.data.Comment.full_name}</strong>
-                                                            </Link> Vừa bình luận bài viết trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <strong>Hỏi - Đáp</strong>
-                                                            </Link> của bạn 
+                                                            </Link> Vừa bình luận bài viết trên <strong>Hỏi - Đáp</strong> của bạn 
                                                         </div>
                                                     )
                                                 }
@@ -206,10 +203,7 @@ function Notify({onClick}) {
                                                         <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <strong>{noti.data.Comment.full_name}</strong>
-                                                            </Link> Vừa trả lời bình luận của bạn trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <strong> Hỏi - Đáp </strong>
-                                                            </Link>
+                                                            </Link> Vừa trả lời bình luận của bạn trên <strong> Hỏi - Đáp </strong>
                                                         </div>
                                                     )
                                                 }
@@ -218,10 +212,7 @@ function Notify({onClick}) {
                                                         <div key={index} className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <strong>{noti.data.Comment.full_name}</strong>
-                                                            </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <strong>Hỏi - Đáp</strong>
-                                                            </Link> của bạn.
+                                                            </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên  <strong>Hỏi - Đáp</strong> của bạn.
                                                         </div>
                                                     )
                                                 }
@@ -239,10 +230,7 @@ function Notify({onClick}) {
                                                                 className='link_noti'
                                                             >
                                                                 <strong>{noti.data.replyCmt.full_name}</strong>
-                                                            </Link>  bài viết của bạn trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <strong>Hỏi - Đáp</strong>
-                                                            </Link> 
+                                                            </Link>  bài viết của bạn trên <strong>Hỏi - Đáp</strong>
                                                         </div>
                                                     )
                                                 }                                       
@@ -259,10 +247,7 @@ function Notify({onClick}) {
                                                         to={`../profile/${noti.data.qa.id_user}`} 
                                                         className='link_noti'>
                                                             <strong>{noti.data.replyCmt.full_name}</strong>
-                                                        </Link> bài viết của bạn trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <strong>Hỏi - Đáp</strong>
-                                                        </Link>
+                                                        </Link> bài viết của bạn trên <strong>Hỏi - Đáp</strong>
                                                     </div>
                                                 )
                                             }    
@@ -276,10 +261,7 @@ function Notify({onClick}) {
                                                             className='link_noti'>
                                                                 <strong>{noti.data.Comment.full_name}</strong>
                                                             </Link> 
-                                                            Vừa trả lời bình luận của bạn tại bài viết 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <strong>Hỏi - Đáp</strong>
-                                                            </Link>
+                                                            Vừa trả lời bình luận của bạn tại bài viết <strong>Hỏi - Đáp</strong>
                                                         </div>
                                                     )
                                                 }
