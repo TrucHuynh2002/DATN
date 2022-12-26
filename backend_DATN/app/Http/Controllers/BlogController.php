@@ -10,15 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        $data = Blog::all();
+      
+        if($request->keyword && $request->keyword!= '')
+        {
+            $data = Blog::where('name_blog','like','%'.$request->keyword.'%')->get();
+        }else{
+            $data = Blog::all();
+        }
         return response()
             ->json([
                 'data' => $data
             ]);
-        // return $data;
-        // echo "chào ";
     }
 
     public function show_id(Request $request, $id)

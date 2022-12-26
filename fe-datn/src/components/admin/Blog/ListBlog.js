@@ -18,8 +18,8 @@ function ListBlog() {
     getData();
   },[]);
   // danh sach Blog
-  const getData = async () => {
-   const res = await axios.get(`${url}/blog/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/blog/show?keyword=${keywordss}`);
       setListBlog(res.data.data);
   };
   // xoa Blog
@@ -28,27 +28,30 @@ function ListBlog() {
     getData();
   };
   // search
-  const [keyword,setKeyword] = useState({
-    keywords: ""
-  })
-  const {
-    keywords,
-  } = keyword
+  // const [keyword,setKeyword] = useState({
+  //   keywords: ""
+  // })
+  // const {
+  //   keywords,
+  // } = keyword
   const [searching,setSearching] = useState(false);
           const [getKeywords,setgetKeywords] = useState([]);
           const [getDataPostSearch,setGetDataPostSearch] = useState([]);
-          const getKeyword = async (keyword) => {
-            const res = await axios.get(`${url}/getkeywordblog/${keyword}`);
-            setgetKeywords(res.data.data)
-            setGetDataPostSearch(res.data.get_blog)
-          }
+          // const getKeyword = async (keyword) => {
+          //   const res = await axios.get(`${url}/getkeywordblog/${keyword}`);
+          //   console.log(res.data)
+          //   setgetKeywords(res.data.data)
+          //   setGetDataPostSearch(res.data.get_category)
+          // }
           const handleChangeKeyWord = (e) => {
-            setKeyword({ ...keyword,[e.target.name]:e.target.value});
-            if(e.target.value.length > 0){
-              getKeyword(e.target.value)
-            }else{
-              setSearching(false)
-            }
+            // setKeyword({ ...keyword,[e.target.name]:e.target.value});
+            getData(e.target.value)
+
+            // if(e.target.value.length > 0){
+            //   getKeyword(e.target.value)
+            // }else{
+            //   setSearching(false)
+            // }
           }
           const handleSubmitSearch = (e) => {
             e.preventDefault()
@@ -90,9 +93,9 @@ function ListBlog() {
                                       )                                          
                                     })                                  
                                   }
-                                    <li>
+                                    {/* <li>
                                       <Link to={`searchroom?keyword=${keywords}`}>Tìm kiếm với {keywords}</Link>
-                                    </li>
+                                    </li> */}
                                 </ul>               
                               </div>    
                             )
