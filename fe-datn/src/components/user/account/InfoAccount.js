@@ -167,8 +167,14 @@ function InfoAccount() {
                     <NavLink to={`../update_acc/${id_user}`}>
                         <Button variant="outline-primary" name='' className='btn-edit'>Cập nhật thông tin</Button>
                     </NavLink>
+                    {/* doi pass facebook, google */}
+                    {user[0].password == '' && 
+                        <NavLink to={`../confirmpass/${id_user}`}>
+                            <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
+                        </NavLink>
+                    }
                     <NavLink to={`../confirm_acc/${id_user}`}>
-                        <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
+                        <Button variant="outline-info" name='' className='btn-edit'>Đổi mật khẩu</Button>
                     </NavLink>
                     {user[0].role == 0 && 
                         <NavLink to={`../layoutBill/${id_user}`}>

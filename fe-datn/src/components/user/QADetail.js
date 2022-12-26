@@ -90,7 +90,6 @@ function QADetail() {
 };
 // const loadMore = () => {
 //   setListComment(index + 5)
-//   console.log(index)
 //   if (index >= post.length) {
 //     setIsCompleted(true)
 //   } else {
@@ -278,8 +277,8 @@ function QADetail() {
                       <div style={{marginLeft:"32px"}}>
                       {listChildComment.map((child,i) => {
                         return child.parent_id == listComment.id_comment_qa  && (
-                        <>
-                          <div className='qa_avatar'>
+                        <div key={i}>
+                          <div className='qa_avatar' >
                             <img src={child.link_img_user} alt='' className="content_comment_img___" />
                             <div>
                               <div className="feedback_comment_time">
@@ -352,7 +351,7 @@ function QADetail() {
                               } 
                             </span>  
                             <hr/>
-                        </>
+                        </div>
                         )})}
                       </div>
                     </div>  

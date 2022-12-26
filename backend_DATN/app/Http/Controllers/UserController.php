@@ -19,10 +19,14 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function User_SelectAll()
+    public function User_SelectAll(Request $request)
     {
         $Title = "Danh sách tài khoản";
+        if($request->keyword && $request->keyword != ''){
+            $User_SelectAll = User::where('full_name','like','%'.$request->keyword.'%')->get();
+        }else{
         $User_SelectAll = User::all();
+        }
         return response()
             ->json([
                 'data' => $User_SelectAll,
@@ -202,6 +206,36 @@ class UserController extends Controller
                         'status' => false
                     ]);
             }
+        } else {
+            return response()
+                ->json([
+                    'messess' => 'Không tìm thấy tài khoản của bạn',
+                    'status' => false
+                ]);
+        }
+    }
+    public function PasswordEditSocial(Request $request, $id_user)
+    {
+        $t = User::find($id_user);
+        // $pass_old = Hash::make($request->password);
+        if ($t) {
+                if ($request->password_new == $request->password_neww) {
+                    $t->password = Hash::make($request->password_new);
+                    $t->save();
+                    return response()
+                        ->json([
+                            'messess' => 'Đổi mật khẩu thành công',
+                            'data' => $t,
+                            'status' => true
+                        ]);
+                } else {
+                    return response()
+                        ->json([
+                            'messess' => 'Nhập lại mật khẩu không khớp',
+                            // 'data' => t,
+                            'status' => false
+                        ]);
+                }
         } else {
             return response()
                 ->json([

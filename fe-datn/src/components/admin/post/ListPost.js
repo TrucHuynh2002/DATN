@@ -20,22 +20,23 @@ function ListPost() {
   },[]);
 
   // danh sach post
-  const getData = async () => {
-   const res = await axios.get(`${url}/post/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/post/show?keyword=${keywordss}`);
    setListPost(res.data.data);
   };
-
-  // xoa post
-  // const deletePost = async (id_post) => {
-  //   await axios.delete(`${url}/post/delete/${id_post}`);
-  //   getData();
-  // };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
         <div className="add-post">
             <h1 className="content_h1_admin">Danh sách bài viết</h1>
-            {/* <Link to="../../addpost" className="btn btn-primary form-add">Thêm bài viết</Link> */}
+            <div className ="header__nav_admin">
+              <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
+              />
+            </div>
             <Table bordered>
             <thead>
             <tr>
@@ -58,8 +59,6 @@ function ListPost() {
                           </td>
                           <td>
                             <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
-                            {/* <Link to={`../edit_post/${post.id_post}`} className="bx bxs-edit btn-edit btn btn-primary"></Link>
-                            <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deletePost(post.id_post)}></Button> */}
                           </td>
                     </tr>
                     );

@@ -9,7 +9,6 @@ import { url } from '../../url';
 
 function HeaderNavLink() {
     const user = JSON.parse(localStorage.getItem('user'));
-    // console.log(user)
     const id_users = user ? user[0].id : '';
     
     const navigate = useNavigate();
@@ -259,7 +258,7 @@ function HeaderNavLink() {
                 );
             })}     
             <li className="nav-item">
-                <div className="btn-group" >
+                <div className="btn-group">
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
                         <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>
@@ -511,7 +510,6 @@ function HeaderNavLink() {
                         (<>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutManage/${user[0].id}`}>Quản lý phòng</Link>
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`layoutSendNoti/${user[0].id}`}>Gửi yêu cầu</Link>
-                        <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={``}>Thẻ ngân hàng</Link>
                         </>)
                     }    
                         <Link className="dropdown-item nav-link btn btn-warning" style={{color: 'black', fontWeight: 600,borderRadius: '5px'}} to={`profile/${user[0].id}`}>Thông tin tài khoản</Link>

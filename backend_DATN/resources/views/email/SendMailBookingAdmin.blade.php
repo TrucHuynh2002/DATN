@@ -52,7 +52,7 @@
     </div>
     <div class="body">
         {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
-        <b>Hello, {admin->full_name} </b>
+        <b>Hello, {{admin->full_name}} </b>
         <p>Bạn vừa nhận được thông báo có người đặt phòng</p>
         <p>Nhấp <a href="http://localhost:3000/login">vào đây</a> để xem chi tiết.</p>
         

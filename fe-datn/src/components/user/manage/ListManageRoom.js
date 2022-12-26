@@ -13,42 +13,6 @@ ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
 );
 function ListManageRoom() {
-    const dataLine = {
-        labels: ["2022", "2020", "2021"],
-        datasets: [{
-            data: [2, 3, 3.5, 5.5, 6, 7],
-            backgroundColor: 'transparent',
-            borderColor: 'red',
-            pointBoderColor: 'transparent',
-            pointBorderWidth: 4,
-            tension: 0.5
-        }]
-      };
-   
-      const options = {
-        plugins: {
-            legend: false
-        },
-        scales: {
-            x: {
-                grid: {
-                    display: false
-                }
-            },
-            y: {
-                min: 1,
-                max: 10,
-                tick: {
-                    stepSize: 2,
-                    callback: (value) => value + 'K'
-                },
-                grid: {
-      
-                }
-            }
-        }
-      };
-    var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);
@@ -62,16 +26,11 @@ function ListManageRoom() {
     const [listMomneyWater, setMomneyWater] = useState(0);
     const [listMomneyRoom, setMomneyRoom] = useState(0);
     const [listMomneyElc, setMomneyElc] = useState(0);
-    
-    
     const [Input, setInput] = useState({
         electricity_month : "",
         water_month : "",
     });
-   
     const {electricity_month ,water_month } = Input;
-  
-    const [buttonID, setButtonID] = useState();
     const [alert, setAlert] = useState({
         err_list: {},
     });
@@ -90,11 +49,6 @@ function ListManageRoom() {
         // getBillTotalMonth()
     
     },[]);
-
-     // Xử lý input vlaue
-    const handleChangeAddbill = async (e) => {
-        setAddBill({ ...addBill, [e.target.name] : e.target.value});
-    }
     // lấy giá trị input 
     const handleChangeInputWater = async (e) => {
         setInput({...Input,[e.target.name]: e.target.value})
@@ -115,7 +69,6 @@ function ListManageRoom() {
 
     const handleChange = async (e,id_post) => {
         const res = await axios.get(`${url}/roomNumber/show_one/${id_post}`);
-     
         setQuantityPost(res.data.data);
     };
     const [yellow,setYellow] = useState(false)
@@ -136,82 +89,8 @@ function ListManageRoom() {
         id_post
     } = active
     const [alertError,setAlertError] = useState('')
-   
-
-    const handleClickBlue = async (e,quality) =>{
-        // setQuantityButtonAll(false)
-        // setQuantityButton()
-
-        setBlue(true);
-        yellow ?  setYellow(false) : setYellow(true);
-        setWhite(true);
-        // yellow && setYellow(false);
-        // white && setWhite(false);
-        var button_bill = document.querySelector('#bill_button')
-        var list_bill = document.querySelector('#edit_list_manage')
-        var room_number = document.querySelector(`[data-id="${quality}"]`)
-        check ? room_number.style.background = 'red' : room_number.style.background = '' 
-        check ? button_bill.style.display = 'initial' :  button_bill.style.display = 'none' 
-        check ? list_bill.style.display = 'contents' :  list_bill.style.display = 'none' 
-        check ?  setRoomNumber({[e.id]:quality}) : setRoomNumber('')
-        check ? setCheck(false) :  setCheck(true)
-    }
-    const handleClickYellow = async (e,quality) => {
-     
-        var buttton = document.querySelector('#room_number_button')
-        var room_number = document.querySelector(`[data-id="${quality}"]`)
-        check ? room_number.style.background = 'red' : room_number.style.background = '' 
-        check ? buttton.style.display = 'initial' :  buttton.style.display = 'none' 
-        check ? setCheck(false) :  setCheck(true) 
-        check ? setButtonID({[e.id]:quality}) : setButtonID('')
-    }
-
-    const handleClickWhite = async (e,quality) => {
-       
-        var buttton = document.querySelector('#room_number_button')
-        var room_number = document.querySelector(`[data-id="${quality}"]`)
-        check ? room_number.style.background = 'red' : room_number.style.background = '' 
-        check ? buttton.style.display = 'initial' :  buttton.style.display = 'none' 
-        check ? setCheck(false) :  setCheck(true)
-        check ? setButtonID({[e.id]:quality}) : setButtonID('')
-    }
 
     const handleClickRoom = (e,id_room,typeRoom,id_user_two= '',id_post = '') => {
-        // status === typeRoom
-        // ?
-        // setActive({...active,[id_room]: quality })
-        // :
-        // active.length <= 0 && setActive([...active,{id_rooms:id_room, status: typeRoom}])
-        // active.length > 0 && active.map((arr,i) => {
-            
-        //     if(arr.status == typeRoom){
-        //         console.log(arr.id_rooms,id_room)
-        //         if(arr.id_rooms != id_room){
-        //             // return setActive([...active,{id_room:id_room, status: typeRoom}])
-                    
-                    
-        //             setActive([...active,{id_rooms:id_room, status: typeRoom}])
-        //             console.log('khác nè')
-                
-        //         }else{
-        //             console.log('giống quà')
-        //         }
-        //     }
-        //     else if(arr.status != typeRoom){
-        //        console.log('Ôi khác room bạn ơi!')
-        //        setActive([{id_rooms:id_room, status: typeRoom}])
-        //     }           
-        // })
-
-        
-        // active.length > 0 && active.map((arr,i) => {
-        //    return  arr.id_room == id_room 
-        //     ?
-        //     '223'
-        //     :
-        //      ''
-        // })
-        // console.log(id_room)
         setActive({id_rooms:id_room, status: typeRoom,checked:true,id_user_two: id_user_two,id_post: id_post})        
     }
 
@@ -222,15 +101,12 @@ function ListManageRoom() {
             handleChange(e,id_post)
             setActive({id_rooms:id_rooms, status: 0,checked:true,id_user_two: '',id_post: ''})    
         }
-        // setActive({id_rooms:"", status: 0,checked:true,id_user_two: '',id_post: ''})       
     }
 
     // Bỏ chọn
-    
     const CancelSelect = (e) => {
         setActive({id_rooms:"", status: "",checked:false})
     }
-
     const handleClickUpdate = async (e) => {
         const res = await axios.post(`${url}/roomNumber/update_user/${id_rooms}?id_user_two=${id_user_two}&&_method=PUT`,);
         if(res.data.status === true){
@@ -291,27 +167,33 @@ function ListManageRoom() {
     
   return (
     <div className="row">
-        <div className="manage col-md-6 col-lg-4 col-sm-12">
+        <div className="manage col-md-7 col-lg-7 col-sm-12">
             <div className="container-fluid">
                 <div className="content_profile">
                     <div className="list-post">
                         <h1><b className="b_title">Tin đã đăng</b></h1>
                         <hr></hr>
                         <div className='row'>
-                            {currentPosts.length > 0 ?
-                            currentPosts.map((post, index) => {
-                                return (    
-                                <div className='col-md-12' key={index} onClick={(e) =>handleChange(e,post.id_post)}>
-                                    <div className='account_content____' >
-                                        <span>  {index+1} / </span>
-                                      <span>  {post.post_name}</span>
+                        {currentPosts.length > 0 
+                            ?
+                                currentPosts.map((post, index) => {
+                                    return (    
+                                    <div 
+                                        className='col-md-12' 
+                                        key={index} 
+                                        onClick={(e) =>handleChange(e,post.id_post)}
+                                    >
+                                        <div className='account_content____' >
+                                            <span>  {index+1} / </span>
+                                        <span>  {post.post_name}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            )})
-                            : <div className="text-center No_user____">
-                            <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
-                            <p>Chưa đăng bài nào </p>
-                        </div>
+                                )})
+                            : 
+                            <div className="text-center No_user____" >
+                                <img className="img_________" src="https://scr.vn/wp-content/uploads/2020/08/%E1%BA%A3nh-icon-bu%E1%BB%93n-mu%E1%BB%91n-kh%C3%B3c-1024x1024.jpg" alt="images" />
+                                <p>Chưa đăng bài nào </p>
+                            </div>
                         }
                             {/* phan trang */}
                             <Pagination totalPost={listPost.length} 
@@ -322,108 +204,97 @@ function ListManageRoom() {
                     </div>
                 </div>
             </div>
+            <ChartManage />    
         </div>
-        <div className="manage col-md-8 col-sm-12">
+        <div className="manage col-md-5 col-lg-5 col-sm-12">
             <div className="content_profile">
                 <div className="list-post">
                     <div className='row'>
-                        {quantityPost.map((quantity,index)=>{
+                        {quantityPost.map((quantity,index) =>{
 
                             if(quantity.status == 1 ) {
                               return  (                                
-                                    <>
-                                        <div className={`circle circle-yellow text-center red_room_number ${quantity.id == id_rooms && 'red'} `}
-                                            style={{background:quantity.id == id_rooms ? "red" : ''}}
-                                            name="id_" key={index} 
-                                            data-id ={quantity.id}
-                                            onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} >
-                                                A{quantity.room_number}
-                                               
-                                        </div>
-                                    </>                                
+                                    <div className={`circle circle-yellow text-center red_room_number ${quantity.id == id_rooms && 'red'} `}
+                                        style={{background:quantity.id == id_rooms ? "red" : ''}}
+                                        name="id_" 
+                                        key={index} 
+                                        data-id ={quantity.id}
+                                        onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} >
+                                            A{quantity.room_number}
+                                    </div>
                                 ) 
-                            }else if( quantity.status == 2 ){
+                            } else if( quantity.status == 2 ){
                                 return  (
-                                    <>
-                                     <div className={`circle circle-blue text-center `}
+                                    <div className={`circle circle-blue text-center `}
                                         style={{background:quantity.id == id_rooms ? "red" : ''}}
                                         key={index} 
                                         data-id ={quantity.id}
                                         onClick={e => handleClickRoom(e,quantity.id,quantity.status,'',quantity.id_post)} 
                                     > 
-                                            A{quantity.room_number}                                           
+                                        A{quantity.room_number}                                           
                                     </div>                                    
-                                    </>
                                 )
-                            }else{
-                              return     (
-                                    <>
-                                     <div 
-                                     className={`circle circle-white text-center ${quantity.id == id_rooms && 'red'} ` }
-                                     style={{background:quantity.id == id_rooms ? "red" : ''}}
-                                     data-id={quantity.id}
-                                     onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} 
-                                     key={index} >
-                                             A{quantity.room_number}
-                                           
-                                     </div> 
-                                    </>
+                            } else{
+                              return (
+                                    <div 
+                                    className={`circle circle-white text-center ${quantity.id == id_rooms && 'red'} ` }
+                                    style={{background:quantity.id == id_rooms ? "red" : ''}}
+                                    data-id={quantity.id}
+                                    onClick={(e) => handleClickRoom(e,quantity.id,quantity.status,quantity.id_user_two,quantity.id_post)} 
+                                    key={index} 
+                                    >
+                                            A{quantity.room_number}
+                                    </div> 
                                  )
                             }                        
                         }
                         )}
 
-                        {
-                            checked  &&
-                            <div>
+                        { checked  &&
+                            <div className ="add_unf_bill">
                                 <Button variant="danger" onClick={e => CancelSelect(e)}>Hủy bỏ chọn</Button>
                             </div>
                         }
 
-                       { status == 2 && (<div>
-                            <Button className='dtp' onClick={e => handleShowAddBill(e)}>
-                                    Thêm hóa đơn
-                            </Button>
-                            <Button className='dtp' onClick={e => handleCheckOut(e)}>
-                                    Đã trả phòng
-                            </Button>
-                        </div>)}
-                       
-                        <div className='color_room_manage' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                       { status == 2 && 
+                            (
+                                <div className ="add_unf_bill">
+                                    <Button className='dtp' onClick={e => handleShowAddBill(e)}>
+                                            Thêm hóa đơn
+                                    </Button>
+                                    <Button className='dtp' onClick={e => handleCheckOut(e)}>
+                                            Đã trả phòng
+                                    </Button>
+                                </div>
+                            )
+                        }
+                        <div className='color_room_manage' >
                             <div className='color_ownership_room'></div><span style={{marginLeft:"5px"}}>Phòng trống</span>
                             <div className='color_empty_room'></div><span style={{marginLeft:"5px"}}>Phòng đã sở hữu</span>
                             <div className='color_deposit_room'></div><span style={{marginLeft:"5px"}}>Phòng đặt cọc</span>
                         </div>
-        
                     </div>                      
                 </div>       
                     
                 <div className="room_number____">
-                {alert.err_list.status === true && <div className="notice success_____"><p className='layoutnotice'>Cập nhật thành công</p></div>}
-              
-                {
-                    status == 0
-                    &&
-                    <>
-                    <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
-                    </>
-
-                }    
-                {
-                    status == 1
-                    &&
-                    <>
-                    <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
-                    </>
-
-                }    
-               
+                    {alert.err_list.status === true && <div className="notice success_____"><p className='layoutnotice'>Cập nhật thành công</p></div>}
+                    {
+                        status === 0 &&
+                        <>
+                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                        </>
+                    }    
+                    {
+                        status === 1 &&
+                        <>
+                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                        </>
+                    }    
                 </div>
-                
                 <div className="row">
                     <div className="bill____ col-lg-6 col-sm-12">
                         <Button id="bill_button" 
-                        className="btn btn-primary" 
+                        className="btn btn-primary"
                         onClick={(e) =>handleShowAddBill()}
                         >
                             Thêm hóa đơn
@@ -439,94 +310,94 @@ function ListManageRoom() {
                                 {listBill.map((bill,index) => {
                                     return ( 
                                         <div key={index}>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Tên phòng</Form.Label>
-                                            <Form.Control type="text" disable="true" value={bill.post_name}/>
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Người sở hữu</Form.Label>
-                                            <Form.Control type="text" disable="true" value={bill.id_user_two}/>
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Tiền điện/KWH</Form.Label>
-                                            <Form.Control type="text" disable="true" 
-                                                name="electricity"
-                                            value={bill.electricity_price} 
-                                            
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
-                                            <Form.Control type="text" disable="true" 
-                                            name="water"
-                                            value={bill.water_price} 
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Tên phòng</Form.Label>
+                                                <Form.Control type="text" disable="true" value={bill.post_name}/>
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Người sở hữu</Form.Label>
+                                                <Form.Control type="text" disable="true" value={bill.id_user_two}/>
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Tiền điện/KWH</Form.Label>
+                                                <Form.Control 
+                                                    type="text" 
+                                                    disable="true" 
+                                                    name="electricity"
+                                                    value={bill.electricity_price} 
                                                 />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Giá phòng</Form.Label>
-                                            <Form.Control type="number" disable="true" 
-                                            value={bill.room_price}
-                                                name="room_money"
-                                                
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
-                                            <Form.Control type="number" 
-                                            name="water_month"
-                                            value={water_month}
-                                            placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
-                                            onChange = {(e) => handleChangeInputWater(e)}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12">
-                                            <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
-                                            <Form.Control type="number" 
-                                            name="electricity_month"
-                                            value={electricity_month}
-                                            placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
-                                            onChange = {(e) => handleChangeInputElc(e)}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12 water_money">
-                                            <Form.Label>Tổng tiền nước</Form.Label>
-                                            <Form.Control type="text" 
-                                            disable="true"
-                                            value={listMomneyWater}
-                                            name="water_money" 
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12 electricity_money">
-                                            <Form.Label>Tổng tiền điện</Form.Label>
-                                            <Form.Control type="text" 
-                                            name="electricity_money"
-                                            disable="true" 
-                                            value={listMomneyElc}
-
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Tiền nước /m<sup>3</sup></Form.Label>
+                                                <Form.Control type="text" disable="true" 
+                                                name="water"
+                                                value={bill.water_price} 
+                                                    />
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Giá phòng</Form.Label>
+                                                <Form.Control 
+                                                    type="number" 
+                                                    disable="true" 
+                                                    value={bill.room_price}
+                                                    name="room_money"
                                                 />
-                                        </Form.Group>
-                                        <Form.Group className="mb-12 all_money">
-                                            <Form.Label>Tổng tiền phòng</Form.Label>
-                                            <Form.Control 
-                                            name="all_money" 
-                                            disable="true" 
-                                            value={listMomneyRoom}
-                                            />
-                                        </Form.Group>
-                                    </div> );
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Số nước tiêu thụ / 1 tháng </Form.Label>
+                                                <Form.Control type="number" 
+                                                name="water_month"
+                                                value={water_month}
+                                                placeholder="Vui lòng nhập số nước tiêu thụ trên 1 tháng" required 
+                                                onChange = {(e) => handleChangeInputWater(e)}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-12">
+                                                <Form.Label>Số điện tiêu thụ / 1 tháng</Form.Label>
+                                                <Form.Control type="number" 
+                                                name="electricity_month"
+                                                value={electricity_month}
+                                                placeholder="Vui lòng nhập số điện tiêu thụ trên 1 tháng" required 
+                                                onChange = {(e) => handleChangeInputElc(e)}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-12 water_money">
+                                                <Form.Label>Tổng tiền nước</Form.Label>
+                                                <Form.Control type="text" 
+                                                disable="true"
+                                                value={listMomneyWater}
+                                                name="water_money" 
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-12 electricity_money">
+                                                <Form.Label>Tổng tiền điện</Form.Label>
+                                                <Form.Control 
+                                                    type="text" 
+                                                    name="electricity_money"
+                                                    disable="true" 
+                                                    value={listMomneyElc}
+                                                />
+                                            </Form.Group>
+                                            <Form.Group className="mb-12 all_money">
+                                                <Form.Label>Tổng tiền phòng</Form.Label>
+                                                <Form.Control 
+                                                    name="all_money" 
+                                                    disable="true" 
+                                                    value={listMomneyRoom}
+                                                />
+                                            </Form.Group>
+                                        </div> 
+                                    );
                                 })}
                                 <Form.Group>
-                                <hr />
-                                 <Button type="submit">Thêm</Button>
+                                    <br /> <Button type="submit">Thêm</Button>
                                 </Form.Group>
                                 <Form.Group>
                                     {
-                                        alert.err_list.status == true 
-                                        &&
+                                        alert.err_list.status == true &&
                                         <div className='text-success'>
                                             Thêm hóa đơn thành công
                                         </div>
-
                                     } 
                                 </Form.Group>
                             </Form>
@@ -535,13 +406,14 @@ function ListManageRoom() {
                     {/* end add bill */}
                 </div>
             </div>  
-            <div className="content_profile" id="edit_list_manage">
-                <EditManage id_roomNumber={roomNumber.undefined} />                                   
-            </div>  
-            <hr></hr>
-            <ChartManage />    
+            {
+            checked  &&  
+                <div className="content_profile">
+                    <EditManage id_roomNumber={active.id_rooms} />                                   
+                </div> 
+            }
         </div>      
-        </div>      
+    </div>      
   )
 }
 

@@ -6,37 +6,42 @@ import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 
 function ListBlog() {
-
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(10);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
-  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
- 
+  const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex); 
   useEffect(() => {
     getData();
   },[]);
-
   // danh sach Blog
-  const getData = async () => {
-   const res = await axios.get(`${url}/blog/show`);
+  const getData = async (keywordss = '') => {
+   const res = await axios.get(`${url}/blog/show?keyword=${keywordss}`);
       setListBlog(res.data.data);
   };
-
   // xoa Blog
   const deleteBlog = async (id_blog) => {
     await axios.delete(`${url}/blog/delete/${id_blog}`);
     getData();
   };
+  // search
+    const handleChangeKeyWord = (e) => {
+      getData(e.target.value)
+    }
 
   return (
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách Blog</h1>
-              <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
+              {/* start search */}
+              <div className ="header__nav_admin">
+                <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
+                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                {/* end search */}
+               
+              </div>
               <Table bordered>
                 <thead>
                 <tr>

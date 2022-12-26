@@ -93,6 +93,8 @@ import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import vnpay from './components/user/pay/vnpay';
 
+import ConfirmPass from './components/user/account/ConfirmPass';
+import Payment from './components/user/bill/Payment';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -119,13 +121,16 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
+        
         <Route path="roomDetailManage" element={<DetailRoomManage />} />
+        <Route path="payment" element={<Payment />} />
         {/* bill */}
         <Route path="/layoutBill/:id_user" element={<LayoutBill />} />
         <Route path="billdetail/:id_bill" element={<BillDetail />} />
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
+        <Route path="confirmpass/:id_Account" element={<ConfirmPass />} />
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="qaDetail/:id_qa" element={<QADetail />} />
@@ -152,7 +157,7 @@ root.render(
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
         <Route path="edit_post/:id_post" element={<EditPost />} />
-        <Route path="detail_post/:id_post" element={<DetailPost />} />
+        <Route path="detail_post/:id_posts" element={<DetailPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />

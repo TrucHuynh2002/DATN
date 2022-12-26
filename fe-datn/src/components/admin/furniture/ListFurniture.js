@@ -20,8 +20,8 @@ function ListFurniture() {
   },[]);
 
   // danh sach furniture
-  const getData = async () => {
-    const res = await axios.get(`${url}/furniture/show`);  
+  const getData = async (keywordss = '') => {
+    const res = await axios.get(`${url}/furniture/show?keyword=${keywordss}`);  
       setListFurniture(res.data.data);
   };
 
@@ -30,12 +30,21 @@ function ListFurniture() {
     await axios.delete(`${url}/furniture/delete/${id_furniture}`);
     getData();
   };
+  // search
+  const handleChangeKeyWord = (e) => {
+    getData(e.target.value)
+  }
 
   return (
     <div className="content">
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách nội thất</h1>
-      <Link to="../add_furniture" className="btn btn-primary form-add">Thêm nội thất</Link>
+      <div className ="header__nav_admin">
+        <Link to="../add_furniture" className="btn btn-primary form-add">Thêm nội thất</Link>
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
+        />
+      </div>
+     
       <Table bordered>
         <thead>
           <tr>
