@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends Controller
 {
     public function show(Request $request)
-    {     
-        if($request->keyword && $request->keyword!= '')
-        {
-            $data = Blog::where('name_blog','like','%'.$request->keyword.'%')->get();
-        }else{
+    {
+        if ($request->keyword && $request->keyword != '') {
+            $data = Blog::where('name_blog', 'like', '%' . $request->keyword . '%')->get();
+        } else {
             $data = Blog::all();
         }
         return response()
@@ -158,8 +157,8 @@ class BlogController extends Controller
         if ($get_image) {
             $get_name_image = $get_image->getClientOriginalName();
             $path = 'uploads/blog';
-            if(File::exists($path.'/'.$Blog->name_img_blog)){
-                File::delete($path.'/'.$Blog->name_img_blog);
+            if (File::exists($path . '/' . $Blog->name_img_blog)) {
+                File::delete($path . '/' . $Blog->name_img_blog);
             }
             $name_image  = current(explode('.', $get_name_image));
             $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();

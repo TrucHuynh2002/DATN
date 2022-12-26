@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
-    public function Contact_SelectAll()
+    public function Contact_SelectAll(Request $request)
     {
         $Title = "Danh sách các hỗ trợ";
+        if($request->keyword && $request->keyword != ''){
+            $Contact_SelectAll = ContactModel::where('full_name','like','%'.$request->keyword.'%')->get();
+        }else{
         $Contact_SelectAll = ContactModel::all();
+        }
         return response()
             ->json([
                 'data' => $Contact_SelectAll,

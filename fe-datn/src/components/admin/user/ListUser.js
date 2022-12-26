@@ -40,11 +40,10 @@ function ListUser() {
     <div className="content">
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách người dùng</h1>
-      {/* start search */}
-        <div className='row'>
-            <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-        </div>
-      {/* end search */}
+      <div className ="header__nav_admin">
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
+        />
+      </div>
       <Table bordered>
         <thead>
           <tr>
@@ -53,7 +52,6 @@ function ListUser() {
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
             <th>Email</th>
-
           </tr>
         </thead>
         <tbody>
@@ -66,13 +64,8 @@ function ListUser() {
               <td>{user.address}</td>
               <td>{user.email}</td>
               <td>
-                {/* <Link to="123">
-                  <Button variant="outline-primary" name="" className="bx bxs-edit btn-edit"></Button>
-                </Link> */}
-                {/* <Link to="#"> */}
                 <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => 
                   deleteUser(user.id_user)}></Button>
-                {/* </Link> */}
               </td>
             </tr>
             );

@@ -41,9 +41,10 @@ function ListComment() {
     <div className="add-post">
       <h1 className="content_h1_admin">Danh sách bình luận</h1>
       {/* start search */}
-        <div className='row'>
-            <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-        </div>
+      <div className ="header__nav_admin">
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
+        />
+      </div>
       {/* end search */}
       <Table bordered>
         <thead>

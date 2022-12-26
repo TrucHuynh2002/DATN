@@ -36,12 +36,10 @@ function ListCategory() {
     <div className="content">
             <div className="add-post">
               <h1 className="content_h1_admin">Danh sách danh mục</h1>
-              {/* start search */}
-                <div className='row'>
-                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                </div>
-              {/* end search */}
-              <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
+              <div className ="header__nav_admin">
+                <Link to="../add_category" className="btn btn-primary form-add">Thêm danh mục</Link>
+                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+              </div>
               <Table bordered>
                 <thead>
                 <tr>
