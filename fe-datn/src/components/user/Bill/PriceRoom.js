@@ -103,9 +103,12 @@ function PriceRoom({data}) {
                                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bill.all_money)}
                                             </span>
                                         </div>
-                                        <Link to={`/billdetail/${bill.id}`}>
-                                            Xem chi tiết
-                                        </Link>    
+                                       <div className="header__nav_admin">
+                                            <Link to={`/billdetail/${bill.id}`}>
+                                                Xem chi tiết
+                                            </Link>
+                                            <Link to="../payment" className="btn btn-outline-primary">Thanh toán </Link> 
+                                       </div>
                                         <hr/>
                                     </div>
                                 )})}

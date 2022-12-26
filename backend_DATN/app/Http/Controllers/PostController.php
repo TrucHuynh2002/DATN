@@ -20,9 +20,13 @@ use Illuminate\Support\Facades\Validator;
 class PostController extends Controller
 {
 
-    public function show()
+    public function show(Request $request)
     {
+        if($request->keyword && $request->keyword != ''){
+            $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
+        }else{
         $data = Post::all();
+        }
         // $heart = DB::table('post')
         //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
         //     ->orderBy('post.id_post')

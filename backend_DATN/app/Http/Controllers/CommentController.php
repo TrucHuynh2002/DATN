@@ -127,13 +127,17 @@ class CommentController extends Controller
                 'status' => true
             ]);
     }
-    public function Comment_SelectAll()
+    public function Comment_SelectAll(Request $request)
     {
+        if($request->keyword && $request->keyword != ''){
+            $Comment_SelectAll = CommentModel::where('content','like','%'.$request->keyword.'%')->get();
+        }else{
         $Title = "Danh sách các hỗ trợ";
         $Comment_SelectAll = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
             ->orderBy('comment.id_user')
             ->get();
+        }
         return response()
             ->json([
                 'data' => $Comment_SelectAll,

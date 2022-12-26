@@ -19,10 +19,14 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function User_SelectAll()
+    public function User_SelectAll(Request $request)
     {
         $Title = "Danh sách tài khoản";
+        if($request->keyword && $request->keyword != ''){
+            $User_SelectAll = User::where('full_name','like','%'.$request->keyword.'%')->get();
+        }else{
         $User_SelectAll = User::all();
+        }
         return response()
             ->json([
                 'data' => $User_SelectAll,

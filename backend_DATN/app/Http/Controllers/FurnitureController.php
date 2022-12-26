@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class FurnitureController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
+        if($request->keyword && $request->keyword != ''){
+            $data = Furniture::where('name','like','%'.$request->keyword.'%')->get();
+        }else{
         $data = Furniture::all();
+        }
         return response()
             ->json([
                 'data' => $data,

@@ -46,6 +46,7 @@ use App\Http\Controllers\BillController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PayOnlineController;
 use App\Http\Controllers\SavingRoomController as ControllersSavingRoomController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
@@ -373,6 +374,13 @@ Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
 Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);
 
+Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
+Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
+Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);
+
+// VNPAY
+
+Route::get('vnpay',[PayOnlineController::class,'create']);
 Route::get('notify/{id_user}', [NotificationController::class, 'getNotification']);
 Route::get('notify/mask-as-read/{id_user}', [NotificationController::class, 'maskAsReads']);
 Route::get('notify/mask-as-read-id-noti/{id_notification}', [NotificationController::class, 'maskAsReadsId']);

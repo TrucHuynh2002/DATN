@@ -8,9 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomTypeController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
+        if($request->keyword && $request->keyword != ''){
+            $data = RoomType::where('name_room_type','like','%'.$request->keyword.'%')->get();
+        }else{
         $data = RoomType::all();
+        }
         return response()
             ->json([
                 'status' => true,
