@@ -5,8 +5,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
 
-function AddBlog() {
-    
+function AddBlog() {    
     var user = JSON.parse(localStorage.getItem("user"));
     const [addBlog, setAddBlog] = useState({
         name_blog:"",
@@ -16,30 +15,21 @@ function AddBlog() {
         description_sort:"",
         description:"",
         id_user: user ?  user[0].id :  ''
-    });
-   
+    });  
     // xu ly hinh anh
-    const [uploadImages, setUploadImages] = useState([]);
-   
-    const handleChangeImages = (e) => {
-   
+    const [uploadImages, setUploadImages] = useState([]);  
+    const handleChangeImages = (e) => {  
         setUploadImages(e.target.files)
     }
-   
-
     const [alert, setAlert] = useState({
         err_list: {},
     });
-    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description,id_user } = addBlog;
-    
+    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description,id_user } = addBlog;   
     const handleChange = (e) => {
-        setAddBlog({ ...addBlog, [e.target.name]: e.target.value});
-     
-    };
-    
+        setAddBlog({ ...addBlog, [e.target.name]: e.target.value});     
+    };    
     const handleSubmit = async (e) => {
-        e.preventDefault();
-      
+        e.preventDefault();     
         let dataForm = new FormData();
         dataForm.append('img_blog',uploadImages[0])
         dataForm.append('name_blog',name_blog);
@@ -47,13 +37,11 @@ function AddBlog() {
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         dataForm.append('id_user',id_user)
-        const res = await axios.post(`${url}/blog/create`, dataForm);
-        
+        const res = await axios.post(`${url}/blog/create`, dataForm);        
         if(res.data.status === true){
             setAlert({
                 err_list: res.data
-            });
-            
+            });            
         }
         else{           
             setAlert({

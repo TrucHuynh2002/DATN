@@ -25,17 +25,22 @@ function ListPost() {
    setListPost(res.data.data);
   };
 
-  // xoa post
-  // const deletePost = async (id_post) => {
-  //   await axios.delete(`${url}/post/delete/${id_post}`);
-  //   getData();
-  // };
-
   return (
     <div className="content">
         <div className="add-post">
             <h1 className="content_h1_admin">Danh sách bài viết</h1>
-            {/* <Link to="../../addpost" className="btn btn-primary form-add">Thêm bài viết</Link> */}
+            {/* start search */}
+            <form>
+                <div className='row'>
+                    <input className="form-control search_blog" placeholder="Tìm kiếm" type="text" name="" />
+                    <div className="btn-search col-1">
+                      <button className="btn btn-outline-secondary">
+                        <i className='bx bx-search' style={{color:"#0d3380"}}></i>
+                      </button>
+                    </div>
+                </div>
+              </form>
+              {/* end search */}
             <Table bordered>
             <thead>
             <tr>

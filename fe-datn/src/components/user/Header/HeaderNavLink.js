@@ -258,7 +258,7 @@ function HeaderNavLink() {
                 );
             })}     
             <li className="nav-item">
-                <div className="btn-group" >
+                <div className="btn-group">
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
                         <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>

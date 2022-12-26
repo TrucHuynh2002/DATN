@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { url } from '../../url';
@@ -78,15 +78,12 @@ function HomeSearch() {
           const handleChangeKeyWord = (e) => {
             setKeyword({ ...keyword,[e.target.name]:e.target.value});
             if(e.target.value.length > 0){
-
               getKeyword(e.target.value)
-              // setSearching(true)
             }else{
               setSearching(false)
             }
-
           }
-          const handleSubmitSearch = e => {
+          const handleSubmitSearch = (e) => {
             e.preventDefault()
             navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
           }
