@@ -143,10 +143,6 @@ function RoomDetail() {
                             <i className='bx bx-support'></i>
                             <Link to='../contact' className='support_link'><label>Cần sự trợ giúp</label></Link>
                         </div>
-                        <div>
-                            <i className='bx bx-error'></i>
-                            <label>Báo cáo tin này</label>
-                        </div>
                     </div>
                 </div>
             </div>

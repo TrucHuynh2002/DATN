@@ -91,8 +91,10 @@ import QADetail from './components/user/QADetail';
 import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
-import ConfirmPass from './components/user/account/ConfirmPass';
+import vnpay from './components/user/pay/vnpay';
 
+import ConfirmPass from './components/user/account/ConfirmPass';
+import Payment from './components/user/Bill/Payment';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -119,7 +121,9 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
+        
         <Route path="roomDetailManage" element={<DetailRoomManage />} />
+        <Route path="payment" element={<Payment />} />
         {/* bill */}
         <Route path="/layoutBill/:id_user" element={<LayoutBill />} />
         <Route path="billdetail/:id_bill" element={<BillDetail />} />
@@ -142,6 +146,9 @@ root.render(
         <Route path="layoutSendNoti/:id_user" element={<LayoutSendNoti />} />
         <Route path="auth/google"  element={<LoginGoogle />} />
         <Route path="facebook"  element={<LoginFacebook />} />
+
+        {/* PAY ONLIEN */}
+        <Route path="return-vnpay" element={vnpay} />
       </Route>
 
       {/* chuyển hướng admin tổng */}
