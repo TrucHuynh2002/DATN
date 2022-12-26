@@ -41,7 +41,7 @@ function FooterAdmin() {
                     <span style={{ fontWeight: 750 }}>Hotline: </span> {listConfig.sdt}
                   </li>
                   <li>
-                    <span style={{ fontWeight: 750 }}>Email: </span>{listConfig.email}
+                    <span style={{ fontWeight: 750 }}>Email: </span> {listConfig.email}
                   </li>
                 </ul>
               </div>

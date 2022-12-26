@@ -452,6 +452,9 @@ button {
     height: 680px;
 }
 
+
+
+
 .second-slide {
     width: 100%;
     height: 680px;
@@ -561,11 +564,41 @@ button {
     margin: 25px 0;
     position: relative;
 }
+.book_now2 .online_book4 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book5 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book6 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+}
+.book_now2 .online_book7 {
+    height: 50px;
+    border: rgb(195, 195, 195) solid 1px;
+    border-radius: 10px;
+    margin: 25px 0;
+    position: relative;
+    
+}
 .fitele-search{
     align-items:baseline;
 }
-gallery {
+.gallery {
     padding-top: 60px;
+    padding-bottom: 60px;   
 }
 
 
@@ -772,7 +805,7 @@ label{
     font-weight: 600;
     padding: 7px 0;
     width: 120px;
-    margin-top: 20px;
+    
 }
 
 .search_room_btn:hover {
@@ -961,7 +994,7 @@ height:50%;
 }
 .mota{
     font-weight: 400;
-    text-align: justify;
+    /* text-align: justify; */
 }
 .gia{
     font-weight: 600;
@@ -1112,9 +1145,9 @@ height:50%;
 .product-info>div>p{
     text-transform: lowercase;
 }
-.bed_room>.mota{
+/* .bed_room>.mota{
     text-transform: lowercase;
-}
+} */
 .link_____{
     color: #0d5df0b5!important;
     font-size: 17px;
@@ -2834,10 +2867,13 @@ margin-top: 30px;
     text-decoration-line: underline;
 }
 .button_facebook {
-    padding: 7px;
-    margin: 11px 5px;
+    margin: 10px 0 0 0;
     background: #4C69BA;
     color: white; 
+    padding: 10px 20px;
+}
+.button_facebook:hover{
+    color: white;
 }
 .button_facebook>i {
     color: white;
@@ -2845,20 +2881,19 @@ margin-top: 30px;
     padding-right: 10px;
 }
 .button_google {
-    padding: 7px;
-    margin: 11px 5px;
+    margin: 10px 0 0 10px;
     background: #DD4B39;
+    color: white;
+    padding: 10px 26px;
+}
+.button_google:hover{
     color: white; 
 }
 .button_google>i {
     color: white;
     line-height: 2;
     margin-right: 10px;
-
-
 }
-
-
 .textNoti{
     padding: 7px;
     border-radius: 4px;

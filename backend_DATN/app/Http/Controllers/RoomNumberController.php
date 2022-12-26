@@ -394,7 +394,9 @@ class RoomNumberController extends Controller
             $saveRoom->id_user = $request->id_user_two;
             $saveRoom->save();
         }
+
         $roomNumber->save();
+        Mail::to($get_OwnerBookingRoom->email)->send(new BookRoomUser($get_OwnerBookingRoom));
         if($request->id_notification){
                   $notiMaskasRead = NotificationModel::find($request->id_notification);
                     $notiMaskasRead->read_at = Carbon::now();

@@ -270,7 +270,7 @@ class PostController extends Controller
             $path = 'uploads/';
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            // $get_image->move($path, $new_image);
+            $get_image->move($path, $new_image);
             $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
             $Post->name_img = $new_image;
         }

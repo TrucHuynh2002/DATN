@@ -86,11 +86,11 @@ const dataLine = {
                 </div>
               </div>
             </div>
-            <div className='search_chart'>
+            {/* <div className='search_chart'>
               Lọc <input type="date" name='' className='search_input' />
-            </div>
-            <Line data={dataLine}></Line>
-            <div className="name_bieudo"><h5><span>Biểu đồ :</span> Thống kê doanh thu theo tháng của trang web</h5></div>
+            </div> */}
+            {/* <Line data={dataLine}></Line>
+            <div className="name_bieudo"><h5><span>Biểu đồ :</span> Thống kê doanh thu theo tháng của trang web</h5></div> */}
           </div>
         </div>
       </div>
