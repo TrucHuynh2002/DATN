@@ -243,7 +243,7 @@ function Notify({onClick}) {
                                                         >
                                                             <span>{noti.data.replyCmt.full_name}</span>
                                                         </Link>  bài viết của bạn trên 
-                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                        <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'> 
                                                             <span>Hỏi - Đáp</span>
                                                         </Link>
                                                     </div>
