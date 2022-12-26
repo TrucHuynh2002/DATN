@@ -59,7 +59,6 @@
              
             Cảm ơn anh/chị, chúc anh/chị có một ngày làm việc vui vẻ!<br>
             
-            image<br>
             
         </p>
     </div>

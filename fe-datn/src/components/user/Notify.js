@@ -331,7 +331,7 @@ function Notify({onClick}) {
                                                         </div>
                                                     </Link>
                                                 )
-                                        }
+                                            }
         
                                             if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                                 return  (
