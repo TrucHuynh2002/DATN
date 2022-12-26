@@ -2949,3 +2949,6 @@ margin-top: 30px;
 .col_3_imggg>img{
     border-radius: 7px;
 }
+.product-name>h2{
+    text-transform: uppercase;
+}

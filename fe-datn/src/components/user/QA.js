@@ -108,6 +108,7 @@ function QA() {
     formData.append('child_idComment',childIdComment)
     // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     const res = await axios.post(`${url}/comment_qa/create`,formData);
+    console.log(res.data)
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
       const ress = await axios.post(`${url}/noty_qa/create`, addNotify);

@@ -24,10 +24,9 @@ class GoogleController extends Controller
     {
         
             $state = $request->input('state');
-
             parse_str($state, $result);
             $googleUser = Socialite::driver('google')->stateless()->user();
-
+            
             $user = User::where('email', $googleUser->email)->first();
             if ($user) {
                 return response()->json([

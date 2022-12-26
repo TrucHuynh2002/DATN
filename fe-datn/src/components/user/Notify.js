@@ -226,7 +226,7 @@ function Notify({onClick}) {
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa bình luận bài viết trên 
                                                             <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span>Hỏi - Đáp</span>
+                                                                <span> Hỏi - Đáp</span>
                                                             </Link> của bạn 
                                                         </div>
                                                     </div>
@@ -262,7 +262,7 @@ function Notify({onClick}) {
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
                                                             <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span>Hỏi - Đáp</span>
+                                                                <span> Hỏi - Đáp</span>
                                                             </Link> của bạn.
                                                         </div>
                                                     </div>
@@ -283,7 +283,7 @@ function Notify({onClick}) {
                                                                 <span>{noti.data.replyCmt.full_name}</span>
                                                             </Link>  bài viết của bạn trên 
                                                             <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span>Hỏi - Đáp</span>
+                                                                <span> Hỏi - Đáp</span>
                                                             </Link> 
                                                         </div>
                                                     </div>
@@ -303,7 +303,7 @@ function Notify({onClick}) {
                                                             <span>{noti.data.replyCmt.full_name}</span>
                                                         </Link> bài viết của bạn trên 
                                                         <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                            <span>Hỏi - Đáp</span>
+                                                            <span> Hỏi - Đáp</span>
                                                         </Link>
                                                     </div>
                                                 </div>
@@ -324,7 +324,7 @@ function Notify({onClick}) {
                                                             </Link> 
                                                             Vừa trả lời bình luận của bạn tại bài viết 
                                                             <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span>Hỏi - Đáp</span>
+                                                                <span> Hỏi - Đáp</span>
                                                             </Link>
                                                         </div>
                                                     </div>
