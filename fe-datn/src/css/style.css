@@ -405,6 +405,7 @@ button {
 .banner_main {
     position: relative;
     margin-bottom: 150px;
+    z-index: 1;
 }
 
 .banner .carousel-indicators li {

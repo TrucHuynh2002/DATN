@@ -92,7 +92,7 @@ import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import ConfirmPass from './components/user/account/ConfirmPass';
-
+import Payment from './components/user/bill/Payment';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -119,7 +119,9 @@ root.render(
         <Route path="/profile" element={<Profile />}>
           <Route path=":id_user" element={<Profile />} />
         </Route>
+        
         <Route path="roomDetailManage" element={<DetailRoomManage />} />
+        <Route path="payment" element={<Payment />} />
         {/* bill */}
         <Route path="/layoutBill/:id_user" element={<LayoutBill />} />
         <Route path="billdetail/:id_bill" element={<BillDetail />} />

@@ -91,119 +91,114 @@ function HomeSearch() {
   return (
     <>
       <div className="container book_room2" id="room">
-                <h1>Tìm phòng trống</h1>
-                <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
-                  <div className="row">
-                    <div className="col-md-11 col-sm-12">
-                      <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                          {searching &&  (
-                              <div className='show_search'>
-                                 <ul>
-                                  {
-                                    getDataPostSearch.length > 0
-                                    &&
-                                   getDataPostSearch.map((post,index) => {
-                                      return (
-                                        <li key={index}>
-                                              <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
-                                              <div style={{display:"flex"}}>
-                                                <img src={post.link_img} alt={post.post_name} style={{marginRight: "12px", width:"120px", height:"120px"}} />
-                                              </div>    
-                                              <hr />                                
-                                        </li>
-
-                                      )
-                                   })
-
-                                  }
-                            
-                                  {
-                                    getKeywords.length > 0 
-                                    &&
-                                    getKeywords.map((keyword,index) => {
-                                      return (
-                                        <li key={index}>
-                                          <Link to="room">{keyword.key_word}</Link>
-                                        </li>
-                                      )                                          
-                                    })
-    
-                                   
-                                  }
-                                   <li>
-                                      <Link to={`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`}>Tìm kiếm với {keywords}</Link>
-                                    </li>
-                                </ul>               
-                              </div>    
+        <h1>Tìm phòng trống</h1>
+        <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
+          <div className="row">
+            <div className="col-md-11 col-sm-12">
+              <input className="form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+              { searching != "" ||  getDataPostSearch != "" ? 
+                  (
+                      <div className='show_search'>
+                          <ul >
+                          { getDataPostSearch.length > 0 && getDataPostSearch.map((post,index) => {
+                              return (
+                                <li key={index}>
+                                      <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
+                                      <div style={{display:"flex"}}>
+                                        <img src={post.link_img} alt={post.post_name} style={{marginRight: "12px", width:"120px", height:"120px"}} />
+                                      </div>    
+                                      <hr />                                
+                                </li>
+                              )
+                            })
+                          }
+                          { getKeywords.length > 0  && getKeywords.map((keyword,index) => {
+                              return (
+                                <li key={index}>
+                                  <Link to="room">{keyword.key_word}</Link>
+                                </li>
+                              )                                          
+                            })
+                          }
+                          { getKeywords.length > 0  && (
+                              <li>
+                              <Link to={`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`}>Tìm kiếm với {keywords}</Link>
+                            </li>
                             )
                           }
-                      </div>                     
-                      <div className="btn-search col-1">
-                        <button className="btn btn-outline-secondary">
-                          <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-                        </button>
-                      </div>
-                    </div>
-                    <div className='row fitele-search'>
-                      <div className="col-md-2 col-sm-12">
-                        <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
-                          <option>Loại phòng</option>
-                          {
-                            typeRooms.map((r,i) => {
-                              return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
-                            })
-                          }
-                        </select>
-                      </div>
-                      <div className="col-md-2 col-sm-12">
-                        <Form.Select name="id_provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
-                          <option>Tỉnh</option>
-                          {
-                            getProvince.map((p,i) => {
-                              return <option key={i} value={p.id}>{p._name}</option>
-                            })
-                          }
-                        
-                        </Form.Select>
-                      </div>
-                      <div className="col-md-2 col-sm-12">
-                              <Form.Select name="id_district" className="form-select online_book3"
-                              onChange = {(e) => handleadd(e)}
-                              >
-                                  <option>Quận/Huyện</option>
-                                  {listDistrict.map((room, index) => {
-                                      return (
-                                          <option key={index} value={room.id}>{room._name}</option>
-                                      );
-                                  })}                            
-                              </Form.Select>
-                      </div>
-                      <div className="col-md-2 col-sm-12">
-                        <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
-                          <option>Giá</option>
-                          <option value={1}>Dưới 1 triệu</option>
-                          <option value={2}>Từ 1 - 2 triệu</option>
-                          <option value={3}>Từ 2 - 3 triệu</option>
-                          <option value={4}>Từ 3 - 5 triệu</option>
-                          <option value={5}>Từ 5 - 7 triệu</option>
-                          <option value={6}>Từ 7 - 10 triệu</option>
-                          <option value={7}>Trên 10 triệu</option>
-                        </select>
-                      </div>
-                      <div className="col-md-2 col-sm-12">
-                        <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
-                          <option>Diện tích</option>
-                          <option value="1">Dưới 20m</option>
-                          <option value="2">Từ 20 - 30m</option>
-                          <option value="3">Từ 30 - 50m</option>
-                          <option value="4">Trên 50m</option>
-                        </select>
-                      </div>
-                      <div className="col-md-2 col-sm-12">
-                          <button type="submit" className="search_room_btn">Lọc</button>
-                      </div>
-                    </div>
-                </form>
+                        </ul>               
+                      </div>    
+                    )
+                    : ""
+                  }
+              </div>
+              <div className="btn-search col-1">
+                <button className="btn btn-outline-secondary">
+                  <i className='bx bx-search' style={{color:"#0d3380"}}></i>
+                </button>
+              </div>
+            </div>
+            
+            <div className='row fitele-search'>
+              <div className="col-md-2 col-sm-12">
+                <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
+                  <option>Loại phòng</option>
+                  {
+                    typeRooms.map((r,i) => {
+                      return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+                    })
+                  }
+                </select>
+              </div>
+              <div className="col-md-2 col-sm-12">
+                <Form.Select name="id_provinces" className="form-select online_book3"  onChange = {(e) => handledistrice(e)}>
+                  <option>Tỉnh</option>
+                  {
+                    getProvince.map((p,i) => {
+                      return <option key={i} value={p.id}>{p._name}</option>
+                    })
+                  }
+                
+                </Form.Select>
+              </div>
+              <div className="col-md-2 col-sm-12">
+                      <Form.Select name="id_district" className="form-select online_book3"
+                      onChange = {(e) => handleadd(e)}
+                      >
+                          <option>Quận/Huyện</option>
+                          {listDistrict.map((room, index) => {
+                              return (
+                                  <option key={index} value={room.id}>{room._name}</option>
+                              );
+                          })}                            
+                      </Form.Select>
+              </div>
+              <div className="col-md-2 col-sm-12">
+                <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
+                  <option>Giá</option>
+                  <option value={1}>Dưới 1 triệu</option>
+                  <option value={2}>Từ 1 - 2 triệu</option>
+                  <option value={3}>Từ 2 - 3 triệu</option>
+                  <option value={4}>Từ 3 - 5 triệu</option>
+                  <option value={5}>Từ 5 - 7 triệu</option>
+                  <option value={6}>Từ 7 - 10 triệu</option>
+                  <option value={7}>Trên 10 triệu</option>
+                </select>
+              </div>
+              <div className="col-md-2 col-sm-12">
+                <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
+                  <option>Diện tích</option>
+                  <option value="1">Dưới 20m</option>
+                  <option value="2">Từ 20 - 30m</option>
+                  <option value="3">Từ 30 - 50m</option>
+                  <option value="4">Trên 50m</option>
+                </select>
+              </div>
+              <div className="col-md-2 col-sm-12">
+                  <button type="submit" className="search_room_btn">Lọc</button>
+              </div>
+            </div>
+        </form>
       </div>
     </>
   )
