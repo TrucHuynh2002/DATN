@@ -129,6 +129,9 @@
      .blog_box .blog_img > figure > img {
         object-fit: cover;
      }
+     .timkiemrow{
+        display: none;
+     }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -164,9 +167,10 @@
         padding: 0 0px 31px 16px;
         align-items: baseline;
         position: absolute;
-        width: 100%;
-        top: 59%;
+        width: 768px;
+        top: 190%;
         right: -43%;
+        left: -135%;
         margin-right: 20px;
         z-index: 999;
     }
