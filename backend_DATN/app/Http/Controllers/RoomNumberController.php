@@ -106,8 +106,8 @@ class RoomNumberController extends Controller
         $data->id_user_two = $request->id_user_two;
         $data->save();
         
-        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
-        
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->select('users.email')->first();
+        $user_mail = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->select('users.email')->first();
         $user = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
         ->join('post','room_number.id_post','=','post.id_post')
         ->first();
@@ -124,12 +124,10 @@ class RoomNumberController extends Controller
         $idOwnerPost = User::find($getOwnerPost->id_user);
         Notification::send($idOwnerPost, new NotificationOwnerPost($getOwnerPost,$getOwnerBookRoomPost));
                 // $checkEmail_admin = User::where('email', '=', $request->email)->first();
-        if($admin){
+        
             Mail::to($admin->email)->send(new BookRoomAdmin($user,$admin));
-        }
-        if($user){
-            Mail::to($user->email)->send(new BookRoomUser($user));
-        }
+            Mail::to($user_mail->email)->send(new BookRoomUser($user));
+        
         return response()
             ->json([
                 'data' => $data,
@@ -268,7 +266,7 @@ class RoomNumberController extends Controller
         $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->where('id_user_two', '=', $id)->first();
         $data->check_room = 1;
         $data->save();
-        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->first();
+        $admin = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')->select('users.email')->first();
         if($admin){
             Mail::to($admin->email)->send(new CheckOut($data,$admin));   
         }

@@ -88,16 +88,17 @@ function ListDeleteRoom() {
                 
                         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                             <div style={{paddingRight:"12px"}}>
-                            { alertCancel && <div className='text-success'>
-                                Đã gửi yêu cầu thành công
-                            </div>
+                            { alertCancel &&
+                                <div className='text-success'>
+                                    Đã gửi yêu cầu thành công
+                                </div>
                             } 
                             </div>
-                        <div>
-                        <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
-                                Trả phòng
-                            </Button>
-                        </div>
+                            <div>
+                                <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
+                                    Trả phòng
+                                </Button>
+                            </div>
                         </div>
                     
                     

@@ -37,8 +37,7 @@
         <p>Tiền nước: {{number_format($user->water_money)}}</p>
         <p>Tiền thuê: {{number_format($user->room_price)}}đ</p>
         <p>Tổng: {{number_format($user->all_money)}}đ</p>
-        <p>Nhấp <a href="https://timtrosinhvien.com/login">vào đây</a> để đăng nhập vào tài khoản.</p>
-        
+        <p>Nhấp <a href="https://timtrosinhvien.com/login">vào đây</a> để đăng nhập vào tài khoản.</p>  
     </div>
     <div class="footer">
         <p>Thân,<br>

@@ -236,7 +236,7 @@ function QA() {
                         placeholder="Viết bình luận của bạn"
                         onChange = {(e) => handleChangeComment(e)} />            
                     </Form.Group>
-                    <Button className="col-1 button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
+                    <Button className="button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
                   </Form>    
                 </div>
                 <div style={{margin:' 26px 10px 0'}}>
