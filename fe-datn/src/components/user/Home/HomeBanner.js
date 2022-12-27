@@ -55,12 +55,7 @@ function Baner() {
                           loop=""
                           autoPlay=""></lottie-player>
                       </a>
-                    </div>
-                    <div className="col-12" style={{ justifyContent: 'center', display: 'flex'}}>
-                      <a className="khampha" href="#room">
-                        Tìm phòng ngay
-                      </a>
-                    </div>
+                    </div>                  
                   </div>
                 </form>
               </div>
