@@ -2897,6 +2897,7 @@ margin-top: 30px;
 .textNotiMaskRead {
     text-transform: lowercase;
     word-break: break-word;
+    background: #bebebe;
 }
 
 .textNoti:hover{

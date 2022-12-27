@@ -94,15 +94,17 @@ function Notify({onClick}) {
         }
     }
 
+    const [Hidden,setHidden] = useState(0);
+
     return (
         <div className="dropdown-menu" style={{zIndex:"1001",padding:"10px"}}>
             <ul className="nav nav-tabs" id="myTab" aria-label="notification" role="tablist">
                 <li className="nav-item">
                     <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link nav-item-link" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#bill" role="tab" aria-controls="notify" aria-selected="false">Hóa đơn </a>
-                </li>
+                </li> */}
             </ul>
             <div className="tab-content" id="myTabContent" style={{ marginTop:"10px", height:"300px", overflow:"hidden", overflowY:"scroll"}}>
                 <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">
@@ -161,7 +163,7 @@ function Notify({onClick}) {
                                                             <div className="col-3 col_3_img">
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <span>{noti.data.Comment.full_name}</span>
                                                                 </Link>  
@@ -178,7 +180,7 @@ function Notify({onClick}) {
                                                             <div className="col-3 col_3_img">
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                                 </Link> Vừa trả lời bình luận 
@@ -201,7 +203,7 @@ function Notify({onClick}) {
                                                             <div className="col-3 col_3_img">
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <span>{noti.data.Comment.full_name}</span>
                                                                 </Link> Vừa trả lời bình luận của bạn tại bài viết 
@@ -220,7 +222,7 @@ function Notify({onClick}) {
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa bình luận bài viết trên 
@@ -239,7 +241,7 @@ function Notify({onClick}) {
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận của bạn trên 
@@ -255,7 +257,7 @@ function Notify({onClick}) {
                                                     return(
                                                         <div key={index} className='listBookingRoom'>
                                                             <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' :  'textNoti col-9'}>
                                                                     <strong>{noti.data.ownerBookingRoom.full_name}</strong> Vừa đặt phòng <strong>A0{noti.data.ownerPost.room_number}</strong> tại 
                                                                     <strong>{noti.data.ownerPost.post_name}</strong> của bạn 
                                                                 </div>
@@ -290,7 +292,7 @@ function Notify({onClick}) {
                                             if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
                                                 return   (
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' : 'textNoti'}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' :  'textNoti col-9'}>
                                                             <strong>{noti.data.subject.full_name} </strong> Vừa yêu cầu trả phòng phòng số 
                                                             <strong> {noti.data.roomnumber.room_number} </strong> tại bài viết 
                                                             <strong> {noti.data.roomnumber.post_name}</strong>
@@ -366,7 +368,7 @@ function Notify({onClick}) {
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                             <Link 
                                                             to={`../profile/${noti.data.qa.id_user}`} 
                                                             className='link_noti'>
@@ -387,7 +389,7 @@ function Notify({onClick}) {
                                                     <div className="row row_noty" key={index}>
                                                         <div  className='listBookingRoom'>
                                                             <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                                     <span>{noti.data.ownerBookingRoom.full_name}</span> Vừa đặt phòng <span>A0{noti.data.ownerPost.room_number}</span> tại 
                                                                     <span>{noti.data.ownerPost.post_name}</span> của bạn 
                                                                 </div>
@@ -425,7 +427,7 @@ function Notify({onClick}) {
                                                 <div className="row row_noty" key={index}>
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' 
                                                     onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' : 'textNoti'}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' :  'textNoti col-9'}>
                                                             <span>{noti.data.subject.full_name} </span> Vừa yêu cầu trả phòng phòng số 
                                                             <span> {noti.data.roomnumber.room_number} </span> tại bài viết 
                                                             <span> {noti.data.roomnumber.post_name}</span>
@@ -438,7 +440,7 @@ function Notify({onClick}) {
                                             return  (
                                                 <div className="row row_noty" key={index}>
                                                     <Link to={`../layoutBill/${id_user}`}className='link_noti'onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                             Yêu cầu trả phòng của bạn không thành công
                                                         </div>
                                                     </Link>
@@ -449,7 +451,7 @@ function Notify({onClick}) {
                                             return  (
                                                 <div className="row row_noty" key={index}>
                                                     <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
                                                             Yêu cầu trả phòng của bạn thành công
                                                         </div>
                                                     </Link>
@@ -463,7 +465,7 @@ function Notify({onClick}) {
                                                         <img src={noti.data.user.link_img_user} alt='' className="img" />
                                                     </div>
                                                     <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <span>{noti.data.user_two.full_name} </span> 
                                                             Vừa đánh giá bài viết 
                                                             <span> {noti.data.user.post_name} </span>
@@ -479,7 +481,7 @@ function Notify({onClick}) {
                                                         <div className="row row_noty" key={index}>
                                                             <div 
                                                                 onClick={e => handleMaskRead(e,noti.id)} 
-                                                                className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}>
+                                                                className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
                                                                     Chúc mừng bạn đã đặt phòng thành công phồng số 
                                                                 <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết 
                                                                 <span>{noti.data.ownerBookingRoom.post_name}</span> 
@@ -492,7 +494,7 @@ function Notify({onClick}) {
                                                         <div className="row row_noty" key={index}>
                                                             <div 
                                                             onClick={e => handleMaskRead(e,noti.id)} 
-                                                            className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'}
+                                                            className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}
                                                             > Đặt phòng 
                                                                 <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết <span>{noti.data.ownerBookingRoom.post_name}</span> thất bại 
                                                             </div>
@@ -503,7 +505,7 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\BillNotification"){
                                             return (
-                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
                                                     Bạn vừa nhận được hóa đơn tháng 
                                                     <span>{moment(noti.data.bill.created_at).local().format('MM')}</span>
                                                 </div>
@@ -515,31 +517,7 @@ function Notify({onClick}) {
                         )
                     }
                 </div>
-                <div className="aw__t16jo35 tab-pane fade show" id="bill" role="tabpanel" aria-labelledby="notify-tab">
-                    {!localStorage.getItem('user') ?
-                        <div className="">
-                            <div>Vui lòng đăng nhập để xem thông báo.</div>
-                        </div>
-                        : 
-                        (
-                        <div className="notifyInteractive">
-                            {listBillUser.length > 0 && listBillUser.map((cate, index) => {
-                                return (     
-                                    <div className='row row_noty' key={index}>                                   
-                                        <div className="content_notifyInteractive col-12">
-                                            <Link to={`../billdetail/${cate.id}`} style={{textTransform: 'none'}}>
-                                                <button className="notify_name">Bạn nhận được hóa đơn tiền phòng vào lúc</button> 
-                                                <button className='notify_interaction'> {cate.created_at}</button>
-                                            </Link>   
-                                            <hr/>
-                                        </div>
-                                    </div> 
-                                );
-                            })} 
-                        </div>
-                        )
-                    }
-                </div>
+              
             </div> 
         </div>
     )
