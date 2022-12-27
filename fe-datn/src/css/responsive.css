@@ -345,7 +345,9 @@
         
         height: 100px;
     }
-    
+    .button_input_submit{ 
+        width: 40px;
+    }
     
 }
 

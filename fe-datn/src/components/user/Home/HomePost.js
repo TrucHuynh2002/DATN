@@ -19,6 +19,7 @@ useEffect(() => {
     getData()
   },[]);
   // danh sách post
+  // cho biến line 23 bằng rỗng xong truyền vào line 19 
   const getData = async () => {
     const res = await axios.get(`${url}/post/show`);
     setListPost(res.data.data);
