@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditRoomtype() {
-    TabTitle('Cập nhật loại phòng - Nhà Tui.com');
+    TabTitle('Cập nhật loại phòng');
   const {id_room_type} = useParams();
   const [editRoomType, setEditRoomType] = useState({
     name_room_type: "",

@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function AddCategory() {
-    TabTitle('Thêm danh mục - Nhà Tui.com');
+    TabTitle('Thêm danh mục');
     const [addCategory, setAddCategory] = useState({
         name_category:"",
         link_to:"",

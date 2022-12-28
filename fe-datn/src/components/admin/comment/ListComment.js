@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListComment() {
-  TabTitle('Danh sách bình luận - Nhà Tui.com');
+  TabTitle('Danh sách bình luận');
   const id_comment = useParams();
   const [listCmt, setListCmt] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

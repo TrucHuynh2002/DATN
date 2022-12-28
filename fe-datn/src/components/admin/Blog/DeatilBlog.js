@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function DetailBlog() {
-  TabTitle('Chi tiết blog - Nhà Tui.com');
+  TabTitle('Chi tiết blog');
     const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [InfoAccount, setInfoAccount] = useState([]);

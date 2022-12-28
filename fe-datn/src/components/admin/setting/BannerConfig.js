@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function BannerConfig() {
-  TabTitle('Banner - Nhà Tui.com');
+  TabTitle('Banner');
   const [listBanner, setListBanner] = useState([])
   // xu ly loi
   const [alert, setAlert] = useState({

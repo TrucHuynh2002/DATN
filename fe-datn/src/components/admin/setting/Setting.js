@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function Setting() {
-  TabTitle('Cập nhật logo - Nhà Tui.com');
+  TabTitle('Cập nhật logo');
   const [listConfig, setListConfig] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi

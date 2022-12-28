@@ -7,7 +7,7 @@ import HomePost from './Home/HomePost';
 import { TabTitle } from '../title';
 
 function Home() {
-  TabTitle('Nhà Tui.com');
+  TabTitle('Tìm trọ sinh viên');
   return (
     <>
         <HomeBanner />

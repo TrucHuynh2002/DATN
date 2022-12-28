@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function Square() {
-    TabTitle('Xem phòng - Nhà Tui.com');
+    TabTitle('Xem phòng');
     const navigate = useNavigate();
     const {id_post} = useParams();
     const [quantityPost, setQuantityPost] = useState([]);

@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListUser() {
-  TabTitle('Danh sách người dùng - Nhà Tui.com');
+  TabTitle('Danh sách người dùng');
   const id_user = useParams();
   const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

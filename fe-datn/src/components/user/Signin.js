@@ -6,7 +6,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Signin() {
-    TabTitle('Đăng ký - Nhà Tui.com');
+    TabTitle('Đăng ký');
     const [addUser, setAddUser] = useState({
         full_name: "",
         password: "",

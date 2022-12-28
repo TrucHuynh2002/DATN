@@ -5,7 +5,7 @@ import NavConfig from './NavConfig';
 import { TabTitle } from '../../title';
 
 function LayoutConfig() {
-    TabTitle('Thiết lập cấu hình - Nhà Tui.com');
+    TabTitle('Thiết lập cấu hình');
   return (
     <>
         <div className="content">

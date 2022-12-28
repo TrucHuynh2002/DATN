@@ -3,7 +3,7 @@ import BlogContainer from './BlogContainer';
 import { TabTitle } from '../../title';
 
 function Blog() {
-  TabTitle('Blog - Nhà Tui.com');
+  TabTitle('Blog');
   return (
     <>
       <BlogContainer />

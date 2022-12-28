@@ -7,7 +7,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function QADetail() {
-  TabTitle('Hỏi đáp - Nhà Tui.com');
+  TabTitle('Hỏi đáp');
   const user = JSON.parse(localStorage.getItem('user'));
   const {id_qa} = useParams();
   const [VisableCmt, setVisableCmt] = useState(10); //loader cmt number

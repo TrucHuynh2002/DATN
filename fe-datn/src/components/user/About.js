@@ -4,7 +4,7 @@ import {url} from '../url';
 import { TabTitle } from '../title';
 
 function About() {
-  TabTitle('Giới thiệu - Nhà Tui.com');
+  TabTitle('Giới thiệu');
   const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
     getData()  

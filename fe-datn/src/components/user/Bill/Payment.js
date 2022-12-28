@@ -2,7 +2,7 @@ import React from 'react';
 import { TabTitle } from '../../title';
 
 function thanhtoan() {
-  TabTitle('Thanh toán - Nhà Tui.com');
+  TabTitle('Thanh toán');
   return (
     <div className="container">
       <div className="header clearfix">

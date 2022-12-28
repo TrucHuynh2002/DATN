@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditBanner() {
-  TabTitle('Cập nhật banner - Nhà Tui.com');
+  TabTitle('Cập nhật banner');
   const {id_banner_config} = useParams();
   const [listBanner, setListBanner] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);

@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListCategory() {
-  TabTitle('Danh sách danh mục - Nhà Tui.com');
+  TabTitle('Danh sách danh mục');
   const id_category = useParams();
   // phan trang
   const [listCategory, setListCategory] = useState([]);

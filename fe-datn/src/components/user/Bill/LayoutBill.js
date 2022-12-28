@@ -8,7 +8,7 @@ import { TabTitle } from '../../title';
 const user = JSON.parse(localStorage.getItem("user"));
 
 function LayoutBill() {
-    TabTitle('Phòng đang thuê - Nhà Tui.com');
+    TabTitle('Phòng đang thuê');
     const [dataChart,setDataChart] = useState([]);   
     const handleFilterDate = async (id_user,start_date, end_date) => {
         const res = await axios.get(`${url}/bill/user/${id_user}?start_date=${start_date}&&end_date=${end_date}`);

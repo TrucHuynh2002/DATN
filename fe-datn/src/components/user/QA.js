@@ -9,7 +9,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function QA() {
-  TabTitle('Hỏi đáp - Nhà Tui.com');
+  TabTitle('Hỏi đáp');
   const user = JSON.parse(localStorage.getItem('user')); 
   // const visableCmt = 3; 
   const [VisableCmt, setVisableCmt] = useState(3); //loader cmt

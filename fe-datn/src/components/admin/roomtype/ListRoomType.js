@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListRoomType() {
-  TabTitle('Danh sách loại phòng - Nhà Tui.com');
+  TabTitle('Danh sách loại phòng');
   const id_room_type = useParams();
   const [listRoomType, setListRoomType] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

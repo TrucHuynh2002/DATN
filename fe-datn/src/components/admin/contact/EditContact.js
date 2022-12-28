@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditContact() {
-    TabTitle('Phản hồi - Nhà Tui.com');
+    TabTitle('Phản hồi');
   const {id_contact} = useParams();
   const [editContact, setEditContact] = useState({
       full_name: "",

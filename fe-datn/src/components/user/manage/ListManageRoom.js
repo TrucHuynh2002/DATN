@@ -14,7 +14,7 @@ ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
 );
 function ListManageRoom() {
-    TabTitle('Quản lý phòng - Nhà Tui.com');
+    TabTitle('Quản lý phòng');
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);

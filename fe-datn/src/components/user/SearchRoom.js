@@ -5,7 +5,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Search() {
-    TabTitle('Kết quả tìm kiếm - Nhà Tui.com');
+    TabTitle('Kết quả tìm kiếm');
     const queryString = window.location.search;
     const urlParam = new URLSearchParams(queryString);
     const keyword = urlParam.get('keyword');

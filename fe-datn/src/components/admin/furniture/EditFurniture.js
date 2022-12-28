@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditFurniture() {
-    TabTitle('Cập nhật nội thất - Nhà Tui.com');
+    TabTitle('Cập nhật nội thất');
     const {id_furniture} = useParams();
     const [editFurniture, setEditFurniture] = useState({
         name: "",

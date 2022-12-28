@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditCategory() {
-    TabTitle('Cập nhật danh mục - Nhà Tui.com');
+    TabTitle('Cập nhật danh mục');
     const {id_category} = useParams();
     const [editCategory, setEditCategory] = useState({
         name_category: "",

@@ -6,7 +6,7 @@ import { TabTitle } from '../../title';
 import { url } from '../../url';
 
 const ConfirmAccount = () => {
-  TabTitle('Đổi mật khẩu - Nhà Tui.com');
+  TabTitle('Đổi mật khẩu');
   const {id_Account} = useParams();
   const [editPassword, setEditPassword] = useState({
     password:"",

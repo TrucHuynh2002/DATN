@@ -6,7 +6,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function ResetPass() {
-    TabTitle('Đổi mật khẩu - Nhà Tui.com');
+    TabTitle('Đổi mật khẩu');
     const [password, setPassWord] = useState("");
     const [password_confirm, SetPasswordConfirm] = useState("");
     const [error,setError] = useState("");

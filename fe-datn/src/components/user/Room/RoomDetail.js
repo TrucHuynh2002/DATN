@@ -11,7 +11,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function RoomDetail() {
-    TabTitle('Chi tiết phòng - Nhà Tui.com');
+    TabTitle('Chi tiết phòng');
     const {id_post} = useParams();
     const [listCount, setListCount] = useState([]);
     const [listPost, setListPost] = useState([]);

@@ -8,7 +8,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditBlog() {
-    TabTitle('Cập nhật blog - Nhà Tui.com');
+    TabTitle('Cập nhật blog');
     const {id_blog} = useParams();
     const user = JSON.parse(localStorage.getItem('user'));
     const id_user = user[0].id
