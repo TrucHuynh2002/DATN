@@ -22,6 +22,11 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
+         // $user = User::where('id_user','=',$id_user)->first();
+        // if($user){
+        //     $data = Post::where('id_province','=',$user->id_province)
+        //     ->where('id_district','=',$user->id_district);
+        // }
         if($request->keyword && $request->keyword != ''){
             $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
         }else{
@@ -274,17 +279,16 @@ class PostController extends Controller
         
         $Get_Post = Post::orderby('id_post', 'DESC')->first();  
         if ($request->file('img')) {
-            foreach ($request->file('img') as $img) {
+            foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                // dd(public_path($path), $new_image.'.'.$name_image[1]);
-                $img->move(public_path($path), $new_image.'.'.$name_image[1]);
+                $img->move($path, $new_image);
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
                 $imgPost->name_image = $new_image;
-                $imgPost->id_post = 94; // khóa ngoại
+                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
             
