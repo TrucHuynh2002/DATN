@@ -93,7 +93,9 @@ class CommentController extends Controller
         }
         else{
             $user = User::find($getPostComment->OwnerPost);
+            if($user->id_user != $request->id_user){
             FacadesNotification::send($user,new CommentPostNotification($getUserComment,$getPostComment));
+            }
         }
 
       

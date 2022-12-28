@@ -97,15 +97,23 @@ class comment_QAController extends Controller
             // Lấy thông tin người vừa trả lời bình luận
             $ReplyCommentQA = DB::table('comment_qa')
                 ->join('users', 'users.id_user', '=', 'comment_qa.id_user')
-                ->select('comment_qa.content', 'users.id_user', 'users.full_name', 'comment_qa.id_qa', 'users.link_img_user')
+                ->join('img_user','img_user.id_user','=','users.id_user')
+                ->select('comment_qa.content', 'users.id_user', 'users.full_name', 'comment_qa.id_qa', 'img_user.link_img_user')
                 ->where('comment_qa.id_comment_qa', '=', $request->child_idComment)
                 ->first();
             $ParentCommentQa = User::find($ReplyCommentQA->id_user);
             if ($request->id_qa != $ReplyCommentQA->id_qa) {
                 // Notification::send($ParentCommentQa,new ReplyParentCommentQA($CommentQA,$QAOwner,$ReplyCommentQA));
-                Notification::send($ownerQaId, new ReplyCommentQANotification($CommentQA, $QAOwner, $ReplyCommentQA));
+                if($request->id_user != $ReplyCommentQA->id_user){
+                    Notification::send($ownerQaId, new ReplyCommentQANotification($CommentQA, $QAOwner, $ReplyCommentQA));
+
+                }
             } else {
-                Notification::send($ParentCommentQa, new ReplyParentCommentQA($CommentQA, $QAOwner, $ReplyCommentQA));
+                if($request->id_user != $ReplyCommentQA->id_user){
+                    Notification::send($ParentCommentQa, new ReplyParentCommentQA($CommentQA, $QAOwner, $ReplyCommentQA));
+
+                }
+                
             }
         } else {
             Notification::send($ownerQaId, new CommentQANotification($CommentQA, $QAOwner));

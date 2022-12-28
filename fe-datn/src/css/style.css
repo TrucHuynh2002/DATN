@@ -2885,12 +2885,15 @@ margin-top: 30px;
     padding: 7px;
     border-radius: 4px;
     line-height: 26px;
+    margin-bottom: 12px;
 }
 
 .textNotiMaskRead {
     text-transform: lowercase;
     word-break: break-word;
-    background: #bebebe;
+    background: #dddbdb !important;
+    padding: 8px;
+    border-radius: 12px;
 }
 
 .textNoti:hover{
@@ -2965,12 +2968,12 @@ margin-top: 30px;
     justify-content: center;
     align-items: center;
 }
-.col_3_imggg{
-    width: 80px;
-    height: 80px;
+.col_3_imgg{
+    width: 80px !important;
+    height: 80px !important;
 }
-.col_3_imggg>img{
-    border-radius: 7px;
+.col_3_imgg>img{
+    border-radius: 50%;
 }
 .product-name>h2{
     text-transform: uppercase;
@@ -2991,4 +2994,14 @@ margin-top: 30px;
     right: 20px;
     top: 12px;
     bottom: 10px;
+}
+
+.notify_avatar{
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 auto;
+}
+.notify_avatar>img {
+    border-radius: 50%;
+    width: 100%;
 }
