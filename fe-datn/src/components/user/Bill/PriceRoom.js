@@ -95,13 +95,13 @@ function PriceRoom({data}) {
                                     <div className='billDetailItem container_bill' key={index}>
                                         <h3>Ngày {bill.created_at}</h3>
                                         <div>
-                                            <span> Tiền điện : 
+                                            <span> Tiền điện: 
                                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bill.electricity_money)}
                                             </span> |
-                                            <span>  Nước : 
+                                            <span>  Nước: 
                                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bill.water_money)}
                                             </span> |
-                                            <span>  Tiền phòng : 
+                                            <span>  Tiền phòng: 
                                                 {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(bill.all_money)}
                                             </span>
                                         </div>
