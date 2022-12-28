@@ -103,7 +103,7 @@ function UpdateAccount() {
     };
 
   return (
-    <div className="content">
+    <div className="content content_title">
         <div className="add-post">
             <h1 className="content_h1_admin">Cập nhật thông tin</h1>
             <Form onSubmit={(e) => handleSubmit(e)}>

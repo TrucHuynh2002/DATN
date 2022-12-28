@@ -7,7 +7,7 @@ function Header_logo() {
     <div className="col-lg-2 col-md-6 col-sm-6 logo_section">
     <div className="logo">
       <Link to="/">
-        <img className="logo img-fluid" src={logo} alt="#" />
+        <img className="logo" src={logo} alt="#" />
       </Link>
     </div>
 </div>
