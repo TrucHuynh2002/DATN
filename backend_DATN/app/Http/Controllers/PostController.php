@@ -14,18 +14,25 @@ use App\Models\StreetModel;
 use Illuminate\Http\Request;
 use App\Models\Post as Post;
 use App\Models\RoomNumberModel;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
 
-    public function show(Request $request)
+    public function show(Request $request,$id_user)
     {
+        $user = User::where('id_user','=',$id_user)->first();
+        if($user){
+            $data = Post::where('id_province','=',$user->id_province)
+            ->where('id_district','=',$user->id_district);
+        }
+
         if($request->keyword && $request->keyword != ''){
             $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
         }else{
-        $data = Post::all();
+            $data = Post::all();
         }
         // $heart = DB::table('post')
         //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
