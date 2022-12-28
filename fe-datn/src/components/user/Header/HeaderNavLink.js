@@ -153,6 +153,7 @@ function HeaderNavLink() {
     }
     // xử lý hình ảnh 
     const [uploadImages, setUploadImages] = useState([]);
+    const [uploadImagesAvatar, setUploadImagesAvatar] = useState([]);
     const handleChangeImages = (e) => {
         let formData = new FormData();
         if(e.target.files){
@@ -160,11 +161,21 @@ function HeaderNavLink() {
         setUploadImages(e.target.files)
         }
     }     
+    const handleChangeImagesBig = (e) => {
+        let formData = new FormData();
+        if(e.target.files){
+        const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
+        setUploadImagesAvatar(e.target.files)
+        }
+    }     
     const handleSumbit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
+        }
+        for(let i = 0; i<uploadImagesAvatar.length; i++) {
+            formData.append('imgavt[]',uploadImages[i])
         }
         formData.append('post_name', post_name);
         formData.append('address', address);
@@ -267,9 +278,9 @@ function HeaderNavLink() {
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
-                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>
+                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 && id_users ? "red" : ''}} ></i>
                         {
-                            notificationUnread.length > 0
+                            notificationUnread.length > 0 && id_users
                             &&
                             <div className='count-bell-unread'>
                                 {notificationUnread.length}
@@ -311,6 +322,12 @@ function HeaderNavLink() {
                             value={meta_title}
                             onChange = {(e) => handleChange(e)} />
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
+                        </Form.Group>
+                        <Form.Group className="mb-12 img">
+                            <Form.Label>Ảnh đại diện</Form.Label>
+                            <Form.Control type="file" name="img"
+                            onChange = {(e) => handleChangeImagesBig(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
                         </Form.Group>
                         <Form.Group className="mb-12 img">
                             <Form.Label>Hình ảnh</Form.Label>
