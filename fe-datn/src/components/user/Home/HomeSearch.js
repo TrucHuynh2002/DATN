@@ -90,12 +90,13 @@ function HomeSearch() {
 
   return (
     <>
-      <div className="container book_room2" id="room">
+      <div className="container book_room2">
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className="col-md-11 col-sm-12">
+                    <div className="col-md-12 col-sm-12 btn-search">
                       <input className="timkiem" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                      <i className='btn-i bx bx-search' style={{color:"#0d3380"}}></i>
                           {searching &&  (
                               <div className='show_search'>
                                  <ul>
@@ -126,9 +127,7 @@ function HomeSearch() {
                                           <Link to="room">{keyword.key_word}</Link>
                                         </li>
                                       )                                          
-                                    })
-    
-                                   
+                                    })                                  
                                   }
                                    <li>
                                       <Link to={`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`}>Tìm kiếm với {keywords}</Link>
@@ -137,12 +136,7 @@ function HomeSearch() {
                               </div>    
                             )
                           }
-                      </div>                     
-                      <div className="btn-search col-1">
-                        <button className="btn btn-outline-secondary">
-                          <i className='bx bx-search' style={{color:"#0d3380"}}></i>
-                        </button>
-                      </div>
+                    </div>                     
                     </div>
                     <div className='row fitele-search'>
                       <div className="col-md-2 col-sm-12">
@@ -199,9 +193,9 @@ function HomeSearch() {
                           <option value="4">Trên 50m</option>
                         </select>
                       </div>
-                      
-                          <button type="submit" className="search_room_btn">Lọc</button>
-                     
+                      <div className="col-md-2 col-sm-12">                     
+                        <button type="submit" className="search_room_btn">Lọc</button>    
+                      </div>               
                     </div>
                 </form>
       </div>

@@ -8,11 +8,13 @@ import { Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
 import ChartManage from './ChartManage';
+import { TabTitle } from '../../title';
 
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
 );
 function ListManageRoom() {
+    TabTitle('Quản lý phòng - Nhà Tui.com');
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
     const [ currentPage, setCurrentPage ] = useState(1);

@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditRoomtype() {
-
+    TabTitle('Cập nhật loại phòng - Nhà Tui.com');
   const {id_room_type} = useParams();
   const [editRoomType, setEditRoomType] = useState({
     name_room_type: "",

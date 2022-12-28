@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {url} from '../url';
+import { TabTitle } from '../title';
 
 function About() {
-
+  TabTitle('Giới thiệu - Nhà Tui.com');
   const [listAbout, setListAbout] = useState([]);  
   useEffect(() => {
     getData()  

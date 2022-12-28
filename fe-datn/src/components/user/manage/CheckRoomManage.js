@@ -2,8 +2,10 @@ import React, {useEffect,useState} from 'react';
 import axios from 'axios';
 import { url } from '../../url';
 import { useParams,useNavigate } from 'react-router-dom';
+import { TabTitle } from '../../title';
 
 function CheckRoomManage() {
+    TabTitle('Cập nhật phòng đặt cọc - Nhà Tui.com');
     const {id_roomNumber} = useParams();
     const navigate = useNavigate();
     const user = JSON.parse( localStorage.getItem('user'));

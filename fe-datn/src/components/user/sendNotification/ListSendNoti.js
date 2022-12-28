@@ -7,7 +7,11 @@ import { url } from '../../url';
 function ListSendNoti() {
     // show detail sendnoti
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    const [alertCancel,setAlertCancel] = useState(false)
+    const handleClose = () =>{ 
+        setShow(false);
+        setAlertCancel(false);
+    };
     const handleShow = () => setShow(true);
     const {id_user} = useParams();
     const [dataSendNoti, setDataSendNoti] = useState([]);
@@ -67,6 +71,11 @@ function ListSendNoti() {
                             <h2>Số phòng: A{data.room_number}</h2>
                         </Modal.Body>
                         <Modal.Footer>
+                        { alertCancel &&
+                                <div className='text-success'>
+                                    Đã xác nhận trả phòng thành công
+                                </div>
+                            } 
                         <Button variant="primary" onClick={e => handleCancelSendNoti(e,data.id)}>
                             Xác nhận
                         </Button>

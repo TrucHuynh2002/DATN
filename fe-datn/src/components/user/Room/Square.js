@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function Square() {
+    TabTitle('Xem phòng - Nhà Tui.com');
     const navigate = useNavigate();
     const {id_post} = useParams();
     const [quantityPost, setQuantityPost] = useState([]);

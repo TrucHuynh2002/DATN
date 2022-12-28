@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListUpdateRoom() {
+    TabTitle('Danh sách phòng đang đặt - Nhà Tui.com');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [dataBookingRoom,setDataBookingRoom] = useState([]);

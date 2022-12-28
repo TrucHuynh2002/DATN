@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function Login() {
+    TabTitle('Đăng nhập - Nhà Tui.com');
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

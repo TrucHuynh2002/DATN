@@ -3,8 +3,10 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function BlogDetail() {
+  TabTitle('Chi tiết blog - Nhà Tui.com');
     const {id_blog} = useParams();
     const [listBlog, setListBlog] = useState([]);
     const [InfoAccount, setInfoAccount] = useState([]);

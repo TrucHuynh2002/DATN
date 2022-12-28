@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function AddCategory() {
-
+    TabTitle('Thêm danh mục - Nhà Tui.com');
     const [addCategory, setAddCategory] = useState({
         name_category:"",
         link_to:"",

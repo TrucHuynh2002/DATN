@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditPost() {
+    TabTitle('Cập nhật bài viết - Nhà Tui.com');
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);

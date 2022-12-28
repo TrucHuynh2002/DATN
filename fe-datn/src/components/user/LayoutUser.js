@@ -4,8 +4,10 @@ import { Outlet } from 'react-router-dom';
 import Header from '../user/Header/Header';
 import Footer from './Footer';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function LayoutUser() {
+  TabTitle('Nhà Tui.com');
   useEffect(() => {
     getData();
   },[])

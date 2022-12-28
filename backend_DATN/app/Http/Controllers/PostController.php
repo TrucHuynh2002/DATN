@@ -27,10 +27,6 @@ class PostController extends Controller
         }else{
         $data = Post::all();
         }
-        // $heart = DB::table('post')
-        //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
-        //     ->orderBy('post.id_post')
-        //     ->get();
         return response()
             ->json([
                 'data' => $data,

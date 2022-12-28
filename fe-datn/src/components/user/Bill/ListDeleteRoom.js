@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListDeleteRoom() {
+    TabTitle('Danh sách phòng đang ở - Nhà Tui.com');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [idRoomCancel,setIdRoomCancel] = useState('');
@@ -88,16 +90,17 @@ function ListDeleteRoom() {
                 
                         <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                             <div style={{paddingRight:"12px"}}>
-                            { alertCancel && <div className='text-success'>
-                                Đã gửi yêu cầu thành công
-                            </div>
+                            { alertCancel &&
+                                <div className='text-success'>
+                                    Đã gửi yêu cầu thành công
+                                </div>
                             } 
                             </div>
-                        <div>
-                        <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
-                                Trả phòng
-                            </Button>
-                        </div>
+                            <div>
+                                <Button variant="secondary" onClick={e => handleCancelRoom(e)}>
+                                    Trả phòng
+                                </Button>
+                            </div>
                         </div>
                     
                     
