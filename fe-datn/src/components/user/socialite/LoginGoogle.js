@@ -11,9 +11,9 @@ function LoginGoogle() {
         handleLoginGoogle()
     })
     const [loginGoogle, setLoginGoogle] = useState('');
-    const handleLoginGoogle = async (e) => {
+    const handleLoginGoogle = async () => {
         const google = await axios.get(`${url}/auth/google/callback${window.location.search}`);
-        if(google.data.status === true){
+        if(google.data.status){
             var user = JSON.parse(localStorage.getItem('user'));
             if(user == null){
                 user =[];
@@ -30,12 +30,13 @@ function LoginGoogle() {
             }
             localStorage.setItem("user", JSON.stringify(user));
             let item = user.find(items => items.id == google.data.data.id_user);
-            if (item.role == 0 || item.role == 1) {
+            if (google.data.data.role == 0 || google.data.data.role == 1) {
                 navigate("../");
             } else {
                 navigate("/admin");
             }
         }
+        
     }
   return (
     <div>Loading</div>

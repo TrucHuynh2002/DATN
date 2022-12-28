@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\imgUserModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -38,11 +39,11 @@ class FacebookController extends Controller
                 'password'=> '',
             ]
         );
-        $get_user = User::orderBy('id_user','DESC');
+        $get_user = User::orderBy('id_user','DESC')->first();
             imgUserModel::create(
                 [
                     'type_img_user' => "Hình đại diện",
-                    'name_img' => $googleUser->name,
+                    'name_img' => 'Facebook',
                     'link_img_user' => 'https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg',
                     'id_user' => $get_user->id_user
                 ]

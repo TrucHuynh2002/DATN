@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { isRouteErrorResponse, Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { url } from '../url';
@@ -16,7 +16,6 @@ function Notify({onClick}) {
         getData(); 
         return () => {
             getData();
-      
         }
     },[]);
         // NOTIFY QA
@@ -64,14 +63,18 @@ function Notify({onClick}) {
     const [notificationUnread,setNotificationUnread] = useState([]);
 
     const getNotify = async () => {
+        if(id_user != 0){
         const res = await axios.get(`${url}/notify/${id_user}`)
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.status){
-            setNotification(res.data.data)
+            if(res.data.data){
+            setNotification(res.data.data)}
+            if(res.data.notificationUnread){
             setNotificationUnread(res.data.notificationUnread)
+            }
         }
-        setNotification(res.data.data)
-        setNotificationUnread(res.data.notificationUnread)
+    }
+       
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
