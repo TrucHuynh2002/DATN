@@ -97,7 +97,10 @@ function HeaderNavLink() {
         getDataProvince();
         getDataRoomType();
         get_furnitures();
-        getData();
+        if(user){
+            getData();
+
+        }
         getNotify();
     },[]);
     const [listProvince, setListProvince] = useState([]);
@@ -230,7 +233,9 @@ function HeaderNavLink() {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
         // setNotification(res.data.data)
         if(res.data.status == true){
+            if(res.data.notificationUnread.length > 0){
               setNotificationUnread(res.data.notificationUnread)
+            }
         }
     }
 

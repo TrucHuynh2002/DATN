@@ -24,8 +24,8 @@ class GoogleController extends Controller
     public function loginCallback(Request $request)
     {
         
-            $state = $request->input('state');
-            parse_str($state, $result);
+            // $state = $request->input('state');
+            // parse_str($state, $result);
             $googleUser = Socialite::driver('google')->stateless()->user();
             
             $user = User::where('email', $googleUser->email)->first();
@@ -56,7 +56,7 @@ class GoogleController extends Controller
             
             return response()->json([
                 'status' => true,
-                'data' => $googleUser,
+                'data' => $user,
                 'get_user' => $get_user->id
             ]);
         
