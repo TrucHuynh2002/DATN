@@ -176,7 +176,7 @@ function Notify({onClick}) {
                                                 }
                                                 else{
                                                     return (
-                                                        <div className="row row_noty" key={index} >
+                                                        <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <div className="col-3 col_3_img">
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
@@ -199,7 +199,7 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
                                                 if(noti.data.Comment.id_user != id_user) {
                                                     return (
-                                                        <div className="row row_noty"  key={index}>
+                                                        <div className="row row_noty"  key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <div className="col-3 col_3_img">
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
@@ -218,7 +218,7 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\CommentQANotification"){
                                             if(noti.data.Comment.id_user != id_user){
                                                 return (
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
@@ -237,7 +237,7 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyCommentQANotification"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
@@ -304,7 +304,7 @@ function Notify({onClick}) {
                                             if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                             if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
@@ -323,7 +323,7 @@ function Notify({onClick}) {
                                             
                                             if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
@@ -342,7 +342,7 @@ function Notify({onClick}) {
                                                 )
                                             }                                       
                                             return  (
-                                                <div className="row row_noty" key={index}>
+                                                <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                     <div className="col-3 col_3_img">
                                                         <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                     </div>
@@ -364,7 +364,7 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return   (
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className="col-3 col_3_img">
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                         </div>
@@ -424,7 +424,7 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
                                             return   (
-                                                <div className="row row_noty" key={index}>
+                                                <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' 
                                                     onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' :  'textNoti col-9'}>
@@ -449,7 +449,7 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyUpdateRoomCancel"){
                                             return  (
-                                                <div className="row row_noty" key={index}>
+                                                <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                     <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
                                                         <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
                                                             Yêu cầu trả phòng của bạn thành công
@@ -460,7 +460,7 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\RatePostNotification"){
                                             return   (
-                                                <div className="row row_noty" key={index}>
+                                                <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                     <div className="col-3 col_3_img">
                                                         <img src={noti.data.user.link_img_user} alt='' className="img" />
                                                     </div>
@@ -478,7 +478,7 @@ function Notify({onClick}) {
                                             if(noti.data.ownerBookingRoom.id_user != id_user){
                                                 if(noti.data.status ==  '2') {
                                                     return (
-                                                        <div className="row row_noty" key={index}>
+                                                        <div className="row row_noty" key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <div 
                                                                 onClick={e => handleMaskRead(e,noti.id)} 
                                                                 className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
