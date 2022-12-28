@@ -1,7 +1,9 @@
 import React from 'react';
 import ListSendNoti from './ListSendNoti';
+import { TabTitle } from '../../title';
 
 function LayoutSendNoti() {
+    TabTitle('Gửi yêu cầu');
   return (
     <>
        <div className="back_re">

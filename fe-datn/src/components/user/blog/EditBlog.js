@@ -5,9 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditBlog() {
-    
+    TabTitle('Cập nhật blog');
     const {id_blog} = useParams();
     const [editBlog, setEditBlog] = useState({
         name_blog:"",

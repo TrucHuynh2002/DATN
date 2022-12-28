@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { TabTitle } from '../../title';
 import { url } from '../../url';
 
-function ConfirmAccount() {
-
+const ConfirmAccount = () => {
+  TabTitle('Đổi mật khẩu');
   const {id_Account} = useParams();
   const [editPassword, setEditPassword] = useState({
     password:"",

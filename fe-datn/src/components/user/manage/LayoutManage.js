@@ -3,9 +3,10 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ListManageRoom from './ListManageRoom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function LayoutManage() {
-  
+  TabTitle('Quản lý phòng');
     const navigate = useNavigate();
     const checkManage = async () => {
         const get_user = JSON.parse(localStorage.getItem('user'));

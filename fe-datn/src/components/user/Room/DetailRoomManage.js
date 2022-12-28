@@ -4,8 +4,10 @@ import { Button } from 'react-bootstrap';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function RoomDetail() {
+    TabTitle('Đặt phòng');
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : ''
     const queryString = window.location.search;

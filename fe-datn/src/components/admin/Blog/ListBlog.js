@@ -4,8 +4,10 @@ import { Button, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListBlog() {
+  TabTitle('Danh sách blog');
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

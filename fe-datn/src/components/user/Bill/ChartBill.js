@@ -4,10 +4,12 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
 function ChartBill({dataChart}) {
+    TabTitle('Thống kê hóa đơn - Nhà Tui.com');
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
     const [data,setData] = useState({});

@@ -1,7 +1,9 @@
 import React from 'react';
 import AddPosst from './AddPost';
+import { TabTitle } from '../../title';
 
 function App() {
+    TabTitle('Đăng bài');
     const get_user = JSON.parse(localStorage.getItem('user'));
        
     return (

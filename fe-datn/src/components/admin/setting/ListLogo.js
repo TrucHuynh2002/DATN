@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListLogo() {
-
+  TabTitle('Logo');
   const [listLogo, setListLogo] = useState([]);
-
   useEffect(() => {
     getData();
   },[]);
-
   // list banner
   const getData = async () => {
    const result = await axios.get(`${url}/config`);

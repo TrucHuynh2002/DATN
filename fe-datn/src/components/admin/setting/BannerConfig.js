@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function BannerConfig() {
-
+  TabTitle('Banner');
   const [listBanner, setListBanner] = useState([])
   // xu ly loi
   const [alert, setAlert] = useState({

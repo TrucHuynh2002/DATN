@@ -4,15 +4,14 @@ import { Button, Table } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListRoomType() {
-
+  TabTitle('Danh sách loại phòng');
   const id_room_type = useParams();
-
   const [listRoomType, setListRoomType] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listRoomType.slice(firstPageIndex, lastPageIndex);

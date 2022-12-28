@@ -6,8 +6,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function QA() {
+  TabTitle('Hỏi đáp');
   const user = JSON.parse(localStorage.getItem('user')); 
   // const visableCmt = 3; 
   const [VisableCmt, setVisableCmt] = useState(3); //loader cmt

@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditBanner() {
-
+  TabTitle('Cập nhật banner');
   const {id_banner_config} = useParams();
   const [listBanner, setListBanner] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);

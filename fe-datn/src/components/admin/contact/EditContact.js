@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditContact() {
-
+    TabTitle('Phản hồi');
   const {id_contact} = useParams();
   const [editContact, setEditContact] = useState({
       full_name: "",
@@ -56,7 +57,7 @@ function EditContact() {
 return (
   <div className="content">
       <div className="add-post">
-          <h1 className="content_h1_admin">Phản hồi nội dung</h1>
+          <h1 className="content_h1_admin">Phản hồi</h1>
           <Form onSubmit={(e) => handleSumbit(e)}>
               <Form.Group className="mb-3" controlId="full_name">
                   <Form.Label>Tên khách hàng</Form.Label>

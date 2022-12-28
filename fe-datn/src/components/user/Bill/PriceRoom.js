@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import ListDeleteRoom from './ListDeleteRoom';
 import ListUpdateRoom from './ListUpdateRoom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function PriceRoom({data}) {
+    TabTitle('Hóa đơn - Nhà Tui.com');
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ? user[0].id : ''
     const [loadBill,setLoadBill] = useState([])

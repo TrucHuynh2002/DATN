@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import InfoAccount from './InfoAccount';
 import Posted from './Posted';
+import { TabTitle } from '../../title';
 
 function Profile() {
+  TabTitle('Thông tin tài khoản');
     const navigate = useNavigate();
     const {id_user} = useParams();
     const checkAdmin = async () => {

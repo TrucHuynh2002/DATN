@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function Signin() {
-
+    TabTitle('Đăng ký');
     const [addUser, setAddUser] = useState({
         full_name: "",
         password: "",

@@ -4,8 +4,10 @@ import { Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function Posted() {
+    TabTitle('Bài viết - Nhà Tui.com');
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);

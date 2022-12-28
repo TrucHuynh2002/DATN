@@ -2,8 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import {url} from '../url';
+import { TabTitle } from '../title';
 
 function ForgotPassword() {
+    TabTitle('Quên mật khẩu');
     const [email, setForgotEmail] = useState("");
     // xu ly loi
     const [alert, setAlert] = useState({

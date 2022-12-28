@@ -8,8 +8,10 @@ import ContentComent from '../Comment/ContentComent';
 import Evaluate from '../Comment/Evaluate';
 import RoomRelatePost from './RoomRelatePost';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function RoomDetail() {
+    TabTitle('Chi tiết phòng');
     const {id_post} = useParams();
     const [listCount, setListCount] = useState([]);
     const [listPost, setListPost] = useState([]);

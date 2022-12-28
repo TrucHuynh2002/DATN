@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditCategory() {
-
+    TabTitle('Cập nhật danh mục');
     const {id_category} = useParams();
     const [editCategory, setEditCategory] = useState({
         name_category: "",

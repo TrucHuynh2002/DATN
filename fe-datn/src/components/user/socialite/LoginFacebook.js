@@ -2,7 +2,10 @@ import React, {useState,useEffect} from 'react'
 import { url } from '../../url';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { TabTitle } from '../../title';
+
 function LoginFacebook() {
+    TabTitle('Đăng nhập với Facebook');
     const navigate = useNavigate();
     useEffect(() => {
         handleLoginFacebook()

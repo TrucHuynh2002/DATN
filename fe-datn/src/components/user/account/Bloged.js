@@ -4,8 +4,10 @@ import { Button } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
 import PaginationBlog from '../PaginationBlog';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function Bloged() {
+    TabTitle('Blog - Nhà Tui.com');
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listBlog, setListBlog] = useState([]);

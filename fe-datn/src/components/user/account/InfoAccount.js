@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function InfoAccount() {
-
+    TabTitle('Thông tin tài khoản - Nhà Tui.com');
     const user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);

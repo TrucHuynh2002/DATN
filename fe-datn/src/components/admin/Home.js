@@ -4,11 +4,13 @@ import moment from 'moment';
 import { url } from '../url';
 import { ArcElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, LineElement, PointElement, Title, Tooltip } from 'chart.js';
 import { Line, Pie } from 'react-chartjs-2';
+import { TabTitle } from '../title';
 ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
 );
 
 function Home() {
+  TabTitle('Admin - Tìm trọ sinh viên');
   const [listCategory, setListCategory] = useState([]);
   const [listRoomType, setListRoomType] = useState([]);
   const [listPost, setListPost] = useState([]);
