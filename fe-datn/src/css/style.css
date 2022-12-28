@@ -28,6 +28,7 @@
 @import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
+/* config text color */
 
 * {
     box-sizing: border-box !important;
@@ -2990,6 +2991,7 @@ margin-top: 30px;
     border: 1px solid #bebebe;
     padding: 5px;
     width: 100%;
+    border-radius: 0px;
 }
 /* .scroll_search{
     width: 100%;

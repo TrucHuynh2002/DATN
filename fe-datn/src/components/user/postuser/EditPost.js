@@ -177,7 +177,7 @@ function EditPost() {
     },[loader]);
 
   return (
-    <div className="content">
+    <div className="content content_title">
         <div className="add-post">
             <h1 className="content_h1_admin">Cập nhật bài viết</h1>
             <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
