@@ -151,7 +151,7 @@ root.render(
         <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
-        <Route path="detail_post/:id_posts" element={<DetailPost />} />
+        <Route path="detail_post/:id_post" element={<DetailPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />
         <Route path="add_blog" element={<AddBlog />} />

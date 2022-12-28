@@ -7,7 +7,6 @@ import { TabTitle } from '../../title';
 function DetailPost() {
     TabTitle('Chi tiết bài viết');
     const {id_post} = useParams();
-    console.log(id_post)
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
 
@@ -19,7 +18,6 @@ function DetailPost() {
     // danh sach post
     const getData = async () => {
     const res = await axios.get(`${url}/post/show/${id_post}`);
-    console.log(res)
     setListPost(res.data.data);
     };
     const getImg = async () => {
