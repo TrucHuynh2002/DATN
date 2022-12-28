@@ -8,7 +8,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function EditPost() {
-    TabTitle('Cập nhật bài viết - Nhà Tui.com');
+    TabTitle('Cập nhật bài viết');
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);

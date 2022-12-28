@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { TabTitle } from '../../title';
 
 function LoginGoogle() {
-    TabTitle('Đăng nhập với Google - Nhà Tui.com');
+    TabTitle('Đăng nhập với Google');
     const navigate = useNavigate();
     useEffect(() => {
         handleLoginGoogle()

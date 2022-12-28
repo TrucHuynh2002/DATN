@@ -3,7 +3,7 @@ import ListSendNoti from './ListSendNoti';
 import { TabTitle } from '../../title';
 
 function LayoutSendNoti() {
-    TabTitle('Quản lý gửi yêu cầu - Nhà Tui.com');
+    TabTitle('Gửi yêu cầu');
   return (
     <>
        <div className="back_re">

@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function DetailPost() {
-    TabTitle('Chi tiết bài viết - Nhà Tui.com');
+    TabTitle('Chi tiết bài viết');
     const {id_post} = useParams();
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);

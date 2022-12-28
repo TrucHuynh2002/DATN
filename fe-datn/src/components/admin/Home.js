@@ -10,7 +10,7 @@ ChartJS.register(
 );
 
 function Home() {
-  TabTitle('Admin - Nhà Tui.com');
+  TabTitle('Admin - Tìm trọ sinh viên');
   const [listCategory, setListCategory] = useState([]);
   const [listRoomType, setListRoomType] = useState([]);
   const [listPost, setListPost] = useState([]);

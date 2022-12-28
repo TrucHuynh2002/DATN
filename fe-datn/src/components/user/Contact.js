@@ -5,7 +5,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Contact() {
-  TabTitle('Liên hệ - Nhà Tui.com');
+  TabTitle('Liên hệ');
   const [contact, setContact] = useState({
     full_name: "",
     subject: "",

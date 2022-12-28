@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function LayoutManage() {
-  TabTitle('Quản lý phòng - Nhà Tui.com');
+  TabTitle('Quản lý phòng');
     const navigate = useNavigate();
     const checkManage = async () => {
         const get_user = JSON.parse(localStorage.getItem('user'));

@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function UpdateAccount() {
-    TabTitle('Cập nhật thông tin - Nhà Tui.com');
+    TabTitle('Cập nhật thông tin');
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);

@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListBlog() {
-  TabTitle('Danh sách blog - Nhà Tui.com');
+  TabTitle('Danh sách blog');
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);

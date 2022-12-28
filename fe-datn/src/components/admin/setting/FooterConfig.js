@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function FooterConfig() {
-  TabTitle('Cập nhật footer - Nhà Tui.com');
+  TabTitle('Footer');
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     title: "",

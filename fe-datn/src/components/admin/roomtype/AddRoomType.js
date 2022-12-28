@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function AddRoomType() {
-    TabTitle('Thêm loại phòng - Nhà Tui.com');
+    TabTitle('Thêm loại phòng');
     const [addRoomType, setAddRoomType] = useState({
         name_room_type: "",
     });

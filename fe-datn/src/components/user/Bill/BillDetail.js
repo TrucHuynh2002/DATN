@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function BillDetail() {
-    TabTitle('Chi tiết hóa đơn - Nhà Tui.com');
+    TabTitle('Chi tiết hóa đơn');
     let { id_bill } = useParams();
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';

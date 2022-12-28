@@ -7,7 +7,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function LayoutUser() {
-  TabTitle('Nhà Tui.com');
+  TabTitle('Tìm trọ sinh viên');
   useEffect(() => {
     getData();
   },[])

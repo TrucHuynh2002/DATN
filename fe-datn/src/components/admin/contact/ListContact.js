@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListContact() {
-  TabTitle('Danh sách liên hệ - Nhà Tui.com');
+  TabTitle('Danh sách liên hệ');
   const [listContact, setListContact] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);

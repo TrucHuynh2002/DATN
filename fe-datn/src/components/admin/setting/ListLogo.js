@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListLogo() {
-  TabTitle('Logo - Nhà Tui.com');
+  TabTitle('Logo');
   const [listLogo, setListLogo] = useState([]);
   useEffect(() => {
     getData();

@@ -5,7 +5,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Rules() {
-    TabTitle('Điều khoản tài khoản - Nhà Tui.com');
+    TabTitle('Điều khoản tài khoản');
     const user = JSON.parse(localStorage.getItem('user'));
     const id_user = user ? user[0].id : 0;
     const [alert, setAlert] = useState({

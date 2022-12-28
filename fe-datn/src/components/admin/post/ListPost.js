@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListPost() {
-  TabTitle('Danh sách bài viết - Nhà Tui.com');
+  TabTitle('Danh sách bài viết');
   const [listPost, setListPost] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);

@@ -5,7 +5,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function AddFurniture() {
-    TabTitle('Thêm nội thất - Nhà Tui.com');
+    TabTitle('Thêm nội thất');
     const [addFurniture, setAddFurniture] = useState({
         name: "",
         icon: "",

@@ -5,7 +5,7 @@ import { useParams,useNavigate } from 'react-router-dom';
 import { TabTitle } from '../../title';
 
 function CheckRoomManage() {
-    TabTitle('Cập nhật phòng đặt cọc - Nhà Tui.com');
+    TabTitle('Cập nhật phòng đặt cọc');
     const {id_roomNumber} = useParams();
     const navigate = useNavigate();
     const user = JSON.parse( localStorage.getItem('user'));

@@ -3,7 +3,7 @@ import RoomContainer from './RoomContainer';
 import { TabTitle } from '../../title';
 
 function Room() {
-  TabTitle('Phòng - Nhà Tui.com');
+  TabTitle('Phòng');
   return (
     <>
        <RoomContainer />

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { TabTitle } from '../../title';
 
 function LoginFacebook() {
-    TabTitle('Đăng nhập với Facebook - Nhà Tui.com');
+    TabTitle('Đăng nhập với Facebook');
     const navigate = useNavigate();
     useEffect(() => {
         handleLoginFacebook()

@@ -6,7 +6,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Login() {
-    TabTitle('Đăng nhập - Nhà Tui.com');
+    TabTitle('Đăng nhập');
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

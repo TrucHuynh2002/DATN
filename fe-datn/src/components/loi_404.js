@@ -2,7 +2,7 @@ import React from 'react';
 import { TabTitle } from './title';
 
 function loi_404() {
-  TabTitle('Lỗi 404 - Nhà Tui.com');
+  TabTitle('Lỗi 404');
   return (
     <>
       <div className='box_404'>    

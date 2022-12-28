@@ -9,7 +9,7 @@ import { url } from '../url';
 import { TabTitle } from '../title';
 
 function App() {
-  TabTitle('Admin - Nhà Tui.com');
+  TabTitle('Admin - Tìm trọ sinh viên');
   const navigate = useNavigate();
   const checkAdmin = async () => {
     const get_user = JSON.parse(localStorage.getItem('user'));

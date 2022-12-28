@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function RoomDetail() {
-    TabTitle('Đặt phòng - Nhà Tui.com');
+    TabTitle('Đặt phòng');
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : ''
     const queryString = window.location.search;
