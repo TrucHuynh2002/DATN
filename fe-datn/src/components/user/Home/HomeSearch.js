@@ -5,6 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { url } from '../../url';
 
 function HomeSearch() {
+  // scroll menu
+  const [fix, setFix] = useState(false)
+  function setFixed() {
+    if(window.scrollY >= 100) {
+      setFix(true)
+    } else {
+      setFix(false)
+    }
+  }
+  window.addEventListener("scroll", setFixed)
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -90,11 +100,11 @@ function HomeSearch() {
 
   return (
     <>
-      <div className="container book_room2">
+      <div className='container book_room2'>
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className="col-md-12 col-sm-12 btn-search">
+                    <div className={fix ? 'scroll_search' : 'col-md-12 col-sm-12 btn-search'}>
                       <input className="timkiem" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                       <i className='btn-i bx bx-search' style={{color:"#0d3380"}}></i>
                           {searching &&  (

@@ -263,40 +263,20 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        $get_image = $request->file('img');
-        if ($request->file('img')) {
-            $get_name_image = $get_image[0]->getClientOriginalName();
-            $path = 'uploads/';
-            $name_image = explode('.', $get_name_image);
-            $new_image = $name_image[0] . rand(0, 99);
-            $get_image->move($path, $new_image);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-            $Post->name_img = $new_image;
-        }
+    
+            $get_image = $request->file('imgavt');
+            if ($request->file('imgavt')) {
+                $get_name_image = $get_image[0]->getClientOriginalName();
+                $path = 'uploads/';
+                $name_image = explode('.', $get_name_image);
+                $new_image = $name_image[0] . rand(0, 99);
+                $get_image[0]->move(public_path($path), $new_image);
+                $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+                $Post->name_img = $new_image;
+            }
         $Post->save();
         
-            
-        if ($request->quantity) {
-            for ($i = 1; $i <= $request->quantity; $i++) {
-                $roomNumber = new RoomNumberModel();
-                $roomNumber->id_user = $request->id_user;
-                $roomNumber->id_post = $Get_Post->id_post;
-                $roomNumber->room_number = $i;
-                $roomNumber->status = 0;
-                $roomNumber->save();
-            };
-        }
-        if ($request->id_furniture) {
-            $array_fur = explode(',', $request->id_furniture);
-            foreach ($array_fur as $furniture) {
-                $furniture_post = new furniture_post();
-                $furniture_post->id_post = $Get_Post->id_post;
-                $furniture_post->id_furniture = $furniture;
-                $furniture_post->save();
-            }
-        }
-        
+        $Get_Post = Post::orderby('id_post', 'DESC')->first();  
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
@@ -311,7 +291,28 @@ class PostController extends Controller
                 $imgPost->save();
             }
             
+        } 
+        if ($request->quantity) {
+            for ($i = 1; $i <= $request->quantity; $i++) {
+                $roomNumber = new RoomNumberModel();
+                $roomNumber->id_user = $request->id_user;
+                $roomNumber->id_post = $Get_Post->id_post;
+                $roomNumber->room_number = $i;
+                $roomNumber->status =0;
+                $roomNumber->save();
+            };
         }
+        if ($request->id_furniture) {
+            $array_fur = explode(',', $request->id_furniture);
+            foreach ($array_fur as $furniture) {
+                $furniture_post = new furniture_post();
+                $furniture_post->id_post = $Get_Post->id_post;
+                $furniture_post->id_furniture = $furniture;
+                $furniture_post->save();
+            }
+        }
+        
+      
         
         return response()
             ->json([
@@ -411,8 +412,8 @@ class PostController extends Controller
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        $get_image = $request->file('img');
-        if ($request->file('img')) {
+        $get_image = $request->file('imgavt');
+        if ($request->file('imgavt')) {
             $get_name_image = $get_image[0]->getClientOriginalName();
             $path = 'uploads/';
             $name_image = explode('.', $get_name_image);
