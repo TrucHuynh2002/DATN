@@ -4,11 +4,11 @@ import { Button, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListUser() {
-
+  TabTitle('Danh sách người dùng - Nhà Tui.com');
   const id_user = useParams();
-
   const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);

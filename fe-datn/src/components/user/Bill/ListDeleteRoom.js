@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function ListDeleteRoom() {
+    TabTitle('Danh sách phòng đang ở - Nhà Tui.com');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [idRoomCancel,setIdRoomCancel] = useState('');

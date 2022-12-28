@@ -1,6 +1,8 @@
 import React from 'react';
+import { TabTitle } from '../title';
 
 function PrivacyPolicy() {
+  TabTitle('Bảo mật tài khoản - Nhà Tui.com');
   return (  
     <div className='privacypolicy'>
       <div className="back_re">

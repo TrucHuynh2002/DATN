@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function Contact() {
-
+  TabTitle('Liên hệ - Nhà Tui.com');
   const [contact, setContact] = useState({
     full_name: "",
     subject: "",

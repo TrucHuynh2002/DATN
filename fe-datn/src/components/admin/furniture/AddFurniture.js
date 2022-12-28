@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function AddFurniture() {
-
+    TabTitle('Thêm nội thất - Nhà Tui.com');
     const [addFurniture, setAddFurniture] = useState({
         name: "",
         icon: "",

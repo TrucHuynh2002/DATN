@@ -21,7 +21,6 @@ import EditRoomType from './components/admin/roomtype/EditRoomType';
 import ListRoomType from './components/admin/roomtype/ListRoomType';
 
 // admin post
-import EditPost from './components/admin/post/EditPost';
 import ListPost from './components/admin/post/ListPost';
 import DetailPost from './components/admin/post/DetailPost';
 
@@ -82,7 +81,6 @@ import LayoutManage from './components/user/manage/LayoutManage';
 import ListManageRoom from './components/user/manage/ListManageRoom';
 import DetailRoomManage from './components/user/Room/DetailRoomManage';
 import Square from './components/user/Room/Square';
-import ConfirmPost from './components/user/ConfirmPost';
 import LayoutBill from './components/user/Bill/LayoutBill';
 import Rules from './components/user/Rules';
 import BillDetail from './components/user/Bill/BillDetail';
@@ -92,9 +90,8 @@ import LoginGoogle from './components/user/socialite/LoginGoogle';
 import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import vnpay from './components/user/pay/vnpay';
-
-import ConfirmPass from './components/user/account/ConfirmPass';
 import Payment from './components/user/Bill/Payment';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -113,7 +110,6 @@ root.render(
         <Route path="square/:id_post" element={<Square />} />
         <Route path="addpost" element={<AddPostUser /> } />
         <Route path="editpost/:id_post" element={<EditPostUser />} />
-        <Route path="confirmpost" element={<ConfirmPost />} />
         <Route path="login" element={<Login />} />
         <Route path="signin" element={<Signin />} />
         <Route path="forgotpw" element={<ForgotPassword />} />
@@ -130,7 +126,6 @@ root.render(
         <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
-        <Route path="confirmpass/:id_Account" element={<ConfirmPass />} />
         <Route path="searchroom" element={<SearchRoom />} /> 
         <Route path="hoidap" element={<QA />} />
         <Route path="qaDetail/:id_qa" element={<QADetail />} />
@@ -156,7 +151,6 @@ root.render(
         <Route path="" element={<Home/>} />
         {/* post */}
         <Route path="list_post" element={<ListPost />} />
-        <Route path="edit_post/:id_post" element={<EditPost />} />
         <Route path="detail_post/:id_posts" element={<DetailPost />} />
         {/* blog */}
         <Route path="list_blog" element={<ListBlog />} />

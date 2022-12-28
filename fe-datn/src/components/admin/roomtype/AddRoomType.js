@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function AddRoomType() {
-
+    TabTitle('Thêm loại phòng - Nhà Tui.com');
     const [addRoomType, setAddRoomType] = useState({
         name_room_type: "",
     });

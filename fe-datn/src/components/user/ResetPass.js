@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../url';
+import { TabTitle } from '../title';
 
 function ResetPass() {
-
+    TabTitle('Đổi mật khẩu - Nhà Tui.com');
     const [password, setPassWord] = useState("");
     const [password_confirm, SetPasswordConfirm] = useState("");
     const [error,setError] = useState("");

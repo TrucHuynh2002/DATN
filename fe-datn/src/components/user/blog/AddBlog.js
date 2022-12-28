@@ -4,8 +4,10 @@ import { Button, Form } from 'react-bootstrap';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function AddBlog() {
+    TabTitle('Thêm blog - Nhà Tui.com');
     var user = JSON.parse(localStorage.getItem("user"));
     const [addBlog, setAddBlog] = useState({
         name_blog:"",

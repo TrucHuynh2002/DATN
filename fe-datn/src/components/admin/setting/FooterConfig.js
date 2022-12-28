@@ -4,10 +4,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function FooterConfig() {
-
-  // const {id_config} = useParams();
+  TabTitle('Cập nhật footer - Nhà Tui.com');
   const [editConfig, setEditConfig] = useState({
     sdt: "",
     title: "",

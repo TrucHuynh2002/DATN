@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function Setting() {
-
+  TabTitle('Cập nhật logo - Nhà Tui.com');
   const [listConfig, setListConfig] = useState([]);
   const [uploadImages, setUploadImages] = useState([]);
   // xu ly loi

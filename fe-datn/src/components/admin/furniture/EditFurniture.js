@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { url } from '../../url';
+import { TabTitle } from '../../title';
 
 function EditFurniture() {
-
+    TabTitle('Cập nhật nội thất - Nhà Tui.com');
     const {id_furniture} = useParams();
     const [editFurniture, setEditFurniture] = useState({
         name: "",

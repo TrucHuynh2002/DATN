@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { TabTitle } from '../../title';
 
 function thanhtoan() {
+  TabTitle('Thanh toán - Nhà Tui.com');
   return (
     <div className="container">
       <div className="header clearfix">
