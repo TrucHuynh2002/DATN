@@ -42,7 +42,7 @@ class ContactController extends Controller
             'full_name' => 'required|string|max:255',
             'subject' => 'required',
             'email' => 'required|email',
-            'phone' => 'required||min:10|max:12',
+            'phone' => 'required|min:10|max:11|regex:/(0)[0-9]{9}/',
             'content' => 'required|max:255',
         ], [
             'full_name.required' => 'Không được bỏ trống',
@@ -53,8 +53,8 @@ class ContactController extends Controller
             'email.email' => 'Không đúng định dạng',
             'phone.required' => 'Không được bỏ trống',
             'phone.min' => 'Phải từ 10 số',
-            'phone.max' => 'Không đúng',
-            'phone.unique' => 'Đã tồn tại',
+            'phone.max' => 'Vượt quá độ dài',
+            'phone.regex' => 'không đúng',
             'content.required' => 'Không được bỏ trống',
             'content.max' => 'Không đúng định dạng',
         ]);

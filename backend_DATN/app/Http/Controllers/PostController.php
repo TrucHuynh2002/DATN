@@ -22,6 +22,11 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
+         // $user = User::where('id_user','=',$id_user)->first();
+        // if($user){
+        //     $data = Post::where('id_province','=',$user->id_province)
+        //     ->where('id_district','=',$user->id_district);
+        // }
         if($request->keyword && $request->keyword != ''){
             $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
         }else{

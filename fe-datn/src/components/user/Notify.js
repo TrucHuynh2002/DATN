@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { isRouteErrorResponse, Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { url } from '../url';
@@ -16,7 +16,6 @@ function Notify({onClick}) {
         getData(); 
         return () => {
             getData();
-      
         }
     },[]);
         // NOTIFY QA
@@ -64,13 +63,18 @@ function Notify({onClick}) {
     const [notificationUnread,setNotificationUnread] = useState([]);
 
     const getNotify = async () => {
+        if(id_user != 0){
         const res = await axios.get(`${url}/notify/${id_user}`)
+        // console.log(res.data)
         if(res.data.status){
-            setNotification(res.data.data)
+            if(res.data.data){
+            setNotification(res.data.data)}
+            if(res.data.notificationUnread){
             setNotificationUnread(res.data.notificationUnread)
+            }
         }
-        setNotification(res.data.data)
-        setNotificationUnread(res.data.notificationUnread)
+    }
+       
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
@@ -122,11 +126,13 @@ function Notify({onClick}) {
                                                 return ''
                                             }else{
                                                 return (
-                                                    <div className="row row_noty" key={index} >
-                                                        <div className="col-3 col_3_img">
-                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' } key={index} >
+                                                        <div className="col-3">
+                                                            <div className='notify_avatar'>
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div  className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft col-9 col-9'  : 'textNoti col-9' } >
+                                                        <div  className='col-9' >
                                                         <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
                                                         </Link> Vừa bình luận phòng trọ 
@@ -143,11 +149,14 @@ function Notify({onClick}) {
                                             if(noti.data.Comment.id_user != id_user){
                                                 if(noti.data.replyCmt.id_user == id_user){
                                                     return  (
-                                                        <div className="row row_noty" key={index} >
-                                                            <div className="col-3 col_3_img">
-                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' } key={index} >
+                                                            <div className="col-3">
+                                                                <div className='notify_avatar'>
+
+                                                                    <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                                </div>
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti'} >
+                                                            <div  className='col-lg-9' >
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <span>{noti.data.Comment.full_name}</span></Link> Vừa trả lời bình luận của bạn tại bài viết 
                                                                 <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
@@ -159,11 +168,14 @@ function Notify({onClick}) {
                                                 }
                                                 else if(noti.data.Comment.id_user == noti.data.replyCmt.id_user){
                                                     return (
-                                                        <div className="row row_noty" key={index} >
-                                                            <div className="col-3 col_3_img">
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' } key={index} >
+                                                            <div className="col-3">
+                                                                <div className='notify_avatar'>
+
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                                </div>
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                            <div  className='col-9'>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <span>{noti.data.Comment.full_name}</span>
                                                                 </Link>  
@@ -176,11 +188,14 @@ function Notify({onClick}) {
                                                 }
                                                 else{
                                                     return (
-                                                        <div className="row row_noty" key={index} >
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <div className="col-3 col_3_img">
+                                                            <div className='notify_avatar'>
+
                                                                 <img src={noti.data.Comment.link_img_user} alt='' className="img" />
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                            </div>
+                                                            <div  className='col-9'>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                                 </Link> Vừa trả lời bình luận 
@@ -199,11 +214,14 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentNotification"){
                                                 if(noti.data.Comment.id_user != id_user) {
                                                     return (
-                                                        <div className="row row_noty"  key={index}>
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }   key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                             <div className="col-3 col_3_img">
-                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                                <div className='notify_avatar'>
+
+                                                                    <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                                </div>
                                                             </div>
-                                                            <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                            <div  className='col-9'>
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
                                                                     <span>{noti.data.Comment.full_name}</span>
                                                                 </Link> Vừa trả lời bình luận của bạn tại bài viết 
@@ -218,38 +236,48 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\CommentQANotification"){
                                             if(noti.data.Comment.id_user != id_user){
                                                 return (
-                                                    <div className="row row_noty" key={index}>
-                                                        <div className="col-3 col_3_img">
-                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className="col-3">
+                                                            <div className='notify_avatar'>
+
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                        <div  className='col-9'>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa bình luận bài viết trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span> Hỏi - Đáp</span>
-                                                            </Link> của bạn 
+                                                        
+                                                                <span><strong> Hỏi - Đáp </strong></span>
+                                                             của bạn 
                                                         </div>
                                                     </div>
+                                                    </Link> 
                                                 )
                                             }
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyCommentQANotification"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
-                                                        <div className="col-3 col_3_img">
-                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className="col-3 ">
+                                                            <div className='notify_avatar'>
+
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                        <div  className='col-9'>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận của bạn trên 
-                                                            <Link to={`../qaDetail/${noti.data.qa.id_qa}`} className='link_noti'>
-                                                                <span> Hỏi - Đáp </span>
-                                                            </Link>
+                                                           
+                                                                <span><strong> Hỏi - Đáp </strong> </span>
+                                                          
                                                         </div>
                                                     </div>
+                                                    </Link>
                                                 )
                                             }
                                             if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
@@ -304,11 +332,14 @@ function Notify({onClick}) {
                                             if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                             if(noti.data.Comment.id_user == noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
-                                                        <div className="col-3 col_3_img">
-                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className="col-3">
+                                                            <div className='notify_avatar'>
+
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti col-9'}>
+                                                        <div  className='col-lg-9'>
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận của chính mình tại bài viết của bạn trên 
@@ -323,11 +354,14 @@ function Notify({onClick}) {
                                             
                                             if(noti.data.Comment.id_user != noti.data.replyCmt.id_user && noti.data.Comment.id_user != id_user){
                                                 return  (
-                                                    <div className="row row_noty" key={index}>
-                                                        <div className="col-3 col_3_img">
-                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className="col-3">
+                                                            <div className='notify_avatar'>
+
+                                                                <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : ''} >
+                                                        <div className='col-lg-9' >
                                                             <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                                 <span>{noti.data.Comment.full_name}</span>
                                                             </Link> Vừa trả lời bình luận 
@@ -342,11 +376,14 @@ function Notify({onClick}) {
                                                 )
                                             }                                       
                                             return  (
-                                                <div className="row row_noty" key={index}>
-                                                    <div className="col-3 col_3_img">
-                                                        <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <div className="col-3">
+                                                        <div className='notify_avatar'>
+
+                                                            <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                        </div>
                                                     </div>
-                                                    <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' : 'textNoti col-9'}
+                                                    <div className='col-lg-9'
                                                     >
                                                         <Link to={`../profile/${noti.data.qa.id_user}`} className='link_noti'>
                                                             <span>{noti.data.Comment.full_name}</span>
@@ -364,11 +401,14 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\ReplyParentCommentQA"){
                                             if(noti.data.replyCmt.id_user == id_user){
                                                 return   (
-                                                    <div className="row row_noty" key={index}>
-                                                        <div className="col-3 col_3_img">
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                        <div className="col-3">
+                                                            <div className='notify_avatar'>
+
                                                             <img src={noti.data.Comment.link_img_user} alt='' className="img" />
+                                                            </div>
                                                         </div>
-                                                        <div  className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                        <div  className='col-lg-9'>
                                                             <Link 
                                                             to={`../profile/${noti.data.qa.id_user}`} 
                                                             className='link_noti'>
@@ -386,10 +426,10 @@ function Notify({onClick}) {
                                         if(noti.type == "App\\Notifications\\NotificationOwnerPost"){
                                             if(noti.data.ownerPost.id_user == id_user &&  noti.read_at == null){
                                                 return(
-                                                    <div className="row row_noty" key={index}>
+                                                    <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index}>
                                                         <div  className='listBookingRoom'>
                                                             <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                                <div className='col-lg-9'>
                                                                     <span>{noti.data.ownerBookingRoom.full_name}</span> Vừa đặt phòng <span>A0{noti.data.ownerPost.room_number}</span> tại 
                                                                     <span>{noti.data.ownerPost.post_name}</span> của bạn 
                                                                 </div>
@@ -424,10 +464,10 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
                                             return   (
-                                                <div className="row row_noty" key={index}>
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' 
                                                     onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' :  'textNoti col-9'}>
+                                                        <div className='col-lg-9'>
                                                             <span>{noti.data.subject.full_name} </span> Vừa yêu cầu trả phòng phòng số 
                                                             <span> {noti.data.roomnumber.room_number} </span> tại bài viết 
                                                             <span> {noti.data.roomnumber.post_name}</span>
@@ -438,9 +478,9 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyUpdateRoomDelete"){
                                             return  (
-                                                <div className="row row_noty" key={index}>
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index}>
                                                     <Link to={`../layoutBill/${id_user}`}className='link_noti'onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
+                                                        <div className='col-lg-9'>
                                                             Yêu cầu trả phòng của bạn không thành công
                                                         </div>
                                                     </Link>
@@ -449,9 +489,9 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\ReplyUpdateRoomCancel"){
                                             return  (
-                                                <div className="row row_noty" key={index}>
-                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <Link to={`../layoutBill/${id_user}`} className='link_noti' >
+                                                        <div>
                                                             Yêu cầu trả phòng của bạn thành công
                                                         </div>
                                                     </Link>
@@ -460,12 +500,15 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\RatePostNotification"){
                                             return   (
-                                                <div className="row row_noty" key={index}>
-                                                    <div className="col-3 col_3_img">
-                                                        <img src={noti.data.user.link_img_user} alt='' className="img" />
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' } key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <div className="col-3">
+                                                        <div className='notify_avatar'>
+
+                                                            <img src={noti.data.user.link_img_user} alt='' className="img" />
+                                                        </div>
                                                     </div>
-                                                    <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='col-lg-9 link_noti'>
+                                                        <div>
                                                             <span>{noti.data.user_two.full_name} </span> 
                                                             Vừa đánh giá bài viết 
                                                             <span> {noti.data.user.post_name} </span>
@@ -478,26 +521,21 @@ function Notify({onClick}) {
                                             if(noti.data.ownerBookingRoom.id_user != id_user){
                                                 if(noti.data.status ==  '2') {
                                                     return (
-                                                        <div className="row row_noty" key={index}>
-                                                            <div 
-                                                                onClick={e => handleMaskRead(e,noti.id)} 
-                                                                className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}>
-                                                                    Chúc mừng bạn đã đặt phòng thành công phồng số 
-                                                                <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết 
-                                                                <span>{noti.data.ownerBookingRoom.post_name}</span> 
-                                                            </div>
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row '  : 'textNoti row ' } key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                           
+                                                                  
+                                                                <span>Chúc mừng bạn đã đặt phòng thành công phòng số  <strong>A0{noti.data.ownerBookingRoom.room_number}</strong>  tại bài viết <strong>{noti.data.ownerBookingRoom.post_name}</strong> </span>
+                                                            
+                                                      
                                                         </div>
                                                     )
                                                 }
                                                 if(noti.data.status ==  '0' ) {
                                                     return (
-                                                        <div className="row row_noty" key={index}>
-                                                            <div 
-                                                            onClick={e => handleMaskRead(e,noti.id)} 
-                                                            className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'}
-                                                            > Đặt phòng 
-                                                                <span>A0{noti.data.ownerBookingRoom.room_number}</span> tại bài viết <span>{noti.data.ownerBookingRoom.post_name}</span> thất bại 
-                                                            </div>
+                                                        <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row'  : 'textNoti row' } key={index}  onClick={e => handleMaskRead(e,noti.id)} >
+                                                           
+                                                                <span> Đặt phòng  <strong>A0{noti.data.ownerBookingRoom.room_number}</strong> tại bài viết <strong>{noti.data.ownerBookingRoom.post_name}</strong> thất bại  </span> 
+                                                            
                                                         </div>
                                                     )
                                                 }
@@ -505,13 +543,15 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\BillNotification"){
                                             return (
-                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-9' :  'textNoti col-9'} onClick={e => handleMaskRead(e,noti.id)}>
+                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' :  'textNoti col-12'} onClick={e => handleMaskRead(e,noti.id)}>
                                                     Bạn vừa nhận được hóa đơn tháng 
                                                     <span>{moment(noti.data.bill.created_at).local().format('MM')}</span>
                                                 </div>
                                             )
                                         }
+                                        <hr/>
                                     })}
+                               
                                 </div> 
                             </>
                         )
