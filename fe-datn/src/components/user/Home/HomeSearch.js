@@ -40,7 +40,7 @@ function HomeSearch() {
         typeRoom
       } = keyword
       const getProvinces = async () => {
-        let dataRooms = await axios.get(`${url}/province/show`);
+        let dataRooms = await axios.get(`${url}/province/showPostSearch`);
             setProvince(dataRooms.data.data)
           }
           const handledistrice = async (e) => {
@@ -58,7 +58,7 @@ function HomeSearch() {
           const [listDistrict, setListDistrict] = useState([]);
           const [listWard, setListWard] = useState([]);
           const getDataDistrict = async (id_province = '') => {
-              const res = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
+              const res = await axios.get(`${url}/post/show_districtSearch?id_province=${id_province}`);
               setListDistrict(res.data.data);
           }
           const getDataWard = async (id_district1  = '') => {
@@ -152,12 +152,11 @@ function HomeSearch() {
                       <div className="col-md-2 col-sm-12">
                         <Form.Select name="id_provinces" className="form-select online_book4"  onChange = {(e) => handledistrice(e)}>
                           <option>Tỉnh</option>
-                          {
-                            getProvince.map((p,i) => {
-                              return <option key={i} value={p.id}>{p._name}</option>
-                            })
+                              {getProvince.map((p,i) => {
+                                return <option key={i} value={p.id_province}>{p._name}</option>
+                               }
+                              )
                           }
-                        
                         </Form.Select>
                       </div>
                       <div className="col-md-2 col-sm-12">
@@ -167,7 +166,7 @@ function HomeSearch() {
                                   <option>Quận/Huyện</option>
                                   {listDistrict.map((room, index) => {
                                       return (
-                                          <option key={index} value={room.id}>{room._name}</option>
+                                          <option key={index} value={room.id_district}>{room._name}</option>
                                       );
                                   })}                            
                               </Form.Select>
