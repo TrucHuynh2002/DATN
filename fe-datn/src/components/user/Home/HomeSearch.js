@@ -85,7 +85,6 @@ function HomeSearch() {
             setGetDataPostSearch(res.data.get_post)
             setgetImage(res.data.image);
           }
-          console.log(searching)
           
           const handleChangeKeyWord = (e) => {
             setKeyword({ ...keyword,[e.target.name]:e.target.value});

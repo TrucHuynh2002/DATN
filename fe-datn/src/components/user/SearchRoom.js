@@ -26,7 +26,6 @@ function Search() {
         }
         let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
-        console.log(res)
       }
     useEffect(() => {
         getPostSearch();
