@@ -2187,7 +2187,8 @@ ul.social_icon li a:hover {
     position: absolute;
     overflow: auto;
     padding: 5px;
-    top: 154%;
+    top: 55%;
+    display:block;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1 !important;
@@ -3003,9 +3004,8 @@ margin-top: 30px;
 }
 .btn-i {
     position: absolute;
-    right: 20px;
-    top: 74px;
-    bottom: 10px;
+    right: 2%;
+    top: 35%;
 }
 
 .notify_avatar{
