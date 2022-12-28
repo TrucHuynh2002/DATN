@@ -104,7 +104,7 @@ function HomeSearch() {
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className={fix ? 'scroll_search' : 'col-md-12 col-sm-12 btn-search'}>
+                    <div className={fix ? 'scroll_search' : 'col-lg-12 col-md-12 col-sm-12 btn-search'}>
                       <input className="timkiem" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
                       <i className='btn-i bx bx-search' style={{color:"#0d3380"}}></i>
                           {searching &&  (

@@ -13,7 +13,7 @@ function Header_logo() {
     setListConfig(res.data.data);
   };
   return (
-    <div className="col-lg-2 col-md-6 col-sm-6 logo_section">
+    <div className="col-lg-2 col-md-2 col-sm-6 logo_section">
     <div className="logo">
       <Link to="/">
         <img className="logo img-fluid" src={listConfig.logo} alt="#" />
