@@ -10,7 +10,7 @@ function UpdateAccount() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
-    const [listStreet, setStreet] = useState([]);
+    // const [listStreet, setStreet] = useState([]);
     // tỉnh
     const getDataProvince = async () => {
         const res = await axios.get(`${url}/post/show_province`);
@@ -27,11 +27,11 @@ function UpdateAccount() {
         setListWard(resss.data.data);
     }     
     // đường 
-    const getDataStreet = async (id_province = '', id_district = '') => {
-        const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-        setStreet(resss.data.data);
+    // const getDataStreet = async (id_province = '', id_district = '') => {
+    //     const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+    //     setStreet(resss.data.data);
         
-    }
+    // }
     const [addProvince, setProvince] = useState('');
     const handleProvince = async (e) => {
         setProvince(e.target.value);
@@ -40,7 +40,7 @@ function UpdateAccount() {
     }
     const handleDistrict = async (e) => {
         getDataWard(e.target.value,addProvince);
-        getDataStreet(addProvince,e.target.value);
+        // getDataStreet(addProvince,e.target.value);
         setEditAccount({ ...editAccount, [e.target.name]: e.target.value });
     }
 
@@ -68,7 +68,7 @@ function UpdateAccount() {
         formData.append('id_province',editAccount.id_province);
         formData.append('id_district',editAccount.id_district);
         formData.append('id_ward',editAccount.id_ward);
-        formData.append('id_street',editAccount.id_street);
+        // formData.append('id_street',editAccount.id_street);
         const res = await axios.put(`${url}/user/update/${id_Account}`, editAccount);
         if(res.data.status === true){
             setAlert({
@@ -90,7 +90,7 @@ function UpdateAccount() {
         // Xã
         getDataWard();
         // Đường
-        getDataStreet(); 
+        // getDataStreet(); 
     }
 
     useEffect(() => {        
@@ -171,7 +171,7 @@ function UpdateAccount() {
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
-                        <Form.Group className="mb-12 id_street">
+                        {/* <Form.Group className="mb-12 id_street">
                             <Form.Label>Đường</Form.Label>
                             <Form.Select name="id_street"
                             onChange = {(e) => handleChange(e)}
@@ -188,7 +188,7 @@ function UpdateAccount() {
                                 })}   
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                        </Form.Group>
+                        </Form.Group> */}
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Địa chỉ</Form.Label>
                     <Form.Control type="text" name="address" value={editAccount.address && editAccount.address} className='' onChange={(e) => handleChange(e)} />

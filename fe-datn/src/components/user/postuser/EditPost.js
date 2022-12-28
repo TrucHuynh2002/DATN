@@ -128,9 +128,9 @@ function EditPost() {
         formData.append('electricity_price', editPost.electricity_price);
         formData.append('id_roomType', editPost.id_roomType);
         formData.append('id_user', editPost.id_user);
-        formData.append('meta_keywords', editPost.meta_keywords);
-        formData.append('meta_description', editPost.meta_description);
-        formData.append('meta_title', editPost.meta_title);
+        // formData.append('meta_keywords', editPost.meta_keywords);
+        // formData.append('meta_description', editPost.meta_description);
+        // formData.append('meta_title', editPost.meta_title);
         formData.append('quantity', editPost.quantity);
         formData.append('room_price',  editPost.room_price);
         formData.append('water_price', editPost.water_price);
@@ -193,7 +193,7 @@ function EditPost() {
                             {alert.err_list.messages.post_name[0]}
                             </div>}
                         </Form.Group>
-                        <Form.Group className="mb-3 meta_title">
+                        {/* <Form.Group className="mb-3 meta_title">
                             <Form.Label>Tiêu đề bài viết</Form.Label>
                             <Form.Control type="text" name="meta_title" className=''
                             value={editPost.meta_title && editPost.meta_title}
@@ -202,7 +202,7 @@ function EditPost() {
                             <div className="notice warning_____">
                             {alert.err_list.messages.meta_title[0]}
                             </div>}
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="mb-3 img">
                             <Form.Label>Hình ảnh</Form.Label>
                             <Form.Control type="file" name="img" multiple
@@ -411,7 +411,7 @@ function EditPost() {
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.id_roomType[0]}</div>}
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group className="mb-3 meta_keywords">
+                        {/* <Form.Group className="mb-3 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
                             <Form.Control type="text" name="meta_keywords" className='' 
                             value={editPost.meta_keywords}
@@ -424,7 +424,7 @@ function EditPost() {
                             value={editPost.meta_description}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_description[0]}</div>}
-                        </Form.Group>
+                        </Form.Group> */}
                     </Col>
                     <div className="d-grid gap-2">
                         {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}

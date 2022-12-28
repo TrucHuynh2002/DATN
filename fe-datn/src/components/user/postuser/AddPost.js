@@ -21,9 +21,9 @@ function AddPost() {
         ifarme:"",
         quantity: "",
         id_furniture: [],
-        meta_title: "",
-        meta_description: "",
-        meta_keywords: "",
+        // meta_title: "",
+        // meta_description: "",
+        // meta_keywords: "",
         id_province : "",
         id_district : "",
         id_ward : "",
@@ -45,9 +45,9 @@ function AddPost() {
         ifarme,
         quantity,
         id_furniture,
-        meta_title,
-        meta_description,
-        meta_keywords,
+        // meta_title,
+        // meta_description,
+        // meta_keywords,
         id_province,
         id_district,
         id_ward,
@@ -164,9 +164,9 @@ function AddPost() {
         formData.append('id_ward', id_ward);
         formData.append('id_street', id_street);
         formData.append('ifarme', ifarme);
-        formData.append('meta_keywords', meta_keywords);
-        formData.append('meta_description', meta_description);
-        formData.append('meta_title', meta_title);
+        // formData.append('meta_keywords', meta_keywords);
+        // formData.append('meta_description', meta_description);
+        // formData.append('meta_title', meta_title);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
@@ -196,13 +196,13 @@ function AddPost() {
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                             </Form.Group> 
-                            <Form.Group className="mb-12 meta_title">
+                            {/* <Form.Group className="mb-12 meta_title">
                                 <Form.Label>Tiêu đề bài viết</Form.Label>
                                 <Form.Control type="text" name="meta_title" className=''
                                 value={meta_title}
                                 onChange = {(e) => handleChange(e)} />
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
-                            </Form.Group>
+                            </Form.Group> */}
                             <Form.Group className="mb-12 img">
                                 <Form.Label>Hình ảnh</Form.Label>
                                 <Form.Control type="file" name="img" multiple
@@ -363,7 +363,7 @@ function AddPost() {
                                     })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                                 </Form.Select> 
                             </Form.Group>
-                            <Form.Group className="mb-12 meta_keywords">
+                            {/* <Form.Group className="mb-12 meta_keywords">
                                 <Form.Label>Từ khóa - Seo</Form.Label>
                                 <Form.Control type="text" name="meta_keywords" className='' 
                                 value={meta_keywords}
@@ -376,7 +376,7 @@ function AddPost() {
                                 value={meta_description}
                                 onChange = {(e) => handleChange(e)}/>
                                 {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                            </Form.Group>           
+                            </Form.Group>            */}
                             <div className="d-grid gap-2" style={{margin: "20px 0"}}>
                                 <Button variant="primary" size="sm" name='' type="submit">
                                     Thêm bài viết
