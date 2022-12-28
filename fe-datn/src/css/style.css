@@ -391,9 +391,12 @@ button {
 
 
 .header {
-    padding: 15px 0px 15px 0px;
     background: #fff;
-    border-bottom: 1px solid #eaeaea;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
 }
 
 
@@ -480,13 +483,11 @@ button {
 .book_room2 {  
     background-color: white;
     padding: 15px;
-    left: 50% !important;
-    transform:  translate(-50%,0) !important;
+    left: 50%;
+    transform:  translate(-50%,0);
     position: absolute;
     bottom: -14%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    left: 50% !important;
-    transform:  translate(-50%,0) !important;
 }
 
 .book_room2 h1 {
@@ -1676,6 +1677,10 @@ ul.social_icon li a:hover {
 
 .back_re {
     background-color: #0f1521;
+    margin-top: 70px;
+}
+.content_title{
+    margin-top: 100px;
 }
 
 .back_re .title {
@@ -2986,13 +2991,19 @@ margin-top: 30px;
     padding: 5px;
     width: 100%;
 }
+/* .scroll_search{
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    top: -300px;
+} */
 .btn-search {
     position: relative;
 }
 .btn-i {
     position: absolute;
     right: 20px;
-    top: 12px;
+    top: 74px;
     bottom: 10px;
 }
 
@@ -3004,4 +3015,13 @@ margin-top: 30px;
 .notify_avatar>img {
     border-radius: 50%;
     width: 100%;
+}
+
+.btn_actionComment{
+    display: flex;
+    padding-left: 36px;
+}
+
+.btn_actionComment>span{
+    margin: 0 4px
 }

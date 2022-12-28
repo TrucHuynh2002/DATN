@@ -119,7 +119,7 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        $t->id_street = $request->id_street;
+        // $t->id_street = $request->id_street;
         $t->role = $request->role;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
@@ -146,7 +146,7 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        $t->id_street = $request->id_street;
+        // $t->id_street = $request->id_street;
         $t->save();
         return response()
             ->json([
@@ -365,16 +365,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-    public function show_street_detail(Request $request, $id_user)
-    {
-        $data = DB::table('users')
-            ->join('street', 'users.id_street', '=', 'street.id')
-            ->where('users.id_user', '=', $id_user)
-            ->get();
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true
-            ]);
-    }
+    // public function show_street_detail(Request $request, $id_user)
+    // {
+    //     $data = DB::table('users')
+    //         ->join('street', 'users.id_street', '=', 'street.id')
+    //         ->where('users.id_user', '=', $id_user)
+    //         ->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $data,
+    //             'status' => true
+    //         ]);
+    // }
 }

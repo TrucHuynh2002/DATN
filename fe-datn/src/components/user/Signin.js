@@ -16,10 +16,10 @@ function Signin() {
         id_province : "",
         id_district : "",
         id_ward : "",
-        id_street : "",
+        // id_street : "",
         role: 0,
     });
-    const {full_name, password, email, phone, address, id_province, id_district, id_ward, id_street} = addUser;
+    const {full_name, password, email, phone, address, id_province, id_district, id_ward} = addUser;
     const handleChange = (e) => {
         setAddUser({ ...addUser, [e.target.name]: e.target.value});
     };
@@ -38,7 +38,7 @@ function Signin() {
         dataForm.append('id_province', id_province);
         dataForm.append('id_district', id_district);
         dataForm.append('id_ward', id_ward);
-        dataForm.append('id_street', id_street);
+        // dataForm.append('id_street', id_street);
         const res = await axios.post(`${url}/user/create`, addUser);
         if(res.data.status === true){
             setAlert({
@@ -58,7 +58,7 @@ function Signin() {
         const [listProvince, setListProvince] = useState([]);
         const [listDistrict, setListDistrict] = useState([]);
         const [listWard, setListWard] = useState([]);
-        const [listStreet, setStreet] = useState([]);
+        // const [listStreet, setStreet] = useState([]);
         const [addProvince, setProvince] = useState([]);
         const handleProvince = async (e) => {
             setAddUser({ ...addUser, [e.target.name]: e.target.value});
@@ -67,7 +67,7 @@ function Signin() {
         }
         const handleDistrict = async (e) => {
             getDataWard(({[e.id_district] : e.target.value}).undefined)
-            getDataStreet(e.target.value);
+            // getDataStreet(e.target.value);
             setAddUser({ ...addUser, [e.target.name]: e.target.value});
         }
         // tỉnh
@@ -87,11 +87,11 @@ function Signin() {
             setListWard(resss.data.data);
         }     
         // đường 
-        const getDataStreet = async (id_district = '') => {
-            var id_province = addProvince.undefined;
-            const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-            setStreet(resss.data.data);
-        };
+        // const getDataStreet = async (id_district = '') => {
+        //     var id_province = addProvince.undefined;
+        //     const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
+        //     setStreet(resss.data.data);
+        // };
 
   return (
     <>
@@ -176,7 +176,7 @@ function Signin() {
                                 </div>
                                 { alert.err_list.status == false && alert.err_list.messages.id_ward &&
                                 <div className="notice warning_____">{alert.err_list.messages.id_ward[0]}</div>}
-                                <div className="col-md-12">
+                                {/* <div className="col-md-12">
                                     <select className="text" name="id_street"
                                     onChange = {(e) => handleChange(e)}>
                                         <option>Đường</option>
@@ -188,7 +188,7 @@ function Signin() {
                                     </select>
                                 </div>
                                 { alert.err_list.status == false && alert.err_list.messages.id_street &&
-                                <div className="notice warning_____">{alert.err_list.messages.id_street[0]}</div>}
+                                <div className="notice warning_____">{alert.err_list.messages.id_street[0]}</div>} */}
                                 <div className="col-md-12">
                                     <input type="text" className="text" name="address" value={address} placeholder="Địa chỉ" onChange={(e) => handleChange(e)} />
                                 </div>
