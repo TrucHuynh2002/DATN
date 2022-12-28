@@ -38,10 +38,16 @@ function ContentComent() {
   const {id_user_tow,interaction} = addNotify;
   const [updateCmt,setUpdateCmt] = useState(false);
   const [contentUpdateCmt, setContentUpdateCmt] = useState('');
+  // Lấy thông tin chủ bài viết
+  const [idOwnerPost,setIdOwnerPost] = useState('');
   // danh sach Comment
   const getData = async () => {
     const res = await axios.get(`${url}/comment/post/show/${id_post}`);
+    const get_post = await axios.get(`${url}/post/showPost/${id_post}`);
+    console.log(get_post.data)
+    setIdOwnerPost(get_post.data.id_user);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
+    
   };
 
   useEffect(() => {
@@ -99,6 +105,7 @@ function ContentComent() {
     e.preventDefault();
     setUpdateComment({activeUpdateComment:true,idUpdateCmt:id_cmt})
     let res = await  axios.get(`${url}/comment/show/${id_cmt}`)
+    
     setContentUpdateCmt(res.data.data.content);
   
   }
@@ -175,17 +182,21 @@ return (
                       ) : ( <p className=''>{comment.content}</p>) 
                     }
                   </div>
-                  <div className="content_comment_chammmm">
-                  ...
-                    { id_user == comment.id_user &&
-                      <div className="content_comment_editAndDelete">
-                        <span onClick={(e) => handleDeleteComment(e,comment.id_comment)} >Xóa</span>  <br />
-                        <span onClick={(e) => handleUpdateComment(e,comment.id_comment)} >Chỉnh sửa</span>
-                      </div>
-                    }
-                  </div>
+                 
                 </div>
               </div>
+              <div className="content_comment_chammmm">
+                  
+                  { id_user == comment.id_user &&
+                    <div className="btn_actionComment">    
+                      {
+                        id_user == comment.id_user && id_user == idOwnerPost
+                      }                 
+                       <span onClick={(e) => handleDeleteComment(e,comment.id_comment)} className="text-danger" >Xóa</span>  <br />
+                      <span onClick={(e) => handleUpdateComment(e,comment.id_comment)} className="text-primary" >Chỉnh sửa</span>
+                    </div>
+                  }
+                </div>
               <div className="btn_feedback_comment">
                 <div className="display_comment">
                   <span 
@@ -247,16 +258,23 @@ return (
                       <p className='cmt_name1' key={i}>{cmt.content}</p>) 
                       }
                     </div>
-                    <div className="content_comment_chammmm"> ...
-                      { id_user == cmt.id_user &&
-                        <div className="content_comment_editAndDelete">
-                          <span onClick={(e) => handleDeleteComment(e,cmt.id_comment)}>Xóa</span> <br />
-                          <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)}>Chỉnh sửa</span> 
+                   
+                  </div>
+                 
+                </div>
+                <div className="content_comment_chammmm">
+                      { 
+                        <div className="btn_actionComment">
+                          <span onClick={(e) => handleDeleteComment(e,cmt.id_comment)} className="text-danger">Xóa</span> <br />
+                          {
+                            id_user == cmt.id_user 
+                            &&
+                            <span onClick={(e) => handleUpdateComment(e,cmt.id_comment)} className="text-primary">Chỉnh sửa</span> 
+                          }
+                        
                         </div>
                       }
-                    </div>
                   </div>
-                </div>
                 <div className="btn_feedback_comment">
                   <div className="display_comment" >
                     <span 

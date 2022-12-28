@@ -3018,3 +3018,12 @@ margin-top: 30px;
     border-radius: 50%;
     width: 100%;
 }
+
+.btn_actionComment{
+    display: flex;
+    padding-left: 36px;
+}
+
+.btn_actionComment>span{
+    margin: 0 4px
+}
