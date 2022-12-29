@@ -7,14 +7,16 @@ const Pagination = ({totalPost, postsPerPage,currentPage, setCurrentPage}) => {
         pages.push(i)
     }
   return (
-    <div className='pagination'>
-        {pages.map((page, index) => {
-            return <button key={index} onClick={() => setCurrentPage(page)} className=
-            {page == currentPage ? 'active' : ''}>
-                {page}
-            </button>
-        })}
-    </div>
+    <>
+        <div className='pagination'>   
+            {pages.map((page, index) => {
+                return <button key={index} onClick={() => setCurrentPage(page)} className=
+                {page == currentPage ? 'active' : ''}>
+                    {page}
+                </button>
+            })}
+        </div>
+    </>
   )
 }
 

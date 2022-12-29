@@ -137,7 +137,7 @@ function ListRoleManage() {
                 <td colSpan={3}>
                           <div style={{display:"flex",justifyContent:"center"}}>
                           {contact.status == 1 && contact.role == 0 &&  <button name='' className="btn btn-primary" onClick={e => handleAcceptPostRoom(e,contact.id_user)}>Phê duyệt chủ trọ</button> }
-                          {contact.status == 1 && contact.role == 0 && <button  name='' className="btn btn-danger" onClick={e => handleCancelPostRoom(e,contact.id_user)}>Không Phê Duyệt</button> }
+                          {contact.status == 1 && contact.role == 0 && <button  name='' className="btn btn-danger" onClick={e => handleCancelPostRoom(e,contact.id_user)}>Không phê duyệt</button> }
                           </div>
                 </td>
               </tr>

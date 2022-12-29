@@ -11,7 +11,8 @@ class CategoryController extends Controller
     public function show(Request $request)
     {
         if($request->keyword && $request->keyword != ''){
-            $data = Category::where('name_category','like','%'.$request->keyword.'%')->get();
+            $data = Category::where('name_category','like','%'.$request->keyword.'%')
+            ->orWhere('link_to','like','%'.$request->keyword.'%')->get();
         }else{
             $data = Category::all();
         }
@@ -20,8 +21,6 @@ class CategoryController extends Controller
             ->json([
                 'data' => $data
             ]);
-        // return $data;
-        // echo "chào ";
     }
     public function show_id(Request $request, $id)
     {
