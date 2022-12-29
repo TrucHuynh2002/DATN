@@ -27,7 +27,7 @@ function Notify({onClick}) {
     };
     // danh sach notify comment
     const getData = async () => {
-        if(id_user){
+        if(id_user ){
             const res = await axios.get(`${url}/noty_qa/show/${id_user}`);
             setListnotifyQa(res.data.data);
             const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);

@@ -22,10 +22,10 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
-        if($request->keyword && $request->keyword != ''){
-            $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
-        }else{
-        $data = Post::all();
+        if ($request->keyword && $request->keyword != '') {
+            $data = Post::where('post_name', 'like', '%' . $request->keyword . '%')->get();
+        } else {
+            $data = Post::all();
         }
         // $heart = DB::table('post')
         //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
@@ -114,10 +114,28 @@ class PostController extends Controller
             ]);
     }
 
+    public function show_districtSearch(Request $request)
+    {
+        if ($request->id_province) {
+            $data = districtModel::join('post', 'post.id_district', '=', 'district.id')
+                ->where('_province_id', '=', $request->id_province)
+                ->select('district._name', 'post.id_district')
+                ->distinct()
+                ->get();
+        } else {
+            $data = districtModel::all();
+        }
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function show_districtAll(Request $request)
     {
         if ($request->id_province) {
-            $data = districtModel::where('_province_id', '=', $request->id_province)->get();
+            $data = districtModel::where('_province_id', '=', $request->id_province)
+                ->get();
         } else {
             $data = districtModel::all();
         }
@@ -166,7 +184,7 @@ class PostController extends Controller
             ->join('users', 'post.id_user', '=', 'users.id_user')
             ->where('post.id_post', '=', $id)
             ->orderBy('post.id_post', 'DESC')
-            ->select('post.id_post','users.id_user','post.post_name', 'post.description_sort', 'post.description', 'post.area', 'post.room_price', 'post.electricity_price', 'post.water_price', 'post.address', 'post.id_province', 'post.id_district', 'post.id_ward', 'post.ifarme', 'post.quantity', 'post.view', 'users.phone')
+            ->select('post.id_post', 'users.id_user', 'post.post_name', 'post.description_sort', 'post.description', 'post.area', 'post.room_price', 'post.electricity_price', 'post.water_price', 'post.address', 'post.id_province', 'post.id_district', 'post.id_ward', 'post.ifarme', 'post.quantity', 'post.view', 'users.phone')
             ->get();
         return response()
             ->json([
@@ -263,20 +281,20 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-    
-            $get_image = $request->file('imgavt');
-            if ($request->file('imgavt')) {
-                $get_name_image = $get_image[0]->getClientOriginalName();
-                $path = 'uploads/';
-                $name_image = explode('.', $get_name_image);
-                $new_image = $name_image[0] . rand(0, 99);
-                $get_image[0]->move(public_path($path), $new_image);
-                $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-                $Post->name_img = $new_image;
-            }
+
+        $get_image = $request->file('imgavt');
+        if ($request->file('imgavt')) {
+            $get_name_image = $get_image[0]->getClientOriginalName();
+            $path = 'uploads/';
+            $name_image = explode('.', $get_name_image);
+            $new_image = $name_image[0] . rand(0, 99);
+            $get_image[0]->move(public_path($path), $new_image);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
+            $Post->name_img = $new_image;
+        }
         $Post->save();
-        
-        $Get_Post = Post::orderby('id_post', 'DESC')->first();  
+
+        $Get_Post = Post::orderby('id_post', 'DESC')->first();
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
@@ -290,15 +308,14 @@ class PostController extends Controller
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
-            
-        } 
+        }
         if ($request->quantity) {
             for ($i = 1; $i <= $request->quantity; $i++) {
                 $roomNumber = new RoomNumberModel();
                 $roomNumber->id_user = $request->id_user;
                 $roomNumber->id_post = $Get_Post->id_post;
                 $roomNumber->room_number = $i;
-                $roomNumber->status =0;
+                $roomNumber->status = 0;
                 $roomNumber->save();
             };
         }
@@ -311,9 +328,9 @@ class PostController extends Controller
                 $furniture_post->save();
             }
         }
-        
-      
-        
+
+
+
         return response()
             ->json([
                 'data' =>  $Post,
@@ -535,7 +552,6 @@ class PostController extends Controller
     public function show_district_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-
             ->join('district', 'post.id_district', '=', 'district.id')
             ->where('post.id_post', '=', $id_post)
             ->get();
@@ -597,7 +613,7 @@ class PostController extends Controller
     }
     public function Post_view_top5(Request $request)
     {
-        $data = Post::orderBy('view','DESC')->take(5)->get();
+        $data = Post::orderBy('view', 'DESC')->take(5)->get();
         return response()->json([
             "status" => true,
             'data' => $data
@@ -605,7 +621,7 @@ class PostController extends Controller
     }
     public function Post_count_roomNumber(Request $request, $id)
     {
-        $data = RoomNumberModel::where('id_post', '=', $id)->where('status','=',0)->get();
+        $data = RoomNumberModel::where('id_post', '=', $id)->where('status', '=', 0)->get();
         // $data = RoomNumberModel::find($id);
         return response()
             ->json([

@@ -163,6 +163,7 @@
     }
     .about .titlepage {
         max-width: inherit;
+        margin-top:10px;
     }
     .about_img {
         margin-right: 0px;
@@ -229,7 +230,9 @@
             width: 70%;
         
     }
-  
+    .banner_main{
+        margin-bottom:0;
+    }
     .carousel-item img {
         min-height: 500px;
     }
@@ -246,6 +249,7 @@
     }
     .about .titlepage {
         max-width: inherit;
+        margin-top: 10px;
     }
     .about_img {
         margin-right: 0px;
