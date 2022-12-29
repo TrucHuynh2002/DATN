@@ -18,10 +18,10 @@ function GalleryContent() {
     const res = await axios.get(`${url}/trendPost`);
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
+    console.log(res.data.post)
   };
-  
   const getDataPostTrendShow = async (keyword) => {
-    let res = await axios.get(`${url}/search?keyword=${keyword}`);
+    let res = await axios.get(`${url}/searchAll?keyword=${keyword}`);
     setDataPostTrendShow(res.data.data);
     setShow(true);
     
@@ -45,13 +45,14 @@ function GalleryContent() {
               <div className="col-6">
                 <div> {list.key_word}</div>
                 <div className="content____________">
-                  {/* <Link 
+                  <Link 
                     className="link-info Link_________" 
-                    to={`../roomdetail/${ListDataPostTrend.length > 0 &&  ListDataPostTrend[0].length > 0 &&  ListDataPostTrend[0][0].id_post}`}>{ListDataPostTrend[0][0].post_name}
-                  </Link> */}
-                  {/* <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
-                  {moment(ListDataPostTrend.length > 0 && ListDataPostTrend[0][0].created_at).local().startOf('day').fromNow()}
-                    </span> */}
+                    to={`../roomdetail/${ListDataPostTrend[index][0] != null ?  ListDataPostTrend[index][0].id_post : 0}`}
+                    >{ListDataPostTrend[index][0] != null ? ListDataPostTrend[index][0].post_name : ""}
+                  </Link> 
+                   <span style={{"fontSize":"17px",'marginLeft': '10px'}}>
+                  {moment(ListDataPostTrend[index][0] != null  ? ListDataPostTrend[index][0].created_at : "").local().startOf('day').fromNow()}
+                    </span>
                 </div>
              </div>
               <div className="col-4 view___">

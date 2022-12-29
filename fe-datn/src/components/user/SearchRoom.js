@@ -18,14 +18,15 @@ function Search() {
     const [addTrendSearch, setListTrendSearch] = useState({
         key_word : keyword,
       })
-      const {key_word} = addTrendSearch
+    const {key_word} = addTrendSearch
     const [aData,setData] = useState([])
     const getPostSearch = async () => {
-        if(keyword){
-            let ress = await axios.post(`${url}/search`, addTrendSearch);
-        }
         let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
+        if(aData.length > 0){
+            let ress = await axios.post(`${url}/search`, addTrendSearch);
+        }
+
       }
     useEffect(() => {
         getPostSearch();
