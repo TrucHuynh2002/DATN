@@ -28,7 +28,11 @@
 @import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
-
+/* config text color */
+:root {
+    --text-color:  #000;
+    --background-color:#ffc70d;
+}
 * {
     box-sizing: border-box !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -315,6 +319,7 @@ button {
     margin-right: 0 !important;
     display: flex;
     justify-content: space-around;
+
 }
 
 /**-- heading section --**/
@@ -391,9 +396,12 @@ button {
 
 
 .header {
-    padding: 15px 0px 15px 0px;
     background: #fff;
-    border-bottom: 1px solid #eaeaea;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
 }
 
 
@@ -480,13 +488,11 @@ button {
 .book_room2 {  
     background-color: white;
     padding: 15px;
-    left: 50% !important;
-    transform:  translate(-50%,0) !important;
+    left: 50%;
+    transform:  translate(-50%,0);
     position: absolute;
     bottom: -14%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    left: 50% !important;
-    transform:  translate(-50%,0) !important;
 }
 
 .book_room2 h1 {
@@ -788,13 +794,20 @@ label{
 }
 
 .search_room_btn {
-    background-color: #ffc70d;
+    background-color: var(--background-color);
     border-radius: 0px;
-    color: #0d3380;
+    color: var(--text-color);
     font-size: 16px;
     font-weight: 600;
     padding: 10px 0;
     width: 163px;
+    border: none;
+}
+.search_room_btn:hover,
+.search_room_btn:focus{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
 }
 
 .carousel-control-next,
@@ -854,8 +867,8 @@ label{
 
 .read_more {
     font-size: 17px;
-    background-color: #ffc70d;
-    color: #0d3380;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 8px 0px;
     width: 100%;
     max-width: 144px;
@@ -866,7 +879,7 @@ label{
 }
 
 .read_more:hover {
-    color: #0d3380;
+    color: var(--text-color);
     transition: ease-in all 0.5s;
 }
 
@@ -1608,9 +1621,9 @@ ul.link_menu li a:hover {
 }
 
 .sub_btn:hover {
-    background-color: #ffc72b;
+    background-color: var(--background-color);
     transition: ease-in all 0.5s;
-    color: #0d3380;
+    color: var(--text-color);
 }
 
 ul.social_icon {
@@ -1640,7 +1653,7 @@ ul.social_icon li a {
 }
 
 ul.social_icon li a:hover {
-    color: rgb(255, 199, 13);
+    color: var(--background-color);
 }
 
 .copyright {
@@ -1676,6 +1689,10 @@ ul.social_icon li a:hover {
 
 .back_re {
     background-color: #0f1521;
+    margin-top: 70px;
+}
+.content_title{
+    margin-top: 100px;
 }
 
 .back_re .title {
@@ -1709,6 +1726,7 @@ ul.social_icon li a:hover {
 .pd-wrap {
     padding: 40px 0;
     font-family: 'Poppins', sans-serif;
+    margin-top: 60px;
 }
 
 .heading-section {
@@ -1938,32 +1956,44 @@ ul.social_icon li a:hover {
 }
 
 .round-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 1px #fff;
+    border: solid 1px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    width: 330px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin: 20px 0 0 10px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn:hover,
 .round-black-btn:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
+}
+.btn_btn:hover,
+.btn_btn:focus {
+    background: var(--background-color);
+    color: #212529;
+    text-decoration: none;
+    border: none;
 }
 
 .review-form .round-black-btn.detail {
@@ -1971,20 +2001,20 @@ ul.social_icon li a:hover {
     cursor: pointer;
 }
 .round-black-btn.detail {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s; 
 
 }
 
 .round-black-btn.detail:hover,
 .round-black-btn.detail:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
 }
@@ -2181,7 +2211,8 @@ ul.social_icon li a:hover {
     position: absolute;
     overflow: auto;
     padding: 5px;
-    top: 154%;
+    top: 55%;
+    display:block;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1 !important;
@@ -2679,6 +2710,12 @@ margin: 10px 10px 0 10px;
 .btn.btn-warning.prall{
     margin: 10px 10px 0 10px;
 }
+
+.dropdown-menu{
+    width:400px !important;
+    /* right: 30px !important */
+}
+
 .dropdown-menu.drop{
 margin:-10px 0 0 100px;
 }.title12{
@@ -2705,7 +2742,7 @@ margin:-10px 0 0 100px;
 
 .privacytexth1{
     width: 50%;
-   float: left;
+    float: left;
     padding-left: 21px;  
     font-weight: 550;
     font-size: 35px;
@@ -2985,15 +3022,27 @@ margin-top: 30px;
     border: 1px solid #bebebe;
     padding: 5px;
     width: 100%;
+    border-radius: 0px;
 }
+/* .scroll_search{
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    top: -335px;
+    z-index: 30;
+}
+.scroll_search.btn-i{
+    position: absolute;
+    right: 2%;
+    top: 40%;
+} */
 .btn-search {
     position: relative;
 }
 .btn-i {
     position: absolute;
-    right: 20px;
-    top: 12px;
-    bottom: 10px;
+    right: 2%;
+    top: 35%;
 }
 
 .notify_avatar{
@@ -3018,5 +3067,5 @@ margin-top: 30px;
     font-weight: 490;
     font-size: 14px;
 }.round-black-btn.btn.btn-primary{
-    width: 205px;
+    width: 330px;
 }

@@ -83,7 +83,7 @@ class UserController extends Controller
             'full_name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|max:255',
-            'phone' => 'required|max:12|min:10|unique:users',
+            'phone' => 'required|min:10|max:11|unique:users|regex:/(0)[0-9]{9}/',
             'address' => 'required|max:255',
         ], [
             'full_name.required' => 'Không được bỏ trống',
@@ -96,9 +96,10 @@ class UserController extends Controller
             'password.max' => 'Độ dài không cho phép',
             'password.required' => 'Không được bỏ trống',
             'phone.unique' => 'Đã tồn tại',
-            'phone.max' => 'Độ dài không cho phép',
             'phone.required' => 'Không được bỏ trống',
-            'phone.min' => 'Không đúng',
+            'phone.min' => 'Phải từ 10 số',
+            'phone.max' => 'Vượt quá độ dài',
+            'phone.regex' => 'không đúng',
             'address.required' => 'Không được bỏ trống',
             'address.max' => 'Độ dài không cho phép'
         ]);
@@ -118,7 +119,7 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        $t->id_street = $request->id_street;
+        // $t->id_street = $request->id_street;
         $t->role = $request->role;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
@@ -145,7 +146,7 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        $t->id_street = $request->id_street;
+        // $t->id_street = $request->id_street;
         $t->save();
         return response()
             ->json([
@@ -364,16 +365,16 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-    public function show_street_detail(Request $request, $id_user)
-    {
-        $data = DB::table('users')
-            ->join('street', 'users.id_street', '=', 'street.id')
-            ->where('users.id_user', '=', $id_user)
-            ->get();
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true
-            ]);
-    }
+    // public function show_street_detail(Request $request, $id_user)
+    // {
+    //     $data = DB::table('users')
+    //         ->join('street', 'users.id_street', '=', 'street.id')
+    //         ->where('users.id_user', '=', $id_user)
+    //         ->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $data,
+    //             'status' => true
+    //         ]);
+    // }
 }

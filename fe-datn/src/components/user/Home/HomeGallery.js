@@ -17,7 +17,7 @@ function HomeGallery() {
             </div>
           </div>
           <div className="row">          
-          <div className="col-7 gallery_col">
+          <div className="col-lg-7 col-md-7 col-sm-12 gallery_col">
             <div className="about_img">
               <Figure> 
                   <img src={Slide1} width={700} height={500} alt="loading..." />
@@ -25,7 +25,7 @@ function HomeGallery() {
             </div>
             </div>
             
-            <div className="col-5">             
+            <div className="col-lg-5 col-md-5 col-sm-12">             
               <div className="titlepage">               
                 <h3><b>Xu hướng tìm kiếm nổi bật 2022</b></h3>
                 <p align="justify">

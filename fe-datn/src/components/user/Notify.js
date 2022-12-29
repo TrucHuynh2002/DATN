@@ -27,7 +27,7 @@ function Notify({onClick}) {
     };
     // danh sach notify comment
     const getData = async () => {
-        if(id_user){
+        if(id_user ){
             const res = await axios.get(`${url}/noty_qa/show/${id_user}`);
             setListnotifyQa(res.data.data);
             const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);
@@ -500,20 +500,22 @@ function Notify({onClick}) {
                                         }
                                         if(noti.type == "App\\Notifications\\RatePostNotification"){
                                             return   (
-                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' } key={index} onClick={e => handleMaskRead(e,noti.id)}>
-                                                    <div className="col-3">
+                                                <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row'  : 'textNoti row' } key={index} onClick={e => handleMaskRead(e,noti.id)}>
+                                                    <div className="col-lg-3">
                                                         <div className='notify_avatar'>
 
                                                             <img src={noti.data.user.link_img_user} alt='' className="img" />
                                                         </div>
                                                     </div>
-                                                    <Link to={`../roomdetail/${noti.data.user_two.id_post}`} className='col-lg-9 link_noti'>
-                                                        <div>
-                                                            <span>{noti.data.user_two.full_name} </span> 
-                                                            Vừa đánh giá bài viết 
-                                                            <span> {noti.data.user.post_name} </span>
-                                                        </div>
-                                                    </Link>
+                                                    <div className='col-lg-9'>
+                                                        <Link to={`../roomdetail/${noti.data.user_two.id_post}`} >
+                                                        
+                                                        <span> <strong>{noti.data.user_two.full_name} </strong>  Vừa đánh giá bài viết <strong> {noti.data.user.post_name}</strong></span> 
+                                                        
+                                                
+                                                    
+                                                        </Link>
+                                                    </div>
                                                 </div>
                                             )
                                         }

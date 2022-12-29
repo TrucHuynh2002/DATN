@@ -16,7 +16,6 @@ function RoomDetail() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
-    const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
     const [loader,setLoader] = useState(0);
     useEffect(() => {
@@ -25,7 +24,6 @@ function RoomDetail() {
         province();
         district();
         ward();
-        street();
     },[loader]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -62,11 +60,6 @@ function RoomDetail() {
     const ward = async () => {
         const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
-    };
-    // duong 
-    const street = async () => {
-        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_street_detail/${id_post}`);
-          setListstreet(res.data.data);
     };
     const handleLoaderPost = (e,loaders) => {
         setLoader(loader+1);
@@ -145,20 +138,13 @@ function RoomDetail() {
                             <span style={{marginLeft:'3px'}}> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
                         </div>
                         <div className='content_detail_____'>
-                            <p>Diện tích : </p>
+                            <p>Diện tích    : </p>
                             <span style={{marginLeft:'3px'}}> {a.area}m<sup>2</sup></span>
                         </div>
                         <div className='content_detail_____'>
                             <p>Địa chỉ : </p>        
                         <span>
-                        <strong> {a.address} </strong>
-                       
-                            {liststreet.map((street_detail, index) => {
-                            return (   
-                                <strong key={index}> {street_detail._name}, </strong>                        
-                                );
-                            })}
-                        {/* <strong> Xã </strong> */}
+                        <strong> {a.address},</strong>
                             {listward.map((ward_detail, index) => {
                             return (   
                                 <strong key={index}> {ward_detail._name}, </strong>                        
@@ -223,7 +209,7 @@ function RoomDetail() {
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" id="rate-tab" data-toggle="tab" href="#rate" role="tab"
-                        aria-controls="rate" aria-selected="false">Đánh Giá  </a>
+                        aria-controls="rate" aria-selected="false"> Đánh Giá  </a>
                     </li>
                 </ul>
                 <div className="tab-content" id="myTabContent">

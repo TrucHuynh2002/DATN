@@ -22,10 +22,16 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
-        if($request->keyword && $request->keyword != ''){
-            $data = Post::where('post_name','like','%'.$request->keyword.'%')->get();
-        }else{
-        $data = Post::all();
+         // $user = User::where('id_user','=',$id_user)->first();
+        // if($user){
+        //     $data = Post::where('id_province','=',$user->id_province)
+        //     ->where('id_district','=',$user->id_district);
+        // }
+
+        if ($request->keyword && $request->keyword != '') {
+            $data = Post::where('post_name', 'like', '%' . $request->keyword . '%')->get();
+        } else {
+            $data = Post::all();
         }
         return response()
             ->json([
@@ -87,7 +93,8 @@ class PostController extends Controller
             ->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_province(Request $request)
@@ -110,10 +117,28 @@ class PostController extends Controller
             ]);
     }
 
+    public function show_districtSearch(Request $request)
+    {
+        if ($request->id_province) {
+            $data = districtModel::join('post', 'post.id_district', '=', 'district.id')
+                ->where('_province_id', '=', $request->id_province)
+                ->select('district._name', 'post.id_district')
+                ->distinct()
+                ->get();
+        } else {
+            $data = districtModel::all();
+        }
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function show_districtAll(Request $request)
     {
         if ($request->id_province) {
-            $data = districtModel::where('_province_id', '=', $request->id_province)->get();
+            $data = districtModel::where('_province_id', '=', $request->id_province)
+                ->get();
         } else {
             $data = districtModel::all();
         }
@@ -140,29 +165,29 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-    public function show_tree(Request $request)
-    {
-        if ($request->id_province && $request->id_district) {
-            $data = StreetModel::where('_province_id', '=', $request->id_province)
-                ->where('_district_id', '=', $request->id_district)
-                ->get();
-        } else {
-            $data = StreetModel::all();
-        }
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true,
+    // public function show_tree(Request $request)
+    // {
+    //     if ($request->id_province && $request->id_district) {
+    //         $data = StreetModel::where('_province_id', '=', $request->id_province)
+    //             ->where('_district_id', '=', $request->id_district)
+    //             ->get();
+    //     } else {
+    //         $data = StreetModel::all();
+    //     }
+    //     return response()
+    //         ->json([
+    //             'data' => $data,
+    //             'status' => true,
 
-            ]);
-    }
+    //         ]);
+    // }
     public function showPost(Request $request, $id)
     {
         $data = DB::table('post')
             ->join('users', 'post.id_user', '=', 'users.id_user')
             ->where('post.id_post', '=', $id)
             ->orderBy('post.id_post', 'DESC')
-            ->select('post.id_post','users.id_user','post.post_name', 'post.description_sort', 'post.description', 'post.area', 'post.room_price', 'post.electricity_price', 'post.water_price', 'post.address', 'post.id_province', 'post.id_district', 'post.id_ward', 'post.id_street', 'post.ifarme', 'post.quantity', 'post.view', 'users.phone')
+            ->select('post.id_post', 'users.id_user', 'post.post_name', 'post.description_sort', 'post.description', 'post.area', 'post.room_price', 'post.electricity_price', 'post.water_price', 'post.address', 'post.id_province', 'post.id_district', 'post.id_ward', 'post.ifarme', 'post.quantity', 'post.view', 'users.phone')
             ->get();
         return response()
             ->json([
@@ -236,80 +261,79 @@ class PostController extends Controller
         // }
         $Post = new Post();
         // thêm post
-        // $Post->post_name = $request->post_name;
-        // $Post->description_sort = $request->description_sort;
-        // $Post->description = $request->description;
-        // $Post->area = $request->area;
-        // $Post->room_price = $request->room_price;
-        // $Post->water_price = $request->water_price;
-        // $Post->electricity_price = $request->electricity_price;
-        // $Post->address = $request->address;
-        // $Post->id_province = $request->id_province;
-        // $Post->id_district = $request->id_district;
-        // $Post->id_ward = $request->id_ward;
+        $Post->post_name = $request->post_name;
+        $Post->description_sort = $request->description_sort;
+        $Post->description = $request->description;
+        $Post->area = $request->area;
+        $Post->room_price = $request->room_price;
+        $Post->water_price = $request->water_price;
+        $Post->electricity_price = $request->electricity_price;
+        $Post->address = $request->address;
+        $Post->id_province = $request->id_province;
+        $Post->id_district = $request->id_district;
+        $Post->id_ward = $request->id_ward;
         // $Post->id_street = $request->id_street;
-        // $Post->ifarme = $request->ifarme;
-        // $Post->quantity = $request->quantity;
+        $Post->ifarme = $request->ifarme;
+        $Post->quantity = $request->quantity;
         // $Post->meta_title = $request->meta_title;
         // $Post->meta_description = $request->meta_description;
         // $Post->meta_keywords = $request->meta_keywords;
-        // $Post->verification = 1;
-        // $Post->status = 1;
-        // $Post->delete = 0;
-        // $Post->view = 0;
-        // $Post->id_user = $request->id_user; // khóa ngoại
-        // $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        // $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        // $get_image = $request->file('img');
-        // if ($request->file('img')) {
-        //     $get_name_image = $get_image[0]->getClientOriginalName();
-        //     $path = 'uploads/';
-        //     $name_image = explode('.', $get_name_image);
-        //     $new_image = $name_image[0] . rand(0, 99);
-        //     $get_image[0]->move(public_path($path), $new_image);
-        //     $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-        //     $Post->name_img = $new_image;
-        // }
-        // $Post->save();
-        
-            
-        // if ($request->quantity) {
-        //     for ($i = 1; $i <= $request->quantity; $i++) {
-        //         $roomNumber = new RoomNumberModel();
-        //         $roomNumber->id_user = $request->id_user;
-        //         $roomNumber->id_post = $Get_Post->id_post;
-        //         $roomNumber->room_number = $i;
-        //         $roomNumber->status = 0;
-        //         $roomNumber->save();
-        //     };
-        // }
-        // if ($request->id_furniture) {
-        //     $array_fur = explode(',', $request->id_furniture);
-        //     foreach ($array_fur as $furniture) {
-        //         $furniture_post = new furniture_post();
-        //         $furniture_post->id_post = $Get_Post->id_post;
-        //         $furniture_post->id_furniture = $furniture;
-        //         $furniture_post->save();
-        //     }
-        // }
-        
+        $Post->verification = 1;
+        $Post->status = 1;
+        $Post->delete = 0;
+        $Post->view = 0;
+        $Post->id_user = $request->id_user; // khóa ngoại
+        $Post->id_roomType = $request->id_roomType; // khóa ngoại
+
+        $get_image = $request->file('imgavt');
+        if ($request->file('imgavt')) {
+            $get_name_image = $get_image[0]->getClientOriginalName();
+            $path = 'uploads/';
+            $name_image = explode('.', $get_name_image);
+            $new_image = $name_image[0] . rand(0, 99);
+            $get_image[0]->move(public_path($path), $new_image.'.'.$name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+            $Post->name_img = $new_image.'.'.$name_image[1];
+        }
+        $Post->save();
+
+        $Get_Post = Post::orderby('id_post', 'DESC')->first();
         if ($request->file('img')) {
             foreach ($request->file('img') as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                // dd(public_path($path), $new_image.'.'.$name_image[1]);
-                $img->move(public_path($path), $new_image.'.'.$name_image[1]);
+                $img->move(public_path($path), $new_image.'.'. $name_image[1]);
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
-                $imgPost->name_image = $new_image;
-                $imgPost->id_post = 94; // khóa ngoại
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'. $name_image[1];
+                $imgPost->name_image = $new_image.'.'. $name_image[1];
+                $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
-            
         }
-        
+        if ($request->quantity) {
+            for ($i = 1; $i <= $request->quantity; $i++) {
+                $roomNumber = new RoomNumberModel();
+                $roomNumber->id_user = $request->id_user;
+                $roomNumber->id_post = $Get_Post->id_post;
+                $roomNumber->room_number = $i;
+                $roomNumber->status = 0;
+                $roomNumber->save();
+            };
+        }
+        if ($request->id_furniture) {
+            $array_fur = explode(',', $request->id_furniture);
+            foreach ($array_fur as $furniture) {
+                $furniture_post = new furniture_post();
+                $furniture_post->id_post = $Get_Post->id_post;
+                $furniture_post->id_furniture = $furniture;
+                $furniture_post->save();
+            }
+        }
+
+
+
         return response()
             ->json([
                 'data' =>  $Post,
@@ -395,28 +419,32 @@ class PostController extends Controller
         $Post->id_province = $request->id_province;
         $Post->id_district = $request->id_district;
         $Post->id_ward = $request->id_ward;
-        $Post->id_street = $request->id_street;
+        // $Post->id_street = $request->id_street;
         $Post->ifarme = $request->ifarme;
         $Post->quantity = $request->quantity;
-        $Post->meta_title = $request->meta_title;
-        $Post->meta_description = $request->meta_description;
-        $Post->meta_keywords = $request->meta_keywords;
+        // $Post->meta_title = $request->meta_title;
+        // $Post->meta_description = $request->meta_description;
+        // $Post->meta_keywords = $request->meta_keywords;
         $Post->verification = 1;
         $Post->status = 1;
         $Post->delete = 0;
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $Get_Post = Post::orderby('id_post', 'DESC')->first();
-        $get_image = $request->file('img');
-        if ($request->file('img')) {
+        // $Get_Post = Post::orderby('id_post', 'DESC')->first();
+        $get_image = $request->file('imgavt');
+        if ($request->file('imgavt')) {
+            
             $get_name_image = $get_image[0]->getClientOriginalName();
             $path = 'uploads/';
+            if(File::exists($path.$Post->name)){
+                File::delete($path.$Post->name);
+            }
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image->move($path, $new_image);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-            $Post->name_img = $new_image;
+            $get_image[0]->move($path, $new_image.'.'.$name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+            $Post->name_img = $new_image.'.'.$name_image[1];
         }
         $Post->save();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
@@ -435,18 +463,17 @@ class PostController extends Controller
         $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
-
                 $get_name_image = $img->getClientOriginalName();
                 // $name = $get_name_image;
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
+                $img->move($path,  $new_image.'.'.$name_image[1]);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' .  $new_image.'.'.$name_image[1];
                 $imgPost->id_post = $id; // khóa ngoại
-                $imgPost->name_image = $new_image;
+                $imgPost->name_image =  $new_image.'.'.$name_image[1];
                 $imgPost->save();
             }
 
@@ -531,7 +558,6 @@ class PostController extends Controller
     public function show_district_detail(Request $request, $id_post)
     {
         $data = DB::table('post')
-
             ->join('district', 'post.id_district', '=', 'district.id')
             ->where('post.id_post', '=', $id_post)
             ->get();
@@ -553,18 +579,18 @@ class PostController extends Controller
                 'status' => true
             ]);
     }
-    public function show_street_detail(Request $request, $id_post)
-    {
-        $data = DB::table('post')
-            ->join('street', 'post.id_street', '=', 'street.id')
-            ->where('post.id_post', '=', $id_post)
-            ->get();
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true
-            ]);
-    }
+    // public function show_street_detail(Request $request, $id_post)
+    // {
+    //     $data = DB::table('post')
+    //         ->join('street', 'post.id_street', '=', 'street.id')
+    //         ->where('post.id_post', '=', $id_post)
+    //         ->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $data,
+    //             'status' => true
+    //         ]);
+    // }
     public function show_room_type(Request $request, $id_post)
     {
         $data = DB::table('post')
@@ -593,7 +619,7 @@ class PostController extends Controller
     }
     public function Post_view_top5(Request $request)
     {
-        $data = Post::orderBy('view','DESC')->take(5)->get();
+        $data = Post::orderBy('view', 'DESC')->take(5)->get();
         return response()->json([
             "status" => true,
             'data' => $data
@@ -601,7 +627,7 @@ class PostController extends Controller
     }
     public function Post_count_roomNumber(Request $request, $id)
     {
-        $data = RoomNumberModel::where('id_post', '=', $id)->where('status','=',0)->get();
+        $data = RoomNumberModel::where('id_post', '=', $id)->where('status', '=', 0)->get();
         // $data = RoomNumberModel::find($id);
         return response()
             ->json([

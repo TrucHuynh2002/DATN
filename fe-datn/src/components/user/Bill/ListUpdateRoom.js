@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListUpdateRoom() {
-    TabTitle('Danh sách phòng đang đặt - Nhà Tui.com');
+    TabTitle('Danh sách phòng đang đặt');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [dataBookingRoom,setDataBookingRoom] = useState([]);

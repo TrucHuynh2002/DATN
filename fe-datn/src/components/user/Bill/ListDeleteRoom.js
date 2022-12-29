@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListDeleteRoom() {
-    TabTitle('Danh sách phòng đang ở - Nhà Tui.com');
+    TabTitle('Danh sách phòng đang ở');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [idRoomCancel,setIdRoomCancel] = useState('');
@@ -67,9 +67,9 @@ function ListDeleteRoom() {
                                             <td>{index}</td>
                                             <td>{data.full_name}</td>
                                             <td>A{data.room_number}</td>
-                                            <td>{data.electricity_price} đ</td>
-                                            <td>{data.water_price} đ</td>                        
-                                            <td>{data.room_price} đ</td>
+                                            <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.electricity_price)}</td>
+                                            <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.water_price)}</td>                        
+                                            <td>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(data.room_price)}</td>
                                             <td>                          
                                             <Button variant="outline-primary" name='' className="" onClick={e => handleShow(e,data.id,data.id_user_two)}>Trả phòng</Button>                                       
                                             </td>
