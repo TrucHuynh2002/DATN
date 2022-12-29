@@ -55,11 +55,10 @@ function NavAdmin() {
               <li><NavLink to="list_comment" className='sub-menu'>Danh sách</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_user"><i className='bx bx-user-circle'></i> Tài khoản
+          <li><NavLink to="list_contact"><i className='bx bx-user-circle'></i> Liên hệ
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_user" className='sub-menu'>User</NavLink></li>
               <li><NavLink to="list_contact" className='sub-menu'>Liên hệ</NavLink></li>
             </ul>
           </li>
@@ -70,7 +69,7 @@ function NavAdmin() {
               <li><NavLink to="listlogo" className='sub-menu'>Cấu hình chung</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_rolemanage"><i className='bx bxs-user-circle'></i> Quản lý chủ trọ</NavLink></li>
+          <li><NavLink to="list_rolemanage"><i className='bx bxs-user-circle'></i> Quản lý tài khoản</NavLink></li>
           <li><NavLink to="/"><i className='bx bx-log-out-circle'></i> Quay lại trang user</NavLink></li>
         </ul>
     </>

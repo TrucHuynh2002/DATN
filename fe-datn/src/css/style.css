@@ -2882,9 +2882,9 @@ margin-top: 30px;
     -webkit-line-clamp: 5;    
 }
 .header__nav_admin{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
+    display: flex;
+    float: right;
+    margin-top: 20px;
 }
 .loadCmt:hover{
     cursor: pointer;
@@ -3075,4 +3075,8 @@ margin-top: 30px;
     top: 0;
     right: 0;
     left: 0;
+}
+.nav_role{
+    float: left;
+    margin-top: 20px;
 }
