@@ -61,6 +61,7 @@ function EditPost() {
     const [loader,setLoader] = useState(0);
     
     const [uploadImages, setUploadImages] = useState([]);
+    const [uploadImageAvatar, setUploadImageAvatar] = useState([]);
     // Xử lý update hình ảnh
     const handleDeleteImage = async (e,id_img) => {
         let res = await axios.delete(`${url}/post/image/delete/${id_img}`);      
@@ -111,7 +112,16 @@ function EditPost() {
         if(e.target.files){
         const fileArray = Array.from(e.target.files).map((file) => { URL.createObjectURL(file)});
         setUploadImages(e.target.files)       
+        }
+  
     }
+
+    const handleChangeImagesAvatar = (e) => {     
+        let formData = new FormData();
+        if(e.target.files){
+        const fileArray = Array.from(e.target.files).map((file) => { URL.createObjectURL(file)});
+        setUploadImageAvatar(e.target.files)   
+        }    
     }
   
     const handleSumbit = async (e) => {
@@ -119,6 +129,9 @@ function EditPost() {
         let formData = new FormData();
          for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
+        }
+         for(let i = 0; i<uploadImageAvatar.length; i++) {
+            formData.append('imgavt[]',uploadImageAvatar[i])
         }
         formData.append('post_name',editPost.post_name);
         formData.append('address', editPost.address);
@@ -177,7 +190,7 @@ function EditPost() {
     },[loader]);
 
   return (
-    <div className="content">
+    <div className="content content_title">
         <div className="add-post">
             <h1 className="content_h1_admin">Cập nhật bài viết</h1>
             <Form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
@@ -193,7 +206,7 @@ function EditPost() {
                             {alert.err_list.messages.post_name[0]}
                             </div>}
                         </Form.Group>
-                        {/* <Form.Group className="mb-3 meta_title">
+                        <Form.Group className="mb-3 meta_title">
                             <Form.Label>Tiêu đề bài viết</Form.Label>
                             <Form.Control type="text" name="meta_title" className=''
                             value={editPost.meta_title && editPost.meta_title}
@@ -202,7 +215,32 @@ function EditPost() {
                             <div className="notice warning_____">
                             {alert.err_list.messages.meta_title[0]}
                             </div>}
-                        </Form.Group> */}
+                        </Form.Group>
+                        <Form.Group className="mb-3 img">
+                            <Form.Label>Ảnh đại diện</Form.Label>
+                            <Form.Control type="file" name="img" multiple
+                            onChange = {(e) => handleChangeImagesAvatar(e)} />
+                        <div className="container containeredit">
+      
+      <div className="preview-images-zone row">
+      {
+    
+            editPost.link_img != '' 
+          &&
+         
+           (
+                <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
+                  {/* <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div> */}
+                  <div className="image-zone"><img id="pro-img-3" src={editPost.link_img} alt="No_Image" /></div>
+                  {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
+                </div> 
+            )
+        
+      }                        
+       
+      </div>
+    </div>
+                        </Form.Group>
                         <Form.Group className="mb-3 img">
                             <Form.Label>Hình ảnh</Form.Label>
                             <Form.Control type="file" name="img" multiple

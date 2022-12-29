@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function Posted() {
-    TabTitle('Bài viết - Nhà Tui.com');
+    TabTitle('Bài viết');
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);
@@ -60,8 +60,8 @@ function Posted() {
                     {!user ? <div></div> :
                          user[0].id != post.id_user  ?  <div></div> :
                             <div className='button-fdp row'>
-                                <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
-                                <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
+                                <Link to={`../editpost/${post.id_post}`} className='button-fix btn-edit'>Sửa</Link>
+                                <Button className='button-del btn-edit' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
                            }
                     <hr></hr>                

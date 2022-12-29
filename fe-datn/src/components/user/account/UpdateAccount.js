@@ -171,24 +171,6 @@ function UpdateAccount() {
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
-                        {/* <Form.Group className="mb-12 id_street">
-                            <Form.Label>Đường</Form.Label>
-                            <Form.Select name="id_street"
-                            onChange = {(e) => handleChange(e)}
-                            >
-                                <option>Đường</option>
-                                {listStreet.map((room, index) => {
-                                    return (
-                                        room.id == editAccount.id_street
-                                        ?
-                                        <option selected key={index} value={room.id}>{room._name}</option>
-                                        :
-                                        <option key={index} value={room.id}>{room._name}</option>
-                                    );
-                                })}   
-                            </Form.Select>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                        </Form.Group> */}
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>Địa chỉ</Form.Label>
                     <Form.Control type="text" name="address" value={editAccount.address && editAccount.address} className='' onChange={(e) => handleChange(e)} />

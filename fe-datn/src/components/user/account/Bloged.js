@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function Bloged() {
-    TabTitle('Blog - Nhà Tui.com');
+    TabTitle('Blog');
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listBlog, setListBlog] = useState([]);

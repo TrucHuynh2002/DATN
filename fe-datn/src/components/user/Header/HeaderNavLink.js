@@ -260,7 +260,10 @@ function HeaderNavLink() {
         setLoader(loader+1)
         getNotify()
     }
-    
+    // const handleSubmitSearch = (e) => {
+    //     e.preventDefault()
+    //     navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
+    //   }
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
@@ -544,12 +547,13 @@ function HeaderNavLink() {
                     </div>
                 </div> }
             </li>
-            
-            <form className="book_now2" >
-                  <div className="row timkiemrow">
-                      <input className="timkiem2" placeholder="Tìm kiếm" type="text" name="keywords"  />
-         </div> 
-    </form>    
+            <li className="nav-item">
+                <form className="book_now2" >
+                    <div className="row timkiemrow">
+                        <input className="timkiem2 form-control" placeholder="Tìm kiếm" type="text" name="keywords"  />
+                    </div> 
+                </form>    
+            </li>
             
         </ul>
     </div>
