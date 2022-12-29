@@ -3004,4 +3004,19 @@ margin-top: 30px;
 .notify_avatar>img {
     border-radius: 50%;
     width: 100%;
+}.thongtinchitiet-roomdetail{
+    text-align: center;
+}.master-information{
+    color: black;
+    margin: 15px 0 10px 15px;
+    font-size: 24px;
+}.xempt{
+    text-transform: none;
+    font-weight: 490;
+    font-size: 14px;
+}.lienhn{
+    font-weight: 490;
+    font-size: 14px;
+}.round-black-btn.btn.btn-primary{
+    width: 205px;
 }
