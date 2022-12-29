@@ -147,7 +147,7 @@ function EditPost() {
         formData.append('quantity', editPost.quantity);
         formData.append('room_price',  editPost.room_price);
         formData.append('water_price', editPost.water_price);
-        formData.append('id_street',editPost.id_street)
+        // formData.append('id_street',editPost.id_street)
         for(let i = 0; i<checkFur.length; i++){
 
             formData.append('id_furniture[]',checkFur[i]);
@@ -155,9 +155,10 @@ function EditPost() {
         formData.append('id_province',editPost.id_province);
         formData.append('id_district',editPost.id_district);
         formData.append('id_ward',editPost.id_ward);
-        formData.append('id_street',editPost.id_street);
+        // formData.append('id_street',editPost.id_street);
         const res =  await axios.post(`${url}/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
+            fetch_data();
             setAlert({
                 err_list: res.data
             });
