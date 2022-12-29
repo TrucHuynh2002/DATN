@@ -3053,26 +3053,21 @@ margin-top: 30px;
 .notify_avatar>img {
     border-radius: 50%;
     width: 100%;
-}
-
-.btn_actionComment{
-    display: flex;
-    padding-left: 36px;
-}
-
-.btn_actionComment>span{
-    margin: 0 4px
-}
-.btn_contact{
-    background-color: var(--background-color);
-    border: 1px solid #fff;
-    color: var(--text-color);
-    font-weight: 600;
-    border-radius: 0px;
-}
-.btn_contact:hover{
-    color: var(--text-color);
-    background-color: var(--background-color);   
+}.thongtinchitiet-roomdetail{
+    text-align: center;
+}.master-information{
+    color: black;
+    margin: 15px 0 10px 15px;
+    font-size: 24px;
+}.xempt{
+    text-transform: none;
+    font-weight: 490;
+    font-size: 14px;
+}.lienhn{
+    font-weight: 490;
+    font-size: 14px;
+}.round-black-btn.btn.btn-primary{
+    width: 330px;
 }
 .fixed_menu{
     position: fixed;
