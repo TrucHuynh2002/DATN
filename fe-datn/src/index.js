@@ -92,11 +92,13 @@ import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import vnpay from './components/user/pay/vnpay';
 import Payment from './components/user/Bill/Payment';
 import ListRoleManage from './components/admin/roleManage/ListRoleManage';
+import ScrollToTop from './components/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <ScrollToTop />
     <Routes>
       {/* chuyển hướng user */}
       <Route path="/" element={<LayoutUser />}>

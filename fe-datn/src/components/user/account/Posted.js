@@ -61,7 +61,7 @@ function Posted() {
                          user[0].id != post.id_user  ?  <div></div> :
                             <div className='button-fdp row'>
                                 <Link to={`../editpost/${post.id_post}`} className='button-fix'>Sửa</Link>
-                                <Button className='button-del btn-edit' onClick={() => deletePost(post.id_post)}>Xóa</Button>
+                                <Button className='button-del' onClick={() => deletePost(post.id_post)}>Xóa</Button>
                             </div>
                            }
                     <hr></hr>                

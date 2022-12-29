@@ -2710,6 +2710,12 @@ margin: 10px 10px 0 10px;
 .btn.btn-warning.prall{
     margin: 10px 10px 0 10px;
 }
+
+.dropdown-menu{
+    width:400px !important;
+    /* right: 30px !important */
+}
+
 .dropdown-menu.drop{
 margin:-10px 0 0 100px;
 }.title12{
@@ -2736,7 +2742,7 @@ margin:-10px 0 0 100px;
 
 .privacytexth1{
     width: 50%;
-   float: left;
+    float: left;
     padding-left: 21px;  
     font-weight: 550;
     font-size: 35px;
