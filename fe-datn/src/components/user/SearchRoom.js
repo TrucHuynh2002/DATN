@@ -15,13 +15,14 @@ function Search() {
     const ward = urlParam.get('ward');
     const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
+    const stress = urlParam.get('stress');
     const [addTrendSearch, setListTrendSearch] = useState({
         key_word : keyword,
       })
     const {key_word} = addTrendSearch
     const [aData,setData] = useState([])
     const getPostSearch = async () => {
-        let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
+        let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&stress=${stress}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
         if(aData.length > 0){
             let ress = await axios.post(`${url}/search`, addTrendSearch);
@@ -47,6 +48,12 @@ function Search() {
     </div>
     <div className="our_room">
         <div className="container">
+            {aData.status == true && aData.data.length >= 1 && <div className="col-lg-12 col-md-12 col-sm-12 search__all_post"> 
+                    <p><em>Có {aData.data.length} kết quả tìm kiếm </em></p>
+                  
+                </div>
+            }
+              <hr />
             <div className="row">  
             {
                 aData.status == true && aData.data.length >= 1 ? (
