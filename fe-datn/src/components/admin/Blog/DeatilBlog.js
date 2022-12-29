@@ -28,7 +28,7 @@ function DetailBlog() {
   };
   return (
     <>
-      <div className="container">
+      <div className="container" style={{marginTop: "150px"}}>
         <div className="name_blog">
           <h1>{listBlog.name_blog}</h1>
         </div>

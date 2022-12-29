@@ -2882,9 +2882,9 @@ margin-top: 30px;
     -webkit-line-clamp: 5;    
 }
 .header__nav_admin{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
+    display: flex;
+    float: right;
+    margin-top: 20px;
 }
 .loadCmt:hover{
     cursor: pointer;
@@ -3053,24 +3053,30 @@ margin-top: 30px;
 .notify_avatar>img {
     border-radius: 50%;
     width: 100%;
+}.thongtinchitiet-roomdetail{
+    text-align: center;
+}.master-information{
+    color: black;
+    margin: 15px 0 10px 15px;
+    font-size: 24px;
+}.xempt{
+    text-transform: none;
+    font-weight: 490;
+    font-size: 14px;
+}.lienhn{
+    font-weight: 490;
+    font-size: 14px;
+}.round-black-btn.btn.btn-primary{
+    width: 330px;
 }
-
-.btn_actionComment{
-    display: flex;
-    padding-left: 36px;
+.fixed_menu{
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    left: 0;
 }
-
-.btn_actionComment>span{
-    margin: 0 4px
-}
-.btn_contact{
-    background-color: var(--background-color);
-    border: 1px solid #fff;
-    color: var(--text-color);
-    font-weight: 600;
-    border-radius: 0px;
-}
-.btn_contact:hover{
-    color: var(--text-color);
-    background-color: var(--background-color);   
+.nav_role{
+    float: left;
+    margin-top: 20px;
 }

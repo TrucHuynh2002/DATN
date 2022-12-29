@@ -385,16 +385,19 @@ class UserController extends Controller
     public function getUserResignerOwnerPost(Request $request){
         // $get_data = User::whereNot('role','=',2)->orderBy('id_user','DESC')->get();
         if($request->role){
-            if($request->role == 0){
-                $get_data = User::where('role','=',0)->orderBy('id_user','DESC')->get();
-            }
             if($request->role == 1){
+                $get_data = User::where('role','=',"0")->where('status','=','0')->orderBy('id_user','DESC')->get();
+            }
+            if($request->role == 2){
                 // $get_data = User::whereNot('role','=',1)->orderBy('id_user','DESC')->get();
                 if($request->status == 1){
-                    $get_data = User::where('role','=',0)->where('status','=',0)->orderBy('id_user','DESC')->get();
+                    $get_data = User::where('role','=',0)->where('status','=',1)->orderBy('id_user','DESC')->get();
                 }
-                if($request->status == 0){
-                    $get_data = User::where('role','=',1)->where('status','=',1)->orderBy('id_user','DESC')->get();
+                elseif($request->status == 2){
+                    $get_data = User::where('role','=',1)->where('status','=',0)->orderBy('id_user','DESC')->get();
+                }
+                if(!$request->status){
+                    $get_data = User::where('role','=',1)->orwhere('status','=',1)->orderBy('id_user','DESC')->get();
                 }
             }
         }

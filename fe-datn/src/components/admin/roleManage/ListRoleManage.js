@@ -1,33 +1,39 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListRoleManage() {
-  TabTitle('Danh sách quản lý chủ trọ');
-  const [listRoleManage, setListRoleManage] = useState([]);
+  TabTitle('Danh sách quản lý tài khoản');
+  const id_user = useParams();
+  const [listUser, setListUser] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] = useState(10);
-
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
-  const currentPosts = listRoleManage.slice(firstPageIndex, lastPageIndex);
+  const currentPosts = listUser.slice(firstPageIndex, lastPageIndex);
 
   useEffect(() => {
     getData();
   },[]);
 
-  // danh sach contact
-  const getData = async (keywordss = '') => {
-    const res = await axios.get(`${url}/user/owner-post?keyword=${keywordss}`);
+  // danh sach user
+  const getData = async (keywordss = '',role='',status = '') => {
+    const res = await axios.get(`${url}/user/owner-post?keyword=${keywordss}&&role=${role}&&status=${status}`);
     console.log(res.data)
-    setListRoleManage(res.data.data);
+    setListUser(res.data.data);
   };
-   // search
-   const handleChangeKeyWord = (e) => {
+
+  // xoa user
+  const deleteUser = async (id_user) => {
+    await axios.delete(`${url}/user/delete/${id_user}`);
+    getData();
+  };
+  // search
+  const handleChangeKeyWord = (e) => {
     getData(e.target.value)
   }
 
@@ -46,13 +52,37 @@ function ListRoleManage() {
     }
   }
 
+  const [status,setStatus] = useState('');
+
+  const handleChangeSetRole = (e) => {
+    
+    setStatus(e.target.value,'');
+      getData('',e.target.value)
+  }
+  const handleChangeStatusRole = (e) => {
+    
+      getData('',status,e.target.value)
+    
+  }
   return (
     <div className="content">
     <div className="add-post">
-      <h1 className="content_h1_admin">Danh sách quản lý chủ trọ</h1>
-      <div className ="header__nav_admin">
+      <h1 className="content_h1_admin">Danh sách quản lý tài khoản</h1>
+      <div className='nav_role'>
         <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
         />
+      </div>
+      <div className ="header__nav_admin">
+        <select className="form-control search_blog" name="setRole" onChange={e => handleChangeSetRole(e)}>
+          <option>Tất cả</option>
+          <option value={1}>Người dùng</option>
+          <option value={2}>Chủ trọ</option>
+        </select>
+        <select className="form-control search_blog" name="setStatus" onChange={e => handleChangeStatusRole(e)}>
+          <option>Trạng thái</option>
+          <option value={1}>Chưa duyệt</option>
+          <option value={2}>Đã duyệt</option>
+        </select>
       </div>
       <Table bordered>
         <thead>
@@ -68,7 +98,7 @@ function ListRoleManage() {
            
           </tr>
         </thead>
-        <tbody className='list'>
+        <tbody>
           {currentPosts.map((contact, index) => {
             return (
               <tr key={index}>
@@ -111,12 +141,13 @@ function ListRoleManage() {
                           </div>
                 </td>
               </tr>
+    
             );
           })}
         </tbody>
     </Table>
     {/* phan trang */}
-    <Pagination totalPost={listRoleManage.length}
+    <Pagination totalPost={listUser.length} 
       postsPerPage={postsPerPage} 
       setCurrentPage={setCurrentPage}
       currentPage={currentPage} />
