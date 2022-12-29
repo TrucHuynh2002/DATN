@@ -290,23 +290,23 @@ class PostController extends Controller
             $path = 'uploads/';
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image[0]->move(public_path($path), $new_image);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-            $Post->name_img = $new_image;
+            $get_image[0]->move(public_path($path), $new_image.'.'.$name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+            $Post->name_img = $new_image.'.'.$name_image[1];
         }
         $Post->save();
 
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
         if ($request->file('img')) {
-            foreach ($get_image as $img) {
+            foreach ($request->file('img') as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
+                $img->move(public_path($path), $new_image.'.'. $name_image[1]);
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-                $imgPost->name_image = $new_image;
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'. $name_image[1];
+                $imgPost->name_image = $new_image.'.'. $name_image[1];
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
