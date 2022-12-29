@@ -22,12 +22,28 @@ function ListRoleManage() {
 
   // danh sach contact
   const getData = async (keywordss = '') => {
-    const res = await axios.get(`${url}/contact/show?keyword=${keywordss}`);
+    const res = await axios.get(`${url}/user/owner-post?keyword=${keywordss}`);
+    console.log(res.data)
     setListRoleManage(res.data.data);
   };
    // search
    const handleChangeKeyWord = (e) => {
     getData(e.target.value)
+  }
+
+  const handleAcceptPostRoom = async (e,id_user) => {
+    const res = await axios.get(`${url}/user/handle-post-room/${id_user}`);
+    console.log(res.data)
+    if(res.data.status){
+        getData();
+    }
+  }
+  const handleCancelPostRoom = async (e,id_user) => {
+    const res = await axios.get(`${url}/user/cancel-post-room/${id_user}`);
+    console.log(res.data)
+    if(res.data.status){
+        getData();
+    }
   }
 
   return (
@@ -46,7 +62,10 @@ function ListRoleManage() {
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
+            <th>Chức vụ</th>
             <th>Trạng thái</th>
+            {/* <th></th> */}
+           
           </tr>
         </thead>
         <tbody className='list'>
@@ -59,8 +78,37 @@ function ListRoleManage() {
                 <td>{contact.phone}</td>
                 <td>{contact.content}</td>
                 <td>
-                  {contact.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
-                  {contact.status === 0 && <Button variant="outline-danger" name='' className="">Duyệt</Button> }
+                  {
+                   contact.status == 1 && contact.role == 0 && (
+                      <div>Chủ trọ</div>
+                   )
+                  }
+                 {  contact.role == 1 && contact.status == 0 && (
+                      <div>Chủ trọ</div>
+                  )}
+                 {    contact.role == 0 && contact.status == '' && (
+                      <div>Thành viên</div>
+                  )}
+                     
+                    
+                  
+                  
+                </td>
+                <td>
+                      {
+                          contact.status == 1 && contact.role == 0 && (
+                              <div className='text-warning'>Đang xử lý</div>
+                          )
+                          }
+                        {  contact.status == 0 && contact.role == 1 && (
+                              <div className='text-danger'>Đã phê duyệt</div>
+                          )}
+                </td>
+                <td colSpan={3}>
+                          <div style={{display:"flex",justifyContent:"center"}}>
+                          {contact.status == 1 && contact.role == 0 &&  <button name='' className="btn btn-primary" onClick={e => handleAcceptPostRoom(e,contact.id_user)}>Phê duyệt chủ trọ</button> }
+                          {contact.status == 1 && contact.role == 0 && <button  name='' className="btn btn-danger" onClick={e => handleCancelPostRoom(e,contact.id_user)}>Không Phê Duyệt</button> }
+                          </div>
                 </td>
               </tr>
             );

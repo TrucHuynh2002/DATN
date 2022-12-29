@@ -36,6 +36,7 @@ class FacebookController extends Controller
                 'full_name' => $googleUser->name,
                 'facebook_id'=> $googleUser->id,
                 'role' => 0,
+                'status' => 0,
                 'password'=> '',
             ]
         );

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Mail\Resetpassword;
 use App\Models\imgUserModel;
+use App\Notifications\AlertNotificatioRoomPostUser;
 use Illuminate\Support\Facades\Mail;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class UserController extends Controller
 {
@@ -121,6 +123,7 @@ class UserController extends Controller
         $t->id_ward = $request->id_ward;
         // $t->id_street = $request->id_street;
         $t->role = $request->role;
+        $t->status = 0;
         $t->email_verified_at = $request->email_verified_at;
         $t->remember_token = $request->remember_token;
         $t->save();
@@ -157,7 +160,8 @@ class UserController extends Controller
     public function UserStatus(Request $request, $id_user)
     {
         $t = User::find($id_user);
-        $t->role = 1;
+        // $t->role = 1;
+        $t->status = 1;
         $t->save();
         return response()
             ->json([
@@ -377,4 +381,58 @@ class UserController extends Controller
     //             'status' => true
     //         ]);
     // }
+
+    public function getUserResignerOwnerPost(Request $request){
+        // $get_data = User::whereNot('role','=',2)->orderBy('id_user','DESC')->get();
+        if($request->role){
+            if($request->role == 0){
+                $get_data = User::where('role','=',0)->orderBy('id_user','DESC')->get();
+            }
+            if($request->role == 1){
+                // $get_data = User::whereNot('role','=',1)->orderBy('id_user','DESC')->get();
+                if($request->status == 1){
+                    $get_data = User::where('role','=',0)->where('status','=',0)->orderBy('id_user','DESC')->get();
+                }
+                if($request->status == 0){
+                    $get_data = User::where('role','=',1)->where('status','=',1)->orderBy('id_user','DESC')->get();
+                }
+            }
+        }
+        elseif ($request->keyword){
+            $get_data = User::where('full_name','like','%'.$request->keyword.'%')
+                ->orWhere('email','like','%'.$request->keyword.'%')    
+                ->orWhere('phone','like','%'.$request->keyword.'%')    
+                ->orderBy('id_user','DESC')->get();
+        }
+        else{
+            
+            $get_data = User::whereNot('role','=',2)->orderBy('id_user','DESC')->get();
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => $get_data
+        ]);
+    }
+    public function handlePostRoomUser(Request $request, $id_user){
+        $find_user = User::find($id_user);
+        $find_user->role = 1;
+        $find_user->status = 0;
+        $find_user->save();
+        Notification::send($find_user,new AlertNotificatioRoomPostUser($find_user->id_user));
+        return response()->json([
+            'status' => true,
+            'data' => $find_user
+        ]);
+    }
+    public function handleCancelPostRoomUser(Request $request, $id_user){
+        $find_user = User::find($id_user);
+        $find_user->role = 0;
+        $find_user->status = 0;
+        $find_user->save();
+        return response()->json([
+            'status' => true,
+            'data' => $find_user
+        ]);
+    }
 }

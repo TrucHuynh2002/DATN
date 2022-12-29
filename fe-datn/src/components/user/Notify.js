@@ -551,6 +551,14 @@ function Notify({onClick}) {
                                                 </div>
                                             )
                                         }
+                                        if(noti.type == "App\\Notifications\\AlertNotificatioRoomPostUser"){
+                                            return (
+                                                <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-12' :  'textNoti col-12'} onClick={e => handleMaskRead(e,noti.id)}>
+                                               
+                                                    <span>Chúc mừng bạn đã đăng ký làm chủ trọ thành công. Giờ đây bạn có thể đăng bài viết của mình.</span>
+                                                </div>
+                                            )
+                                        }
                                         <hr/>
                                     })}
                                
