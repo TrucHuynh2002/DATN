@@ -91,6 +91,7 @@ import LoginFacebook from './components/user/socialite/LoginFacebook';
 import CheckRoomManage from './components/user/manage/CheckRoomManage';
 import vnpay from './components/user/pay/vnpay';
 import Payment from './components/user/Bill/Payment';
+import ListRoleManage from './components/admin/roleManage/ListRoleManage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -179,6 +180,8 @@ root.render(
 
         {/* user list */}
         <Route path="list_user" element={<ListUser />} />
+        {/* role manage list */}
+        <Route path="list_rolemanage" element={<ListRoleManage />} />
 
         {/* chuyển hướng các trang trong setting */}
         <Route path="listlogo" element={<LayoutConfig />}>
