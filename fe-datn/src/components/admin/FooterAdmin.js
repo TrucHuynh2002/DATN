@@ -31,7 +31,7 @@ function FooterAdmin() {
                 </h4>
               </div>
               <div className=" col-md-3">
-                <h3>Thông tin liên hệ</h3>
+                <h3>THÔNG TIN LIÊN HỆ</h3>
 
                 <ul className="conta">
                   <li>
@@ -46,7 +46,7 @@ function FooterAdmin() {
                 </ul>
               </div>
               <div className=" col-md-3 ">
-                <h3>Hỗ trợ khách hàng</h3>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
                 <ul className="conta ">
                   <li>
                     <Link to="">Trung tâm hỗ trợ</Link>

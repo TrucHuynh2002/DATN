@@ -257,7 +257,7 @@ a {
 
 img {
     max-width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
  :focus {
@@ -603,7 +603,7 @@ button {
 }
 
 .gallery .gallery_img figure img {
-    width: 100%;
+    width: 70%;
     transition: all .5s;
 }
 
@@ -872,9 +872,10 @@ label{
 
 /** about section **/
 
-.about1 {
+.about {
     background-color: #fff;
-    padding-top: 100px;
+    padding-top: 70px;
+    padding-bottom: 100px;
     margin: 0 100px 0 100px;
     
 }
@@ -915,18 +916,94 @@ label{
 .about_img figure img:hover {
     transform: scale(1.2);
 }
+/* gla */
+.gallery_img {
+    margin-right: 40px;
+    overflow: hidden;
+}
+
+.gallery_img figure {
+    margin: 0;
+}
+
+.gallery_img figure img {
+    width: 100%;
+    transition: all .5s;
+}
+
+.gallery_img figure img:hover {
+    transform: scale(1.2);
+}
+
+
 
 /** end about section **/
+/* all_room */
+.all-room {
+    background-color: white;
+    margin-top: 20px;
+    padding-top: 30px;
+}
 
+.all-room .titlepage {
+    text-align: center;
+}
 
+.all-room .titlepage p {
+    color: #121212;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.all-room .room {
+    background-color: #fff;
+    margin-bottom: 30px;
+    transition: ease-in all 0.5s;
+    height: 95%;
+}
+
+.all-room .room .room_img {
+    overflow: hidden;
+    /* height: 220px; */
+    padding: 0px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.all-room .room .room_img figure {
+    margin: 0;
+}
+
+.all-room .room .room_img figure img {
+    width: 100%;
+    /* transition: all .5s; */
+}
+
+.all-room .room .room_img figure img:hover {
+    /* transform: scale(1.2); */
+}
+
+.all-room .room .bed_room {
+    padding: 33px 30px;
+    width: 100%;
+    height: auto;
+}
+.all-room .room .bed_room h3 {
+    color: #121212;
+    font-size: 19px;
+    transition: ease-in all 0.5s;
+    margin: auto;
+    text-align: justify;
+}
+/* and all_room */
 /** our_room section **/
 .modal_show{
     margin-top:12px
 }
 .our_room {
-    background-color: #f4f5f7;
+    background-color: #eaeaea;
     margin-top: 20px;
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 
 .our_room .titlepage {
@@ -948,7 +1025,8 @@ label{
 
 .our_room .room .room_img {
     overflow: hidden;
-    height: 220px;
+    /* height: 220px; */
+    padding: 0px;
 }
 
 .our_room .room .room_img figure {
@@ -957,11 +1035,11 @@ label{
 
 .our_room .room .room_img figure img {
     width: 100%;
-    transition: all .5s;
+    
 }
 
 .our_room .room .room_img figure img:hover {
-    transform: scale(1.2);
+   
 }
 
 .our_room .room .bed_room {
@@ -985,15 +1063,20 @@ height:50%;
 
 .our_room .room .bed_room h3 {
     color: #121212;
-    font-size: 25px;
+    font-size: 19px;
+    text-align: justify;
     transition: ease-in all 0.5s;
     margin: auto;
 }
 
 #serv_hover:hover.room {
     cursor: pointer;
-    box-shadow: 0px 0px 30px rgba(255, 9, 9, 0.15);
+    box-shadow: 0px 0px 5px #0d33805d;
     transition: ease-in all 0.5s;
+}
+.allRoom{
+    border: 1px solid #bebebe;
+    border-radius: 10px;
 }
 
 
@@ -1003,7 +1086,8 @@ height:50%;
 /** gallery  section **/
 
 .gallery {
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 
 .gallery .titlepage {
@@ -1030,6 +1114,18 @@ height:50%;
 .gallery .gallery_img figure img:hover {
     transform: scale(1.2);
 }
+.read_more_gl{
+    font-size: 17px;
+    background-color: #ffc70d;
+    color: #0d3380;
+    padding: 8px 0px;
+    width: 100%;
+    max-width: 144px;
+    text-align: center;
+    display: inline-block;
+    transition: ease-in all 0.5s;
+    font-weight: 600;
+}
 
 /** end gallery  section **/
 
@@ -1040,7 +1136,8 @@ height:50%;
     background: #eaeaea;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 .each-slide{
     display: flex;
@@ -1168,7 +1265,7 @@ height:50%;
     color:white;
 }
 .product-slider{
-    background-color: rgba(220, 215, 212, 0.71);
+    background-color: #eaeaea6f;
     
 }
 .item>.img-fluid{
@@ -1426,6 +1523,8 @@ div>h1>.b_title,div>.b_title{
 .contact,.signin,.login {
     background: #fff;
     margin-top: 35px;
+    padding-top: 70px;
+    padding-bottom: 100px;
 }
 
 .main_form .contactus ,.text{
@@ -1490,9 +1589,9 @@ div>h1>.b_title,div>.b_title{
 
 
 /** footer **/
-footer{
+/* footer{
     padding-top: 100px;
-}
+} */
 
 .footer {
     background: #0f1521;
@@ -1523,6 +1622,7 @@ footer{
     /* border-bottom: #ff0909 solid 3px; */
     padding-bottom: 3px;
     display: table;
+    padding-left: 30px;
 }
 
 ul.conta li {
@@ -2109,8 +2209,7 @@ ul.social_icon li a:hover {
 
 .content_profile{
     padding: 10px 20px 20px 20px;
-    background-color:whitesmoke;
-    box-shadow: 0 2px 5px gainsboro;
+    border: 1px solid #bebebe;
 }
 .button-fix{
     background-color: blue;
@@ -2431,11 +2530,13 @@ margin: 0 300px 0 375px;
 }
 
 .qa_input {
-    margin: 0px 150px 30px 170px;
+    padding-bottom: 30px;
+    width: 70%;
+    margin-left: 15%;
 }
 
 .btn_qa {
-    border-radius: 50px;
+    border-radius: 5px;
     width: 100%;
 }
 .logo-privacy{
@@ -2516,6 +2617,7 @@ margin: 0 300px 0 375px;
 .manage {
     background: #fff;
     margin-top: 30px;
+    padding-bottom: 100px;
 }
 
 .color_ownership_room {
@@ -2582,6 +2684,7 @@ margin: 0 300px 0 375px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 100px;
 }
 .img404{
     padding: 0px 0px 0px 10px;
@@ -2593,9 +2696,9 @@ margin: 0 300px 0 375px;
     padding: 10px 0px 0px 10px;
 }
 .goback {
-    background-color: #00bed37c;
+    background-color: #0d3380;
     padding: 5px 15px 5px 5px;
-    color: black;
+    color: #ffc72b;
     width: 100px;
    text-align: center;
   }.bi.bi-arrow-left-short.icongoback{
@@ -2977,6 +3080,15 @@ margin-top: 30px;
     padding: 5px;
     width: 100%;
 }
+.timkiem_new {
+    border: 1px solid #bebebe;
+    padding: 5px;
+    width: 80%;
+    margin-left: 10%;
+}
+.btn-search2{
+    margin-top: -5.8%;
+}
 .btn-search {
     position: relative;
 }
@@ -2986,3 +3098,4 @@ margin-top: 30px;
     top: 12px;
     bottom: 10px;
 }
+

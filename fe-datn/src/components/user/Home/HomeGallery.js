@@ -18,9 +18,9 @@ function HomeGallery() {
           </div>
           <div className="row">          
           <div className="col-7 gallery_col">
-            <div className="about_img">
+            <div className="gallery_img">
               <Figure> 
-                  <img src={Slide1} width={700} height={500} alt="loading..." />
+                  <img src={Slide1} width={500} height={500} alt="loading..." />
                 </Figure>
             </div>
             </div>
@@ -32,7 +32,7 @@ function HomeGallery() {
                   Khám phá nội dung tìm kiếm nhà trọ cung cấp thông tin các nhà trọ giá rẻ.
                   Dành cho mọi tầng lớp sinh viên từ bình dân giá rẻ cho tới các nhà trọ cao cấp.
                 </p>
-                <Link className="read_more" to="gallery">
+                <Link className="read_more_gl" to="gallery">
                   Xem thêm
                 </Link>
               </div>

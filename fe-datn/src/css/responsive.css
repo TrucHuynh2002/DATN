@@ -105,6 +105,18 @@
         height: unset;
 
      }
+     .all-room .room{
+        display: flex;
+    }
+
+    .all-room .room .room_img{
+        height: 100% !important;
+    }
+
+     .all-room .room .row_img>figure{
+        height: unset;
+
+     }
 
      /* FOOTER */
      .ft{
@@ -206,13 +218,81 @@
         text-align: center !important;
         /* padding-bottom: 6px; */
         float: left;
-     
-            width: 70%;
+        width: 70%;
         
     }
-  
+    /* Giới thiệu */
+    .about{
+        width: 100%;
+        margin-left: 0%;
+        margin-top: -35%;
+    }
+    .about_img figure img{
+        height: 80%;
+    }
+    
+    .about .titlepage p{
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 28px;
+        padding-bottom: 35px;
+    }
+    .titlepage h2{
+        font-size: 30px;
+    }
+    .our_room .titlepage p{
+        font-size: 14px;
+    }
+    .gallery{
+        padding-bottom: 0px;
+        
+    }
+    .gallery_img{
+        height: 30%;
+        min-height: 40%;
+        width: 185%;
+        margin-top: 120%;
+        margin-left: -2%;
+        /* display: none; */
+    }
+    .gallery .titlepage>p{
+        
+        margin-left: -160%;
+    }
+    .gallery .titlepage>h3>b{
+        
+        margin-left: -160%;
+    }
+    .read_more_gl{
+        margin-left: -160% ;
+    }
+    .blog{
+        width: 100%;
+        margin-left: 0px;
+       
+        
+    }
+    .footer {
+        margin-left: 0;
+        width: 100%;
+    }
+    .footer h3{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    ul.conta li{
+        font-size: 14px;
+    }
+    /* Giới thiệu */
+    .carousel {
+        width: 100%;
+        margin-left: 0;
+       
+    }
     .carousel-item img {
-        min-height: 500px;
+        min-height: 300px;
+        width: 100%;
+    
     }
     .book_room h1 {
         font-size: 20px;
@@ -234,6 +314,10 @@
     }
     .main_form .send_btn {
         margin-bottom: 30px;
+    }
+    .our_room{
+        width: 100%;
+        margin-left: 0;
     }
     ul.link_menu {
         margin-bottom: 20px;

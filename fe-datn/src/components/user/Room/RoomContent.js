@@ -211,12 +211,12 @@ function RoomND() {
           </div>
         </Modal.Body>
       </Modal>
-        <div className="our_room">
+        <div className="all-room">
           <div className="row rs_screen">
                 {currentPosts.map((post, index) => {
                     return (     
-                      <div className="col-lg-4 col-md-12 col-sm-12" key={index}>
-                          <div id="serv_hover" className="room">
+                      <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
+                          <div id="serv_hover" className="room allRoom">
                               <div className="room_img col-lg-12 col-md-5 col-xs-4">
                                   <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
                               </div>
