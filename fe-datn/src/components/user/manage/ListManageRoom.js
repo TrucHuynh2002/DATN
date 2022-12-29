@@ -261,10 +261,10 @@ function ListManageRoom() {
                        { status == 2 && 
                             (
                                 <div className ="add_unf_bill">
-                                    <Button className='dtp btn-edit' onClick={e => handleShowAddBill(e)}>
+                                    <Button className='dtp' onClick={e => handleShowAddBill(e)}>
                                             Thêm hóa đơn
                                     </Button>
-                                    <Button className='dtp btn-edit' onClick={e => handleCheckOut(e)}>
+                                    <Button className='dtp' variant="warning" onClick={e => handleCheckOut(e)}>
                                             Trả phòng
                                     </Button>
                                 </div>

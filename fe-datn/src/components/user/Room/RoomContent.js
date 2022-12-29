@@ -175,18 +175,6 @@ function RoomND() {
             </select>
           </div>
           <div className="modal_show">
-            <select className="form-select online_book3" name="id_street"
-            onChange = {(e) => handleChangeKeyWord(e)}
-            > 
-              <option>Đường</option>
-              {listStreet.map((room, index) => {
-                return (
-                <option key={index} value={room.id} >{room._name}</option>
-                );
-              })}       
-            </select>
-          </div>
-          <div className="modal_show">
             <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
               <option>Giá</option>
               <option value={1}>Dưới 1 triệu</option>

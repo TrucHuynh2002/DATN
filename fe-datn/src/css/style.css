@@ -3028,7 +3028,13 @@ margin-top: 30px;
     width: 100%;
     height: 200px;
     position: fixed;
-    top: -300px;
+    top: -335px;
+    z-index: 30;
+}
+.scroll_search.btn-i{
+    position: absolute;
+    right: 2%;
+    top: 40%;
 } */
 .btn-search {
     position: relative;
@@ -3067,16 +3073,4 @@ margin-top: 30px;
 .btn_contact:hover{
     color: var(--text-color);
     background-color: var(--background-color);   
-}
-.btn-edit{
-    background-color: var(--background-color);
-    color: var(--text-color);
-    border: none;
-    font-weight: 600;
-}
-.btn-edit:hover{
-    background-color: var(--background-color);
-    color: var(--text-color);
-    border: none;
-    font-weight: 600;
 }
