@@ -66,6 +66,7 @@ ul#menu{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: whitesmoke;
 }
 ul#menu, ul#menu ul#sub {
     padding:0;
@@ -185,6 +186,7 @@ a:hover{
     max-height: 100%;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
+    margin-top: 200px;
 }
 .content-row{
     padding : 10px;
