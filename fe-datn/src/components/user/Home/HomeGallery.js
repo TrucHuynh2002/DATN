@@ -25,8 +25,8 @@ function HomeGallery() {
             </div>
             </div>
             
-            <div className="col-5">             
-              <div className="titlepage">               
+            <div className="col-lg-5 col-md-5 col-sm-12">             
+              <div className="titlepage2">               
                 <h3><b>Xu hướng tìm kiếm nổi bật 2022</b></h3>
                 <p align="justify">
                   Khám phá nội dung tìm kiếm nhà trọ cung cấp thông tin các nhà trọ giá rẻ.

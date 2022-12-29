@@ -13,7 +13,7 @@ function InfoAccount() {
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
-    const [liststreet, setListstreet] = useState([]);
+    // const [liststreet, setListstreet] = useState([]);
     useEffect(() => {
         getData();
     },[]);
@@ -39,8 +39,8 @@ function InfoAccount() {
         const ward = await axios.get(`${url}/user/show_ward_detail/${id_user}`);
           setListward(ward.data.data);
         // đường
-        const strees = await axios.get(`${url}/user/show_street_detail/${id_user}`);
-          setListstreet(strees.data.data);
+        // const strees = await axios.get(`${url}/user/show_street_detail/${id_user}`);
+        //   setListstreet(strees.data.data);
     };
     // xu ly avata
     const [show, setShow] = useState(false);
@@ -131,11 +131,11 @@ function InfoAccount() {
                         <span> Địa chỉ : </span>
                         <span>{info.address}, </span>
                         
-                        {liststreet.map((street_detail, index) => {
+                        {/* {liststreet.map((street_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
                             );
-                        })}
+                        })} */}
                        
                         {listward.map((ward_detail, index) => {
                         return (   

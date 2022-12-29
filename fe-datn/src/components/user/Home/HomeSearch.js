@@ -5,6 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { url } from '../../url';
 
 function HomeSearch() {
+  // scroll menu
+  const [fix, setFix] = useState(false)
+  function setFixed() {
+    if(window.scrollY >= 100) {
+      setFix(true)
+    } else {
+      setFix(false)
+    }
+  }
+  window.addEventListener("scroll", setFixed)
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -40,7 +50,7 @@ function HomeSearch() {
         typeRoom
       } = keyword
       const getProvinces = async () => {
-        let dataRooms = await axios.get(`${url}/province/show`);
+        let dataRooms = await axios.get(`${url}/province/showPostSearch`);
             setProvince(dataRooms.data.data)
           }
           const handledistrice = async (e) => {
@@ -58,7 +68,7 @@ function HomeSearch() {
           const [listDistrict, setListDistrict] = useState([]);
           const [listWard, setListWard] = useState([]);
           const getDataDistrict = async (id_province = '') => {
-              const res = await axios.get(`${url}/post/show_district?id_province=${id_province}`);
+              const res = await axios.get(`${url}/post/show_districtSearch?id_province=${id_province}`);
               setListDistrict(res.data.data);
           }
           const getDataWard = async (id_district1  = '') => {
@@ -75,12 +85,16 @@ function HomeSearch() {
             setGetDataPostSearch(res.data.get_post)
             setgetImage(res.data.image);
           }
+          
           const handleChangeKeyWord = (e) => {
             setKeyword({ ...keyword,[e.target.name]:e.target.value});
             if(e.target.value.length > 0){
               getKeyword(e.target.value)
-            }else{
+              setSearching(true)
+            }
+            else{
               setSearching(false)
+              
             }
           }
           const handleSubmitSearch = (e) => {
@@ -90,20 +104,18 @@ function HomeSearch() {
 
   return (
     <>
-      <div className="container book_room2">
+      <div className='container book_room2'>
                 <h1>Tìm phòng trống</h1>
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                   <div className="row">
-                    <div className="col-md-12 col-sm-12 btn-search">
-                      <input className="timkiem" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                      <i className='btn-i bx bx-search' style={{color:"#0d3380"}}></i>
-                          {searching &&  (
+                    <div className={fix ? 'scroll_search' : 'col-lg-12 col-md-12 col-sm-12 btn-search'}>
+                      <input className="timkiem" placeholder="Tìm kiếm phòng trọ bạn mong muốn" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                      <i className='btn-i bx bx-search' style={{color:"#0d3380", display:"none"}}></i>
+                          {searching == true &&  (
                               <div className='show_search'>
                                  <ul>
                                   {
-                                    getDataPostSearch.length > 0
-                                    &&
-                                   getDataPostSearch.map((post,index) => {
+                                    getDataPostSearch.length > 0 && getDataPostSearch.map((post,index) => {
                                       return (
                                         <li key={index}>
                                               <Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link>
@@ -119,13 +131,14 @@ function HomeSearch() {
                                   }
                             
                                   {
-                                    getKeywords.length > 0 
-                                    &&
-                                    getKeywords.map((keyword,index) => {
+                                    getKeywords.length > 0 && getKeywords.map((keyword,index) => {
                                       return (
+                                      <>
                                         <li key={index}>
                                           <Link to="room">{keyword.key_word}</Link>
                                         </li>
+                                        <hr />
+                                      </>
                                       )                                          
                                     })                                  
                                   }
@@ -152,12 +165,11 @@ function HomeSearch() {
                       <div className="col-md-2 col-sm-12">
                         <Form.Select name="id_provinces" className="form-select online_book4"  onChange = {(e) => handledistrice(e)}>
                           <option>Tỉnh</option>
-                          {
-                            getProvince.map((p,i) => {
-                              return <option key={i} value={p.id}>{p._name}</option>
-                            })
+                              {getProvince.map((p,i) => {
+                                return <option key={i} value={p.id_province}>{p._name}</option>
+                               }
+                              )
                           }
-                        
                         </Form.Select>
                       </div>
                       <div className="col-md-2 col-sm-12">
@@ -167,7 +179,7 @@ function HomeSearch() {
                                   <option>Quận/Huyện</option>
                                   {listDistrict.map((room, index) => {
                                       return (
-                                          <option key={index} value={room.id}>{room._name}</option>
+                                          <option key={index} value={room.id_district}>{room._name}</option>
                                       );
                                   })}                            
                               </Form.Select>

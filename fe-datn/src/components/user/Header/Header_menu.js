@@ -3,7 +3,7 @@ import HeaderNavLink from './HeaderNavLink';
 
 function Header_menu() {
   return (
-      <div className="col-lg-10 col-md-6 col-sm-6">
+      <div className="col-lg-10 col-md-10 col-sm-6">
         <nav className="navigation navbar navbar-expand-md navbar-dark">
                 <button
                   className="navbar-toggler"

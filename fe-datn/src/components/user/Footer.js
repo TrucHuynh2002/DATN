@@ -21,7 +21,7 @@ function Footer() {
           <div className="container-fluid">
             <div className="row ft">
               <div className="col-md-3">
-                <img src={listConfig.logo} alt="" style={{width:"70%", height:"55%"}} />
+                <img src={listConfig.logo} alt="" style={{width:"80%", height:"55%"}} />
                 <h4 style={{ textAlign: "center" }}>
                   {listConfig.title}
                 </h4>

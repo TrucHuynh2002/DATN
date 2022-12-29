@@ -144,6 +144,25 @@
      .timkiemrow{
         display: none;
      }
+     .timkiem{
+        width: 80%;
+    }
+    .timkiem2{
+        width: 360px;
+        margin-left: -1%;
+    }
+    .timkiemrow{
+        padding-top: 20px;
+    }
+    .btn-search{
+        margin-left: 80%;
+        margin-top: -10.5%;
+    }
+    .first-slide {
+        width: 100%;
+        height: 100px;
+       
+    }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -156,6 +175,7 @@
     }
     .about .titlepage {
         max-width: inherit;
+        margin-top:10px;
     }
     .about_img {
         margin-right: 0px;
@@ -221,6 +241,11 @@
         width: 70%;
         
     }
+    .logo{
+        margin-left: 10px;
+        margin-bottom:  -8px ;
+        padding-top: 5px;
+    }
     /* Giới thiệu */
     .about{
         width: 100%;
@@ -248,23 +273,29 @@
         
     }
     .gallery_img{
-        height: 30%;
+        padding-top: 0px;
+        height: 50%;
         min-height: 40%;
         width: 185%;
         margin-top: 120%;
         margin-left: -2%;
+        
         /* display: none; */
     }
     .gallery .titlepage>p{
-        
-        margin-left: -160%;
+        margin-top: -700px;
+        margin-left: 0%;
     }
     .gallery .titlepage>h3>b{
-        
-        margin-left: -160%;
+        margin-left: 0%;
     }
+    .gallery .titlepage2{
+        margin-top: -750px;
+    }
+
     .read_more_gl{
-        margin-left: -160% ;
+        margin-left: 0px ;
+        margin-top: 12px;
     }
     .blog{
         width: 100%;
@@ -287,6 +318,7 @@
     .carousel {
         width: 100%;
         margin-left: 0;
+        padding-top: 50px;
        
     }
     .carousel-item img {
@@ -298,6 +330,7 @@
         font-size: 20px;
         line-height: 25px;
         padding-bottom: 15px;
+        padding-top: 100px;
     }
     .book_now .online_book {
         margin-bottom: 20px;
@@ -307,6 +340,7 @@
     }
     .about .titlepage {
         max-width: inherit;
+        margin-top: 10px;
     }
     .about_img {
         margin-right: 0px;
@@ -326,6 +360,7 @@
         float: right;
         display: inherit !important;
         padding: 0;
+        padding-bottom: 10px;
         width: 100%;
     }
     .btn-group{margin-top:20px}
@@ -431,6 +466,17 @@
     }
     .button_input_submit{ 
         width: 40px;
+    }
+    .timkiemRoom{
+        width: 75% !important;
+        padding: 5px;
+        border: 1px solid #bebebe;
+        border-radius: 5px;
+        margin-top: 60px;   
+    }
+    .locRoom{
+        margin-left: 75%;
+        margin-top: -52px;  
     }
     
 }

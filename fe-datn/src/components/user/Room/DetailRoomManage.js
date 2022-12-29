@@ -4,10 +4,8 @@ import { Button } from 'react-bootstrap';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { url } from '../../url';
-import { TabTitle } from '../../title';
 
 function RoomDetail() {
-    TabTitle('Đặt phòng');
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : ''
     const queryString = window.location.search;
@@ -116,7 +114,7 @@ function RoomDetail() {
                 </div>
             </div>
         </div>
-        <div className="container" style={{marginTop:'42px'}}>
+        <div className="container datphong" style={{marginTop:'42px'}}>
         {listPost.map((a, index) => {
             return(
             <div className="row" key={index}>
@@ -212,7 +210,7 @@ function RoomDetail() {
             </div>
             );
             })}
-            <Button className="btn btn-primary col-12" style={{marginTop:'50px'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
+            <Button className="btn btn-primary col-12" style={{marginTop:'-45%', color:'#0d3380', backgroundColor:'#ffc72b', border:'none', fontWeight:'700', width:'50%', marginLeft:'43%'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
             {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
             { alert.err_list.status === false && <div className="notice warning_____">
                 Tài khoản đã đặt phòng vui lòng trả phòng để đặt phòng tiếp theo </div> }          

@@ -30,9 +30,9 @@ function HeaderNavLink() {
         ifarme:"",
         quantity: "",
         id_furniture: [],
-        meta_title: "",
-        meta_description: "",
-        meta_keywords: "",
+        // meta_title: "",
+        // meta_description: "",
+        // meta_keywords: "",
         id_province : "",
         id_district : "",
         id_ward : "",
@@ -54,9 +54,9 @@ function HeaderNavLink() {
         ifarme,
         quantity,
         id_furniture,
-        meta_title,
-        meta_description,
-        meta_keywords,
+        // meta_title,
+        // meta_description,
+        // meta_keywords,
         id_province,
         id_district,
         id_ward,
@@ -97,7 +97,10 @@ function HeaderNavLink() {
         getDataProvince();
         getDataRoomType();
         get_furnitures();
-        getData();
+        if(user){
+            getData();
+
+        }
         getNotify();
     },[]);
     const [listProvince, setListProvince] = useState([]);
@@ -150,6 +153,7 @@ function HeaderNavLink() {
     }
     // xử lý hình ảnh 
     const [uploadImages, setUploadImages] = useState([]);
+    const [uploadImagesAvatar, setUploadImagesAvatar] = useState([]);
     const handleChangeImages = (e) => {
         let formData = new FormData();
         if(e.target.files){
@@ -157,11 +161,21 @@ function HeaderNavLink() {
         setUploadImages(e.target.files)
         }
     }     
+    const handleChangeImagesBig = (e) => {
+        let formData = new FormData();
+        if(e.target.files){
+        const fileArray = Array.from(e.target.files).map((file) => {URL.createObjectURL(file)});
+        setUploadImagesAvatar(e.target.files)
+        }
+    }     
     const handleSumbit = async (e) => {
         e.preventDefault();
         let formData = new FormData();
         for(let i = 0; i<uploadImages.length; i++) {
             formData.append('img[]',uploadImages[i])
+        }
+        for(let i = 0; i<uploadImagesAvatar.length; i++) {
+            formData.append('imgavt[]',uploadImages[i])
         }
         formData.append('post_name', post_name);
         formData.append('address', address);
@@ -176,9 +190,9 @@ function HeaderNavLink() {
         formData.append('id_ward', id_ward);
         formData.append('id_street', id_street);
         formData.append('ifarme', ifarme);
-        formData.append('meta_keywords', meta_keywords);
-        formData.append('meta_description', meta_description);
-        formData.append('meta_title', meta_title);
+        // formData.append('meta_keywords', meta_keywords);
+        // formData.append('meta_description', meta_description);
+        // formData.append('meta_title', meta_title);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
@@ -230,7 +244,9 @@ function HeaderNavLink() {
         const res = await axios.get(`http://127.0.0.1:8000/api/notify/${id_users}`)
         // setNotification(res.data.data)
         if(res.data.status == true){
+            if(res.data.notificationUnread.length > 0){
               setNotificationUnread(res.data.notificationUnread)
+            }
         }
     }
 
@@ -244,7 +260,10 @@ function HeaderNavLink() {
         setLoader(loader+1)
         getNotify()
     }
-    
+    // const handleSubmitSearch = (e) => {
+    //     e.preventDefault()
+    //     navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
+    //   }
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
@@ -262,9 +281,9 @@ function HeaderNavLink() {
                 <div className="btn-group" >
                    <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                         style={{color: 'black', fontSize:'1.8em',border: 'none'}} className="bell" >
-                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 ? "red" : ''}} ></i>
+                        <i className='bx bx-bell' style={{color:notificationUnread.length > 0 && id_users ? "red" : ''}} ></i>
                         {
-                            notificationUnread.length > 0
+                            notificationUnread.length > 0 && id_users
                             &&
                             <div className='count-bell-unread'>
                                 {notificationUnread.length}
@@ -300,12 +319,18 @@ function HeaderNavLink() {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                         </Form.Group> 
-                        <Form.Group className="mb-12 meta_title">
+                        {/* <Form.Group className="mb-12 meta_title">
                             <Form.Label>Tiêu đề bài viết</Form.Label>
                             <Form.Control type="text" name="meta_title" className=''
                             value={meta_title}
                             onChange = {(e) => handleChange(e)} />
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
+                        </Form.Group> */}
+                        <Form.Group className="mb-12 img">
+                            <Form.Label>Ảnh đại diện</Form.Label>
+                            <Form.Control type="file" name="img"
+                            onChange = {(e) => handleChangeImagesBig(e)} />
+                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.img[0]}</span>}
                         </Form.Group>
                         <Form.Group className="mb-12 img">
                             <Form.Label>Hình ảnh</Form.Label>
@@ -467,7 +492,7 @@ function HeaderNavLink() {
                                 })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                             </Form.Select> 
                         </Form.Group>
-                        <Form.Group className="mb-12 meta_keywords">
+                        {/* <Form.Group className="mb-12 meta_keywords">
                             <Form.Label>Từ khóa - Seo</Form.Label>
                             <Form.Control type="text" name="meta_keywords" className='' 
                             value={meta_keywords}
@@ -480,7 +505,7 @@ function HeaderNavLink() {
                             value={meta_description}
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                        </Form.Group>           
+                        </Form.Group>            */}
                         <div className="d-grid gap-2" style={{margin: "20px 0"}}>
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết
@@ -522,12 +547,13 @@ function HeaderNavLink() {
                     </div>
                 </div> }
             </li>
-            
-            <form className="book_now2" >
-                  <div className="row timkiemrow">
-                      <input className="timkiem2" placeholder="Tìm kiếm" type="text" name="keywords"  />
-         </div> 
-    </form>    
+            <li className="nav-item">
+                <form className="book_now2" >
+                    <div className="row timkiemrow">
+                        <input className="timkiem2 form-control" placeholder="Tìm kiếm" type="text" name="keywords"  />
+                    </div> 
+                </form>    
+            </li>
             
         </ul>
     </div>

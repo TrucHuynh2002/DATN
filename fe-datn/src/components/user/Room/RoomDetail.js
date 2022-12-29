@@ -158,7 +158,7 @@ function RoomDetail() {
                             <span style={{marginLeft:'3px'}}> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
                         </div>
                         <div className='content_detail_____'>
-                            <p>Diện tích : </p>
+                            <p>Diện tích    : </p>
                             <span style={{marginLeft:'3px'}}> {a.area}m<sup>2</sup></span>
                         </div>
                         <div className='content_detail_____'>
