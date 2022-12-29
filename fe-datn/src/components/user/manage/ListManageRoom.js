@@ -264,8 +264,8 @@ function ListManageRoom() {
                                     <Button className='dtp' onClick={e => handleShowAddBill(e)}>
                                             Thêm hóa đơn
                                     </Button>
-                                    <Button className='dtp' onClick={e => handleCheckOut(e)}>
-                                            Đã trả phòng
+                                    <Button className='dtp' variant="warning" onClick={e => handleCheckOut(e)}>
+                                            Trả phòng
                                     </Button>
                                 </div>
                             )
@@ -283,7 +283,7 @@ function ListManageRoom() {
                     {active ?
                         status === 0 &&
                         <>
-                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary btn-edit" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
                         : ""
                     }    
@@ -291,7 +291,7 @@ function ListManageRoom() {
                         active ?
                         status === 1 &&
                         <>
-                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
+                        <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary btn-edit" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
                         : ""
                     }    

@@ -7,20 +7,15 @@ import { Link, useParams } from 'react-router-dom';
 import ContentComent from '../Comment/ContentComent';
 import Evaluate from '../Comment/Evaluate';
 import RoomRelatePost from './RoomRelatePost';
-import { url } from '../../url';
-import { TabTitle } from '../../title';
 
 function RoomDetail() {
-    TabTitle('Chi tiết phòng');
     const {id_post} = useParams();
-    const [listCount, setListCount] = useState([]);
     const [listPost, setListPost] = useState([]);
     const [listImg, setListImg] = useState([]);
     const [listFurniture, setListFurniture] = useState([]);
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
-    const [liststreet, setListstreet] = useState([]);
     const [listRoom, setListRoom] = useState([]);
     const [loader,setLoader] = useState(0);
     useEffect(() => {
@@ -29,7 +24,6 @@ function RoomDetail() {
         province();
         district();
         ward();
-        street();
     },[loader]);
     // show phone contact
     var showBtn = document.querySelector('#button_contact')
@@ -40,44 +34,38 @@ function RoomDetail() {
     };
     // danh sach post
     const getData = async () => {
-        const res = await axios.get(`${url}/post/showPost/${id_post}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/showPost/${id_post}`);
             setListPost(res.data.data);
-        const getImg = await axios.get(`${url}/imgPost/show_detail/${id_post}`);
+        const getImg = await axios.get(`http://127.0.0.1:8000/api/imgPost/show_detail/${id_post}`);
             setListImg(getImg.data.data);
-        const Furniture = await axios.get(`${url}/post/furniture/${id_post}`);  
+        const Furniture = await axios.get(`http://127.0.0.1:8000/api/post/furniture/${id_post}`);  
             setListFurniture(Furniture.data.data);
-        const room = await axios.get(`${url}/post/show_roomtype/${id_post}`);
+        const room = await axios.get(`http://127.0.0.1:8000/api/post/show_roomtype/${id_post}`);
             setListRoom(room.data.data);
-        const count = await axios.get(`${url}/post/show_count_roomNumber/${id_post}`);
-            setListCount(count.data.data);
     };
     const updateView = async () => {
-        const update = await axios.put(`${url}/post/updateView/${id_post}`);
+        const update = await axios.put(`http://127.0.0.1:8000/api/post/updateView/${id_post}`);
     };
     // tinh
     const province = async () => {
-        const res = await axios.get(`${url}/post/show_province_detail/${id_post}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_province_detail/${id_post}`);
           setListprovince(res.data.data);
     }; 
     // huyen
     const district = async () => {
-        const res = await axios.get(`${url}/post/show_district_detail/${id_post}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_district_detail/${id_post}`);
           setListdistrict(res.data.data);
     };  
     // xa 
     const ward = async () => {
-        const res = await axios.get(`${url}/post/show_ward_detail/${id_post}`);
+        const res = await axios.get(`http://127.0.0.1:8000/api/post/show_ward_detail/${id_post}`);
           setListward(res.data.data);
-    };
-    // duong 
-    const street = async () => {
-        const res = await axios.get(`${url}/post/show_street_detail/${id_post}`);
-          setListstreet(res.data.data);
     };
     const handleLoaderPost = (e,loaders) => {
         setLoader(loader+1);
     };
  
+    
   return (
     <div className="pd-wrap">
     {listPost.map((a, index) => {
@@ -106,12 +94,7 @@ function RoomDetail() {
                                 <h2>{a.post_name}</h2>
                             </div>
                             <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(a.room_price)}</span>
-                            {listCount.length > 0 && 
-                                <div className="product-price-discount">Số phòng còn trống: {listCount.length}</div>
-                            }
-                            {listCount.length <= 0 && 
-                                <div className="product-price-discount">Hết phòng</div>
-                            }
+                            <div className="product-price-discount">Số Lượng : {a.quantity}</div>
                             <div>
                                 <p>{a.description_sort}</p>
                             </div>
@@ -119,37 +102,34 @@ function RoomDetail() {
                     </div>
                     <div className="product-count">
                        <div>
-                       {listCount.length > 0 && 
                             <Link to={`../square/${a.id_post}`} className="round-black-btn">
-                                Xem chi tiết số lượng phòng
+                             <span className='xempt'> Xem phòng trống</span>
                             </Link>
-                        }
-                        {listCount.length <= 0 && 
-                            <Link to="#" className="round-black-btn">
-                                Hết phòng
-                            </Link>
-                        }
+                            
                        </div>
                        <div>
                             <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
-                                <span id="button_contact">Liên hệ ngay</span>
+                                <span className='lienhn' id="button_contact" >Liên hệ ngay</span>
                                 <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
                             </Button>
                        </div>
-                        <Link to={`../profile/${a.id_user}`} className="round-black-btn">
-                            Thông tin người đăng
-                        </Link>
+                           
+                     
+                       <div className='master-information'>
+                       
+                       <b>Thông tin chủ phòng</b>
+             
+                  
+                      </div>
+
+
                     </div>
-                    <div className="product-count-help" >
-                        <div>
-                            <i className='bx bx-support'></i>
-                            <Link to='../contact' className='support_link'><label>Cần sự trợ giúp</label></Link>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
             <div className="detail_room">
-            <h1><b className='b_title'>Thông tin chi tiết</b></h1>
+            <h1 className='thongtinchitiet-roomdetail'><b className='b_title'>Thông tin chi tiết</b></h1>
             <hr />   
                 <div className='row'>   
                     <div className="col-lg-7 col-md-12 col-sm-12">
@@ -165,16 +145,12 @@ function RoomDetail() {
                             <p>Địa chỉ : </p>        
                         <span>
                         <strong> {a.address},</strong>
-                            {liststreet.map((street_detail, index) => {
-                            return (   
-                                <strong key={index}> {street_detail._name}, </strong>                        
-                                );
-                            })}
                             {listward.map((ward_detail, index) => {
                             return (   
                                 <strong key={index}> {ward_detail._name}, </strong>                        
                                 );
                             })}                  
+                        {/* <strong> Quận </strong>  */}
                             {listdistrict.map((dis_detail, index) => {
                                 return (   
                                     <strong key={index}> {dis_detail._name}, </strong>            
@@ -233,7 +209,7 @@ function RoomDetail() {
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" id="rate-tab" data-toggle="tab" href="#rate" role="tab"
-                        aria-controls="rate" aria-selected="false">Đánh Giá  </a>
+                        aria-controls="rate" aria-selected="false"> Đánh Giá  </a>
                     </li>
                 </ul>
                 <div className="tab-content" id="myTabContent">
@@ -253,7 +229,7 @@ function RoomDetail() {
                         <div className="review-heading">
                             <h1 className="content_room_h1">Đánh giá {a.post_name}</h1>
                         </div>
-                        <Evaluate data={loader} />                
+                        <Evaluate />                
                     </div>
                 </div>
             </div>
@@ -265,3 +241,4 @@ function RoomDetail() {
 }
 
 export default RoomDetail
+

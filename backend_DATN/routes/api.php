@@ -247,6 +247,9 @@ Route::get('user/show_street_detail/{id}', [UserController::class, 'show_street_
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
+Route::get('user/owner-post',[UserController::class, 'getUserResignerOwnerPost']);
+Route::get('user/handle-post-room/{id}',[UserController::class, 'handlePostRoomUser']);
+Route::get('user/cancel-post-room/{id}',[UserController::class, 'handleCancelPostRoomUser']);
 
 // Contact
 Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);

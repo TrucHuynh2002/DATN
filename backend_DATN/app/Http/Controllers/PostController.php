@@ -22,15 +22,17 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
+         // $user = User::where('id_user','=',$id_user)->first();
+        // if($user){
+        //     $data = Post::where('id_province','=',$user->id_province)
+        //     ->where('id_district','=',$user->id_district);
+        // }
+
         if ($request->keyword && $request->keyword != '') {
             $data = Post::where('post_name', 'like', '%' . $request->keyword . '%')->get();
         } else {
             $data = Post::all();
         }
-        // $heart = DB::table('post')
-        //     ->join('img_post', 'post.id_post', '=', 'img_post.id_post')
-        //     ->orderBy('post.id_post')
-        //     ->get();
         return response()
             ->json([
                 'data' => $data,
@@ -91,7 +93,8 @@ class PostController extends Controller
             ->get();
         return response()
             ->json([
-                'data' => $data
+                'data' => $data,
+                'status' => true
             ]);
     }
     public function show_province(Request $request)
@@ -288,23 +291,23 @@ class PostController extends Controller
             $path = 'uploads/';
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image[0]->move(public_path($path), $new_image);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-            $Post->name_img = $new_image;
+            $get_image[0]->move(public_path($path), $new_image.'.'.$name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+            $Post->name_img = $new_image.'.'.$name_image[1];
         }
         $Post->save();
 
         $Get_Post = Post::orderby('id_post', 'DESC')->first();
         if ($request->file('img')) {
-            foreach ($get_image as $img) {
+            foreach ($request->file('img') as $img) {
                 $get_name_image = $img->getClientOriginalName();
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
+                $img->move(public_path($path), $new_image.'.'. $name_image[1]);
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
-                $imgPost->name_image = $new_image;
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'. $name_image[1];
+                $imgPost->name_image = $new_image.'.'. $name_image[1];
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
@@ -428,16 +431,20 @@ class PostController extends Controller
         $Post->view = 0;
         $Post->id_user = $request->id_user; // khóa ngoại
         $Post->id_roomType = $request->id_roomType; // khóa ngoại
-        $Get_Post = Post::orderby('id_post', 'DESC')->first();
+        // $Get_Post = Post::orderby('id_post', 'DESC')->first();
         $get_image = $request->file('imgavt');
         if ($request->file('imgavt')) {
+            
             $get_name_image = $get_image[0]->getClientOriginalName();
             $path = 'uploads/';
+            if(File::exists($path.$Post->name)){
+                File::delete($path.$Post->name);
+            }
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image->move($path, $new_image);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image;
-            $Post->name_img = $new_image;
+            $get_image[0]->move($path, $new_image.'.'.$name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
+            $Post->name_img = $new_image.'.'.$name_image[1];
         }
         $Post->save();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
@@ -456,18 +463,17 @@ class PostController extends Controller
         $name = '';
         if ($request->file('img')) {
             foreach ($get_image as $img) {
-
                 $get_name_image = $img->getClientOriginalName();
                 // $name = $get_name_image;
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
+                $img->move($path,  $new_image.'.'.$name_image[1]);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image;
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' .  $new_image.'.'.$name_image[1];
                 $imgPost->id_post = $id; // khóa ngoại
-                $imgPost->name_image = $new_image;
+                $imgPost->name_image =  $new_image.'.'.$name_image[1];
                 $imgPost->save();
             }
 

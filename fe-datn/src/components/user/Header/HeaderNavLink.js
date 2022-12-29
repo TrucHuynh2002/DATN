@@ -30,13 +30,9 @@ function HeaderNavLink() {
         ifarme:"",
         quantity: "",
         id_furniture: [],
-        // meta_title: "",
-        // meta_description: "",
-        // meta_keywords: "",
         id_province : "",
         id_district : "",
         id_ward : "",
-        id_street : "",
         id_user: "",
         id_roomType: "",
         img: [],
@@ -54,13 +50,9 @@ function HeaderNavLink() {
         ifarme,
         quantity,
         id_furniture,
-        // meta_title,
-        // meta_description,
-        // meta_keywords,
         id_province,
         id_district,
         id_ward,
-        id_street,
         id_user,
         id_roomType,
         img,
@@ -84,7 +76,6 @@ function HeaderNavLink() {
     }
     const handleDistrict = async (e) => {
         getDataWard(({[e.id_district] : e.target.value}).undefined)
-        getDataStreet(({[e.id_district] : e.target.value}).undefined);
         setAddPost({ ...addPost, [e.target.name] : e.target.value});
     }
      
@@ -106,7 +97,6 @@ function HeaderNavLink() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
-    const [listStreet, setStreet] = useState([]);
     const [checkFur, setFur] = useState([]);
     const [furniture, setFuriture] = useState([]);
     const [listRoomType, setListRoomType] = useState([]);
@@ -126,15 +116,8 @@ function HeaderNavLink() {
         var id_province = addProvince.undefined;
         const res = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(res.data.data);
-    }     
-    // đường 
-    const getDataStreet = async (id_district) => {
-        var id_province = addProvince.undefined;
-        const res = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-        setStreet(res.data.data);
-    }     
-     // Lấy roomtype
-    
+    }         
+     // Lấy roomtype    
     const getDataRoomType = async () => {
         const res = await axios.get(`${url}/roomType/show`);
         setListRoomType(res.data.data);
@@ -188,11 +171,7 @@ function HeaderNavLink() {
         formData.append('id_province', id_province);
         formData.append('id_district', id_district);
         formData.append('id_ward', id_ward);
-        formData.append('id_street', id_street);
         formData.append('ifarme', ifarme);
-        // formData.append('meta_keywords', meta_keywords);
-        // formData.append('meta_description', meta_description);
-        // formData.append('meta_title', meta_title);
         formData.append('quantity', quantity);
         formData.append('room_price', room_price);
         formData.append('water_price', water_price);
@@ -319,13 +298,6 @@ function HeaderNavLink() {
                             onChange = {(e) => handleChange(e)}/>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.post_name[0]}</span>}
                         </Form.Group> 
-                        {/* <Form.Group className="mb-12 meta_title">
-                            <Form.Label>Tiêu đề bài viết</Form.Label>
-                            <Form.Control type="text" name="meta_title" className=''
-                            value={meta_title}
-                            onChange = {(e) => handleChange(e)} />
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_title[0]}</span>}
-                        </Form.Group> */}
                         <Form.Group className="mb-12 img">
                             <Form.Label>Ảnh đại diện</Form.Label>
                             <Form.Control type="file" name="img"
@@ -424,7 +396,7 @@ function HeaderNavLink() {
                                 })}       </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
-                        <Form.Group className="mb-12 id_street">
+                        {/* <Form.Group className="mb-12 id_street">
                             <Form.Label>Đường</Form.Label>
                             <Form.Select name="id_street"
                             onChange = {(e) => handleChange(e)}
@@ -437,7 +409,7 @@ function HeaderNavLink() {
                                 })}       
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                        </Form.Group>
+                        </Form.Group> */}
                         <Form.Group className="mb-12 address">
                             <Form.Label>Địa chỉ</Form.Label>
                             <Form.Control type="text" name="address" className=""
@@ -492,20 +464,6 @@ function HeaderNavLink() {
                                 })}           {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_roomType[0]}</span>}
                             </Form.Select> 
                         </Form.Group>
-                        {/* <Form.Group className="mb-12 meta_keywords">
-                            <Form.Label>Từ khóa - Seo</Form.Label>
-                            <Form.Control type="text" name="meta_keywords" className='' 
-                            value={meta_keywords}
-                            onChange = {(e) => handleChange(e)}/>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_keywords[0]}</span>}
-                        </Form.Group>
-                        <Form.Group className="mb-12 meta_description">
-                            <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
-                            <Form.Control as="textarea" name="meta_description" className="" rows={3} 
-                            value={meta_description}
-                            onChange = {(e) => handleChange(e)}/>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.meta_description[0]}</span>}
-                        </Form.Group>            */}
                         <div className="d-grid gap-2" style={{margin: "20px 0"}}>
                             <Button variant="primary" size="sm" name='' type="submit">
                                 Thêm bài viết

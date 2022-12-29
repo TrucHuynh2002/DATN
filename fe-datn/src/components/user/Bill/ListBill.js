@@ -3,7 +3,7 @@ import { Button, Form, Modal, Table } from 'react-bootstrap';
 import { TabTitle } from '../../title';
 
 function ListBill() {
-    TabTitle('Danh sách hóa đơn - Nhà Tui.com');
+    TabTitle('Danh sách hóa đơn');
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

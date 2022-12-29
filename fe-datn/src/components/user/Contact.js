@@ -113,7 +113,7 @@ function Contact() {
                   </div>
                  
                   <div className="d-grid gap-2" style={{marginBottom: "20px"}}>
-                    <Button type='submit'>Gửi</Button>
+                    <Button type='submit' className='btn_contact'>Gửi</Button>
                     {alert.err_list.status === true && <div className="notice success_____">Liên hệ thành công</div>}
                   </div>              
                 </div>

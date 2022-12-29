@@ -8,7 +8,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function PriceRoom({data}) {
-    TabTitle('Hóa đơn - Nhà Tui.com');
+    TabTitle('Hóa đơn');
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ? user[0].id : ''
     const [loadBill,setLoadBill] = useState([])

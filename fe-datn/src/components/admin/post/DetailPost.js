@@ -27,7 +27,7 @@ function DetailPost() {
 
   return (
     <>
-        <div className="pd-wrap">
+        <div className="pd-wrap"  style={{marginTop:"200px"}}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-6">

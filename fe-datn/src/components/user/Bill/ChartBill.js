@@ -9,7 +9,7 @@ ChartJS.register(
     LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
 function ChartBill({dataChart}) {
-    TabTitle('Thống kê hóa đơn - Nhà Tui.com');
+    TabTitle('Thống kê hóa đơn');
     const user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ?  user[0].id : '';
     const [data,setData] = useState({});

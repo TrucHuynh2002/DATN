@@ -41,6 +41,7 @@ class GoogleController extends Controller
                     'full_name' => $googleUser->name,
                     'google_id'=> $googleUser->id,
                     'role' => 0,
+                    'status' => 0,
                     'password'=> '',
                 ]
             );
@@ -51,7 +52,8 @@ class GoogleController extends Controller
                     'type_img_user' => "Hình đại diện",
                     'name_img' => 'ABC',
                     'link_img_user' => 'https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg',
-                    'id_user' => $get_user->id_user
+                    'id_user' => $get_user->id_user,
+                    
                 ]
                 );
             // $imgUser->type_img_user = 'Hình đại diện';
