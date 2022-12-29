@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function AddBlog() {
-    TabTitle('Thêm blog - Nhà Tui.com');
+    TabTitle('Thêm blog');
     var user = JSON.parse(localStorage.getItem("user"));
     const [addBlog, setAddBlog] = useState({
         name_blog:"",

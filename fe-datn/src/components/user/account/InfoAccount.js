@@ -6,14 +6,13 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function InfoAccount() {
-    TabTitle('Thông tin tài khoản - Nhà Tui.com');
+    TabTitle('Thông tin tài khoản');
     const user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [InfoAccount, setInfoAccount] = useState([]);
     const [listprovince, setListprovince] = useState([]);
     const [listdistrict, setListdistrict] = useState([]);
     const [listward, setListward] = useState([]);
-    // const [liststreet, setListstreet] = useState([]);
     useEffect(() => {
         getData();
     },[]);
@@ -38,9 +37,6 @@ function InfoAccount() {
         // xã
         const ward = await axios.get(`${url}/user/show_ward_detail/${id_user}`);
           setListward(ward.data.data);
-        // đường
-        // const strees = await axios.get(`${url}/user/show_street_detail/${id_user}`);
-        //   setListstreet(strees.data.data);
     };
     // xu ly avata
     const [show, setShow] = useState(false);
@@ -130,13 +126,6 @@ function InfoAccount() {
                     <div>
                         <span> Địa chỉ : </span>
                         <span>{info.address}, </span>
-                        
-                        {/* {liststreet.map((street_detail, index) => {
-                        return (   
-                            <span style={{marginRight:'2px'}} key={index}> {street_detail._name}, </span>                        
-                            );
-                        })} */}
-                       
                         {listward.map((ward_detail, index) => {
                         return (   
                             <span style={{marginRight:'2px'}} key={index}> {ward_detail._name}, </span>                        
@@ -168,12 +157,6 @@ function InfoAccount() {
                     <NavLink to={`../update_acc/${id_user}`}>
                         <Button variant="outline-primary" name='' className='btn-edit'>Cập nhật thông tin</Button>
                     </NavLink>
-                    {/* doi pass facebook, google */}
-                    {/* {user[0].password == '' && 
-                        <NavLink to={`../confirmpass/${id_user}`}>
-                            <Button variant="outline-warning" name='' className='btn-edit'>Đổi mật khẩu</Button>
-                        </NavLink>
-                    } */}
                     <NavLink to={`../confirm_acc/${id_user}`}>
                         <Button variant="outline-info" name='' className='btn-edit'>Đổi mật khẩu</Button>
                     </NavLink>

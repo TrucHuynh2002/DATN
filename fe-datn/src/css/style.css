@@ -30,7 +30,8 @@
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 /* config text color */
 :root {
-    --text-color:  #ffc70d;
+    --text-color:  #000;
+    --background-color:#ffc70d;
 }
 * {
     box-sizing: border-box !important;
@@ -793,13 +794,20 @@ label{
 }
 
 .search_room_btn {
-    background-color: var(--text-color);
+    background-color: var(--background-color);
     border-radius: 0px;
-    color: #0d3380;
+    color: var(--text-color);
     font-size: 16px;
     font-weight: 600;
     padding: 10px 0;
     width: 163px;
+    border: none;
+}
+.search_room_btn:hover,
+.search_room_btn:focus{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
 }
 
 .carousel-control-next,
@@ -859,8 +867,8 @@ label{
 
 .read_more {
     font-size: 17px;
-    background-color: var(--text-color);
-    color: #0d3380;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 8px 0px;
     width: 100%;
     max-width: 144px;
@@ -871,7 +879,7 @@ label{
 }
 
 .read_more:hover {
-    color: #0d3380;
+    color: var(--text-color);
     transition: ease-in all 0.5s;
 }
 
@@ -1613,9 +1621,9 @@ ul.link_menu li a:hover {
 }
 
 .sub_btn:hover {
-    background-color: var(--text-color);
+    background-color: var(--background-color);
     transition: ease-in all 0.5s;
-    color: #0d3380;
+    color: var(--text-color);
 }
 
 ul.social_icon {
@@ -1645,7 +1653,7 @@ ul.social_icon li a {
 }
 
 ul.social_icon li a:hover {
-    color: var(--text-color);
+    color: var(--background-color);
 }
 
 .copyright {
@@ -1718,6 +1726,7 @@ ul.social_icon li a:hover {
 .pd-wrap {
     padding: 40px 0;
     font-family: 'Poppins', sans-serif;
+    margin-top: 60px;
 }
 
 .heading-section {
@@ -1947,32 +1956,44 @@ ul.social_icon li a:hover {
 }
 
 .round-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 1px #fff;
+    border: solid 1px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    width: 330px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin: 20px 0 0 10px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn:hover,
 .round-black-btn:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
+}
+.btn_btn:hover,
+.btn_btn:focus {
+    background: var(--background-color);
+    color: #212529;
+    text-decoration: none;
+    border: none;
 }
 
 .review-form .round-black-btn.detail {
@@ -1980,20 +2001,20 @@ ul.social_icon li a:hover {
     cursor: pointer;
 }
 .round-black-btn.detail {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s; 
 
 }
 
 .round-black-btn.detail:hover,
 .round-black-btn.detail:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
 }
@@ -3031,13 +3052,25 @@ margin-top: 30px;
     margin: 0 4px
 }
 .btn_contact{
-    background-color: var(--text-color);
+    background-color: var(--background-color);
     border: 1px solid #fff;
-    color: #000;
+    color: var(--text-color);
     font-weight: 600;
     border-radius: 0px;
 }
 .btn_contact:hover{
-    color: #000;
-    background-color: var(--text-color);   
+    color: var(--text-color);
+    background-color: var(--background-color);   
+}
+.btn-edit{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    font-weight: 600;
+}
+.btn-edit:hover{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    font-weight: 600;
 }

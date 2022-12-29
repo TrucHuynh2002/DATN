@@ -6,7 +6,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function ListDeleteRoom() {
-    TabTitle('Danh sách phòng đang ở - Nhà Tui.com');
+    TabTitle('Danh sách phòng đang ở');
     const [show, setShow] = useState(false);
     const {id_user} = useParams();
     const [idRoomCancel,setIdRoomCancel] = useState('');
