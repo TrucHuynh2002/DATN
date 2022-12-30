@@ -1,4 +1,4 @@
-import axios from 'axios';
+    import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -8,9 +8,9 @@ function ListSendNoti() {
     // show detail sendnoti
     const [show, setShow] = useState(false);
     const [alertCancel,setAlertCancel] = useState(false)
+    const [alertMess,setAlertMess] = useState(false)
     const handleClose = () =>{ 
         setShow(false);
-        setAlertCancel(false);
     };
     const handleShow = () => setShow(true);
     const {id_user} = useParams();
@@ -27,8 +27,10 @@ function ListSendNoti() {
     },[])
     const handleCancelSendNoti = async (e, id_room_number) => {
         let res = await axios.post(`${url}/roomNumber/cancelSendNoti/${id_room_number}`)
+        console.log(res.data);
         if(res.data.status){
             getDataSendNoti()
+            setAlertMess(true)
         }
     }
     const handleDeletelSendNoti = async (e, id_room_number) => {
@@ -71,11 +73,11 @@ function ListSendNoti() {
                             <h2>Số phòng: A{data.room_number}</h2>
                         </Modal.Body>
                         <Modal.Footer>
-                        { alertCancel &&
+                        { alertMess &&
                                 <div className='text-success'>
                                     Đã xác nhận trả phòng thành công
                                 </div>
-                            } 
+                        } 
                         <Button variant="primary" onClick={e => handleCancelSendNoti(e,data.id)}>
                             Xác nhận
                         </Button>

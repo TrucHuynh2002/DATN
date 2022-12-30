@@ -49,7 +49,6 @@ function ListBlog() {
                 <tr>
                     <th>#</th>
                     <th>Tên blog</th>
-                    <th>Từ khóa</th>
                     <th>Mô tả ngắn</th>
                     <th></th>
                     <th></th>
@@ -62,7 +61,6 @@ function ListBlog() {
                     <tr key={index}>
                         <td>{index+1}</td>
                         <td>{blog.name_blog}</td>
-                        <td>{blog.meta_keywords}</td>
                         <td className='blog_descriptionSort'>{blog.description_sort}</td>                        
                         <td>
                           <div>

@@ -50,22 +50,22 @@
         
         <h2>Bạn vừa gửi hỗ trợ vấn đề {{$user->subject}}</h2>
         <p>Hello, bạn {{$user->full_name}}</p>
-        <p>Nhà tui đã nhận được yêu cầu hỗ trợ của anh/chị với nội dung Re:</p>
+        <p>Tìm trọ sinh viên đã nhận được yêu cầu hỗ trợ của anh/chị với nội dung Re:</p>
         <b>Tiêu đề: {{$user->subject}}</b>
         <p>Nội dung: {{$user->content}}</p><br>
-        <p>Nhà tui sẽ kiểm tra và phản hồi lại chậm nhất trong vòng 24h tiếp theo qua email mà anh/chị cung cấp.</p>
-        <p>Với các yêu cầu được khởi tạo trong ngày thứ 7, Chủ nhật hàng tuần thì việc trả lời sẽ có chậm trễ đôi chút, Nhà Tui sẽ phản hồi lại thông tin chậm nhất trong sáng thứ 2 của tuần làm việc kế tiếp.<br><br>
+        <p>Tìm trọ sinh viên sẽ kiểm tra và phản hồi lại chậm nhất trong vòng 24h tiếp theo qua email mà anh/chị cung cấp.</p>
+        <p>Với các yêu cầu được khởi tạo trong ngày thứ 7, Chủ nhật hàng tuần thì việc trả lời sẽ có chậm trễ đôi chút, Tìm trọ sinh viên sẽ phản hồi lại thông tin chậm nhất trong sáng thứ 2 của tuần làm việc kế tiếp.<br><br>
             
              
             Cảm ơn anh/chị, chúc anh/chị có một ngày làm việc vui vẻ!<br>
             
             image<br>
             
-            *Anh/chị chú ý theo dõi và phản hồi thông tin của Nhà Tui qua cổng hỗ trợ hoặc email. Yêu cầu có thể bị đóng sau 24h nếu Nhà Tui không nhận được phản hồi của anh/chị.</p><br>
+            *Anh/chị chú ý theo dõi và phản hồi thông tin của Tìm trọ sinh viên qua cổng hỗ trợ hoặc email. Yêu cầu có thể bị đóng sau 24h nếu Tìm trọ sinh viên không nhận được phản hồi của anh/chị.</p><br>
     </div>
     <div class="footer">
         <p>Thân,<br>
-            Nhà Tui</p>
+            Tìm trọ sinh viên</p>
     </div>
     </div>
 </body>

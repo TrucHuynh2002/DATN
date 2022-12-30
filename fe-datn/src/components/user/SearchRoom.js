@@ -68,7 +68,7 @@ function Search() {
                                         </div>
                                         <div className="bed_room">
                                             <h3><Link to={`../roomdetail/${room.id_post}`}>{room.post_name}</Link></h3>
-                                            <h4>Giá: {room.room_price}</h4>
+                                            <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(room.room_price)} /Tháng</span>
                                             <p>{room.description_sort}</p>
                                         </div>
                                     </div>

@@ -11,7 +11,6 @@ class banner_configModel extends Model
     protected $table = "banner_config";
     protected $primaryKey = 'id_banner_config';
     // public $timestamps = false;
-    // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'id_config',
         'link_img_banner',

@@ -34,6 +34,7 @@ class ViewController extends Controller
                 ]);
         }
     }
+    
     public function show()
     {
         $data = View::all();

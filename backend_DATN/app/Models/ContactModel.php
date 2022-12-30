@@ -10,7 +10,6 @@ class ContactModel extends Model
     protected $table = 'contact';
     protected $primaryKey = 'id_contact';
     // public $timestamps = true;
-    // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'full_name',
         'subject',

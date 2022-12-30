@@ -16,7 +16,6 @@ function EditBlog() {
         name_blog:"",
         img_blog:[],
         name_img_blog:"",
-        meta_keywords:"",
         description_sort:"",
         description:"",
     });
@@ -28,7 +27,7 @@ function EditBlog() {
         err_list: {},
     });
 
-    const { name_blog, meta_keywords, img_blog, name_img_blog, description_sort, description } = editBlog;
+    const { name_blog, img_blog, name_img_blog, description_sort, description } = editBlog;
   
     const handleChange = (e) => {
         setEditBlog({ ...editBlog, [e.target.name]: e.target.value});
@@ -39,7 +38,7 @@ function EditBlog() {
         const dataForm = new FormData();
         dataForm.append('img_blog',uploadImages[0])
         dataForm.append('name_blog',name_blog);
-        dataForm.append('meta_keywords',meta_keywords);
+
         dataForm.append('description_sort',description_sort);
         dataForm.append('description',description);
         dataForm.append('id_user',id_user);
@@ -92,12 +91,6 @@ function EditBlog() {
                         }
                         {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.img_blog[0]}</div>}
                     </Form.Group>         
-                    <Form.Group className="mb-3" controlId="meta_keywords">
-                        <Form.Label>Từ khóa</Form.Label>
-                        <Form.Control type="text" onChange={(e) => handleChange(e)} value={meta_keywords} name="meta_keywords" />
-                        { alert.err_list.status == false && alert.err_list.messages.meta_keywords &&
-                        <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
-                    </Form.Group>
                     <Form.Group className="mb-3" controlId="description_sort">
                         <Form.Label>Mô tả ngắn</Form.Label>
                         <Form.Control type="text" onChange={(e) => handleChange(e)} value={description_sort} name="description_sort" />

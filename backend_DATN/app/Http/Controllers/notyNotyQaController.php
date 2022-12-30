@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class notyNotyQaController extends Controller
 {
+
     public function show()
     {
         $data = notyNotyQaModel::all();
@@ -19,6 +20,7 @@ class notyNotyQaController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_one(Request $request, $id)
     {
         $data = DB::table('noty_notyqa')
@@ -33,15 +35,14 @@ class notyNotyQaController extends Controller
                 'status' => true
             ]);
     }
+
     public function AddComment(Request $request)
     {
         $validation = Validator::make($request->all(), [
-            // 'id_user_tow' => 'required',
             'interaction' => 'required',
             'id_user' => 'required',
             'id_qa' => 'required',
         ], [
-            // 'id_user_tow.required' => 'Không được bỏ trống',
             'interaction.required' => 'Không được bỏ trống',
             'id_user.required' => 'Không được bỏ trống',
             'id_qa.required' => 'Không được bỏ trống',
@@ -72,6 +73,4 @@ class notyNotyQaController extends Controller
                 'status' => true
             ]);
     }
-
-   
 }

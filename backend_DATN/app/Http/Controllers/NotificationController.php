@@ -13,11 +13,6 @@ class NotificationController extends Controller
     public function getNotification(Request $request,$id_user){
         $get_data = User::find($id_user)->Notifications;
         $get_notificationsUnread = User::find($id_user)->unreadNotifications;
-        // $get_data = $get_data->unreadNotifications;
-        // $datas = [];
-        // foreach($get_data as $data){
-        //     $datas = $data->unreadNotifications;
-        // }
         return response()->json([
             'data' => $get_data,
             'notificationUnread' => $get_notificationsUnread,

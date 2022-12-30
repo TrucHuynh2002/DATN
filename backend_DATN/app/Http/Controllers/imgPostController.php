@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class imgPostController extends Controller
 {
+
     public function show()
     {
         $data = DB::table('img_post')->get();
@@ -17,6 +18,7 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_one()
     {
         $data = DB::table('img_post')->first();
@@ -25,19 +27,7 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
-    // public function show_tv()
-    // {
-    //     $data = DB::table('img_post')
-    //     ->join('post', 'img_post.id_post', '=', 'post.id_post')
-    //     ->join('users', 'post.id_user', '=', 'users.id_user')
-    //     ->where('post.role', '=', '0')
-    //     ->orderBy('img_post.id_post', 'DESC')
-    //     ->get();
-    //     return response()
-    //         ->json([
-    //             'data' => $data
-    //         ]);
-    // }
+
     public function show_id(Request $request, $id)
     {
         $data = imgPost::find($id);
@@ -46,6 +36,7 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_img_detail(Request $request, $id)
     {
         $data = DB::table('img_post')
@@ -58,6 +49,7 @@ class imgPostController extends Controller
                 'data' => $data
             ]);
     }
+
     public function created_at(Request $request)
     {
         $imgPost = new imgPost();
@@ -72,6 +64,7 @@ class imgPostController extends Controller
                 'status' => true
             ]);
     }
+    
     public function update(Request $request, $id)
     {
         $imgPost = imgPost::find($id);

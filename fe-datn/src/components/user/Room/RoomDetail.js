@@ -101,12 +101,6 @@ function RoomDetail() {
                             </div>
                         </div>
                     </div>
-                    <div className='master-information'>
-                       
-                       <b>Thông tin chủ phòng</b>
-             
-                  
-                      </div>
                     <div className="product-count">
                        <div>
                             <Link to={`../square/${a.id_post}`} className="round-black-btn">
@@ -120,11 +114,12 @@ function RoomDetail() {
                                 <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
                             </Button>
                        </div>
-                           
-                     
-                       
-
-
+                       <div>
+                            <Link to={`../profile/${a.id_user}`} className="round-black-btn">
+                             <span className='xempt'> Xem thông tin chủ trọ</span>
+                            </Link>
+                            
+                       </div>
                     </div>
                     
                     

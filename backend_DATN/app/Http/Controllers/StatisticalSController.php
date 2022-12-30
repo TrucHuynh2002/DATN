@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 
 class StatisticalSController extends Controller
 {
+    
     public function count_category(Request $request)
     {
         $count_category = Category::all()->count();
@@ -27,6 +28,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_roomType(Request $request)
     {
         $count_roomType = RoomType::all()->count();
@@ -36,6 +38,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_post(Request $request)
     {
         $count_post = Post::all()->count();
@@ -45,6 +48,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_blog(Request $request)
     {
         $count_blog = Blog::all()->count();
@@ -54,6 +58,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_furniture(Request $request)
     {
         $count_furniture = Furniture::all()->count();
@@ -63,6 +68,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_comment(Request $request)
     {
         $count_comment = CommentModel::all()->count();
@@ -72,6 +78,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_user(Request $request)
     {
         $count_user = User::all()->count();
@@ -81,6 +88,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_contact(Request $request)
     {
         $count_contact = ContactModel::all()->count();
@@ -90,6 +98,7 @@ class StatisticalSController extends Controller
                 'status' => true
             ]);
     }
+
     public function count_view(Request $request)
     {
         $count_view = View::all()->sum('view_index');
@@ -102,42 +111,23 @@ class StatisticalSController extends Controller
 
     public function count_MonthRoom(Request $request, $id)
     {
-        // $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
-        //     ->join('users','post.id_user','users.id_user')
-        //     ->where('post.id_user','=',$id)
-        //     ->where('room_number.status','=',2)->sum('post.room_price');
-        
         $count_MonthRoom = Bill::join('room_number','bill.id_roomNumber','room_number.id')
             ->join('post','post.id_post','=','room_number.id_post')
             ->join('users','post.id_user','users.id_user')->select('bill.created_at','bill.all_money')
             ->where('post.id_user','=',$id)
             ->where('room_number.status','=',2)
-            // ->where('bill.created_at' ,'=', Carbon::now('Asia/Ho_Chi_Minh')->format('y'))
             ->get();
-            // $data = Bill::find(1);
-            // $month = $sum_RevenueRoom->created_at->month;
-        //     if($request->filter){
-        //         if($request->filter == 1){
-        //             $get_monthNow = Carbon::now('Asia/Ho_Chi_Minh')->format('y');
-        //         }
-        //     }
-        // $get_monthNow = Carbon::now('Asia/Ho_Chi_Minh')->format('y');
-        // $count_MonthRoom->created_at->format('m-y');
         return response()
             ->json([
                 'data' => $count_MonthRoom,
-                // 'now' => $count_MonthRoom->created_at->format('m-y'),
                 'status' => true               
         ]);
     }
-    // doanh thu
+
+    
     public function count_RevenueRoom(Request $request, $id)
     {
-        // $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
-        //     ->join('users','post.id_user','users.id_user')
-        //     ->where('post.id_user','=',$id)
-        //     ->where('room_number.status','=',2)->sum('post.room_price');
-        
+        // doanh thu
         $sum_RevenueRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
             ->join('users','post.id_user','users.id_user')
             ->join('bill','room_number.id','bill.id_roomNumber')
@@ -150,9 +140,10 @@ class StatisticalSController extends Controller
                 'status' => true               
         ]);
     }
-     // phong trong
+     
     public function count_EmptyRoom(Request $request, $id)
     {
+        // phong trong
         $count_EmptyRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
             ->join('users','post.id_user','users.id_user')
             ->where('room_number.id_user','=',$id)
@@ -163,9 +154,10 @@ class StatisticalSController extends Controller
                 'status' => true               
         ]);
     }
-    // phong dat coc
+    
     public function count_DepositRoom(Request $request, $id)
     {
+        // phong dat coc
         $count_DepositRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
         ->join('users','post.id_user','users.id_user')
         ->where('post.id_user','=',$id)
@@ -176,9 +168,10 @@ class StatisticalSController extends Controller
                 'status' => true
         ]);
     }
-    // phong so huu
+    
     public function count_OwnershipRoom(Request $request, $id)
     {
+        // phong so huu
         $count_OwnershipRoom = RoomNumberModel::join('post','post.id_post','=','room_number.id_post')
         ->join('users','post.id_user','users.id_user')
         ->where('room_number.id_user','=',$id)

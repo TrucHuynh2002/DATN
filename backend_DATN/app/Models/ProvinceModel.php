@@ -9,11 +9,10 @@ class ProvinceModel extends Model
 {
     use HasFactory;
     protected $table = 'province';
-    // protected $primaryKey = 'id_favorite';
+    protected $primaryKey = 'id_favorite';
     // public $timestamps = true;
     protected $fillable = [
         '_name',
         '_code',
-        // 'status'
     ];
 }

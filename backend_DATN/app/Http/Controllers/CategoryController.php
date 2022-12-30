@@ -22,6 +22,7 @@ class CategoryController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
         $data = Category::find($id);
@@ -30,6 +31,7 @@ class CategoryController extends Controller
                 'data' => $data
             ]);
     }
+
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -58,6 +60,7 @@ class CategoryController extends Controller
                 'status' => true
             ]);
     }
+    
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
@@ -86,6 +89,7 @@ class CategoryController extends Controller
                 'status' => true
             ]);
     }
+    
     public function delete(Request $request, $id)
     {
         $category = Category::find($id);

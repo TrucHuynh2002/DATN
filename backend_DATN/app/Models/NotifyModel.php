@@ -11,7 +11,6 @@ class NotifyModel extends Model
     protected $table = "notify";
     protected $primaryKey = 'id_notify';
     // public $timestamps = true;
-    // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'id_post',
         'id_user',

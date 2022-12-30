@@ -27,13 +27,13 @@ class comment_QAController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_QA(Request $request)
     {
         $data = DB::table('comment_qa')
             ->join('users', 'comment_qa.id_user', '=', 'users.id_user')
             ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
             ->whereNull('comment_qa.parent_id')
-            // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->get();
         $data_child = DB::table('comment_qa')
@@ -41,7 +41,6 @@ class comment_QAController extends Controller
             ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
             ->select('comment_qa.content', 'users.full_name', 'img_user.link_img_user', 'comment_qa.created_at', 'comment_qa.id_comment_qa', 'comment_qa.parent_id', 'comment_qa.id_user')
             ->whereNot('comment_qa.parent_id', '=', "NULL")
-            // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->get();
         return response()
@@ -51,6 +50,7 @@ class comment_QAController extends Controller
                 'data_child' => $data_child
             ]);
     }
+
     public function Comment_QA_Add(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -103,7 +103,6 @@ class comment_QAController extends Controller
                 ->first();
             $ParentCommentQa = User::find($ReplyCommentQA->id_user);
             if ($request->id_qa != $ReplyCommentQA->id_qa) {
-                // Notification::send($ParentCommentQa,new ReplyParentCommentQA($CommentQA,$QAOwner,$ReplyCommentQA));
                 if($request->id_user != $ReplyCommentQA->id_user){
                     Notification::send($ownerQaId, new ReplyCommentQANotification($CommentQA, $QAOwner, $ReplyCommentQA));
 
@@ -181,6 +180,7 @@ class comment_QAController extends Controller
             'dataChild' => $get_inforOwnerChild
         ]);
     }
+    
     public function Count_Comment(Request $request, $id_qa)
     {
         $Count_Comment = comment_QAModel::where('id_qa', '=', $id_qa)->where('parent_id', '=', null)->count();

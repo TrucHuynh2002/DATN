@@ -15,7 +15,5 @@ class QAModel extends Model
         'id_comment_qa',
         'content',
         'parent_id'
-
-        // 'id_img_qa',
     ];
 }

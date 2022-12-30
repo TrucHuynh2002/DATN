@@ -30,7 +30,7 @@
     {{-- <img src="{{asset('uploads/logo/logo.png')}}" width="100px" height="100px"> --}}
     </div>
     <div class="body">
-        {{-- <h2>Chuc mừng bạn đến với Nhà Tui</h2> --}}
+        {{-- <h2>Chuc mừng bạn đến với Tìm trọ sinh viên</h2> --}}
         <b>Hello, bạn {{$user->full_name}} </b>
         <p>Bạn vừa gửi yêu cầu trả phòng thành công</p>
         <p>Nhấp <a href="https://timtrosinhvien.com/login">vào đây</a> để xem chi tiết</p>
@@ -38,7 +38,7 @@
     </div>
     <div class="footer">
         <p>Thân,<br>
-        Nhà Tui</p>
+        Tìm trọ sinh viên</p>
     </div>
     </div>
 </body>
