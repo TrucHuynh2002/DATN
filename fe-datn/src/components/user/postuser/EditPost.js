@@ -12,7 +12,6 @@ function EditPost() {
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);
     const [listWard, setListWard] = useState([]);
-    const [listStreet, setStreet] = useState([]);
     // tỉnh  
     const getDataProvince = async () => {
         const res = await axios.get(`${url}/post/show_province`);
@@ -28,11 +27,6 @@ function EditPost() {
         const resss = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
         setListWard(resss.data.data);
     }     
-    // đường 
-    const getDataStreet = async (id_province = '', id_district = '') => {
-        const resss = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-        setStreet(resss.data.data);       
-    }
     const [addProvince, setProvince] = useState('');
     const handleProvince = async (e) => {
         setProvince(e.target.value);
@@ -41,7 +35,6 @@ function EditPost() {
     }
     const handleDistrict = async (e) => {
         getDataWard(e.target.value,addProvince);
-        getDataStreet(addProvince,e.target.value);
         setEditPost({ ...editPost, [e.target.name]: e.target.value});
         
     }
@@ -141,13 +134,9 @@ function EditPost() {
         formData.append('electricity_price', editPost.electricity_price);
         formData.append('id_roomType', editPost.id_roomType);
         formData.append('id_user', editPost.id_user);
-        // formData.append('meta_keywords', editPost.meta_keywords);
-        // formData.append('meta_description', editPost.meta_description);
-        // formData.append('meta_title', editPost.meta_title);
         formData.append('quantity', editPost.quantity);
         formData.append('room_price',  editPost.room_price);
         formData.append('water_price', editPost.water_price);
-        // formData.append('id_street',editPost.id_street)
         for(let i = 0; i<checkFur.length; i++){
 
             formData.append('id_furniture[]',checkFur[i]);
@@ -155,7 +144,6 @@ function EditPost() {
         formData.append('id_province',editPost.id_province);
         formData.append('id_district',editPost.id_district);
         formData.append('id_ward',editPost.id_ward);
-        // formData.append('id_street',editPost.id_street);
         const res =  await axios.post(`${url}/post/update/${id_post}?_method=PUT`, formData);
         if(res.data.status === true){
             fetch_data();
@@ -181,8 +169,6 @@ function EditPost() {
         getDataDistrict();
         // Xã
         getDataWard();
-        // Đường
-        // getDataStreet(); 
     }
     
 
@@ -231,9 +217,7 @@ function EditPost() {
          
            (
                 <div className="preview-image preview-show-3 col-lg-4 col-xm-12">
-                  {/* <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div> */}
                   <div className="image-zone"><img id="pro-img-3" src={editPost.link_img} alt="No_Image" /></div>
-                  {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
                 </div> 
             )
         
@@ -257,7 +241,6 @@ function EditPost() {
                 <div className="preview-image preview-show-3 col-lg-4 col-xm-12" key={i}>
                   <div className="image-cancel" data-no={1} onClick={(e) => handleDeleteImage(e,img.id_img_post)} >x</div>
                   <div className="image-zone"><img id="pro-img-3" src={img.link_img_user} alt="No_Image" /></div>
-                  {/* <div className="tools-edit-image"><a href="javascript:void(0)" data-no={3} className="btn btn-light btn-edit-image">edit</a></div> */}
                 </div> 
             )
           })
@@ -325,10 +308,6 @@ function EditPost() {
                                     {
                                     
                                     listProvince.map((room, index) => {
-                                        // editPost.id_province &&
-                                        //  room.id == editPost.id_province 
-                                        // &&
-                                        // getDataDistrict(({id_province : editPost.id_province}).undefined);
 
                                         return (
                                           
@@ -369,7 +348,6 @@ function EditPost() {
                                         editPost.id_ward && editPost.id_ward
                                           
                                         ?
-                                        // <option selected  key={index} value={room.id}>{room._name}</option>
                                         <option selected key={index} value={room.id}>{room._name}</option>
                                         : 
                                         <option  key={index} value={room.id}>{room._name}</option>                                       
@@ -378,24 +356,6 @@ function EditPost() {
                             </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
-                        {/* <Form.Group className="mb-12 id_street">
-                            <Form.Label>Đường</Form.Label>
-                            <Form.Select name="id_street"
-                            onChange = {(e) => handleChange(e)}
-                            >
-                                <option>Đường</option>
-                                {listStreet.map((room, index) => {
-                                    return (
-                                        room.id == editPost.id_street
-                                        ?
-                                        <option selected key={index} value={room.id}>{room._name}</option>
-                                        :
-                                        <option key={index} value={room.id}>{room._name}</option>
-                                    );
-                                })}       
-                            </Form.Select>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                        </Form.Group> */}
                         <Form.Group className="mb-3 address">
                             <Form.Label>Địa chỉ</Form.Label>
                             <Form.Control type="text" name="address" className=""
@@ -450,20 +410,6 @@ function EditPost() {
                                 {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.id_roomType[0]}</div>}
                             </Form.Select>
                         </Form.Group>
-                        {/* <Form.Group className="mb-3 meta_keywords">
-                            <Form.Label>Từ khóa - Seo</Form.Label>
-                            <Form.Control type="text" name="meta_keywords" className='' 
-                            value={editPost.meta_keywords}
-                            onChange = {(e) => handleChange(e)}/>
-                            {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_keywords[0]}</div>}
-                        </Form.Group>
-                        <Form.Group className="mb-3 meta_description">
-                            <Form.Label>Mô tả tiêu đề - Seo</Form.Label>
-                            <Form.Control as="textarea" name="meta_description" className="" rows={3} 
-                            value={editPost.meta_description}
-                            onChange = {(e) => handleChange(e)}/>
-                            {alert.err_list.status === false && <div className="notice warning_____">{alert.err_list.messages.meta_description[0]}</div>}
-                        </Form.Group> */}
                     </Col>
                     <div className="d-grid gap-2">
                         {alert.err_list.status === true && <div className="notice success_____">Cập nhật thành công</div>}

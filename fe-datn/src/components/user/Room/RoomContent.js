@@ -59,15 +59,6 @@ function RoomND() {
   const [getDataSearch,setGetDataSearch] = useState({
     typeRooms:[]
   });
-  const [fix, setFix] = useState(false)
-  function setFixed() {
-    if(window.scrollY >= 100) {
-      setFix(true)
-    } else {
-      setFix(false)
-    }
-  }
-  window.addEventListener("scroll", setFixed)
   const {typeRooms} = getDataSearch
     const {
       keywords,
@@ -93,7 +84,6 @@ function RoomND() {
   
   const handleDistrict = async (e) => {
     getDataWard(({[e.id_district] : e.target.value}).undefined)
-    getDataStreet(({[e.id_district] : e.target.value}).undefined)
     setKeyword({ ...keyword,district:e.target.value})
 }
   // huyện 
@@ -106,13 +96,7 @@ function RoomND() {
       var id_province = addProvince.undefined;
       const res = await axios.get(`${url}/post/show_wardSearch?id_province=${id_province}&&id_district=${id_district}`);
       setListWard(res.data.data);
-  }     
-  // đường 
-  const getDataStreet = async (id_district) => {
-      var id_province = addProvince.undefined;
-      const res = await axios.get(`${url}/post/show_tree?id_province=${id_province}&&id_district=${id_district}`);
-      setStreet(res.data.data);
-  }     
+  }        
   const [searching,setSearching] = useState(false);
   const [getKeywords,setgetKeywords] = useState([]);
   const [getDataPostSearch,setGetDataPostSearch] = useState([]);
@@ -145,9 +129,8 @@ function RoomND() {
             <div className="container ">
             {/* <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}> */}
             <div className="row room_search">
-                <div className={fix ? 'scroll_search' : 'col-lg-11 col-md-11 col-sm-11 timkiemRoom-div'}>
+                <div className='col-lg-11 col-md-11 col-sm-11 timkiemRoom-div'>
                   <input className="form-control timkiemRoom" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
-                  {/* <i className='fa fa-search' style={{color:"#0d3380"}}></i> */}
                 </div>
               <div className='locRoom col-lg-1 col-md-1 col-sm-1'>
                 <Button   

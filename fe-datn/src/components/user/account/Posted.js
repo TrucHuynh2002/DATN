@@ -49,12 +49,6 @@ function Posted() {
                     <div className='account_content____'>
                         <h1 className="name_title"><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h1>
                         <h3 className="content___">{post.description_sort}</h3>
-                        {/* {InfoAccount.map((a, index) => {
-                                return a.id_user == post.id_user && (
-                                    <img src={a.link_img_user} alt='' className="avtuser" key={index} /> 
-                        );})}
-                        <span> {post.full_name} | </span>
-                        <span> {post.address}  | </span> */}
                         <span> {post.created_at} </span>
                     </div>
                     {!user ? <div></div> :

@@ -23,9 +23,7 @@ const getDataRoomBooking = async () => {
     setData(res.data)
 }
 
-// const [alertBookingRoom,setAlertBookingRoom] = useState(0);
 const handleBookingRoom = async () => {
-    // let res =  await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}`);
 }
 
 useEffect(() => {
@@ -59,7 +57,6 @@ useEffect(() => {
                         <h3>Tên người thuê phòng : <strong>{data.OnwerBookingRoom ? data.OnwerBookingRoom.full_name : ''}</strong></h3>
                         <h3>Số điện thoại :<strong>{!data.OnwerBookingRoom ? '' : data.OnwerBookingRoom.phone}</strong></h3>
                         <h3>Email :  <strong>{!data.OnwerBookingRoom ? '' : data.OnwerBookingRoom.email}</strong></h3>
-                        {/* <h3>Địa chỉ :  Ninh Kiều, Cần Thơ</h3> */}
                     </div>   
                     <hr />             
                     <div className='col-lg-12'>

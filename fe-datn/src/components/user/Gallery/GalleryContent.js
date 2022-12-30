@@ -18,13 +18,11 @@ function GalleryContent() {
   },[]);
   const [ListSearchTrend, setListSearchTrend] = useState([]);
   const [ListDataPostTrend, setDataPostTrend] = useState([]);
-  console.log(ListDataPostTrend)
   const [ListDataPostTrendShow, setDataPostTrendShow] = useState([]);
   const getData = async () => {
     const res = await axios.get(`${url}/trendPost`);
     setListSearchTrend(res.data.data);
     setDataPostTrend(res.data.post);
-    console.log(res.data.post)
   };
   const getDataPostTrendShow = async (keyword) => {
     let res = await axios.get(`${url}/searchAll?keyword=${keyword}`);

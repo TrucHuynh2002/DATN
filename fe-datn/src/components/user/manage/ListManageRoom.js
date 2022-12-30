@@ -4,15 +4,10 @@ import axios from 'axios';
 import { Button, Modal, Form } from 'react-bootstrap';
 import Pagination from '../Pagination';
 import { url } from '../../url';
-import { Line, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import EditManage from './EditManage';
 import ChartManage from './ChartManage';
 import { TabTitle } from '../../title';
 
-ChartJS.register(
-    LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Title, ArcElement, Legend
-);
 function ListManageRoom() {
     TabTitle('Quản lý phòng');
     const {id_user} = useParams();

@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { useParams } from 'react-router-dom';
 import { url } from '../../url';
-import { ArcElement, CategoryScale, Chart as ChartJS, LinearScale, LineElement, PointElement } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-ChartJS.register(
-    LineElement, CategoryScale, LinearScale, PointElement, ArcElement);
 
 function ChartManage() {
-  //  chartjs line
 
 var user = JSON.parse(localStorage.getItem("user"));
 const id_user = user[0].id;
@@ -43,17 +37,7 @@ const getData = async () => {
   setListMonthRoom(MonthRoom.data.data);
 
 }
-const dataLine = {
-  labels: listMonthRoom.map((pr,i) =>  moment(pr.created_at).format('DD-MM-YYYY')),
-  datasets: [{
-      data: listMonthRoom.map((pr,i) =>  pr.all_money),
-      backgroundColor: 'transparent',
-      borderColor: 'red',
-      pointBorderWidth: 4,
-      tension: 0.5
-  }]
-};
-    
+  
   return (
     <>
       <div className="content_profile">
@@ -86,11 +70,6 @@ const dataLine = {
                 </div>
               </div>
             </div>
-            {/* <div className='search_chart'>
-              Lọc <input type="date" name='' className='search_input' />
-            </div> */}
-            {/* <Line data={dataLine}></Line>
-            <div className="name_bieudo"><h5><span>Biểu đồ :</span> Thống kê doanh thu theo tháng của trang web</h5></div> */}
           </div>
         </div>
       </div>

@@ -18,12 +18,10 @@ function QA() {
   const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
-  const [listImg, setListImg] = useState([]);
   const [listCountComment, setListCountComment] = useState([]);
   const [listComment, setListComment] = useState([]);
   const [listChildComment, setListChildComment] = useState([]);
   const [loader,setLoader] = useState(0);
-  const [getIdComment,setGetIdComment] = useState(undefined);
   const [Reply,setReply] = useState({
     activeComment: false,
     id:""
@@ -58,7 +56,6 @@ function QA() {
     setLoader(loader + 1)
     setUpdateComment({...UpdateComment,activeUpdateComment:false})
   }
-  const [CommentReply,setCommentReply] = useState('');
   const {
     activeComment,
     id
@@ -115,9 +112,7 @@ function QA() {
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
     formData.append('child_idComment',childIdComment)
-    // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     const res = await axios.post(`${url}/comment_qa/create`,formData);
-    console.log(res.data)
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
       const ress = await axios.post(`${url}/noty_qa/create`, addNotify);

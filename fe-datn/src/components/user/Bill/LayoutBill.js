@@ -16,7 +16,7 @@ function LayoutBill() {
             setDataChart(res.data.data)
         }   
     }
-    // Nếu k có đường dẫn sau đó là :id_user thì trả về trang lỗi
+    
   return (
     <>
         <div className="back_re">
