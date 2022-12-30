@@ -238,7 +238,7 @@ function QA() {
                       <h3>{listQa.title}</h3>
                       <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
                       <div className='ActionIconl'>
-                            <Love props={{id_qa:listQa.id_qa, id_user: id_user}} />
+                            <Love props={{id_qa:listQa.id_qa, id_user: user ? user[0].id : ''}} />
                             <CommentQA props={{id_qa:listQa.id_qa, loader: loader}} />
                       </div>
                       <hr />
