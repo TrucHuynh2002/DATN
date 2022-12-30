@@ -363,10 +363,7 @@ button {
 .navigation.navbar {
     float: right;
     padding-top: 20px !important;
-    padding-bottom: 20px !important;
-    padding-left: 150px;
-    padding-right: 175px;
-    
+    padding-bottom: 20px !important;    
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link {
@@ -799,12 +796,8 @@ label{
 }
 
 .search_room_btn {
-    background-color: #ffc70d;
     border-radius: 5px;
-    font-weight: 800;
-    color: #0d3380;
     background-color: var(--background-color);
-    border-radius: 0px;
     color: var(--text-color);
     font-size: 16px;
     font-weight: 600;
@@ -819,23 +812,20 @@ label{
     border: none;
 }
 .search_room_btn2 {
-    background-color: #ffc70d;
+    background-color: var(--background-color);
     border-radius: 5px;
-    font-weight: 800;
-    color: #0d3380;
+    color: var(--text-color);
     border: none;
     font-size: 16px;
     font-weight: 600;
     padding: 10px 0;
     width: 163px;
-    
 }
 .search_room_btn:hover {
-    background-color: #ca9c04;
+    background-color: var(--background-color);
     transition:0.5s ease;
     border-radius: 5px;
-    font-weight: 800;
-    color: #0d3380;
+    color: var(--text-color);
     font-size: 16px;
     font-weight: 600;
     padding: 10px 0;
@@ -1950,12 +1940,6 @@ ul.social_icon li a:hover {
     color: #2e9da1;
     font-size: 27px;
 }
-.timkiem{
-    width: 100% !important;
-    padding: 5px;
-    border: 1px solid #bebebe;
-    border-radius: 5px;
-}
 .timkiemRoom{
     width: 92% !important;
     padding: 5px;
@@ -1973,21 +1957,21 @@ ul.social_icon li a:hover {
 .timkiemRoom3{
     width: 10% !important;
     padding: 5px;
-    border: 1px solid #ffc72b;
+    border: 1px solid var(--background-color);
     border-radius: 5px;
     margin-top: -5px;   
     margin-left: 10px;
-    color: #0d3380;
-    background-color: #ffc72b ;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 .timkiemRoom3:hover{
     width: 10% !important;
     padding: 5px;
-    border: 1px solid #cd9806;
+    border: 1px solid var(--background-color);
     border-radius: 5px;
     margin-top: -5px;   
     margin-left: 10px;
-    color: #0d3380;
+    color: var(--text-color);
     background-color: #cd9806 ;
     transition: ease 0.5s;
 }
@@ -2809,9 +2793,6 @@ margin: 0 300px 0 375px;
     margin-left: 30px;
     background-color: yellow;
 }
-.logo{
-    margin-left: 94px;
-}
 .room_number____{
     text-align: right;
 }
@@ -2955,7 +2936,8 @@ margin: 10px 10px 0 10px;
 }
 
 .dropdown-menu{
-    width:400px !important;
+    width:362px !important;
+    left: -212px
     /* right: 30px !important */
 }
 
@@ -3267,13 +3249,8 @@ margin-top: 30px;
     padding: 5px;
     width: 100%;
     border-radius: 0px;
+    border-radius: 5px;
 }
-/* .scroll_search{
-    width: 100%;
-    height: 200px;
-    position: fixed;
-    top: -300px;
-} */
 .btn-search {
     position: relative;
 }
