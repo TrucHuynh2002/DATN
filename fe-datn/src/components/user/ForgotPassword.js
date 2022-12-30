@@ -44,6 +44,7 @@ function ForgotPassword() {
         color={'#0d3380'}
         loading={loading}
         size={100}
+        style={{display: 'inherit', position: 'relative', height: '100px', transform: 'rotate(165deg)'}}
         />
         :
         <>
