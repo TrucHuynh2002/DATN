@@ -162,33 +162,33 @@ class ConfigController extends Controller
         }
     }
 
-    public function banner(Request $request)
-    {
-        //BANNER
-        $get_image_banner = $request->file('banner');
-        if ($request->file('banner')) {
-            foreach ($request->file('banner') as $img) {
-                $get_name_image_banner = $img->getClientOriginalName();
-                $path = 'uploads/banner/';
-                $name_image_banner  = current(explode('.', $get_name_image_banner));
-                $name_image_banner = explode('.', $get_name_image_banner);
-                $new_image_banner = $name_image_banner[0] . rand(0, 99);
-                $img->move($path, $new_image_banner);
-                // $imgPost->img = $new_image;
-                $imgbanner = new banner_configModel();
-                $imgbanner->link_img_banner = env('APP_URL') . '/uploads/banner/' . $new_image_banner;
-                $imgbanner->id_config = 1; // khóa ngoại
-                $imgbanner->save();
-            }
-            return response()->json([
-                'status' => true,
-                'message' => "Cập nhật thành công"
-            ]);
-        }
-        return response()->json([
-            'status' => false,
-            'message' => "Cập nhật thất bại",
-            'data' => $request->file('banner')
-        ]);
-    }
+    // public function banner(Request $request)
+    // {
+    //     //BANNER
+    //     $get_image_banner = $request->file('banner');
+    //     if ($request->file('banner')) {
+    //         foreach ($request->file('banner') as $img) {
+    //             $get_name_image_banner = $img->getClientOriginalName();
+    //             $path = 'uploads/banner/';
+    //             $name_image_banner  = current(explode('.', $get_name_image_banner));
+    //             $name_image_banner = explode('.', $get_name_image_banner);
+    //             $new_image_banner = $name_image_banner[0] . rand(0, 99);
+    //             $img->move($path, $new_image_banner);
+    //             // $imgPost->img = $new_image;
+    //             $imgbanner = new banner_configModel();
+    //             $imgbanner->link_img_banner = env('APP_URL') . '/uploads/banner/' . $new_image_banner;
+    //             $imgbanner->id_config = 1; // khóa ngoại
+    //             $imgbanner->save();
+    //         }
+    //         return response()->json([
+    //             'status' => true,
+    //             'message' => "Cập nhật thành công"
+    //         ]);
+    //     }
+    //     return response()->json([
+    //         'status' => false,
+    //         'message' => "Cập nhật thất bại",
+    //         'data' => $request->file('banner')
+    //     ]);
+    // }
 }

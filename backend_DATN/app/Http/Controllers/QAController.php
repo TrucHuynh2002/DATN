@@ -64,21 +64,21 @@ class QAController extends Controller
         $qa->id_user = $request->id_user;
         $qa->content = $request->content;
         $Get_qa = QAModel::orderby('id_qa', 'DESC')->first();
-        $get_image = $request->file('img');
-        if ($request->file('img')) {
-            foreach ($get_image as $img) {
-                $get_name_image = $img->getClientOriginalName();
-                $path = 'uploads/';
-                $name_image  = current(explode('.', $get_name_image));
-                $name_image = explode('.', $get_name_image);
-                $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path, $new_image);
-                $imgqa = new img_QAModel();
-                $imgqa->link_img_qa = env('APP_URL') . '/uploads/' . $new_image;
-                $imgqa->id_qa = $Get_qa->id_qa+1; // khóa ngoại
-                $imgqa->save();
-            }
-        }
+        // $get_image = $request->file('img');
+        // if ($request->file('img')) {
+        //     foreach ($get_image as $img) {
+        //         $get_name_image = $img->getClientOriginalName();
+        //         $path = 'uploads/';
+        //         $name_image  = current(explode('.', $get_name_image));
+        //         $name_image = explode('.', $get_name_image);
+        //         $new_image = $name_image[0] . rand(0, 99);
+        //         $img->move($path, $new_image);
+        //         $imgqa = new img_QAModel();
+        //         $imgqa->link_img_qa = env('APP_URL') . '/uploads/' . $new_image;
+        //         $imgqa->id_qa = $Get_qa->id_qa+1; // khóa ngoại
+        //         $imgqa->save();
+        //     }
+        // }
         $qa->save();
         return response()
             ->json([
@@ -96,24 +96,5 @@ class QAController extends Controller
                 'data' =>  $qaDelete,
                 'status' => true
             ]);
-    }
-
-    public function getAllCommentPostUserOwner(Request $request,$id_user){
-        $get_inforOwnerParent = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->join('users','users.id_user','=','comment_qa.id_user')
-            ->where('qa.id_user','=',$id_user)
-            ->where('parent_id','=',NULL)
-            ->get();
-        $get_inforOwnerChild = DB::table('comment_qa')->join('qa','comment_qa.id_qa','=','qa.id_qa')
-            ->join('users','users.id_user','=','comment_qa.id_user')
-            ->where('qa.id_user','=',$id_user)
-            ->whereNot('parent_id','=',NULL)
-            ->get();
-
-        return response()->json([
-            'status' => true,
-            'dataParent' => $get_inforOwnerParent,
-            'dataChild' => $get_inforOwnerChild
-        ]);
     }
 }

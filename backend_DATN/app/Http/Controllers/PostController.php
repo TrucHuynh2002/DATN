@@ -106,17 +106,6 @@ class PostController extends Controller
             ]);
     }
 
-    public function show_district(Request $request)
-    {
-        $data = districtModel::where('district._province_id', '=', $request->id_province)->get();
-        return response()
-            ->json([
-                'data' => $data,
-                'status' => true,
-
-            ]);
-    }
-
     public function show_districtSearch(Request $request)
     {
         if ($request->id_province) {

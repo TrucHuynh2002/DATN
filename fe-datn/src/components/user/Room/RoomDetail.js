@@ -121,8 +121,6 @@ function RoomDetail() {
                             
                        </div>
                     </div>
-                    
-                    
                 </div>
             </div>
             <div className="detail_room">

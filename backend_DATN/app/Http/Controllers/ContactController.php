@@ -113,48 +113,15 @@ class ContactController extends Controller
             ]);
     }
 
-    public function ContactDelete(Request $request, $id_contact)
-    {
-        $t = ContactModel::find($id_contact);
-        $t->delete();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
-            ]);
-    }
+    // public function ContactDelete(Request $request, $id_contact)
+    // {
+    //     $t = ContactModel::find($id_contact);
+    //     $t->delete();
+    //     return response()
+    //         ->json([
+    //             'data' => $t,
+    //             'status' => true
+    //         ]);
+    // }
 
-    public function ContactApprove(Request $request, $id_contact)
-    {
-        //phê duyệt hỗ trợ
-        $t = ContactModel::find($id_contact);
-
-        $t->status = $request->status;
-        $t->save();
-        return response()
-                ->json([
-                    'data' => $t,
-                    'status'=> true
-                ]);
-    }
-
-    public function Contact_SelectNotApprove()
-    {
-        $Contact_SelectNotApprove = ContactModel::where('status', '=', '0');
-        return response()
-            ->json([
-                'data' => $Contact_SelectNotApprove,
-                'status' => true
-            ]);
-    }
-
-    public function Contact_SelectApprove()
-    {
-        $Contact_SelectApprove = ContactModel::where('status', '=', '1');
-        return response()
-            ->json([
-                'data' => $Contact_SelectApprove,
-                'status' => true
-            ]);
-    }
 }
