@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { url } from '../../url';
+import HashLoader from "react-spinners/HashLoader";
 
 function RoomND() {
+  const [loading, setLoading] = useState(false);
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [listFur, setListFur] = useState([]);
@@ -14,17 +16,23 @@ function RoomND() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-  // danh sach post
   useEffect(() => {
-    getData();
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+    getData()
+    getSearch()
   },[]);
 
   const [alert, setAlert] = useState({
     err_list: {},
   });  
+  const getSearch = async (keywordss = '') => {
+    const res = await axios.get(`${url}/post/show?keyword=${keywordss}`);
+    setListPost(res.data.data);
+  }
   const getData = async () => {
-    const res = await axios.get(`${url}/post/show`);
-      setListPost(res.data.data);   
     const getImg = await axios.get(`${url}/imgPost/show`);
       setListImg(getImg.data.data); 
     const getFur = await axios.get(`${url}/furniture/show`);
@@ -33,6 +41,7 @@ function RoomND() {
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
     const getDataProvince = await axios.get(`${url}/province/showPostSearch`);
       setListProvince(getDataProvince.data.data);
+    
   };
   // search
   const navigate = useNavigate();
@@ -50,6 +59,15 @@ function RoomND() {
   const [getDataSearch,setGetDataSearch] = useState({
     typeRooms:[]
   });
+  const [fix, setFix] = useState(false)
+  function setFixed() {
+    if(window.scrollY >= 100) {
+      setFix(true)
+    } else {
+      setFix(false)
+    }
+  }
+  window.addEventListener("scroll", setFixed)
   const {typeRooms} = getDataSearch
     const {
       keywords,
@@ -96,10 +114,15 @@ function RoomND() {
       setStreet(res.data.data);
   }     
   const [searching,setSearching] = useState(false);
+  const [getKeywords,setgetKeywords] = useState([]);
+  const [getDataPostSearch,setGetDataPostSearch] = useState([]);
+  const [getimage,setgetImage] = useState([]);
   const handleChangeKeyWord = (e) => {
     setKeyword({ ...keyword,[e.target.name]:e.target.value});
   }
-
+  const handleChangeSearch = (e) => {
+    getSearch(e.target.value)
+  }
   const handleSubmitSearch = e => {
     e.preventDefault()
     navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&stress=${keyword.stress == undefined ? "" : keyword.stress}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
@@ -110,121 +133,145 @@ function RoomND() {
    const handleShow = () => setShow(true);
 
   return (
-    <div className="container ">
-      <div className='timkiemRoom-div'><input className="timkiemRoom" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/></div>
-      <div className='locRoom'>
-      <Button   
-        variant="warning" 
-        style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
-        onClick={handleShow} > Lọc
-        <i className="fa-solid fa-filter" 
-        style={{marginLeft: '7px'}} 
-         ></i>
-     </Button>
-     </div>
-     <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Lọc</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="show-grid">
-          <div className="modal_show">
-            <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Loại phòng</option>
-              { 
-                typeRooms.map((r,i) => {
-                  return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
-                })
-              }
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="fur" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Nội thất</option>
-              {
-                listFur.map((f,i) => {
-                  return <option key={i} value={f.id_furniture}>{f.name}</option>
-                })
-              }
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_province" onChange = {(e) => handleProvince(e)} >
-              <option>Tỉnh</option>
-              {listProvince.map((room, index) => {
-                return (
-                <option key={index} value={room.id_province} >{room._name}</option>
-                );
-                })}
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_district" onChange = {(e) => handleDistrict(e)} >  
-              <option>Quận/Huyện</option>
-              {listDistrict.map((room, index) => {
-                return (
-                <option key={index} value={room.id_district}>{room._name}</option>
-                );
-              })}       
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_ward"onChange = {(e) => handleChangeKeyWord(e)} > 
-            <option>Xã/Phường</option>
-            {listWard.map((room, index) => {
-              return (
-                <option key={index} value={room.id} >{room._name}</option>
-                );
-            })}       
-            </select>
-          </div>
-          <div className="modal_show">
-            <input type="text" name="stress" className="form-control" placeholder="Nhập tên đường bạn muốn tìm "  value={stress} onChange={(e) => handleChangeKeyWord(e)} />
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Giá</option>
-              <option value={1}>Dưới 1 triệu</option>
-              <option value={2}>Từ 1 - 2 triệu</option>
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Diện tích</option>
-              <option value="1">Dưới 20m</option>
-              <option value="2">Trên 20m</option>
-            </select>
-          </div>
-          <div className="modal_show">
-              <Button type="submit" className='search_room_btn2' onClick={e => handleSubmitSearch(e)} >Lọc </Button> 
-          </div>
-        </Modal.Body>
-      </Modal>
-        <div className="all-room">
-          <div className="row rs_screen">
-                {currentPosts.map((post, index) => {
-                    return (     
-                      <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
-                          <div id="serv_hover" className="room allRoom">
-                              <div className="room_img col-lg-12 col-md-5 col-xs-4">
-                                  <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
-                              </div>
-                              <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
-                                  <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                                  <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
-                                  <p>{post.description_sort}</p>
-                              </div>
-                          </div>
-                      </div>
-                    );
-                  })}
+    <>
+      {loading ? 
+          <HashLoader className='css_loading'
+          color={'#0d3380'}
+          loading={loading}
+          size={100}
+          />
+          :
+          <>
+            <div className="container ">
+            {/* <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}> */}
+            <div className="row">
+                <div className={fix ? 'scroll_search' : 'col-lg-12 col-md-12 col-sm-12 timkiemRoom-div'}>
+                  <input className="form-control timkiemRoom" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
+                  {/* <i className='fa fa-search' style={{color:"#0d3380"}}></i> */}
                 </div>
-                {/* phan trang */}
-                <Pagination totalPost={listPost.length} 
-                postsPerPage={postsPerPage} 
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage} />
-        </div>
-    </div>
+              <div className='locRoom'>
+                <Button   
+                  variant="warning" 
+                  style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
+                  onClick={handleShow} > Lọc
+                  <i className="fa-solid fa-filter" 
+                  style={{marginLeft: '7px'}} 
+                  ></i>
+                </Button>
+              </div>
+            </div>
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Lọc</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="show-grid">
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Loại phòng</option>
+                      { 
+                        typeRooms.map((r,i) => {
+                          return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+                        })
+                      }
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="fur" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Nội thất</option>
+                      {
+                        listFur.map((f,i) => {
+                          return <option key={i} value={f.id_furniture}>{f.name}</option>
+                        })
+                      }
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_province" onChange = {(e) => handleProvince(e)} >
+                      <option>Tỉnh</option>
+                      {listProvince.map((room, index) => {
+                        return (
+                        <option key={index} value={room.id_province} >{room._name}</option>
+                        );
+                        })}
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_district" onChange = {(e) => handleDistrict(e)} >  
+                      <option>Quận/Huyện</option>
+                      {listDistrict.map((room, index) => {
+                        return (
+                        <option key={index} value={room.id_district}>{room._name}</option>
+                        );
+                      })}       
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_ward"onChange = {(e) => handleChangeKeyWord(e)} > 
+                    <option>Xã/Phường</option>
+                    {listWard.map((room, index) => {
+                      return (
+                        <option key={index} value={room.id} >{room._name}</option>
+                        );
+                    })}       
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <input type="text" name="stress" className="form-control" placeholder="Nhập tên đường bạn muốn tìm "  value={stress} onChange={(e) => handleChangeKeyWord(e)} />
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Giá</option>
+                      <option value={1}>Dưới 1 triệu</option>
+                      <option value={2}>Từ 1 - 2 triệu</option>
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Diện tích</option>
+                      <option value="1">Dưới 20m</option>
+                      <option value="2">Trên 20m</option>
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                      <Button type="submit" className='search_room_btn2' onClick={e => handleSubmitSearch(e)} >Lọc </Button> 
+                  </div>
+                </Modal.Body>
+              </Modal>
+                <div className="all-room">
+                  <div className="row rs_screen">
+                        {currentPosts.length > 0 ? currentPosts.map((post, index) => {
+                          return (     
+                            <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
+                                <div id="serv_hover" className="room allRoom">
+                                    <div className="room_img col-lg-12 col-md-5 col-xs-4">
+                                        <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+                                    </div>
+                                    <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
+                                        <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
+                                        <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
+                                        <p>{post.description_sort}</p>
+                                    </div>
+                                </div>
+                            </div>
+                          );
+                        })
+                        :(
+                          <div className="col-md-4 col-sm-6 searchroom">
+                              <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
+                                  <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
+                          </div>
+                      )}
+                        </div>
+                        {/* phan trang */}
+                        <Pagination totalPost={listPost.length} 
+                        postsPerPage={postsPerPage} 
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage} />
+                </div>
+            </div>
+          </>
+      }
+    </>
   )
 }
 
