@@ -28,6 +28,6 @@ class ReplyContactUser extends Mailable
      */
     public function build()
     {
-        return $this->subject('Phản hồi hỗ trợ từ Nhà Tui')->view('email.SendmailReplyContact')->with(['user' => $this->user]);
+        return $this->subject('Phản hồi hỗ trợ từ Tìm trọ sinh viên')->view('email.SendmailReplyContact')->with(['user' => $this->user]);
     }
 }

@@ -11,7 +11,6 @@ class RatingModel extends Model
     protected $table = "post_rate";
     protected $primaryKey = 'id_post_rate';
     // public $timestamps = true;
-    // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'rate',
         'id_post',

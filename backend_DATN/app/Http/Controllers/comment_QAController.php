@@ -42,7 +42,6 @@ class comment_QAController extends Controller
             ->join('users', 'comment_qa.id_user', '=', 'users.id_user')
             ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
             ->whereNull('comment_qa.parent_id')
-            // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
         
             ->get();
@@ -62,6 +61,7 @@ class comment_QAController extends Controller
                 'data_child' => $data_child
             ]);
     }
+
     public function Comment_QA_Add(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -114,7 +114,6 @@ class comment_QAController extends Controller
                 ->first();
             $ParentCommentQa = User::find($ReplyCommentQA->id_user);
             if ($request->id_qa != $ReplyCommentQA->id_qa) {
-                // Notification::send($ParentCommentQa,new ReplyParentCommentQA($CommentQA,$QAOwner,$ReplyCommentQA));
                 if($request->id_user != $ReplyCommentQA->id_user){
                     Notification::send($ownerQaId, new ReplyCommentQANotification($CommentQA, $QAOwner, $ReplyCommentQA));
 
@@ -192,6 +191,7 @@ class comment_QAController extends Controller
             'dataChild' => $get_inforOwnerChild
         ]);
     }
+    
     public function Count_Comment(Request $request, $id_qa)
     {
         $Count_Comment = comment_QAModel::where('id_qa', '=', $id_qa)->where('parent_id', '=', null)->count();

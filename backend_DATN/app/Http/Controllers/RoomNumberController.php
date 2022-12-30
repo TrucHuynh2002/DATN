@@ -8,7 +8,6 @@ use App\Mail\CheckOut;
 use App\Mail\CheckOutAlertSuccess;
 use App\Mail\CheckOutAlertUnSuccess;
 use App\Models\NotificationModel;
-// use App\Models\Bill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\RoomNumberModel;
@@ -35,20 +34,20 @@ class RoomNumberController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_one(Request $request, $id)
     {
         $data = RoomNumberModel::where('id_post', '=', $id)->get();
-        // $data = RoomNumberModel::find($id);
         return response()
             ->json([
                 'data' => $data,
                 'status' => true
             ]);
     }
+
     public function show_postID(Request $request, $id)
     {
         $data = DB::table('room_number')
-            // ->join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
             ->where('room_number.id', '=', $id)
             ->get();
@@ -58,9 +57,9 @@ class RoomNumberController extends Controller
 
             ]);
     }
+
     public function show_id_user_two(Request $request, $id)
     {
-        // $data = RoomNumberModel::where('id_post', '=', $id)->get();
         $data = RoomNumberModel::where('id_user_two', '=', $id)->get();
         return response()
             ->json([
@@ -68,9 +67,9 @@ class RoomNumberController extends Controller
                 'status' => false,
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
-        // $data = RoomNumberModel::where('id_post', '=', $id)->get();
         $data = RoomNumberModel::find($id);
         return response()
             ->json([
@@ -79,7 +78,6 @@ class RoomNumberController extends Controller
             ]);
     }
 
-    
     public function detail_checkRoom(Request $request, $id_roomNumber)
     {
         $user = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
@@ -98,9 +96,10 @@ class RoomNumberController extends Controller
                 'status' => true,
             ]);
     }
-    // Đặt phòng
+
     public function update(Request $request, $id)
     {
+        // Đặt phòng
         $data = RoomNumberModel::find($id);
         $data->status = $request->status;
         $data->id_user_two = $request->id_user_two;
@@ -111,7 +110,6 @@ class RoomNumberController extends Controller
         $user = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
         ->join('post','room_number.id_post','=','post.id_post')
         ->first();
-        // Get Owner Post
         $getOwnerPost = DB::table('room_number')->join('post','post.id_post','room_number.id_post')
                         ->join('users','users.id_user','=','post.id_user')
                         ->select('users.id_user','users.full_name','post.post_name','post.id_post','post.link_img','room_number.room_number','room_number.id')
@@ -123,7 +121,6 @@ class RoomNumberController extends Controller
         }
         $idOwnerPost = User::find($getOwnerPost->id_user);
         Notification::send($idOwnerPost, new NotificationOwnerPost($getOwnerPost,$getOwnerBookRoomPost));
-                // $checkEmail_admin = User::where('email', '=', $request->email)->first();
         
             Mail::to($admin->email)->send(new BookRoomAdmin($user,$admin));
             Mail::to($user_mail->email)->send(new BookRoomUser($user));
@@ -135,6 +132,7 @@ class RoomNumberController extends Controller
             
             ]);
     }
+
     public function update_user(Request $request, $id)
     {
         $data = RoomNumberModel::find($id);
@@ -151,8 +149,6 @@ class RoomNumberController extends Controller
             $data->save();
              if($request->id_notification){
             $notiMaskasRead = DB::table('notifications')->where('id','=',$request->id_notification)->maskAsRead();
-            // $notiMaskasRead->read_at = Carbon::now();
-            // $notiMaskasRead->save();
         }
             return response()
                 ->json([
@@ -167,9 +163,8 @@ class RoomNumberController extends Controller
         ]);
     }
 
-    // Trả phòng
-
     public function checkOutRoom(Request $request,$id){
+        // Trả phòng
         $data = RoomNumberModel::find($id);
         if($data){
             $data->status = 0;
@@ -183,7 +178,6 @@ class RoomNumberController extends Controller
             'status' => true,
         ]);
     }
-
 
     public function bookingRoom(Request $request, $id) {
         $data =  DB::table('room_number')
@@ -209,11 +203,6 @@ class RoomNumberController extends Controller
         ->where('room_number.status','=',2)
         ->orderBy('room_number.id','DESC')
         ->get();
-        // if($request->id_notification){
-        //     $notiMaskasRead = DB::table('notifications')->where('id','=',$request->id_notification)->first();
-        //     $notiMaskasRead->read_at = Carbon::now();
-        //     $notiMaskasRead->save();
-        // }
         return response()
         ->json([
             'mess' => "Thông tin phòng đang đặt",
@@ -221,6 +210,7 @@ class RoomNumberController extends Controller
             'status' => true,
         ]);   
     }
+    
     public function showRoomBookUser(Request $request,$id_user){
         if($id_user && $request->id_post){
             if($request->id_post == null){
@@ -249,6 +239,7 @@ class RoomNumberController extends Controller
             ]);
         }
     }
+
     public function showSendNoti(Request $request,$id_user){
                 $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
                 ->where('room_number.id_user','=',$id_user)
@@ -261,6 +252,7 @@ class RoomNumberController extends Controller
                 ]);
            
     }
+
     public function update_checkRoom(Request $request, $id)
     {
         $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->where('id_user_two', '=', $id)->first();
@@ -274,14 +266,12 @@ class RoomNumberController extends Controller
         $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
         ->join('img_user','users.id_user','=','img_user.id_user')
         ->select('room_number.id_user_two','users.full_name','img_user.link_img_user')
-        // ->where('room_number.id','=',$id)
         ->first();
         
         // Lấy thông tin người chủ phòng
         $User = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
         ->join('post','room_number.id_post','=','post.id_post')
         ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
-        // ->where('room_number.id','=',$id)
         ->first();
         $ownerUserId = User::find($User->id_user);
         Notification::send($ownerUserId,new UpdateRoomNumber($User_two,$User));
@@ -292,15 +282,9 @@ class RoomNumberController extends Controller
                 'id' => $id
             ]);
     }
+
     public function cancelSendNoti(Request $request,$id_roomnumber){
-        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber);
-        $data->check_room = null;
-        $data->status = 0;
-        $data->id_user_two = null;
-        $data->save();
-        if($data){
-            Mail::to($data->email)->send(new CheckOutAlertSuccess($data));
-        }
+        
         // Lấy thông tin người trả phòng
         $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
         ->select('room_number.id_user_two','users.full_name')
@@ -308,6 +292,16 @@ class RoomNumberController extends Controller
         ->first();
         $ownerUserId = User::find($User_two->id_user_two);
         Notification::send($ownerUserId,new ReplyUpdateRoomCancel());
+        
+        $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber)->first();
+        $data->check_room = null;
+        $data->status = 0;
+        $data->id_user_two = null;
+      
+        if($User_two){
+            Mail::to($User_two->email)->send(new CheckOutAlertSuccess($data));
+        }
+        $data->save();
         return response()
         ->json([
             'data' => $data,
@@ -315,6 +309,7 @@ class RoomNumberController extends Controller
         ]);
    
     }
+
     public function deleteSendNoti(Request $request,$id_roomnumber){
         $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber);
         $data->check_room = null;
@@ -327,13 +322,6 @@ class RoomNumberController extends Controller
         ->select('room_number.id_user_two','users.full_name')
         ->where('room_number.id','=',$id_roomnumber)
         ->first();
-        
-        //Lấy thông tin người chủ phòng
-        // $post = RoomNumberModel::join('users','room_number.id_user','=','users.id_user')
-        // ->join('post','room_number.id_post','=','post.id_post')
-        // ->select('room_number.id_user','users.full_name','room_number.room_number','post.post_name')
-        // ->where('room_number.id','=',$id_roomnumber)
-        // ->first();
         $ownerUserId = User::find($User_two->id_user_two);
         Notification::send($ownerUserId,new ReplyUpdateRoomDelete());
         return response()
@@ -344,6 +332,7 @@ class RoomNumberController extends Controller
             ]);
 
     }
+    
     public function cancelRoomBookUser(Request $request,$id_user){
         if($id_user && $request->id_post && $request->room_number){
             if($request->id_post == null || $request->room_number == null){
@@ -409,7 +398,6 @@ class RoomNumberController extends Controller
         $roomNumber = RoomNumberModel::find($id_roomNumber);
         $get_OwnerBookingRoom = User::find($roomNumber->id_user_two);
         $get_OwnerPost = DB::table('room_number')->join('post','post.id_post','=','room_number.id_post')
-            // ->selecT('room_number.)
             ->where('room_number.id','=',$id_roomNumber)
             ->first();
         Notification::send($get_OwnerBookingRoom, new NotificationOwnerBookingRoom($get_OwnerBookingRoom,$get_OwnerPost,'0'));

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
+
     public function CommentAdd(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -41,7 +42,6 @@ class CommentController extends Controller
         if($request->parent_id){
             $t->param_id = (int) $request->parent_id;
         }
-        // $t->date = $request->date;
         $t->status = 1;
         $t->id_user = $request->id_user;
         $t->id_post = $request->id_post;
@@ -106,11 +106,11 @@ class CommentController extends Controller
             'id' => $Comment_PostUser,
         ]);
     }
+
     public function CommentEdit(Request $request, $id_comment)
     {
         $t = CommentModel::find($id_comment);
         $t->content = $request->content;
-        // $t->date = $request->date;
         $t->save();
         return response()
             ->json([
@@ -118,6 +118,7 @@ class CommentController extends Controller
                 'status' => true
             ]);
     }
+
     public function CommentDelete(Request $request, $id_comment)
     {
         //Xóa comment
@@ -129,13 +130,15 @@ class CommentController extends Controller
                 'status' => true
             ]);
     }
+
     public function Comment_SelectAll(Request $request)
     {
         if($request->keyword && $request->keyword != ''){
-            $Comment_SelectAll = CommentModel::where('content','like','%'.$request->keyword.'%')
-            ->orWhere('id_user','like','%'.$request->keyword.'%')->get();
+            $Comment_SelectAll = CommentModel::join('users','comment.id_user','=','users.id_user')
+            ->where('comment.content','like','%'.$request->keyword.'%')
+            ->orwhere('comment.created_at','like','%'.$request->keyword.'%')
+            ->orWhere('users.full_name','like','%'.$request->keyword.'%')->get();
         }else{
-        $Title = "Danh sách các hỗ trợ";
         $Comment_SelectAll = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
             ->orderBy('comment.id_user')
@@ -147,9 +150,9 @@ class CommentController extends Controller
                 'status' => true
             ]);
     }
+
     public function Comment_SelectPost(Request $request, $id_post)
     {
-        $Title = "Danh sách các hỗ trợ";
         $Comment_SelectPost = DB::table('comment')
             ->join('users', 'comment.id_user', '=', 'users.id_user')
             ->join('img_user','users.id_user','=','img_user.id_user')
@@ -175,24 +178,9 @@ class CommentController extends Controller
                 'id_post' => $id_post
             ]);
     }
-    public function Comment_SelectPostParamid_NotNull(Request $request, $id_post)
-    {
-        $Title = "Danh sách các hỗ trợ";
-        $Comment_SelectPost = DB::table('comment')
-            ->join('users', 'comment.id_user', '=', 'users.id_user')
-            ->where('comment.id_post', $id_post and 'param_id', '=', 0)
-            ->orderBy('comment.id_user', 'DESC')
-            ->get();
-        return response()
-            ->json([
-                'data' => $Comment_SelectPost,
-                'status' => true,
-                'id_post' => $id_post
-            ]);
-    }
+
     public function Comment_SelectOne(Request $request, $id_comment)
     {
-        $Title = "Danh sách các hỗ trợ";
         $Comment_SelectOne = DB::table('comment')->where('id_comment','=',$id_comment)->get();
         return response()
             ->json([
@@ -201,33 +189,9 @@ class CommentController extends Controller
                 'id_comment' => $id_comment
             ]);
     }
-    public function CommentApprove(Request $request, $id_comment)
-    {
-        //phê duyệt comment
-        $t = CommentModel::find($id_comment);
-        $t->status = $request->status;
-        $t->save();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
-            ]);
-    }
-
-
-    public function Comment_SelectApprove()
-    {
-        $Title = "Các bình luận đã phê duyệt";
-        $Contact_SelectApprove = CommentModel::where('status', '=', '1');
-        return response()
-            ->json([
-                'data' => $Contact_SelectApprove,
-                'status' => true
-            ]);
-    }
+    
     public function CommentDes()
     {
-        // $Title = "Các bình luận đã phê duyệt";
         $Contact_SelectApprove = CommentModel::orderBy('id_comment', 'desc')->first();
         return response()
             ->json([

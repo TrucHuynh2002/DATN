@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class RoomTypeController extends Controller
 {
+
     public function show(Request $request)
     {
         if($request->keyword && $request->keyword != ''){
@@ -21,6 +22,7 @@ class RoomTypeController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
         $data = RoomType::find($id);;
@@ -29,6 +31,7 @@ class RoomTypeController extends Controller
                 'data' => $data
             ]);
     }
+
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -55,6 +58,7 @@ class RoomTypeController extends Controller
                 'status' => true
             ]);
     }
+    
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
@@ -81,6 +85,7 @@ class RoomTypeController extends Controller
                 'status' => true
             ]);
     }
+    
     public function delete(Request $request, $id)
     {
         $RoomType = RoomType::find($id);

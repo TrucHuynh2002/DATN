@@ -8,6 +8,7 @@ use App\Models\Post as Post;
 
 class ProvinceController extends Controller
 {
+
     function get_ProvinceAll(Request $request)
     {
         $getProvince =  ProvinceModel::all();
@@ -16,6 +17,7 @@ class ProvinceController extends Controller
             "data" => $getProvince
         ]);
     }
+    
     function get_ProvincePost(Request $request)
     {
         $getPost_id_Province = ProvinceModel::join('post', 'post.id_province', '=', 'province.id')

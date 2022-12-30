@@ -27,23 +27,23 @@ function Notify({onClick}) {
     };
     // danh sach notify comment
     const getData = async () => {
-        if(id_user ){
-            const res = await axios.get(`${url}/noty_qa/show/${id_user}`);
-            setListnotifyQa(res.data.data);
-            const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);
-            setListnotifyInteractive(notifyInteractive.data.data);
-            const ress = await axios.get(`${url}/comment/qa-comment-owner/${id_user}`);
-            // setListnotifyInteractive(res.data.data);
-            if(ress.data.status){
-                setCommentPostOwnerParent(res.data.dataParent);
-                setCommentPostOwnerChild(res.data.dataChild);
-            }
-        }
+        // if(id_user ){
+        //     const res = await axios.get(`${url}/noty_qa/show/${id_user}`);
+        //     setListnotifyQa(res.data.data);
+        //     const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);
+        //     setListnotifyInteractive(notifyInteractive.data.data);
+        //     const ress = await axios.get(`${url}/comment/qa-comment-owner/${id_user}`);
+        //     // setListnotifyInteractive(res.data.data);
+        //     if(ress.data.status){
+        //         setCommentPostOwnerParent(res.data.dataParent);
+        //         setCommentPostOwnerChild(res.data.dataChild);
+        //     }
+        // }
       // Noti notifyInteractive
-        if(id_user != 0){
-            const res = await axios.get(`${url}/notify_interactive/show/${id_user}`);
-            setListnotifyInteractive(res.data.data);
-        }
+        // if(id_user != 0){
+        //     const res = await axios.get(`${url}/notify_interactive/show/${id_user}`);
+        //     setListnotifyInteractive(res.data.data);
+        // }
         const res = await axios.get(`${url}/user/showimg`);
         setListImg(res.data.data); 
         // Noti Bill

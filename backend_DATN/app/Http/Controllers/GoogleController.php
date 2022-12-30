@@ -10,6 +10,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
+    
     public function getGoogleSignInUrl()
     {
         
@@ -24,8 +25,7 @@ class GoogleController extends Controller
     public function loginCallback(Request $request)
     {
         
-            // $state = $request->input('state');
-            // parse_str($state, $result);
+
             $googleUser = Socialite::driver('google')->stateless()->user();
             
             $user = User::where('email', $googleUser->email)->first();

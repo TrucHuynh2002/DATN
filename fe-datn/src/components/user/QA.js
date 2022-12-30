@@ -7,13 +7,15 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../url';
 import { TabTitle } from '../title';
-import Love, {love} from './reaction/love';
+import HashLoader from "react-spinners/HashLoader";
+import Love from './reaction/love';
 import CommentQA from './QA/CommentQA';
+
 function QA() {
   TabTitle('Hỏi đáp');
+  const [loading, setLoading] = useState(false);
   const user = JSON.parse(localStorage.getItem('user')); 
-  // const visableCmt = 3; 
-  // const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
+  const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -74,7 +76,11 @@ function QA() {
 
   const [addQA,setAddQA] = useState("");
   useEffect(() => {
-    getData();
+    // setLoading(true)
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 3000)
+    getData()
   },[loader]);
 
    // danh sach 
@@ -115,7 +121,6 @@ function QA() {
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
       const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
-      
     }
     setReply({
       activeComment:false
@@ -146,293 +151,292 @@ function QA() {
     setShow(true)
     checkManage();
   }
-  // const loadmoreCmt = () => {
-  //       setVisableCmt(VisableCmt + 3);
-  //      getData();
-  // }
+  const loadmoreCmt = () => {
+        setVisableCmt(VisableCmt + 3);
+       getData();
+  }
   const [countCommentQA, setCountCommentQA] = useState({
     id_qa : '',
     count:0
   })
   return (
     <>
-      <div className="back_re">
-          <div className="container">
-              <div className="row">
-                  <div className="col-md-12">
-                      <div className="title">
-                          <h2>Hỏi đáp</h2>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div className="our_room row">
-        <div className="container col-lg-10 col-md-12 col-xs-12 classQA">
-          <div className='qa_input'>
-            <Button variant="secondary" className='btn_qa' onClick={handleShow}>
-              Bạn đang thắc mắc?
-            </Button>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Bạn đang nghĩ gì</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                { alertShow ?
-                  <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
-                    <CKEditor
-                      editor={ClassicEditor}
-                      data={qa_content}
-                      onReady={(editor)=>{
-                          editor.editing.view.change((writer)=>{
-                              writer.setStyle('height','100%',editor.editing.view.document.getRoot())
-                          })
-                      }}
-                      onChange={(event,editor) => {
-                          let data = editor.getData();
-                          setAddQA({addQA, content:data});
-                      }}
-                    />
-                    <div className='btn_qa2' ><Button  variant="primary" name='' type="submit"> Đăng </Button>  </div>                  
-                  </Form>  
-                  :
-                  (
-                    <div style={{padding:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-                      CLICK ĐĂNG NHẬP ĐỂ HỎI - ĐÁP
+      {loading ? 
+          <HashLoader className='css_loading'
+          color={'#0d3380'}
+          loading={loading}
+          size={100}
+          />
+          :
+          <>
+            <div className="back_re">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="title">
+                                <h2>Hỏi đáp</h2>
+                            </div>
+                        </div>
                     </div>
-                  )
-                }
-              </Modal.Body>
-            </Modal>
-          </div>
-          {listQa.map((listQa, index) => {
-            return (
-              <div className="qa" key={index}>
-                <div className='qa_avatar'>             
-                    <img src={listQa.link_img_user}
-                      alt='' className="img" />
-                    <div className="qa_div_userAndDay">
-                      <div className="feedback_comment_time">
-                        <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
-                      </div>
-                      <div className="feedback_comment_time"> 
-                      <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
-                      </div>
-                    </div> 
-                      {id_user == listQa.id_user &&
-                        <div className="content_comment_chammmm_delete"> ...
-                            <div className="content_comment_Delete">
-                              <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div className="our_room row">
+              <div className="container col-lg-10 col-md-12 col-xs-12 classQA">
+                <div className='qa_input'>
+                  <Button variant="secondary" className='btn_qa' onClick={handleShow}>
+                    Bạn đang thắc mắc?
+                  </Button>
+                  <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Bạn đang nghĩ gì</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      { alertShow ?
+                        <Form encType="multipart/form-data" onSubmit={e => handleQA(e)}>
+                          <CKEditor
+                            editor={ClassicEditor}
+                            data={qa_content}
+                            onReady={(editor)=>{
+                                editor.editing.view.change((writer)=>{
+                                    writer.setStyle('height','100%',editor.editing.view.document.getRoot())
+                                })
+                            }}
+                            onChange={(event,editor) => {
+                                let data = editor.getData();
+                                setAddQA({addQA, content:data});
+                            }}
+                          />
+                          <div className='btn_qa2' ><Button  variant="primary" name='' type="submit"> Đăng </Button>  </div>                  
+                        </Form>  
+                        :
+                        (
+                          <div style={{padding:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                            CLICK ĐĂNG NHẬP ĐỂ HỎI - ĐÁP
+                          </div>
+                        )
                       }
+                    </Modal.Body>
+                  </Modal>
                 </div>
-                <h3>{listQa.title}</h3>
-                <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
-                <div className='ActionIconl'>
-                     <Love props={{id_qa: listQa.id_qa,id_user: user ? user[0].id : '', loader:loader}}/>
-                     <CommentQA props={{id_qa: listQa.id_qa, loader:loader}} />
-                </div>
-                <hr />
-                <div className='qa_cmt'>
-                  <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
-                    <Form.Group className="col-11 " controlId="">
-                        <Form.Control 
-                        type="text" 
-                        name="qa_content" 
-                        className='' 
-                        placeholder="Viết bình luận của bạn"
-                        onChange = {(e) => handleChangeComment(e)} />            
-                    </Form.Group>
-                    <Button className="button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
-                  </Form>    
-                </div>
-                <div style={{margin:' 26px 10px 0'}}>
-                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
-                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
-                  {/* {
-                    countCommentQA.id_qa == listQa.id_qa ? countCommentQA.id_qa
-                  } */}
-                 
-                </div>
-                {listComment.map((listComment, index) => {
-                    // if(listComment.id_qa == listQa.id_qa){
-                    //   setCountCommentQA({
-                    //     ...countCommentQA,
-                    //     [countCommentQA.id_qa]: listQa.id_qa,
-                    //    [ countCommentQA.count]:  countCommentQA.count + 1
-                    //   })
-                    // }
-                  return( listQa.id_qa == listComment.id_qa && (
-                    <div className="container_qa" key={index}>
-                      <div className='qa_avatar'>
-                        <img src={listComment.link_img_user}
-                        alt='' className="content_comment_img___" />
-                        <div>
-                          <div className="feedback_comment_time">
-                            <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listComment.full_name}</Link>
-                          </div>  
-                          <div className="feedback_comment_time">
-                            {moment(listComment.created_at).local().startOf('day').fromNow()}
-                          </div>
-                        </div>
-                      </div>
-                     <div className="display_comment dispaly_qa_comment">
-                      <div className='qa_content content_comment____'>
-                        {activeUpdateComment && idUpdateCmt == listComment.id_comment_qa ? ( 
-                          <div className="content_comment____form_input__">
-                            <Form 
-                              className="display_comment" 
-                              onSubmit={e => handleUpdateContent(e,listComment.id_comment_qa)} 
-                              encType="multipart/form-data"
-                            >
-                              <Form.Group className="col-9">
-                                <Form.Control 
-                                  type="text" name="updatecmt" 
-                                  onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
-                                  value={contentUpdateCmt}  
-                                />
-                              </Form.Group>
-                              <Button className="col-3" type="submit">Cập nhật</Button>
-                            </Form>
+                {listQa.map((listQa, index) => {
+                  return (
+                    <div className="qa" key={index}>
+                      <div className='qa_avatar'>             
+                          <img src={listQa.link_img_user}
+                            alt='' className="img" />
+                          <div className="qa_div_userAndDay">
+                            <div className="feedback_comment_time">
+                              <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
+                            </div>
+                            <div className="feedback_comment_time"> 
+                            <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
+                            </div>
                           </div> 
-                          ) : ( <p className='cmt_name1' key={index}>{listComment.content}</p> ) 
-                        }
-                        </div>
-                          { id_user == listComment.id_user &&
-                            <div className="content_comment_chammmm"> ...
-                                <div className="content_comment_editAndDelete">
-                                  <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> <br />
-                                  <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
-                                </div>
-                            </div>
-                          }
-                     </div>
-                      
-                      <span 
-                      onClick={() => {
-                      setReply({
-                        activeComment:true,id:listComment.id_comment_qa
-                      })}}
-                      className="feedback_comment___"
-                      >
-                      <strong>Trả lời</strong>
-                      { activeComment && id == listComment.id_comment_qa &&
-                        <div className="content_comment____form_input__">
-                          <Form className="display_comment" 
-                          onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,listComment.id_comment_qa)}
-                          >
-                            <Form.Group className="col-9">
+                            {id_user == listQa.id_user &&
+                              <div className="content_comment_chammmm_delete"> ...
+                                  <div className="content_comment_Delete">
+                                    <span onClick={() => deleteQa(listQa.id_qa)}>Xóa</span>
+                                  </div>
+                              </div>
+                            }
+                      </div>
+                      <h3>{listQa.title}</h3>
+                      <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
+                      <div className='ActionIconl'>
+                            <Love props={{id_qa:listQa.id_qa, id_user: id_user}} />
+                            <CommentQA props={{id_qa:listQa.id_qa, loader: loader}} />
+                      </div>
+                      <hr />
+                      <div className='qa_cmt'>
+                        <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
+                          <Form.Group className="col-11" controlId="">
                               <Form.Control 
-                                style={{"padding":"24px 0 24px 12px"}}
-                                type="text"
-                                name="qa_content" 
-                                className=''                                        
-                                onChange = {(e) => handleChangeComment(e)}
-                                placeholder="Trả lời bình luận"
-                              />
-                            </Form.Group>
-                            <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
-                          </Form>
-                        </div> 
-                      } 
-                      </span>   
-                      <hr />   
-                      <div style={{marginLeft:"32px"}}>
-                      {listChildComment.map((child,i) => {
-                        return child.parent_id == listComment.id_comment_qa  && (
-                        <div key={i}>
-                          <div className='qa_avatar'>
-                            <img src={child.link_img_user} alt='' className="content_comment_img___" />
-                            <div>
-                              <div className="feedback_comment_time">
-                                <Link to={`../profile/${child.id_user}`} className='qa_link'>{child.full_name}</Link>
-                              </div>  
-                              <div className="feedback_comment_time">
-                                {moment(child.created_at).local().startOf('day').fromNow()}
+                              type="text" 
+                              name="qa_content" 
+                              className='' 
+                              placeholder="Viết bình luận của bạn"
+                              onChange = {(e) => handleChangeComment(e)} />            
+                          </Form.Group>
+                          <Button className="button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
+                        </Form>    
+                      </div>
+                  
+                      {listComment.map((listComment, index) => {
+                          // if(listComment.id_qa == listQa.id_qa){
+                          //   setCountCommentQA({
+                          //     ...countCommentQA,
+                          //     [countCommentQA.id_qa]: listQa.id_qa,
+                          //    [ countCommentQA.count]:  countCommentQA.count + 1
+                          //   })
+                          // }
+                        return( listQa.id_qa == listComment.id_qa && (
+                          <div className="container_qa" key={index}>
+                            <div className='qa_avatar'>
+                              <img src={listComment.link_img_user}
+                              alt='' className="content_comment_img___" />
+                              <div>
+                                <div className="feedback_comment_time">
+                                  <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listComment.full_name}</Link>
+                                </div>  
+                                <div className="feedback_comment_time">
+                                  {moment(listComment.created_at).local().startOf('day').fromNow()}
+                                </div>
                               </div>
-                            </div>                            
-                          </div>
+                            </div>
                           <div className="display_comment dispaly_qa_comment">
-                            <div className='qa_content qa_content content_comment____' style={{marginTop: '15px'}}>
-                            { activeUpdateComment && idUpdateCmt == child.id_comment_qa ? 
-                              ( 
-                              <div className="content_comment____form_input__">
-                                <Form 
-                                  className="display_comment" 
-                                  onSubmit={e => handleUpdateContent(e,child.id_comment_qa)} 
-                                  encType="multipart/form-data"
-                                >
-                                  <Form.Group className="col-9">
-                                    <Form.Control 
-                                      type="text" name="updatecmt" 
-                                      onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
-                                      value={contentUpdateCmt}  
-                                    />
-                                  </Form.Group>
-                                  <Button className="col-3" type="submit">Cập nhật</Button>
-                                </Form>
-                              </div> 
-                              ) 
-                              : 
-                              ( <p className='cmt_name1' key={i}>{child.content}</p> ) 
-                            }
-                            </div>
-                            <div className="content_comment_chammmm"> ...
-                            {
-                              id_user == child.id_user  && 
-                              <div className="content_comment_editAndDelete">
-                                  <span  onClick={(e) => handleDeleteComment(e,child.id_comment_qa)}>Xóa</span> <br />
-                                  <span onClick={(e) => handleUpdateComment(e,child.id_comment_qa)} >Cập nhật</span> 
-                              </div>
-                            }
-                            </div>
-                          </div>
-                          <span 
-                              onClick={() => {
-                              setReply({activeComment:true,id:child.id_comment_qa})}}
-                              className="feedback_comment___"
-                              >
-                              <strong>Trả lời</strong>
-                              { activeComment && id == child.id_comment_qa &&
+                            <div className='qa_content content_comment____'>
+                              {activeUpdateComment && idUpdateCmt == listComment.id_comment_qa ? ( 
                                 <div className="content_comment____form_input__">
-                                  <Form className="display_comment" 
-                                  onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,child.id_comment_qa)}
+                                  <Form 
+                                    className="display_comment" 
+                                    onSubmit={e => handleUpdateContent(e,listComment.id_comment_qa)} 
+                                    encType="multipart/form-data"
                                   >
                                     <Form.Group className="col-9">
                                       <Form.Control 
-                                        style={{"padding":"24px 0 24px 12px"}}
-                                        type="text"
-                                        name="qa_content" 
-                                        className=''                                        
-                                        onChange = {(e) => handleChangeComment(e)}
-                                        placeholder="Trả lời bình luận"
+                                        type="text" name="updatecmt" 
+                                        onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
+                                        value={contentUpdateCmt}  
                                       />
                                     </Form.Group>
-                                    <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                                    <Button className="col-3" type="submit">Cập nhật</Button>
                                   </Form>
                                 </div> 
-                              } 
-                            </span>  
-                            <hr/>
-                        </div>
-                        )})}
-                      </div>
+                                ) : ( <p className='cmt_name1' key={index}>{listComment.content}</p> ) 
+                              }
+                              </div>
+                                { id_user == listComment.id_user &&
+                                  <div className="content_comment_chammmm"> ...
+                                      <div className="content_comment_editAndDelete">
+                                        <span  onClick={(e) => handleDeleteComment(e,listComment.id_comment_qa)}>Xóa</span> <br />
+                                        <span onClick={(e) => handleUpdateComment(e,listComment.id_comment_qa)} >Cập nhật</span>  
+                                      </div>
+                                  </div>
+                                }
+                          </div>
+                            
+                            <span 
+                            onClick={() => {
+                            setReply({
+                              activeComment:true,id:listComment.id_comment_qa
+                            })}}
+                            className="feedback_comment___"
+                            >
+                            <strong>Trả lời</strong>
+                            { activeComment && id == listComment.id_comment_qa &&
+                              <div className="content_comment____form_input__">
+                                <Form className="display_comment" 
+                                onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,listComment.id_comment_qa)}
+                                >
+                                  <Form.Group className="col-9">
+                                    <Form.Control 
+                                      style={{"padding":"24px 0 24px 12px"}}
+                                      type="text"
+                                      name="qa_content" 
+                                      className=''                                        
+                                      onChange = {(e) => handleChangeComment(e)}
+                                      placeholder="Trả lời bình luận"
+                                    />
+                                  </Form.Group>
+                                  <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                                </Form>
+                              </div> 
+                            } 
+                            </span>   
+                            <hr />   
+                            <div style={{marginLeft:"32px"}}>
+                            {listChildComment.map((child,i) => {
+                              return child.parent_id == listComment.id_comment_qa  && (
+                              <div key={i}>
+                                <div className='qa_avatar'>
+                                  <img src={child.link_img_user} alt='' className="content_comment_img___" />
+                                  <div>
+                                    <div className="feedback_comment_time">
+                                      <Link to={`../profile/${child.id_user}`} className='qa_link'>{child.full_name}</Link>
+                                    </div>  
+                                    <div className="feedback_comment_time">
+                                      {moment(child.created_at).local().startOf('day').fromNow()}
+                                    </div>
+                                  </div>                            
+                                </div>
+                                <div className="display_comment dispaly_qa_comment">
+                                  <div className='qa_content qa_content content_comment____' style={{marginTop: '15px'}}>
+                                  { activeUpdateComment && idUpdateCmt == child.id_comment_qa ? 
+                                    ( 
+                                    <div className="content_comment____form_input__">
+                                      <Form 
+                                        className="display_comment" 
+                                        onSubmit={e => handleUpdateContent(e,child.id_comment_qa)} 
+                                        encType="multipart/form-data"
+                                      >
+                                        <Form.Group className="col-9">
+                                          <Form.Control 
+                                            type="text" name="updatecmt" 
+                                            onChange={(e) =>   setContentUpdateCmt(e.target.value)}  
+                                            value={contentUpdateCmt}  
+                                          />
+                                        </Form.Group>
+                                        <Button className="col-3" type="submit">Cập nhật</Button>
+                                      </Form>
+                                    </div> 
+                                    ) 
+                                    : 
+                                    ( <p className='cmt_name1' key={i}>{child.content}</p> ) 
+                                  }
+                                  </div>
+                                  <div className="content_comment_chammmm"> ...
+                                  {
+                                    id_user == child.id_user  && 
+                                    <div className="content_comment_editAndDelete">
+                                        <span  onClick={(e) => handleDeleteComment(e,child.id_comment_qa)}>Xóa</span> <br />
+                                        <span onClick={(e) => handleUpdateComment(e,child.id_comment_qa)} >Cập nhật</span> 
+                                    </div>
+                                  }
+                                  </div>
+                                </div>
+                                <span 
+                                    onClick={() => {
+                                    setReply({activeComment:true,id:child.id_comment_qa})}}
+                                    className="feedback_comment___"
+                                    >
+                                    <strong>Trả lời</strong>
+                                    { activeComment && id == child.id_comment_qa &&
+                                      <div className="content_comment____form_input__">
+                                        <Form className="display_comment" 
+                                        onSubmit={e => handleComment(e,listComment.id_qa,listComment.id_comment_qa,child.id_comment_qa)}
+                                        >
+                                          <Form.Group className="col-9">
+                                            <Form.Control 
+                                              style={{"padding":"24px 0 24px 12px"}}
+                                              type="text"
+                                              name="qa_content" 
+                                              className=''                                        
+                                              onChange = {(e) => handleChangeComment(e)}
+                                              placeholder="Trả lời bình luận"
+                                            />
+                                          </Form.Group>
+                                          <Button className="col-2 button_input_submit btn btn-primary" type="submit">Bình luận</Button>
+                                        </Form>
+                                      </div> 
+                                    } 
+                                  </span>  
+                                  <hr/>
+                              </div>
+                              )})}
+                            </div>
+                          </div>
+                        ))}
+                      )}
+                    
+                      <Link to={`../qaDetail/${listQa.id_qa}`} className="loadCmt">Xem chi tiết</Link>
+                
                     </div>
-                  ))}
-                )}
-                {/* {VisableCmt < listComment.length
-                ?
-                <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
-                :
-                <p className="loadCmt">Chưa có bình luận nào</p>
-                }  */}
-                <Link to={`../qaDetail/${listQa.id_qa}`}>Xem chi tiết</Link>
+                  );})}
+                  
               </div>
-            );})}
-            
-        </div>
-      </div>
+            </div>
+          </>
+      }
     </>
   )
 }

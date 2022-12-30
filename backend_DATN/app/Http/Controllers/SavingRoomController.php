@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class SavingRoomController extends Controller
 {
+    
     public function checkOldOwnerRoom(Request $request, $id_user){
         $checkOldOwner = SavingRoomModel::where('id_user','=',$id_user);
         if($request->id_room){
@@ -19,7 +20,6 @@ class SavingRoomController extends Controller
             'status' => true,
             'data' => $checkOldOwner,
             'post' => $request->id_room,
-            // 'post' => $id_user,
         ]);
     }else{
         return response()->json([

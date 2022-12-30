@@ -23,7 +23,6 @@ class UserController extends Controller
 {
     public function User_SelectAll(Request $request)
     {
-        $Title = "Danh sách tài khoản";
         if($request->keyword && $request->keyword != ''){
             $User_SelectAll = User::where('full_name','like','%'.$request->keyword.'%')->get();
         }else{
@@ -35,6 +34,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function UserAcount(Request $request, $id_user)
     {
         $User_SelectOne = User::find($id_user);
@@ -45,10 +45,8 @@ class UserController extends Controller
             ]);
     }
 
-
     public function User_SelectOne(Request $request, $id_user)
     {
-        $Title = "Chi tiết tài khoản";
         $User_SelectOne = DB::table('users')
             ->join('img_user', 'img_user.id_user', '=', 'users.id_user')
             ->where('users.id_user', '=', $id_user)
@@ -60,6 +58,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function ImgUserAll()
     {
         $get_img = imgUserModel::all();
@@ -69,6 +68,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function ImgUser(Request $request, $id)
     {
         $get_img = imgUserModel::where('id_user', '=', $id);
@@ -121,7 +121,6 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        // $t->id_street = $request->id_street;
         $t->role = $request->role;
         $t->status = 0;
         $t->email_verified_at = $request->email_verified_at;
@@ -140,6 +139,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function UserEdit(Request $request, $id_user)
     {
         $t = User::find($id_user);
@@ -149,7 +149,6 @@ class UserController extends Controller
         $t->id_province = $request->id_province;
         $t->id_district = $request->id_district;
         $t->id_ward = $request->id_ward;
-        // $t->id_street = $request->id_street;
         $t->save();
         return response()
             ->json([
@@ -157,10 +156,10 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function UserStatus(Request $request, $id_user)
     {
         $t = User::find($id_user);
-        // $t->role = 1;
         $t->status = 1;
         $t->save();
         return response()
@@ -169,6 +168,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function UserDelete(Request $request, $id_user)
     {
         $t = User::find($id_user);
@@ -179,10 +179,10 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function PasswordEdit(Request $request, $id_user)
     {
         $t = User::find($id_user);
-        // $pass_old = Hash::make($request->password);
         if ($t) {
             if (Hash::check($request->password, $t->password)) {
                 if ($request->password_new == $request->password_neww) {
@@ -198,13 +198,10 @@ class UserController extends Controller
                     return response()
                         ->json([
                             'messess' => 'Nhập lại mật khẩu không khớp',
-                            // 'data' => $t,
                             'status' => false
                         ]);
                 }
             } else {
-                // dd($pass_old);
-                // dd(Hash::make($t->password));
                 return response()
                     ->json([
                         'messess' => 'Mật khẩu hiện tại không đúng',
@@ -219,10 +216,10 @@ class UserController extends Controller
                 ]);
         }
     }
+
     public function PasswordEditSocial(Request $request, $id_user)
     {
         $t = User::find($id_user);
-        // $pass_old = Hash::make($request->password);
         if ($t) {
                 if ($request->password_new == $request->password_neww) {
                     $t->password = Hash::make($request->password_new);
@@ -237,7 +234,6 @@ class UserController extends Controller
                     return response()
                         ->json([
                             'messess' => 'Nhập lại mật khẩu không khớp',
-                            // 'data' => t,
                             'status' => false
                         ]);
                 }
@@ -249,6 +245,7 @@ class UserController extends Controller
                 ]);
         }
     }
+
     public function UserLogin(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -301,13 +298,10 @@ class UserController extends Controller
             $img = $request->file('avatar');
             foreach ($img as $i) {
                 $get_name_image = $i->getClientOriginalName();
-                // $name = $get_name_image;
                 $path = 'uploads/images/';
-                // $name_image  = current(explode('.', $get_name_image));
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $i->move($path, $new_image);
-                // $imgPost->img = $new_image;
                 $imgUser = new imgUserModel();
                 $imgUser = $imgUser::where('id_user', '=', $id_user)->first();
                 if (File::exists($path . $imgUser->name_img)) {
@@ -344,6 +338,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_district_detail(Request $request, $id_user)
     {
         $data = DB::table('users')
@@ -357,6 +352,7 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_ward_detail(Request $request, $id_user)
     {
         $data = DB::table('users')
@@ -369,27 +365,13 @@ class UserController extends Controller
                 'status' => true
             ]);
     }
-    // public function show_street_detail(Request $request, $id_user)
-    // {
-    //     $data = DB::table('users')
-    //         ->join('street', 'users.id_street', '=', 'street.id')
-    //         ->where('users.id_user', '=', $id_user)
-    //         ->get();
-    //     return response()
-    //         ->json([
-    //             'data' => $data,
-    //             'status' => true
-    //         ]);
-    // }
 
     public function getUserResignerOwnerPost(Request $request){
-        // $get_data = User::whereNot('role','=',2)->orderBy('id_user','DESC')->get();
         if($request->role){
             if($request->role == 1){
                 $get_data = User::where('role','=',"0")->where('status','=','0')->orderBy('id_user','DESC')->get();
             }
             if($request->role == 2){
-                // $get_data = User::whereNot('role','=',1)->orderBy('id_user','DESC')->get();
                 if($request->status == 1){
                     $get_data = User::where('role','=',0)->where('status','=',1)->orderBy('id_user','DESC')->get();
                 }
@@ -417,6 +399,7 @@ class UserController extends Controller
             'data' => $get_data
         ]);
     }
+
     public function handlePostRoomUser(Request $request, $id_user){
         $find_user = User::find($id_user);
         $find_user->role = 1;
@@ -428,6 +411,7 @@ class UserController extends Controller
             'data' => $find_user
         ]);
     }
+
     public function handleCancelPostRoomUser(Request $request, $id_user){
         $find_user = User::find($id_user);
         $find_user->role = 0;

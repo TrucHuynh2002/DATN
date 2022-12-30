@@ -22,6 +22,7 @@ class NotifyController extends Controller
             'data' => $get_post
         ]);
     }
+
     public function getNotyfi_interactive(Request $request, $id)
     {
         $get_notify_favorite = DB::table('notify')
@@ -43,6 +44,7 @@ class NotifyController extends Controller
             'bill' => $get_notify_bill
         ]);
     }
+    
     public function NotifyAddComment(Request $request)
     {
         $validation = Validator::make($request->all(), [

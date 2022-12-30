@@ -23,6 +23,7 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
+
     public function RatingAdd(Request $request)
     {
         // $validation = Validator::make($request->all(), [
@@ -67,9 +68,9 @@ class RatingController extends Controller
             ->json([
                 'message' => 'Cám ơn bạn đã đánh giá!',
                 'status' => true,
-                // 'data' => $user->id_user
             ]);
     }
+
     public function RatingEdit(Request $request, $id_post_rate)
     {
         $t = RatingModel::find($id_post_rate);
@@ -84,6 +85,7 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
+
     public function RatingDelete(Request $request, $id_post_rate)
     {
         $t = RatingModel::find($id_post_rate);
@@ -94,10 +96,9 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
+    
     public function Rating_SelectUser(Request $request, $id_rating)
     {
-        // $t = DB::table('post_rate')->join('users','rating.id_user','=','users.id')
-        //                         ->where('rating.id_user','=','users.id')->get();
         $t = RatingModel::find($id_rating);
         return response()
             ->json([
@@ -105,16 +106,16 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
-    public function Rating_SelectOne(Request $request, $id_rating)
-    {
-        $t = DB::table('rating')->join('users', 'rating.id_user', '=', Auth::user()->id)
-            ->where('rating.id_user', '=', Auth::user()->id)->get();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
-            ]);
-    }
+    // public function Rating_SelectOne(Request $request, $id_rating)
+    // {
+    //     $t = DB::table('rating')->join('users', 'rating.id_user', '=', Auth::user()->id)
+    //         ->where('rating.id_user', '=', Auth::user()->id)->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $t,
+    //             'status' => true
+    //         ]);
+    // }
 
     public function Rating_Average(Request $request,$id_post){
         $get_star = RatingModel::where('id_post','=',$id_post)->get();

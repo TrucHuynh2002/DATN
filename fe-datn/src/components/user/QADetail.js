@@ -202,10 +202,7 @@ function QADetail() {
                     <Button className="col-1 button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
                   </Form>    
                 </div>
-                <div style={{margin:' 26px 10px 0'}}>
-                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
-                  <i className="fa-regular fa-comment"></i>
-                </div>
+             
                 {listComment.slice(0,VisableCmt).map((listComment, index) => {
                   return( listQa.id_qa == listComment.id_qa && (
                     <div className="container_qa" key={index}>

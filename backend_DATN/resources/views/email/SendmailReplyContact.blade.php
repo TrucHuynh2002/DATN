@@ -50,11 +50,11 @@
         
         <h2>Phản hồi hỗ trợ vấn đề {{$user->subject}}</h2>
         <p>Hello, bạn {{$user->full_name}}</p>
-        <p>Nhà tui đã nhận được yêu cầu hỗ trợ của anh/chị và phản hồi với nội dung Re:</p>
+        <p>Tìm trọ sinh viên đã nhận được yêu cầu hỗ trợ của anh/chị và phản hồi với nội dung Re:</p>
         
         <p>Nội dung:<r> {{$user->reply}}</p>
         <p>Nếu có thắc mắc hay câu hỏi nào hãy liên hệ với chúng tôi.</p>
-        <p>Với các yêu cầu được khởi tạo trong ngày thứ 7, Chủ nhật hàng tuần thì việc trả lời sẽ có chậm trễ đôi chút, Nhà Tui sẽ phản hồi lại thông tin chậm nhất trong sáng thứ 2 của tuần làm việc kế tiếp.<br><br>
+        <p>Với các yêu cầu được khởi tạo trong ngày thứ 7, Chủ nhật hàng tuần thì việc trả lời sẽ có chậm trễ đôi chút, Tìm trọ sinh viên sẽ phản hồi lại thông tin chậm nhất trong sáng thứ 2 của tuần làm việc kế tiếp.<br><br>
             
              
             Cảm ơn anh/chị, chúc anh/chị có một ngày làm việc vui vẻ!<br>
@@ -64,7 +64,7 @@
     </div>
     <div class="footer">
         <p>Thân,<br>
-            Nhà Tui</p>
+            Tìm trọ sinh viên</p>
     </div>
     </div>
 </body>

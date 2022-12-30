@@ -58,9 +58,9 @@ function Footer() {
                 <h3>THEO DÕI CHÚNG TÔI TẠI</h3>
                 <ul className="social_icon">
                   <li>
-                    <Link to="https://www.facebook.com/profile.php?id=100088986281952">
+                    <a href="https://www.facebook.com/profile.php?id=100088986281952">
                       <i className="fa fa-facebook" aria-hidden="true" />
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     <Link to="">

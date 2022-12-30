@@ -11,7 +11,6 @@ class ConfigModel extends Model
     protected $table = "config";
     protected $primaryKey = 'id_config';
     public $timestamps = false;
-    // public $dateFormat = 'dd/mm/yyyy H:i:s';
     protected $fillable = [
         'logo',
         'sdt',
