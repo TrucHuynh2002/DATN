@@ -25,6 +25,7 @@ function Search() {
     const getPostSearch = async () => {
         let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&stress=${stress}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
+        console.log(res)
         if(aData.length > 0){
             let ress = await axios.post(`${url}/search`, addTrendSearch);
         }
@@ -54,10 +55,7 @@ function Search() {
              <input className="timkiemRoom2" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/>
              <Button className='timkiemRoom3'><i className="fa-solid fa-search"></i></Button>
         </div>
-        
-                
-        
-            
+        <div>{aData.status == true && aData.data.length >= 1 && <p><em>{aData.data.length}</em></p>} <hr /></div>
             {
                 aData.status == true && aData.data.length >= 1 ? (
                     aData.data.map((room,index) => {
