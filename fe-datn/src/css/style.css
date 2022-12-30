@@ -1043,11 +1043,13 @@ label{
 }
 .all-room .room .bed_room h3 {
     color: #121212;
-    font-size: 19px;
+    font-size: 18px;
+    line-height: 33px;
     transition: ease-in all 0.5s;
     margin: auto;
-    text-align: justify;
+    text-align: left;
 }
+
 /* and all_room */
 /** our_room section **/
 .modal_show{
@@ -1118,8 +1120,10 @@ height:50%;
 
 .our_room .room .bed_room h3 {
     color: #121212;
-    font-size: 19px;
-    text-align: justify;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: left;
     transition: ease-in all 0.5s;
     margin: auto;
 }
@@ -1901,7 +1905,7 @@ ul.social_icon li a:hover {
     padding: 40px 0;
     padding-top: 150px;
     font-family: 'Poppins', sans-serif;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 
 .heading-section {
@@ -1996,7 +2000,12 @@ ul.social_icon li a:hover {
     margin-top: -52px;  
 }
 
-
+.master-information{
+    padding-top: 30px;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+}
 
 .name {
     margin-bottom: 0;
@@ -2148,6 +2157,7 @@ ul.social_icon li a:hover {
 
 .product-count {
     margin-top: 15px;
+    margin-left: -11px;
 }
 
 .product-count .qtyminus,
@@ -2189,7 +2199,7 @@ ul.social_icon li a:hover {
 }
 
 .round-black-btn {
-    border-radius: 0px;
+    border-radius: 5px;
     width: 330px;
     background: var(--background-color);
     color: var(--text-color);
@@ -2456,7 +2466,9 @@ margin: 0 300px 0 375px;
 /* .shopee-search-empty-result-section__icon{
     margin-left: 450px;
 } */
-
+.classQA{
+    margin-top: -60px;
+}
 .qa {
     width: 70%;
     margin: 0px auto;
@@ -2518,6 +2530,9 @@ margin: 0 300px 0 375px;
 .display_comment{
     display:flex;
     align-items: baseline;
+}
+.btn_qa2{
+    padding-top: 20px;
 }
 .qa_chammm{
     margin-left: 17px;
@@ -2649,7 +2664,7 @@ margin: 0 300px 0 375px;
     margin: 20px 0px 20px 0px;
     background-color: white;
     box-shadow: 0px 0.2px 1px black;
-    border-radius: 0px;
+    border-radius: 5px;
     font-size: 16px;
     padding: 10px;
     line-height: 50px;

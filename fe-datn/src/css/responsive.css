@@ -302,9 +302,11 @@
     }
     .blog{
         width: 100%;
-        margin-left: 0px;
-       
-        
+        margin-left: 0px; 
+    }
+    .dccuthe{
+        margin-left: -5px;
+        text-transform: uppercase;
     }
     .footer {
         margin-left: 0;
@@ -516,6 +518,21 @@
         margin-left: 75%;
         margin-top: -52px;  
     }
+    /* QA */
+    .qa {
+        width: 100%;
+        margin: 0px auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        margin-bottom: 20px;
+    }
+    .display_comment{
+        display:flex;
+        align-items: baseline;
+        
+    }
+
     
 }
 

@@ -101,6 +101,12 @@ function RoomDetail() {
                             </div>
                         </div>
                     </div>
+                    <div className='master-information'>
+                       
+                       <b>Thông tin chủ phòng</b>
+             
+                  
+                      </div>
                     <div className="product-count">
                        <div>
                             <Link to={`../square/${a.id_post}`} className="round-black-btn">
@@ -116,12 +122,7 @@ function RoomDetail() {
                        </div>
                            
                      
-                       <div className='master-information'>
                        
-                       <b>Thông tin chủ phòng</b>
-             
-                  
-                      </div>
 
 
                     </div>

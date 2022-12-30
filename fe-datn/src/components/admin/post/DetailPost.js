@@ -100,6 +100,12 @@ function DetailPost() {
                             </div>
                         </div>
                     </div>
+                    <div className='master-information'>
+                       
+                       <b>Thông tin chủ phòng</b>
+             
+                  
+                      </div>
                     <div className="product-count">
                        <div>
                             <Link to={`../square/${a.id_post}`} className="round-black-btn">
@@ -115,12 +121,7 @@ function DetailPost() {
                        </div>
                            
                      
-                       <div className='master-information'>
                        
-                       <b>Thông tin chủ phòng</b>
-             
-                  
-                      </div>
 
 
                     </div>
@@ -210,7 +211,7 @@ function DetailPost() {
                         </div>
                         <div className='' style={{'marginTop':'19px'}}>
                             <h3 className="dccuthe">Vị trí cụ thể</h3>
-                            <div style={{maxWidth: '414px'}} dangerouslySetInnerHTML={{__html: a.ifarme}} /> 
+                            <div className='map' style={{maxWidth: '414px'}} dangerouslySetInnerHTML={{__html: a.ifarme}} /> 
                         </div>  
                     </div>
                 </div>
