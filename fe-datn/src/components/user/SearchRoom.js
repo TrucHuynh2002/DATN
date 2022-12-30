@@ -78,8 +78,8 @@ function Search() {
                 : 
                 (
                     <div className="col-md-4 col-sm-6 searchroom">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={100} className="shopee-search-empty-result-section__icon"></img>
-                            <p className='searchroom'>Không tìm thấy kết quả nào</p>
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
+                            <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
                     </div>
                 )
             }              

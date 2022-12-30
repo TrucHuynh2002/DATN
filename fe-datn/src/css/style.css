@@ -2376,6 +2376,7 @@ ul.social_icon li a:hover {
 .content_profile{
     padding: 10px 20px 20px 20px;
     border: 1px solid #bebebe;
+    
 }
 .button-fix{
     background-color: blue;
@@ -2449,7 +2450,8 @@ ul.social_icon li a:hover {
 .searchroom{
     text-align: center;
     color: black;
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 33px;
     padding: 0 0 50px 0;
 }.col-md-4.col-sm-6.searchroom{
 margin: 0 300px 0 375px;
