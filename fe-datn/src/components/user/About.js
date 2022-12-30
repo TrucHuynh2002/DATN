@@ -3,7 +3,6 @@ import axios from 'axios';
 import {url} from '../url';
 import { TabTitle } from '../title';
 import HashLoader from "react-spinners/HashLoader";
-import LoadingSkeleton from '../LoadingSkeleton';
 
 function About() {
   TabTitle('Giới thiệu');

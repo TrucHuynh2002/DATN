@@ -29,10 +29,7 @@ import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
 import DetailBlog from './components/admin/Blog/DeatilBlog';
-
 import EditBBlog from './components/user/blog/EditBlog';
-
-
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
 import EditFurniture from './components/admin/furniture/EditFurniture';
@@ -42,8 +39,6 @@ import ListContact from './components/admin/contact/ListContact';
 import EditContact from './components/admin/contact/EditContact';
 // admin comment
 import ListComment from './components/admin/comment/ListComment';
-// admin user
-import ListUser from './components/admin/user/ListUser';
 // admin setting
 import SettingConfig from './components/admin/setting/Setting';
 import BannerConfig from './components/admin/setting/BannerConfig';
@@ -179,9 +174,6 @@ root.render(
         <Route path="add_roomtype" element={<AddRoomType />} />
         <Route path="edit_roomtype/:id_room_type" element={<EditRoomType />} />
         <Route path="list_roomtype" element={<ListRoomType />} />
-
-        {/* user list */}
-        <Route path="list_user" element={<ListUser />} />
         {/* role manage list */}
         <Route path="list_rolemanage" element={<ListRoleManage />} />
 

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { url } from '../../url';
+import HashLoader from "react-spinners/HashLoader";
 
 function RoomND() {
+  const [loading, setLoading] = useState(false);
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
   const [listFur, setListFur] = useState([]);
@@ -14,9 +16,12 @@ function RoomND() {
   const lastPageIndex = currentPage * postsPerPage;
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listPost.slice(firstPageIndex, lastPageIndex);
-  // danh sach post
   useEffect(() => {
-    getData();
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+    getData()
   },[]);
 
   const [alert, setAlert] = useState({
@@ -110,121 +115,133 @@ function RoomND() {
    const handleShow = () => setShow(true);
 
   return (
-    <div className="container ">
-      <div className='timkiemRoom-div'><input className="timkiemRoom" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/></div>
-      <div className='locRoom'>
-      <Button   
-        variant="warning" 
-        style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
-        onClick={handleShow} > Lọc
-        <i className="fa-solid fa-filter" 
-        style={{marginLeft: '7px'}} 
-         ></i>
-     </Button>
-     </div>
-     <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Lọc</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="show-grid">
-          <div className="modal_show">
-            <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Loại phòng</option>
-              { 
-                typeRooms.map((r,i) => {
-                  return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
-                })
-              }
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="fur" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Nội thất</option>
-              {
-                listFur.map((f,i) => {
-                  return <option key={i} value={f.id_furniture}>{f.name}</option>
-                })
-              }
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_province" onChange = {(e) => handleProvince(e)} >
-              <option>Tỉnh</option>
-              {listProvince.map((room, index) => {
-                return (
-                <option key={index} value={room.id_province} >{room._name}</option>
-                );
-                })}
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_district" onChange = {(e) => handleDistrict(e)} >  
-              <option>Quận/Huyện</option>
-              {listDistrict.map((room, index) => {
-                return (
-                <option key={index} value={room.id_district}>{room._name}</option>
-                );
-              })}       
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="id_ward"onChange = {(e) => handleChangeKeyWord(e)} > 
-            <option>Xã/Phường</option>
-            {listWard.map((room, index) => {
-              return (
-                <option key={index} value={room.id} >{room._name}</option>
-                );
-            })}       
-            </select>
-          </div>
-          <div className="modal_show">
-            <input type="text" name="stress" className="form-control" placeholder="Nhập tên đường bạn muốn tìm "  value={stress} onChange={(e) => handleChangeKeyWord(e)} />
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Giá</option>
-              <option value={1}>Dưới 1 triệu</option>
-              <option value={2}>Từ 1 - 2 triệu</option>
-            </select>
-          </div>
-          <div className="modal_show">
-            <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
-              <option>Diện tích</option>
-              <option value="1">Dưới 20m</option>
-              <option value="2">Trên 20m</option>
-            </select>
-          </div>
-          <div className="modal_show">
-              <Button type="submit" className='search_room_btn2' onClick={e => handleSubmitSearch(e)} >Lọc </Button> 
-          </div>
-        </Modal.Body>
-      </Modal>
-        <div className="all-room">
-          <div className="row rs_screen">
-                {currentPosts.map((post, index) => {
-                    return (     
-                      <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
-                          <div id="serv_hover" className="room allRoom">
-                              <div className="room_img col-lg-12 col-md-5 col-xs-4">
-                                  <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+    <>
+      {loading ? 
+          <HashLoader className='css_loading'
+          color={'#0d3380'}
+          loading={loading}
+          size={100}
+          />
+          :
+          <>
+            <div className="container ">
+              <div className='timkiemRoom-div'><input className="timkiemRoom" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/></div>
+              <div className='locRoom'>
+              <Button   
+                variant="warning" 
+                style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
+                onClick={handleShow} > Lọc
+                <i className="fa-solid fa-filter" 
+                style={{marginLeft: '7px'}} 
+                ></i>
+            </Button>
+            </div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Lọc</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="show-grid">
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="typeRoom" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Loại phòng</option>
+                      { 
+                        typeRooms.map((r,i) => {
+                          return <option key={i} value={r.id_room_type}>{r.name_room_type}</option>
+                        })
+                      }
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="fur" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Nội thất</option>
+                      {
+                        listFur.map((f,i) => {
+                          return <option key={i} value={f.id_furniture}>{f.name}</option>
+                        })
+                      }
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_province" onChange = {(e) => handleProvince(e)} >
+                      <option>Tỉnh</option>
+                      {listProvince.map((room, index) => {
+                        return (
+                        <option key={index} value={room.id_province} >{room._name}</option>
+                        );
+                        })}
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_district" onChange = {(e) => handleDistrict(e)} >  
+                      <option>Quận/Huyện</option>
+                      {listDistrict.map((room, index) => {
+                        return (
+                        <option key={index} value={room.id_district}>{room._name}</option>
+                        );
+                      })}       
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="id_ward"onChange = {(e) => handleChangeKeyWord(e)} > 
+                    <option>Xã/Phường</option>
+                    {listWard.map((room, index) => {
+                      return (
+                        <option key={index} value={room.id} >{room._name}</option>
+                        );
+                    })}       
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <input type="text" name="stress" className="form-control" placeholder="Nhập tên đường bạn muốn tìm "  value={stress} onChange={(e) => handleChangeKeyWord(e)} />
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Giá</option>
+                      <option value={1}>Dưới 1 triệu</option>
+                      <option value={2}>Từ 1 - 2 triệu</option>
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                    <select className="form-select online_book3" name="area" onChange={(e) => handleChangeKeyWord(e)}>
+                      <option>Diện tích</option>
+                      <option value="1">Dưới 20m</option>
+                      <option value="2">Trên 20m</option>
+                    </select>
+                  </div>
+                  <div className="modal_show">
+                      <Button type="submit" className='search_room_btn2' onClick={e => handleSubmitSearch(e)} >Lọc </Button> 
+                  </div>
+                </Modal.Body>
+              </Modal>
+                <div className="all-room">
+                  <div className="row rs_screen">
+                        {currentPosts.map((post, index) => {
+                            return (     
+                              <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
+                                  <div id="serv_hover" className="room allRoom">
+                                      <div className="room_img col-lg-12 col-md-5 col-xs-4">
+                                          <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+                                      </div>
+                                      <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
+                                          <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
+                                          <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
+                                          <p>{post.description_sort}</p>
+                                      </div>
+                                  </div>
                               </div>
-                              <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
-                                  <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                                  <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
-                                  <p>{post.description_sort}</p>
-                              </div>
-                          </div>
-                      </div>
-                    );
-                  })}
+                            );
+                          })}
+                        </div>
+                        {/* phan trang */}
+                        <Pagination totalPost={listPost.length} 
+                        postsPerPage={postsPerPage} 
+                        setCurrentPage={setCurrentPage}
+                        currentPage={currentPage} />
                 </div>
-                {/* phan trang */}
-                <Pagination totalPost={listPost.length} 
-                postsPerPage={postsPerPage} 
-                setCurrentPage={setCurrentPage}
-                currentPage={currentPage} />
-        </div>
-    </div>
+            </div>
+          </>
+      }
+    </>
   )
 }
 
