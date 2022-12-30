@@ -10,11 +10,11 @@ function Home() {
   TabTitle('Tìm trọ sinh viên');
   return (
     <>
-        <HomeBanner />
-        <HomeAbout />
-        <HomePost />
-        <HomeGallery />
-        <HomeBlog />
+      <HomeBanner />
+      <HomeAbout />
+      <HomePost />
+      <HomeGallery />
+      <HomeBlog />    
     </>
   )
 }

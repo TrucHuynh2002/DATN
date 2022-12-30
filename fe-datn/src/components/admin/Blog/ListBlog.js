@@ -5,9 +5,11 @@ import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../user/Pagination';
 import { url } from '../../url';
 import { TabTitle } from '../../title';
+import HashLoader from "react-spinners/HashLoader";
 
 function ListBlog() {
   TabTitle('Danh sách blog');
+  const [loading, setLoading] = useState(false);
   const id_blog = useParams();
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
@@ -16,7 +18,11 @@ function ListBlog() {
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex); 
   useEffect(() => {
-    getData();
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+    getData()
   },[]);
   // danh sach Blog
   const getData = async (keywordss = '') => {
@@ -34,57 +40,68 @@ function ListBlog() {
     }
 
   return (
-    <div className="content">
-            <div className="add-post">
-              <h1 className="content_h1_admin">Danh sách Blog</h1>
-              {/* start search */}
-              <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
-              <div className ="header__nav_admin">
-                <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                {/* end search */}
-               
-              </div>
-              <Table bordered>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Tên blog</th>
-                    <th>Mô tả ngắn</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-             
-                <tbody className="list-cate">                 
-                {currentPosts.map((blog, index) => {
-                    return (     
-                    <tr key={index}>
-                        <td>{index+1}</td>
-                        <td>{blog.name_blog}</td>
-                        <td className='blog_descriptionSort'>{blog.description_sort}</td>                        
-                        <td>
-                          <div>
-                            <img src={blog.img_blog} alt={blog.name_img_blog} />
-                          </div>
-                        </td>
-                        <td>                
-                            <Link to={`../detail_blog/${blog.id_blog}`} className="bx bx-detail btn-edit btn btn-primary"></Link>            
-                            <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
-                            </Link>           
-                            <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(blog.id_blog)}></Button>
-                        </td>
-                      </tr>  
-                    );     
-                })}
-                </tbody>
-              </Table>
-              {/* phan trang */}
-            <Pagination totalPost={listBlog.length} 
-            postsPerPage={postsPerPage} 
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage} />
+    <>
+      {loading ? 
+          <HashLoader className='css_loading_admin'
+          color={'#0d3380'}
+          loading={loading}
+          size={100}
+          />
+          :
+          <>
+            <div className="content">
+                    <div className="add-post">
+                      <h1 className="content_h1_admin">Danh sách Blog</h1>
+                      {/* start search */}
+                      <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
+                      <div className ="header__nav_admin">
+                        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                        {/* end search */}                    
+                      </div>
+                      <Table bordered>
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên blog</th>
+                            <th>Mô tả ngắn</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    
+                        <tbody className="list-cate">                 
+                        {currentPosts.map((blog, index) => {
+                            return (     
+                            <tr key={index}>
+                                <td>{index+1}</td>
+                                <td>{blog.name_blog}</td>
+                                <td className='blog_descriptionSort'>{blog.description_sort}</td>                        
+                                <td>
+                                  <div>
+                                    <img src={blog.img_blog} alt={blog.name_img_blog} />
+                                  </div>
+                                </td>
+                                <td>                
+                                    <Link to={`../detail_blog/${blog.id_blog}`} className="bx bx-detail btn-edit btn btn-primary"></Link>            
+                                    <Link to={`../edit_blog/${blog.id_blog}`} className="bx bxs-edit btn-edit btn btn-primary">
+                                    </Link>           
+                                    <Button variant="outline-danger" name='' className="bx bxs-trash" onClick={() => deleteBlog(blog.id_blog)}></Button>
+                                </td>
+                              </tr>  
+                            );     
+                        })}
+                        </tbody>
+                      </Table>
+                      {/* phan trang */}
+                    <Pagination totalPost={listBlog.length} 
+                    postsPerPage={postsPerPage} 
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage} />
+                    </div>
             </div>
-    </div>
+          </>
+        }
+    </>
   )
 }
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    
+
     public function keyword_searching(Request $request)
     {
         $get_data = DB::table('post');
@@ -47,6 +47,9 @@ class SearchController extends Controller
             if ($area == 2) {
                 $get_data = $get_data->where('area', '>', 20);
             }
+        }
+        if ($request->keywordss) {
+            $get_data = $get_data->where('post_name', 'like', '%' . $request->keywordss . '%');
         }
         $get_postSearch = $get_data->get();
         return response()->json([

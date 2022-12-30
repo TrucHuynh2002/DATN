@@ -49,6 +49,7 @@ function AddBlog() {
             });
         }
     };
+
   return (
     <div className="content">
         <div className="add-post">
