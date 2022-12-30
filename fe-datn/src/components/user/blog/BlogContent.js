@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
 import { url } from '../../url';
+import LoadingSkeleton from '../../LoadingSkeleton';
 
 function BlogContent() {
-  
+  const [loading, setLoading] = useState(false);
   const [listBlog, setListBlog] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
@@ -14,7 +15,11 @@ function BlogContent() {
   const firstPageIndex = lastPageIndex - postsPerPage;
   const currentPosts = listBlog.slice(firstPageIndex, lastPageIndex);
   useEffect(() => {
-    getData();
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+    getData()
   },[]);
 
   // danh sach Blog
@@ -52,8 +57,7 @@ function BlogContent() {
             setCurrentPage={setCurrentPage}
             currentPage={currentPage} />
         </div>
-      </div>
+    </div>
   )
-}
-
+};
 export default BlogContent

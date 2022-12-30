@@ -8,7 +8,6 @@ import { url } from '../../url';
 function HomePost() {
 
   const [listPost, setListPost] = useState([]);
-  // phan trang post
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ postsPerPage, setPostsPerPage ] =useState(9);
   const lastPageIndex = currentPage * postsPerPage;
@@ -18,8 +17,6 @@ function HomePost() {
 useEffect(() => {
     getData()
   },[]);
-  // danh sách post
-  // cho biến line 23 bằng rỗng xong truyền vào line 19 
   const getData = async () => {
     const res = await axios.get(`${url}/post/show`);
     setListPost(res.data.data);
