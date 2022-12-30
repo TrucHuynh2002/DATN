@@ -11,6 +11,7 @@ function ListSendNoti() {
     const [alertMess,setAlertMess] = useState(false)
     const handleClose = () =>{ 
         setShow(false);
+        getDataSendNoti()
     };
     const handleShow = () => setShow(true);
     const {id_user} = useParams();
@@ -28,7 +29,7 @@ function ListSendNoti() {
     const handleCancelSendNoti = async (e, id_room_number) => {
         let res = await axios.post(`${url}/roomNumber/cancelSendNoti/${id_room_number}`)
         if(res.data.status){
-            getDataSendNoti()
+ 
             setAlertMess(true)
         }
     }
@@ -76,9 +77,9 @@ function ListSendNoti() {
                                     Đã xác nhận trả phòng thành công
                                 </div>
                         } 
-                        <Button variant="primary" onClick={e => handleCancelSendNoti(e,data.id)}>
+                        <button className='btn btn-primary' variant="primary" onClick={e => handleCancelSendNoti(e,data.id)}>
                             Xác nhận
-                        </Button>
+                        </button>
                         <Button variant="secondary" onClick={handleClose}>
                             Hủy bỏ
                         </Button>
