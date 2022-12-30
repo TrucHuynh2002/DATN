@@ -22,7 +22,7 @@ function ListCategory() {
     setTimeout(() => {
       setLoading(false)
     }, 3000)
-    getData()
+    getData();
   },[]);
   const getData = async (keywordss = '') => {
    const res = await axios.get(`${url}/category/show?keyword=${keywordss}`);
