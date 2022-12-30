@@ -26,6 +26,9 @@ class SearchController extends Controller
         if ($request->ward) {
             $get_data = $get_data->where('id_ward', '=', $request->ward);
         }
+        if ($request->stress) {
+            $get_data = $get_data->where('address', 'like', '%' . $request->stress . '%');
+        }
         if ($request->price) {
             $price = $request->price;
             if ((int) $price == 1) {

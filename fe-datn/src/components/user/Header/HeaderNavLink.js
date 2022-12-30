@@ -88,11 +88,11 @@ function HeaderNavLink() {
         getDataProvince();
         getDataRoomType();
         get_furnitures();
+        getData();
         if(user){
-            getData();
-
+            getNotify();
         }
-        getNotify();
+       
     },[]);
     const [listProvince, setListProvince] = useState([]);
     const [listDistrict, setListDistrict] = useState([]);

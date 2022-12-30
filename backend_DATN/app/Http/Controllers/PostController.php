@@ -22,7 +22,7 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
-         // $user = User::where('id_user','=',$id_user)->first();
+        // $user = User::where('id_user','=',$id_user)->first();
         // if($user){
         //     $data = Post::where('id_province','=',$user->id_province)
         //     ->where('id_district','=',$user->id_district);
@@ -150,6 +150,24 @@ class PostController extends Controller
     }
 
 
+    public function show_wardSearch(Request $request)
+    {
+        if ($request->id_province && $request->id_district) {
+            $data = wardModel::join('post', 'post.id_ward', '=', 'ward.id')
+                ->select('ward._name', 'ward.id')
+                ->where('ward._province_id', '=', $request->id_province)
+                ->where('ward._district_id', '=', $request->id_district)
+                ->distinct()
+                ->get();
+        } else {
+            $data = wardModel::all();
+        }
+        return response()
+            ->json([
+                'data' => $data,
+                'status' => true
+            ]);
+    }
     public function show_ward(Request $request)
     {
         if ($request->id_province && $request->id_district) {
@@ -291,9 +309,9 @@ class PostController extends Controller
             $path = 'uploads/';
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image[0]->move(public_path($path), $new_image.'.'.$name_image[1]);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
-            $Post->name_img = $new_image.'.'.$name_image[1];
+            $get_image[0]->move(public_path($path), $new_image . '.' . $name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image . '.' . $name_image[1];
+            $Post->name_img = $new_image . '.' . $name_image[1];
         }
         $Post->save();
 
@@ -304,10 +322,10 @@ class PostController extends Controller
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move(public_path($path), $new_image.'.'. $name_image[1]);
+                $img->move(public_path($path), $new_image . '.' . $name_image[1]);
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image.'.'. $name_image[1];
-                $imgPost->name_image = $new_image.'.'. $name_image[1];
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' . $new_image . '.' . $name_image[1];
+                $imgPost->name_image = $new_image . '.' . $name_image[1];
                 $imgPost->id_post = $Get_Post->id_post; // khóa ngoại
                 $imgPost->save();
             }
@@ -434,17 +452,17 @@ class PostController extends Controller
         // $Get_Post = Post::orderby('id_post', 'DESC')->first();
         $get_image = $request->file('imgavt');
         if ($request->file('imgavt')) {
-            
+
             $get_name_image = $get_image[0]->getClientOriginalName();
             $path = 'uploads/';
-            if(File::exists($path.$Post->name)){
-                File::delete($path.$Post->name);
+            if (File::exists($path . $Post->name)) {
+                File::delete($path . $Post->name);
             }
             $name_image = explode('.', $get_name_image);
             $new_image = $name_image[0] . rand(0, 99);
-            $get_image[0]->move($path, $new_image.'.'.$name_image[1]);
-            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image.'.'.$name_image[1];
-            $Post->name_img = $new_image.'.'.$name_image[1];
+            $get_image[0]->move($path, $new_image . '.' . $name_image[1]);
+            $Post->link_img = env('APP_URL') . '/uploads/' . $new_image . '.' . $name_image[1];
+            $Post->name_img = $new_image . '.' . $name_image[1];
         }
         $Post->save();
         // $Post->id_furniture = $request->id_furniture; // khóa ngoại
@@ -468,12 +486,12 @@ class PostController extends Controller
                 $path = 'uploads/';
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
-                $img->move($path,  $new_image.'.'.$name_image[1]);
+                $img->move($path,  $new_image . '.' . $name_image[1]);
                 // $imgPost->img = $new_image;
                 $imgPost = new imgPost();
-                $imgPost->link_img_user = env('APP_URL') . '/uploads/' .  $new_image.'.'.$name_image[1];
+                $imgPost->link_img_user = env('APP_URL') . '/uploads/' .  $new_image . '.' . $name_image[1];
                 $imgPost->id_post = $id; // khóa ngoại
-                $imgPost->name_image =  $new_image.'.'.$name_image[1];
+                $imgPost->name_image =  $new_image . '.' . $name_image[1];
                 $imgPost->save();
             }
 

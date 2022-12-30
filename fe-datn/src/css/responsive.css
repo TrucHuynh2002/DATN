@@ -290,7 +290,10 @@
         margin-left: 0%;
     }
     .gallery .titlepage2{
-        margin-top: -750px;
+        margin-top: -490px;
+    }
+    .gallery .gallery_img figure img{
+        padding-bottom: 20px;
     }
 
     .read_more_gl{
@@ -452,6 +455,40 @@
         width: 100%;
         height: 100px;
        
+    }
+    .back_re{
+        padding-top: 40px;
+    }
+    .back_re .title h2{
+        font-size: 30px;
+    }
+    .timkiemRoom2{
+        width: 81% !important;
+        padding: 5px;
+        border: 1px solid #bebebe;
+        border-radius: 5px;
+        margin-top: -20px;   
+    }
+    .timkiemRoom3{
+        width: 15% !important;
+        padding: 5px;
+        border: 1px solid #ffc72b;
+        border-radius: 5px;
+        margin-top: -5px;   
+        margin-left: 10px;
+        color: #0d3380;
+        background-color: #ffc72b ;
+    }
+    .timkiemRoom3:hover{
+        width: 10% !important;
+        padding: 5px;
+        border: 1px solid #cd9806;
+        border-radius: 5px;
+        margin-top: -5px;   
+        margin-left: 10px;
+        color: #0d3380;
+        background-color: #cd9806 ;
+        transition: ease 0.5s;
     }
     
     .second-slide {

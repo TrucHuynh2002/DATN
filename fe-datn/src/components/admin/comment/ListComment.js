@@ -24,6 +24,7 @@ function ListComment() {
   // danh sách comment
   const getData = async (keywordss = '') => {
     const res = await axios.get(`${url}/comment/show?keyword=${keywordss}`);
+    console.log(res)
        setListCmt(res.data.data);
    };
 
@@ -43,7 +44,7 @@ function ListComment() {
       <h1 className="content_h1_admin">Danh sách bình luận</h1>
       {/* start search */}
       <div className ="header__nav_admin">
-        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
+        <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} 
         />
       </div>
       {/* end search */}
@@ -62,7 +63,7 @@ function ListComment() {
             return (
               <tr key={index}>
                 <td>{index+1}</td>
-                <td>{cmt.id_user}</td>
+                <td>{cmt.full_name}</td>
                 <td>{cmt.content}</td>
                 <td>{cmt.created_at}</td>
                 <td>

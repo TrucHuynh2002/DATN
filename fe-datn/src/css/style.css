@@ -1308,9 +1308,12 @@ height:50%;
     font-size: 17px;
   
 }
+.search__all_post{
+    margin:10px 2px 10px 0;
+}
 .Link_________{
     font-size: 15px;
-    width: 50%;
+    width: 80%;
     color: #0d5df0b5!important;
     overflow: hidden;
     white-space: nowrap;

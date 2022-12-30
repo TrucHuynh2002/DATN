@@ -15,7 +15,11 @@ class ContactController extends Controller
     {
         $Title = "Danh sách các hỗ trợ";
         if($request->keyword && $request->keyword != ''){
-            $Contact_SelectAll = ContactModel::where('full_name','like','%'.$request->keyword.'%')->get();
+            $Contact_SelectAll = ContactModel::where('full_name','like','%'.$request->keyword.'%')
+            ->orWhere('subject','like','%'.$request->keyword.'%')
+            ->orWhere('email','like','%'.$request->keyword.'%')
+            ->orWhere('phone','like','%'.$request->keyword.'%')
+            ->orWhere('content','like','%'.$request->keyword.'%')->get();
         }else{
         $Contact_SelectAll = ContactModel::all();
         }

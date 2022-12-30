@@ -132,7 +132,8 @@ class CommentController extends Controller
     public function Comment_SelectAll(Request $request)
     {
         if($request->keyword && $request->keyword != ''){
-            $Comment_SelectAll = CommentModel::where('content','like','%'.$request->keyword.'%')->get();
+            $Comment_SelectAll = CommentModel::where('content','like','%'.$request->keyword.'%')
+            ->orWhere('id_user','like','%'.$request->keyword.'%')->get();
         }else{
         $Title = "Danh sách các hỗ trợ";
         $Comment_SelectAll = DB::table('comment')

@@ -23,15 +23,14 @@ function RoomND() {
     err_list: {},
   });  
   const getData = async () => {
-   const res = await axios.get(`${url}/post/show`);
-    setListPost(res.data.data);   
-   const getImg = await axios.get(`${url}/imgPost/show`);
+    const res = await axios.get(`${url}/post/show`);
+      setListPost(res.data.data);   
+    const getImg = await axios.get(`${url}/imgPost/show`);
       setListImg(getImg.data.data); 
     const getFur = await axios.get(`${url}/furniture/show`);
       setListFur(getFur.data.data); 
     let getTypeRoom = await axios.get(`${url}/roomType/show`);
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
-        // tỉnh
     const getDataProvince = await axios.get(`${url}/province/showPostSearch`);
       setListProvince(getDataProvince.data.data);
   };
@@ -57,6 +56,7 @@ function RoomND() {
       province,
       district,
       ward,
+      stress,
       price,
       area,
       typeRoom,
@@ -86,7 +86,7 @@ function RoomND() {
   // xã
   const getDataWard = async (id_district) => {
       var id_province = addProvince.undefined;
-      const res = await axios.get(`${url}/post/show_ward?id_province=${id_province}&&id_district=${id_district}`);
+      const res = await axios.get(`${url}/post/show_wardSearch?id_province=${id_province}&&id_district=${id_district}`);
       setListWard(res.data.data);
   }     
   // đường 
@@ -102,7 +102,7 @@ function RoomND() {
 
   const handleSubmitSearch = e => {
     e.preventDefault()
-    navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
+    navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&stress=${keyword.stress == undefined ? "" : keyword.stress}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
   }
    // modal post
    const [show, setShow] = useState(false);
@@ -176,6 +176,9 @@ function RoomND() {
                 );
             })}       
             </select>
+          </div>
+          <div className="modal_show">
+            <input type="text" name="stress" className="form-control" placeholder="Nhập tên đường bạn muốn tìm "  value={stress} onChange={(e) => handleChangeKeyWord(e)} />
           </div>
           <div className="modal_show">
             <select className="form-select online_book3" name="price" onChange={(e) => handleChangeKeyWord(e)}>
