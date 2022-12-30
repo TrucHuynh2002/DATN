@@ -166,8 +166,10 @@ Route::get('noty_qa/show/{id}', [notyNotyQaController::class, 'show_one']);
 Route::get('post/show_province', [PostController::class, 'show_province']);
 // Route::get('post/show_district/{id_province}', [PostController::class, 'show_district']);
 Route::get('post/show_district', [PostController::class, 'show_districtAll']);
+Route::get('post/show_districtSearch', [PostController::class, 'show_districtSearch']);
 
 Route::get('post/show_ward', [PostController::class, 'show_ward']);
+Route::get('post/show_wardSearch', [PostController::class, 'show_wardSearch']);
 Route::get('post/show_tree', [PostController::class, 'show_tree']);
 Route::get('trendPost', [PostController::class, 'show_trend']);
 
@@ -246,6 +248,9 @@ Route::get('user/show_street_detail/{id}', [UserController::class, 'show_street_
 
 Route::post('user/login', [UserController::class, 'UserLogin']);
 Route::post('user/forgot', [UserController::class, 'UserForgotPassword']);
+Route::get('user/owner-post', [UserController::class, 'getUserResignerOwnerPost']);
+Route::get('user/handle-post-room/{id}', [UserController::class, 'handlePostRoomUser']);
+Route::get('user/cancel-post-room/{id}', [UserController::class, 'handleCancelPostRoomUser']);
 
 // Contact
 Route::get('contact/show', [ContactController::class, 'Contact_SelectAll']);
@@ -273,7 +278,7 @@ Route::get('rating/average/{id_post}', [RatingController::class, 'Rating_Average
 
 /// Search
 Route::post('search', [search_trendsController::class, 'search_key_word']);
-Route::get('search', [SearchController::class, 'keyword_searching']);
+Route::get('searchAll', [SearchController::class, 'keyword_searching']);
 Route::get('trend', [search_trendsController::class, 'show']);
 Route::get('getKeyWord/{keyword}', [search_trendsController::class, 'show_keyword']);
 
@@ -288,6 +293,7 @@ Route::get('getkeyworduser/{keyword}', [search_trendsController::class, 'show_ke
 
 // Province
 Route::get('province/show', [ProvinceController::class, 'get_ProvinceAll']);
+Route::get('province/showPostSearch', [ProvinceController::class, 'get_ProvincePost']);
 
 
 Route::middleware('guest')->group(function () {
@@ -360,7 +366,7 @@ Route::get('bill/month-owner/{id_user}', [BillController::class, 'getOwnerTotalB
 Route::post('test-sms', [BillController::class, 'testSms']);
 
 // CHECK OLD USER ROOM  TO RATE
-Route::get('check-old-user/{id_user}',[ControllersSavingRoomController::class,'checkOldOwnerRoom']);
+Route::get('check-old-user/{id_user}', [ControllersSavingRoomController::class, 'checkOldOwnerRoom']);
 // Route::get('check-old-user/{id_user}', [SavingRoomController::class, 'checkOldOwnerRoom']);
 
 // GOOGLE
@@ -374,13 +380,13 @@ Route::get('auth/google/callback', [GoogleController::class, 'loginCallback']);
 Route::get('facebook', [FacebookController::class, 'getLinkUrl']);
 Route::get('facebook/callback', [FacebookController::class, 'FacebookLoginCallback']);
 
-Route::get('notify/{id_user}',[NotificationController::class,'getNotification']);
-Route::get('notify/mask-as-read/{id_user}',[NotificationController::class,'maskAsReads']);
-Route::get('notify/mask-as-read-id-noti/{id_notification}',[NotificationController::class,'maskAsReadsId']);
+Route::get('notify/{id_user}', [NotificationController::class, 'getNotification']);
+Route::get('notify/mask-as-read/{id_user}', [NotificationController::class, 'maskAsReads']);
+Route::get('notify/mask-as-read-id-noti/{id_notification}', [NotificationController::class, 'maskAsReadsId']);
 
 // VNPAY
 
-Route::get('vnpay',[PayOnlineController::class,'create']);
+Route::get('vnpay', [PayOnlineController::class, 'create']);
 Route::get('notify/{id_user}', [NotificationController::class, 'getNotification']);
 Route::get('notify/mask-as-read/{id_user}', [NotificationController::class, 'maskAsReads']);
 Route::get('notify/mask-as-read-id-noti/{id_notification}', [NotificationController::class, 'maskAsReadsId']);

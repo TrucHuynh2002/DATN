@@ -7,7 +7,7 @@ import { url } from '../../url';
 import { TabTitle } from '../../title';
 
 function Posted() {
-    TabTitle('Bài viết - Nhà Tui.com');
+    TabTitle('Bài viết');
     var user = JSON.parse(localStorage.getItem("user"));
     const {id_user} = useParams();
     const [listPost, setListPost] = useState([]);

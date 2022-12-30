@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { url } from '../url';
 import { TabTitle } from '../title';
 
 function Rules() {
+    
     TabTitle('Điều khoản tài khoản');
     const user = JSON.parse(localStorage.getItem('user'));
     const id_user = user ? user[0].id : 0;
+    const navagate = useNavigate();
     const [alert, setAlert] = useState({
         err_list: {},
     });
@@ -20,6 +23,7 @@ function Rules() {
             setAlert({
                 err_list: res.data
             });
+            // navagate('../');
         }
         else{           
             setAlert({

@@ -21,13 +21,13 @@ function Footer() {
           <div className="container-fluid">
             <div className="row ft">
               <div className="col-md-3">
-                <img src={listConfig.logo} alt="" style={{width:"80%", height:"50%"}} />
+                <img src={listConfig.logo} alt="" style={{width:"80%", height:"55%"}} />
                 <h4 style={{ textAlign: "center" }}>
                   {listConfig.title}
                 </h4>
               </div>
               <div className="col-md-3">
-                <h3>Thông tin liên hệ</h3>
+                <h3>THÔNG TIN LIÊN HỆ</h3>
                 <ul className="conta">
                   <li>
                     <span style={{ fontWeight: 750 }}> Địa chỉ:</span> {listConfig.address}
@@ -41,7 +41,7 @@ function Footer() {
                 </ul>
               </div>
               <div className="col-md-3 ">
-                <h3>Hỗ trợ khách hàng</h3>
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
                 <ul className="conta ">
                   <li>
                     <Link to="/contact">Trung tâm hỗ trợ</Link>
@@ -55,10 +55,10 @@ function Footer() {
                 </ul>
               </div>
               <div className="col-md-3">
-                <h3>Theo dõi chúng tôi tại</h3>
+                <h3>THEO DÕI CHÚNG TÔI TẠI</h3>
                 <ul className="social_icon">
                   <li>
-                    <Link to="">
+                    <Link to="https://www.facebook.com/profile.php?id=100088986281952">
                       <i className="fa fa-facebook" aria-hidden="true" />
                     </Link>
                   </li>
@@ -80,15 +80,7 @@ function Footer() {
                 </ul>
                 <br/>
                 <br/>
-                <form className="bottom_form">
-                  <input
-                    className="enter"
-                    placeholder="Enter your email"
-                    type="email"
-                    name="Enter your email"
-                  />
-                  <button className="sub_btn">Gửi</button>
-                </form>
+                
               </div>
             </div>
           </div>

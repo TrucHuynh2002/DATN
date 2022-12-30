@@ -33,11 +33,10 @@ function App() {
     <>
       <Container fluid>
         <Row>
-          {/* header */}
-          <HeaderAdmin />
-          {/* menu */}
-          <NavAdmin />
-          {/* content */}
+          <div className='fixed_menu'>
+            <HeaderAdmin />
+            <NavAdmin />
+          </div>         
           <Outlet />
           <FooterAdmin />
         </Row>

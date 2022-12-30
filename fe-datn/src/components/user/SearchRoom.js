@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { url } from '../url';
 import { TabTitle } from '../title';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 function Search() {
     TabTitle('Kết quả tìm kiếm');
@@ -15,17 +16,19 @@ function Search() {
     const ward = urlParam.get('ward');
     const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
-   
+    const stress = urlParam.get('stress');
     const [addTrendSearch, setListTrendSearch] = useState({
         key_word : keyword,
       })
-      const {key_word} = addTrendSearch
+    const {key_word} = addTrendSearch
     const [aData,setData] = useState([])
     const getPostSearch = async () => {
-        let a = addTrendSearch;
-        let ress = await axios.post(`${url}/search`, addTrendSearch);
-        let res = await axios.get(`${url}/search?keyword=${keyword}&&province=${province}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
+        let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&stress=${stress}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}`);
         setData(res.data);
+        if(aData.length > 0){
+            let ress = await axios.post(`${url}/search`, addTrendSearch);
+        }
+
       }
     useEffect(() => {
         getPostSearch();
@@ -46,7 +49,15 @@ function Search() {
     </div>
     <div className="our_room">
         <div className="container">
-            <div className="row">  
+            <div className="row"> 
+            <div className='timkiemRoom-div2'>
+             <input className="timkiemRoom2" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/>
+             <Button className='timkiemRoom3'><i className="fa-solid fa-search"></i></Button>
+        </div>
+        
+                
+        
+            
             {
                 aData.status == true && aData.data.length >= 1 ? (
                     aData.data.map((room,index) => {
@@ -67,8 +78,8 @@ function Search() {
                 : 
                 (
                     <div className="col-md-4 col-sm-6 searchroom">
-                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={200} height={200} className="shopee-search-empty-result-section__icon"></img>
-                            <p className='searchroom'>Không tìm thấy kết quả nào</p>
+                        <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
+                            <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
                     </div>
                 )
             }              

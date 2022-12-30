@@ -24,14 +24,14 @@ ul#menu>li>ul#sub {
 
 }
 .dropdown-menu{
-    min-width: 400px;
+    min-width: 230px;
     border-bottom: 1px solid #C0C0C0;
     width: 100%;
     margin: 0px;
     padding: 0px;
     list-style-type: none;
     left: -90%;
-    /* top: 125%; */
+    top: 125%;
 }
 
 .aw__t16jo35{
@@ -66,6 +66,7 @@ ul#menu{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: whitesmoke;
 }
 ul#menu, ul#menu ul#sub {
     padding:0;
@@ -185,6 +186,7 @@ a:hover{
     max-height: 100%;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
+    margin-top: 200px;
 }
 .content-row{
     padding : 10px;

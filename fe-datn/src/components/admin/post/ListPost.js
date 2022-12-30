@@ -43,8 +43,7 @@ function ListPost() {
             <tr>
                 <th>ID</th>
                 <th>Tên bài viết</th>
-                <th>Trạng thái</th>
-                {/* <th></th> */}
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -55,12 +54,8 @@ function ListPost() {
                         <td>{index+1}</td>
                         <td>{post.post_name}</td>
                         <td>
-                          {post.status === 1 && <Button variant="outline-success" disable="true" name='' className="">Đã duyệt</Button> }
-                          {post.status === 0 && <Button variant="outline-danger" name='' className="">Phê duyệt</Button> }
-                          </td>
-                          <td>
-                            <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
-                          </td>
+                          <Link to={`../detail_post/${post.id_post}`} className="bx bx-detail btn-edit btn btn-primary"></Link>
+                        </td>
                     </tr>
                     );
                 })}               

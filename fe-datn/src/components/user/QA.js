@@ -166,10 +166,10 @@ function QA() {
           </div>
       </div>
       <div className="our_room row">
-        <div className="container col-lg-10 col-md-12 col-xs-12">
+        <div className="container col-lg-10 col-md-12 col-xs-12 classQA">
           <div className='qa_input'>
             <Button variant="secondary" className='btn_qa' onClick={handleShow}>
-              Bạn đang nghĩ gì thế?
+              Bạn đang thắc mắc?
             </Button>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
@@ -191,8 +191,8 @@ function QA() {
                           setAddQA({addQA, content:data});
                       }}
                     />
-                    <Button variant="primary" name='' type="submit"> Đăng </Button>                    
-                  </Form> 
+                    <div className='btn_qa2' ><Button  variant="primary" name='' type="submit"> Đăng </Button>  </div>                  
+                  </Form>  
                   :
                   (
                     <div style={{padding:"16px",display:"flex",justifyContent:"center",alignItems:"center"}}>

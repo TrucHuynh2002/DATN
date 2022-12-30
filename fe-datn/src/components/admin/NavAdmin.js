@@ -30,7 +30,6 @@ function NavAdmin() {
               </NavLink>
             <ul id="sub">          
               <li><NavLink to="list_post" className='sub-menu'>Danh sách</NavLink></li>
-              {/* <li><NavLink to="../../addpost" className='sub-menu'>Thêm</NavLink></li>*/}
             </ul>
           </li>
           <li><NavLink to="list_blog"><i className='bx bx-book-content'></i> Blog
@@ -56,11 +55,10 @@ function NavAdmin() {
               <li><NavLink to="list_comment" className='sub-menu'>Danh sách</NavLink></li>
             </ul>
           </li>
-          <li><NavLink to="list_user"><i className='bx bx-user-circle'></i> Tài khoản
+          <li><NavLink to="list_contact"><i className='bx bx-user-circle'></i> Liên hệ
                 <i className='bx bx-chevron-down'></i>
               </NavLink>
             <ul id="sub">             
-              <li><NavLink to="list_user" className='sub-menu'>User</NavLink></li>
               <li><NavLink to="list_contact" className='sub-menu'>Liên hệ</NavLink></li>
             </ul>
           </li>
@@ -71,6 +69,7 @@ function NavAdmin() {
               <li><NavLink to="listlogo" className='sub-menu'>Cấu hình chung</NavLink></li>
             </ul>
           </li>
+          <li><NavLink to="list_rolemanage"><i className='bx bxs-user-circle'></i> Quản lý tài khoản</NavLink></li>
           <li><NavLink to="/"><i className='bx bx-log-out-circle'></i> Quay lại trang user</NavLink></li>
         </ul>
     </>

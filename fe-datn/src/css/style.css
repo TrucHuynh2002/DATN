@@ -28,7 +28,11 @@
 @import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
-
+/* config text color */
+:root {
+    --text-color:  #000;
+    --background-color:#ffc70d;
+}
 * {
     box-sizing: border-box !important;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -48,6 +52,7 @@ table>thead>tr{
 }
 .container {
     max-width: 1170px;
+    
 }
 
 html {
@@ -257,7 +262,7 @@ a {
 
 img {
     max-width: 100%;
-    height: 100%;
+    /* height: 100%; */
 }
 
  :focus {
@@ -315,6 +320,7 @@ button {
     margin-right: 0 !important;
     display: flex;
     justify-content: space-around;
+
 }
 
 /**-- heading section --**/
@@ -356,8 +362,11 @@ button {
 
 .navigation.navbar {
     float: right;
-    padding-top: 14px !important;
-    padding: 0;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 150px;
+    padding-right: 175px;
+    
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link {
@@ -483,6 +492,7 @@ button {
 .book_room2 {  
     background-color: white;
     padding: 15px;
+    border-radius: 5px;
     left: 50%;
     transform:  translate(-50%,0);
     position: absolute;
@@ -551,35 +561,35 @@ button {
 .book_now2 .online_book3 {
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 25px 0;
     position: relative;
 }
 .book_now2 .online_book4 {
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 25px 0;
     position: relative;
 }
 .book_now2 .online_book5 {
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 25px 0;
     position: relative;
 }
 .book_now2 .online_book6 {
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 25px 0;
     position: relative;
 }
 .book_now2 .online_book7 {
     height: 50px;
     border: rgb(195, 195, 195) solid 1px;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 25px 0;
     position: relative;
     
@@ -597,6 +607,7 @@ button {
 .gallery .gallery_img {
     overflow: hidden;
     margin-bottom: 30px;
+    border-radius: 5px;
 }
 
 .gallery .gallery_img figure {
@@ -604,13 +615,12 @@ button {
 }
 
 .gallery .gallery_img figure img {
-    width: 100%;
-    transition: all .5s;
+    width: 70%;
+    height: 80%;
+   
 }
 
-.gallery .gallery_img figure img:hover {
-    transform: scale(1.2);
-}
+
 /* show mask */
 .aspect{
     position: relative;
@@ -790,12 +800,49 @@ label{
 
 .search_room_btn {
     background-color: #ffc70d;
+    border-radius: 5px;
+    font-weight: 800;
+    color: #0d3380;
+    background-color: var(--background-color);
     border-radius: 0px;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 163px;
+    border: none;
+}
+.search_room_btn:hover,
+.search_room_btn:focus{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+}
+.search_room_btn2 {
+    background-color: #ffc70d;
+    border-radius: 5px;
+    font-weight: 800;
+    color: #0d3380;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 163px;
+    
+}
+.search_room_btn:hover {
+    background-color: #ca9c04;
+    transition:0.5s ease;
+    border-radius: 5px;
+    font-weight: 800;
     color: #0d3380;
     font-size: 16px;
     font-weight: 600;
     padding: 10px 0;
     width: 163px;
+}
+.datphong{
+    padding-bottom: 100px;
 }
 
 .carousel-control-next,
@@ -855,15 +902,16 @@ label{
 
 .read_more {
     font-size: 17px;
-    background-color: #ffc70d;
-    color: #0d3380;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 8px 0px;
     width: 100%;
     max-width: 144px;
     text-align: center;
     display: inline-block;
-    transition: ease-in all 0.5s;
+   
     font-weight: 600;
+    border-radius: 5px;
 }
 
 .read_more:hover {
@@ -873,9 +921,10 @@ label{
 
 /** about section **/
 
-.about1 {
+.about {
     background-color: #fff;
-    padding-top: 100px;
+    padding-top: 70px;
+    padding-bottom: 100px;
     margin: 0 100px 0 100px;
     
 }
@@ -900,9 +949,11 @@ label{
 }
 
 .about_img {
-    margin-right: 40px;
+    margin-right: 10px;
     overflow: hidden;
+    border-radius: 5px 5px 5px 5px;
 }
+
 
 .about_img figure {
     margin: 0;
@@ -917,17 +968,98 @@ label{
     transform: scale(1.2);
 }
 
+/* gla */
+.gallery_img {
+    margin-right: 40px;
+    overflow: hidden;
+}
+
+.gallery_img figure {
+    margin: 0;
+}
+
+.gallery_img figure img {
+    width: 100%;
+    transition: all .5s;
+}
+
+.gallery_img figure img:hover {
+    transform: scale(1.2);
+}
+
+
+
 /** end about section **/
+/* all_room */
+.all-room {
+    background-color: white;
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.all-room .titlepage {
+    text-align: center;
+}
+
+.all-room .titlepage p {
+    color: #121212;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.all-room .room {
+    background-color: #fff;
+    margin-bottom: 30px;
+    transition: ease-in all 0.5s;
+    height: 95%;
+    
+}
 
 
+.all-room .room .room_img {
+    overflow: hidden;
+    /* height: 220px; */
+    padding: 0px;
+    margin-top: -1.5px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.all-room .room .room_img figure {
+    margin: 0;
+}
+
+.all-room .room .room_img figure img {
+    width: 100%;
+    /* transition: all .5s; */
+}
+
+
+
+.all-room .room .bed_room {
+    padding: 33px 30px;
+    width: 100%;
+    height: auto;
+}
+.all-room .room .bed_room h3 {
+    color: #121212;
+    font-size: 18px;
+    line-height: 33px;
+    transition: ease-in all 0.5s;
+    margin: auto;
+    text-align: left;
+}
+
+/* and all_room */
 /** our_room section **/
 .modal_show{
     margin-top:12px
 }
 .our_room {
-    background-color: #f4f5f7;
-    margin-top: 20px;
-    padding-top: 30px;
+    background-color: #eaeaea;
+
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 
 .our_room .titlepage {
@@ -945,11 +1077,14 @@ label{
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
     height: 95%;
+    border-radius: 5px;
 }
 
 .our_room .room .room_img {
     overflow: hidden;
-    height: 220px;
+    /* height: 220px; */
+    padding: 0px;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .our_room .room .room_img figure {
@@ -958,12 +1093,11 @@ label{
 
 .our_room .room .room_img figure img {
     width: 100%;
-    transition: all .5s;
+   
+    
 }
 
-.our_room .room .room_img figure img:hover {
-    transform: scale(1.2);
-}
+
 
 .our_room .room .bed_room {
     padding: 33px 30px;
@@ -986,15 +1120,22 @@ height:50%;
 
 .our_room .room .bed_room h3 {
     color: #121212;
-    font-size: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: left;
     transition: ease-in all 0.5s;
     margin: auto;
 }
 
 #serv_hover:hover.room {
     cursor: pointer;
-    box-shadow: 0px 0px 30px rgba(255, 9, 9, 0.15);
+    box-shadow: 0px 0px 5px #0d33805d;
     transition: ease-in all 0.5s;
+}
+.allRoom{
+    border: 1px solid #bebebe;
+    border-radius: 5px;
 }
 
 
@@ -1004,13 +1145,20 @@ height:50%;
 /** gallery  section **/
 
 .gallery {
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 
 .gallery .titlepage {
     text-align: left;
 }
 .gallery .titlepage>p{
+    margin:10px 0 ;
+}
+.gallery .titlepage2 {
+    text-align: left;
+}
+.gallery .titlepage2>p{
     margin:10px 0 ;
 }
 
@@ -1031,6 +1179,32 @@ height:50%;
 .gallery .gallery_img figure img:hover {
     transform: scale(1.2);
 }
+.read_more_gl{
+    font-size: 17px;
+    background-color: #ffc70d;
+    border-radius: 5px;
+    color: #0d3380;
+    padding: 8px 0px;
+    width: 100%;
+    max-width: 144px;
+    text-align: center;
+    display: inline-block;
+    transition: ease-in all 0.5s;
+    font-weight: 600;
+}
+.read_more_gl:hover{
+    font-size: 17px;
+    background-color: #ca9c04;
+    color: #0d3380;
+    border-radius: 5px;
+    padding: 8px 0px;
+    width: 100%;
+    max-width: 144px;
+    text-align: center;
+    display: inline-block;
+    transition: ease-in all 0.5s;
+    font-weight: 600;
+}
 
 /** end gallery  section **/
 
@@ -1041,7 +1215,8 @@ height:50%;
     background: #eaeaea;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    padding-top: 30px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
 .each-slide{
     display: flex;
@@ -1074,10 +1249,12 @@ height:50%;
     background-color: #fff;
     margin-bottom: 30px;
     transition: ease-in all 0.5s;
+    border-radius: 5px;
 }
 
 .blog .blog_box .blog_img {
     overflow: hidden;
+    border-radius: 5px 5px 0px 0px;
 }
 
 .blog .blog_box .blog_img figure {
@@ -1135,9 +1312,12 @@ height:50%;
     font-size: 17px;
   
 }
+.search__all_post{
+    margin:10px 2px 10px 0;
+}
 .Link_________{
     font-size: 15px;
-    width: 50%;
+    width: 80%;
     color: #0d5df0b5!important;
     overflow: hidden;
     white-space: nowrap;
@@ -1169,11 +1349,12 @@ height:50%;
     color:white;
 }
 .product-slider{
-    background-color: rgba(220, 215, 212, 0.71);
+    background-color: #eaeaea6f;
     
 }
 .item>.img-fluid{
     padding:20px;
+    padding-left: 60px;
 }
 .product-count-help{
     display: flex;
@@ -1182,9 +1363,12 @@ height:50%;
     font-size: 19px;
     padding: 10px 0;
     color: #929292ad;
+
 }
 .header-nav{
     align-items: center;
+    border: 1px solid none;
+  box-shadow: 0px 0px 15px 5px #00000010;
 }
 .product-count-help>div>i{
     margin-right:5px;
@@ -1427,6 +1611,8 @@ div>h1>.b_title,div>.b_title{
 .contact,.signin,.login {
     background: #fff;
     margin-top: 35px;
+    padding-top: 70px;
+    padding-bottom: 100px;
 }
 
 .main_form .contactus ,.text{
@@ -1491,9 +1677,9 @@ div>h1>.b_title,div>.b_title{
 
 
 /** footer **/
-footer{
+/* footer{
     padding-top: 100px;
-}
+} */
 
 .footer {
     background: #0f1521;
@@ -1524,6 +1710,7 @@ footer{
     /* border-bottom: #ff0909 solid 3px; */
     padding-bottom: 3px;
     display: table;
+    padding-left: 30px;
 }
 
 ul.conta li {
@@ -1531,6 +1718,7 @@ ul.conta li {
     text-align: left;
     padding-bottom: 20px;
     font-size: 16px;
+    
 }
 
 ul.conta li i {
@@ -1541,6 +1729,7 @@ ul.conta li i {
 
 ul.conta li a {
     color: #fff;
+    text-transform: capitalize;
 }
 
 ul.link_menu li {
@@ -1559,6 +1748,7 @@ ul.link_menu li a {
     display: block;
     width: -moz-max-content;
 }
+
 
 ul.link_menu li a:hover {
     color: #ff0909;
@@ -1609,9 +1799,9 @@ ul.link_menu li a:hover {
 }
 
 .sub_btn:hover {
-    background-color: #ffc72b;
+    background-color: var(--background-color);
     transition: ease-in all 0.5s;
-    color: #0d3380;
+    color: var(--text-color);
 }
 
 ul.social_icon {
@@ -1641,7 +1831,7 @@ ul.social_icon li a {
 }
 
 ul.social_icon li a:hover {
-    color: rgb(255, 199, 13);
+    color: var(--background-color);
 }
 
 .copyright {
@@ -1713,7 +1903,9 @@ ul.social_icon li a:hover {
 
 .pd-wrap {
     padding: 40px 0;
+    padding-top: 150px;
     font-family: 'Poppins', sans-serif;
+    /* margin-top: 60px; */
 }
 
 .heading-section {
@@ -1763,6 +1955,56 @@ ul.social_icon li a:hover {
     padding: 5px;
     border: 1px solid #bebebe;
     border-radius: 5px;
+}
+.timkiemRoom{
+    width: 92% !important;
+    padding: 5px;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    margin-top: 60px;   
+}
+.timkiemRoom2{
+    width: 89% !important;
+    padding: 5px;
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    margin-top: -20px;   
+}
+.timkiemRoom3{
+    width: 10% !important;
+    padding: 5px;
+    border: 1px solid #ffc72b;
+    border-radius: 5px;
+    margin-top: -5px;   
+    margin-left: 10px;
+    color: #0d3380;
+    background-color: #ffc72b ;
+}
+.timkiemRoom3:hover{
+    width: 10% !important;
+    padding: 5px;
+    border: 1px solid #cd9806;
+    border-radius: 5px;
+    margin-top: -5px;   
+    margin-left: 10px;
+    color: #0d3380;
+    background-color: #cd9806 ;
+    transition: ease 0.5s;
+}
+.timkiemRoom-div2{
+    padding-bottom: 20px;
+    margin-top: -50px;
+}
+.locRoom{
+    margin-left: 92%;
+    margin-top: -52px;  
+}
+
+.master-information{
+    padding-top: 30px;
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .name {
@@ -1915,6 +2157,7 @@ ul.social_icon li a:hover {
 
 .product-count {
     margin-top: 15px;
+    margin-left: -11px;
 }
 
 .product-count .qtyminus,
@@ -1943,32 +2186,44 @@ ul.social_icon li a:hover {
 }
 
 .round-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 1px #fff;
+    border: solid 1px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 5px;
+    width: 330px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin: 20px 0 0 10px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s;
+    text-align: center;
+    border: none;
 }
 
 .round-black-btn:hover,
 .round-black-btn:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
+}
+.btn_btn:hover,
+.btn_btn:focus {
+    background: var(--background-color);
+    color: #212529;
+    text-decoration: none;
+    border: none;
 }
 
 .review-form .round-black-btn.detail {
@@ -1976,20 +2231,20 @@ ul.social_icon li a:hover {
     cursor: pointer;
 }
 .round-black-btn.detail {
-    border-radius: 4px;
-    background: #212529;
-    color: #fff;
+    border-radius: 0px;
+    background: var(--background-color);
+    color: var(--text-color);
     padding: 7px 45px;
     display: inline-block;
     margin-top: 20px;
-    border: solid 2px #212529;
+    border: solid 2px var(--background-color);
     transition: all 0.5s ease-in-out 0s; 
 
 }
 
 .round-black-btn.detail:hover,
 .round-black-btn.detail:focus {
-    background: transparent;
+    /* background: transparent; */
     color: #212529;
     text-decoration: none;
 }
@@ -2120,8 +2375,8 @@ ul.social_icon li a:hover {
 
 .content_profile{
     padding: 10px 20px 20px 20px;
-    background-color:whitesmoke;
-    box-shadow: 0 2px 5px gainsboro;
+    border: 1px solid #bebebe;
+    
 }
 .button-fix{
     background-color: blue;
@@ -2186,7 +2441,8 @@ ul.social_icon li a:hover {
     position: absolute;
     overflow: auto;
     padding: 5px;
-    top: 154%;
+    top: 55%;
+    display:block;
     border: 1px solid rgb(207, 206, 206);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1 !important;
@@ -2194,7 +2450,8 @@ ul.social_icon li a:hover {
 .searchroom{
     text-align: center;
     color: black;
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 33px;
     padding: 0 0 50px 0;
 }.col-md-4.col-sm-6.searchroom{
 margin: 0 300px 0 375px;
@@ -2211,7 +2468,9 @@ margin: 0 300px 0 375px;
 /* .shopee-search-empty-result-section__icon{
     margin-left: 450px;
 } */
-
+.classQA{
+    margin-top: -60px;
+}
 .qa {
     width: 70%;
     margin: 0px auto;
@@ -2273,6 +2532,9 @@ margin: 0 300px 0 375px;
 .display_comment{
     display:flex;
     align-items: baseline;
+}
+.btn_qa2{
+    padding-top: 20px;
 }
 .qa_chammm{
     margin-left: 17px;
@@ -2404,7 +2666,7 @@ margin: 0 300px 0 375px;
     margin: 20px 0px 20px 0px;
     background-color: white;
     box-shadow: 0px 0.2px 1px black;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 16px;
     padding: 10px;
     line-height: 50px;
@@ -2442,11 +2704,13 @@ margin: 0 300px 0 375px;
 }
 
 .qa_input {
-    margin: 0px 150px 30px 170px;
+    padding-bottom: 30px;
+    width: 70%;
+    margin-left: 15%;
 }
 
 .btn_qa {
-    border-radius: 50px;
+    border-radius: 5px;
     width: 100%;
 }
 .logo-privacy{
@@ -2527,6 +2791,7 @@ margin: 0 300px 0 375px;
 .manage {
     background: #fff;
     margin-top: 30px;
+    padding-bottom: 100px;
 }
 
 .color_ownership_room {
@@ -2543,6 +2808,9 @@ margin: 0 300px 0 375px;
     height: 10px;
     margin-left: 30px;
     background-color: yellow;
+}
+.logo{
+    margin-left: 94px;
 }
 .room_number____{
     text-align: right;
@@ -2593,6 +2861,7 @@ margin: 0 300px 0 375px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 100px;
 }
 .img404{
     padding: 0px 0px 0px 10px;
@@ -2604,9 +2873,9 @@ margin: 0 300px 0 375px;
     padding: 10px 0px 0px 10px;
 }
 .goback {
-    background-color: #00bed37c;
+    background-color: #0d3380;
     padding: 5px 15px 5px 5px;
-    color: black;
+    color: #ffc72b;
     width: 100px;
    text-align: center;
   }.bi.bi-arrow-left-short.icongoback{
@@ -2684,6 +2953,12 @@ margin: 10px 10px 0 10px;
 .btn.btn-warning.prall{
     margin: 10px 10px 0 10px;
 }
+
+.dropdown-menu{
+    width:400px !important;
+    /* right: 30px !important */
+}
+
 .dropdown-menu.drop{
 margin:-10px 0 0 100px;
 }.title12{
@@ -2710,7 +2985,7 @@ margin:-10px 0 0 100px;
 
 .privacytexth1{
     width: 50%;
-   float: left;
+    float: left;
     padding-left: 21px;  
     font-weight: 550;
     font-size: 35px;
@@ -2740,6 +3015,7 @@ margin:-10px 0 0 100px;
     color: #27406d;
     margin-top: 16px;
    margin-left:50%;
+
 }.logo-privacyTN{
     width: 30%;
    
@@ -2850,9 +3126,9 @@ margin-top: 30px;
     -webkit-line-clamp: 5;    
 }
 .header__nav_admin{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
+    display: flex;
+    float: right;
+    margin-top: 20px;
 }
 .loadCmt:hover{
     cursor: pointer;
@@ -2990,6 +3266,7 @@ margin-top: 30px;
     border: 1px solid #bebebe;
     padding: 5px;
     width: 100%;
+    border-radius: 0px;
 }
 /* .scroll_search{
     width: 100%;
@@ -3003,7 +3280,7 @@ margin-top: 30px;
 .btn-i {
     position: absolute;
     right: 20px;
-    top: 74px;
+    top: 12px;
     bottom: 10px;
 }
 
