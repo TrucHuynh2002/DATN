@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { React, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../user/Header/Header';
 import Footer from './Footer';
@@ -9,8 +9,8 @@ import { TabTitle } from '../title';
 function LayoutUser() {
   TabTitle('Tìm trọ sinh viên');
   useEffect(() => {
-    getData();
-  },[])
+    getData()  
+  },[]);
   const getData = async () => {
     const res = await axios.get(`${url}/view_index/update_view`);
   };
