@@ -116,33 +116,25 @@ function RoomDetail() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='master-information'>
-                                
-                                <b>Thông tin chủ phòng</b>
-                        
-                            
-                                </div>
                                 <div className="product-count">
-                                <div>
-                                        <Link to={`../square/${a.id_post}`} className="round-black-btn">
-                                        <span className='xempt'> Xem phòng trống</span>
-                                        </Link>
-                                        
-                                </div>
-                                <div>
-                                        <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
-                                            <span className='lienhn' id="button_contact" >Liên hệ ngay</span>
-                                            <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
-                                        </Button>
-                                </div>
-                                    
-                                
-                                
-
-
-                                </div>
-                                
-                                
+                                    <div>
+                                            <Link to={`../square/${a.id_post}`} className="round-black-btn">
+                                            <span className='xempt'> Xem phòng trống</span>
+                                            </Link>
+                                            
+                                    </div>
+                                    <div>
+                                            <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
+                                                <span className='lienhn' id="button_contact" >Liên hệ ngay</span>
+                                                <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
+                                            </Button>
+                                    </div>
+                                    <div>
+                                        <Link to={`../profile/${a.id_user}`} className="round-black-btn">
+                                        <span className='xempt'> Xem thông tin chủ trọ</span>
+                                        </Link>                                       
+                                    </div>
+                                </div>                               
                             </div>
                         </div>
                         <div className="detail_room">
