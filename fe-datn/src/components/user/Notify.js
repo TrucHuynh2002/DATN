@@ -158,9 +158,7 @@ function Notify({onClick}) {
                                                             </div>
                                                             <div  className='col-lg-9' >
                                                                 <Link to={`../profile/${noti.data.Comment.id_user}`} className='link_noti'>
-                                                                    <span>{noti.data.Comment.full_name}</span></Link> Vừa trả lời bình luận của bạn tại bài viết 
-                                                                <Link to={`../roomdetail/${noti.data.post.id_post}`} className='link_noti'>
-                                                                    <span> {noti.data.post.post_name} </span>
+                                                                    <span><strong>{noti.data.Comment.full_name}</strong></span> Vừa trả lời bình luận của bạn tại bài viết  <strong>{noti.data.post.post_name} </strong>
                                                                 </Link>
                                                             </div>
                                                         </div>
@@ -285,7 +283,7 @@ function Notify({onClick}) {
                                                     return(
                                                         <div key={index} className='listBookingRoom'>
                                                             <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' :  'textNoti col-9'}>
+                                                                <div className={ noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-lg-12' :  'textNoti col-lg-12'}>
                                                                     <strong>{noti.data.ownerBookingRoom.full_name}</strong> Vừa đặt phòng <strong>A0{noti.data.ownerPost.room_number}</strong> tại 
                                                                     <strong>{noti.data.ownerPost.post_name}</strong> của bạn 
                                                                 </div>
@@ -320,7 +318,7 @@ function Notify({onClick}) {
                                             if(noti.type == "App\\Notifications\\UpdateRoomNumber"){
                                                 return   (
                                                     <Link to={`../layoutSendNoti/${id_user}`} className='link_noti' onClick={e => handleMaskRead(e,noti.id)}>
-                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft' :  'textNoti col-9'}>
+                                                        <div className={noti.read_at == null ? 'textNoti textNotiMaskRead textMdLeft col-lg-12' :  'textNoti col-lg-12'}>
                                                             <strong>{noti.data.subject.full_name} </strong> Vừa yêu cầu trả phòng phòng số 
                                                             <strong> {noti.data.roomnumber.room_number} </strong> tại bài viết 
                                                             <strong> {noti.data.roomnumber.post_name}</strong>
@@ -429,7 +427,7 @@ function Notify({onClick}) {
                                                     <div className={noti.read_at == null ?'textNoti textNotiMaskRead textMdLeft row row_noty'  : 'textNoti row row_noty' }  key={index}>
                                                         <div  className='listBookingRoom'>
                                                             <Link to={`../checkroom/${noti.data.ownerPost.id}`} onClick={e => handleMaskRead(e,noti.id)} >
-                                                                <div className='col-lg-9'>
+                                                                <div className='col-lg-12'>
                                                                     <span>{noti.data.ownerBookingRoom.full_name}</span> Vừa đặt phòng <span>A0{noti.data.ownerPost.room_number}</span> tại 
                                                                     <span>{noti.data.ownerPost.post_name}</span> của bạn 
                                                                 </div>

@@ -47,6 +47,7 @@ use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PayOnlineController;
+use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\SavingRoomController as ControllersSavingRoomController;
 use App\Models\SavingRoomController;
 use App\Models\SavingRoomModel;
@@ -228,6 +229,7 @@ Route::put('comment_qa/update/{id}', [comment_QAController::class, 'CommentEdit'
 Route::delete('comment_qa/delete/{id}', [comment_QAController::class, 'CommentDelete']);
 Route::get('comment/qa-comment-owner/{id_user}', [comment_QAController::class, 'getAllCommentPostUserOwner']);
 Route::get('comment_qa/count/{id}', [Comment_QAController::class, 'Count_Comment']);
+Route::get('comment-qa-count',[comment_QAController::class, 'countCommentQA']);
 // User
 Route::get('user/show', [UserController::class, 'User_SelectAll']);
 Route::get('user/show/{id}', [UserController::class, 'User_SelectOne']);
@@ -390,3 +392,9 @@ Route::get('vnpay', [PayOnlineController::class, 'create']);
 Route::get('notify/{id_user}', [NotificationController::class, 'getNotification']);
 Route::get('notify/mask-as-read/{id_user}', [NotificationController::class, 'maskAsReads']);
 Route::get('notify/mask-as-read-id-noti/{id_notification}', [NotificationController::class, 'maskAsReadsId']);
+
+// REACTION LOVE
+
+Route::get('reaction-love',[ReactionController::class,'getLoveReaction']);
+Route::post('reaction-love',[ReactionController::class,'addLoveReaction']);
+Route::put('reaction-love/{id}',[ReactionController::class,'editLoveReaction']);

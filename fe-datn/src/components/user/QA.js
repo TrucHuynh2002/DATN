@@ -7,12 +7,13 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { url } from '../url';
 import { TabTitle } from '../title';
-
+import Love, {love} from './reaction/love';
+import CommentQA from './QA/CommentQA';
 function QA() {
   TabTitle('Hỏi đáp');
   const user = JSON.parse(localStorage.getItem('user')); 
   // const visableCmt = 3; 
-  const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
+  // const [VisableCmt, setVisableCmt] = useState(3); //loader cmt
   const id_user = !user ? "" : user[0].id ;
   const [listQa, setListQa] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -114,6 +115,7 @@ function QA() {
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});
       const ress = await axios.post(`${url}/noty_qa/create`, addNotify);
+      
     }
     setReply({
       activeComment:false
@@ -144,10 +146,10 @@ function QA() {
     setShow(true)
     checkManage();
   }
-  const loadmoreCmt = () => {
-        setVisableCmt(VisableCmt + 3);
-       getData();
-  }
+  // const loadmoreCmt = () => {
+  //       setVisableCmt(VisableCmt + 3);
+  //      getData();
+  // }
   const [countCommentQA, setCountCommentQA] = useState({
     id_qa : '',
     count:0
@@ -227,10 +229,14 @@ function QA() {
                 </div>
                 <h3>{listQa.title}</h3>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
+                <div className='ActionIconl'>
+                     <Love props={{id_qa: listQa.id_qa,id_user: user ? user[0].id : '', loader:loader}}/>
+                     <CommentQA props={{id_qa: listQa.id_qa, loader:loader}} />
+                </div>
                 <hr />
                 <div className='qa_cmt'>
                   <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
-                    <Form.Group className="col-11" controlId="">
+                    <Form.Group className="col-11 " controlId="">
                         <Form.Control 
                         type="text" 
                         name="qa_content" 
@@ -243,13 +249,13 @@ function QA() {
                 </div>
                 <div style={{margin:' 26px 10px 0'}}>
                   {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
-                  <span>Xem {listComment.length} bình luận trong bài </span>
+                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
                   {/* {
                     countCommentQA.id_qa == listQa.id_qa ? countCommentQA.id_qa
                   } */}
-                  <i className="fa-regular fa-comment"></i>
+                 
                 </div>
-                {listComment.slice(0,VisableCmt).map((listComment, index) => {
+                {listComment.map((listComment, index) => {
                     // if(listComment.id_qa == listQa.id_qa){
                     //   setCountCommentQA({
                     //     ...countCommentQA,
@@ -415,9 +421,13 @@ function QA() {
                     </div>
                   ))}
                 )}
-                {VisableCmt < listComment.length &&
+                {/* {VisableCmt < listComment.length
+                ?
                 <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
-                 } 
+                :
+                <p className="loadCmt">Chưa có bình luận nào</p>
+                }  */}
+                <Link to={`../qaDetail/${listQa.id_qa}`}>Xem chi tiết</Link>
               </div>
             );})}
             

@@ -3269,6 +3269,7 @@ margin-top: 30px;
 .notify_avatar>img {
     border-radius: 50%;
     width: 100%;
+    height: 100%;
 }
 
 .btn_actionComment{
@@ -3325,3 +3326,19 @@ margin-top: 30px;
       transform: translateX(100%);
     }
   }
+
+.SelectedReactionLove{
+    color: #e46767
+}
+.Reaction{
+    margin-right: 8px;
+}
+
+.Reaction>span {
+    margin: 0 1px;
+}
+
+.ActionIconl {
+    display: flex;
+
+}

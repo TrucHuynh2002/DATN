@@ -5,6 +5,8 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { url } from '../url';
 import { TabTitle } from '../title';
+import Love from './reaction/love';
+import CommentQA from './QA/CommentQA';
 
 function QADetail() {
   TabTitle('Hỏi đáp');
@@ -182,6 +184,10 @@ function QADetail() {
                     </div>
                 </div>
                 <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
+                <div className='ActionIconl'>
+                     <Love props={{id_qa: listQa.id_qa,id_user: user ? user[0].id : '', loader:loader}}/>
+                     <CommentQA props={{id_qa: listQa.id_qa, loader:loader}} />
+                </div>
                 <hr />
                 <div className='qa_cmt'>
                   <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
@@ -197,7 +203,7 @@ function QADetail() {
                   </Form>    
                 </div>
                 <div style={{margin:' 26px 10px 0'}}>
-                  <span>Xem {listComment.length} bình luận trong bài </span>
+                  {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
                   <i className="fa-regular fa-comment"></i>
                 </div>
                 {listComment.slice(0,VisableCmt).map((listComment, index) => {

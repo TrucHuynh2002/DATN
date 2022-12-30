@@ -27,6 +27,15 @@ class comment_QAController extends Controller
                 'status' => true
             ]);
     }
+
+    public function countCommentQA() {
+        $dataCommentQA = DB::table('comment_qa')->select('*', DB::raw('count(*) as CountCommentQA'))->groupBy('id_qa')->get();
+        return response()->json([
+            'status' => true,
+            'data' =>  $dataCommentQA
+        ]);
+    }
+
     public function show_QA(Request $request)
     {
         $data = DB::table('comment_qa')
@@ -35,12 +44,14 @@ class comment_QAController extends Controller
             ->whereNull('comment_qa.parent_id')
             // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
+        
             ->get();
         $data_child = DB::table('comment_qa')
             ->join('users', 'comment_qa.id_user', '=', 'users.id_user')
             ->join('img_user', 'img_user.id_user', '=', 'comment_qa.id_user')
             ->select('comment_qa.content', 'users.full_name', 'img_user.link_img_user', 'comment_qa.created_at', 'comment_qa.id_comment_qa', 'comment_qa.parent_id', 'comment_qa.id_user')
             ->whereNot('comment_qa.parent_id', '=', "NULL")
+         
             // ->join('qa','comment_qa.id_qa','=','qa.id_qa')
             ->orderBy('comment_qa.id_comment_qa', 'DESC')
             ->get();
