@@ -21,9 +21,12 @@ class QAController extends Controller
             ->join('img_user', 'img_user.id_user', '=', 'qa.id_user')
             ->orderBy('qa.id_qa', 'DESC')
             ->get();
+      
         return response()
             ->json([
-                'data' => $data
+                'status' => true,
+                'data' => $data,
+               
             ]);
     }
 

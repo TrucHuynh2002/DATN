@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { url } from '../url';
 import { TabTitle } from '../title';
 import HashLoader from "react-spinners/HashLoader";
+import Love from './reaction/love';
+import CommentQA from './QA/CommentQA';
 
 function QA() {
   TabTitle('Hỏi đáp');
@@ -71,10 +73,10 @@ function QA() {
 
   const [addQA,setAddQA] = useState("");
   useEffect(() => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, 3000)
+    // setLoading(true)
+    // setTimeout(() => {
+    //   setLoading(false)
+    // }, 3000)
     getData()
   },[loader]);
 
@@ -236,6 +238,10 @@ function QA() {
                       </div>
                       <h3>{listQa.title}</h3>
                       <div className="qa_container" dangerouslySetInnerHTML={{__html: listQa.content}} />   
+                      <div className='ActionIconl'>
+                            <Love props={{id_qa:listQa.id_qa, id_user: user ? user[0].id : ''}} />
+                            <CommentQA props={{id_qa:listQa.id_qa, loader: loader}} />
+                      </div>
                       <hr />
                       <div className='qa_cmt'>
                         <Form className="display_comment" onSubmit={(e) => handleComment(e,listQa.id_qa)}>
@@ -250,15 +256,8 @@ function QA() {
                           <Button className="button_input_submit btn btn-primary"  variant="primary" size="sm" name='' type="submit"> Gửi </Button>                    
                         </Form>    
                       </div>
-                      <div style={{margin:' 26px 10px 0'}}>
-                        {/* <span>Xem {listComment.length} bình luận trong bài </span> */}
-                        <span>Xem {listComment.length} bình luận trong bài </span>
-                        {/* {
-                          countCommentQA.id_qa == listQa.id_qa ? countCommentQA.id_qa
-                        } */}
-                        <i className="fa-regular fa-comment"></i>
-                      </div>
-                      {listComment.slice(0,VisableCmt).map((listComment, index) => {
+                  
+                      {listComment.map((listComment, index) => {
                           // if(listComment.id_qa == listQa.id_qa){
                           //   setCountCommentQA({
                           //     ...countCommentQA,
@@ -424,9 +423,9 @@ function QA() {
                           </div>
                         ))}
                       )}
-                      {VisableCmt < listComment.length &&
-                      <p onClick={(e) => loadmoreCmt(e)} className="loadCmt">Xem thêm bình luận</p>
-                      } 
+                    
+                      <Link to={`../qaDetail/${listQa.id_qa}`} className="loadCmt">Xem chi tiết</Link>
+                
                     </div>
                   );})}
                   

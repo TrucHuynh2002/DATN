@@ -287,20 +287,20 @@ class RoomNumberController extends Controller
         
         // Lấy thông tin người trả phòng
         $User_two = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')
-        ->select('room_number.id_user_two','users.full_name')
+        ->select('room_number.id_user_two','users.full_name','users.email')
         ->where('room_number.id','=',$id_roomnumber)
         ->first();
         $ownerUserId = User::find($User_two->id_user_two);
         Notification::send($ownerUserId,new ReplyUpdateRoomCancel());
-        
+       
         $data = RoomNumberModel::join('users','room_number.id_user_two','=','users.id_user')->find($id_roomnumber)->first();
         $data->check_room = null;
         $data->status = 0;
         $data->id_user_two = null;
-      
         if($User_two){
             Mail::to($User_two->email)->send(new CheckOutAlertSuccess($data));
         }
+        
         $data->save();
         return response()
         ->json([
