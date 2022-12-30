@@ -86,6 +86,7 @@ function RoomDetail() {
                 <div className="pd-wrap">
                 {listPost.map((a, index) => {
                     return(
+                  <>
                     <div className="container" key={index}>
                         <div className="row">
                             <div className="col-md-6">
@@ -242,8 +243,28 @@ function RoomDetail() {
                             </div>
                         </div>
                     </div>
+                    <div className="product-count">
+                       <div>
+                            <Link to={`../square/${a.id_post}`} className="round-black-btn">
+                             <span className='xempt'> Xem phòng trống</span>
+                            </Link>
+                            
+                       </div>
+                       <div>
+                            <Button onClick ={(e) => handleClick(e)} className="round-black-btn">
+                                <span className='lienhn' id="button_contact" >Liên hệ ngay</span>
+                                <span id="button_phone" style={{display:"none"}}>{a.phone}</span> 
+                            </Button>
+                       </div>
+                       <div>
+                            <Link to={`../profile/${a.id_user}`} className="round-black-btn">
+                             <span className='xempt'> Xem thông tin chủ trọ</span>
+                            </Link>
+                            
+                       </div>
+                    </div>
+                  </>
                 )})}
-                <RoomRelatePost onClick={handleLoaderPost}  />
                 </div>
             </>
         }

@@ -179,21 +179,6 @@ class CommentController extends Controller
             ]);
     }
 
-    public function Comment_SelectPostParamid_NotNull(Request $request, $id_post)
-    {
-        $Comment_SelectPost = DB::table('comment')
-            ->join('users', 'comment.id_user', '=', 'users.id_user')
-            ->where('comment.id_post', $id_post and 'param_id', '=', 0)
-            ->orderBy('comment.id_user', 'DESC')
-            ->get();
-        return response()
-            ->json([
-                'data' => $Comment_SelectPost,
-                'status' => true,
-                'id_post' => $id_post
-            ]);
-    }
-
     public function Comment_SelectOne(Request $request, $id_comment)
     {
         $Comment_SelectOne = DB::table('comment')->where('id_comment','=',$id_comment)->get();
@@ -202,29 +187,6 @@ class CommentController extends Controller
                 'data' => $Comment_SelectOne,
                 'status' => true,
                 'id_comment' => $id_comment
-            ]);
-    }
-
-    public function CommentApprove(Request $request, $id_comment)
-    {
-        //phê duyệt comment
-        $t = CommentModel::find($id_comment);
-        $t->status = $request->status;
-        $t->save();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
-            ]);
-    }
-
-    public function Comment_SelectApprove()
-    {
-        $Contact_SelectApprove = CommentModel::where('status', '=', '1');
-        return response()
-            ->json([
-                'data' => $Contact_SelectApprove,
-                'status' => true
             ]);
     }
     

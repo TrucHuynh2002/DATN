@@ -94,37 +94,37 @@ class BlogController extends Controller
             ]);
     }
 
-    public function img_Blog(Request $request, $id)
-    {
-        $get_image_blog = $request->file('img_blog');
-        if ($request->file('img_blog')) {
-            foreach ($request->file('img_blog') as $img) {
-                $get_image_blog = $img->getClientOriginalName();
-                $path = 'uploads/blog/';
-                $name_image_blog  = current(explode('.', $get_image_blog));
-                $name_image_blog = explode('.', $get_image_blog);
-                $new_image_blog = $name_image_blog[0] . rand(0, 99);
-                $img->move($path, $new_image_blog);
-                $link_img_blog = env('APP_URL') . '/uploads/blog/' . $new_image_blog;
-                $Blog = Blog::find($id);
-                if (File::exists($path . $Blog->name_img_blog)) {
-                    File::delete($path . $Blog->name_img_blog);
-                };
-                $Blog->name_img_blog = $new_image_blog;
-                $Blog->img_blog = $link_img_blog;
-                $Blog->save();
-            }
-            return response()->json([
-                'status' => true,
-                'messages' => 'Cập nhật thành công'
-            ]);
-        } else {
-            return response()->json([
-                'status' => false,
-                'messages' => 'Cập nhật thất bại'
-            ]);
-        }
-    }
+    // public function img_Blog(Request $request, $id)
+    // {
+    //     $get_image_blog = $request->file('img_blog');
+    //     if ($request->file('img_blog')) {
+    //         foreach ($request->file('img_blog') as $img) {
+    //             $get_image_blog = $img->getClientOriginalName();
+    //             $path = 'uploads/blog/';
+    //             $name_image_blog  = current(explode('.', $get_image_blog));
+    //             $name_image_blog = explode('.', $get_image_blog);
+    //             $new_image_blog = $name_image_blog[0] . rand(0, 99);
+    //             $img->move($path, $new_image_blog);
+    //             $link_img_blog = env('APP_URL') . '/uploads/blog/' . $new_image_blog;
+    //             $Blog = Blog::find($id);
+    //             if (File::exists($path . $Blog->name_img_blog)) {
+    //                 File::delete($path . $Blog->name_img_blog);
+    //             };
+    //             $Blog->name_img_blog = $new_image_blog;
+    //             $Blog->img_blog = $link_img_blog;
+    //             $Blog->save();
+    //         }
+    //         return response()->json([
+    //             'status' => true,
+    //             'messages' => 'Cập nhật thành công'
+    //         ]);
+    //     } else {
+    //         return response()->json([
+    //             'status' => false,
+    //             'messages' => 'Cập nhật thất bại'
+    //         ]);
+    //     }
+    // }
 
     public function update(Request $request, $id)
     {

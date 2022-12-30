@@ -106,16 +106,16 @@ class RatingController extends Controller
                 'status' => true
             ]);
     }
-    public function Rating_SelectOne(Request $request, $id_rating)
-    {
-        $t = DB::table('rating')->join('users', 'rating.id_user', '=', Auth::user()->id)
-            ->where('rating.id_user', '=', Auth::user()->id)->get();
-        return response()
-            ->json([
-                'data' => $t,
-                'status' => true
-            ]);
-    }
+    // public function Rating_SelectOne(Request $request, $id_rating)
+    // {
+    //     $t = DB::table('rating')->join('users', 'rating.id_user', '=', Auth::user()->id)
+    //         ->where('rating.id_user', '=', Auth::user()->id)->get();
+    //     return response()
+    //         ->json([
+    //             'data' => $t,
+    //             'status' => true
+    //         ]);
+    // }
 
     public function Rating_Average(Request $request,$id_post){
         $get_star = RatingModel::where('id_post','=',$id_post)->get();
