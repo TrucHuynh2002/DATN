@@ -26,7 +26,7 @@ function ListComment() {
   },[]);
   const getData = async (keywordss = '') => {
     const res = await axios.get(`${url}/comment/show?keyword=${keywordss}`);
-    console.log(res)
+
        setListCmt(res.data.data);
    };
     const deleteCmt = async (id_comment) => {

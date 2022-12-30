@@ -228,21 +228,12 @@ function HeaderNavLink() {
             }
         }
     }
-
-    // const handleMarKAsRead = async (e) => {
-    //     // const res = await axios.get(`http://127.0.0.1:8000/api/notify/mask-as-read/${id_users}`)
-    //     getNotify();
-    // }
-
     const [loader,setLoader] = useState(0);
     const handleClickNoti = async (e) => {
         setLoader(loader+1)
         getNotify()
     }
-    // const handleSubmitSearch = (e) => {
-    //     e.preventDefault()
-    //     navigate(`searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
-    //   }
+
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
@@ -274,7 +265,6 @@ function HeaderNavLink() {
                 </div>
             </li>
             <li className="nav-item">
-                {/* {get_user[0].role==1 || get_user[0].role==2 ? */}
                 <Button 
                 className='dangbai'
                     variant="warning" 
@@ -396,20 +386,6 @@ function HeaderNavLink() {
                                 })}       </Form.Select>
                             {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_ward[0]}</span>}
                         </Form.Group>  
-                        {/* <Form.Group className="mb-12 id_street">
-                            <Form.Label>Đường</Form.Label>
-                            <Form.Select name="id_street"
-                            onChange = {(e) => handleChange(e)}
-                            > 
-                            <option>Đường</option>
-                                {listStreet.map((room, index) => {
-                                    return (
-                                        <option key={index} value={room.id} >{room._name}</option>
-                                    );
-                                })}       
-                            </Form.Select>
-                            {alert.err_list.status === false && <span className="error">{alert.err_list.messages.id_street[0]}</span>}
-                        </Form.Group> */}
                         <Form.Group className="mb-12 address">
                             <Form.Label>Địa chỉ</Form.Label>
                             <Form.Control type="text" name="address" className=""

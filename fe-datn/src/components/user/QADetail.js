@@ -90,14 +90,7 @@ function QADetail() {
     setListComment(res.data.data);  
     setListChildComment(res.data.data_child);
 };
-// const loadMore = () => {
-//   setListComment(index + 5)
-//   if (index >= post.length) {
-//     setIsCompleted(true)
-//   } else {
-//     setIsCompleted(false)
-//   }
-// }
+
   const handleQA = async (e) => {
     e.preventDefault();
     let formData = new FormData();
@@ -117,7 +110,6 @@ function QADetail() {
     formData.append('id_qa',id_qa)
     formData.append('parent_id',parent_id)
     formData.append('child_idComment',childIdComment)
-    // const res = await axios.post(`http://127.0.0.1:8000/api/comment_qa/create`,formData);
     const res = await axios.post(`${url}/comment_qa/create`,formData);
     if(res.data.status == true){
       setNotify({...addNotify , id_user_tow : res.data.id_qa.id_user,interaction : 'bình luận',id_qa:id_qa});

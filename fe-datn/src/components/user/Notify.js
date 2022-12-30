@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { isRouteErrorResponse, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 import { url } from '../url';
@@ -7,7 +7,6 @@ import { url } from '../url';
 function Notify({onClick}) {
     var user = JSON.parse(localStorage.getItem("user"));
     const id_user = user ? user[0].id : 0;
-    const [listnotifyfavorite, setListnotifyfavorite] = useState([]);
     const [listnotifyInteractive, setListnotifyInteractive] = useState([]);
     const [listnotifyQa, setListnotifyQa] = useState([]);
     const [listBillUser,setListBillUser] = useState([]);
@@ -33,7 +32,6 @@ function Notify({onClick}) {
             const notifyInteractive = await axios.get(`${url}/notify_interactive/show/${id_user}`);
             setListnotifyInteractive(notifyInteractive.data.data);
             const ress = await axios.get(`${url}/comment/qa-comment-owner/${id_user}`);
-            // setListnotifyInteractive(res.data.data);
             if(ress.data.status){
                 setCommentPostOwnerParent(res.data.dataParent);
                 setCommentPostOwnerChild(res.data.dataChild);
@@ -65,7 +63,6 @@ function Notify({onClick}) {
     const getNotify = async () => {
         if(id_user != 0){
         const res = await axios.get(`${url}/notify/${id_user}`)
-        // console.log(res.data)
         if(res.data.status){
             if(res.data.data){
             setNotification(res.data.data)}
@@ -78,9 +75,6 @@ function Notify({onClick}) {
     }
     const [handleBooking,setHandleBooking] = useState(false);
     const handleBookingRoom = async (e,id_roomNumber,id_userBooking,id_notification) => {
-        // let formData = new FormData();
-        // formData.append('id_user_two',id_userBooking)
-        // formData.append('id_notification',id_notification)
         let res = await axios.get(`${url}/roomNumber/updateRoomNumber/${id_roomNumber}?id_notification=${id_notification}&&id_user_two=${id_userBooking}`);
         setHandleBooking(true)
     }
@@ -106,9 +100,6 @@ function Notify({onClick}) {
                 <li className="nav-item">
                     <a className="nav-link nav-item-link active" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#notify" role="tab" aria-controls="notify" aria-selected="false">THÔNG BÁO </a>
                 </li>
-                {/* <li className="nav-item">
-                    <a className="nav-link nav-item-link" tabIndex="-1" id="notify-tab" data-toggle="tab" href="#bill" role="tab" aria-controls="notify" aria-selected="false">Hóa đơn </a>
-                </li> */}
             </ul>
             <div className="tab-content" id="myTabContent" style={{ marginTop:"10px", height:"300px", overflow:"hidden", overflowY:"scroll"}}>
                 <div className="aw__t16jo35 tab-pane fade show active" id="notify" role="tabpanel" aria-labelledby="notify-tab">

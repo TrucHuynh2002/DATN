@@ -23,8 +23,6 @@ function EditBlog() {
     });
     // xu ly hinh anh
     const [uploadImages, setUploadImages] = useState([]);
-    console.log(uploadImages[0])
-
     const [alert, setAlert] = useState({
         err_list: {},
     });
@@ -45,7 +43,6 @@ function EditBlog() {
         dataForm.append('description',description);
         dataForm.append('id_user',id_user);
         const res = await axios.post(`${url}/blog/update/${id_blog}?_method=PUT`, dataForm);
-        console.log(res.data)
         if(res.data.status === true){
             setAlert({
                 err_list: res.data

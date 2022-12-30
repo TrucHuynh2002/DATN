@@ -44,7 +44,6 @@ function ContentComent() {
   const getData = async () => {
     const res = await axios.get(`${url}/comment/post/show/${id_post}`);
     const get_post = await axios.get(`${url}/post/showPost/${id_post}`);
-    console.log(get_post.data)
     setIdOwnerPost(get_post.data.id_user);
     setListComment({...listComment,Comment_parent: res.data.data,Comment_child:res.data.comment_child});
     
@@ -65,7 +64,6 @@ function ContentComent() {
     formData.append('id_post',id_post)
     formData.append('parent_id',getIdComment)
     formData.append('id_Replycomment',idReplyCmt)
-    // const res = await axios.post(`http://127.0.0.1:8000/api/comment/create`,formData);
     const res = await axios.post(`${url}/comment/create`,formData);
       if(res.data.status == true ){
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
@@ -81,7 +79,6 @@ function ContentComent() {
     formData.append('content',Comment)
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
-    // formData.append('parent_id',getIdComment)
     const res = await axios.post(`${url}/comment/create`,formData);
     if(res.data.status == true ){
       setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});

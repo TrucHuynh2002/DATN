@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useParams } from 'react-router-dom';
 import ContentComent from '../Comment/ContentComent';
 import Evaluate from '../Comment/Evaluate';
@@ -159,7 +159,6 @@ function RoomDetail() {
                                             <strong key={index}> {ward_detail._name}, </strong>                        
                                             );
                                         })}                  
-                                    {/* <strong> Quận </strong>  */}
                                         {listdistrict.map((dis_detail, index) => {
                                             return (   
                                                 <strong key={index}> {dis_detail._name}, </strong>            

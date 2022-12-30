@@ -180,19 +180,6 @@ function Signin() {
                                     </div>
                                     { alert.err_list.status == false && alert.err_list.messages.id_ward &&
                                     <div className="notice warning_____">{alert.err_list.messages.id_ward[0]}</div>}
-                                    {/* <div className="col-md-12">
-                                        <select className="text" name="id_street"
-                                        onChange = {(e) => handleChange(e)}>
-                                            <option>Đường</option>
-                                            {listStreet.map((room, index) => {
-                                            return (
-                                                <option key={index} value={room.id} >{room._name}</option>
-                                            );
-                                        })}
-                                        </select>
-                                    </div>
-                                    { alert.err_list.status == false && alert.err_list.messages.id_street &&
-                                    <div className="notice warning_____">{alert.err_list.messages.id_street[0]}</div>} */}
                                     <div className="col-md-12">
                                         <input type="text" className="text" name="address" value={address} placeholder="Địa chỉ" onChange={(e) => handleChange(e)} />
                                     </div>

@@ -29,7 +29,6 @@ import AddBlog from './components/admin/Blog/AddBlog';
 import EditBlog from './components/admin/Blog/EditBlog';
 import ListBlog from './components/admin/Blog/ListBlog';
 import DetailBlog from './components/admin/Blog/DeatilBlog';
-import EditBBlog from './components/user/blog/EditBlog';
 // admin Furniture
 import AddFurniture from './components/admin/furniture/AddFurniture';
 import EditFurniture from './components/admin/furniture/EditFurniture';
@@ -121,7 +120,6 @@ root.render(
         {/* bill */}
         <Route path="/layoutBill/:id_user" element={<LayoutBill />} />
         <Route path="billdetail/:id_bill" element={<BillDetail />} />
-        <Route path="editBlog/:id_blog" element={<EditBBlog />} />
         <Route path="update_acc/:id_Account" element={<UpdateAccount />} />
         <Route path="confirm_acc/:id_Account" element={<ConfirmAccount />} /> 
         <Route path="searchroom" element={<SearchRoom />} /> 
