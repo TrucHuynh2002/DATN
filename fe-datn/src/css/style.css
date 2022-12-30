@@ -1940,12 +1940,17 @@ ul.social_icon li a:hover {
     color: #2e9da1;
     font-size: 27px;
 }
+.room_search{
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px
+}
 .timkiemRoom{
     width: 92% !important;
     padding: 5px;
     border: 1px solid #bebebe;
     border-radius: 5px;
-    margin-top: 60px;   
+    /* margin-top: 60px;    */
 }
 .timkiemRoom2{
     width: 89% !important;
@@ -1980,10 +1985,10 @@ ul.social_icon li a:hover {
     margin-top: -50px;
 }
 
-.locRoom{
+/* .locRoom{
     margin-left: 92%;
     margin-top: -52px;  
-}
+} */
 
 .master-information{
     padding-top: 30px;

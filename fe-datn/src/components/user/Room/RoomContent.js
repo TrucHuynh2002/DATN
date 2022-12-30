@@ -22,7 +22,7 @@ function RoomND() {
       setLoading(false)
     }, 3000)
     getData()
-    getSearch()
+   
   },[]);
 
   const [alert, setAlert] = useState({
@@ -41,7 +41,7 @@ function RoomND() {
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
     const getDataProvince = await axios.get(`${url}/province/showPostSearch`);
       setListProvince(getDataProvince.data.data);
-    
+      getSearch()
   };
   // search
   const navigate = useNavigate();
@@ -144,19 +144,18 @@ function RoomND() {
           <>
             <div className="container ">
             {/* <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}> */}
-            <div className="row">
-                <div className={fix ? 'scroll_search' : 'col-lg-12 col-md-12 col-sm-12 timkiemRoom-div'}>
+            <div className="row room_search">
+                <div className={fix ? 'scroll_search' : 'col-lg-11 col-md-11 col-sm-11 timkiemRoom-div'}>
                   <input className="form-control timkiemRoom" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
                   {/* <i className='fa fa-search' style={{color:"#0d3380"}}></i> */}
                 </div>
-              <div className='locRoom'>
+              <div className='locRoom col-lg-1 col-md-1 col-sm-1'>
                 <Button   
                   variant="warning" 
                   style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
                   onClick={handleShow} > Lọc
                   <i className="fa-solid fa-filter" 
-                  style={{marginLeft: '7px'}} 
-                  ></i>
+                  style={{marginLeft: '7px'}} ></i>
                 </Button>
               </div>
             </div>
