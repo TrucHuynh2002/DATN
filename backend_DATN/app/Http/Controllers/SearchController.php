@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
+    
     public function keyword_searching(Request $request)
     {
         $get_data = DB::table('post');
@@ -48,8 +49,6 @@ class SearchController extends Controller
             }
         }
         $get_postSearch = $get_data->get();
-
-        // $get_data->get();
         return response()->json([
             'status' => true,
             'abc' => $get_data,

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class HeartFeelingController extends Controller
 {
+
     public function show_id(Request $request, $id)
     {
         $data = HeartFeeling::where('id_post', '=', $id);
@@ -17,6 +18,7 @@ class HeartFeelingController extends Controller
                 'status' => true,
             ]);
     }
+
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -46,6 +48,7 @@ class HeartFeelingController extends Controller
                 'status' => true
             ]);
     }
+    
     public function delete(Request $request, $id)
     {
         $HeartFeeling = HeartFeeling::find($id);

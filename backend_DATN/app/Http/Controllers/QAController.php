@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class QAController extends Controller
 {
+
     public function show(Request $request)
     {
         $data = DB::table('qa')
@@ -25,6 +26,7 @@ class QAController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_detail(Request $request,$id_qa)
     {
         $data = QAModel::join('users', 'qa.id_user', '=', 'users.id_user')
@@ -36,6 +38,7 @@ class QAController extends Controller
                 'status' => true
             ]);
     }
+
     public function created_at(Request $request)
     {
         // $validation = Validator::make($request->all(), [
@@ -59,30 +62,22 @@ class QAController extends Controller
         $qa = new QAModel();
         // thêm QA
         $qa->id_user = $request->id_user;
-        // $qa->title = $request->title;
         $qa->content = $request->content;
-        // $qa->id_img_qa = $request->id_img_qa; // khóa ngoại
         $Get_qa = QAModel::orderby('id_qa', 'DESC')->first();
         $get_image = $request->file('img');
         if ($request->file('img')) {
             foreach ($get_image as $img) {
                 $get_name_image = $img->getClientOriginalName();
-                // $name = $get_name_image;
                 $path = 'uploads/';
-                // dd($get_name_image);
                 $name_image  = current(explode('.', $get_name_image));
                 $name_image = explode('.', $get_name_image);
                 $new_image = $name_image[0] . rand(0, 99);
                 $img->move($path, $new_image);
-                // $imgqa$qa->img = $new_image;
                 $imgqa = new img_QAModel();
                 $imgqa->link_img_qa = env('APP_URL') . '/uploads/' . $new_image;
                 $imgqa->id_qa = $Get_qa->id_qa+1; // khóa ngoại
                 $imgqa->save();
             }
-            // return response()->json([
-            //     'img' => $name
-            // ]);
         }
         $qa->save();
         return response()
@@ -91,6 +86,7 @@ class QAController extends Controller
                 'status' => true,
             ]);
     }
+
     public function deleteQa(Request $request, $id)
     {
         $qaDelete = QAModel::find($id);
@@ -120,6 +116,4 @@ class QAController extends Controller
             'dataChild' => $get_inforOwnerChild
         ]);
     }
-
-    
 }

@@ -57,13 +57,13 @@
         <p class="code">123456</p>
         <p>Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.</p> --}}
         <p>Đặt lại mật khẩu ngay tại đây:</p>
-        <a href="https://timtrosinhvien.com/resetpw/{{$token}}" style="padding: 17px;background-color: black; margin-left: 260px;" class="button">Đổi mật khẩu</a>
+        <a href="http://localhost:3000/resetpw/{{$token}}" style="padding: 17px;background-color: black; margin-left: 260px;" class="button">Đổi mật khẩu</a>
         {{-- <a href="{{route('password.reset',['token' => $token])}}?email={{$user->email}}" style=" padding: 17px;
     background-color: aliceblue;margin-left: 260px;" class="button">Đổi mật khẩu</a> --}}
     </div>
     <div class="footer">
         <p>Thân,<br>
-            Nhà Tui</p>
+            Tìm trọ sinh viên</p>
     </div>
     </div>
 </body>

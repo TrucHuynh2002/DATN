@@ -17,6 +17,7 @@ class img_QAController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
         $data = imgqa::find($id);
@@ -25,6 +26,7 @@ class img_QAController extends Controller
                 'data' => $data
             ]);
     }
+    
     public function create(Request $request)
     {
         $imgqa = new imgqa();

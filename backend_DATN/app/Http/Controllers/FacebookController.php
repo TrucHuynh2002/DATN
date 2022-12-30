@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class FacebookController extends Controller
 {
+    
     public function getLinkUrl(){
         $url = Socialite::driver('facebook')->stateless()->redirect()->getTargetUrl();
         return response()->json([

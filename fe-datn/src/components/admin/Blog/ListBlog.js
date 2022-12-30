@@ -56,15 +56,13 @@ function ListBlog() {
                       <Link to="../add_blog" className="btn btn-primary form-add">Thêm Blog</Link>
                       <div className ="header__nav_admin">
                         <input className="form-control search_blog" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
-                        {/* end search */}
-                      
+                        {/* end search */}                    
                       </div>
                       <Table bordered>
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Tên blog</th>
-                            <th>Từ khóa</th>
                             <th>Mô tả ngắn</th>
                             <th></th>
                             <th></th>
@@ -77,7 +75,6 @@ function ListBlog() {
                             <tr key={index}>
                                 <td>{index+1}</td>
                                 <td>{blog.name_blog}</td>
-                                <td>{blog.meta_keywords}</td>
                                 <td className='blog_descriptionSort'>{blog.description_sort}</td>                        
                                 <td>
                                   <div>

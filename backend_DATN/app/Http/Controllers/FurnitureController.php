@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class FurnitureController extends Controller
 {
+
     public function show(Request $request)
     {
         if($request->keyword && $request->keyword != ''){
@@ -21,6 +22,7 @@ class FurnitureController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
         $data = Furniture::find($id);
@@ -30,6 +32,7 @@ class FurnitureController extends Controller
                 'status' => true,
             ]);
     }
+
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -56,6 +59,7 @@ class FurnitureController extends Controller
                 'status' => true
             ]);
     }
+    
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [

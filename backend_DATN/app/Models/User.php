@@ -29,14 +29,12 @@ class User extends Authenticatable
         'id_province',
         'id_district',
         'id_ward',
-        // 'id_street',
         'role',
         'id_img_user',
         'email_verified_at',
         'remember_token',
         'google_id',
         'facebook_id'
-        // 'created_at'
     ];
 
     /**

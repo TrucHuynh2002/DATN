@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
+    
     public function show(Request $request)
     {
         if ($request->keyword && $request->keyword != '') {
@@ -50,12 +51,10 @@ class BlogController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name_blog' => 'required|string|unique:blog',
-            'meta_keywords' => 'required',
             'description' => 'required',
             'description_sort' => 'required',
         ], [
             'name_blog.required' => 'Không được bỏ trống',
-            'meta_keywords.required' => 'Không được bỏ trống',
             'description.required' => 'Không được bỏ trống',
             'description_sort.required' => 'Không được bỏ trống',
         ]);
@@ -69,7 +68,6 @@ class BlogController extends Controller
         $Blog = new Blog();
         $Blog->name_blog = $request->name_blog;
         $Blog->name_img_blog = $request->name_img_blog;
-        $Blog->meta_keywords = $request->meta_keywords;
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
         $Blog->view = 0;
@@ -132,12 +130,10 @@ class BlogController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'name_blog' => 'required|string',
-            'meta_keywords' => 'required',
             'description' => 'required',
             'description_sort' => 'required',
         ], [
             'name_blog.required' => 'Không được bỏ trống',
-            'meta_keywords.required' => 'Không được bỏ trống',
             'description.required' => 'Không được bỏ trống',
             'description_sort.required' => 'Không được bỏ trống',
         ]);
@@ -150,7 +146,6 @@ class BlogController extends Controller
         }
         $Blog = Blog::find($id);
         $Blog->name_blog = $request->name_blog;
-        $Blog->meta_keywords = $request->meta_keywords;
         $Blog->description_sort = $request->description_sort;
         $Blog->description = $request->description;
         $Blog->id_user = $request->id_user;

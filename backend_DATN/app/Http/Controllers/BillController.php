@@ -18,6 +18,7 @@ use telesign\sdk\messaging\MessagingClient;
 
 class BillController extends Controller
 {
+
     public function show()
     {
         $data = Bill::all();
@@ -27,6 +28,7 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+
     public function show_id_roomNumber(Request $request, $id)
     {
         $data = DB::table('bill')
@@ -40,6 +42,7 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+
     public function sum_bill(Request $request)
     {
         $data = Bill::groupBy('id_roomNumber')->sum('all_money');
@@ -49,6 +52,7 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+
     public function show_id_bill(Request $request, $id)
     {
         $data = Bill::join('room_number', 'bill.id_roomNumber', '=', 'room_number.id')
@@ -61,6 +65,7 @@ class BillController extends Controller
                 'data' => $data,
             ]);
     }
+
     public function created_at(Request $request)
     {
         $validation = Validator::make($request->all(), [
@@ -112,6 +117,7 @@ class BillController extends Controller
                 'status' => true
             ]);
     }
+
     public function update(Request $request, $id)
     {
         $validation = Validator::make($request->all(), [
@@ -141,6 +147,7 @@ class BillController extends Controller
                 'status' => true,
             ]);
     }
+    
     public function delete(Request $request, $id)
     {
         $Bill = Bill::find($id);
@@ -182,13 +189,11 @@ class BillController extends Controller
             ->join('post', 'post.id_post', '=', 'room_number.id_post')
             ->join('users', 'users.id_user', 'room_number.id_user_two')
             ->where('room_number.id_user_two', '=', $request->id_user)
-            // ->where('bill.id', '=', $id)
             ->first();
         return response()
             ->json([
                 'data' =>  $Bill,
                 'status' => true,
-                // 'user' => $request->id_user
             ]);
     }
 

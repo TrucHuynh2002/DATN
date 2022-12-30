@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 class search_trendsController extends Controller
 {
+
     public function search_key_word(Request $request)
     {
         $get_key_word = search_trendsModel::where('key_word', '=', $request->key_word)->first();
@@ -38,6 +39,7 @@ class search_trendsController extends Controller
                 ]);
         }
     }
+
     public function show(Request $request)
     {
         $count_post = search_trendsModel::where('view', '>', 0)->orderby('view', 'DESC')->take(10)->get();
@@ -47,6 +49,7 @@ class search_trendsController extends Controller
                 'status' => true
             ]);
     }
+
     public function show_keyword(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -74,6 +77,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+
     public function show_keyword_roomType(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -86,6 +90,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+
     public function show_keyword_post(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -98,6 +103,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+
     public function show_keyword_blog(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -110,6 +116,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+
     public function show_keyword_furniture(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -122,6 +129,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+
     public function show_keyword_comment(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();
@@ -134,6 +142,7 @@ class search_trendsController extends Controller
                 'status' => true,
             ]);
     }
+    
     public function show_keyword_user(Request $request, $keyword)
     {
         $keywords = search_trendsModel::where('key_word', 'like', '%' . $keyword . '%')->get();

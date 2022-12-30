@@ -16,6 +16,7 @@ class FavoriteController extends Controller
                 'data' => $data
             ]);
     }
+
     public function show_id(Request $request, $id)
     {
         $get_favorite = DB::table('favorite')
@@ -29,6 +30,7 @@ class FavoriteController extends Controller
             'data' => $get_favorite
         ]);
     }
+    
     public function created_at(Request $request)
     {
         $Favorite = new Favorite();

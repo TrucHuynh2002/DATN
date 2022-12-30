@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
+    
     public function get_Banner(Request $request)
     {
         $getBanner = banner_configModel::all();
@@ -17,6 +18,7 @@ class BannerController extends Controller
             ]
         );
     }
+
     public function get_Banner_id(Request $request,$id)
     {
         $getBannerId = banner_configModel::find($id);
@@ -27,17 +29,14 @@ class BannerController extends Controller
             ]
         );
     }
+
     public function update_Banner(Request $request,$id){
-         //BANNER
          $imgbanner = banner_configModel::find($id);
-        //  dd($imgbanner);
          $get_image_banner = $request->file('banner');
          if ($request->file('banner')) {
              foreach ($request->file('banner') as $img) {
                  $get_name_image_banner = $img->getClientOriginalName();
-                 // $name = $get_name_image;
                  $path = 'uploads/banner/';
-                 //  $name_image_banner  = current(explode('.',$get_name_image_banner));
                  $name_image_banner = explode('.', $get_name_image_banner);
                  $new_image_banner = $name_image_banner[0] . rand(0, 99);
                  $img->move($path, $new_image_banner.'.'.$name_image_banner[1]);
@@ -47,13 +46,9 @@ class BannerController extends Controller
                 };
                  $imgbanner->link_img_banner = env('APP_URL').'/uploads/banner/'.$new_image_banner.'.'.$name_image_banner[1];
                  $imgbanner->name_banner = $new_image_banner;
-                     // $imgbanner->id_config = 1; // khóa ngoại
                      $imgbanner->save();
                  
              }
-             // return response()->json([
-             //     'img' => $name
-             // ]);
              return response()->json(
                 [
                     'status' => true,

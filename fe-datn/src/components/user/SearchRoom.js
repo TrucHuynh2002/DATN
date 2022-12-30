@@ -67,11 +67,7 @@ function Search() {
                     <div className='timkiemRoom-div2'>
                     <input className="timkiemRoom2" placeholder="Tìm kiếm phòng trọ mong muốn" type="text" name="keywords"/>
                     <Button className='timkiemRoom3'><i className="fa-solid fa-search"></i></Button>
-                </div>
-                
-                        
-                
-                    
+                </div>                 
                     {
                         aData.status == true && aData.data.length >= 1 ? (
                             aData.data.map((room,index) => {
