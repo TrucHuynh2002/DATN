@@ -131,7 +131,7 @@ Route::get('roomNumber/detail_checkRoom/{id}', [RoomNumberController::class, 'de
 Route::get('roomNumber/show_roombookuser/{id}', [RoomNumberController::class, 'showRoomBookUser']);
 Route::post('roomNumber/cancel_roombookuser/{id}', [RoomNumberController::class, 'cancelRoomBookUser']);
 Route::get('roomNumber/show_sendnoti/{id}', [RoomNumberController::class, 'showSendNoti']);
-Route::post('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
+Route::get('roomNumber/cancelSendNoti/{id}', [RoomNumberController::class, 'cancelSendNoti']);
 Route::post('roomNumber/deleteSendNoti/{id}', [RoomNumberController::class, 'deleteSendNoti']);
 Route::get('roomNumber/updateRoomNumber/{id_roomNumber}', [RoomNumberController::class, 'updateRoomNumber']);
 Route::get('roomNumber/cancel-booking-room/{id_roomNumber}', [RoomNumberController::class, 'CancelBookingRoom']);
