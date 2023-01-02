@@ -69,11 +69,14 @@ function Search() {
             <div className="our_room">
                 <div className="container">
                     <div className="row"> 
-                    <div className='timkiemRoom-div2'>
-                    <input className="timkiemRoom2" placeholder="Tìm kiếm phòng trọ mong muốn" onChange={(e) => handleChangeSearch(e)} type="text" name="keywords"/>
-                    <Button className='timkiemRoom3'><i className="fa-solid fa-search"></i></Button>
-                </div>                 
-                <div>{aData.status == true && aData.data.length >= 1 && <p><em>Có {aData.data.length} kết quả tìm kiếm </em></p>} <hr /></div>
+                        <div className='SearchRoom'>
+                            <input className="inputRoomSearch" placeholder="Tìm kiếm phòng trọ mong muốn" onChange={(e) => handleChangeSearch(e)} type="text" name="keywords"/>
+                            <Button className='SearchRoomButton'><i className="fa-solid fa-search"></i></Button>
+                        </div>                 
+                        <div>
+                            {aData.status == true && aData.data.length >= 1 && <p><em>Có {aData.data.length} kết quả tìm kiếm </em></p>} 
+                            <hr />
+                        </div>
                     {
                         aData.status == true && aData.data.length >= 1 ? (
                             aData.data.map((room,index) => {

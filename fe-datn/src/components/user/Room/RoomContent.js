@@ -138,34 +138,34 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
           style={{display: 'inherit', position: 'relative', height: '100px', transform: 'rotate(165deg)'}}
           />
           :
-          <>
-            <div className="container ">
-            <div className="row room_search">
-                <div className='col-lg-9 col-md-9 col-sm-9 timkiemRoom-div'>
-                  <input className="form-control timkiemRoom" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
+         
+            <div className="container">
+              <div className="row room_search">
+                <div className='col-9 SearchRoom'>
+                  <input className="form-control inputRoomSearch" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
+                  {/* <i className="fa-solid fa-search"></i> */}
                 </div>
-                <div className='locRoom col-lg-2 col-md-2 col-sm-2'>
-                <Button   
-                  variant="warning"
-                  style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
-                  onClick={(e) => handleSubmitNear(e)}
-                  > 
-                  Gần bạn 
-                  
-                  <i className="fa-sharp fa-solid fa-location-dot" 
-                  style={{marginLeft: '7px'}} ></i>
-                </Button>
+                <div className='col-1'>
+                  <Button   
+                    variant="warning"
+                    style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
+                    onClick={(e) => handleSubmitNear(e)}
+                    > 
+                    Gần bạn 
+                    <i className="fa-sharp fa-solid fa-location-dot" 
+                    style={{marginLeft: '7px'}} ></i>
+                  </Button>
+                </div>
+                <div className='col-1'>
+                  <Button   
+                    variant="warning" 
+                    style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
+                    onClick={handleShow} > Lọc
+                    <i className="fa-solid fa-filter" 
+                    style={{marginLeft: '7px'}} ></i>
+                  </Button>
+                </div>
               </div>
-              <div className='locRoom col-lg-1 col-md-1 col-sm-1'>
-                <Button   
-                  variant="warning" 
-                  style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
-                  onClick={handleShow} > Lọc
-                  <i className="fa-solid fa-filter" 
-                  style={{marginLeft: '7px'}} ></i>
-                </Button>
-              </div>
-            </div>
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Lọc</Modal.Title>
@@ -243,39 +243,38 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
                   </div>
                 </Modal.Body>
               </Modal>
-                <div className="all-room">
-                  <div className="row rs_screen">
-                        {currentPosts.length > 0 ? currentPosts.map((post, index) => {
-                          return (     
-                            <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
-                                <div id="serv_hover" className="room allRoom">
-                                    <div className="room_img col-lg-12 col-md-5 col-xs-4">
-                                        <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
-                                    </div>
-                                    <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
-                                        <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
-                                        <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
-                                        <p>{post.description_sort}</p>
-                                    </div>
-                                </div>
-                            </div>
-                          );
-                        })
-                        :(
-                          <div className="col-md-4 col-sm-6 searchroom">
-                              <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
-                                  <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
+              <div className="all-room">
+                <div className="row rs_screen">
+                      {currentPosts.length > 0 ? currentPosts.map((post, index) => {
+                        return (     
+                          <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
+                              <div id="serv_hover" className="room allRoom">
+                                  <div className="room_img col-lg-12 col-md-5 col-xs-4">
+                                      <figure style={{width:"100%",height:"250px"}}><img src={post.link_img} alt={post.name_img} /></figure>
+                                  </div>
+                                  <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
+                                      <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
+                                      <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)}</span> 
+                                      <p>{post.description_sort}</p>
+                                  </div>
+                              </div>
                           </div>
-                      )}
+                        );
+                      })
+                      :(
+                        <div className="col-md-4 col-sm-6 searchroom">
+                            <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
+                                <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
                         </div>
-                        {/* phan trang */}
-                        <Pagination totalPost={listPost.length} 
-                        postsPerPage={postsPerPage} 
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage} />
-                </div>
+                    )}
+                      </div>
+                      {/* phan trang */}
+                      <Pagination totalPost={listPost.length} 
+                      postsPerPage={postsPerPage} 
+                      setCurrentPage={setCurrentPage}
+                      currentPage={currentPage} />
+              </div>
             </div>
-          </>
       }
     </>
   )
