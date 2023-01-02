@@ -1946,7 +1946,7 @@ ul.social_icon li a:hover {
     margin-top: 16px
 }
 .timkiemRoom{
-    width: 92% !important;
+    /* width: 92% !important; */
     padding: 5px;
     border: 1px solid #bebebe;
     border-radius: 5px;

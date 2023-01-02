@@ -7,6 +7,7 @@ import { url } from '../../url';
 import HashLoader from "react-spinners/HashLoader";
 
 function RoomND() {
+  var user = JSON.parse(localStorage.getItem("user"));
   const [loading, setLoading] = useState(false);
   const [listPost, setListPost] = useState([]);
   const [listImg, setListImg] = useState([]);
@@ -111,6 +112,17 @@ function RoomND() {
     e.preventDefault()
     navigate(`../searchroom?keyword=${keywords}&province=${keyword.province}&ward=${keyword.ward}&stress=${keyword.stress == undefined ? "" : keyword.stress}&district=${keyword.district}&price=${keyword.price}&area=${keyword.area}&typeRoom=${typeRoom}`);
   }
+const handleSubmitNear = async (e) => {
+  e.preventDefault()
+const id_user = user ? user[0].id : "";
+const Account = await axios.get(`${url}/user/show/${id_user}`);
+if(Account.data.data[0].id_province == null || Account.data.data[0].id_district == null || Account.data.data[0].id_ward == null ) {
+  navigate(`../update_acc/${id_user}`);
+ }else{
+  navigate(`../searchroom?province=${Account.data.data[0].id_province}&district=${Account.data.data[0].id_district}&ward=${Account.data.data[0].id_ward}&&stress=${Account.data.data[0].address}`);
+ }
+ 
+}
    // modal post
    const [show, setShow] = useState(false);
    const handleClose = () => setShow(false);
@@ -128,15 +140,26 @@ function RoomND() {
           :
           <>
             <div className="container ">
-            {/* <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}> */}
             <div className="row room_search">
-                <div className='col-lg-11 col-md-11 col-sm-11 timkiemRoom-div'>
+                <div className='col-lg-9 col-md-9 col-sm-9 timkiemRoom-div'>
                   <input className="form-control timkiemRoom" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
                 </div>
+                <div className='locRoom col-lg-2 col-md-2 col-sm-2'>
+                <Button   
+                  variant="warning"
+                  style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
+                  onClick={(e) => handleSubmitNear(e)}
+                  > 
+                  Gần bạn 
+                  
+                  <i className="fa-sharp fa-solid fa-location-dot" 
+                  style={{marginLeft: '7px'}} ></i>
+                </Button>
+              </div>
               <div className='locRoom col-lg-1 col-md-1 col-sm-1'>
                 <Button   
                   variant="warning" 
-                  style={{color: 'black', fontWeight: 600, borderRadius: '5px',margin: '14px'}} 
+                  style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
                   onClick={handleShow} > Lọc
                   <i className="fa-solid fa-filter" 
                   style={{marginLeft: '7px'}} ></i>

@@ -19,6 +19,7 @@ function Search() {
     const district = urlParam.get('district');
     const typeRoom = urlParam.get('typeRoom');
     const stress = urlParam.get('stress');
+    // const Near = urlParam.get('Near');
     const [addTrendSearch, setListTrendSearch] = useState({
         key_word : keyword,
       })
