@@ -23,7 +23,7 @@ function RoomND() {
       setLoading(false)
     }, 3000)
     getData()
-   
+    getSearch()
   },[]);
 
   const [alert, setAlert] = useState({
@@ -42,7 +42,6 @@ function RoomND() {
       setGetDataSearch({...getDataSearch,typeRooms:getTypeRoom.data.data})
     const getDataProvince = await axios.get(`${url}/province/showPostSearch`);
       setListProvince(getDataProvince.data.data);
-      getSearch()
   };
   // search
   const navigate = useNavigate();
@@ -106,7 +105,8 @@ function RoomND() {
     setKeyword({ ...keyword,[e.target.name]:e.target.value});
   }
   const handleChangeSearch = (e) => {
-    getSearch(e.target.value)
+    const data = e.target.value;
+    getSearch(data)
   }
   const handleSubmitSearch = e => {
     e.preventDefault()
