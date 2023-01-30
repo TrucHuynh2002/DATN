@@ -5,14 +5,26 @@
 
 /*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
 
-@media (min-width: 1200px) and (max-width: 1600px) {
+@media (min-width: 1200px) {
     .timkiem2{
         display: none;
     }
-   
+    .navbar-nav{
+        width: 94.5%;
+        padding-left: 60px;  
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav{
+        width: 94.5%;
+        padding-left: 60px;  
+        justify-content: space-around;
+        align-items: center;
+
+    }
     .book_room h1 {
         font-size: 28px;
     }
@@ -148,11 +160,12 @@
         width: 80%;
     }
     .timkiem2{
-        width: 360px;
+        /* width: 360px; */
         margin-left: -1%;
     }
     .timkiemrow{
         padding-top: 20px;
+        padding-left: 18px;
     }
     .btn-search{
         margin-left: 80%;
@@ -199,12 +212,16 @@
         padding: 0 0px 31px 16px;
         align-items: baseline;
         position: absolute;
-        width: 768px;
-        top: 190%;
-        right: -43%;
-        left: -135%;
-        margin-right: 20px;
+        width: 204%;
+        top: 100%;
+        /* right: -44%; */
+        left: -105%;
+        /* margin-right: 20px; */
         z-index: 999;
+    }
+    
+    .fitele-search{
+        display:none;
     }
     .navbar-nav .dropdown-menu{
         position: absolute;
@@ -227,7 +244,9 @@
         display: none;
     }
    
-  
+    /* .book_room2{
+        bottom:-7%;
+    } */
 }
 
 @media (max-width: 575px) {
@@ -443,11 +462,12 @@
         width: 80%;
     }
     .timkiem2{
-        width: 360px;
+        /* width: 360px; */
         margin-left: -1%;
     }
     .timkiemrow{
         padding-top: 20px;
+        padding-left: 18px;
     }
     .btn-search{
         margin-left: 80%;
