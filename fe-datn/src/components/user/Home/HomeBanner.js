@@ -37,12 +37,12 @@ function Baner() {
           <div className="row">
             <div className="col-12">
               <div className="book_room">
-                <h1 className='tieudenhatui'>Nhatui.com</h1>
+                <h1 className='tieudenhatui'>timtrosinhvien.com</h1>
                 <form className="book_now">
                   <div className="row">
                     <div className="col-12">
                       <p className="decr">
-                        Nhatui.com là hệ thống website tìm kiếm phòng trọ miễn phí
+                        Timtrosinhvien.com là hệ thống website tìm kiếm phòng trọ miễn phí
                         cho người đi thuê hàng đầu Việt Nam
                       </p>
                     </div>

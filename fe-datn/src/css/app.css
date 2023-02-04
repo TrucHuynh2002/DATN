@@ -1,6 +1,7 @@
 
 ul#menu li {
     list-style-type: none;
+    
     /* float: left; */
     /* margin-right: 15px; */
 }
@@ -16,7 +17,7 @@ ul#menu>li>ul#sub {
     position: absolute;
     width: 150%;
     padding :10px;
-    z-index: 100;
+    /* z-index: 100; */
     background-color: white;
     border-radius: 0 20px 0 0 ;
     height:200%;
@@ -66,11 +67,13 @@ ul#menu{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: whitesmoke;
+    background-color: white;
 }
 ul#menu, ul#menu ul#sub {
     padding:0;
+    
     margin: 0;
+    
 }
 
 .sub-menu{
@@ -124,12 +127,13 @@ ul#menu-account li ul#sub {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0d3380;
+    background-color: white;
+    height: 30%;
 }
 
 .nav-top img{
-    width: 50%;
-    height: 50%;
+    width: 30%;
+    height: 30%;
     padding: 0 0 5px 30px;
 }
 
@@ -186,7 +190,6 @@ a:hover{
     max-height: 100%;
     background-color:whitesmoke;
     box-shadow: 0 2px 5px gainsboro;
-    margin-top: 200px;
 }
 .content-row{
     padding : 10px;

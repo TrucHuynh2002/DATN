@@ -145,7 +145,7 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
                   <input className="form-control inputRoomSearch" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
                   {/* <i className="fa-solid fa-search"></i> */}
                 </div>
-                <div className='col-lg-1 col-md-1 col-sm-12'>
+                <div className='col-lg-1 col-md-1 col-sm-12 ganban' >
                   <Button   
                     variant="warning"
                     style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
@@ -156,7 +156,7 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
                     style={{marginLeft: '7px'}} ></i>
                   </Button>
                 </div>
-                <div className='col-lg-1 col-md-1 col-sm-12'>
+                <div className='col-lg-1 col-md-1 col-sm-12 ganban2'>
                   <Button   
                     variant="warning" 
                     style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
