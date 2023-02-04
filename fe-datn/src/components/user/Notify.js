@@ -64,7 +64,7 @@ function Notify({onClick}) {
     const getNotify = async () => {
         if(id_user != 0){
         const res = await axios.get(`${url}/notify/${id_user}`)
-        console.log(res.data)
+        // console.log(res.data)
         if(res.data.status){
             if(res.data.data){
             setNotification(res.data.data)}

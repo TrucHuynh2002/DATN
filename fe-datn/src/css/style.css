@@ -1353,7 +1353,6 @@ height:50%;
     padding-left: 70px;
     margin-left: 40px;
 }
-
 .product-count-help{
     display: flex;
     justify-content: space-between;
@@ -1813,6 +1812,8 @@ ul.social_icon {
     padding-left: 60px;
     justify-content: space-around;
     align-items: center;
+    /* justify-content: space-around; */
+    /* align-items: center; */
 }
 
 ul.social_icon li {

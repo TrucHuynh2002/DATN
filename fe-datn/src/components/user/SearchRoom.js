@@ -28,10 +28,10 @@ function Search() {
     const getPostSearch = async (keywordss = '') => {
         let res = await axios.get(`${url}/searchAll?keyword=${keyword}&&province=${province}&&stress=${stress}&&ward=${ward}&&district=${district}&&price=${price}&&area=${area}&&typeRoom=${typeRoom}&&keywordss=${keywordss}`);
         setData(res.data);
-        if(aData.length > 0){
-            let ress = await axios.post(`${url}/search`, addTrendSearch);
+        if(aData){
+            let ress = await axios.post(`${url}/search`, addTrendSearch); 
+            // console.log(ress);
         }
-
     }
     const handleChangeSearch = (e) => {
         getPostSearch(e.target.value)
@@ -58,7 +58,7 @@ function Search() {
             <div className="back_re">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-12 ">
                             <div className="title">
                                 <h2>Kết quả tìm kiếm</h2>
                             </div>
@@ -80,7 +80,7 @@ function Search() {
                     {
                         aData.status == true && aData.data.length >= 1 ? (
                             aData.data.map((room,index) => {
-                                return  <div className="col-md-4 col-sm-6" key={index}>
+                                return  <div className="col-md-4 col-sm-12" key={index}>
                                             <div id="serv_hover" className="room">
                                                 <div className="room_img">
                                                     <figure><img src={room.link_img} alt={room.name_img} /></figure>
@@ -96,7 +96,7 @@ function Search() {
                         )
                         : 
                         (
-                            <div className="col-md-4 col-sm-6 searchroom">
+                            <div className="col-md-4 col-sm-12 searchroom">
                                 <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" alt='' width={300} height={300} className="shopee-search-empty-result-section__icon"></img>
                                     <p className='searchroom'>Không tìm thấy được kết quả nào ! Vui lòng nhập lại từ khóa bạn cần tìm</p>
                             </div>
