@@ -50,10 +50,25 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1024px) {
     .navigation.navbar-dark .navbar-nav .nav-link {
         margin: 0 10px;
     }
+    .header{
+        position: relative;
+    }
+
+    .logo{
+        display:flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+   .navigation.navbar{
+    display:none;
+   }
+   .button_icon_logoo{
+    display:block;
+   }
     .carousel-item img {
         min-height: 570px;
     }
@@ -105,13 +120,13 @@
         display: block !important;
     }
 
-    .our_room .room{
+    /* .our_room .room{
         display: flex;
-    }
+    } */
 
-    .our_room .room .room_img{
+    /* .our_room .room .room_img{
         height: 100% !important;
-    }
+    } */
 
      .our_room .room .row_img>figure{
         height: unset;
@@ -137,19 +152,19 @@
         text-align: center;
      }
 
-     .blog_box {
+     /* .blog_box {
         display: flex;
         align-items: center;
-     }
+     } */
 
-     .blog_box .blog_img {
+     /* .blog_box .blog_img {
         width: 100%;
         height: 100%;
-     }
+     } */
 
-     .blog_box .blog_img > figure{
+     /* .blog_box .blog_img > figure{
         height: 100%;
-     }
+     } */
      .blog_box .blog_img > figure > img {
         object-fit: cover;
      }
@@ -179,6 +194,13 @@
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
+    .button_icon_logoo{
+        display: block;
+    }
+    .logo>a{
+        width: 232px;
+        height: 88px;
+    }
   .nav-item {width:100%}
     .carousel-item img {
         min-height: 570px;
@@ -252,6 +274,23 @@
 @media (max-width: 575px) {
     .book_room2{
         display: none;
+    }
+    .logo{
+        display:flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .button_icon_logoo{
+        display: block;
+    }
+    .logo>a{
+        width: 232px;
+        height: 88px;
+    }
+   
+    .img-fluid{
+        object-fit: cover;
+    object-position: center;
     }
     .h1privacy{
         padding: 15px 15px 0px 15px;

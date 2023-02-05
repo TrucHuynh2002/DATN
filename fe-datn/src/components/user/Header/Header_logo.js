@@ -13,11 +13,22 @@ function Header_logo() {
     setListConfig(res.data.data);
   };
   return (
-    <div className="col-lg-2 col-md-2 col-sm-6 logo_section">
+    <div className="col-lg-2 col-md-12 col-sm-6 logo_section">
     <div className="logo">
       <Link to="/">
         <img className="logo img-fluid" src={listConfig.logo} alt="#" />
+       
       </Link>
+      <button
+                  className="navbar-toggler button_icon_logoo"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarExample04"
+                  aria-controls="navbarExample04"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                 <i class='bx bx-menu icon_menu___'></i>
+                </button>
     </div>
 </div>
   )
