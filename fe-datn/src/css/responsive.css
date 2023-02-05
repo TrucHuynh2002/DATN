@@ -253,6 +253,17 @@
     .book_room2{
         display: none;
     }
+    .h1privacy{
+        padding: 15px 15px 0px 15px;
+        text-align: justify;
+        font-size: 18px;
+    }
+    .p-privacy{
+        padding: 15px 15px 0px 15px;
+        font-size: 15px;
+        font-weight: normal;
+        text-align: justify;
+      }
     .logo {
         text-align: center !important;
         /* padding-bottom: 6px; */
@@ -261,7 +272,7 @@
         
     }
     .logo{
-        margin-left: 10px;
+        margin-left: -25px;
         margin-bottom:  -8px ;
         padding-top: 5px;
     }
@@ -387,6 +398,12 @@
         /* padding-bottom: 10px; */
         width: 100%;
     }
+    .navbar-nav {
+        width: 94.5%;
+        padding-left: 10px;
+        justify-content: space-around;
+        align-items: center;
+    }
     
     .btn-group{margin-top:20px}
     .nav-item {width:100%}
@@ -405,6 +422,14 @@
         padding: 10px 0;
         color: black;
     }
+    .ganban{
+        padding-bottom: 10px;
+        margin-left: -8px;
+    }
+    .ganban2{
+        padding-bottom: 10px;
+        margin-left: -8px;
+    }
     .navigation.navbar-dark .navbar-toggler {
         float: right;
         border: inherit;
@@ -416,6 +441,7 @@
     .navigation.navbar-dark .navbar-toggler-icon {
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
+        margin-top: 10px;
     }
     .d_none {
         display: none;
