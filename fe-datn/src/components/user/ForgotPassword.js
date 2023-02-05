@@ -17,7 +17,7 @@ function ForgotPassword() {
         setLoading(true)
         setTimeout(() => {
           setLoading(false)
-        }, 3000)
+        }, 1000)
       },[]);
     const handleSumbit = async (e) => {
         e.preventDefault();

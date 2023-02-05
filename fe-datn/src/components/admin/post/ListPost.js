@@ -20,7 +20,7 @@ function ListPost() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 1000)
     getData()
   },[]);
   // danh sach post

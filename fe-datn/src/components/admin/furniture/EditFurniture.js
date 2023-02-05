@@ -42,7 +42,7 @@ function EditFurniture() {
         setLoading(true)
         setTimeout(() => {
           setLoading(false)
-        }, 3000)
+        }, 1000)
         loadFurn();
       },[]);
     const loadFurn = async () => {

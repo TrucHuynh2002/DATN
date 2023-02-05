@@ -21,7 +21,7 @@ function ListCategory() {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 1000)
     getData();
   },[]);
   const getData = async (keywordss = '') => {

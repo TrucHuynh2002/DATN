@@ -34,14 +34,15 @@ function Love({props}) {
     const [HiddenReaction,setHiddenReaction] = useState(true);
     const getReactionCount = async () => {
         let res = await axios.get(`${url}/reaction-love`);
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.status){
                 res.data.data.map((data,index) => {
                     if(data.id_qa == props.id_qa){
                         setHiddenReaction(false);
+                        // console.log(123)
                         if(data.id_user == id_user && data.id_qa == props.id_qa){
                             setSeleted(true);
-                            console.log(123)
+                            // console.log(123)
                         }
                     }
                 })
