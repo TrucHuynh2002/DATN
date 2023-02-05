@@ -67,7 +67,7 @@ function ContentComent() {
     const res = await axios.post(`${url}/comment/create`,formData);
       if(res.data.status == true ){
         setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'phản hồi bình luận'});
-        const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
+        // const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
         setReply({...Reply,activeComment:false,id:""})
 
       }
