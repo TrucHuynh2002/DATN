@@ -141,12 +141,12 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
          
             <div className="container">
               <div className="row room_search">
-                <div className='col-lg-9 col-md-9 col-sm-12 SearchRoom'>
+                <div className='col-lg-10 col-md-10 col-sm-12 SearchRoom'>
                   <input className="form-control inputRoomSearch" placeholder="Nhập tên bạn muốn tìm kiếm " type="text" name="keywords" onChange={(e) => handleChangeSearch(e)} />
                   {/* <i className="fa-solid fa-search"></i> */}
                 </div>
-                <div className='col-lg-1 col-md-1 col-sm-12'>
-                  <Button   
+                {/* <div className='col-lg-1 col-md-1 col-sm-12'>
+                   <Button   
                     variant="warning"
                     style={{color: 'black', fontWeight: 600, borderRadius: '5px'}} 
                     onClick={(e) => handleSubmitNear(e)}
@@ -154,8 +154,8 @@ if(Account.data.data[0].id_province == null || Account.data.data[0].id_district 
                     Gần bạn 
                     <i className="fa-sharp fa-solid fa-location-dot" 
                     style={{marginLeft: '7px'}} ></i>
-                  </Button>
-                </div>
+                  </Button> 
+                </div> */}
                 <div className='col-lg-1 col-md-1 col-sm-12'>
                   <Button   
                     variant="warning" 
