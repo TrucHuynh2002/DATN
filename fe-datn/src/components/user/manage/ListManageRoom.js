@@ -276,7 +276,7 @@ function ListManageRoom() {
                 <div className="room_number____">
                     {alert.err_list.status === true && <div className="notice success_____"><p className='layoutnotice'>Cập nhật thành công</p></div>}
                     {
-                        status === 0 &&
+                        status == 0 &&
                         <>
                         <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary btn-edit" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
@@ -284,7 +284,7 @@ function ListManageRoom() {
                     }    
                     {
                         
-                        status === 1 &&
+                        status == 1 &&
                         <>
                         <Button style={{display:"block"}} id="room_number_button" className="btn btn-primary btn-edit" onClick={(e) => handleClickUpdate(e)} >Cập nhật phòng đã sở hữu</Button>
                         </>
