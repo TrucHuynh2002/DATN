@@ -78,7 +78,7 @@ function Login() {
         setLoading(true)
         setTimeout(() => {
           setLoading(false)
-        }, 3000)
+        }, 1000)
         handleLoginGoogle()
         handleLoginFacebook()
       },[]);
@@ -108,7 +108,7 @@ function Login() {
             <div className="login">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-12 col-sm-12 col-lg-6">
                             <form onSubmit={(e) => handleSumbit(e)} encType="multipart/form-data">
                                 <div className="row">
                                     <div className="col-md-12 ">
@@ -140,13 +140,13 @@ function Login() {
                                 </button>
                             </div>  
                             <div className='row'>
-                                <div className='col-md-6'>
+                                <div className='col-md-6 col-sm-12 col-lg-6'>
                                     <a href={loginFacebook} className='button_facebook'>
                                         <i className='fa fa-facebook'></i>
                                         Đăng nhập với Facebook
                                     </a>
                                 </div>
-                                <div className='col-md-6'>
+                                <div className='col-md-6 col-sm-12 col-lg-6'>
                                     <a href={loginGoogle} className='button_google'>
                                         <i className='fa fa-google'></i>
                                         Đăng nhập với Google
@@ -154,7 +154,7 @@ function Login() {
                                 </div>
                             </div>  
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-12 col-sm-12 col-lg-6 img_login__">
                             <img src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg" className="img-fluid" alt='images'/>
                         </div>
                     </div>

@@ -38,14 +38,14 @@ function HomeBlog() {
           <div className="row">
             {currentBlog.map((blog, index) => {
               return (
-                <div className="col-md-4 col-sm-12" key={index}>
+                <div className="col-lg-4 col-md-12 col-sm-12" key={index}>
                   <div className="blog_box">
-                    <div className="blog_img">
+                    <div className="blog_img col-lg-12 col-md-5 col-sm-12">
                       <Figure style={{width:"100%",height:"260px"}}>
                         <img src={blog.img_blog} alt={blog.name_img_blog} style={{width:"100%", height:"100%"}} />
                       </Figure>
                     </div>
-                    <div className="blog_room">
+                    <div className="blog_room col-lg-12 col-md-7 col-sm-12">
                       <h3><Link to={`../blogdetail/${blog.id_blog}`}>{blog.name_blog}</Link></h3>
                       <p>
                         {blog.description_sort}

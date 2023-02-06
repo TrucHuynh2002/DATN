@@ -48,7 +48,7 @@ function ListUpdateRoom() {
                         ? dataBookingRoom.map((data,index) => {
                            return (
                                 <tr key={index}>
-                                    <td>{index}</td>
+                                    <td>{index+1}</td>
                                     <td>{data.post_name}</td>
                                     <td>A{data.room_number}</td>
                                     <td>{data.full_name}</td>

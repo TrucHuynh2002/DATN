@@ -21,6 +21,7 @@ function ListDeleteRoom() {
     };
     const handleCancelRoom = async (e) => {
         let res = await axios.post(`${url}/roomNumber/update_checkRoom/${idRoomCancel}?_method=PUT`)
+        // console.log(idRoomCancel)
         if(res.data.status == true){          
             setAlertCancel(true)
         }

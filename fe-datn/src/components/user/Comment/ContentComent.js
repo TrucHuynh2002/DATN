@@ -24,7 +24,7 @@ function ContentComent() {
     id_user: user ? user[0].id : "",
     id_post: id_post,
   });
-  const [VisableCmt, setVisableCmt] = useState(1); //loader cmt number
+  const [VisableCmt, setVisableCmt] = useState(10); //loader cmt number
   const [Comment,setComment] = useState('');
   const [getIdComment,setGetIdComment] = useState(undefined);
   const [Reply,setReply] = useState({
@@ -80,11 +80,11 @@ function ContentComent() {
     formData.append('id_user',id_user)
     formData.append('id_post',id_post)
     const res = await axios.post(`${url}/comment/create`,formData);
-    if(res.data.status == true ){
-      setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
-      const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
-    }
-    setLoader(loader + res.data.id.length);
+    // if(res.data.status == true ){
+    //   setNotify({...addNotify , id_user_tow : res.data.id[0].id_user,interaction:'bình luận'});
+    //   const ress = await axios.post(`${url}/notifyComment/create`, addNotify);
+    // }
+    setLoader(loader + 1);
   }
  
   const handleDeleteComment = async (e,id_cmt) => {
@@ -307,7 +307,7 @@ return (
         </div>
     </> 
     })}
-    {VisableCmt < listComment.length &&
+    {VisableCmt <=  listComment.length &&
     <p onClick={(e) => loadmoreCmt(e)}>Xem thêm bình luận</p>
     }
  </>

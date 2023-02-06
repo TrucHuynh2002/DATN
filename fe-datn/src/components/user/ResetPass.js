@@ -21,7 +21,7 @@ function ResetPass() {
         setLoading(true)
         setTimeout(() => {
           setLoading(false)
-        }, 3000)
+        }, 1000)
       },[]);
     const handleSumbit = async (e) => {
         e.preventDefault();
@@ -64,7 +64,7 @@ function ResetPass() {
                 <div className="login">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <form onSubmit={(e) => handleSumbit(e)}>
                                     <div className="row">
                                         <div className="col-md-12">

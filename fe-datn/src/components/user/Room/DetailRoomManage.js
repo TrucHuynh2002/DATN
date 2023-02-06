@@ -212,7 +212,7 @@ function RoomDetail() {
             </div>
             );
             })}
-            <Button className="btn btn-primary col-12" style={{marginTop:'-45%', color:'#0d3380', backgroundColor:'#ffc72b', border:'none', fontWeight:'700', width:'50%', marginLeft:'43%'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay </Button>
+            <Button className="btn btn-primary col-12" style={{color:'#0d3380', backgroundColor:'#ffc72b', border:'none', fontWeight:'700'}} onClick={(e) =>handleBookRoom(e)}>Đặt phòng ngay</Button>
             {alert.err_list.status === true && <div className="notice success_____">Đặt phòng thành công</div>}
             { alert.err_list.status === false && <div className="notice warning_____">
                 Tài khoản đã đặt phòng vui lòng trả phòng để đặt phòng tiếp theo </div> }          

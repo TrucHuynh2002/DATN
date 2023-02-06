@@ -37,12 +37,12 @@ useEffect(() => {
           <div className="row">
             {currentPosts.map((post, index) => {
               return (     
-                <div className="col-md-4 col-sm-12" key={index}>
-                    <div id="serv_hover" className="room">
-                      <div className="room_img" >
+                <div className="col-lg-4 col-md-12 col-sm-12 " key={index}>
+                    <div id="serv_hover" className="room allRoom">
+                      <div className="room_img col-lg-12 col-md-5 col-xs-4" >
                           <Figure style={{width:"100%",height:"260px"}}><img src={post.link_img} alt={post.name_img} /></Figure>
                       </div>
-                      <div className="bed_room">
+                      <div className="bed_room col-lg-12 col-md-7 col-xs-8 ">
                         <h3><Link to={`../roomdetail/${post.id_post}`}>{post.post_name}</Link></h3>
                         <span className='currency'> {new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(post.room_price)} /Tháng</span>
                         <p className='mota'>{post.description_sort}</p>

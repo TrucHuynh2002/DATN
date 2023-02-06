@@ -3,9 +3,9 @@ import HeaderNavLink from './HeaderNavLink';
 
 function Header_menu() {
   return (
-      <div className="col-lg-10 col-md-10 col-sm-6">
+      <div className="col-lg-10 col-md-12 col-sm-6">
         <nav className="navigation navbar navbar-expand-md navbar-dark">
-                <button
+                {/* <button
                   className="navbar-toggler"
                   type="button"
                   data-toggle="collapse"
@@ -14,7 +14,7 @@ function Header_menu() {
                   aria-expanded="false"
                   aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon" />
-                </button>
+                </button> */}
                 <HeaderNavLink />
         </nav>
       </div>
