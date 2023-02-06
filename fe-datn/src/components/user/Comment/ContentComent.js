@@ -307,9 +307,11 @@ return (
         </div>
     </> 
     })}
-    {VisableCmt <=  listComment.length &&
+    {
+      listComment.Comment_parent.length >= 0 &&
     <p onClick={(e) => loadmoreCmt(e)}>Xem thêm bình luận</p>
     }
+    
  </>
 )
 }
