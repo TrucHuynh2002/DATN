@@ -1081,10 +1081,12 @@ label{
 
 .our_room .room .room_img figure {
     margin: 0;
+    height: 315px;
 }
 
 .our_room .room .room_img figure img {
     width: 100%;
+    height:100%;
    
     
 }
