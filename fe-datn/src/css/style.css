@@ -3264,7 +3264,7 @@ margin-top: 30px;
     line-height: 6px;
 }
 .timkiem {
-    display:none;
+    /* display:none; */
     border: 1px solid #bebebe;
     padding: 5px;
     width: 100%;
