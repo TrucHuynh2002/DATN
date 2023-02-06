@@ -12,7 +12,7 @@ function Love({props}) {
         if(Selected){
             setSeleted(false)
             let res = await axios.post(`${url}/reaction-love/${props.id_qa}?_method=PUT`,props);
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.status){
                 getReactionCount()
                 setSeleted(false);
@@ -21,7 +21,7 @@ function Love({props}) {
         }else{
             setSeleted(true)
             let res = await axios.post(`${url}/reaction-love`,props);
-            console.log(res.data);
+            // console.log(res.data);
             if(res.data.status){
                 getReactionCount()
                 setHiddenReaction(true)
@@ -32,11 +32,9 @@ function Love({props}) {
     
     const [dataReaction,setDataReaction] = useState([]);
     const [dataUserReaction, setDataUserReaction] = useState([])
-    console.log(dataReaction)
     const [HiddenReaction,setHiddenReaction] = useState(true);
     const getReactionCount = async () => {
         let res = await axios.get(`${url}/reaction-love`);
-            console.log(res.data);
             if(res.data.status){
                 
                 res.data.data.map((data,index) => {
