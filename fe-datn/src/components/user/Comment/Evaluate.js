@@ -54,8 +54,8 @@ function Evaluate({loader}) {
 
   return (
     <>
-      <div className="component-show-rate d-flex rounded-lg">
-        <div className="content-left col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
+      <div className="row component-show-rate d-flex rounded-lg">
+        <div className="content-left col-lg-3 col-md-12 col-sm-12 p-3 d-flex flex-column justify-content-center align-items-center">
           <p>Đánh giá trung bình</p>
           <div className="avg-rate font-weight-bold">
             <span>{averageRate}</span>
@@ -82,7 +82,7 @@ function Evaluate({loader}) {
             (<span>{dataAverageRate.length}</span> nhận xét)
           </p>
         </div>
-        <div className="content-center col-sm-6 p-3 d-flex flex-column justify-content-center align-items-center">
+        <div className="content-center col-lg-6 col-md-12 col-sm-12 p-3 d-flex flex-column justify-content-center align-items-center">
           <div className="star-percent d-flex align-items-center">
             <div className="mr-2">
               5 <i className="fas fa-star" />
@@ -164,7 +164,7 @@ function Evaluate({loader}) {
             <div className="percent">{(one_star > 0 ? Math.round(one_star/count * 100) : 0)}%</div>
           </div>
         </div>
-        <div className="content-right col-sm-3 p-3 d-flex flex-column justify-content-center align-items-center">
+        <div className="content-right col-lg-3 col-md-12 col-sm-12 p-3 d-flex flex-column justify-content-center align-items-center">
           <p className="mb-2">Chia sẻ nhận xét về sản phẩm</p>
           <button
             type="button"

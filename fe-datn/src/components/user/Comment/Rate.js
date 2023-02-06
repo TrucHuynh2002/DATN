@@ -55,11 +55,11 @@ function Comment({data}) {
       err_list: {},
   });
   return (
-    <div className="comment position-relative p-3 rounded-lg">
-        <div className="align-items-center col-4">
+    <div className="comment position-relative p-3 rounded-lg row">
+        <div className="align-items-center col-lg-4 col-md-12 col-sm-12">
               <div>
                 <p className="m-0 mr-2">1. Đánh giá của bạn về sản phẩm này:</p>
-                <div className="rate">
+                <div className="rate ">
                   {
                     Array(5).fill()
                             .map((_,index) => 
@@ -93,7 +93,7 @@ function Comment({data}) {
                 </div>
               </div>
         </div>
-        <div className="col-8">
+        <div className="col-lg-8 col-md-12 col-sm-12">
          {user ? 
           <Form className="" onSubmit={(e) => handleSumbit(e)}>
             <Form.Group className="form-group">
