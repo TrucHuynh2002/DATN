@@ -203,7 +203,8 @@ return (
                     <strong>Trả lời</strong>
                   </span>
                   <p  className="feedback_comment_time" >
-                    {moment(comment.created_at).local().startOf('day').fromNow()}
+                    {/* {moment(comment.created_at).local().startOf('day').fromNow()} */}
+                    {comment.created_at}
                   </p> 
                 </div>
                 { activeComment && id == comment.id_comment &&
