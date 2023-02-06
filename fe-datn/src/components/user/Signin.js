@@ -114,7 +114,7 @@ function Signin() {
             <div className="signin">
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-12 col-lg-6">
                             <form id="request" className="main_form" onSubmit={(e) => handleSumbit(e)}>
                                 <div className="row">
                                     <div className="col-md-12">
@@ -203,7 +203,7 @@ function Signin() {
                                 </div>
                             </form>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-12 col-lg-6 img_login__">
                             <img src="https://bandon.vn/resize/1000x700/a-c/zc-1/f/uploads/posts/thiet-ke-nha-tro-dep-2020-bandon-0.jpg" alt='images'/>
                         </div>
                     </div>

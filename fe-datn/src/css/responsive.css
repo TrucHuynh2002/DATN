@@ -6,14 +6,14 @@
 /*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
 
 @media (min-width: 1200px) {
-    .timkiem2{
-        display: none;
-    }
     .navbar-nav{
         width: 94.5%;
         padding-left: 60px;  
         justify-content: space-around;
         align-items: center;
+    }
+    .timkiemrow{
+        display:none;
     }
 }
 
@@ -45,8 +45,9 @@
     .gallery {
         height: 450px !important;
     }
-    .timkiem2{
-        display: none;
+   
+    .timkiemrow{
+        display:none;
     }
 }
 
@@ -54,20 +55,52 @@
     .navigation.navbar-dark .navbar-nav .nav-link {
         margin: 0 10px;
     }
+    .timkiemrow{
+        display:none;
+    }
     .header{
         position: relative;
     }
 
-    .logo{
-        display:flex;
+    /* .logo{
+    display:flex;
     justify-content: space-between;
     align-items: center;
-    }
-   .navigation.navbar{
+    } */
+    /* .navbar-collapse{
     display:none;
-   }
-   .button_icon_logoo{
+   } */
+     /* .navigation.navbar {
+        float: right;
+        display: inherit !important;
+        padding: 0;
+        width: 100%;
+        padding-top: 5px !important;
+    } */
+   /* .button_icon_logoo{
     display:block;
+   } */
+   .navbar-expand-md .navbar-nav{
+    flex-wrap:wrap;
+    justify-content: center;
+   }
+   .allRoom{
+    display: flex;
+   }
+   .button_facebook,.button_google{
+width:100%;
+   }
+   .button_google{
+    margin: 10px 0 0 0;
+   }
+   .img_login__{
+    margin-top:10px;
+   }
+   .col-lg-4.col-md-12.col-sm-12>.blog_box{
+    display:flex
+   }
+   .navbar-nav>.nav-item{
+    margin-right: 4px;
    }
     .carousel-item img {
         min-height: 570px;
@@ -171,21 +204,24 @@
      .timkiemrow{
         display: none;
      }
-     .timkiem{
+     /* .timkiem{
         width: 80%;
-    }
+    } */
     .timkiem2{
         /* width: 360px; */
         margin-left: -1%;
+    }
+    .our_room .room .room_img figure img{
+        height: 100%;
     }
     .timkiemrow{
         padding-top: 20px;
         padding-left: 18px;
     }
-    .btn-search{
+    /* .btn-search{
         margin-left: 80%;
         margin-top: -10.5%;
-    }
+    } */
     .first-slide {
         width: 100%;
         height: 100px;
@@ -196,6 +232,9 @@
 @media (min-width: 576px) and (max-width: 767px) {
     .button_icon_logoo{
         display: block;
+    }
+    .timkiemrow{
+        display:none;
     }
     .logo>a{
         width: 232px;
@@ -274,6 +313,9 @@
 @media (max-width: 575px) {
     .book_room2{
         display: none;
+    }
+    iframe{
+        width: 100%;
     }
     .logo{
         display:flex;
@@ -529,7 +571,7 @@
     }
     .timkiemrow{
         padding-top: 20px;
-        padding-left: 18px;
+        display:flex
     }
     .btn-search{
         margin-left: 80%;

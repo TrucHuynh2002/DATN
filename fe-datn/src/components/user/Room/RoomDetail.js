@@ -33,11 +33,9 @@ function RoomDetail() {
         ward();
       },[loader]);
     // show phone contact
-    var showBtn = document.querySelector('#button_contact')
-    var hideBtn = document.querySelector('#button_phone')
     const handleClick = (e) => {
-        showBtn.style.display = 'none'
-        hideBtn.style.display = 'block'        
+        document.querySelector('#button_contact').style.display = "none";
+        document.querySelector('#button_phone').style.display = "block"        
     };
     // danh sach post
     const getData = async () => {

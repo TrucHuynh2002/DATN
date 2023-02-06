@@ -64,7 +64,7 @@ function ResetPass() {
                 <div className="login">
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <form onSubmit={(e) => handleSumbit(e)}>
                                     <div className="row">
                                         <div className="col-md-12">

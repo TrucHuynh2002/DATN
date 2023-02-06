@@ -251,7 +251,7 @@ function HeaderNavLink() {
     }
     const handleSubmitSearch = (e) => {
         e.preventDefault()
-        navigate(`../searchroom?keyword=${keywords}`);
+        navigate(`../searchroom?keyword=${keywords}&province=&ward=&stress=&district=&price=&area=&typeRoom=`);
       }
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
@@ -502,8 +502,9 @@ function HeaderNavLink() {
             </li>
             <li className="nav-item">
                 <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
-                    <div className="row timkiemrow">
-                        <input className="timkiem2 form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} /> 
+                    <div className="timkiemrow">
+                        <input className="timkiem2 form-control " placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} />
+                        <button className='fa fa-search' type="submit" style={{color:"#0d3380", fontSize:"30px"}}></button>
                     </div> 
                 </form>    
             </li>
