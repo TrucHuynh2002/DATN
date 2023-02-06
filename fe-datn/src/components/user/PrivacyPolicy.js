@@ -35,16 +35,6 @@ function PrivacyPolicy() {
                       </div>
                   </div>
               </div>
-              <p className="title-privacy">Nguyên tắc về quyền riêng tư của Tìm Trọ Nhà Tui</p>
-              <p className="content-privacy">
-                Tìm Trọ Nhà Tui được xây dựng để đưa mọi người có thể tìm kiếm phòng ở dễ dàng hơn.
-                Chúng tôi giúp bạn kết nối với các chủ phòng,
-                khám phá các căng phòng và tìm kiếm những căn phòng mà bạn cần.
-                Chúng tôi nhận thấy mọi người sử dụng Tìm Trọ Nhà Tui để tìm kiếm phòng ở,
-                nhưng không phải ai cũng muốn chia sẻ tất cả mọi thứ với tất cả mọi người - ngay cả là chia sẻ với chúng tôi.
-                Quan trọng là bạn có quyền lựa chọn dữ liệu của mình nên được sử dụng như thế nào.
-                Đây là các nguyên tắc định hướng cách chúng tôi tiếp cận vấn đề quyền riêng tư tại Tìm Trọ Nhà Tui.
-              </p>
               <h1 className="h1privacy">
                 Chúng tôi trao cho bạn khả năng kiểm soát quyền riêng tư của mình
               </h1>

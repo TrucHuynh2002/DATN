@@ -64,6 +64,12 @@ function HeaderNavLink() {
             status: ""
         },
     });
+    const [keyword,setKeyword] = useState({
+        keywords: "",
+      })
+    const {
+        keywords,
+      } = keyword
     // Xử lý input vlaue
     const handleChange = async (e) => {
         setAddPost({ ...addPost, [e.target.name] : e.target.value});
@@ -84,6 +90,16 @@ function HeaderNavLink() {
         var get_data = await axios.get(`${url}/furniture/show`);
         setFuriture(get_data.data.data)
     };
+    const handleChangeKeyWord = (e) => {
+        setKeyword({ ...keyword,[e.target.name]:e.target.value});
+        // if(e.target.value.length > 0){
+        //   getKeyword(e.target.value)
+        //   setSearching(true)
+        // }
+        // else{
+        //   setSearching(false)
+        // }
+    }
     useEffect(() => {
         getDataProvince();
         getDataRoomType();
@@ -233,7 +249,10 @@ function HeaderNavLink() {
         setLoader(loader+1)
         getNotify()
     }
-
+    const handleSubmitSearch = (e) => {
+        e.preventDefault()
+        navigate(`../searchroom?keyword=${keywords}`);
+      }
   return (
     <div className="collapse navbar-collapse" id="navbarExample04">
         <ul className="navbar-nav" >
@@ -482,9 +501,9 @@ function HeaderNavLink() {
                 </div> }
             </li>
             <li className="nav-item">
-                <form className="book_now2" >
+                <form className="book_now2" onSubmit={(e) => handleSubmitSearch(e)}>
                     <div className="row timkiemrow">
-                        <input className="timkiem2 form-control" placeholder="Tìm kiếm" type="text" name="keywords"  />
+                        <input className="timkiem2 form-control" placeholder="Tìm kiếm" type="text" name="keywords" onChange={(e) => handleChangeKeyWord(e)} /> 
                     </div> 
                 </form>    
             </li>

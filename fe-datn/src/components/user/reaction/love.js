@@ -31,28 +31,37 @@ function Love({props}) {
 
     
     const [dataReaction,setDataReaction] = useState([]);
+    const [dataUserReaction, setDataUserReaction] = useState([])
+    console.log(dataReaction)
     const [HiddenReaction,setHiddenReaction] = useState(true);
     const getReactionCount = async () => {
         let res = await axios.get(`${url}/reaction-love`);
             console.log(res.data);
             if(res.data.status){
+                
                 res.data.data.map((data,index) => {
                     if(data.id_qa == props.id_qa){
                         setHiddenReaction(false);
-                        if(data.id_user == id_user && data.id_qa == props.id_qa){
-                            setSeleted(true);
-                            console.log(123)
-                        }
+                        // if(data.id_user == id_user && data.id_qa == props.id_qa){
+                        //     setSeleted(true);
+                        //     console.log(123)
+                        // }
+                        res.data.userReaction.map((datas,indexx) => {
+                            if(datas.id_user == id_user && datas.id_qa == props.id_qa){
+                                setSeleted(true);
+                                // console.log(123)
+                            }
+                        })
+
                     }
                 })
                 setDataReaction(res.data.data);
+                setDataUserReaction(res.data.userReaction)
             }
     } 
 
     useEffect(() => {
-     
             getReactionCount()
-     
     },[])
   return (
   
@@ -68,7 +77,15 @@ function Love({props}) {
                </>
                :
                 dataReaction.length > 0 && dataReaction.map((data,index) => {
-              
+                // if(user){
+                    
+                // dataUserReaction.map((datas,indexx) => {
+                //         if(datas.id_user == id_user && datas.id_qa == props.id_qa){
+                //             setSeleted(true);
+                //             console.log(123)
+                //         }
+                //     })
+                // }
                 return data.id_qa == props.id_qa
                 &&
                 
@@ -83,12 +100,16 @@ function Love({props}) {
                     <span>{data.reactionQa}</span>
                     </>
                     :
-                    <> 
-                     <span onClick={e => handleClickReaction(e)}>
-                    <i class={Selected ? "SelectedReactionLove fa-regular fa-heart" : "fa-regular fa-heart"}></i>
-                    </span>
-                    <span>{data.reactionQa}</span>
-                    </>
+                            <>    
+                            <span onClick={e => handleClickReaction(e)}>
+                            <i class={Selected ? "SelectedReactionLove fa-regular fa-heart" : "fa-regular fa-heart"}></i>
+                            </span>
+                            <span>{data.reactionQa}</span>
+                            </>
+                        
+                    
+                        
+                           
                   }
                  
                   </>

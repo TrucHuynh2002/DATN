@@ -1344,7 +1344,14 @@ height:50%;
 }
 .item>.img-fluid{
     padding:20px;
-    padding-left: 60px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    padding-left: 70px;
+    margin-left: 40px;
 }
 .product-count-help{
     display: flex;
@@ -1801,9 +1808,12 @@ ul.social_icon {
     text-align: left;
 }
 .navbar-nav{
-    width: 100%;
+    width: 94.5%;
+    padding-left: 60px;
     justify-content: space-around;
     align-items: center;
+    /* justify-content: space-around; */
+    /* align-items: center; */
 }
 
 ul.social_icon li {
@@ -1945,31 +1955,26 @@ ul.social_icon li a:hover {
     justify-content: space-between;
     margin-top: 16px
 }
-.timkiemRoom{
-    width: 92% !important;
+.inputRoomSearch{
+    width: 100% ;
     padding: 5px;
     border: 1px solid #bebebe;
     border-radius: 5px;
     /* margin-top: 60px;    */
 }
-.timkiemRoom2{
-    width: 89% !important;
+.SearchRoom{
     padding: 5px;
-    border: 1px solid #bebebe;
     border-radius: 5px;
-    margin-top: -20px;   
+    display:flex
 }
-.timkiemRoom3{
-    width: 10% !important;
-    padding: 5px;
+.SearchRoomButton{
     border: 1px solid var(--background-color);
     border-radius: 5px;
-    margin-top: -5px;   
     margin-left: 10px;
     color: var(--text-color);
     background-color: var(--background-color);
 }
-.timkiemRoom3:hover{
+.SearchRoomButton:hover{
     width: 10% !important;
     padding: 5px;
     border: 1px solid var(--background-color);
@@ -2731,10 +2736,12 @@ margin: 0 300px 0 375px;
     font-size: 22px;
     line-height: 30px;
     font-weight: normal;
-  }.h1privacy{
+  }
+  .h1privacy{
     padding: 50px 300px 0px 300px;
     font-weight: 500;
-  }.p-privacy{
+  }
+  .p-privacy{
     padding: 20px 300px 0px 300px;
     font-size: 18px;
     font-weight: normal;
@@ -3287,11 +3294,7 @@ margin-top: 30px;
     margin: 0 4px;
 }
 .fixed_menu{
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    left: 0;
+    padding-top: 35px;
 }
 .css_loading{
     margin: 130px 550px 150px 550px;

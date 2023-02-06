@@ -5,14 +5,26 @@
 
 /*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
 
-@media (min-width: 1200px) and (max-width: 1600px) {
+@media (min-width: 1200px) {
     .timkiem2{
         display: none;
     }
-   
+    .navbar-nav{
+        width: 94.5%;
+        padding-left: 60px;  
+        justify-content: space-around;
+        align-items: center;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+    .navbar-nav{
+        width: 94.5%;
+        padding-left: 60px;  
+        justify-content: space-around;
+        align-items: center;
+
+    }
     .book_room h1 {
         font-size: 28px;
     }
@@ -148,11 +160,12 @@
         width: 80%;
     }
     .timkiem2{
-        width: 360px;
+        /* width: 360px; */
         margin-left: -1%;
     }
     .timkiemrow{
         padding-top: 20px;
+        padding-left: 18px;
     }
     .btn-search{
         margin-left: 80%;
@@ -199,12 +212,16 @@
         padding: 0 0px 31px 16px;
         align-items: baseline;
         position: absolute;
-        width: 768px;
-        top: 190%;
-        right: -43%;
-        left: -135%;
-        margin-right: 20px;
+        width: 204%;
+        top: 100%;
+        /* right: -44%; */
+        left: -105%;
+        /* margin-right: 20px; */
         z-index: 999;
+    }
+    
+    .fitele-search{
+        display:none;
     }
     .navbar-nav .dropdown-menu{
         position: absolute;
@@ -227,13 +244,26 @@
         display: none;
     }
    
-  
+    /* .book_room2{
+        bottom:-7%;
+    } */
 }
 
 @media (max-width: 575px) {
     .book_room2{
         display: none;
     }
+    .h1privacy{
+        padding: 15px 15px 0px 15px;
+        text-align: justify;
+        font-size: 18px;
+    }
+    .p-privacy{
+        padding: 15px 15px 0px 15px;
+        font-size: 15px;
+        font-weight: normal;
+        text-align: justify;
+      }
     .logo {
         text-align: center !important;
         /* padding-bottom: 6px; */
@@ -242,7 +272,7 @@
         
     }
     .logo{
-        margin-left: 10px;
+        margin-left: -25px;
         margin-bottom:  -8px ;
         padding-top: 5px;
     }
@@ -368,6 +398,12 @@
         /* padding-bottom: 10px; */
         width: 100%;
     }
+    .navbar-nav {
+        width: 94.5%;
+        padding-left: 10px;
+        justify-content: space-around;
+        align-items: center;
+    }
     
     .btn-group{margin-top:20px}
     .nav-item {width:100%}
@@ -386,6 +422,14 @@
         padding: 10px 0;
         color: black;
     }
+    .ganban{
+        padding-bottom: 10px;
+        margin-left: -8px;
+    }
+    .ganban2{
+        padding-bottom: 10px;
+        margin-left: -8px;
+    }
     .navigation.navbar-dark .navbar-toggler {
         float: right;
         border: inherit;
@@ -397,6 +441,7 @@
     .navigation.navbar-dark .navbar-toggler-icon {
         background: url(../images/menu_icon.png);
         background-repeat: no-repeat;
+        margin-top: 10px;
     }
     .d_none {
         display: none;
@@ -443,11 +488,12 @@
         width: 80%;
     }
     .timkiem2{
-        width: 360px;
+        /* width: 360px; */
         margin-left: -1%;
     }
     .timkiemrow{
         padding-top: 20px;
+        padding-left: 18px;
     }
     .btn-search{
         margin-left: 80%;

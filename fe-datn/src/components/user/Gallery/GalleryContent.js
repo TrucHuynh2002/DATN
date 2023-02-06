@@ -54,8 +54,8 @@ function GalleryContent() {
                     className="row searchTrend"  
                     onClick={(e) =>getDataPostTrendShow(list.key_word) }
                     >
-                      <div className="col-1">{index+1}</div>
-                      <div className="col-6">
+                      <div className="col-lg-1 col-md-1 col-sm-12">{index+1}</div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
                         <div> {list.key_word}</div>
                         <div className="content____________">
                           <Link 
@@ -68,11 +68,11 @@ function GalleryContent() {
                             </span>
                         </div>
                     </div>
-                      <div className="col-4 view___">
+                      <div className="col-lg-4 col-md-4 col-sm-12 view___">
                         <div>{list.view}</div>
                         <span >lượt tìm kiếm</span>
                       </div>
-                      <div className="col-1">
+                      <div className="col-lg-1 col-md-1 col-sm-12">
                         <i className="fas fa-angle-down"></i>
                       </div>
                   </div>
