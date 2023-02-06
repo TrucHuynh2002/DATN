@@ -225,7 +225,7 @@ function QA() {
                               <Link to={`../profile/${listQa.id_user}`} className='qa_link'>{listQa.full_name}</Link>
                             </div>
                             <div className="feedback_comment_time"> 
-                            <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().startOf('day').fromNow()}</Link>
+                            <Link to={`../qaDetail/${listQa.id_qa}`} className='qa_link'>{moment(listQa.created_at).local().fromNow()}</Link>
                             </div>
                           </div> 
                             {id_user == listQa.id_user &&
