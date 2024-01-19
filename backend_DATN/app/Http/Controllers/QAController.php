@@ -16,9 +16,9 @@ class QAController extends Controller
 
     public function show(Request $request)
     {
-        $data = DB::table('user')
+        $data = DB::table('users')
+        ->join('qa', 'qa.id_user', '=', 'users.id_user')
             ->join('img_user', 'img_user.id_user', '=', 'qa.id_user')
-            ->join('qa', 'qa.id_user', '=', 'users.id_user')
             ->orderBy('qa.id_qa', 'DESC')
             ->get();
       
